@@ -59,8 +59,11 @@ l'**Àncora di Voce**: quella si spacca in mano e vi tira su.
 ## I posti sono veri
 
 Il Porto Romano, Cala Rossano, Cala Nave, Piazza Castello, le cisterne dietro la chiesa di Santa
-Candida, Villa Giulia a Punta Eolo — dove Augusto nel 2 d.C. relegò sua nipote Giulia Minore, che ci
-restò venti anni — il museo archeologico, Santo Stefano e il cimitero dei detenuti. Si cena alla
+Candida, Villa Giulia a Punta Eolo — dove nel 2 avanti Cristo Augusto relegò **sua figlia**, con
+l'accusa di adulterio: cinque anni su questo scoglio, la madre che la segue per non lasciarla sola,
+e poi l'ordine scritto che le sue ossa non entrassero nel Mausoleo di famiglia. Dopo di lei
+Agrippina, che qui è morta di fame, e Ottavia, che qui l'hanno uccisa a ventidue anni — il museo
+archeologico, Santo Stefano e il cimitero dei detenuti. Si cena alla
 **Terrazza di Mimì** in Piazza Castello e alla **Marisqueria**, e le lenticchie di Ventotene sono
 minuscole e non si spappolano.
 
@@ -74,6 +77,13 @@ Linguaggio per adulti, orrore psicologico, acqua profonda e claustrofobia, la vo
 amata che dice la cosa sbagliata. Nessuna violenza sessuale, nessun sesso esplicito. I due
 protagonisti sono persone reali e il gioco li tratta con affetto anche mentre li distrugge. Le
 persone vive di Ventotene, nel gioco, sono dalla vostra parte.
+
+## I numeri, misurati (non ricordati)
+
+174 scene · ~48.900 parole · **2,96 scelte a ogni snodo di decisione** e zero corridoi sterili ·
+6 rami di finale con 12 code · 16 ricette · 3 misteri da 4 indizi · 8 minigiochi di 5 tipi ·
+8 combattimenti con 4 boss · 65 imprese e 23 cronache · 20 sfondi dipinti · 14 sprite · 14 tracce
+sintetizzate. Li stampa `node tests/validate.mjs`, che **fallisce** se una soglia viene violata.
 
 ## Per chi sviluppa
 

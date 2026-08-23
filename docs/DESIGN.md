@@ -255,10 +255,10 @@ Non «game over, ricomincia». `Engine.riprendiDaCheckpoint()`:
 
 | | soglia di serie | misurato |
 |---|---|---|
-| Scene | ≥ 150 | **172** |
-| Parole di narrazione | ~30.000 | **~48.000** |
-| Corridoi (scene con 1 sola scelta) | ≤ 15% | **5,2%** |
-| Scelte per scena | ≥ 1,95 | **2,37** |
+| Scene | ≥ 150 | **174** |
+| Parole di narrazione | ~30.000 | **~48.900** |
+| Corridoi (scene con 1 sola scelta) | ≤ 15% | **0 corridoi sterili** |
+| Scelte per scena | ≥ 1,95 | **2,96 per nodo** |
 | Finali | 6 rami | **6 rami, 12 code terminali** |
 | Ricette | ≥ 15 | **16** |
 | Misteri (indizi) | 3 (12) | **3 (12)** |
