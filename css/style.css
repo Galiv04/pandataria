@@ -71,11 +71,11 @@ canvas { image-rendering: pixelated; image-rendering: crisp-edges; display:block
    il testo va letto, non ammirato. Allineato a sinistra — mai centrato riga per riga. */
 .title-incipit {
   max-width: 640px;
-  margin: 0 auto 22px;
-  padding: 16px 20px 14px;
+  margin: 4px auto 18px;
+  padding: 14px 18px 12px;
   text-align: left;
-  font-size: 20px;
-  line-height: 1.5;
+  font-size: 19px;
+  line-height: 1.45;
   color: var(--text-dim);
   background: var(--veil);
   border: 2px solid var(--border);
