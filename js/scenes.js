@@ -875,20 +875,6 @@ const Scenes = (() => {
       sea(ctx, W, horiz, H * 0.44, '#1a6484', '#2f88a6', r, 8, 0.7);
       ctx.fillStyle = 'rgba(255,255,255,.20)'; ctx.fillRect(0, horiz, W, 2);
       santoStefanoLontano(ctx, W * 0.84, horiz + 2, W * 0.13, H * 0.062, '#42585e', '#8a9088');
-      /* I GRADINI CHE SCENDONO A CALA NAVE, sulla destra del giardino: dal muretto più
-         basso una rampa stretta scompare oltre il ciglio. È il dettaglio vero di questo
-         posto — la spiaggia sta sotto, a una rampa di distanza — ed è anche la ragione
-         per cui questo rifugio confina col mare profondo. */
-      const grX = W * 0.80;
-      for (let k = 0; k < 7; k++) {
-        const gy = H * 0.455 + k * 5;
-        ctx.fillStyle = k % 2 ? '#b09468' : '#c8ac7e';
-        ctx.fillRect(grX + k * 3, gy, 26 - k * 2, 4);
-        ctx.fillStyle = 'rgba(60,48,32,.45)';
-        ctx.fillRect(grX + k * 3, gy + 4, 26 - k * 2, 1);
-      }
-      ctx.fillStyle = 'rgba(20,28,24,.5)'; ctx.fillRect(grX + 20, H * 0.455 + 34, 12, 6);   // dove la rampa scompare
-
       // LA COSA FREDDA: sul mare, in mezzo tra le due isole, una banda verticale
       // larga tre dita dove l'aria non è nitida come tutto il resto.
       ctx.fillStyle = 'rgba(146,182,196,.26)'; ctx.fillRect(W * 0.735, horiz - 18, 14, H * 0.16 + 18);
@@ -997,6 +983,28 @@ const Scenes = (() => {
         ctx.fillStyle = '#ccc8bc'; ctx.fillRect(sx - 16 + (sfx < 0 ? 0 : 4), syy - 28, 28, 6);
         ctx.fillStyle = '#b8b4a8'; ctx.fillRect(sx - 13, syy + 14, 6, 28); ctx.fillRect(sx + 8, syy + 14, 6, 28);
       }
+      /* I GRADINI CHE SCENDONO A CALA NAVE, al bordo destro del giardino: dal livello
+         più basso una rampa stretta se ne va giù e scompare oltre il ciglio. È il
+         dettaglio vero di questo posto — la spiaggia sta sotto, a una rampa di distanza
+         — ed è anche la ragione per cui questo rifugio confina col mare profondo.
+         Disegnati QUI, dopo i livelli di terra: prima li coprivano e non si vedevano. */
+      {
+        const gx0 = W * 0.90, gy0 = H * 0.62;
+        for (let k = 0; k < 9; k++) {
+          const gx = gx0 - k * 2, gy = gy0 + k * 7;
+          if (gy > H - 6) break;
+          ctx.fillStyle = k % 2 ? '#b8a074' : '#cdb689';
+          ctx.fillRect(gx, gy, W - gx, 5);
+          ctx.fillStyle = 'rgba(58,46,30,.40)';
+          ctx.fillRect(gx, gy + 5, W - gx, 2);
+          ctx.fillStyle = 'rgba(255,236,190,.16)';          // il filo di luce sul bordo del gradino
+          ctx.fillRect(gx, gy, W - gx, 1);
+        }
+        // il muretto che accompagna la rampa, e il buco nero dove la rampa svolta
+        ctx.fillStyle = 'rgba(96,80,52,.55)'; ctx.fillRect(gx0 - 20, gy0 - 4, 5, H - gy0);
+        ctx.fillStyle = 'rgba(14,20,18,.5)'; ctx.fillRect(gx0 - 16, gy0 + 58, 16, 8);
+      }
+
     },
 
     cala(ctx, W, H) {
@@ -1295,6 +1303,7 @@ const Scenes = (() => {
       // il cavetto del microfono che scende oltre il muretto
       ctx.fillStyle = '#2a2e34';
       for (let i = 0; i < 9; i++) ctx.fillRect(W * 0.52 + i * 2, murettoY - 30 + i * 5, 2, 6);
+
     },
 
 
