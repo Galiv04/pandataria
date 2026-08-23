@@ -1098,7 +1098,15 @@ Fuori, il mare è calmo. Sotto, qualcuno sta contando fino a quando tornate.</di
       ctx.font = "9px 'Press Start 2P'";
       ctx.fillStyle = isCur ? '#e8b64c' : '#8a94ac';
       ctx.font = "26px 'Press Start 2P'";
-      ctx.fillText(String(WORLD_MAP.indexOf(loc) + 1), x, y + rh / 2 + 31);
+      /* Il numero sta sotto il luogo, tranne quando sotto c'è un altro luogo vicino:
+         nel Relais «I Tornanti» e «Paternopoli» distano 29 px in orizzontale e 48 in
+         verticale, e il numero del primo cadeva sull'icona del secondo. In quel caso
+         il numero va SOPRA. Vale per tutti: se un giorno due luoghi si avvicinano,
+         la pianta si aggiusta da sola. */
+      const sottoOccupato = WORLD_MAP.some(altro => altro !== loc
+        && Math.abs(altro.x * W - x) < 60
+        && (altro.y * H - y) > 0 && (altro.y * H - y) < 70);
+      ctx.fillText(String(WORLD_MAP.indexOf(loc) + 1), x, sottoOccupato ? y - rh / 2 - 12 : y + rh / 2 + 31);
       if (isCur) { ctx.font = "14px 'Press Start 2P'"; ctx.fillStyle = '#e8b64c'; ctx.fillText('⭐', x, y - rh / 2 - 8); }
       ctx.textAlign = 'left';
     }
