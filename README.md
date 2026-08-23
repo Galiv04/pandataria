@@ -80,8 +80,8 @@ persone vive di Ventotene, nel gioco, sono dalla vostra parte.
 
 ## I numeri, misurati (non ricordati)
 
-174 scene · ~48.900 parole · **2,96 scelte a ogni snodo di decisione** e zero corridoi sterili ·
-6 rami di finale con 12 code · 16 ricette · 3 misteri da 4 indizi · 8 minigiochi di 5 tipi ·
+179 scene · ~49.900 parole · **2,95 scelte a ogni snodo di decisione** e zero corridoi sterili ·
+6 rami di finale con 12 code · 16 ricette · 3 misteri da 4 indizi · 9 minigiochi di **6 tipi** ·
 8 combattimenti con 4 boss · 65 imprese e 23 cronache · 20 sfondi dipinti · 14 sprite · 14 tracce
 sintetizzate. Li stampa `node tests/validate.mjs`, che **fallisce** se una soglia viene violata.
 

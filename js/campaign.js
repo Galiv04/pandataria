@@ -5334,7 +5334,176 @@ Dentro il garage non c'è nessuno: nessuna macchina, nessun carrello, nessun mar
       { text: '🍽 Entrare nella cucina della Marisqueria e mangiare come si deve, l\'ultima volta', once: true, gold: 3, heal: 8, next: 'd11_specchio' },
       { text: '🎙 Calare l\'idrofono profondo nell\'acqua del porto e sentire cosa aspetta', requires: { item: 'idrofono_profondo' }, once: true, sets: { porto_ascoltato: true, sa_confine: true }, goldLoss: 1, next: 'd11_specchio' },
       { text: '🕳 Dietro l\'orto dei Coraggio: il muro del \'57 è aperto e la scala continua sotto', requires: { flag: 'sa_scala_continua' }, once: true, sets: { via_di_terra: true }, gold: 1, next: 'd11_specchio' },
-      { text: '🪑 Al tavolino in fondo alla piazza c\'è seduta una persona. Andare a vedere chi è', next: 'd11_specchio' },
+      { text: '🪑 Al tavolino in fondo alla piazza c\'è seduta una persona. Andare a vedere chi è', next: 'd11_signora' },
+    ],
+  },
+
+  /* L'INDOVINELLO. Il committente l'aveva chiesto esplicitamente fra le cose nuove
+     («indovinelli») e in tutto il gioco non ce n'era nessuno. Sta qui perché qui ha
+     senso: l'unica persona rimasta in un'isola vuota, e la domanda è quella che
+     l'isola fa da duemila anni. */
+  d11_signora: {
+    location: 'paese',
+    caption: 'Piazza Castello, ore 09:05 — l\'unica persona rimasta',
+    text: `Il tavolino in fondo alla piazza è quello dei vecchi che giocano a carte. Le carte ci sono ancora, calate, un mazzo napoletano tenuto insieme da un elastico. Il bicchiere è mezzo pieno e non ha condensa, con trentun gradi.
+
+Seduta al tavolino, di spalle, c'è **la signora dei fagiolini**.
+
+Quella del ventisette agosto, sulla salita, che vi ha detto *fate i bagni dove c'è la gente, il mare è pieno* e poi ha continuato a pulire i fagiolini come se non avesse detto niente.
+
+Ha lo stesso vestito. Ha lo stesso catino di plastica verde. E dentro il catino ci sono gli stessi fagiolini, ancora tutti da fare, dopo tre giorni.
+
+Non si gira. Dice:
+
+> "Site venute 'n ritardo, guagliù."
+
+Claudia si siede di fronte a lei, senza chiedere permesso, e mette le mani sul tavolino come si fa quando si vuole essere presi sul serio.
+
+> Claudia: "Signora. Dove sono tutti?"
+> La signora: *(continua a pulire)* "Stanno. Stanno tutti addò stanno sempe. Site vuje ca nun ce state."
+
+Poi mette giù il fagiolino. Si asciuga le mani sul grembiule — asciutte anche stavolta — e per la prima volta si gira.
+
+Ha la faccia di una signora di settantacinque anni che ha fatto le pulizie per cinquant'anni e non ha mai avuto paura di niente.
+
+> "Mo' te faccio 'na domanda. Si m'a 'nnovini, te dico una cosa ca t'aiuta. Si nun m'a 'nnovini, nun te dico niente e vaje pe' 'a strada tua, ca è 'na strada brutta."
+
+**(🗝 Un indovinello, in dialetto, da una signora coi fagiolini, in una piazza vuota. Se lo prendete, lei vi dice l'unica cosa che vi serve sapere prima di scendere.)**`,
+    silenzio: true,
+    minigame: {
+      type: 'indovinello',
+      success: 'd11_signora_ok',
+      fail: 'd11_signora_no',
+      tag: 'Una risposta sola. Ragionatela ad alta voce, come si fa al tavolo.',
+      config: {
+        titolo: '🗝 La domanda della signora',
+        testo: `> "Nun tengo voce, e parlo.
+> Nun tengo mano, e tengo.
+> Chi me guarda 'a coppa nun me vede,
+> chi me guarda 'a sotto nun torna.
+>
+> Che songo?"
+
+*(Non ho voce, e parlo. Non ho mani, e trattengo. Chi mi guarda da sopra non mi vede, chi mi guarda da sotto non torna.)*`,
+        risposte: [
+          { t: '💧 L\'acqua', ok: true },
+          { t: '🕳 Il buio' },
+          { t: '🪞 Lo specchio' },
+          { t: '⏳ Il tempo' },
+          { t: '🤐 Non rispondere: le domande di quest\'isola sono trappole' },
+        ],
+      },
+    },
+    choices: [],
+  },
+
+  d11_signora_ok: {
+    location: 'paese',
+    caption: 'Piazza Castello — «\'a stessa cosa»',
+    text: `> Claudia: "L'acqua."
+
+La signora annuisce una volta, piano, come si annuisce a un nipote che ha finalmente capito una cosa che gli hai spiegato tre volte.
+
+> "Brava. E mo' sient'a mme, ca te lo dico una vota sola."
+
+Prende il bicchiere, lo alza, e lo tiene in mano senza bere.
+
+> "Chest'acqua ccà" *(indica il bicchiere)* "e chell'acqua llà" *(indica giù, verso il porto)* "**nun è 'a stessa cosa.** Chella 'e sotto se ferma addò fenisce 'a rena. Nun trase 'n paese, nun trase dint' 'e case, nun trase dint' 'o bicchiere mio. Nun po'."
+
+Beve. Rimette il bicchiere sul tavolino.
+
+> "Perciò quanno scennite — e scennite, 'o saccio — vuje nun avite da vincere niente. Avite da **turnà 'a coppa 'a riga**. 'A riga sta ddò 'o mare cagna culore. Chi ce arriva, è fore. Chi se fida 'e nun ce arrivà, resta."
+
+Poi torna ai fagiolini.
+
+> "E 'na cosa ancora, signò. Chella ca canta sotto tene sei anni. **Nun è essa 'a nemica.** Essa tene sulo friddo."
+
+**(✅ Il Quaderno registra il CONFINE, detto da chi lo sa: quella cosa si ferma dove finisce la sabbia, e la riga è dove il mare cambia colore. 💪 TENUTA piena, 🫁 Fiato +3 — perché per la prima volta in tre giorni qualcuno vi ha detto una cosa vera senza che dovessate strappargliela.)**`,
+    fullHeal: true,
+    gold: 3,
+    stinger: 'sigillo',
+    sets: { sa_confine: true, signora_ha_parlato: true },
+    choices: [
+      { text: '🙏 Ringraziarla. E chiederle come si chiama', once: true, heal: 4, next: 'd11_signora_nome' },
+      { text: '🪞 Andare. C\'è una cosa che aspetta al porto', next: 'd11_specchio' },
+    ],
+  },
+
+  d11_signora_no: {
+    location: 'paese',
+    caption: 'Piazza Castello — la risposta sbagliata',
+    text: `La signora ascolta la risposta fino in fondo, senza interrompere, con la faccia di una che ha sentito quella stessa risposta sbagliata da altre persone e non le è servito a niente correggerle.
+
+Poi torna ai fagiolini.
+
+> "Eh. Vabbuò."
+
+E non dice più niente. Non per cattiveria: per come si fa con uno che ha già deciso, e a cui parlare è tempo perso.
+
+Claudia resta seduta ancora un po'. Poi si alza e la sedia fa un rumore che in quella piazza vuota arriva fino al campanile e torna.
+
+E mentre si girano per andare, dal catino dei fagiolini, senza che la signora apra la bocca, si sente una voce di bambina che dice:
+
+*"'A dumanda era facile."*
+
+**(⚠️ 🎵 Attenzione del Coro +1: la risposta sbagliata l'hanno sentita anche loro, e si sono divertiti. Il confine — la cosa che vi avrebbe salvato di sicuro — vi tocca scoprirla per conto vostro, se ci arrivate.)**`,
+    attenzione: 1,
+    stinger: 'risata',
+    sets: { signora_muta: true },
+    choices: [
+      { text: '🪞 Andare. Al porto, con una domanda in meno e un dubbio in più', next: 'd11_specchio' },
+      { text: '💧 «Signora. Era l\'acqua, vero?» — provarci comunque, con la faccia di chi ha capito tardi', once: true, next: 'd11_signora_tardi' },
+    ],
+  },
+
+  d11_signora_tardi: {
+    location: 'paese',
+    caption: 'Piazza Castello — tardi, ma detto',
+    text: `Claudia torna indietro di tre passi. Non si siede.
+
+> "Signora. Era l'acqua, vero?"
+
+La signora non alza la testa. Pulisce un fagiolino, lo mette nel catino, ne prende un altro.
+
+> "Mo' sì."
+
+> Claudia: "E allora me lo dice?"
+
+> "No." *(un altro fagiolino)* "Ma te dico n'ata cosa, ca vale meno ma è 'a stessa."
+
+Alza gli occhi. Sono occhi normalissimi, ed è questo che fa paura.
+
+> "Quanno stai sotto e sient' 'o nomme tuo — **nun è isso ca te chiamma. Sî tu ca vuo' essere chiammata.** 'A differenza è tutta llà, signò. E chella differenza t'a salva o t'accide, secondo comme te sient' 'o juorno."
+
+Torna ai fagiolini.
+
+**(⚠️ Non è il confine, ma è la cosa più vera che sentirete oggi: laggiù non è la voce che chiama, siete voi che volete essere chiamati. Il Quaderno la registra, e nell'ultima immersione conterà.)**`,
+    sets: { sa_perche_si_risponde: true },
+    stinger: 'coro',
+    choices: [
+      { text: '🪞 Al porto. Adesso', next: 'd11_specchio' },
+    ],
+  },
+
+  d11_signora_nome: {
+    location: 'paese',
+    caption: 'Piazza Castello — come si chiama',
+    text: `> Claudia: "Signora, grazie. Come si chiama?"
+
+La signora ci pensa un secondo di troppo, e quel secondo Claudia lo sentirà per anni.
+
+> "Assunta."
+
+Claudia non dice niente. Gaetano, dietro di lei, mette una mano sulla sua spalla e la stringe una volta: *andiamo.*
+
+> "Eh." La signora sorride, e il sorriso è quello giusto, di una vecchia che sa di aver detto una cosa grossa. "Ccà 'e femmene se chiammano tutte accussì, signò. 'A metà 'e ll'isola se chiamma Assunta." Riprende un fagiolino. "Chella piccerella pure."
+
+**(💪 TENUTA +4. E adesso sapete che la bambina che canta sotto quest'isola porta il nome di metà delle donne che ci sono nate — che è il modo in cui questo gioco vi dice, senza dirlo, che laggiù non c'è un mostro: c'è una di loro.)**`,
+    heal: 4,
+    sets: { sa_nome_assunta: true },
+    silenzio: true,
+    choices: [
+      { text: '🪞 Al porto', next: 'd11_specchio' },
     ],
   },
 

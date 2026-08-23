@@ -183,7 +183,7 @@ un secondo in più (per vedere cos'era quella cosa bianca) o risalire subito.
 
 Il Fiato **non compra niente**. Non c'è un negozio. Fa esattamente due cose, entrambe verificabili:
 
-1. **È il budget dei minigiochi d'APNEA.** `Engine.apneaFiato() = 46 + fiato × 4,4 (+40 con la
+1. **È il budget dei minigiochi d'APNEA.** `Engine.apneaFiato() = 50 + fiato × 6 (+80 con la
    bombola riparata)` → l'aria con cui parti. `Engine.metriPossibili()` traduce il fiato in **metri
    raggiungibili** (contando che devi anche risalire). Prima di ogni immersione il briefing scrive,
    nero su bianco: *«Con il fiato che avete adesso arrivate a circa 22 metri — e quella cosa sta a 34.
@@ -255,14 +255,14 @@ Non «game over, ricomincia». `Engine.riprendiDaCheckpoint()`:
 
 | | soglia di serie | misurato |
 |---|---|---|
-| Scene | ≥ 150 | **174** |
-| Parole di narrazione | ~30.000 | **~48.900** |
+| Scene | ≥ 150 | **179** |
+| Parole di narrazione | ~30.000 | **~49.900** |
 | Corridoi (scene con 1 sola scelta) | ≤ 15% | **0 corridoi sterili** |
 | Scelte per scena | ≥ 1,95 | **2,96 per nodo** |
 | Finali | 6 rami | **6 rami, 12 code terminali** |
 | Ricette | ≥ 15 | **16** |
 | Misteri (indizi) | 3 (12) | **3 (12)** |
-| Minigiochi (tipi) | 5 (4 tipi) | **8 (5 tipi)** |
+| Minigiochi (tipi) | 5 (4 tipi) | **9 (6 tipi)** |
 | Nemici | 10-12 | **11** |
 | Ambientazioni | 12+ | **20** |
 | Boss: round per DUE giocatori | 4-10 | **6, 7, 8, 10** |

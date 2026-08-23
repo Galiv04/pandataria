@@ -1012,9 +1012,13 @@ scenarios.push(scenario(
 scenarios.push(scenario(
   'In due, in apnea (difficoltà massima)',
   ['gaetano', 'claudia'],
-  { e_abbandono: 'Prendiamo il traghetto delle 17:30' },
+  { e_abbandono: 'Prendiamo il traghetto delle 17:30',
+    d11_vuoto: 'Al tavolino in fondo alla piazza',
+    d11_signora_no: 'Era l\'acqua, vero?',
+    d11_signora_tardi: 'Al porto. Adesso' },
   {
     difficulty: 'incubo',
+    minigames: { d11_signora: 'fail' },
     // dal terzo ritorno il motore porta a `e_abbandono`, una scena vera con tre scelte:
     // qui il bot scieglie di andarsene, così il test verifica che quella via esista.
     craft: 'tutto',
@@ -1111,6 +1115,10 @@ scenarios.push(scenario(
     c7_lista: 'Fuori, al sole, con Ciro',
     c8_ciro: 'Il cimitero: se non è scinnuto',
     c9_cimitero: 'nastro',
+    // l'indovinello della signora dei fagiolini, nella Ventotene vuota
+    d11_vuoto: 'Al tavolino in fondo alla piazza',
+    d11_signora_ok: 'Ringraziarla',
+    d11_signora_nome: 'Al porto',
     // mistero 3 — il cavallino nella stiva a quarantacinque metri
     d13_fossa: 'Scendere col bombolino riparato',
     d13_stiva: 'Cinque secondi in più',
@@ -1193,6 +1201,7 @@ coverage('Atto B — la sera e la notte', ['b9', 'b10', 'b11', 'b12']);
 coverage('Atto C — Santo Stefano', ['c0', 'c1', 'c15']);
 coverage('Atto D — i tre cicli del 30 agosto', ['d0', 'd4_ciclo2', 'd10_ciclo3']);
 coverage('Atto D — la fossa', ['d13_fossa']);
+coverage('Atto D — l\'indovinello della signora', ['d11_signora', 'd11_signora_ok', 'd11_signora_no']);
 
 coverageFlag('I tre checkpoint dei giorni', ['giorno_27_chiuso', 'giorno_28_chiuso', 'giorno_29_chiuso']);
 coverageFlag('Ciro in squadra (unlockHero)', ['ciro_in_squadra']);
@@ -1206,7 +1215,7 @@ coverageFlag('I due rami della verità', ['verita_detta', 'bugia_detta']);
   if (mancanti.length) fail(`ricette mai completate: ${mancanti.join(', ')}`);
 }
 {
-  const attesi = ['apnea', 'calcolo', 'filastrocca', 'memoria', 'corsa'];
+  const attesi = ['apnea', 'calcolo', 'filastrocca', 'memoria', 'corsa', 'indovinello'];
   const visti = attesi.filter(t => allMinigames.has(t));
   console.log(`  ${visti.length >= 3 ? '✅' : '❌'} Tipi di minigioco giocati: ${visti.join(', ') || '(nessuno)'}`);
   if (visti.length < 3) fail(`giocati solo ${visti.length} tipi di minigioco su ${attesi.length}`);
