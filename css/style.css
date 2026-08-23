@@ -459,7 +459,12 @@ html.text-large .title-incipit-close { font-size: 21px; }
   transition: opacity .3s;
 }
 .minigame-body { margin-bottom: 8px; }
-.minigame-canvas { width: 100%; image-rendering: pixelated; border: 2px solid var(--border, #1d3b2a); background: #040a10; touch-action: manipulation; }
+/* Il canvas non può crescere oltre lo schermo: con la sola `width: 100%` un canvas
+   960x320 diventava alto 557 px e spingeva la barra del fiato a 812, fuori dallo
+   schermo. `max-height` in vh tiene tutto dentro, su qualunque finestra. */
+.minigame-canvas { width: 100%; max-height: 52vh; object-fit: contain; image-rendering: pixelated; border: 2px solid var(--border, #1d3b2a); background: #040a10; touch-action: manipulation; }
+@media (max-height: 780px) { .minigame-canvas { max-height: 44vh; } }
+@media (max-height: 620px) { .minigame-canvas { max-height: 38vh; } }
 .minigame-hud { margin: 10px 0; font-size: 19px; }
 .minigame-testo { font-size: 20px; line-height: 1.6; margin: 12px 0 16px; }
 .minigame-simon { display: grid; grid-template-columns: repeat(2, minmax(90px, 130px)); gap: 12px; justify-content: center; margin: 14px 0; }

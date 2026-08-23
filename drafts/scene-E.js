@@ -367,7 +367,6 @@ Alle 07:20, sul molo, c'è Ada in piedi col thermos di acciaio. Nessuno l'ha chi
     location: 'traghetto',
     caption: 'Ore 07:10 — in tre. E alle 17:30 nessun posto vuoto',
     stinger: 'victory',
-    metri: 40,
     reviveAll: true,
     ending: true,
     text: `Non si pensa. Si rimette la maschera.

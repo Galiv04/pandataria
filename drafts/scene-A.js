@@ -9,7 +9,11 @@ const SCENE_A = {
   /* ==================== IL TRAGHETTO ==================== */
 
   a0: {
-    location: 'porto',
+    /* Scauri è il lungomare di casa, non il porto romano di Ventotene: con
+       `porto` il gioco disegnava una parete di tufo scavata mentre il testo parla
+       di una macchina parcheggiata male sul marciapiede. `cala` è la spiaggia col
+       mare davanti, che è esattamente quello che si vede da lì. */
+    location: 'cala',
     caption: 'Scauri, lungomare — giovedì 27 agosto, ore 11:50',
     stinger: 'gold',
     text: `**Giovedì 27 agosto, undici e cinquanta. Scauri, lungomare, all'altezza del Litoriente.**

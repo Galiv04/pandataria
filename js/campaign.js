@@ -329,7 +329,11 @@ const SCENE_A = {
   /* ==================== IL TRAGHETTO ==================== */
 
   a0: {
-    location: 'porto',
+    /* Scauri è il lungomare di casa, non il porto romano di Ventotene: con
+       `porto` il gioco disegnava una parete di tufo scavata mentre il testo parla
+       di una macchina parcheggiata male sul marciapiede. `cala` è la spiaggia col
+       mare davanti, che è esattamente quello che si vede da lì. */
+    location: 'cala',
     caption: 'Scauri, lungomare — giovedì 27 agosto, ore 11:50',
     stinger: 'gold',
     text: `**Giovedì 27 agosto, undici e cinquanta. Scauri, lungomare, all'altezza del Litoriente.**
@@ -1890,7 +1894,7 @@ Lui riguarda la registrazione fuori, al sole, sul muretto, quattro volte di fila
   },
 
   b3_quaderno: {
-    location: 'cisterna',
+    location: 'paese',
     caption: 'Sul muretto fuori dalla chiesa, ore 10:40',
     text: `Il Quaderno, se le cose sono andate come dovevano, ha adesso quattro righe sulle sei cisterne: l'iscrizione, l'eco che anticipa, il registro dell'acqua, e undici secondi e sei decimi di riverbero in una stanza di trenta metri.
 
@@ -1979,7 +1983,7 @@ Poi aggiunge, e questa è nuova: "**E non ci andate a Santo Stefano.**"
   /* ---------------- IL MURO DEL 1957 ---------------- */
 
   b4: {
-    location: 'sotto',
+    location: 'paese',
     caption: 'Venerdì 28, ore 11:15 — dietro l\'orto dei Coraggio',
     text: `L'orto dei Coraggio sta in fondo a una discesa di terra battuta, tra due muretti a secco e una rete arancione da cantiere che sventola da almeno dieci anni. Ci sono quattro file di pomodori, un fico, e un cane di nome Bomber che li guarda arrivare e decide che non è il caso di abbaiare.
 
@@ -2010,7 +2014,7 @@ Gaetano ci passa il pollice. Poi si mette a guardarlo con l'aria di uno che sta 
   },
 
   b4_orecchio: {
-    location: 'sotto',
+    location: 'paese',
     caption: 'Dietro il fico, la guancia contro la malta del 1957',
     text: `Gaetano appoggia l'orecchio al muro. La malta è fredda e ruvida e gli lascia il segno sulla guancia.
 
@@ -2039,7 +2043,7 @@ E dopo la undicesima, dall'altra parte del muro, a venti centimetri dal suo orec
   },
 
   b4_coraggio: {
-    location: 'sotto',
+    location: 'paese',
     caption: 'L\'orto, ore 11:24 — la signora Rosa Coraggio',
     text: `La signora Coraggio ha ottantadue anni, un cappello di paglia da uomo e le mani nella terra fino ai polsi. Si chiama Rosa. Il cane si chiama Bomber ed è il quarto Bomber.
 
@@ -2070,7 +2074,7 @@ Il fico fa ombra. Bomber si gratta.
   },
 
   b4_canzone: {
-    location: 'sotto',
+    location: 'paese',
     caption: 'L\'orto, sotto il fico — sette note',
     text: `Rosa Coraggio si rimette il cappello. Guarda i pomodori. Pensa.
 
@@ -2111,7 +2115,7 @@ Silenzio. Rosa la guarda. Bomber alza la testa.
   },
 
   b4_idrofono: {
-    location: 'sotto',
+    location: 'paese',
     caption: 'L\'orto — l\'idrofono nella vasca dell\'irrigazione',
     text: `La vasca dell'irrigazione dei Coraggio è una tinozza di cemento da mezzo metro cubo che pesca da un pozzetto che pesca, secondo Rosa, "dalla vena". La vena è la falda. La falda comunica con la cisterna. La cisterna è dietro il muro.
 
@@ -2142,7 +2146,7 @@ Lei tiene gli occhi chiusi ancora un po'. Poi li apre.
   },
 
   b4_breccia: {
-    location: 'sotto',
+    location: 'cisterna_sigillata',
     metri: 2,
     caption: 'L\'orto, ore 11:50 — venti centimetri di malta del 1957',
     text: `Il punto debole di un muro fatto in tre ore sta in alto, all'attacco con l'arco antico, dove la malta è stata schiacciata di fretta contro una curva e ha lasciato un vuoto. Gaetano lo trova battendo con le nocche: là dentro suona vuoto.
@@ -2175,7 +2179,7 @@ E in mezzo all'acqua, a galla, c'è una cosa gialla di plastica che a duemila an
   },
 
   b4_prepararsi: {
-    location: 'sotto',
+    location: 'paese',
     caption: 'L\'orto, ore 12:05 — il piano',
     text: `Gaetano si siede sul muretto a secco con il piccone tra le ginocchia e fa la lista, ad alta voce, contando sulle dita, e questo è il momento in cui Claudia capisce che non ci pensa nemmeno a lasciarla scendere da sola.
 
@@ -6214,7 +6218,6 @@ Alle 07:20, sul molo, c'è Ada in piedi col thermos di acciaio. Nessuno l'ha chi
     location: 'traghetto',
     caption: 'Ore 07:10 — in tre. E alle 17:30 nessun posto vuoto',
     stinger: 'victory',
-    metri: 40,
     reviveAll: true,
     ending: true,
     text: `Non si pensa. Si rimette la maschera.

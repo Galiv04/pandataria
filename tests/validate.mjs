@@ -646,6 +646,34 @@ for (const loc of locationsUsate) {
 }
 if (!luoghiRotti) { ok(); console.log(`  ✔ ${locationsUsate.length} luoghi, ognuno con il suo sfondo dipinto e la sua traccia (su ${trackNames.size} tracce)`); }
 
+/* ---------- 12a-bis: lo sfondo deve stare dove sta la scena ---------- */
+section('Coerenza fra sfondo e didascalia');
+
+/* Otto scene dell'orto dei Coraggio — pomodori, un fico, un cane, in pieno sole —
+   disegnavano il fondale sottomarino, e nessun test se ne accorgeva. Un painter
+   sbagliato non dà errore: dà una scena che racconta una cosa e ne mostra un'altra. */
+/* `cisterna_sigillata` sta fuori dall'elenco: quel muro si guarda DA un orto, e la
+   didascalia nomina l'orto a ragione. Il confronto si fa solo sulla DIDASCALIA, che
+   dice dove sei: il corpo del testo può ricordare un altro posto senza sbagliare. */
+const LUOGHI_CHIUSI = ['sotto', 'cisterna', 'cella', 'panopticon', 'fossa', 'relitto'];
+const PAROLE_APERTO = /\borto\b|muretto|piazza|lungomare|spiaggia|\bmolo\b|banchina|sentiero|in pieno sole|sotto il fico|giardino|cortile|terrazza/i;
+let sfondiSbagliati = 0;
+for (const [id, s] of Object.entries(CAMPAIGN)) {
+  if (!LUOGHI_CHIUSI.includes(s.location)) continue;
+  const dove = s.caption || '';
+  const m = dove.match(PAROLE_APERTO);
+  if (m) { fail(`scena "${id}": sfondo "${s.location}" (un interno o un fondale) ma la didascalia dice che sei all'aperto: "${m[0]}"`); sfondiSbagliati++; }
+}
+// e il contrario: `metri` (la profondità) su una scena che non è sott'acqua
+for (const [id, s] of Object.entries(CAMPAIGN)) {
+  const PROFONDITA_LECITA = [...LUOGHI_CHIUSI, 'cisterna_sigillata', 'mare', 'barca'];
+  if (typeof s.metri === 'number' && s.metri > 0 && !PROFONDITA_LECITA.includes(s.location)) {
+    fail(`scena "${id}": ha metri: ${s.metri} (il canvas si tinge di blu e stringe) ma il luogo è "${s.location}"`);
+    sfondiSbagliati++;
+  }
+}
+if (!sfondiSbagliati) { ok(); console.log('  ✔ ogni sfondo chiuso sta su una scena chiusa, e la profondità solo dove si è sott\'acqua'); }
+
 /* ---------- 12b. gli id del DOM che il motore usa devono esistere in index.html ---------- */
 section('Id del DOM (nessun elemento fantasma)');
 

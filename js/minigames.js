@@ -155,6 +155,14 @@ const Minigames = (() => {
           }
           const bob = st.onGround ? Math.sin(st.t * 18) * 2 : 0;
           if (def) Sprites.drawSprite(ctx, def.map, def.palette, st.x, st.y + bob, SIZE / (def.map.length >= 32 ? 32 : 16), true);
+          /* Anche qui i contatori vanno DENTRO il canvas: sotto, su uno schermo
+             basso, non si vedono mentre si corre (vedi l'apnea). */
+          ctx.fillStyle = 'rgba(4,10,16,.62)'; ctx.fillRect(6, 6, 250, 24);
+          ctx.font = "12px 'Press Start 2P', monospace";
+          ctx.fillStyle = '#eef4f3';
+          ctx.fillText(`${st.passed}/${TOT}`, 12, 23);
+          ctx.fillStyle = st.hits ? '#cf3d4d' : '#93aeb4';
+          ctx.fillText(`inciampi ${st.hits}/3`, 78, 23);
           hud.innerHTML = `Superati: <b>${st.passed}/${TOT}</b> · Inciampi: <b style="color:${st.hits ? 'var(--red)' : 'inherit'}">${st.hits}/3</b>`;
 
           // esiti
@@ -437,6 +445,23 @@ const Minigames = (() => {
           ctx.fillStyle = vign; ctx.fillRect(0, 0, W, H);
 
           const f = Math.max(0, st.fiato / FIATO0);
+          /* IL FIATO E I METRI, DENTRO IL CANVAS. La barra HTML sotto il canvas, su
+             uno schermo da 720 px, finisce a 812: fuori dallo schermo. Chi gioca
+             l'apnea deve vedere quanto fiato gli resta SENZA scorrere, sennò la
+             meccanica non esiste. Verificato guardando il gioco vero, 23 ago 2026. */
+          const pad = 10, bw = Math.min(240, W * 0.42), bh = 12;
+          ctx.fillStyle = 'rgba(4,10,16,.62)';
+          ctx.fillRect(pad - 4, pad - 4, bw + 8, bh + 30);
+          ctx.fillStyle = 'rgba(255,255,255,.14)';
+          ctx.fillRect(pad, pad, bw, bh);
+          ctx.fillStyle = f > 0.5 ? '#ffd27f' : f > 0.22 ? '#d08a2a' : '#cf3d4d';
+          ctx.fillRect(pad, pad, Math.max(0, bw * f), bh);
+          ctx.fillStyle = 'rgba(0,0,0,.5)';
+          for (let i = 1; i < 4; i++) ctx.fillRect(pad + bw * i / 4, pad, 1, bh);
+          ctx.font = "12px 'Press Start 2P', monospace";
+          ctx.fillStyle = f > 0.22 ? '#eef4f3' : '#ff9aa4';
+          ctx.fillText(`${st.d.toFixed(1)}m  fiato ${Math.ceil(f * 100)}%`, pad, pad + bh + 16);
+          if (st.preso) { ctx.fillStyle = '#57c08f'; ctx.fillText('PRESO - RISALI', pad, pad + bh + 32); }
           bar.firstChild.style.width = (f * 100) + '%';
           bar.firstChild.style.background = f > 0.5 ? 'var(--gold)' : f > 0.22 ? '#d08a2a' : 'var(--red)';
           hud.innerHTML = `<b>${st.d.toFixed(1)} m</b> · fiato <b>${Math.ceil(f * 100)}%</b>` +
