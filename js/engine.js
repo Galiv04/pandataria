@@ -805,12 +805,24 @@ const Engine = (() => {
     $('modal-generic').classList.remove('hidden');
   }
 
+  /* Gli stati stanno nella scheda completa, ma servono nel riepilogo: nel mezzo di un
+     combattimento nessuno apre cinque schede per sapere chi è conciato male. */
+  function badgeStati(h) {
+    const b = [];
+    if (h.morto) b.push('👻 PRESO DAL CORO');
+    if (h.rimasto) b.push('🌊 È RIMASTO');
+    if (h.down) b.push('💀 A TERRA');
+    if (h.preso) b.push('🕸 TRATTENUTO');
+    if (h.veleno) b.push('🎵 ACQUA NEI POLMONI');
+    return b.length ? ' · ' + b.join(' · ') : '';
+  }
+
   function showParty() {
     const box = $('modal-generic-content');
     box.innerHTML = `<h2>🎭 La Compagnia</h2>` +
       G.party.map((h, i) => `<div class="ability-box" style="cursor:pointer" onclick="Engine.showHeroSheetIdx(${i})">
         <span class="ability-name">${h.name}</span> — ${h.class}${h.player ? ' · ' + h.player : ''}
-        <div class="ability-desc">PV ${h.hp}/${h.maxHp} · CA ${h.ac} ${h.down ? '· 💀 A TERRA' : ''} — <i>tocca per la scheda completa</i></div>
+        <div class="ability-desc">PV ${h.hp}/${h.maxHp} · CA ${h.ac}${badgeStati(h)} — <i>tocca per la scheda completa</i></div>
       </div>`).join('') +
       `<button class="btn" style="margin-top:14px" onclick="document.getElementById('modal-generic').classList.add('hidden')">✔ Chiudi</button>`;
     $('modal-generic').classList.remove('hidden');
