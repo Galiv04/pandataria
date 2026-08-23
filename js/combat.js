@@ -120,7 +120,7 @@ const Combat = (() => {
     banner.classList.remove('hidden', 'victory');
     render();
 
-    const COMBAT_MUSIC = {}; // una sola traccia di scontro (+ 'boss'): la Casa non ha bisogno di variare per farvi male
+    const COMBAT_MUSIC = {}; // una sola traccia di scontro (+ 'boss'): il Coro non ha bisogno di variare per farvi male
     const loc = (Engine.currentScene() || {}).location;
     if (typeof Sound !== 'undefined') { Sound.play('combat'); Sound.music(battle.isBoss ? 'boss' : (COMBAT_MUSIC[loc] || 'combat')); }
     log(`<b>Nemici:</b> ${battle.enemies.map(e => e.name).join(', ')}`, 'log-info');

@@ -270,7 +270,7 @@ const Engine = (() => {
   /* ---------- scene ---------- */
 
   /* Scene viste CUMULATIVE per profilo (tra tutte le partite): servono a
-     "Rientra nella Casa" per dire quanto manca e DOVE. */
+     "Torna sull'isola" per dire quanto manca e DOVE. */
   const seenKey = () => 'pandataria-viste-' + encodeURIComponent(currentProfile());
   function seenScenes() {
     try { return new Set(JSON.parse(localStorage.getItem(seenKey()) || '[]')); } catch (e) { return new Set(); }
@@ -343,7 +343,7 @@ const Engine = (() => {
       if (scene.onEnterOnce && scene.onEnterOnce.itemEach) {
         for (const h of G.party) G.inventory.push(scene.onEnterOnce.itemEach);
       }
-      // condizioni della Casa: colpiscono chi ha appena tirato il dado
+      // le condizioni dell'isola: colpiscono chi ha appena tirato il dado
       if (scene.poisonRoller && G.lastRoller != null && G.party[G.lastRoller]) {
         G.party[G.lastRoller].veleno = true; // INCANTATO: ha sentito il Coro troppo da vicino
       }
@@ -682,7 +682,7 @@ const Engine = (() => {
       b.className = 'choice-btn';
       b.innerHTML = `${h.name}${h.veleno ? ' 🎵' : ''} <span class="choice-tag">${STAT_NAMES[check.stat]}: ${mod >= 0 ? '+' + mod : mod}${h.veleno ? ' (INCANTATO)' : ''}${h.player ? ' · giocato da ' + h.player : ''}</span>`;
       b.onclick = () => {
-        G.lastRoller = hIdx;   // la Casa ricorda chi ha osato tirare
+        G.lastRoller = hIdx;   // il Coro ricorda chi ha osato tirare
         $('modal-generic').classList.add('hidden');
         const rollIt = (isReroll) => Dice.showRoll({
           title: `${h.name} ${isReroll ? 'RIFÀ LA PRESA (l\'occhio lungo)' : 'tenta'}:<br>${STAT_NAMES[check.stat]} — CD ${check.dc}`,
@@ -936,7 +936,7 @@ Fuori, il mare è calmo. Sotto, qualcuno sta contando fino a quando tornate.</di
     const box = $('modal-generic-content');
     box.innerHTML = `<h2>💗 ${h.name} respira.</h2>
       <p style="margin-bottom:12px">L'Àncora di Voce si spacca in mano con un suono di conchiglia, e dentro c'era la voce di ${h.name} registrata quando era ancora ${h.name}, che dice il suo nome giusto. Il sale scivola via come acqua sporca. Un colpo di tosse. Occhi aperti. <b>${h.name} è di nuovo con voi</b> (${h.hp}/${h.maxHp} PV).</p>
-      <p style="color:var(--text-dim)">La Casa, da qualche parte, ha appena URLATO.</p>
+      <p style="color:var(--text-dim)">Da qualche parte sotto l'isola, l'acqua ha appena smesso di muoversi.</p>
       <button class="btn btn-gold" style="margin-top:12px" onclick="document.getElementById('modal-generic').classList.add('hidden')">▶ Si continua. Insieme.</button>`;
     if (typeof Sound !== 'undefined') Sound.play('victory');
   }
@@ -991,8 +991,8 @@ Fuori, il mare è calmo. Sotto, qualcuno sta contando fino a quando tornate.</di
 
   function showMap() {
     const box = $('modal-generic-content');
-    box.innerHTML = `<h2>🗺 La Casa — pianta (per quello che vale)</h2><canvas id="map-canvas" width="720" height="480"></canvas>
-      <p style="color:var(--text-dim);font-size:19px;margin-top:8px">⭐ = dove siete adesso. La pianta è stata disegnata da Gaetano su un tovagliolo. La Casa la CONTRADDICE volentieri.</p>
+    box.innerHTML = `<h2>🗺 L'isola — la carta di Gaetano (per quello che vale)</h2><canvas id="map-canvas" width="720" height="480"></canvas>
+      <p style="color:var(--text-dim);font-size:19px;margin-top:8px">⭐ = dove siete adesso. La carta l'ha disegnata Gaetano sul retro di una ricevuta del traghetto, e per la terraferma è giusta. Per quello che c'è sotto, no.</p>
       <button class="btn" style="margin-top:10px" onclick="document.getElementById('modal-generic').classList.add('hidden')">✔ Chiudi</button>`;
     $('modal-generic').classList.remove('hidden');
     drawMap();
@@ -1086,7 +1086,7 @@ Fuori, il mare è calmo. Sotto, qualcuno sta contando fino a quando tornate.</di
     try { return localStorage.getItem('casa-notte-finita-' + encodeURIComponent(currentProfile())) === '1'; } catch (e) { return false; }
   }
 
-  /* "Rientra nella Casa" con il CONTO di quello che manca, capitolo per capitolo:
+  /* "Torna sull'isola" con il CONTO di quello che manca, capitolo per capitolo:
      % di stanze viste (cumulative del profilo) e imprese ancora da sbloccare LÌ. */
   function chapterProgress() {
     const seen = seenScenes();
@@ -1126,8 +1126,8 @@ Fuori, il mare è calmo. Sotto, qualcuno sta contando fino a quando tornate.</di
     }).join('');
     const seenAll = seenScenes().size;
     const totAll = Object.keys(CAMPAIGN).length;
-    box.innerHTML = `<h2>🗝 Rientra nella Casa</h2>
-      <p style="color:var(--text-dim);margin-bottom:10px">Ne siete già usciti una volta: adesso la Casa vi lascia scegliere DA DOVE rientrare — e vi dice QUANTO vi manca. Esplorazione totale del profilo: <b>${Math.round(seenAll / totAll * 100)}%</b> (${seenAll}/${totAll} stanze).</p>
+    box.innerHTML = `<h2>🗝 Torna sull'isola</h2>
+      <p style="color:var(--text-dim);margin-bottom:10px">Ne siete già tornati una volta: adesso scegliete voi DA QUALE giorno ricominciare — e vi dice QUANTO vi manca. Esplorazione totale del profilo: <b>${Math.round(seenAll / totAll * 100)}%</b> (${seenAll}/${totAll} stanze).</p>
       ${rows}
       <button class="btn" style="margin-top:12px" onclick="document.getElementById('modal-generic').classList.add('hidden')">↩ Indietro</button>`;
     $('modal-generic').classList.remove('hidden');
@@ -1162,8 +1162,8 @@ Fuori, il mare è calmo. Sotto, qualcuno sta contando fino a quando tornate.</di
     if (typeof DIARY_FLAGS !== 'undefined') {
       const note = DIARY_FLAGS.filter(([f]) => G.flags && G.flags[f])
         .map(([, t]) => `<div class="ability-box" style="border-left-color:var(--purple)"><div class="ability-desc">🕯 ${t}</div></div>`).join('');
-      sapete = `<h2 style="margin-top:16px">🩶 Cose che la Casa vi ha insegnato</h2>
-        ${note || '<p style="color:var(--text-dim)">Ancora niente. Ma la Casa è lunga, e insegna volentieri. A caro prezzo.</p>'}`;
+      sapete = `<h2 style="margin-top:16px">🕯 Cose che l'isola vi ha insegnato</h2>
+        ${note || '<p style="color:var(--text-dim)">Ancora niente. Ma sono quattro giorni, e questa isola insegna volentieri. A caro prezzo.</p>'}`;
     }
     box.innerHTML = `<h2>📔 Diario di Viaggio</h2>
       <p style="color:var(--text-dim);margin-bottom:10px">Le tappe della vostra impresa, in ordine:</p>
@@ -1175,7 +1175,7 @@ Fuori, il mare è calmo. Sotto, qualcuno sta contando fino a quando tornate.</di
   function showBestiary() {
     const box = $('modal-generic-content');
     const seen = G.seenEnemies || [];
-    let html = `<h2>🩶 Le Cose della Casa</h2>
+    let html = `<h2>🕯 Le Cose dell'Isola</h2>
       <p style="color:var(--text-dim);margin-bottom:10px">Cose incontrate finora: ${seen.length}. Le altre vi stanno già aspettando.</p>`;
     if (!seen.length) html += '<p style="color:var(--text-dim)">Nessuno scontro finora. Beati voi.</p>';
     for (const key of seen) {
@@ -1254,7 +1254,7 @@ Fuori, il mare è calmo. Sotto, qualcuno sta contando fino a quando tornate.</di
     }
 
     // imprese sbloccate
-    // sblocca "Rientra nella Casa" per il profilo: da adesso ogni ramo è visitabile a scelta
+    // sblocca "Torna sull'isola" per il profilo: da adesso ogni ramo è visitabile a scelta
     try { localStorage.setItem('casa-notte-finita-' + encodeURIComponent(currentProfile()), '1'); } catch (e) {}
     if (typeof IMPRESE !== 'undefined') {
       const unlocked = IMPRESE.filter(i => G.flags[i.flag]);
@@ -1298,7 +1298,7 @@ Fuori, il mare è calmo. Sotto, qualcuno sta contando fino a quando tornate.</di
       </div>`;
     choicesEl.appendChild(div);
 
-    /* Quello che la Casa non vi ha mostrato: suggerimenti SENZA spoiler,
+    /* Quello che l'isola non vi ha mostrato: suggerimenti SENZA spoiler,
        col capitolo giusto da cui rientrare (la feature "cosa manca e dove"). */
     const progress = chapterProgress();
     const daFare = (typeof CHAPTERS !== 'undefined' ? CHAPTERS : [])
@@ -1307,22 +1307,22 @@ Fuori, il mare è calmo. Sotto, qualcuno sta contando fino a quando tornate.</di
       .sort((a, b) => (b.p.mancanti.length - a.p.mancanti.length) || (a.p.pct - b.p.pct));
     if (daFare.length) {
       const sugg = document.createElement('div');
-      sugg.innerHTML = `<h3 style="font-family:var(--font-pixel);font-size:14px;color:var(--green);margin:14px 0 8px">🗝 Quello che la Casa non vi ha mostrato</h3>` +
+      sugg.innerHTML = `<h3 style="font-family:var(--font-pixel);font-size:14px;color:var(--green);margin:14px 0 8px">🗝 Quello che l'isola non vi ha mostrato</h3>` +
         daFare.slice(0, 4).map(({ c, p }) =>
           `<div class="ability-box" style="border-left-color:var(--green)"><span class="ability-name">${c.label}</span>
             <div class="ability-desc">👁 esplorato ${p.pct}% (${p.viste}/${p.tot} stanze)${p.mancanti.length ? ` · 🏆 ${p.mancanti.length} impres${p.mancanti.length === 1 ? 'a' : 'e'} ancora là dentro: <i>${p.mancanti.slice(0, 3).map(m => m.title).join(' · ')}${p.mancanti.length > 3 ? ' · …' : ''}</i>` : ''}</div>
           </div>`).join('') +
-        `<p style="color:var(--text-dim);font-size:18px;margin:6px 0 2px">Nessuno spoiler: solo i titoli. Con <b>🗝 Rientra nella Casa</b> partite dal capitolo giusto, con zaino e conoscenze già pronti — senza rigiocare tutto.</p>`;
+        `<p style="color:var(--text-dim);font-size:18px;margin:6px 0 2px">Nessuno spoiler: solo i titoli. Con <b>🗝 Torna sull'isola</b> partite dal capitolo giusto, con zaino e conoscenze già pronti — senza rigiocare tutto.</p>`;
       choicesEl.appendChild(sugg);
       const goRevive = document.createElement('button');
       goRevive.className = 'choice-btn';
       goRevive.style.borderLeftColor = 'var(--green)';
-      goRevive.innerHTML = `🗝 <b>Rientra nella Casa</b> <span class="choice-tag">Scegliete il capitolo: il gioco vi dice quanto manca in ognuno.</span>`;
+      goRevive.innerHTML = `🗝 <b>Torna sull'isola</b> <span class="choice-tag">Scegliete il capitolo: il gioco vi dice quanto manca in ognuno.</span>`;
       goRevive.onclick = () => showRevive();
       choicesEl.appendChild(goRevive);
     } else if (typeof CHAPTERS !== 'undefined') {
       const done = document.createElement('div');
-      done.innerHTML = `<div class="ability-box" style="border-left-color:var(--gold)"><span class="ability-name">🏆 100%</span><div class="ability-desc">Avete visto OGNI stanza e sbloccato OGNI impresa. La Casa non ha più niente da nascondervi. Voi, a lei, non dovete più niente.</div></div>`;
+      done.innerHTML = `<div class="ability-box" style="border-left-color:var(--gold)"><span class="ability-name">🏆 100%</span><div class="ability-desc">Avete visto OGNI scena e sbloccato OGNI impresa. L'isola non ha più niente da nascondervi, e voi non le dovete più niente.</div></div>`;
       choicesEl.appendChild(done);
     }
 
