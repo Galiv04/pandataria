@@ -3015,8 +3015,17 @@ const Scenes = (() => {
         ctx.fillRect(dx, spiaggiaY - 14, 4, y - (spiaggiaY - 14));
         ctx.fillStyle = 'rgba(240,248,252,.26)';         // il filo bagnato, senza schiuma
         ctx.fillRect(dx, y, 4, 2);
-        ctx.fillStyle = 'rgba(52,46,40,.34)';            // la sabbia bagnata, più scura
-        ctx.fillRect(dx, y + 2, 4, 7);
+        /* La battigia non è uno spigolo: è una fascia bagnata scura che schiarisce
+           salendo verso l'asciutto, e sopra la fascia la riga dei sassolini che il
+           mare ha lasciato. Senza questa sfumatura il mare finiva su un argine. */
+        for (let k = 0; k < 9; k++) {
+          ctx.fillStyle = `rgba(52,46,40,${0.38 - k * 0.040})`;
+          ctx.fillRect(dx, y + 2 + k, 4, 1);
+        }
+        if (r() > 0.55) {
+          ctx.fillStyle = `rgba(${104 + r() * 40 | 0},${96 + r() * 34 | 0},${84 + r() * 30 | 0},.55)`;
+          ctx.fillRect(dx + (r() * 3 | 0), y + 9 + (r() * 4 | 0), 2, 1);
+        }
       }
       for (let i = 0; i < 150; i++) {
         ctx.fillStyle = `rgba(${30 + r() * 40 | 0},${28 + r() * 34 | 0},${24 + r() * 30 | 0},.5)`;
@@ -3034,34 +3043,41 @@ const Scenes = (() => {
          squadra) e la cinghia gira attorno, non attraverso. Gli ombrelloni chiusi sono
          un FASCIO legato insieme, grosso in basso e affusolato in cima, che è come
          stanno la mattina: tre o quattro per fascio, non uno per pila. */
-      for (const [fx, fy, sc] of [[0.055, 0.86, 1.25], [0.44, 0.52, 0.82], [0.80, 0.24, 0.52]]) {
+      for (const [fx, fy, sc] of [[0.045, 0.88, 1.15], [0.42, 0.50, 0.78], [0.74, 0.20, 0.50]]) {
         const px = W * fx, py = spiaggiaY + 8 + (stradaY - spiaggiaY - 16) * fy;
         ctx.fillStyle = 'rgba(26,22,16,.30)';
-        pixelEllipse(ctx, px + 22 * sc, py + 5 * sc, 30 * sc, 6 * sc, 3);
-        // la pila di lettini, inclinata: ogni strato sporge un po' più del precedente
-        for (let k = 0; k < 6; k++) {
-          const sporge = k * 2.1 * sc;
+        pixelEllipse(ctx, px + 30 * sc, py + 5 * sc, 40 * sc, 6 * sc, 3);
+        // LA PILA DI LETTINI: bassa e lunga. Prima era alta e corta e insieme al fascio
+        // faceva una piramide — sullo schermo un obelisco, non un lido.
+        for (let k = 0; k < 5; k++) {
+          const sporge = k * 3.2 * sc;
           ctx.fillStyle = k % 2 ? '#cfc3a8' : '#b3a68c';
-          ctx.fillRect(px + sporge, py - k * 4.4 * sc, 38 * sc, 3 * sc);
+          ctx.fillRect(px + sporge, py - k * 3.4 * sc, 62 * sc, 2.6 * sc);
           ctx.fillStyle = 'rgba(38,32,24,.34)';
-          ctx.fillRect(px + sporge, py - k * 4.4 * sc + 3 * sc, 38 * sc, 1.4 * sc);
+          ctx.fillRect(px + sporge, py - k * 3.4 * sc + 2.6 * sc, 62 * sc, 1.2 * sc);
         }
-        // la cinghia: gira attorno alla pila, quindi si vede sopra e sotto, non in mezzo
-        ctx.fillStyle = 'rgba(52,40,28,.66)';
-        ctx.fillRect(px + 24 * sc, py - 26 * sc, 4 * sc, 3 * sc);
-        ctx.fillRect(px + 12 * sc, py - 2 * sc, 4 * sc, 4 * sc);
-        // il fascio di ombrelloni chiusi, legato: grosso in basso, affusolato in cima
-        const ox = px + 46 * sc;
-        for (let k = 0; k < 22; k++) {
-          const t = k / 21;
-          const larg = (9 - t * 6.4) * sc;
-          ctx.fillStyle = mix('#8a7a5c', '#b6a684', t * 0.7);
-          ctx.fillRect(ox - larg / 2, py - 2 * sc - k * 2.4 * sc, larg, 3 * sc);
+        ctx.fillStyle = 'rgba(52,40,28,.66)';        // la cinghia gira attorno: sopra e sotto
+        ctx.fillRect(px + 30 * sc, py - 15 * sc, 4 * sc, 2.6 * sc);
+        ctx.fillRect(px + 18 * sc, py - 1 * sc, 4 * sc, 3.4 * sc);
+        /* IL FASCIO DI OMBRELLONI CHIUSI. Qui stava l'errore vero: l'avevo disegnato
+           stretto in cima e grosso in basso, cioè una GUGLIA. Un fascio di ombrelloni
+           chiusi è il contrario — sotto ci sono i pali, sottili, e sopra ci sono i
+           teli avvolti, grossi: si assottiglia verso il BASSO. E sta appoggiato di
+           sbieco al muretto, non in piedi da solo, perché in piedi da solo non ci
+           starebbe. Legato in due punti, che è come li legano. */
+        const ox = px + 72 * sc, alt = 46 * sc, pend = 9 * sc;
+        for (let k = 0; k < 16; k++) {
+          const t = k / 15;
+          const larg = (2.6 + t * t * 8.4) * sc;             // sottile sotto, grosso sopra
+          const cx3 = ox + pend * t;                          // e appoggiato di sbieco
+          ctx.fillStyle = mix('#7e6f52', '#c2b294', 0.15 + t * 0.75);
+          ctx.fillRect(cx3 - larg / 2, py - 2 * sc - t * alt, larg, 3.4 * sc);
         }
-        ctx.fillStyle = 'rgba(46,36,24,.62)';                     // la corda che li tiene
-        ctx.fillRect(ox - 5 * sc, py - 24 * sc, 10 * sc, 2.4 * sc);
+        ctx.fillStyle = 'rgba(46,36,24,.60)';                 // le due corde
+        ctx.fillRect(ox + pend * 0.42 - 4 * sc, py - 2 * sc - alt * 0.42, 9 * sc, 2.2 * sc);
+        ctx.fillRect(ox + pend * 0.86 - 6 * sc, py - 2 * sc - alt * 0.86, 13 * sc, 2.2 * sc);
         ctx.fillStyle = 'rgba(26,22,16,.26)';
-        pixelEllipse(ctx, ox, py + 3 * sc, 8 * sc, 3 * sc, 3);
+        pixelEllipse(ctx, ox, py + 3 * sc, 7 * sc, 3 * sc, 3);
       }
 
       // IL LUNGOMARE: il muretto, il marciapiede, l'asfalto
