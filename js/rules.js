@@ -1,0 +1,105 @@
+/* ============ REGOLE — testi della guida (PANDATARIA) ============
+   Interfaccia consumata dal resto del gioco — NON cambiare i nomi:
+     RULES_STORY → main.js (#story-content, schermata "📖 La Storia")
+                 → engine.js:114 (riepilogo alla ripresa di una partita)
+     RULES_HOWTO → main.js (#howto-content, schermata "📖 Come si Gioca")
+     RULES_QUICK → engine.js:930 (Engine.showRules, "📖 Regole" in partita)
+   Regola: qui si scrivono SOLO le regole vere di QUESTO gioco. Niente valute
+   inventate, niente meccaniche che il motore non ha. Vedi docs/DESIGN.md §6. */
+
+const RULES_STORY = `
+<h3>⛵ Dove state andando</h3>
+<p><b>Giovedì 27 agosto, mezzogiorno, Scauri.</b> La macchina parcheggiata male sul lungomare, due ruote sul marciapiede e in mezzo alla strada un borsone che nessuno dei due ha deciso di caricare per primo. Ventidue chilometri di Domiziana fino a <b>Formia</b>, il molo Azzurra, il traghetto delle tredici. Due ore e quaranta di mare aperto.</p>
+<p>Quattro giorni a <b>Ventotene</b>, in un B&amp;B con la terrazza e il limone in vaso: <b>Le Paracine</b> — che in dialetto sono i muretti a secco, quelli che sull'isola tengono su la terra e lasciano passare il vento, perché se li fai pieni il vento li butta giù. Prenotato a febbraio. Pagato. Meritato.</p>
+<p>Si torna <b>domenica 30 col traghetto delle 17:30</b>. Sta scritto sul biglietto, e a un certo punto sarà l'unica cosa a cui tenersi.</p>
+
+<h3>🪨 Che posto è</h3>
+<p>Ventotene è tre chilometri di <b>tufo</b> in mezzo al Tirreno. Il porto non è costruito: è <b>scavato</b>. I romani sono arrivati, hanno guardato una parete di roccia gialla e hanno levato tutto quello che non era porto. Dopo duemila anni è ancora il porto, perché certe cose se le fai bene non le rifai più.</p>
+<p>Sotto il paese, nello stesso tufo, hanno scavato <b>sei cisterne</b> per l'acqua. Oggi se ne visitano <b>due</b>: quella di Villa Stefania e la Cisterna dei Detenuti, dove il custode sta la mattina e ci portano le scuole. Delle altre quattro nessuno parla volentieri: «chiuse», dicono, e cambiano argomento.</p>
+<p>A <b>Punta Eolo</b>, la punta nord, restano i muri di <b>Villa Giulia</b>. Nel <b>2 avanti Cristo</b> Augusto relegò qui <b>sua figlia</b>: Giulia, trentasette anni, cinque figli, accusata di adulterio quando l'accusa vera era politica. Cinque anni su questo scoglio, e sua madre Scribonia lo scelse pure lei, per non lasciarla sola. Poi la spostarono a Reggio, dove morì — e suo padre mise per iscritto che le sue ossa <b>non entrassero nel Mausoleo di famiglia</b>.</p>
+<p>Dopo di lei portarono qui sua figlia <b>Agrippina maggiore</b>, che ci morì di fame nel 33 dopo Cristo dopo che le avevano rotto un occhio a bastonate; poi <b>Ottavia</b>, la moglie di Nerone, uccisa qui a ventidue anni nel 62; poi <b>Giulia Livilla</b>. Quattro donne della stessa famiglia, sullo stesso scoglio, in un secolo. Roma usava quest'isola per una cosa sola: <i>tenerci</i> le persone che era meglio non avere in casa.</p>
+<p>E a due chilometri di mare, di fronte, c'è <b>Santo Stefano</b>: il carcere borbonico del 1795, costruito in due anni da un centinaio di deportati. Celle a ferro di cavallo intorno a un pozzo centrale — un <b>panopticon</b>: una macchina per guardare dentro novantanove celle da un punto solo, senza essere visti. Chiuso il <b>2 settembre 1965</b>, «perché inutilmente duro». Dal traghetto lo vedete arrivare prima dell'isola.</p>
+
+<h3>🎭 Chi siete</h3>
+<p><b>Gaetano</b> progetta satelliti: misura cose a settecento chilometri e ha un vizio che è anche la sua virtù — se una cosa non la puoi misurare, per lui non esiste ancora. <b>Claudia</b> di lavoro decide come le cose vengono <i>viste</i>: dieci anni a inquadrare, tagliare, e accorgersi prima di tutti quando una storia non torna.</p>
+<p>Stanno insieme da quattordici anni. Lei ha paura dell'acqua dove non si tocca — non della piscina, non del bagno a riva: del punto esatto in cui il fondo scompare e sotto c'è solo blu che continua. Ci ha fatto pace come si fa pace con le cose che non passano: ci gira intorno, non ne parla, e ogni tanto ci prova.</p>
+<p>Lui ha portato la maschera buona. Ne ha portate <b>due</b>, identiche, e non l'ha detto.</p>
+
+<h3>🌊 Come comincia</h3>
+<p>Il primo pomeriggio è la vacanza perfetta: il bagno delle sette a Cala Nave, gli scogli pieni di roba, un polpo in un anfratto, e Claudia che per la prima volta in vita sua nuota fino alla boa e la tocca con tutte e due le mani.</p>
+<p>Poi, aggrappata là, a sessanta metri da riva, sente <b>una nota</b>. Una sola: bassa, lunga, pulita, come una corda di contrabbasso pizzicata a venti metri di profondità. Dura due secondi e mezzo. Ha un attacco, una durata e una fine — non è un motore, i motori non hanno l'altezza. Gaetano non la sente.</p>
+<p>La notte dello stesso giorno, dentro mezzo secondo di registrazione fatta per caso, c'è una voce. Rallentata al venticinque per cento dice <b>il nome di sua moglie</b>.</p>
+<p>Restano tre giorni. Il traghetto è alle 17:30 di domenica. Da qui in poi ogni cosa che decidete la paga qualcuno, e il gioco se lo ricorda.</p>
+
+<h3>🎲 Cosa serve al tavolo</h3>
+<p>Da uno a tre giocatori, un solo schermo, zero preparazione: uno legge ad alta voce, si discute, si sceglie insieme, e quando serve si tira il dado. Salvataggio automatico a ogni scena, tre slot per utente: si chiude e si riprende quando volete.</p>
+<p><i>⚠️ <b>Gioco per adulti.</b> Linguaggio pesante — quello vero, quello di due persone terrorizzate — orrore psicologico, gore, acqua profonda e buio sotto. In alcuni momenti, sempre annunciati prima, si può <b>perdere qualcuno davvero</b>. E l'isola è reale: il carcere, le cisterne, il relitto del 1943 e le persone che ci sono rimaste sono documentati. I ventotenesi vivi, in questa storia, sono <b>dalla vostra parte</b>: sempre, senza doppi fondi.</i></p>`;
+
+const RULES_HOWTO = `
+<h3>🌊 Che gioco è questo</h3>
+<p>Un'avventura horror in stile D&amp;D con un Narratore automatico. Si legge, si sceglie, e quando la scelta è rischiosa si tira un dado. Si gioca <b>insieme, sullo stesso schermo</b>: uno legge ad alta voce, si discute, si decide chi tenta. Non c'è nulla da studiare prima: quello che serve sapere, il gioco lo dice nel momento in cui serve.</p>
+<p>Siete <b>in due</b> e ci siete sempre tutti e due, in ogni scena: al setup scegliete solo chi <b>giocate</b> (uno o entrambi), il resto lo gestisce il Narratore. Il terzo — <b>Ciro</b>, pescatore, settantadue anni, che nel '65 era sul molo il giorno in cui chiusero il carcere — si aggiunge il <b>ventinove</b>, se vi guadagnate la sua fiducia.</p>
+
+<h3>🎲 Il dado e le sei statistiche</h3>
+<p>Quando una scelta porta il 🎲 si tira un <b>d20</b> e si somma il modificatore di chi tenta: <b>FOR</b>za, <b>DES</b>trezza, <b>COS</b>tituzione, <b>INT</b>elligenza, <b>SAG</b>gezza, <b>CAR</b>isma. Se il totale arriva alla difficoltà (CD), passa.</p>
+<p>La scelta vera è <b>chi</b> tenta. Gaetano ha INT +3 e il <i>Metodo</i>: altri +2 su ogni prova di Intelligenza. Claudia ha SAG +3 e l'<i>Occhio Assoluto</i>: altri +2 su ogni prova di Saggezza — e se sta per accadere qualcosa nell'acqua lo sa tre secondi prima, e il gioco glielo dice. Fallire non blocca mai la storia: la piega, e spesso in un posto peggiore e più interessante.</p>
+<p>Un secondo tentativo esiste, e costa: se avete costruito l'<b>occhio lungo</b> (la GoPro in cima all'asta) il gioco vi offre di <b>rifare la presa</b> — si riguarda la registrazione, si tira di nuovo. L'oggetto si <b>consuma</b>. Uno solo, e va speso nel momento che lo merita.</p>
+
+<h3>💪 TENUTA, e le condizioni</h3>
+<p>I punti vita qui si chiamano <b>TENUTA</b>: non è muscolo, è quanto regge la testa. A zero si va <b>A TERRA</b> e serve una cura per rialzarsi (a fine scontro vinto si riparte da 1). In certi snodi — <b>sempre annunciati prima</b> — non si sviene: il Coro ti <b>PRENDE</b>. Chi è <b>👻 PRESO DAL CORO</b> resta con voi come <b>voce</b>, si sente cantare nelle scene dopo, e ogni tanto dice una cosa utile e strappante. Non tira dadi, non combatte. Torna solo con l'<b>Àncora di Voce</b>.</p>
+<p>C'è un'altra cosa, e non è la stessa: <b>🌊 È RIMASTO</b>. Qualcuno può <b>scegliere</b> di restare — sull'isola, o più giù — perché l'altro salga sul traghetto. Chi è rimasto <b>non è morto</b>: respira, sta in un posto preciso, e il gioco ne parla al presente. Esce dalla squadra e dai combattimenti, ma non dalla storia: gli epiloghi lo raccontano vivo, perché lo è. È il cuore di uno dei sei finali, e il motore tiene i due stati separati proprio per non confonderli mai.</p>
+<p><b>🎵 ACQUA NEI POLMONI</b> è la condizione di chi ha sentito il Coro troppo da vicino: una nota che ti resta in testa, <b>−2 a tutte le prove e a tutti gli attacchi</b>, e scelte in più che l'altro non vede — alcune buone, alcune non tue. Si toglie in tre modi, tutti umani: il <b>caffè di Ada</b> alle Paracine, il grido di Ciro, o <b>l'altro che ti chiama per nome</b>. La scheda del personaggio lo spiega ogni volta, dentro il gioco.</p>
+
+<h3>🫁 Il FIATO</h3>
+<p><b>Non è denaro e non compra niente: in questo gioco non c'è nessun negozio.</b> Il Fiato (0-20) è l'aria con cui scendete, e fa due cose sole — entrambe le vedete.</p>
+<p><b>Uno:</b> stabilisce con quanta aria parte ogni <b>apnea</b>, e quindi <b>a quanti metri arrivate</b>, contando che dovete anche risalire. I numeri veri sono questi: si comincia con <b>6</b> di fiato (8 se gioca uno solo), che vuol dire circa <b>tredici metri</b>; col tetto (<b>20</b>) e il bombolino riparato si arriva a circa <b>ventisei</b>. Più giù, col solo fiato, <b>non si va</b>: oltre i ventisei metri servono la barca di Ciro e la cima a nodi.</p>
+<p>Prima di ogni immersione il briefing vi scrive nero su bianco a che profondità arrivate e dove sta la cosa che vi serve. Se il conto non torna, non ce la fate: <i>«Con il fiato che avete adesso arrivate a circa 13 metri — e quella cosa sta a 18.»</i> E infatti <b>la prima immersione chiede 7 di fiato</b>, cioè uno in più di quello con cui partite: prima si mangia, o si dorme. È voluto, ed è tutta la lezione dell'economia di questo gioco in una riga.</p>
+<p><b>Due:</b> le scelte che spingono più giù lo <b>consumano</b>, e alcune scelte in fondo al mare lo <b>richiedono</b>, dicendovi prima quanto ne serve.</p>
+<p>Si guadagna <b>solo</b> con le cose vere: dormire alle Paracine, mangiare come si deve alla Marisqueria o da Mimì, il caffè di Ada, <b>ridere</b>, stare fermi un momento con l'altro. Mai combattendo per combattere. Nello zaino trovate sempre il numero e i metri già calcolati.</p>
+
+<h3>🔧 Combinare le cose</h3>
+<p>Nello zaino c'è un pulsante: <b>🔧 Combinare due cose</b>. Sedici combinazioni funzionano e <b>nessuna sta scritta da nessuna parte</b>: si intuiscono dai testi. Un microfono a clip dentro un preservativo e sigillato col nastro fa un <b>idrofono</b> — si fa davvero così. I tentativi assurdi non puniscono: rispondono con una battuta.</p>
+<p>Le cose costruite sono i <b>soli</b> potenziamenti del gioco: niente livelli, niente punti da spendere. Diventate più forti solo trovando e combinando. E ogni oggetto ha un effetto reale che il <b>log del combattimento nomina per esteso</b> quando scatta: il <b>bombolino riparato</b> aggiunge 80 di aria a ogni apnea (cinque metri più giù, che laggiù sono tanti); l'<b>idrofono profondo</b> dà +1 CA a tutti, perché li sentite arrivare mezzo secondo prima; la <b>voce del '65</b>, contro un boss, gli toglie 2 ai colpi e gli fa sbagliare il primo attacco; la <b>ninnananna</b>, contro la sola creatura a cui serve, le porta via il 40% dei punti vita; l'<b>occhio lungo</b> vi ridà una prova fallita. <b>Tre combinazioni sono obbligatorie per il finale migliore</b>, e il gioco le semina con indizi.</p>
+
+<h3>🕯 I misteri e il Quaderno</h3>
+<p>Tre domande, <b>quattro indizi ciascuna</b>, sparsi sull'isola, nei registri, nel cimitero e a volte sul fondo. Il <b>Quaderno</b> (menu ☰) mostra quelli trovati e lascia <b>❓</b> sugli slot vuoti: nessuno spoiler, solo il conto.</p>
+<p>Al 4/4 il mistero si chiude, il gioco vi dice cosa avete capito, e il premio è un <b>effetto meccanico dichiarato</b>, non una pacca sulla spalla: sapere il <b>nome della guardia</b> blocca un turno ai morti di Santo Stefano; sapere <b>dov'è la sesta cisterna</b> dà +1 a tutti i tiri e apre un finale in cui si può <b>sigillare</b> invece di combattere; sapere <b>chi è la bambina che canta</b> toglie al Coro metà della voce.</p>
+
+<h3>🎵 L'attenzione del Coro (0-6)</h3>
+<p>Ogni volta che scendete sotto i quindici metri, e ogni volta che vi fermate ad ascoltare, la barra sale. La vedete nel Quaderno: <b>▓▓▓░░░</b>.</p>
+<p>Non è arredamento. A <b>3 o 4</b> i nemici prendono +1 ai colpi; a <b>5 o più</b> prendono <b>+2 ai colpi e +6 PV</b>. A <b>0</b> partono con <b>svantaggio</b>, perché non sanno bene quanti siete. E nell'ultima immersione l'attenzione decide <b>quanti vengono a prendervi</b>. Ascoltare è la cosa più naturale del mondo — e la pagate davanti a tutti.</p>
+
+<h3>⚔ Il combattimento</h3>
+<p>A turni, in ordine di iniziativa. Nel proprio turno: <b>attacco</b>, <b>abilità speciale</b> (usi limitati, si ricaricano dormendo e mangiando), <b>oggetto</b> o <b>difesa totale</b> (+3 CA fino al turno dopo).</p>
+<p>Le creature qui non sono mostri: sono <b>voci</b> che hanno preso una forma provvisoria per venirvi incontro. Nella lista dei bersagli sono segnate «non-morto», e prendono <b>danni doppi</b> dalle armi della realtà: il <b>sale</b> della loro stessa acqua, il <b>fuoco</b>, la <b>luce vera</b>, e il <b>nome</b> che avevano da vivi.</p>
+<p>I quattro scontri grossi sono <b>lunghi di proposito</b>: dai sei ai dieci giri con la squadra al completo. Non si passano a forza di attacchi: si accorciano con le cose che avete costruito e con i misteri che avete chiuso, e il log lo <b>dice</b> a ogni effetto che scatta. Se un boss vi sembra infinito, la risposta non è ritirare il dado: è che vi manca un oggetto, o un nome.</p>
+<p>Nello zaino, il primo giorno, ci sono un <b>telo da mare</b> e un <b>coltellino</b>. Tutto il resto si compra al negozio del porto, si trova cercando, o si mette insieme. Chi gioca da solo parte con un <b>caffè delle Paracine</b> in più: serve.</p>
+
+<h3>🎮 I minigiochi</h3>
+<p>Otto momenti in cui scegliere non basta. L'<b>apnea</b> ha un comando solo: <b>TIENI PREMUTO</b> (spazio, dito o mouse) per scendere, lasci e il corpo risale da sé. Il fiato scende sempre, e più giù sei più se ne va in fretta. In fondo c'è quello che vi serve; cinque metri più giù c'è qualcosa che <b>non</b> vi serve e che vorrete vedere. Quando basta lo decidete voi, e a fiato zero, in difficoltà Apnea, si muore.</p>
+<p>Gli altri sono una corsa, una filastrocca da completare, una sequenza da ricordare e tre conti da fare in fretta. Le regole compaiono sempre prima di cominciare.</p>
+
+<h3>🌊 Se cadete tutti: NON è game over</h3>
+<p>Se va giù tutta la squadra, il gioco non vi rimanda al titolo.</p>
+<p>Se avete l'<b>ÀNCORA DI VOCE</b> si <b>consuma</b>: vi rialza tutti a metà TENUTA e lo scontro riprende da lì. Altrimenti si torna all'<b>ultimo checkpoint</b> — la fine di una giornata, o il mattino in cui Ciro sale in barca con voi — con lo <b>stato di allora</b>: gruppo, zaino, indizi, fiato, cose combinate. Quello che avevate capito dopo <b>l'avete perso</b>, e la modale vi dice <b>per nome</b> cosa vi manca. Vi svegliate asciutti alle Paracine, e l'essere asciutti è la parte peggiore.</p>
+<p>E se un checkpoint non esiste ancora — cioè se cadete il primo giorno — non c'è nessuna schermata di sconfitta: il gioco vi porta a <b>uno dei sei finali</b>, quello scritto esattamente per questo. Il Coro vi ha presi. È una fine, non un errore di sistema.</p>
+
+<h3>💾 Salvataggi e difficoltà</h3>
+<p>Salvataggio automatico a ogni scena, <b>tre slot</b> per utente, trasferibili su un altro computer con un codice da incollare. Tre difficoltà: <b>🌤 In superficie</b> (nemici più deboli), <b>⚖ Normale</b>, <b>🌊 Apnea</b> — nemici duri e il fiato che uccide davvero.</p>
+<p><i>⚠️ Contenuti per adulti: turpiloquio pieno, orrore psicologico, gore, acqua profonda e buio sotto. L'isola e la sua storia sono reali.</i></p>
+`;
+
+const RULES_QUICK = `
+<div class="ability-box"><span class="ability-name">🎲 Prova</span><div class="ability-desc">d20 + modificatore ≥ CD. La scelta vera è CHI tenta: Gaetano +2 su ogni prova di INT, Claudia +2 su ogni prova di SAG. Fallire non blocca la storia: la piega. Se avete l'OCCHIO LUNGO, il gioco vi offre di rifare la presa: si consuma.</div></div>
+<div class="ability-box"><span class="ability-name">💪 TENUTA</span><div class="ability-desc">I punti vita: non è muscolo, è quanto regge la testa. A 0 si va A TERRA (serve una cura; a fine scontro vinto si riparte da 1). Si recupera dormendo, mangiando e con le cure — non combattendo.</div></div>
+<div class="ability-box"><span class="ability-name">🎵 ACQUA NEI POLMONI</span><div class="ability-desc">Ha sentito il Coro troppo da vicino: −2 a TUTTE le prove e agli attacchi, più scelte che l'altro non vede. Si cura col caffè di Ada, col grido di Ciro, o con l'altro che lo chiama per nome.</div></div>
+<div class="ability-box"><span class="ability-name">👻 PRESO DAL CORO</span><div class="ability-desc">Morte vera, solo negli snodi annunciati. Resta con voi come VOCE: si sente cantare, a volte dice cose utili, non tira dadi. Torna solo con l'ÀNCORA DI VOCE.</div></div>
+<div class="ability-box"><span class="ability-name">🌊 È RIMASTO</span><div class="ability-desc">Non è la stessa cosa: chi resta SCEGLIE di restare perché l'altro salga sul traghetto. Non è morto — respira, sta in un posto preciso, e gli epiloghi ne parlano al presente. Fuori dalla squadra e dagli scontri, dentro la storia.</div></div>
+<div class="ability-box"><span class="ability-name">🫁 FIATO (0-20)</span><div class="ability-desc">Non è denaro e non c'è negozio: è l'aria con cui scendete. Si parte da 6 = circa 13 metri; col tetto (20) e il bombolino riparato circa 26, e più giù col fiato non si va. La prima immersione ne chiede 7: prima si mangia. Si guadagna solo dormendo, mangiando, ridendo e stando fermi un momento con l'altro.</div></div>
+<div class="ability-box"><span class="ability-name">⚔ Combattimento</span><div class="ability-desc">A turni: attacco / abilità (usi limitati) / oggetto / difesa totale (+3 CA). Le voci sono segnate «non-morto» e prendono danni DOPPI dalle armi della realtà: il sale della loro acqua, il fuoco, la luce vera, il nome che avevano da vivi.</div></div>
+<div class="ability-box"><span class="ability-name">🔧 Combinare due cose</span><div class="ability-desc">Il pulsante sta nello zaino. Sedici combinazioni, nessun elenco: si intuiscono dai testi. Sono gli unici potenziamenti del gioco, e ogni effetto viene NOMINATO dal log del combattimento quando scatta. Tre servono per il finale migliore.</div></div>
+<div class="ability-box"><span class="ability-name">🕯 Il Quaderno (menu ☰)</span><div class="ability-desc">Tre misteri da quattro indizi. Gli slot vuoti restano ❓, senza spoiler. Al 4/4 il premio è un effetto reale: un turno bloccato ai morti di Santo Stefano, +1 a tutti i tiri, un finale in cui si sigilla invece di combattere.</div></div>
+<div class="ability-box"><span class="ability-name">🎵 Attenzione del Coro</span><div class="ability-desc">▓▓▓░░░ nel Quaderno. Sale sotto i 15 metri e ogni volta che vi fermate ad ascoltare. A 5+ i nemici hanno +2 ai colpi e +6 PV; a 0 partono con svantaggio. Nell'ultima immersione decide quanti vengono a prendervi.</div></div>
+<div class="ability-box"><span class="ability-name">🫁 Apnea</span><div class="ability-desc">Un comando solo: TIENI PREMUTO (spazio / dito / mouse) per scendere, lascia e il corpo risale. Il fiato scende sempre, più in fretta più vai giù. Cinque metri sotto quello che vi serve c'è qualcosa che non vi serve. Torna su col fiato ancora in petto.</div></div>
+<div class="ability-box"><span class="ability-name">🌊 Se cadete tutti</span><div class="ability-desc">Non è game over. L'Àncora di Voce si consuma e vi rialza tutti a metà TENUTA; altrimenti si torna all'ultimo checkpoint con lo stato DI ALLORA, e la modale vi dice per nome cosa avete perso. Vi svegliate asciutti alle Paracine. Se un checkpoint non c'è ancora, non c'è una sconfitta: c'è un FINALE.</div></div>
+`;

@@ -1,0 +1,23 @@
+name: Test di Pandataria
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verifica che js/campaign.js sia in pari con i draft
+        run: |
+          node tests/assemble.mjs
+          git diff --exit-code js/campaign.js || (echo "::error::js/campaign.js non è in pari con drafts/: esegui node tests/assemble.mjs e committa" && exit 1)
+      - name: Controlli statici (grafo, dati, sprite, ricette, misteri, minigiochi, economia del Fiato, calendario)
+        run: node tests/validate.mjs
+      - name: Partite simulate headless (6/6 rami di finale)
+        run: node tests/playthrough.mjs

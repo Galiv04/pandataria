@@ -1,0 +1,1352 @@
+/* ============ PANDATARIA — BLOCCO D: DOMENICA 30 AGOSTO ============
+   IL GIORNO CHE NON FINISCE. Il 30 si ripete tre volte: G.flags.ciclo = 1, 2, 3.
+   Ciclo 1 (d0 → d3):   una giornata normale e bellissima, con due dettagli sbagliati.
+   Ciclo 2 (d4 → d9):   l'acqua è salita — è LA CORDA. L'isola sa che loro sanno.
+   Ciclo 3 (d10 → d15): Ventotene è vuota, il traghetto è spento col portellone aperto.
+   Entrata unica: d0 (dall'atto C). Uscite: SOLO l'atto E — e_vittoria, e_vittoria_muta,
+   e_scambio, e_resta, e_coro, e_loop.
+   Canone ereditato dagli atti A/B/C: la corda (NON SI RISPONDE), Marisa 1997, la fossa
+   che nessuno ha misurato, la ninnananna in cinque strofe, il confine del Coro.
+   Il silenzio (§10.7) è speso una volta sola qui: d13_stiva, l'ultima immersione.
+   Le scene con `minigame` o `combat` hanno `choices: []`: l'engine le ignora.       */
+
+const SCENE_D = {
+
+  /* ==================== CICLO 1 — LA GIORNATA BELLA ==================== */
+
+  d0: {
+    location: 'alba',
+    caption: 'Le Paracine — domenica 30 agosto, ore 07:10',
+    stinger: 'heal',
+    metri: 0,
+    text: `Il ventilatore a pale gira piano. Entra un'aria che sa di limone e di sale, e sul muro sopra il letto c'è il rettangolo di sole che alle sette e dieci arriva sempre allo stesso posto.
+
+Claudia dorme con una gamba fuori dal lenzuolo. E canta.
+
+Piano, con la bocca chiusa, sul filo del respiro: tre note e una pausa, tre note e una pausa. Le stesse di stanotte. Le stesse di ieri notte.
+
+Gaetano è sveglio da ventidue minuti e non si è mosso di un centimetro, perché sta facendo una cosa che non ha mai fatto in quarantun anni: sta controllando se il proprio corpo ha ancora ieri addosso.
+
+Non ce l'ha. Niente sale nelle orecchie, niente bruciore agli occhi, le ginocchia intatte. I vestiti sono piegati sulla sedia come li piega lei, con la piega delle maniche in dentro.
+
+Il costume di Claudia, steso sul davanzale, è **asciutto**.
+
+> Claudia: *(senza aprire gli occhi, e la canzoncina si spegne a metà)* "Che ore sono."
+
+> Gaetano: "Sette e dieci."
+
+> Claudia: "Il traghetto?"
+
+> Gaetano: "Cinque e mezza. Diciassette e trenta." *(e lo dice due volte, come se il numero avesse bisogno di una conferma)* "Da adesso sono dieci ore e venti minuti."
+
+Claudia si mette a sedere e guarda la stanza: la sacca aperta, il phon che non serviva, il sacchetto dei taralli di ieri appallottolato sul tavolino.
+
+E sul tavolino c'è anche la bottiglia dell'acqua. Un litro e mezzo. Ieri notte alle due ne hanno bevuto mezzo — lei direttamente dal collo, lamentandosi che era calda.
+
+È piena. E l'anello di plastica sotto il tappo è **integro**.
+
+> Claudia: "L'ha cambiata Ada."
+
+> Gaetano: "Ada non entra in camera."
+
+> Claudia: *(e se la rigira in mano come si rigira una cosa al supermercato, e poi la riappoggia esattamente dove stava)* "L'ha cambiata Ada, Gaetano." *(pausa)* "Ti va bene se oggi non facciamo niente di intelligente? Niente cisterne, niente misure, niente carcere."
+
+> Gaetano: "Mi va bene."
+
+E per un'ora e mezza è vero, e per un'ora e mezza è la vacanza più bella che abbiano fatto.
+
+**(💪 TENUTA piena, mosse ricaricate: dentro le paracine si dorme. 🫁 Fiato +2. Il Quaderno registra la prima cosa sbagliata della mattina — la bottiglia col sigillo intatto — e ce n'è una seconda, più tardi, e sono due.)**`,
+    gold: 2,
+    fullHeal: true,
+    recharge: true,
+    sets: { d_ultimo_giorno: true, d_bottiglia: true, ciclo: 1 },
+    choices: [
+      { text: '📸 Fotografarla. Bottiglia, tappo, sigillo, con l\'ora sullo schermo', once: true, sets: { d_prova: true }, next: 'd0_dettaglio' },
+      { text: '🧳 Cominciare a mettere le cose nella sacca: c\'è tutto il tempo del mondo', once: true, sets: { d_valigie: true }, next: 'd0_dettaglio' },
+      { text: '☕ Giù: la moka di Ada, la terrazza, il mare', gold: 1, next: 'd1_colazione' },
+      { text: '🫂 Dieci minuti così. Senza alzarsi, senza dire niente', once: true, heal: 4, gold: 1, next: 'd1_colazione' },
+    ],
+  },
+
+  d0_dettaglio: {
+    location: 'bnb',
+    caption: 'La stanza — ore 07:40, la sacca aperta sul letto',
+    metri: 0,
+    text: `Fare la sacca l'ultimo giorno è la cosa più triste che sa fare una vacanza: si piega la stessa maglietta che tre giorni fa era una promessa.
+
+Claudia infila il phon in fondo. Gaetano arrotola i cavi come li arrotola lui, in otto, con l'elastico. E mentre arrotola, senza guardarla, le fa la domanda che si è preparato mentre lei dormiva.
+
+> Gaetano: "Sai che canti?"
+
+> Claudia: "Come."
+
+> Gaetano: "Nel sonno. Da due notti." *(un giro di cavo)* "Sempre la stessa. Sempre le stesse tre note e la pausa."
+
+Claudia resta con la maglietta a mezz'aria.
+
+> Claudia: "Fammela sentire."
+
+> Gaetano: "Non l'ho registrata."
+
+> Claudia: *(e lo guarda, e lo conosce da quattordici anni)* "Gaetano."
+
+> Gaetano: *(e cede subito, perché con lei ha smesso di provarci)* "L'ho registrata."
+
+Ventidue secondi di telefono appoggiato sul comodino. C'è il ventilatore, c'è una cicala, e c'è una donna di quarant'anni che dorme e canta in napoletano, con la voce che le viene fuori un tono sotto il suo, la stessa strofa in circolo.
+
+Claudia ascolta tutto. Poi si siede sul bordo del letto con il telefono in mano.
+
+> Claudia: "Io quella canzone la so."
+
+> Gaetano: "Da dove."
+
+> Claudia: "Da lei. Me l'ha insegnata lei." *(e la voce non trema, e questa è la parte che fa più paura)* "Cinque strofe, Gaetà. Me ne ricordo cinque, e non le ho mai imparate da sveglia."
+
+**(Il Quaderno registra: Claudia canta nel sonno da due notti, e sa cinque strofe di una ninnananna che nessuno le ha insegnato. 🫁 Fiato +1: dirsi le cose, in questa storia, tiene in piedi la baracca.)**`,
+    gold: 1,
+    sets: { d_canta_nel_sonno: true },
+    choices: [
+      { text: '🎧 Riascoltarla insieme, tutta, e provare a scrivere le parole', once: true, sets: { d_strofe_scritte: true }, gold: 1, next: 'd1_colazione' },
+      { text: '☕ Spegnere il telefono e scendere a colazione: è l\'ultimo giorno', heal: 3, next: 'd1_colazione' },
+    ],
+  },
+
+  d1_colazione: {
+    location: 'terrazza',
+    caption: 'La terrazza delle Paracine — ore 08:20',
+    metri: 0,
+    text: `Ada porta la moka, il pane con la marmellata di fichi che fa lei, e due albicocche in un piattino perché "quelle di ieri erano acerbe e mi è rimasto il magone".
+
+Il mare, da lassù, è una lastra. Santo Stefano è appoggiato all'orizzonte e per la prima volta in tre giorni nessuno dei due lo guarda.
+
+> Ada: "E allora oggi partite."
+
+> Claudia: "Alle cinque e mezza."
+
+> Ada: "Il libeccio non c'è, quindi parte. Se c'è libeccio non parte e vi tocca restare." *(versa il caffè, prima a Claudia)* "L'anno scorso una coppia di Bologna è rimasta tre giorni in più. Piangevano. Poi non volevano andarsene più."
+
+Il caffè è quello di Ada: denso, forte, di quelli che ti raddrizzano la schiena e ti levano una cosa dalla testa.
+
+Giù per la scaletta passa la signora dei fagiolini col catino sotto il braccio. Alza gli occhi, li vede, e dice la frase che ha detto giovedì.
+
+> La signora: "Buongiorno. Turisti?"
+
+> Gaetano: "Ci andiamo oggi, signora. Alle cinque e mezza."
+
+> La signora: *(un fagiolino nel catino)* "Buoni, quelli. Brava gente." *(un altro)* "Fate i bagni dove **c'era** la gente."
+
+Riprende la scaletta. Il catino cigola. Gaetano ha la tazzina a mezz'aria.
+
+> Claudia: "Ha detto c'era."
+
+> Gaetano: "Ha detto c'è. Ha l'accento chiuso, mangia le vocali—"
+
+> Claudia: *(e non alza la voce, che è la cosa peggiore)* "Gaetà. Io il montaggio lo faccio a fotogrammi. Ha detto **c'era**, e l'ha detto al passato di una cosa che deve ancora succedere stasera."
+
+Ada, dalla porta, si è girata a guardare la scaletta dove non c'è più nessuno. Poi rientra in cucina e dice, senza rivolgersi a nessuno in particolare, la cosa che vi ha già detto una volta:
+
+> Ada: "Finché è aperta, non si risponde."
+
+**(🫁 Fiato +2, 💪 TENUTA +6: il caffè di Ada è la cosa più concreta dell'isola. Il Quaderno registra la seconda cosa sbagliata della mattina — e con questa fanno due.)**`,
+    gold: 2,
+    heal: 6,
+    sets: { d_fagiolini: true },
+    choices: [
+      { text: '🥨 Farsi mettere in tasca un sacchetto di taralli per la giornata', once: true, item: 'taralli', gold: 1, next: 'd2_paese' },
+      { text: '📅 Chiedere ad Ada, ridendo, che giorno è oggi', once: true, sets: { d_chiesto_giorno: true }, gold: 1, next: 'd2_paese' },
+      { text: '🏖 Basta. Costume, telo, e giù in paese: si va a buttare via una giornata', next: 'd2_paese' },
+    ],
+  },
+
+  d2_paese: {
+    location: 'paese',
+    caption: 'Ventotene, l\'ultimo giorno — dalle 10:00 alle 16:30',
+    metri: 0,
+    text: `E poi la giornata è **bella**. Bella come le giornate che uno si ricorda a settant'anni.
+
+Piazza Castello alle dieci: i vecchi schierati sulle panchine, il tabaccaio che discute di calcio con uno che passa in motorino senza fermarsi, quattro bambini che si tirano una palla contro il muro della chiesa e uno che urla "MANO!" ogni volta.
+
+Pranzo alla **Marisqueria**: gamberi crudi, un litro di bianco freddo, due ore buttate via nel modo migliore possibile. Claudia racconta al cameriere la storia della boa gialla e il cameriere gliela fa raccontare due volte.
+
+Pomeriggio a **Cala Nave**. Arrivano fino alla boa e restano attaccati alla plastica gialla, calda di sole, a non dire niente per due minuti.
+
+Ed è lì, con l'orecchio a dieci centimetri dall'acqua, che Claudia sente il proprio nome.
+
+Non forte. Non minaccioso. Detto come lo dice una persona che ti conosce, da sotto, a una profondità che da qui è ventidue metri:
+
+> *Claudia.*
+
+Le mani sulla plastica gialla diventano bianche sulle nocche.
+
+> Gaetano: "Che c'è."
+
+> Claudia: *(a labbra strette, e non gira la testa verso l'acqua)* "Niente. Niente. Torniamo a riva."
+
+---
+
+Alle quattro e mezza, risalendo verso il paese col telo sulle spalle, Gaetano si ferma davanti all'orologio della piazza.
+
+> Gaetano: "Ferma. Sono undici minuti che segna le sedici e ventisette. Il secondario gira e non porta il minuto."
+
+Gira davvero: fa il suo giro, torna, e sono ancora le sedici e ventisette. Poi la campana della chiesa batte le cinque, l'orologio fa scattare il minuto, e sono le sedici e ventotto.
+
+**(🫁 Fiato +2, 💪 TENUTA +8: una giornata come si deve, e vi serviranno tutte e due. ⚠️ Attenzione del Coro +1. Il Quaderno registra: un minuto durato dodici minuti, e una voce che ha chiamato Claudia per nome dal fondo di Cala Nave.)**`,
+    gold: 2,
+    heal: 8,
+    attenzione: 1,
+    sets: { d_ora_ferma: true, d_chiamata_per_nome: true },
+    choices: [
+      { text: '🤐 Non rispondere. Uscire dall\'acqua e non dirlo nemmeno a lui, per adesso', once: true, gold: 1, next: 'd3_traghetto' },
+      { text: '🗣 Rispondere. Mettere la faccia sotto e dire "sono qui"', once: true, damage: 4, sets: { ha_risposto: true }, tag: '⚠️ Ada ve l\'ha detto due volte: non si risponde', next: 'd3_traghetto' },
+      { text: '⏱ Cronometrare la campana contro l\'orologio del telefono, fino in fondo', once: true, sets: { d_ora_misurata: true }, gold: 1, next: 'd3_traghetto' },
+      { text: '⚓ Alla banchina. Sono le cinque meno un quarto', next: 'd3_traghetto' },
+    ],
+  },
+
+  d3_traghetto: {
+    location: 'porto',
+    caption: 'Porto Romano, banchina — ore 17:30',
+    stinger: 'coro',
+    metri: 0,
+    text: `L'imbarco delle diciassette e trenta è un casino allegro: sessanta persone con le borse frigo, due cani, un carrello di cassette di pesce, e il marinaio che urla i biglietti come si urlano i numeri della tombola.
+
+Salgono. Trovano posto a poppa, sulla panchina di dritta, quella che prende il vento.
+
+Il portellone si chiude col colpo di lamiera che si sente in tutta la baia. Le cime vengono mollate. L'acqua sotto la poppa diventa bianca.
+
+**E il traghetto parte.**
+
+Parte davvero, e Gaetano lo verifica come verifica tutto, cioè misurando: la banchina si allontana, il campanile cambia angolo, le case gialle si stringono una sull'altra. A due minuti Ventotene è già una cosa che si guarda tutta insieme, e Santo Stefano le è scivolato accanto.
+
+> Claudia: *(la testa sulla sua spalla, gli occhi chiusi, la voce di una che sta per dormire)* "L'abbiamo fatta."
+
+> Gaetano: "L'abbiamo fatta."
+
+> Claudia: "Alla boa ci sono arrivata due volte, Gaetà. Due."
+
+> Gaetano: "Tre. Ieri mattina."
+
+> Claudia: *(un sorriso con gli occhi chiusi)* "Tre."
+
+Il motore fa il suo rumore grosso e regolare. Il sole è basso a destra. Claudia si addormenta sulla sua spalla in quel modo che fa lei, con la bocca che si apre un millimetro. E canta, piano, tre note e una pausa.
+
+Gaetano resta a guardare l'isola che diventa piccola.
+
+Diventa piccola.
+
+Diventa piccola.
+
+E poi il ventilatore a pale gira piano, ed entra un'aria che sa di limone e di sale.
+
+**(⚠️ Non c'è niente da segnare. Nessun oggetto, nessun indizio, nessun danno, nessun mostro. È esattamente questo il problema.)**`,
+    choices: [
+      { text: '🌅 Restare in coperta a guardare l\'isola che se ne va', gold: 1, next: 'd4_ciclo2' },
+      { text: '☕ Scendere al bar del traghetto: due caffè e un cornetto di plastica', heal: 3, gold: 1, next: 'd4_ciclo2' },
+    ],
+  },
+
+  /* ==================== CICLO 2 — L'ISOLA SA CHE LORO SANNO ==================== */
+
+  d4_ciclo2: {
+    location: 'alba',
+    caption: 'Le Paracine — domenica 30 agosto, ore 07:10 (di nuovo)',
+    stinger: 'voce_amata',
+    metri: 0,
+    text: `Sono svegli tutti e due. Da subito. Nessuno dei due ha aperto gli occhi piano.
+
+Il rettangolo di sole è sul muro sopra il letto, nello stesso punto, con lo stesso taglio della tenda in mezzo. Il ventilatore gira. Il costume sul davanzale è asciutto.
+
+Nessuno parla per quarantadue secondi, e Gaetano li conta, perché contare è l'unica cosa che gli impedisce di urlare.
+
+> Claudia: "Non lo dire."
+
+> Gaetano: "Devo dirlo."
+
+> Claudia: "Se lo dici diventa vero."
+
+> Gaetano: "È vero da prima che lo dicessi. Sono le sette e dieci di domenica trenta agosto e noi ieri sera eravamo a bordo."
+
+Claudia si tira su a sedere col lenzuolo in mano, e la sua faccia non è quella di una che ha paura: è quella di una montatrice davanti a un girato che non torna.
+
+> Claudia: "Ok. Dimmi cosa ricordi."
+
+> Gaetano: "Panchina di dritta a poppa. Il portellone. Le cime. Tu che ti addormentavi e mi dicevi 'l'abbiamo fatta'. Il campanile che cambiava angolo — l'ho misurato a occhio contro il pollice."
+
+> Claudia: *(e adesso ha la voce bassissima)* "Io ricordo il tuo maglione che sapeva di sale. E ricordo che mi hai detto tre volte, non due. La boa. **Tre**."
+
+> Gaetano: "Te l'ho detto."
+
+> Claudia: "Me l'hai detto. Quindi non è un sogno mio."
+
+Si guardano. Sul tavolino c'è una bottiglia d'acqua da un litro e mezzo, piena, col sigillo intatto. Nella sacca, piegata, c'è la maglietta che ieri Claudia ha piegato due volte.
+
+E dal piano di sotto, dalla cucina, si sente Ada che mette la moka sul fuoco.
+
+**(🫁 Fiato +2. Il Quaderno registra: il 30 agosto è ricominciato, e vi ricordate tutto. Gli oggetti sono nello zaino, gli indizi nel Quaderno, le ricette in testa: il giorno si riavvolge, voi no. E quello che oggi era chiuso, oggi è aperto.)**`,
+    gold: 2,
+    sets: { ciclo1_fatto: true, ciclo: 2 },
+    choices: [
+      { text: '📷 Riguardare la foto della bottiglia di stamattina — di STAMATTINA', requires: { flag: 'd_prova' }, once: true, sets: { d_prova_regge: true }, gold: 1, next: 'd5_ada' },
+      { text: '🧾 Cercare il biglietto nella sacca e guardare il tagliando', once: true, sets: { d_biglietto_intero: true }, next: 'd5_ada' },
+      { text: '🫂 Dirlo ad alta voce, in faccia all\'altro: "sta succedendo, e non siamo pazzi"', once: true, heal: 5, gold: 2, next: 'd5_ada' },
+      { text: '☕ Giù da Ada. Adesso', next: 'd5_ada' },
+    ],
+  },
+
+  d5_ada: {
+    location: 'bnb',
+    caption: 'La cucina delle Paracine — ore 07:55',
+    metri: 0,
+    text: `Ada è girata verso il fuoco. La moka borbotta. Sul tavolo ci sono tre tazzine, e nessuno le ha detto che scendevano in due.
+
+Si gira. E li **guarda**: uno sguardo che dura mezzo secondo di troppo — quel mezzo secondo in cui una faccia sta decidendo qualcosa e non lo dice — e poi torna la faccia di Ada, quella di sempre.
+
+> Ada: "Stamattina il mare è salito di uno scalino a Cala Nave." *(posa la caffettiera)* "Non è la marea: qua la marea è quattro dita. È salito di uno scalino, e ieri era piano."
+
+> Gaetano: "È la corda."
+
+> Ada: *(e per la prima volta si siede al tavolo con loro)* "È la corda. Tre, quattro volte in cent'anni. Dura una settimana, dieci giorni, poi l'acqua torna giù e non se ne parla più." *(gira lo zucchero e non beve)* "Mentre è aperta, quelli di sotto chiamano. E chiamano per nome, e chiamano sempre gli stessi: quelli che hanno paura dell'acqua." *(alza gli occhi su Claudia)* "A me non mi ha chiamata mai, signora. In sessant'anni, mai. Io il mare me lo mangio."
+
+> Claudia: "Ieri mi ha chiamata."
+
+> Ada: "Lo so."
+
+Poi tira fuori dal cassetto della credenza una fotocopia piegata in quattro: l'elenco d'imbarco del piroscafo **Santa Lucia**, 24 ottobre 1943, molo di Napoli. Centoquarantasei nomi a macchina. E in fondo, uno aggiunto **a penna**, di fretta, con la biro che ha bucato la carta: *Assuntina, a. 6, c/o madre.*
+
+> Ada: "Ve l'ho chiesta ieri al Comune, che ho una cugina all'anagrafe. Ve l'ho chiesta perché ieri mi avete fatto una domanda e stanotte non ho dormito." *(e adesso ha le mani ferme sul tavolo)* "E allora mo' ve la dico, la regola, per la seconda volta, e poi non ve la dico più: **non si risponde**. Non importa chi vi chiama, non importa con che voce. Non si risponde e non si scende."
+
+> Claudia: "A qualcuno l'ha già detto, questa cosa."
+
+> Ada: *(e ci mette un tempo lungo)* "A mia sorella. Marisa." *(si alza, prende le tazzine, e la conversazione è finita)* "Marisa faceva l'istruttrice di sub. Nel novantasette."
+
+**(Oggetto: la LISTA D'IMBARCO. 🫁 Fiato +1. Il Quaderno registra: si chiama LA CORDA, l'acqua sale, chi sta sotto chiama per nome chi ha paura — e non si risponde. E c'era una sorella, e si chiamava Marisa.)**`,
+    item: 'lista_imbarco',
+    gold: 1,
+    sets: { i_nome_lista: true, d_acqua_alta: true, sa_la_corda: true, sa_di_marisa: true },
+    choices: [
+      { text: '🧂 "Signora, ci regala un chilo di sale grosso e un barattolo vuoto?"', once: true, item: 'sale_grosso', gold: 1, next: 'd6_cisterna' },
+      { text: '🗒 [Ciro] Portare la lista a Ciro: i nomi di quest\'isola li sa leggere lui', requires: { hero: 'ciro' }, once: true, sets: { nome_letto_da_ciro: true }, gold: 1, next: 'd6_cisterna' },
+      { text: '🕳 Alla cisterna dei Detenuti: oggi la porta dietro la chiesa è aperta', next: 'd6_cisterna' },
+    ],
+  },
+
+  d6_cisterna: {
+    location: 'cisterna',
+    caption: 'Cisterna dei Detenuti, dietro Santa Candida — ore 09:30',
+    stinger: 'coro',
+    attenzione: 1,
+    text: `La porta dietro la chiesa oggi è aperta. Non forzata: **aperta**, col lucchetto appeso alla catena, chiuso, e la catena passata dentro il nulla.
+
+Ventidue gradini di tufo, e la temperatura crolla di dieci gradi in dieci secondi.
+
+La cisterna dei Detenuti è una nave rovesciata: quattro navate scavate nel tufo, pilastri quadrati, volte a botte, e il **cocciopesto** romano ancora attaccato ai muri per due metri d'altezza, rosa di coccio pestato, liscio come una vasca da bagno.
+
+Sul fondo c'è l'acqua. Giovedì era una pozza alta un dito.
+
+Oggi arriva alle caviglie, ed è ferma in un modo in cui l'acqua ferma non è.
+
+> Gaetano: "Serve un dato. Uno buono, e poi ci ragioniamo."
+
+Tira fuori il telefono, apre il registratore, lo appoggia in terra su un fazzoletto. Poi si mette in mezzo alla navata centrale, si porta due dita alla bocca e **fischia**: un fischio secco, corto, da campetto.
+
+Il fischio parte. Torna. Ritorna. E continua a tornare.
+
+> Claudia: "Quanto dura?"
+
+> Gaetano: *(guardando la forma d'onda che non smette)* "Sta ancora durando."
+
+Undici secondi di coda dentro una stanza di trenta metri. La cattedrale di Colonia ne fa otto.
+
+> Gaetano: "Ok. I conti li faccio a voce, che a voce non sbaglio. Rispondi tu, che se conto e parlo insieme perdo il filo."
+
+**(🧮 Si gioca: il conto del riverbero. Tre domande, venti secondi l'una, ad alta voce e insieme. Al Coro la precisione fa male — ma sbagliare, qua sotto, non è gratis: c'è una cosa che ascolta anche la matematica.)**`,
+    minigame: {
+      type: 'calcolo',
+      success: 'd6_eco',
+      fail: 'd7_sbaglia',
+      tag: 'Il conto del riverbero — tre domande, 20 secondi l\'una, servono 2 giuste',
+      config: {
+        titolo: '🧮 Undici secondi',
+        secondi: 20,
+        domande: [
+          { q: 'Il fischio torna la prima volta dopo 0,18 secondi. Il suono in aria fa 340 metri al secondo. Andata e ritorno: quanti metri ha fatto?', r: [{ t: '61 metri', ok: true }, { t: '31 metri' }, { t: '6,1 metri' }] },
+          { q: 'Quindi la parete più lontana, da dove sta Gaetano, quanto dista?', r: [{ t: 'Trenta metri e mezzo', ok: true }, { t: 'Sessantun metri' }, { t: 'Quindici metri' }] },
+          { q: 'La coda dura 11 secondi: in 11 secondi il suono fa 3.740 metri. Rimbalzando avanti e indietro tra due pareti a 30 metri, quanti rimbalzi sono?', r: [{ t: 'Una sessantina', ok: true }, { t: 'Undici, uno al secondo' }, { t: 'Tre o quattro' }] },
+        ],
+      },
+      hero: 'gaetano',
+    },
+    choices: [],
+  },
+
+  d6_eco: {
+    location: 'cisterna',
+    caption: 'Il numero — ore 09:52',
+    attenzione: 1,
+    text: `Il conto torna. Torna perfettamente, ed è per questo che è insostenibile.
+
+> Gaetano: "Trenta metri e mezzo di parete. Sessanta rimbalzi per fare undici secondi di coda. Ma un rimbalzo sul cocciopesto **perde** energia: dopo venti sei sotto la soglia dell'udibile." *(alza gli occhi dallo schermo)* "Per fare sessanta rimbalzi udibili questa stanza deve essere lunga tre volte tanto. Novanta metri. E questa stanza è lunga trenta."
+
+> Claudia: "Quindi?"
+
+> Gaetano: "Quindi il suono, qua dentro, rimbalza in un posto tre volte più grande di questo posto." *(e adesso lo dice piano)* "C'è un'altra stanza attaccata a questa, Claudia. E non è murata bene."
+
+Claudia non risponde. Sta guardando l'acqua alle caviglie.
+
+> Claudia: "Rifallo. Ma non guardare me: guarda il telefono."
+
+Gaetano fischia.
+
+E sulla forma d'onda, sullo schermo, davanti a due paia di occhi, l'eco compare **quattro centesimi prima del fischio**.
+
+Prima. Non dopo. La risposta è registrata quattro centesimi di secondo prima della domanda.
+
+> Gaetano: *(la voce di uno che legge un valore fuori scala)* "Meno zero virgola zero quattro."
+
+> Claudia: "Cosa vuol dire."
+
+> Gaetano: "Vuol dire che quella non è un'eco. Le eco vengono dopo." *(chiude il registratore con due dita che non gli obbediscono del tutto)* "Quella lì sapeva che stavo per fischiare."
+
+**(🫁 Il Quaderno registra DUE indizi: l'eco misurata — undici secondi di riverbero in una stanza di trenta metri — e la seconda cisterna, quella che risponde PRIMA. ⚠️ Attenzione del Coro +1.)**`,
+    sets: { i_eco_misurata: true, i_seconda: true },
+    choices: [
+      { text: '🎙 Calare l\'idrofono nell\'acqua e sentire cosa c\'è sotto lo scalino', requires: { item: 'idrofono' }, once: true, sets: { idrofono_calato: true }, goldLoss: 1, next: 'd7_ninna' },
+      { text: '👂 Stare fermi. Zitti. Solo ascoltare, senza strumenti, per un minuto', once: true, gold: 1, next: 'd7_ninna' },
+      { text: '🔦 In fondo alla quarta navata, dove la volta scende sull\'acqua', goldLoss: 2, next: 'd7_ninna' },
+    ],
+  },
+
+  d7_ninna: {
+    location: 'cisterna',
+    caption: 'La quarta navata — ore 10:20',
+    stinger: 'coro',
+    text: `In fondo alla quarta navata la volta scende fino a mezzo metro dall'acqua, e l'acqua entra sotto la roccia e continua.
+
+Da lì viene.
+
+Non è più una nota sola: è una **voce**, e la voce ha sei anni. Canta piano, con l'intonazione un po' calante dei bambini che ripetono una cosa sentita da un'adulta.
+
+E Claudia canta con lei.
+
+Comincia senza accorgersene, sottovoce, sulla seconda parola, e sta cantando da otto secondi quando Gaetano le mette una mano sul braccio e lei si ferma di colpo e si porta le dita alla bocca come una che si è scottata.
+
+> Claudia: "Non me ne sono accorta."
+
+> Gaetano: "Lo so."
+
+> Claudia: "Gaetano, non me ne sono **accorta**."
+
+Restano fermi. La voce piccola, sotto la volta, va avanti da sola: arriva in fondo alla strofa, e sull'ultima parola l'acqua se la mangia.
+
+> Gaetano: "Le parole. Devi darmi le parole esatte, e per esatte intendo esatte: se il Quaderno se le scrive sbagliate non valgono niente."
+
+> Claudia: *(che si è appoggiata al pilastro con tutte due le mani, e ha la faccia concentratissima di una che sta ricostruendo un montaggio)* "Le prime due righe le so. La terza me la ricordo dal sonno e mi manca l'ultima parola." *(e si gira verso il buio)* "E l'ultima parola è quella che conta, perché è quella che dice cosa succede."
+
+> Gaetano: "E se la sbagli?"
+
+> Claudia: "Se la sbaglio, quella capisce che non la conosco."
+
+**(🎵 Si gioca: completate il verso. Ad alta voce, tutti insieme, come si canta una ninnananna. Una parola sola. Se è quella giusta, il Quaderno si scrive la prima strofa — e voi capite perché Ada ve l'ha detto due volte.)**`,
+    minigame: {
+      type: 'filastrocca',
+      success: 'd7_ninna_ok',
+      fail: 'd7_sbaglia',
+      tag: 'La prima strofa — manca l\'ultima parola',
+      config: {
+        titolo: '🎵 La ninnananna di Assuntina',
+        versi: 'Nonna nonna, ninna nonna,\nchi sta sott\' nun torna sola:\nse porta appriess\' a chi la ___.',
+        risposte: [
+          { t: '«a chi la CHIAMMA» — a chi la chiama', ok: true },
+          { t: '«a chi la LASSA» — a chi la lascia' },
+          { t: '«a chi la SENTE» — a chi la sente' },
+          { t: '«a chi la CANTA» — a chi la canta' },
+        ],
+      },
+      hero: 'claudia',
+    },
+    choices: [],
+  },
+
+  d7_ninna_ok: {
+    location: 'cisterna',
+    caption: 'La parola giusta — ore 10:31',
+    stinger: 'voce_amata',
+    text: `Claudia lo dice. Male, con la voce due toni sotto, in un napoletano imparato dalle nonne degli altri:
+
+> *Nonna nonna, ninna nonna,*
+
+> *chi sta sott' nun torna sola:*
+
+> *se porta appriess' a chi la **chiamma**.*
+
+Sotto la roccia, l'acqua si ferma.
+
+Non "si calma": si **ferma**. Per due secondi pieni la superficie diventa vetro, e in quel vetro ci sono due facce che guardano in giù e nient'altro.
+
+Poi la voce piccola riprende da capo — e canta la strofa intera, con l'ultima parola al posto suo, e la canta più piano, come si canta a uno che sta ascoltando.
+
+> Gaetano: *(fermo, il telefono in mano che registra e lui non lo sta guardando)* "Rileggila."
+
+> Claudia: "L'ho capita."
+
+> Gaetano: "Rileggila comunque."
+
+> Claudia: "*Chi sta sotto non torna sola: si porta dietro chi la chiama.*" *(e alza gli occhi)* "Gaetà, non è una ninnananna. È un'**istruzione**. Sua madre le ha insegnato una cosa per farla dormire e quella cosa dice: se qualcuno mi chiama, io me lo porto."
+
+> Gaetano: "Per questo Ada dice che non si risponde."
+
+> Claudia: "Per questo Ada l'ha detto due volte." *(pausa)* "E ieri a Cala Nave, quando mi ha chiamata—"
+
+> Gaetano: "Non hai risposto."
+
+> Claudia: *(e non risponde subito, e in quel non-rispondere ci sta tutto)* "Lei non sta chiamando per cattiveria, Gaetano. Ha sei anni, ha paura, e sua madre le ha detto che se canti forte la paura non ti sente. E in ottantadue anni **nessuno le ha mai cantato la seconda strofa**, perché non ha fatto in tempo a impararla."
+
+> Gaetano: "Quindi gliela cantiamo noi."
+
+> Claudia: "Quindi gliela cantiamo noi. Ma la seconda strofa non ce la ricordiamo: ce la dobbiamo **fare**."
+
+**(🫁 Fiato +1. Il Quaderno registra la ninnananna sentita in cisterna e le parole della prima strofa. 🔧 Se avete la foto del museo e qualcosa che porti un nome antico, nello zaino c'è una combinazione che adesso ha un senso preciso.)**`,
+    gold: 1,
+    sets: { i_ninna_sentita: true },
+    choices: [
+      { text: '🔧 Sedersi sui gradini e aprire lo zaino: mettere le cose vicine e guardarle', once: true, gold: 1, next: 'd8_giulia' },
+      { text: '🧂 Riempire il barattolo con l\'acqua della cisterna, prima di uscire', requires: { item: 'sale_grosso' }, once: true, sets: { acqua_raccolta: true }, next: 'd8_giulia' },
+      { text: '🕳 A Villa Stefania: c\'è una che parla da duemila anni e va sentita oggi', next: 'd8_giulia' },
+    ],
+  },
+
+  d7_sbaglia: {
+    location: 'cisterna',
+    caption: 'La parola sbagliata — la quarta navata',
+    stinger: 'risata',
+    damage: 2,
+    text: `La parola è sbagliata.
+
+Lo si capisce subito, perché la voce piccola **smette**. Non finisce: smette a metà, sulla vocale, come un disco tolto dal piatto con la mano.
+
+E nel silenzio che resta, qualcuno **ride**.
+
+Non lei. Un'altra cosa, più grande, più in fondo, che ride nel modo in cui ridono gli adulti quando un bambino sbaglia una parola: bonaria. Divertita. Sinceramente divertita.
+
+> Claudia: "Gaetano."
+
+> Gaetano: "L'ho sentita."
+
+> Claudia: "No: **Gaetano**." *(e gli indica i piedi)* "Guarda dove è arrivata l'acqua."
+
+Al ginocchio. In diciotto secondi.
+
+E nell'acqua, in fondo alle quattro navate, si stanno alzando delle forme. Non escono: si **compongono**, come si compone un'immagine quando metti a fuoco l'obiettivo. Sagome umane con le proporzioni che non tornano: braccia troppo lunghe per quelle spalle, teste attaccate un po' male, bordi che sfumano nell'acqua invece di finire.
+
+Una si stacca dalle altre e ripete, con la voce di Claudia, con la cadenza di Claudia, la parola sbagliata che Claudia ha appena detto.
+
+Poi la ripete un'altra volta.
+
+Poi la ripetono tutte insieme, e sono tante.
+
+> Gaetano: *(che si è messo davanti e ha già il fascio della torcia in mano, e la voce gli diventa più precisa, non meno)* "Trenta metri di stanza, ventidue gradini, la porta è dietro di noi. Claudia: le misure ce le abbiamo noi."
+
+**(💪 TENUTA −2. Si combatte: dire la parola sbagliata, qua sotto, si paga subito. Ma la canzone è ancora lì, e chi resta in piedi ha un'altra occasione di impararla.)**`,
+    combat: {
+      enemies: ['sciame_voci', 'eco'],
+      victory: 'd7_ninna',
+      defeat: 'd9_ko',
+      loot: { gold: 1 },
+    },
+    choices: [],
+  },
+
+  d8_giulia: {
+    location: 'cisterna_sigillata',
+    caption: 'Cisterna di Villa Stefania — ore 12:05',
+    stinger: 'coro',
+    text: `La cisterna di Villa Stefania è la più bella e la più antica: sala unica, volta perfetta, cocciopesto intatto. E in fondo — dove nessuna guida porta nessuno — un muro che non è romano: blocchi di tufo e calce messi in fretta, con le fughe fatte a mano.
+
+Murato. Da fuori.
+
+Dall'altra parte del muro c'è una donna che parla latino, e non è una registrazione, e **non ha eco**.
+
+> La voce: *(calmissima, con le vocali larghe, il tono di chi è abituata a essere servita)* "Mio padre."
+
+Claudia si è fermata a quattro metri dal muro. Gaetano un passo davanti a lei.
+
+> La voce: "Non chiedo di uscire. Non l'ho chiesto per duemila anni e non lo chiedo a due che si sono comprati la torcia in un negozio del molo." *(pausa)* "Chiedo **notizie**. Cosa ha detto di me, dopo. Il Divo Augusto, padre della patria, che mi ha messa su una barca a ventidue anni. Cosa ha detto di sua figlia, dopo."
+
+> Gaetano: *(pianissimo, a Claudia)* "Non risponderle la verità."
+
+> Claudia: "Perché?"
+
+> Gaetano: "Perché la verità è che nel testamento ha scritto che non voleva essere sepolto vicino a te." *(deglutisce)* "E perché se le mentiamo, lo sa."
+
+> La voce: "Vi sento parlare fra voi. Fatelo pure: è quello che facevano tutti." *(e adesso è più vicina al muro, e la calce vibra)* "**Cosa ha detto di me.**"
+
+**(⚠️ La voce più antica del Coro, e la più chiara. C'è un modo di passare senza combattere, e passa per il suo NOME o per una cosa che lei riconosce. Se non ce l'avete, resta la verità — e la verità, con Giulia, è un tiro di dado.)**`,
+    choices: [
+      { text: '📿 Tirare fuori la collana e appoggiarla al muro: il suo nome, portato al collo', requires: { item: 'collana_di_giulia' }, next: 'd8_evitata' },
+      { text: '🧱 Dirle dov\'è la sesta cisterna, e che la chiuderete voi', requires: { flag: 'sa_sesta_cisterna' }, next: 'd8_evitata' },
+      { text: '🗣 Risponderle. La verità, tutta, con rispetto, guardando il muro', tag: 'Prova di Carisma — CD 14', check: { stat: 'CAR', dc: 14, success: 'd8_evitata', fail: 'd8_boss', failDamage: 3 } },
+      { text: '🤐 Non dirle niente. Il silenzio: l\'unica cosa che nessuno le ha mai fatto', goldLoss: 1, next: 'd8_boss' },
+    ],
+  },
+
+  d8_boss: {
+    location: 'cisterna_sigillata',
+    caption: 'GIULIA — duemila anni di rancore, dietro un muro fatto in fretta',
+    stinger: 'coro',
+    text: `Il muro non cade. Il muro **si apre**, che è peggio: le fughe si allargano di due dita, la calce viene fuori come farina, e da quelle fessure entra nella sala una cosa che ha la forma di una donna e la consistenza dell'acqua ferma.
+
+È vestita bene. È la sola di tutto il Coro a essere vestita bene: la stoffa cade come cade la stoffa buona, e sotto il collo, appesa a un filo che non c'è più, c'è l'ombra di un disco di bronzo.
+
+La faccia no. La faccia è l'unica cosa che non ha finito di comporre, e non la finirà.
+
+> Giulia: "Ventidue anni avevo. Cinque su questa roccia. Poi Reggio, e la fame, e mio padre che dallo scoglio più bello dell'impero mi ha spostata in una stanza." *(e non urla mai)* "E voi siete venuti in **vacanza**."
+
+> Claudia: "Sì."
+
+> Giulia: *(e si ferma, per la prima volta)* "…sì?"
+
+> Claudia: "Sì. Siamo venuti in vacanza. Abbiamo pagato il biglietto, abbiamo prenotato la stanza con la terrazza a maggio e ci siamo messi la crema solare." *(alza il mento)* "Ti dà fastidio questo, vero? Non che siamo vivi: che siamo venuti **volendo**."
+
+E allora Giulia urla, e l'urlo di Giulia fa cadere il cocciopesto dalle volte in scaglie grandi come mani.
+
+**(⚔️ BOSS: GIULIA. Ruba vita, e ogni suo colpo può lasciarvi l'acqua nei polmoni. Le armi della realtà — il sale della sua stessa acqua, la luce vera, un nome detto giusto — le fanno danni DOPPI.)**`,
+    combat: {
+      enemies: ['giulia'],
+      victory: 'd9_traghetto',
+      defeat: 'd9_ko',
+      loot: { gold: 2, items: ['medaglietta_giulia'] },
+    },
+    choices: [],
+  },
+
+  d8_evitata: {
+    location: 'cisterna_sigillata',
+    caption: 'Riconosciuti — ore 12:20',
+    stinger: 'sigillo',
+    text: `Dietro il muro, la voce smette di premere.
+
+Succede una cosa fisica e misurabile: la calce che vibrava si ferma, e nella sala l'aria torna a pesare quello che pesa l'aria.
+
+> Giulia: "Quello lo conosco."
+
+> Claudia: "Lo so."
+
+> Giulia: "Chi ti ha detto di portarlo così, al collo, davanti?"
+
+> Claudia: "Nessuno. Mi è sembrato più educato che tenerlo in tasca."
+
+Silenzio lungo, di una che valuta con la calma di chi ha avuto duemila anni per imparare a valutare.
+
+> Giulia: "Educato." *(e nella parola c'è qualcosa che assomiglia terribilmente a una risata)* "Ventidue secoli, e mi arriva l'educazione da una che ha paura dell'acqua."
+
+> Claudia: "Come lo sai."
+
+> Giulia: "Perché lo sentiamo tutti, cocca. È l'unica cosa che si sente da qua sotto: **chi ha paura e scende comunque**." *(e la voce si allontana di un passo dal muro)* "Passate. Non oggi, non io."
+
+Poi, dopo una pausa, una frase che non chiede niente ed è la cosa più simile a un regalo che questa cosa sappia fare:
+
+> Giulia: "Quella piccola che canta. Non chiama nessuno: ha paura e non lo sa dire, e chi le risponde se lo porta appresso senza volerlo." *(pausa)* "L'ultima che le ha risposto stava a quarantacinque metri e faceva la maestra di nuoto. Sbrigatevi."
+
+**(🫁 Fiato +2, 💪 TENUTA +4. Giulia non vi tocca: una voce vi ha risparmiati. E vi ha appena detto che l'ultima persona che ha risposto alla bambina insegnava a nuotare.)**`,
+    gold: 2,
+    heal: 4,
+    sets: { giulia_risparmia: true, sa_di_marisa: true },
+    choices: [
+      { text: '🧱 Misurare il muro: quanti blocchi, quanto spesso, che malta', once: true, sets: { muro_misurato: true }, gold: 1, next: 'd9_traghetto' },
+      { text: '⚓ Fuori. Sono le dodici e mezza e il traghetto parte alle cinque e mezza', next: 'd9_traghetto' },
+    ],
+  },
+
+  d9_traghetto: {
+    location: 'porto',
+    caption: 'Porto Romano, banchina — ore 17:26',
+    stinger: 'coro',
+    metri: 0,
+    text: `Alle diciassette e ventisei sono sulla banchina con le sacche in mano, e hanno deciso una cosa insieme, camminando, senza discutere.
+
+**Non salgono.**
+
+> Gaetano: "Se saliamo, ricominciamo: ieri siamo saliti e ha ricominciato. Quindi non è il traghetto che non parte. Siamo noi che non arriviamo."
+
+> Claudia: "E se restiamo a terra?"
+
+> Gaetano: "Se restiamo a terra facciamo un esperimento con una variabile sola."
+
+Il portellone si chiude. Le cime vengono mollate. L'acqua sotto la poppa diventa bianca, e il traghetto delle diciassette e trenta esce dall'imboccatura del porto romano **con sessanta persone a bordo e senza di loro**.
+
+Restano sul molo a guardarlo diventare piccolo. Ci mette diciotto minuti a sparire dietro Punta Eolo.
+
+Non succede niente.
+
+Alle diciotto vanno a sedersi al chiosco. Non succede niente. Alle diciotto e mezza Claudia dice una battuta e ridono. Non succede niente.
+
+Alle **18:40** Gaetano sta guardando l'ora sul telefono e non stacca gli occhi dallo schermo, perché ha deciso di vedere il momento esatto in cui accade.
+
+E lo vede.
+
+Non c'è un lampo, non c'è un buio, non c'è nessun effetto: il numero passa da 18:40 a 18:41, e insieme al numero cambia tutto il resto. La luce diventa quella del mattino. La sedia sotto di lui diventa il materasso. E la sua mano — che stringeva il telefono — sta stringendo il lenzuolo.
+
+> Gaetano: *(al buio della stanza, con gli occhi ancora pieni del molo)* "Diciotto e quaranta."
+
+> Claudia: *(accanto a lui, già sveglia)* "Lo so. L'ho visto pure io."
+
+**(🫁 Fiato +1. Il Quaderno registra: non è il traghetto. Il giorno si riavvolge alle 18:40 e non gliene frega niente di dove siete. Restare a terra non serve, salire non serve. Si esce solo SCENDENDO.)**`,
+    gold: 1,
+    sets: { d_esperimento_fatto: true },
+    choices: [
+      { text: '🌊 Allora si scende. E si scende oggi', next: 'd10_ciclo3' },
+      { text: '🫂 Prima cinque minuti abbracciati al buio, senza dire una parola', once: true, heal: 6, gold: 2, next: 'd10_ciclo3' },
+    ],
+  },
+
+  d9_ko: {
+    location: 'bnb',
+    caption: 'Le Paracine — vi svegliate ASCIUTTI',
+    stinger: 'defeat',
+    metri: 0,
+    fullHeal: true,
+    recharge: true,
+    text: `Vi svegliate.
+
+Il ventilatore a pale gira piano. Le lenzuola sono fresche. Il rettangolo di sole è sul muro nello stesso punto di sempre.
+
+E siete **asciutti**.
+
+È questa la parte peggiore, e il gioco vi guarda in faccia mentre lo dice: non un capello bagnato, non un granello di sabbia, non un livido. I costumi sono stesi sul davanzale, asciutti. La torcia è sul tavolino, spenta, con la lente pulita.
+
+Quello che vi ha preso non vi ha uccisi. Vi ha **rimessi a posto**, come si rimette a posto una sedia dopo aver spolverato.
+
+> Claudia: *(seduta sul bordo del letto, le mani sulle ginocchia, e non guarda niente)* "Quanto ci siamo persi."
+
+> Gaetano: "Non lo so."
+
+> Claudia: "Sì che lo sai, tu tieni il conto di tutto."
+
+> Gaetano: *(e ci mette qualche secondo, perché la risposta gli fa schifo)* "Un pezzo. Un pezzo di quello che avevamo capito." *(si passa le mani sulla faccia)* "Me lo sento che manca, Claudia. Come una parola che avevi sulla lingua."
+
+Fuori, in cucina, Ada mette la moka sul fuoco. Sono le sette e cinquanta di domenica trenta agosto, ed è tutto pronto per essere fatto un'altra volta.
+
+> Claudia: *(si alza)* "Ok. Allora lo rifacciamo, e stavolta lo facciamo meglio."
+
+**(💪 TENUTA piena, mosse ricaricate. 🫁 Fiato +1. Quello che avevate capito dopo l'ultimo riposo l'avete perso, e il Quaderno vi dice per nome cosa manca. Il resto è vostro, e il giorno è ancora tutto lì.)**`,
+    gold: 1,
+    choices: [
+      { text: '🕳 Giù nelle cisterne: c\'è una cosa che sappiamo di non aver finito', requires: { notFlag: 'ciclo2_fatto' }, next: 'd8_giulia' },
+      { text: '⚓ Alla banchina, e stavolta guardiamo l\'ora fino alla fine', requires: { notFlag: 'ciclo2_fatto' }, next: 'd9_traghetto' },
+      { text: '🌊 Alla barca. Alla fossa. Adesso', requires: { flag: 'ciclo2_fatto' }, next: 'd13_fossa' },
+      { text: '🚢 Al porto, dove il traghetto è ormeggiato col portellone aperto', requires: { flag: 'ciclo2_fatto' }, next: 'd15_uscite' },
+    ],
+  },
+
+  /* ==================== CICLO 3 — L'ISOLA NON FINGE PIÙ ==================== */
+
+  d10_ciclo3: {
+    location: 'alba',
+    caption: 'Le Paracine — 30 agosto, ore 07:10 (la terza volta)',
+    stinger: 'coro',
+    metri: 0,
+    text: `Il ventilatore non gira.
+
+È la prima cosa che nota Gaetano, ed è piccolissima: le pale sono ferme a metà giro, e l'interruttore è su ON.
+
+La seconda la nota Claudia, e non è piccola.
+
+> Claudia: "Non ci sono le cicale."
+
+Si mettono a sedere insieme, sul letto, come due che si sono svegliati in una casa che non conoscono.
+
+Fuori dalla finestra aperta c'è un'aria che non si muove. Nessun motorino sulla strada di sopra. Nessuna radio. Nessun cane. Nessuno che chiama un nome verso una finestra.
+
+Scendono in cucina.
+
+La moka è sul fuoco, e il fuoco è **spento**, e la moka è calda. Sul tavolo tre tazzine: il caffè versato in due, lo zucchero girato dentro una sola. Il canovaccio è appeso al chiodo. La sedia di Ada è tirata indietro come si tira indietro quando ci si alza per un attimo, per andare a prendere una cosa di là.
+
+Ada non è di là.
+
+E nel corridoio, davanti alla porta di casa, c'è **acqua**. Un velo alto un dito che entra da sotto la porta e arriva fino al primo gradino delle scale, e Le Paracine stanno a quarantadue metri sul livello del mare.
+
+> Gaetano: "Ada?"
+
+La sua voce, in quella cucina, fa una cosa che non ha mai fatto: **non rimbomba e non muore**. Esce e resta ferma in mezzo alla stanza, come una cosa appoggiata.
+
+> Claudia: *(pianissimo)* "Non chiamarla più."
+
+> Gaetano: "Perché?"
+
+> Claudia: "Perché se risponde non è lei. E perché lei ce l'ha detto due volte."
+
+**(🫁 Fiato +2, 💪 TENUTA +4: il caffè lo hanno fatto per voi e la moka è ancora calda. Il Quaderno registra: terzo 30 agosto, la corda è arrivata fino a quarantadue metri sul livello del mare, e l'isola ha smesso di fingere.)**`,
+    gold: 2,
+    heal: 4,
+    sets: { ciclo2_fatto: true, ciclo: 3, d_acqua_in_casa: true },
+    choices: [
+      { text: '☕ Bere il caffè che qualcuno ha fatto per voi. Tutto. In piedi', once: true, gold: 2, heal: 4, next: 'd11_vuoto' },
+      { text: '🚪 Aprire tutte le porte del B&B e guardare in tutte le stanze', once: true, sets: { bnb_perquisito: true }, next: 'd11_vuoto' },
+      { text: '🎒 Preparare lo zaino come si prepara per l\'ultima volta: torcia, coltello, tutto', sets: { pronti_per_la_fossa: true }, next: 'd11_vuoto' },
+    ],
+  },
+
+  d11_vuoto: {
+    location: 'paese',
+    caption: 'Ventotene vuota — ore 08:40',
+    attenzione: 1,
+    metri: 0,
+    text: `Piazza Castello, alle otto e quaranta di un domenica d'agosto, ha centoventi persone dentro.
+
+Oggi ne ha zero.
+
+I tavolini della Terrazza di Mimì sono apparecchiati: tovaglie di carta, bicchieri capovolti, portacenere. In uno c'è una sigaretta accesa che ha fatto tre centimetri di cenere senza che nessuno la fumasse. Il forno è aperto e dentro c'è il pane. Un motorino è appoggiato al muro col cavalletto giù, il quadro accesso e la spia dell'olio che lampeggia.
+
+Al cantiere della strada per Punta Eolo, dietro il cartello, quattro sacchi di **calce viva** accatastati, e uno aperto a metà con la paletta ancora infilata dentro.
+
+E c'è una porta aperta che nei giorni scorsi era chiusa: il **diving** del porto. Tre bombole in fila, una muta appesa a un gancio, il compressore, e alla parete una fotografia incorniciata di quelle degli anni Novanta, coi colori virati sul rosa.
+
+Nella foto una donna di quarant'anni in muta, capelli tagliati corti, che ride, con il pollice in su. Dietro di lei due ragazzi biondi che ridono pure. Sotto, a pennarello, sul cartoncino: **"Marisa — corso avanzato, settembre '97"**.
+
+Sul bancone c'è un registro delle immersioni. Ultima riga, scritta con una biro che scriveva male:
+
+> *17.9.97 — muri sommersi −45. Scesi in TRE. Risaliti in due. J. dice che eravamo quattro.*
+
+Poi sei righe di date senza niente scritto accanto: sei giorni normali, con la casella dell'immersione vuota e la firma messa comunque, per abitudine.
+
+Poi, il 23 settembre, con una grafia diversa — larga, di una che scriveva in fretta e cantava mentre scriveva:
+
+> *me ne vado a piglià chi m'ha chiammata.*
+
+La barca di Marisa è stata trovata la mattina dopo, all'ancora davanti a Punta Eolo, col motore in folle e la scaletta calata. Vuota.
+
+---
+
+E poi scendono in banchina, e vedono il traghetto.
+
+È **all'ormeggio**. Le cime legate come si legano. I motori spenti — non al minimo: spenti, senza vibrazione, senza scarico. E il **portellone di poppa è aperto**, calato sulla banchina, con la rampa a posto.
+
+Dentro il garage non c'è nessuno: nessuna macchina, nessun carrello, nessun marinaio. La luce di servizio è accesa su trenta metri di lamiera vuota.
+
+> Gaetano: *(dopo un tempo lungo)* "È pronto."
+
+> Claudia: "Cosa?"
+
+> Gaetano: "Il traghetto. È pronto a partire." *(guarda il portellone)* "Aspetta noi."
+
+**(Oggetto: un sacco di CALCE. ⚠️ Attenzione del Coro +1. Il Quaderno registra Marisa: 1997, la corda, tre scesi a quarantacinque metri e due risaliti — e i due non erano d'accordo sul numero. Sei giorni normali. Poi si è messa a cantare e non ha smesso.)**`,
+    item: 'calce',
+    sets: { d_traghetto_aperto: true, sa_marisa: true },
+    choices: [
+      { text: '🍽 Entrare nella cucina della Marisqueria e mangiare come si deve, l\'ultima volta', once: true, gold: 3, heal: 8, next: 'd11_specchio' },
+      { text: '🎙 Calare l\'idrofono profondo nell\'acqua del porto e sentire cosa aspetta', requires: { item: 'idrofono_profondo' }, once: true, sets: { porto_ascoltato: true, sa_confine: true }, goldLoss: 1, next: 'd11_specchio' },
+      { text: '🕳 Dietro l\'orto dei Coraggio: il muro del \'57 è aperto e la scala continua sotto', requires: { flag: 'sa_scala_continua' }, once: true, sets: { via_di_terra: true }, gold: 1, next: 'd11_specchio' },
+      { text: '🪑 Al tavolino in fondo alla piazza c\'è seduta una persona. Andare a vedere chi è', next: 'd11_specchio' },
+    ],
+  },
+
+  d11_specchio: {
+    location: 'paese',
+    caption: 'Il tavolino in fondo — ore 09:15',
+    heal: 10,
+    recharge: true,
+    stinger: 'voce_amata',
+    metri: 0,
+    text: `Al tavolino in fondo, quello all'ombra sotto il fico, c'è seduta Claudia.
+
+È girata di tre quarti. Ha il vestito di ieri — quello a fiori piccoli, che è nella sacca, piegato — e i capelli raccolti con l'elastico al polso sinistro, come li tiene lei. Davanti ha un caffè e mezzo bicchiere d'acqua. Con la destra gira il cucchiaino.
+
+Claudia — quella vera, quella in piedi, quella con la mano di Gaetano che le stringe il braccio all'altezza del gomito — non si muove.
+
+> Gaetano: "Non guardarla."
+
+> Claudia: "La sto guardando."
+
+> L'altra: *(senza girarsi, e ha la sua voce esatta, con la sua cadenza)* "Amore, siediti che si fredda."
+
+Poi si gira. Ha la faccia di Claudia: non "una faccia simile", la faccia di Claudia, con la cicatrice piccola sopra il sopracciglio del 2011, la bici a Serapo. E la faccia di Claudia si accorge in questo momento che quella cicatrice è **al lato sbagliato**.
+
+> L'altra: "Lo so cosa stai pensando. Lo penserei anch'io." *(beve un sorso, appoggia la tazzina, e lo fa nel modo in cui lo fa lei)* "Ma senti: tu hai promesso una cosa. Hai promesso di **insegnarle a nuotare**. L'hai detto tu, nessuno te l'ha chiesto, e adesso ci sono una decina di creature là sotto che ti stanno aspettando alle cinque, come si aspetta la maestra."
+
+> Claudia: "Non è la stessa cosa."
+
+> L'altra: "È esattamente la stessa cosa, e lo sai. Marisa insegnava a nuotare. Marisa ha risposto. Marisa è scesa." *(e la voce diventa dolce, e ha ragione, ed è insopportabile)* "L'unica differenza tra te e Marisa è che a Marisa nessuno aveva detto di non rispondere, e tu l'hai fatto lo stesso."
+
+Claudia non risponde.
+
+> L'altra: *(e questa è la frase che le arriva dentro)* "Siediti, amore. Sei stanca da giovedì. E lo sai che se non scendi tu ci va lui, perché lui ci va sempre."
+
+**(⚠️ Non è una bugia: è la cosa più vera che vi abbiano detto in tre giorni, detta da una cosa che la usa come un coltello. Ciò che viene GUARDATO per intero perde il diritto di cambiare forma.)**`,
+    choices: [
+      { text: '🤐 Non risponderle. Non una parola. Il silenzio è l\'unica cosa che non sa fare', gold: 1, next: 'd11_boss' },
+      { text: '📸 Inquadrarla. Treppiede, luce, e fotografarla per intero, faccia compresa', once: true, sets: { specchio_documentato: true }, next: 'd11_boss' },
+      { text: '💍 Mostrarle le due fedi e chiederle dove sono le sue', requires: { item: 'le_due_fedi' }, once: true, sets: { specchio_smascherato: true }, heal: 4, next: 'd11_boss' },
+      { text: '🎙 "Me l\'ha detto lui. In cisterna, da solo, senza che glielo chiedessi": la verità detta regge', requires: { flag: 'verita_detta' }, once: true, heal: 5, gold: 2, next: 'd11_boss' },
+      { text: '🕳 Lei sa la cosa che Gaetano non ha detto. Lasciarglielo dire e restare in piedi', requires: { flag: 'bugia_detta' }, once: true, damage: 4, sets: { bugia_pagata: true }, next: 'd11_boss' },
+      { text: '🗣 Rispondere: "Hai ragione. Ho paura. E scendo comunque"', heal: 2, gold: 1, next: 'd11_boss' },
+    ],
+  },
+
+  d11_boss: {
+    location: 'paese',
+    caption: 'LA VOCE DI CHI AMI — Piazza Castello, ore 09:20',
+    stinger: 'voce_amata',
+    metri: 0,
+    text: `L'altra si alza dal tavolino, e nel farlo appoggia la mano sul piano di marmo, e la mano sul marmo non fa rumore.
+
+> L'altra: "Va bene." *(e sospira, esattamente come sospira lei quando ha perso una discussione e la riprenderà dopo)* "Va bene, amore. Facciamo come vuoi tu."
+
+Poi comincia a camminare verso di loro, e mentre cammina **parla di continuo**, e non dice mai una cosa falsa.
+
+Dice del litigio di dicembre e di chi aveva ragione. Dice la frase che Claudia ha detto a Gaetano in macchina nel 2019 e che nessuno dei due ha mai più ripetuto. Dice il nome con cui la chiamava sua nonna, quello che non usa nessuno.
+
+E ogni cosa che dice è **giusta**, e ogni cosa che dice fa male dove doveva.
+
+> Gaetano: *(che si è messo di fianco a Claudia — non davanti: di fianco)* "Claudia. Guardami."
+
+> Claudia: "Sto bene."
+
+> Gaetano: "Guardami e dimmi una cosa che sa solo lei."
+
+> Claudia: *(e lo guarda, e in mezzo alla piazza vuota di un'isola trova la cosa)* "Che ho paura. Ma quella la sa mezza Italia, Gaetà: l'ho raccontata a tre tavoli diversi da Mimì."
+
+> Gaetano: "Esatto."
+
+> Claudia: *(e adesso è ferma)* "Esatto. Quella cosa lì la sanno tutti. **Non è un segreto: è una CARATTERISTICA.**"
+
+E allora la cosa col vestito a fiori piccoli smette di parlare, e la faccia le si scompone al centro come si scompone un'immagine quando togli il fuoco all'obiettivo, e resta solo la bocca — troppo grande — che continua a dire il nome della nonna.
+
+**(⚔️ BOSS: LA VOCE DI CHI AMI. Rispecchia i vostri colpi e sa cosa vi fa male. Ma è una VOCE: la luce vera, il sale e i nomi le fanno danni DOPPI — e questa cosa qua, voi due, la conoscete meglio di lei.)**`,
+    combat: {
+      enemies: ['se_stessa'],
+      victory: 'd12_bambina',
+      defeat: 'd9_ko',
+      loot: { gold: 2 },
+    },
+    choices: [],
+  },
+
+  d12_bambina: {
+    location: 'barca',
+    caption: 'La barca, sopra la fossa — ore 11:40',
+    fullHeal: true,
+    recharge: true,
+    stinger: 'coro',
+    metri: 3,
+    text: `La barca è quella di Ciro, ormeggiata al terzo pontile con le chiavi nel quadro. Il fuoribordo parte al primo colpo.
+
+Venti minuti di mare piatto verso il canale tra Ventotene e Santo Stefano, e poi Gaetano taglia il motore, perché lo scandaglio è passato da diciotto metri a quarantasei in undici secondi.
+
+**La fossa.** Quella che nessuno ha misurato.
+
+Il mare, qui, ha un colore che non è blu: è una specie di nero che riflette il cielo per cortesia.
+
+E a tre metri dalla fiancata di dritta, a pelo d'acqua, con la faccia rivolta in su, c'è una bambina.
+
+Sei anni. Il cappottino buono della domenica, quello della foto del museo, che sotto l'acqua fa la campana. La mano destra è alzata fuori dall'acqua, aperta, come si alza la mano quando si vuole essere presi in braccio.
+
+Non è gonfia. Non è consumata. È **intatta**, e questo è mille volte peggio, perché ottantadue anni sotto sale non lasciano intatto niente — e quindi quella cosa lì, in quest'acqua, non ci è mai stata davvero.
+
+Canta piano, con la faccia in su, e nell'aria aperta la sua voce arriva sottilissima.
+
+> *Nonna nonna, ninna nonna, chi sta sott' nun torna sola…*
+
+> Claudia: *(inginocchiata sul bordo, e Gaetano la tiene per la cintura senza che nessuno gliel'abbia chiesto)* "Gaetà."
+
+> Gaetano: "Sono qui."
+
+> Claudia: "Guarda la mano." *(e le trema la voce e non si ferma)* "Ce l'ha alzata da ottantadue anni e non l'ha mai presa nessuno. E chi le rispondeva se lo portava appresso."
+
+**(⚠️ Assuntina. Se avete la sua ninnananna, o se sapete il suo nome per intero, qui non c'è niente da combattere. Se non le avete, **rispondere** vi costa: questa cosa ha sei anni e non lo fa per cattiveria, e sarà peggio così.)**`,
+    choices: [
+      { text: '🎵 Cantarle la seconda strofa. Quella che nessuno le ha mai cantato', requires: { item: 'ninnananna' }, next: 'd12_dorme' },
+      { text: '🕯 Chiamarla per nome: "Assuntina". E dirle che la barca è arrivata', requires: { flag: 'sa_ninnananna' }, next: 'd12_dorme' },
+      { text: '🫂 Risponderle. Dirle la verità: "Abbiamo paura pure noi. Tantissima."', once: true, damage: 3, gold: 1, next: 'd12_boss' },
+      { text: '🔦 Non avete niente da cantarle. Accendere la luce e prepararsi', goldLoss: 1, next: 'd12_boss' },
+    ],
+  },
+
+  d12_boss: {
+    location: 'barca',
+    caption: 'LA BAMBINA CHE CANTA — a tre metri dalla fiancata',
+    stinger: 'risata',
+    metri: 3,
+    text: `La bambina smette di cantare e **chiude la mano**.
+
+E il canale tra le due isole, che era piatto come un tavolo, si alza: non un'onda, un rigonfiamento, come quando una cosa grossa passa sotto una coperta.
+
+Lei viene su dall'acqua in piedi, senza spinta, e l'acqua le scivola addosso e il cappottino resta asciutto.
+
+> La bambina: *(e la voce è quella di prima, quella di una bambina di sei anni, ed è per questo che è impossibile)* "Mammà ha ditto 'e cantà forte."
+
+> Claudia: "Lo so, amore."
+
+> La bambina: "Ha ditto ca si cante forte 'a paura nun te sente."
+
+> Claudia: "Lo so."
+
+> La bambina: *(e apre la bocca più di quanto una bocca si apra)* "**È VERO?**"
+
+E canta.
+
+Canta la stessa strofa, la stessa, ma tutta insieme e a tutti i volumi possibili — e sotto la barca, a quaranta metri, a quarantacinque, in tutta la fossa, un centinaio di voci risponde alla chiamata di una bambina che non ha mai saputo di poter chiamare.
+
+**(⚔️ BOSS: LA BAMBINA CHE CANTA. Ventidue di TENUTA e CA 17: è piccola e non sta ferma, e il suo canto chiama gli altri. Il modo giusto di batterla non era combatterla, e lo sapete già.)**`,
+    combat: {
+      enemies: ['bambina'],
+      victory: 'd13_fossa',
+      defeat: 'd9_ko',
+      loot: { gold: 1 },
+    },
+    choices: [],
+  },
+
+  d12_dorme: {
+    location: 'barca',
+    caption: 'La seconda strofa — ore 11:52',
+    stinger: 'sigillo',
+    metri: 0,
+    text: `Claudia canta.
+
+Non canta bene. Non ha mai cantato bene, e a nessuno è mai importato meno di adesso. Canta la prima strofa come l'ha imparata in cisterna — *chi sta sott' nun torna sola, se porta appriess' a chi la chiamma* — e poi, senza fermarsi, sullo stesso fiato, canta la **seconda**: quella che una madre non ha fatto in tempo a insegnare a sua figlia sul molo di Napoli il 24 ottobre del 1943.
+
+> *Nonna nonna, ninna nonna,*
+
+> *nun chiammà: ca so' venuta.*
+
+> *Mo' te porto appriess' a me.*
+
+Perché è questo, il rovescio. La bambina non deve più chiamare nessuno: è venuta qualcuno a prenderla, e chi viene se la porta appresso lui.
+
+La mano alzata resta alzata per tre secondi. Poi Claudia allunga la sua e la prende — e non c'è freddo, non c'è viscido, non c'è niente di quello che ci si aspetta: c'è il peso preciso di una mano di bambina di sei anni.
+
+> La bambina: "Aggio fatto tarde?"
+
+> Claudia: *(e le si spezza la voce a metà della parola e la finisce comunque)* "No, cocca. Sei in orario."
+
+E poi la bambina fa la cosa più semplice del mondo, quella che aspettava di poter fare da ottantadue anni: chiude gli occhi.
+
+Non sparisce. Non si dissolve, non fa luce, non c'è nessun effetto. **Si addormenta**, e scende piano nel nero come scende una cosa che ha finito, col cappottino buono che le fa la campana.
+
+E sotto la barca, in tutta la fossa, cento voci che rispondevano a una chiamata restano senza chi le chiamava. Il canto del Coro perde il tempo: da accordo diventa **rumore**.
+
+> Gaetano: *(che ha il telefono in mano e sta registrando, e piange, e registra)* "Ha perso metà della voce."
+
+> Claudia: "Aveva sei anni, Gaetano."
+
+> Gaetano: "Lo so."
+
+> Claudia: "Aveva **sei anni** e reggeva tutto."
+
+**(🫁 Fiato +3, 💪 TENUTA +6. Assuntina dorme, e senza il suo richiamo il Coro ha perso metà della voce: in fondo alla fossa sanno che state arrivando e non hanno più nessuno che tenga il tempo.)**`,
+    gold: 3,
+    heal: 6,
+    sets: { assuntina_dorme: true },
+    choices: [
+      { text: '🌊 Vestirsi. Bombolino, torcia, coltello, cima. Si scende', next: 'd13_fossa' },
+      { text: '🫂 Restare seduti sul pagliolo, tutti e due, per il tempo che serve', once: true, heal: 6, gold: 2, next: 'd13_fossa' },
+    ],
+  },
+
+  d13_fossa: {
+    location: 'barca',
+    caption: 'Sopra la fossa — ore 12:30, e lo scandaglio non è d\'accordo con sé stesso',
+    fullHeal: true,
+    recharge: true,
+    metri: 0,
+    text: `Gaetano cala la cima col piombo e conta i nodi: uno al metro, perché così si fa.
+
+E mentre conta, controlla gli strumenti. E gli strumenti, qui, non funzionano.
+
+> Gaetano: "Lo scandaglio mi dà quarantasei. Poi trentotto. Poi cinquantadue. Poi ottantuno, che è impossibile, perché a ottantuno metri qua non ci arriva nemmeno la fossa." *(gira il telefono nella mano)* "E la bussola fa un giro completo ogni undici secondi. Undici, Claudia. Come il riverbero."
+
+> Claudia: "Quindi non sappiamo quanto è profondo."
+
+> Gaetano: "Nessuno sa quanto è profondo. È l'unico punto del canale che non è mai stato battuto, e adesso capisco perché: **la strumentazione non tiene**." *(assicura la cima alla bitta con due giri e una gassa)* "Ma la cima non è uno strumento. La cima è una corda con i nodi, e i nodi li ho contati io."
+
+Trentuno nodi e la cima trova.
+
+> Gaetano: "Trentuno metri: c'è una cengia. È il fianco di poppa della nave, appoggiato su un muro. Perché sotto di noi, a quaranta metri, c'è un **porto romano intero**: banchine, colonne, gli alloggiamenti per le travi come quelli su in superficie. Quello che sta in cima all'isola, uguale, quaranta metri sotto." *(pausa)* "Da trentuno la parete continua giù, e a quarantacinque c'è lo squarcio della stiva."
+
+> Claudia: "E cosa c'è nella stiva?"
+
+> Gaetano: *(e non addolcisce, perché con lei ha smesso)* "I bagagli. E quello che i bagagli avevano dentro."
+
+Poi fa il briefing come lo farebbe per un satellite, con le dita.
+
+> Gaetano: "Uno: fino alla cengia si scende sulla cima, mano dopo mano, e la cima non si lascia mai. Due: da trentuno a quarantacinque **la barra del fiato conta quelli**, i quattordici metri, e non c'è aria in più che ce la metta qualcuno. Tre: prendere e risalire. Se ti fermi a guardare cos'era quella cosa bianca, la barra ti dice esattamente quanto ti costa guardare." *(la guarda)* "Non è coraggio, è aritmetica. Quaggiù il coraggio senza aritmetica ti annega."
+
+**(⚠️ ULTIMA IMMERSIONE. Serve il bombolino riparato e il fiato accumulato: senza, i quattordici metri sotto la cengia non li fate, e il gioco ve lo scrive PRIMA di farvi scendere. Se non siete pronti si risale, si mangia, si respira, e si torna: nessuno vi obbliga a scendere adesso.)**`,
+    sets: { sa_porto_sommerso: true },
+    choices: [
+      { text: '🫧 Scendere col bombolino riparato: tre litri, duecento bar, quattro minuti', requires: { item: 'bombola_riparata' }, requiresGold: 10, tag: '(serve il bombolino riparato e 10 di 🫁 fiato)', next: 'd13_apnea' },
+      { text: '🫁 Scendere in apnea pura, senza bombola, con quello che avete in petto', requiresGold: 17, tag: '(senza bombola servono 17 di 🫁 fiato — e sarà appena appena)', next: 'd13_apnea' },
+      { text: '🥨 Risalire in barca: taralli, acqua, venti minuti fermi al sole. Poi si riprova', once: true, gold: 4, heal: 6, next: 'd13_fossa' },
+      { text: '🥃 [Ciro] Farsi versare due dita di rum e sentirsi dire com\'è finita Marisa', requires: { hero: 'ciro' }, once: true, gold: 2, heal: 4, sets: { ciro_racconta_marisa: true }, next: 'd13_fossa' },
+      { text: '⚓ Non oggi. Mollare la cima, rientrare al porto e decidere lì', next: 'd15_uscite' },
+    ],
+  },
+
+  d13_apnea: {
+    location: 'fossa',
+    caption: 'Dalla cengia in giù — meno trentuno metri',
+    stinger: 'apnea',
+    metri: 45,
+    text: `A trentuno metri la cima finisce su una lamiera.
+
+Non è roccia: è **acciaio**, coperto da due centimetri di posidonia morta e di vita bianca, e sotto la torcia il rosso della ruggine è l'unico colore che sopravvive a questa profondità.
+
+È il fianco di poppa della **Santa Lucia**, appoggiato su un muro romano con gli alloggiamenti quadrati per le travi. La lamiera prosegue in giù, curva, e a quattordici metri più sotto — nel fascio della torcia, proprio sul limite del fascio — la curva si interrompe in una bocca nera coi bordi accartocciati verso l'esterno.
+
+Lo squarcio. Il punto in cui la nave si è spezzata in due il 24 ottobre 1943.
+
+Il battito, quaggiù, si sente solo il proprio, e rallenta da sé, senza chiedere permesso.
+
+E dentro la bocca nera, nel fascio, c'è una cosa **gialla**.
+
+**(🫁 Si gioca: TIENI PREMUTO per scendere, lascia per risalire — il corpo galleggia da solo. Quattordici metri sotto la cengia, quarantacinque dalla superficie. Il fiato scende sempre, e più giù sei più in fretta se ne va. Torna su col fiato ancora in petto: non fare l'eroe.)**`,
+    minigame: {
+      type: 'apnea',
+      success: 'd13_stiva',
+      fail: 'd9_ko',
+      tag: 'Quattordici metri sotto la cengia — la stiva della Santa Lucia',
+      config: {
+        titolo: '🫁 Quarantacinque metri — gli ultimi quattordici',
+        profondita: 14,
+        oggetto: 'giocattolo',
+        cosa: 'lo squarcio della stiva, e dentro qualcosa di giallo',
+        extra: 3,
+        extraFlag: 'visto_il_fondo',
+        cosaExtra: 'una muta da sub degli anni Novanta, in piedi sul fondo, che vi guarda risalire',
+      },
+    },
+    choices: [],
+  },
+
+  d13_stiva: {
+    location: 'relitto',
+    caption: 'La stiva della Santa Lucia — meno quarantacinque metri',
+    silenzio: true,
+    metri: 45,
+    goldLoss: 4,
+    text: `Dentro non c'è corrente, non c'è suono, non c'è niente che si muova tranne la neve marina che sale nel fascio della torcia.
+
+Una stanza di lamiera larga sei metri, inclinata di trenta gradi, col pavimento coperto da un metro di sedimento grigio che a toccarlo si alza come polvere e non si riappoggia più.
+
+E dentro il sedimento, incastrati, i **bagagli**.
+
+Valigie di cartone pressato, gonfie, aperte dal sale. Un fagotto legato con lo spago, con lo spago ancora annodato. Una cesta di vimini con dei barattoli dentro. Una scarpa da uomo, una sola, con la stringa fatta col doppio nodo di uno che quella mattina aveva fretta.
+
+Nessun osso. Ottantadue anni di mare non lasciano ossa in una stiva aperta, e in tutta questa storia è l'unico dettaglio che sia una piccola misericordia.
+
+Sul bordo di una valigia scoppiata, appoggiato come lo appoggia un bambino quando ha le mani impegnate, c'è un **cavallino di celluloide**.
+
+Era giallo. Una zampa manca. Ha fatto ottantadue anni sotto sale e ha ancora la faccia allegra: due punti neri per gli occhi e la bocca ridente stampata nella plastica, perché nel 1943 i cavalli dei bambini ridevano.
+
+Le dita di un guanto da tre millimetri lo chiudono in un pugno.
+
+E in quel momento, a quarantacinque metri, dentro una stiva senza suono, non succede assolutamente niente.
+
+Il Coro non canta. Nessuno parla. Nessuna faccia ai bordi dell'inquadratura.
+
+Il silenzio, quaggiù, è il modo che ha questa cosa per dirvi che ha smesso di fingere di essere un rumore.
+
+**(Oggetto: il CAVALLINO DI CELLULOIDE. 🫁 Fiato −4: quarantacinque metri si pagano. Il Quaderno registra il giocattolo dalla stiva, e il mistero della bambina della Santa Lucia ha il suo quarto indizio.)**`,
+    sets: { i_giocattolo: true },
+    choices: [
+      { text: '🐎 Risalire. Adesso. Senza guardare altro', next: 'd14_coro' },
+      { text: '🧳 Cinque secondi in più: leggere il nome sull\'etichetta di una valigia', once: true, damage: 4, sets: { nome_valigia: true }, next: 'd14_coro' },
+      { text: '📿 Lasciare qui dentro qualcosa, al posto di quello che avete preso', requires: { item: 'medaglietta_giulia' }, once: true, removeItem: 'medaglietta_giulia', gold: 2, next: 'd14_coro' },
+    ],
+  },
+
+  d14_coro: {
+    location: 'fossa',
+    caption: 'La sosta a dieci metri — la risalita interrotta',
+    heal: 12,
+    recharge: true,
+    stinger: 'coro',
+    metri: 40,
+    text: `A quaranta metri, sulla verticale, la risalita si ferma.
+
+Non per una mano, non per una corrente: la cima è **tesa in giù**. Quaranta metri di corda con un piombo in fondo, tirati verso il basso da qualcosa che non si vede, e in cima alla corda due persone appese a un filo che qualcuno sta tenendo dall'altra parte.
+
+E allora arriva.
+
+Non ha una forma: ha un **volume**. L'acqua intorno smette di essere acqua e diventa una cosa che ha delle voci dentro come uno sciame ha delle api, e le voci sono tutte insieme e tutte separate — latino, napoletano, dialetto di Sicilia, una preghiera, un cane, un numero di matricola detto e ridetto — e non urlano. Parlano.
+
+E una viene avanti, e questa è italiano di trent'anni fa, con l'accento di qui, e ha il tono allegro e pratico di chi ha fatto quel mestiere per vent'anni:
+
+> "Claudia. Ciao. Sono Marisa." *(pausa, e la pausa è quella giusta)* "Stai respirando male: stai buttando fuori troppo presto. Te lo insegno io. Ci metto dieci minuti e non ti fa più paura niente."
+
+Risalgono alla sosta dei dieci metri, dove c'è aria in bocca per parlare. Claudia si strappa l'erogatore e la prima cosa che dice non è una domanda.
+
+> Claudia: "Non le rispondo. Non le rispondo, Gaetano, mi ha chiamata per nome e non le rispondo."
+
+> Gaetano: "Brava. **Brava.**" *(e poi si ferma, perché ha appena finito un conto lunghissimo)* "Claudia. Giulia l'hanno **portata**. I detenuti li hanno **portati**. I bambini del quarantatré li hanno **imbarcati**. Marisa è scesa perché una voce l'ha chiamata e lei ha risposto." *(la guarda)* "Nessuno di quelli là sotto è venuto qui volendo. In duemila anni, **nessuno**."
+
+> Claudia: "E noi—"
+
+> Gaetano: "E noi abbiamo pagato quarantasei euro a testa, abbiamo prenotato la stanza con la terrazza a maggio e abbiamo litigato sul phon."
+
+> Claudia: *(e la capisce tutta insieme, e la dice piano)* "Non ci vuole morti."
+
+> Gaetano: "No. Ai morti ci arriva comunque, e ha imparato che i morti non gli bastano: un morto sta e basta. Ci vuole **presenti**." *(guarda il nero sotto i piedi)* "Vuole due che sono venuti per scelta loro e che se ne potrebbero andare per scelta loro. Per questo il trenta agosto non finisce: perché finché non salite su quel traghetto siete gli unici, in duemila anni, che stanno qui **volendo**."
+
+Sotto di loro, tutte le voci insieme dicono la stessa cosa nello stesso momento, con calma, in italiano:
+
+> IL CORO: "Restate."
+
+**(⚠️ Il gioco lo dice una volta sola e non lo ripete: il Coro non vi vuole morti, vi vuole PRESENTI. Da qui si sale o si scende, e sono due fini diverse.)**`,
+    sets: { d_capito_tutto: true },
+    choices: [
+      { text: '⚔️ Rispondere di no. Con tutto quello che avete addosso', next: 'd14_boss' },
+      { text: '🧂 Rispondere di no col sale della sua stessa acqua in mano', requires: { item: 'salamoia' }, sets: { sale_pronto: true }, next: 'd14_boss' },
+      { text: '🧱 Sigillare la bocca: sapete dov\'è la sesta cisterna e avete lo stucco', requires: { item: 'stucco', flag: 'sa_sesta_cisterna' }, next: 'e_vittoria' },
+      { text: '🎵 Rispondere di sì. Aprire la bocca e cantare con loro', tag: '⚠️ Questa è una fine, e per chi vi vuole bene non ne esiste una peggiore', next: 'e_coro' },
+      { text: '⬆️ Non rispondere niente e risalire: dieci metri, cinque, tre, superficie', goldLoss: 2, next: 'd15_uscite' },
+    ],
+  },
+
+  d14_boss: {
+    location: 'fossa',
+    caption: 'IL CORO — sulla verticale della cima',
+    stinger: 'coro',
+    metri: 40,
+    text: `Rispondono di no.
+
+Lo dicono in due, dentro l'acqua, e l'acqua non porta le parole ma porta l'intenzione, e l'intenzione è chiarissima.
+
+E allora il Coro fa la cosa che sa fare, l'unica: **canta**.
+
+Duemila anni di voci tenute insieme in un accordo che non si risolve mai. Ed è bello — questa è la parte che non si potrà raccontare a chi non c'era, e che vi rovinerà tutte le canzoni per il resto della vita: quella cosa lì è **bella**. Una melodia semplice, in una scala che sul pianoforte non esiste, orecchiabile e sbagliata, e la senti nello sterno prima che nelle orecchie.
+
+Se Assuntina dorme, l'accordo ha in mezzo un buco grosso come una casa e non tiene il tempo. Se non dorme, tiene — e allora è tutto molto più difficile.
+
+> Gaetano: *(nell'erogatore, e non si capisce niente, e lo dice comunque perché lo deve dire)* "Quaranta metri. Il canto arriva da quaranta metri **e da zero metri contemporaneamente**."
+
+E il Coro perde una nota, perché una cosa impossibile ha appena ricevuto un numero.
+
+> Claudia: *(la ring light in mano, quattromila lumen puntati nel nero, il pollice sul pulsante)* "Guardaci."
+
+**(⚔️ BOSS FINALE: IL CORO. Sessantasei di TENUTA, ruba vita, colpisce tutti insieme. Quello che avete capito conta: i misteri risolti, gli oggetti craftati, e quanto vi hanno notato — l'attenzione del Coro si paga adesso, davanti a tutti.)**`,
+    combat: {
+      enemies: ['coro_vero'],
+      victory: 'd15_uscite',
+      defeat: 'd9_ko',
+      loot: { gold: 3 },
+    },
+    choices: [],
+  },
+
+  d15_uscite: {
+    location: 'porto',
+    caption: 'Porto Romano — il portellone aperto, ore 17:22',
+    metri: 0,
+    text: `Il porto romano alle diciassette e ventidue.
+
+La cava di tufo, i buchi quadrati per le travi, l'acqua nera e liscia. Non c'è nessuno. Non c'è mai stato nessuno, oggi.
+
+Il traghetto è all'ormeggio, spento, col portellone di poppa calato sulla banchina e la rampa a posto. Il garage è vuoto, la luce di servizio accesa. Dentro non c'è un marinaio, non c'è un motore che gira, non c'è una voce.
+
+Ma la rampa è **giù**, e sopra la rampa ci sono trenta metri di lamiera che portano fuori.
+
+Sono in piedi sulla banchina con le sacche in mano, bagnati, e uno dei due ha in tasca un cavallino di celluloide.
+
+> Claudia: "Se saliamo, parte?"
+
+> Gaetano: "Non lo so."
+
+> Claudia: "Tu sai sempre."
+
+> Gaetano: *(e appoggia la sacca in terra, che è il suo modo di dire che non ha un dato)* "Stavolta no. So una cosa sola: che finché stiamo su questa banchina siamo qui **volendo**. E quella cosa là sotto campa di questo."
+
+Il sole è basso. L'ombra del campanile arriva a metà della rampa.
+
+Dietro di loro l'isola: le case gialle, la scaletta delle paracine, il limone in vaso di Ada che ha più limoni di quanti se ne possano mangiare. Davanti, trenta metri di lamiera vuota.
+
+> Claudia: "Ok." *(gli prende la mano — non per aiuto: per riferimento)* "Decidiamo."
+
+**(⚠️ ULTIMA SCELTA. Non c'è un dado, non c'è una prova, non c'è modo di ritirare. Quello che avete capito in questi quattro giorni sta nel Quaderno, e adesso conta tutto.)**`,
+    sets: { d_banchina_finale: true },
+    choices: [
+      { text: '🎵 Salire, e portarsi dietro il nome di Assuntina e la sua seconda strofa', requires: { flag: 'sa_ninnananna' }, next: 'e_vittoria' },
+      { text: '🕯 Salire, e dire ad alta voce, sulla rampa, "Nicola Sperduto"', requires: { flag: 'sa_nome_guardia' }, next: 'e_vittoria' },
+      { text: '🧱 Salire, sapendo dov\'è la sesta cisterna e che una bocca si può richiudere', requires: { flag: 'sa_sesta_cisterna' }, next: 'e_vittoria' },
+      { text: '🧭 Salire: il confine di quella cosa passa davanti alla bocca del porto, e la rampa è oltre', requires: { flag: 'sa_confine' }, next: 'e_vittoria' },
+      { text: '🚢 Salire e basta. Vivi, insieme, e senza aver capito un cazzo', gold: 1, next: 'e_vittoria_muta' },
+      { text: '🕯 Uno dei due non sale. E non sale perché salga l\'altro', next: 'd15_scambio' },
+      { text: '🏠 Uno dei due non sale, e non è per l\'altro: è perché ha deciso di restare', next: 'd15_resta' },
+      { text: '🛏 Non salire. Tornare alle Paracine, mettersi a letto, e domani è oggi', tag: '⚠️ Nessuno vi prende, nessuno muore. È la fine peggiore che abbia questo gioco', next: 'e_loop' },
+    ],
+  },
+
+  d15_scambio: {
+    location: 'porto',
+    caption: 'Sulla rampa — uno dei due',
+    stinger: 'voce_amata',
+    metri: 0,
+    text: `Non è una discussione. Le discussioni le hanno già fatte tutte, in quattordici anni, sul phon e sulle valigie e su chi ha ragione.
+
+Questa è una di quelle cose che si dicono una volta e restano dette.
+
+> "Tu sali."
+
+> "No."
+
+> "Tu sali, e io resto, e quella cosa là sotto si tiene una persona che è venuta qui **volendo**. Ed è esattamente quello che chiedeva. Si accontenta."
+
+> "Ho detto no."
+
+> "Allora restiamo tutti e due, e domani è oggi, e dopodomani è oggi, e fra quarant'anni è ancora oggi e siamo due vecchi che si tengono la mano sulla stessa banchina." *(pausa)* "Guardami. **Guardami.** Uno di noi due deve tornare a Scauri e raccontare che siamo esistiti."
+
+In mezzo alla rampa si fermano.
+
+Uno dei due si toglie una cosa dal collo e la mette in mano all'altro. E chi resta non lo fa per essere ricordato: lo fa perché ha fatto un conto, e il conto torna, e nel conto ci sono quarant'anni di una persona che vive contro un giorno che non finisce mai per due.
+
+> "Ogni trenta agosto io torno."
+
+> "Lo so che torni."
+
+> "Ogni trenta agosto, alle cinque e mezza, io sto su questa banchina. E porto l'idrofono."
+
+> "Lo so. È per questo che ti lascio andare."
+
+**(🕯 DECISIONE IRREVERSIBILE. Chi resta viene PRESO dal Coro: diventa una voce, e quella voce parlerà all'altro per il resto dei suoi giorni. Chi sale vive, e torna ogni trenta agosto. Scegliete chi, al tavolo, ad alta voce.)**`,
+    choices: [
+      { text: '🕯 Scegliere chi resta. E salire, senza girarsi', sacrifice: true, sacrificeSets: 'chi_e_rimasto', sacrificeTitle: 'Chi resta sulla banchina?', sacrificeText: 'Decidetelo insieme, ad alta voce, guardandovi in faccia. Chi resta viene preso dal Coro e diventa una voce. Chi sale vive, e torna ogni trenta agosto per il resto della vita. Non si rifà.', next: 'e_scambio' },
+      { text: '↩ No. Tornare indietro sulla rampa e riparlarne', heal: 2, next: 'd15_uscite' },
+    ],
+  },
+
+  d15_resta: {
+    location: 'porto',
+    caption: 'In fondo alla rampa — la scelta che nessuno si aspetta',
+    stinger: 'sigillo',
+    metri: 0,
+    text: `Questa è diversa, e ci vuole più coraggio a dirla, perché non c'è dentro niente di eroico e non si può raccontare bene a nessuno.
+
+Uno dei due appoggia la sacca in terra, in fondo alla rampa, e non la riprende.
+
+> "Io non salgo."
+
+> "Perché."
+
+> "Non per te. Voglio che sia chiaro: **non per te**." *(e guarda l'isola, non la lamiera)* "Perché quella creatura di sei anni ha aspettato ottantadue anni che qualcuno le tenesse la mano. E ce n'è un centinaio come lei, e Giulia dietro un muro fatto in fretta, e una guardia che sta ancora facendo il turno in una prigione vuota da sessant'anni. E Marisa, che aveva detto a due francesi che ci metteva dieci minuti a non farti più paura niente."
+
+> "Questo non è compito tuo."
+
+> "No. È che non è compito di nessuno, e io sono qui." *(e sorride, e il sorriso è vero)* "Poi c'è un'altra cosa. Quella cosa là sotto adesso ha capito che noi possiamo andarcene. Se ce ne andiamo tutti e due si mette a chiamare i prossimi: un altro traghetto, un'altra coppia, un altro giovedì d'agosto. E i prossimi non sanno che non si risponde."
+
+> "Torno a prenderti."
+
+> "Certo che torni. Portati l'idrofono." *(pausa)* "E poi, sai, io a una l'ho promesso: che le insegnavo a nuotare. L'ho detto io, nessuno me l'ha chiesto. Le promesse dette a voce alta sopra il mare, su quest'isola, contano."
+
+E allora chi parte sale, e chi resta si siede sul bordo della banchina, coi piedi a venti centimetri dall'acqua nera del porto romano, e aspetta il tramonto come si aspetta l'inizio di un turno.
+
+**(🕯 DECISIONE IRREVERSIBILE, e non è un sacrificio: è una SCELTA. Chi resta lo fa di sua volontà, per mettersi in mezzo fra quella cosa e i prossimi che arriveranno. Scegliete chi, al tavolo, ad alta voce.)**`,
+    choices: [
+      /* `resta: true`: qui NON muore nessuno. Il motore marca l'eroe come `rimasto`
+         (🌊 È RIMASTO), non come `morto`, e imposta `rimasto_<id>`. Senza questa chiave
+         il finale e_resta seppellirebbe una persona viva. */
+      { text: '🏠 Scegliere chi resta sull\'isola, di sua volontà', sacrifice: true, resta: true, sacrificeSets: 'chi_ha_scelto_di_restare', sacrificeTitle: 'Chi resta sull\'isola?', sacrificeText: 'Non è un sacrificio per l\'altro: è una scelta propria, presa a mente lucida, per mettersi in mezzo fra quella cosa e i prossimi che arriveranno. Decidetelo insieme, ad alta voce.', next: 'e_resta' },
+      { text: '↩ Sedersi in due sul bordo della banchina e ripensarci', heal: 2, gold: 1, next: 'd15_uscite' },
+    ],
+  },
+
+};
