@@ -2952,7 +2952,11 @@ const Scenes = (() => {
          una tozza. Da Scauri, nei mattini puliti, Ventotene si vede — e quindi il
          posto dove stanno andando li sta già guardando da casa. */
       const r = rng(seedOf('scauri'));
-      const horiz = H * 0.40, spiaggiaY = H * 0.58, stradaY = H * 0.80;
+      /* Proporzioni riviste dopo la verifica su Pages: erano cielo 40%, mare 18%,
+         spiaggia 22%, strada 20% — cioè il 42% del quadro era spiaggia e asfalto
+         vuoti, e il mare, che è il soggetto della scena («l'acqua è una lastra»),
+         ne aveva meno di un quinto. Adesso il mare ne ha quasi un terzo. */
+      const horiz = H * 0.32, spiaggiaY = H * 0.62, stradaY = H * 0.845;
       // il cielo dell'alba: già chiaro, il sole è sorto da venti minuti e sta dietro
       skyGradient(ctx, W, horiz + 2, '#5d7ba0', '#e8d0a8', 12);
       ctx.fillStyle = 'rgba(255,226,170,.18)'; ctx.fillRect(0, horiz - 26, W, 26);
@@ -3027,9 +3031,47 @@ const Scenes = (() => {
           ctx.fillRect(dx + (r() * 3 | 0), y + 9 + (r() * 4 | 0), 2, 1);
         }
       }
-      for (let i = 0; i < 150; i++) {
-        ctx.fillStyle = `rgba(${30 + r() * 40 | 0},${28 + r() * 34 | 0},${24 + r() * 30 | 0},.5)`;
-        ctx.fillRect(r() * W | 0, spiaggiaY + 4 + r() * (stradaY - spiaggiaY - 6) | 0, 2 + (r() * 2 | 0), 2);
+      /* La sabbia era un marrone unico pieno di puntini scuri: leggeva come terra
+         smossa, non come una spiaggia all'alba. Una spiaggia ha due sabbie — quella
+         bagnata, scura e compatta in basso verso l'acqua, e quella asciutta, più
+         chiara e più mossa, salendo verso il muretto — e il confine fra le due si
+         vede a occhio da qualunque distanza. */
+      for (let dx = 0; dx < W; dx += 4) {
+        for (let k = 0; k < 16; k++) {
+          const y = rivaA(dx) + 10 + k * ((stradaY - rivaA(dx) - 10) / 16);
+          const t = k / 15;
+          ctx.fillStyle = `rgba(158,142,116,${0.05 + t * 0.30})`;
+          ctx.fillRect(dx, y, 4, (stradaY - rivaA(dx) - 10) / 16 + 1);
+        }
+      }
+      for (let i = 0; i < 190; i++) {
+        const x = r() * W, y = spiaggiaY + 6 + r() * (stradaY - spiaggiaY - 8);
+        const chiaro = r() > 0.55;
+        ctx.fillStyle = chiaro
+          ? `rgba(${196 + r() * 40 | 0},${182 + r() * 34 | 0},${152 + r() * 30 | 0},.36)`
+          : `rgba(${44 + r() * 34 | 0},${40 + r() * 28 | 0},${34 + r() * 24 | 0},.44)`;
+        ctx.fillRect(x | 0, y | 0, 2 + (r() * 3 | 0), 2);
+      }
+      /* Due impronte che vanno all'acqua e non tornano: c'è qualcuno che si è fatto
+         il bagno alle sette meno un quarto, e non siete voi. È l'unico segno di vita
+         sulla spiaggia, e basta lui a dire che ore sono. */
+      for (let k = 0; k < 7; k++) {
+        const t = k / 6;
+        const ix2 = W * 0.30 + t * W * 0.055, iy = stradaY - 14 - t * (stradaY - rivaA(W * 0.32) - 18);
+        ctx.fillStyle = `rgba(48,42,34,${0.30 - t * 0.10})`;
+        ctx.fillRect(ix2 + (k % 2 ? 5 : 0), iy, 4, 3);
+      }
+      /* La doccia della spiaggia: un tubo con la testina, l'unica cosa verticale sulla
+         sabbia. Serve alla scala — è alta due metri, quindi dice quanto è grande tutto
+         il resto — e serve a interrompere le orizzontali una volta di più. */
+      {
+        const dxx = W * 0.615, base = stradaY - 6, altD = 52;
+        ctx.fillStyle = 'rgba(30,26,20,.28)'; pixelEllipse(ctx, dxx + 2, base + 2, 9, 3, 3);
+        ctx.fillStyle = '#8d9298'; ctx.fillRect(dxx, base - altD, 4, altD);
+        ctx.fillStyle = '#a9aeb4'; ctx.fillRect(dxx, base - altD, 1, altD);
+        ctx.fillStyle = '#8d9298'; ctx.fillRect(dxx - 7, base - altD, 15, 3);
+        ctx.fillStyle = '#6f747a'; ctx.fillRect(dxx - 5, base - altD + 3, 4, 4);
+        ctx.fillStyle = '#7e838a'; ctx.fillRect(dxx - 2, base - 5, 8, 4);      // il pedale
       }
 
       /* I LIDI verso Gianola. Prima versione: nove pile identiche, alla stessa altezza,
@@ -3081,7 +3123,10 @@ const Scenes = (() => {
       }
 
       // IL LUNGOMARE: il muretto, il marciapiede, l'asfalto
-      muretto(ctx, 0, stradaY - 12, W, 14, '#b8ac94', r);
+      // il muretto: era il bianco più chiaro dell'inquadratura e si mangiava l'occhio,
+      // e a quest'ora un muretto sul lungomare è in ombra, non in luce
+      muretto(ctx, 0, stradaY - 12, W, 14, '#8f8672', r);
+      ctx.fillStyle = 'rgba(255,232,190,.10)'; ctx.fillRect(0, stradaY - 12, W, 2);
       blocks(ctx, 0, stradaY + 2, W, H - stradaY - 2, '#4e4a46', 14, r, 0.08);
       ctx.fillStyle = 'rgba(255,248,224,.12)';
       for (let x = 0; x < W; x += 46) ctx.fillRect(x, H - 12, 26, 3);   // la riga tratteggiata
