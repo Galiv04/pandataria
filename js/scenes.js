@@ -3025,11 +3025,19 @@ const Scenes = (() => {
          contano uno per uno. È la grana, non il colore, che dice a un occhio che una
          cosa è vicina — e prima ne avevo la stessa quantità dappertutto, che è il modo
          più sicuro di appiattire una superficie. */
+      /* Fondo opaco prima di tutto. Senza, le righe della sfumatura — alte un pixel e
+         appoggiate su una y FRAZIONARIA — venivano antialiasate dal canvas: la
+         copertura si fermava a 215 su 255 e sullo schermo il testo della narrazione si
+         vedeva ATTRAVERSO la spiaggia. Da qui in poi ogni y di questa fascia è
+         arrotondata: un rettangolo alto un pixel su coordinate non intere non è un
+         rettangolo alto un pixel, sono due righe mezze trasparenti. */
+      ctx.fillStyle = '#6b6055';
+      ctx.fillRect(0, Math.round(spiaggiaY) - 16, W, Math.round(stradaY) - Math.round(spiaggiaY) + 16);
       for (let dx = 0; dx < W; dx += 2) {
-        const yRiva = rivaA(dx) + Math.sin(dx * 0.05) * 2 + (r() - 0.5) * 2.4;
-        const alt = stradaY - yRiva;
+        const yRiva = Math.round(rivaA(dx) + Math.sin(dx * 0.05) * 2 + (r() - 0.5) * 2.4);
+        const alt = Math.round(stradaY) - yRiva;
         ctx.fillStyle = '#4a6c8c';                    // il mare rientra seguendo la riva
-        ctx.fillRect(dx, spiaggiaY - 16, 2, yRiva - (spiaggiaY - 16));
+        ctx.fillRect(dx, Math.round(spiaggiaY) - 16, 2, yRiva - (Math.round(spiaggiaY) - 16));
         for (let y = 0; y < alt; y++) {
           const t = y / alt;                          // 0 = battigia lontana, 1 = sotto i piedi
           ctx.fillStyle = mix('#584f45', '#b3a284', Math.pow(t, 0.72));
