@@ -1,5 +1,7 @@
 # 🌊 PANDATARIA
 
+### ▶ [GIOCA ORA](https://galiv04.github.io/pandataria/)
+
 **Un horror interattivo in italiano per 1-3 giocatori.** Quattro giorni di vacanza a Ventotene, dal
 27 al 30 agosto. Il traghetto da Formia, un B&B con i limoni in vaso, il pesce alla griglia, il mare
 che a venti metri da riva è già blu da cartolina.

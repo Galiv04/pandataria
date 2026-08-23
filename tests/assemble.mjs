@@ -38,6 +38,44 @@ if (vecchio && nNuovo < nVecchio) {
   console.error(`   rigenerati dal file vero prima di poter riusare la pipeline.\n`);
   process.exit(1);
 }
+/* SECONDA GUARDIA (23 agosto 2026). La prima contava le SCENE, e non bastava.
+   In questo repo i draft avevano tutte le scene al posto giusto, ma tre oggetti
+   avevano perso il campo `lore`: le loro schede erano state scritte a mano nel
+   file GENERATO invece che nei draft, contro la regola. Il conteggio delle scene
+   tornava, l'assemble ha scritto senza fiatare, e da un momento all'altro sei
+   schede su dodici sono diventate vuote — il validatore l'ha scoperto per caso.
+   Quindi ora si guarda anche la ciccia: quanti campi di ogni tipo c'erano prima
+   e quanti ce ne sono dopo, e quanti caratteri si perdono. */
+const CAMPI = ['lore:', 'retro:', 'combat:', 'minigame:', 'requires:', 'sets:',
+               'item:', 'check:', 'heal:', 'damage:', 'npc:', 'location:', 'caption:'];
+function conta(testo, campo) {
+  return (testo.split(campo).length - 1);
+}
+const perdite = [];
+if (vecchio) {
+  for (const c of CAMPI) {
+    const p = conta(vecchio, c), n = conta(nuovo, c);
+    if (n < p) perdite.push(`${c} ${p} → ${n} (-${p - n})`);
+  }
+  const caloPct = (vecchio.length - nuovo.length) / vecchio.length;
+  if (caloPct > 0.005) perdite.push(`caratteri ${vecchio.length} → ${nuovo.length} (-${(caloPct * 100).toFixed(1)}%)`);
+}
+const soloControllo = process.argv.includes('--check');
+if (perdite.length && !process.argv.includes('--force')) {
+  console.error('\n❌ RIFIUTO DI SCRIVERE: assemblare dai draft perderebbe contenuto già pubblicato:');
+  perdite.forEach(p => console.error('   · ' + p));
+  console.error('   Vuol dire che js/campaign.js è stato modificato A MANO (non si fa: si perde)');
+  console.error('   oppure che i draft sono vecchi. Riporta le modifiche nei draft, poi riassembla.');
+  console.error('   Se sai quello che fai: --force.\n');
+  process.exit(1);
+}
+if (soloControllo) {
+  if (nuovo === vecchio) { console.log('✔ js/campaign.js è identico a quello che producono i draft'); process.exit(0); }
+  console.error('\n❌ js/campaign.js NON corrisponde ai draft: qualcuno ha modificato il file generato,');
+  console.error(`   oppure i draft sono cambiati e nessuno ha riassemblato (${vecchio.length} caratteri sul disco, ${nuovo.length} dai draft).`);
+  console.error('   Rimedio: node tests/assemble.mjs\n');
+  process.exit(1);
+}
 writeFileSync(dest, nuovo);
 console.log(`✔ js/campaign.js assemblato: ${nuovo.length} caratteri, ${nNuovo} scene` +
   (vecchio && nNuovo > nVecchio ? ` (+${nNuovo - nVecchio} rispetto a prima)` : ''));

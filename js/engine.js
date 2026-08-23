@@ -443,6 +443,8 @@ const Engine = (() => {
     fossa: 'fossa', relitto: 'fossa',
     // l'alba e gli epiloghi: la prima traccia in tono giusto di tutto il gioco
     alba: 'alba',
+    // Scauri, il lungomare di casa alle sette meno cinque: è ancora il mare di sempre
+    scauri: 'mare',
   };
 
   function musicForScene(scene) {

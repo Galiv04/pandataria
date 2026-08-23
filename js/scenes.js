@@ -429,12 +429,26 @@ const Scenes = (() => {
       ctx.fillStyle = rock;
       ctx.fillRect(x + dx, baseY - hh, px, hh + 1);
     }
-    // l'anello di pietra in cima: un muro curvo, alto come una diga
-    const rw = w * 0.34, ry = baseY - h * 0.94;
-    ctx.fillStyle = ring;
-    ctx.fillRect(x - rw / 2, ry, rw, Math.max(3, h * 0.20));
-    ctx.fillStyle = shade(ring, 1.18);
-    ctx.fillRect(x - rw / 2, ry, rw, 2);
+    /* L'ANELLO DI PIETRA in cima: il panopticon. Era un rettangolo pieno con una riga
+       chiara sopra, e da lontano leggeva come una lastra grigia appoggiata sul monte.
+       Ma è la forma che dà il nome all'orrore di questo gioco, quindi va riconosciuta:
+       ferro di cavallo, più alto al centro e più basso alle ali (la curva che si
+       allontana), cornicione in cima, e le fessure verticali delle celle — nere,
+       perché di notte nessuna di quelle finestre è accesa. */
+    const rw = w * 0.40, rh = Math.max(4, h * 0.24), ry = baseY - h * 0.94;
+    for (let dx = -rw / 2; dx < rw / 2; dx += 2) {
+      const t = Math.abs(dx / (rw / 2));
+      const hh = rh * (1 - t * t * 0.42);                   // le ali scendono: è un ferro di cavallo
+      ctx.fillStyle = t > 0.62 ? shade(ring, 0.80) : ring;  // e si spengono girando via
+      ctx.fillRect(x + dx, ry + (rh - hh), 2, hh + 1);
+      ctx.fillStyle = shade(ring, t > 0.62 ? 0.94 : 1.20);  // il cornicione
+      ctx.fillRect(x + dx, ry + (rh - hh), 2, 1);
+    }
+    for (let k = -3; k <= 3; k++) {                          // le fessure delle celle
+      const fx = x + k * (rw / 8), t = Math.abs(k / 3.2);
+      ctx.fillStyle = shade(ring, 0.42);
+      ctx.fillRect(fx, ry + (rh - rh * (1 - t * t * 0.42)) + 2, 1, Math.max(1, rh * 0.42));
+    }
   }
 
   /* ------------- PITTORI DI LOCATION -------------
@@ -506,10 +520,20 @@ const Scenes = (() => {
         const suolo = horiz - quotaAl(dx);
         const hw = 5 + (r() * 4 | 0), hh2 = 4 + (r() * 5 | 0);
         const hx = ix + dx + (r() * 3 | 0), hy = suolo - hh2 + 1;
-        ctx.fillStyle = '#101823';
+        /* Le pareti erano #101823 su un'isola #0a1119: due neri a un pixel di
+           distanza. Finché l'alone sbagliato del paese schiariva tutto si vedevano;
+           ridotto l'alone, restavano solo le finestre gialle sul nero — di nuovo una
+           fila di lucine sospese, cioè l'errore di partenza moltiplicato per venti.
+           Un paese di notte non si vede per le finestre: si vede perché i muri
+           bianchi tengono un po' di luna. */
+        ctx.fillStyle = '#1c2532';
         ctx.fillRect(hx, hy, hw, hh2 + 2);
-        ctx.fillStyle = 'rgba(150,168,198,.10)';            // il tetto piatto, appena chiaro
+        ctx.fillStyle = 'rgba(168,186,214,.20)';            // il tetto piatto che prende la luna
         ctx.fillRect(hx, hy, hw, 1);
+        ctx.fillStyle = 'rgba(168,186,214,.13)';            // lo spigolo rivolto a lei
+        ctx.fillRect(hx, hy, 1, hh2 + 2);
+        ctx.fillStyle = 'rgba(4,8,15,.45)';                 // e il lato in ombra
+        ctx.fillRect(hx + hw - 1, hy, 1, hh2 + 2);
         if (r() > 0.30) {                                   // la finestra accesa
           const fx = hx + 1 + (r() * Math.max(1, hw - 3) | 0);
           ctx.fillStyle = r() > 0.72 ? '#fff0c0' : '#e8b860';
@@ -592,11 +616,15 @@ const Scenes = (() => {
         const t = (y - horiz) / (H * 0.30);
         const larg = 26 - t * 9;                                    // stretta, e stringe
         const fuoco = Math.max(0, 1 - Math.abs(t - 0.42) / 0.52);   // il massimo a metà
-        const n = 2 + (r() * 3 | 0);
+        /* Terza taratura: era ancora la cosa più chiara della metà bassa del quadro e
+           sembrava un graffio sulla pellicola. Meno trattini, più trasparenza, e il
+           verde più saturo — a queste opacità un verde smorto vira al grigio, e
+           grigio in mezzo al mare vuol dire luna, non vuol dire "cosa". */
+        const n = 1 + (r() * 2 | 0);
         for (let k = 0; k < n; k++) {
           const ww = 2 + r() * larg * 0.45;
           const off = (r() - 0.5) * (larg - ww);
-          ctx.fillStyle = `rgba(132,186,158,${(0.018 + fuoco * 0.058) * (0.55 + r() * 0.7)})`;
+          ctx.fillStyle = `rgba(96,196,140,${(0.012 + fuoco * 0.040) * (0.55 + r() * 0.7)})`;
           ctx.fillRect((bx + off) | 0, y, ww | 0, 2);
         }
       }
@@ -1072,9 +1100,10 @@ const Scenes = (() => {
           ctx.fillStyle = `rgba(255,236,190,${0.18 * sc})`;      // il filo di luce sullo spigolo
           ctx.fillRect(gx, gy, W - gx, 1);
         }
-        // il buco d'ombra dove la rampa svolta e se ne va sotto il ciglio
+        // il buco d'ombra dove la rampa svolta e se ne va sotto il ciglio: alto poco,
+        // che tirato fino in fondo al quadro diventava una porta nera nel prato
         ctx.fillStyle = 'rgba(10,16,14,.55)';
-        ctx.fillRect(gx0 - 2, ky + 9, 26, H - ky - 9);
+        ctx.fillRect(gx0 - 2, ky + 9, 26, Math.min(11, Math.max(0, H - ky - 9)));
       }
 
     },
@@ -1088,19 +1117,25 @@ const Scenes = (() => {
       skyGradient(ctx, W, H * 0.32, '#e09a58', '#f8dcae', 10);
       skyGradient(ctx, W, H * 0.15, '#c47a68', '#e09a58', 6);
       const horiz = H * 0.32, rigaY = H * 0.48, shoreY = H * 0.68;
-      // IL SOLE BASSO, a destra, appoggiato sull'acqua
-      glow(ctx, W * 0.80, horiz - 4, 190, 130, '255,186,104');
+      // IL SOLE BASSO, a destra, appoggiato sull'acqua. L'alone era 190×130, cioè
+      // 760×520 finito — più largo del quadro: lavava tutto di arancione.
+      glow(ctx, W * 0.80, horiz - 4, 58, 40, '255,186,104');
       ctx.fillStyle = '#ffcc70'; pixelDisc(ctx, W * 0.80, horiz - 8, 32, 4);
       ctx.fillStyle = '#fff2c8'; pixelDisc(ctx, W * 0.80, horiz - 8, 18, 4);
       // IL MARE FUORI DALLA RIGA: blu, e sotto la posidonia non si vede niente
       sea(ctx, W, horiz, rigaY, '#1d4a72', '#2a6a94', r, 7, 0.8);
-      // la colonna del sole: trattini larghi che si allargano venendo verso riva
-      for (let y = horiz; y < shoreY - 8; y += 5) {
+      /* la colonna del sole: trattini che si allargano venendo verso riva. Prima era
+         un triangolo pieno — tre trattini per riga, larghi fino a metà dello spread,
+         a opacità alta: sullo schermo diventava una scaletta di gradini regolari.
+         Serve il vuoto: righe che a volte non ci sono, trattini staccati. */
+      for (let y = horiz; y < shoreY - 8; y += 4) {
         const t = (y - horiz) / (shoreY - horiz);
-        const spread = 22 + t * 150;
+        const spread = 14 + t * 150;
+        if (r() < 0.22) continue;                      // le righe che mancano
         for (let k = 0; k < 3; k++) {
-          const ww = 10 + r() * spread * 0.55;
-          ctx.fillStyle = `rgba(255,206,130,${0.34 - t * 0.20})`;
+          if (r() < 0.30) continue;
+          const ww = 4 + r() * spread * 0.34;
+          ctx.fillStyle = `rgba(255,206,130,${(0.30 - t * 0.19) * (0.6 + r() * 0.7)})`;
           ctx.fillRect(W * 0.80 - spread / 2 + r() * (spread - ww), y, ww, 3);
         }
       }
@@ -1124,10 +1159,28 @@ const Scenes = (() => {
         ctx.fillStyle = `rgba(150,190,170,${0.14 + r() * 0.16})`;
         pixelEllipse(ctx, W * 0.26 + r() * W * 0.21, rigaY + 8 + r() * 20, 10 + r() * 16, 4, 3);
       }
-      ctx.fillStyle = 'rgba(3,12,18,.72)';
-      ctx.fillRect(W * 0.285, rigaY + 11, W * 0.16, 13);
-      ctx.fillRect(W * 0.437, rigaY + 16, W * 0.042, 8);
-      ctx.fillStyle = 'rgba(3,12,18,.44)'; ctx.fillRect(W * 0.265, rigaY + 15, W * 0.024, 7);
+      /* La sagoma dentro la radura. Era tre rettangoli a spigoli netti e sullo schermo
+         leggeva come una tavola di legno affiorata — una cosa che galleggia, non una
+         cosa che sta. Adesso è un profilo: più alta in cima (le spalle), che si
+         assottiglia scendendo, con la testa staccata di un pixel e le foglie della
+         posidonia che le passano sopra i bordi. È quel passare sopra che la mette
+         SOTTO l'erba invece che addosso. Resta una sagoma e non diventa altro: qui
+         non serve mostrare, serve che il giocatore non riesca a smettere di guardare. */
+      {
+        const sgX = W * 0.30, sgY = rigaY + 11, sgL = W * 0.155;
+        for (let dx = 0; dx < sgL; dx += 2) {
+          const t = dx / sgL;
+          const sp = 13 * (1 - t * 0.62) * (t < 0.10 ? 0.55 + t * 4.5 : 1);   // spalle, poi si assottiglia
+          ctx.fillStyle = `rgba(3,12,18,${0.70 - t * 0.22})`;
+          ctx.fillRect((sgX + dx) | 0, (sgY + (13 - sp) / 2) | 0, 2, Math.max(2, sp) | 0);
+        }
+        ctx.fillStyle = 'rgba(3,12,18,.62)';                                  // la testa, staccata
+        pixelEllipse(ctx, sgX - 7, sgY + 6, 6, 5, 2);
+        for (let i = 0; i < 14; i++) {                                        // le foglie che le passano sopra
+          ctx.fillStyle = `rgba(${24 + r() * 26 | 0},${58 + r() * 34 | 0},${40 + r() * 20 | 0},.42)`;
+          pixelEllipse(ctx, sgX - 10 + r() * (sgL + 22), sgY + 1 + r() * 13, 7 + r() * 12, 3, 3);
+        }
+      }
       // l'acqua dentro la riga: trasparente, coi sassi bianchi che si vedono uno
       // per uno, e la sabbia che si accende di sole basso
       sea(ctx, W, rigaY + 30, shoreY, '#84d8cc', '#3e9aae', r, 8, 1.0);
@@ -1154,12 +1207,20 @@ const Scenes = (() => {
 
       // LA BOA GIALLA, a sessanta metri, appena oltre la riga: calda di sole e
       // scivolosa di alghe
+      /* Ridimensionata il 23 agosto 2026 su segnalazione del committente: «va bene
+         vederla, ma è molto molto grande». Aveva ragione, e si misura. Il metro di
+         paragone sono le persone: chi sta in acqua a rigaY+52 è alto una trentina di
+         pixel. La boa sta OLTRE la riga, quindi più lontano, quindi il suo uomo lì
+         sarebbe alto venti pixel — e una boa da segnalazione è larga settanta
+         centimetri, cioè meno di mezza persona. Nove pixel, non trenta. Prima era
+         larga come il torso di chi le nuotava accanto: una boa da nave in mezzo ai
+         bagnanti. Il palo era alto sedici pixel, quasi un uomo. */
       const boaX = W * 0.56;
-      ctx.fillStyle = 'rgba(14,32,42,.5)'; pixelEllipse(ctx, boaX, rigaY + 6, 16, 5, 3);
-      ctx.fillStyle = '#3a3a40'; ctx.fillRect(boaX - 2, rigaY - 34, 5, 16);
-      ctx.fillStyle = '#e8c030'; pixelDisc(ctx, boaX, rigaY - 10, 15, 3);
-      ctx.fillStyle = '#f8e478'; pixelDisc(ctx, boaX, rigaY - 14, 9, 3);
-      ctx.fillStyle = '#6a5a14'; ctx.fillRect(boaX - 15, rigaY - 6, 30, 4);      // le alghe alla base
+      ctx.fillStyle = 'rgba(14,32,42,.5)'; pixelEllipse(ctx, boaX, rigaY + 3, 7, 3, 2);
+      ctx.fillStyle = '#3a3a40'; ctx.fillRect(boaX - 1, rigaY - 15, 2, 7);
+      ctx.fillStyle = '#e8c030'; pixelDisc(ctx, boaX, rigaY - 5, 5, 2);
+      ctx.fillStyle = '#f8e478'; pixelDisc(ctx, boaX, rigaY - 7, 3, 2);
+      ctx.fillStyle = '#6a5a14'; ctx.fillRect(boaX - 5, rigaY - 3, 11, 2);      // le alghe alla base
       // LA GENTE, alle sette di sera: in acqua fino alla vita, sul bagnasciuga,
       // e uno che nuota lentissimo e perfetto parallelo alla riva
       const gente = [
@@ -1167,15 +1228,34 @@ const Scenes = (() => {
         [0.35, rigaY + 52, 0.80], [0.41, rigaY + 60, 0.82], [0.66, rigaY + 66, 0.85],
         [0.72, shoreY + 10, 1.0], [0.91, shoreY + 18, 1.0],
       ];
+      /* Rifatte il 23 agosto 2026: erano un rettangolo colorato con un quadrato color
+         pelle sopra, e sullo schermo leggevano come colonnine — otto idranti sulla
+         battigia. Bastano tre cose perché una macchia diventi una persona: le SPALLE
+         più larghe del collo, le GAMBE separate (chi è fuori dall'acqua), e le
+         BRACCIA staccate dal tronco. Nessuna faccia: a questa scala una faccia
+         diventa una smorfia. Conta perché è l'unica scena del gioco con la gente che
+         fa le cose normali, e la sagoma nell'erba pesa quanto pesano loro. */
       for (const [fx, by, s] of gente) {
         const bx = W * fx;
         const inAcqua = by < shoreY;
+        const hTor = (inAcqua ? 15 : 19) * s, wTor = 9 * s;
+        const torY = by - (inAcqua ? 18 : 30) * s;
         ctx.fillStyle = 'rgba(20,40,50,.24)'; ctx.fillRect(bx - 6 * s, by - 2, 13 * s, 4);
-        ctx.fillStyle = ['#2a4a5a', '#7a3a4a', '#3a5a3a', '#5a4a6a'][(fx * 100 | 0) % 4];
-        ctx.fillRect(bx - 5 * s, by - (inAcqua ? 18 : 30) * s, 10 * s, (inAcqua ? 18 : 26) * s);
-        ctx.fillStyle = '#d8b090';
-        ctx.fillRect(bx - 4 * s, by - (inAcqua ? 26 : 38) * s, 8 * s, 9 * s);
-        ctx.fillStyle = '#3a2a20'; ctx.fillRect(bx - 4 * s, by - (inAcqua ? 27 : 39) * s, 8 * s, 4 * s);
+        const col = ['#2a4a5a', '#7a3a4a', '#3a5a3a', '#5a4a6a'][(fx * 100 | 0) % 4];
+        if (!inAcqua) {                                    // le gambe, separate
+          ctx.fillStyle = shade(col, 0.72);
+          ctx.fillRect(bx - 4 * s, torY + hTor, 3 * s, 11 * s);
+          ctx.fillRect(bx + 1 * s, torY + hTor, 3 * s, 11 * s);
+        }
+        ctx.fillStyle = col;
+        ctx.fillRect(bx - wTor / 2, torY, wTor, hTor + (inAcqua ? 3 * s : 0));
+        ctx.fillStyle = shade(col, 0.82);                  // le braccia lungo i fianchi
+        ctx.fillRect(bx - wTor / 2 - 2 * s, torY + 2 * s, 2 * s, (inAcqua ? 8 : 11) * s);
+        ctx.fillRect(bx + wTor / 2, torY + 2 * s, 2 * s, (inAcqua ? 8 : 11) * s);
+        ctx.fillStyle = '#d8b090';                         // il collo, poi la testa più stretta
+        ctx.fillRect(bx - 2 * s, torY - 3 * s, 4 * s, 3 * s);
+        ctx.fillRect(bx - 3 * s, torY - 10 * s, 6 * s, 7 * s);
+        ctx.fillStyle = '#3a2a20'; ctx.fillRect(bx - 3 * s, torY - 11 * s, 6 * s, 4 * s);
       }
       // il signore che nuota parallelo alla riva da quarant'anni
       ctx.fillStyle = '#d8b090'; pixelEllipse(ctx, W * 0.49, rigaY + 44, 9, 5, 3);
@@ -1203,7 +1283,11 @@ const Scenes = (() => {
       for (let i = 0; i < 60; i++) ctx.fillRect(r() * W | 0, shoreY + 18 + r() * (H - shoreY - 22) | 0, 3, 2);
       // GLI OMBRELLONI, piantati nella sabbia a profondità diverse: due aperti e
       // uno già chiuso per la sera
-      for (const [fx, fy, sc, open] of [[0.14, 0.30, 0.78, true], [0.40, 0.72, 1.0, true], [0.60, 0.34, 0.74, false]]) {
+      /* Scale ridotte con lo stesso metro della boa: la calotta era larga 124 px dove
+           una persona alla stessa distanza è alta 50 — quattro metri di ombrellone.
+           Un ombrellone da spiaggia è due metri di diametro e due e venti di altezza,
+           cioè poco più alto di chi ci sta sotto, non il doppio. */
+        for (const [fx, fy, sc, open] of [[0.14, 0.30, 0.50, true], [0.40, 0.72, 0.64, true], [0.60, 0.34, 0.47, false]]) {
         const ux = W * fx, uy = shoreY + 12 + (H - shoreY - 12) * fy;
         ctx.fillStyle = 'rgba(90,70,44,.26)'; pixelEllipse(ctx, ux, uy, 34 * sc, 6 * sc, 3);
         ctx.fillStyle = '#8a7a5a'; ctx.fillRect(ux - 3, uy - 66 * sc, 7, 66 * sc);
@@ -1282,7 +1366,7 @@ const Scenes = (() => {
         ctx.fillRect(lx | 0, ly | 0, 2, 2);
       }
       // il grumo di luce del porto, in fondo a sinistra, e i lampioni della salita
-      glow(ctx, W * 0.14, murettoY - 26, 150, 70, '226,180,96');
+      glow(ctx, W * 0.14, murettoY - 26, 74, 30, '226,180,96');   // era 150×70 = 600×280 finito: mezzo quadro
       for (let i = 0; i < 6; i++) {
         const lx = W * 0.30 + i * 26, ly = H * 0.50 + i * 22;
         if (ly > murettoY - 8) break;
@@ -1300,7 +1384,7 @@ const Scenes = (() => {
         ctx.fillRect(lx | 0, ly | 0, 1 + (r() > 0.9 ? 1 : 0), 1);
       }
       // Ischia: il grumo più fitto, e il suo alone appena accennato
-      glow(ctx, W * 0.24, horiz - 2, 90, 10, '226,196,140');
+      glow(ctx, W * 0.24, horiz - 2, 28, 6, '226,196,140');       // Ischia sta a quaranta chilometri
       for (let i = 0; i < 34; i++) {
         ctx.fillStyle = `rgba(240,214,160,${0.14 + r() * 0.20})`;
         ctx.fillRect((W * 0.24 + (r() - 0.5) * 78) | 0, (horiz - 1 - r() * 2) | 0, 1, 1);
@@ -1452,9 +1536,11 @@ const Scenes = (() => {
       // LA LAMPADA DEL COMUNE: una sola, in gabbia, appesa a un cavo
       const lx = W * 0.26, ly = H * 0.17;
       ctx.fillStyle = '#3a2e1c'; ctx.fillRect(lx - 1, 0, 3, ly);
-      glow(ctx, lx, ly + 10, 170, 130, '255,214,140');
-      glow(ctx, lx, ly + 10, 86, 66, '255,232,180');
-      glow(ctx, lx, ly + 10, 40, 32, '255,244,214');
+      // una lampadina in gabbia illumina molto, ma 170×130 vuol dire 680×520 finito:
+      // più del canvas, cioè cisterna in pieno giorno
+      glow(ctx, lx, ly + 10, 100, 50, '255,214,140');
+      glow(ctx, lx, ly + 10, 50, 28, '255,232,180');
+      glow(ctx, lx, ly + 10, 22, 14, '255,244,214');
       ctx.fillStyle = '#4a4030'; ctx.fillRect(lx - 11, ly, 23, 6);
       ctx.fillStyle = '#fff0c8'; pixelDisc(ctx, lx, ly + 11, 10, 3);
       ctx.fillStyle = '#4a4438';
@@ -1634,7 +1720,7 @@ const Scenes = (() => {
       for (let k = 0; k < 3; k++) ctx.fillRect(W * 0.90, waterY - 130 + k * 11, 46 - (k % 2) * 16, 4);
       // LA BRECCIA: venti centimetri di malta levati col martello. Non è un buco
       // tondo: è uno strappo, con le scaglie che sporgono e il giorno dentro.
-      glow(ctx, bx + bw / 2, by + bh / 2, bw * 2.0, bh * 2.2, '214,222,208');
+      glow(ctx, bx + bw / 2, by + bh / 2, bw * 0.72, bh * 0.80, '214,222,208');  // era 864×598: tutto il quadro
       ctx.fillStyle = '#0e0e0c';
       for (let k = 0; k < 34; k++) {
         const a = k / 34 * 6.283;
@@ -2116,12 +2202,12 @@ const Scenes = (() => {
       for (let k = 0; k < 5; k++) ctx.fillRect(W * 0.427 + k * 8, H * 0.04 + 43, 3, 16);
       ctx.fillStyle = '#5a5e64'; ctx.fillRect(W * 0.425, H * 0.04 + 41, 38, 3);
       ctx.fillStyle = '#3a4048'; ctx.fillRect(W * 0.474, H * 0.04 + 12, 3, 34);
-      glow(ctx, W * 0.457, H * 0.04 + 50, 74, 46, '240,236,200');
+      glow(ctx, W * 0.457, H * 0.04 + 50, 22, 14, '240,236,200');
       // L'ECOSCANDAGLIO degli anni Novanta sulla consolle di poppa, schermo verde
       ctx.fillStyle = '#4a4238'; ctx.fillRect(W * 0.80, gun(W * 0.83) - 8, 92, 40);
       ctx.fillStyle = '#2a2e30'; ctx.fillRect(W * 0.808, gun(W * 0.83) - 44, 66, 44);
       ctx.fillStyle = '#0e140e'; ctx.fillRect(W * 0.815, gun(W * 0.83) - 38, 52, 30);
-      glow(ctx, W * 0.842, gun(W * 0.83) - 23, 60, 36, '120,224,140');
+      glow(ctx, W * 0.842, gun(W * 0.83) - 23, 17, 10, '120,224,140');
       ctx.fillStyle = '#78e08c'; ctx.fillRect(W * 0.822, gun(W * 0.83) - 20, 38, 5);
       ctx.fillStyle = '#3a8a4a'; ctx.fillRect(W * 0.822, gun(W * 0.83) - 34, 26, 3);
       ctx.fillStyle = '#78e08c'; ctx.fillRect(W * 0.822, gun(W * 0.83) - 28, 14, 3);
@@ -2476,24 +2562,40 @@ const Scenes = (() => {
       for (let row = 0; row < rows; row++) {
         const y = ty0 + row * 30;
         if (y > floorY - 16) break;
-        let x = tx0, g = 0;
+        /* I gruppi di cinque non si leggevano: quattro tacche più una, staccate di
+           sei pixel invece di cinque, facevano una tessitura regolare — sullo schermo
+           veniva carta da parati a righe, non un uomo che conta. Un gruppo di cinque
+           si riconosce da una cosa sola: la QUINTA È DI TRAVERSO, tirata sopra le
+           altre quattro. E la mano non è una stampante: ogni gruppo scende o sale di
+           un pixel, e le tacche non sono mai alte uguali. */
+        let x = tx0, g = 0, dy = 0;
         while (x < tx0 + tw - 6) {
-          const hh = 15 + (r() * 5 | 0);
+          const hh = 14 + (r() * 6 | 0);
           const luce = 1 - Math.abs(x - W * 0.5) / W;          // il fascio sta al centro
-          ctx.fillStyle = `rgba(36,30,20,${0.44 + luce * 0.34})`;
-          ctx.fillRect(x, y, 2, hh);
-          ctx.fillStyle = `rgba(236,226,200,${0.16 + luce * 0.34})`;
-          ctx.fillRect(x + 2, y, 2, hh);
+          const scuro = `rgba(36,30,20,${0.44 + luce * 0.34})`;
+          const chiaro = `rgba(236,226,200,${0.16 + luce * 0.34})`;
+          if (g % 5 === 4) {                                    // la quinta, di traverso
+            for (let s = 0; s < 22; s++) {
+              const sx = x - 20 + s, sy = y + dy + hh - 2 - (s * hh) / 24;
+              ctx.fillStyle = scuro; ctx.fillRect(sx, sy, 2, 2);
+              ctx.fillStyle = chiaro; ctx.fillRect(sx, sy - 2, 2, 1);
+            }
+            x += 11; g++; dy = (r() * 3 | 0) - 1;               // e si ricomincia più su o più giù
+            continue;
+          }
+          ctx.fillStyle = scuro; ctx.fillRect(x, y + dy, 2, hh);
+          ctx.fillStyle = chiaro; ctx.fillRect(x + 2, y + dy, 2, hh);
           x += 5; g++;
-          if (g % 5 === 0) x += 6;                              // i gruppi di cinque
         }
       }
       // LA COSA FREDDA: l'ultima tacca, in alto a destra, quella dopo cui non c'è
       // niente. Dentro le altre ottomilaquaranta il tufo è grigio di sessant'anni
       // di polvere. Dentro questa il tufo è GIALLO. Chiaro. Pulito.
       const ux = tx0 + tw - 30, uy = ty0 - 2;
-      glow(ctx, ux + 3, uy + 11, 74, 62, '240,206,96');
-      glow(ctx, ux + 3, uy + 11, 34, 30, '255,230,150');
+      // aloni 74×62 e 34×30 volevano dire 296×248 e 136×120 finiti: un lampione in
+      // cima al muro per un segno di quattro pixel. Deve essere piccolo e sveglio.
+      glow(ctx, ux + 3, uy + 11, 19, 16, '240,206,96');
+      glow(ctx, ux + 3, uy + 11, 9, 8, '255,230,150');
       ctx.fillStyle = '#2e2410'; ctx.fillRect(ux - 1, uy, 4, 24);
       ctx.fillStyle = '#f2d878'; ctx.fillRect(ux + 3, uy, 4, 24);
       ctx.fillStyle = '#fff6c8'; ctx.fillRect(ux + 4, uy, 3, 11);
@@ -2836,6 +2938,113 @@ const Scenes = (() => {
       }
     },
 
+    scauri(ctx, W, H) {
+      /* SCAURI, LUNGOMARE, ore 06:55 — la prima immagine del gioco.
+         Trovata sbagliata il 23 agosto 2026 mentre scrivevo le schede dei luoghi:
+         a0 usava il painter di Cala Nave. Cioè la scena d'apertura, che si svolge
+         sulla terraferma all'alba, mostrava un tramonto a Ventotene con dentro lo
+         SCOGLIO che dà il nome a una spiaggia a centoventi chilometri da lì. Tre cose
+         sbagliate — posto, ora e monumento — nel primo fotogramma che il giocatore
+         vede. Questo quadro dice quello che dice il testo: la sabbia scura, la fila
+         dei lidi che va verso Gianola, le sdraio ancora accatastate e legate, e
+         l'acqua che è una lastra.
+         La cosa fredda: all'orizzonte, quasi niente, due sagome. Una lunga e bassa e
+         una tozza. Da Scauri, nei mattini puliti, Ventotene si vede — e quindi il
+         posto dove stanno andando li sta già guardando da casa. */
+      const r = rng(seedOf('scauri'));
+      const horiz = H * 0.40, spiaggiaY = H * 0.58, stradaY = H * 0.80;
+      // il cielo dell'alba: già chiaro, il sole è sorto da venti minuti e sta dietro
+      skyGradient(ctx, W, horiz + 2, '#5d7ba0', '#e8d0a8', 12);
+      ctx.fillStyle = 'rgba(255,226,170,.18)'; ctx.fillRect(0, horiz - 26, W, 26);
+
+      /* IL PROMONTORIO DI GAETA a destra: Monte Orlando, la gobba che chiude il golfo.
+         È l'unica cosa alta dell'inquadratura, e sta lontana. */
+      for (let dx = 0; dx < W * 0.34; dx += 3) {
+        const t = dx / (W * 0.34);
+        const hh = H * 0.11 * Math.pow(Math.max(0, 1 - Math.pow(1 - t, 1.7)), 0.7);
+        ctx.fillStyle = `rgba(96,116,146,${0.50 + t * 0.16})`;
+        ctx.fillRect(W * 0.66 + dx, horiz - hh, 3, hh + 2);
+      }
+      // LE DUE SAGOME, all'orizzonte, a sinistra: dove stanno andando
+      for (let dx = -30; dx < 30; dx += 2) {
+        const hh = 4 * Math.pow(Math.max(0, 1 - (dx / 30) ** 2), 0.35);
+        ctx.fillStyle = 'rgba(126,144,172,.34)';
+        ctx.fillRect(W * 0.23 + dx, horiz - hh, 2, hh + 1);
+      }
+      for (let dx = -7; dx < 7; dx += 2) {
+        const hh = 5 * Math.pow(Math.max(0, 1 - (dx / 7) ** 2), 0.40);
+        ctx.fillStyle = 'rgba(126,144,172,.30)';
+        ctx.fillRect(W * 0.295 + dx, horiz - hh, 2, hh + 1);
+      }
+
+      // IL MARE: una lastra. Nessuna onda, solo tre righe di luce che non si muovono.
+      sea(ctx, W, horiz, spiaggiaY, '#7a94ac', '#4a6c8c', r, 8, 0.15);
+      for (let i = 0; i < 3; i++) {
+        const y = horiz + 8 + i * 13, lw = W * (0.34 + r() * 0.44);
+        ctx.fillStyle = `rgba(255,236,196,${0.16 - i * 0.04})`;
+        ctx.fillRect((r() * (W - lw)) | 0, y | 0, lw | 0, 2);
+      }
+      // la battigia, senza schiuma: non c'è vento
+      ctx.fillStyle = 'rgba(240,248,252,.24)'; ctx.fillRect(0, spiaggiaY - 3, W, 3);
+
+      // LA SABBIA SCURA di questo pezzo di Tirreno, e i sassolini
+      blocks(ctx, 0, spiaggiaY, W, stradaY - spiaggiaY, '#6b6055', 12, r, 0.10);
+      ctx.fillStyle = 'rgba(255,232,190,.10)'; ctx.fillRect(0, spiaggiaY, W, 5);
+      for (let i = 0; i < 150; i++) {
+        ctx.fillStyle = `rgba(${30 + r() * 40 | 0},${28 + r() * 34 | 0},${24 + r() * 30 | 0},.5)`;
+        ctx.fillRect(r() * W | 0, spiaggiaY + 4 + r() * (stradaY - spiaggiaY - 6) | 0, 2 + (r() * 2 | 0), 2);
+      }
+
+      /* I LIDI verso Gianola: le sdraio accatastate e LEGATE, gli ombrelloni chiusi
+         come pali. Vanno via in prospettiva, quindi rimpiccioliscono verso destra. */
+      for (let i = 0; i < 9; i++) {
+        const t = i / 8;
+        const px = W * 0.04 + t * W * 0.90, py = spiaggiaY + 10 + (1 - t) * 26;
+        const sc = 1.05 - t * 0.62;
+        // la pila di sdraio: quattro strati, e la cinghia che le tiene
+        for (let k = 0; k < 4; k++) {
+          ctx.fillStyle = k % 2 ? '#c8bca4' : '#b0a48c';
+          ctx.fillRect(px, py - k * 4 * sc, 30 * sc, 3 * sc);
+        }
+        ctx.fillStyle = 'rgba(40,34,26,.55)'; ctx.fillRect(px + 11 * sc, py - 15 * sc, 3 * sc, 18 * sc);
+        ctx.fillStyle = 'rgba(30,26,20,.26)'; pixelEllipse(ctx, px + 15 * sc, py + 4, 20 * sc, 4, 3);
+        // l'ombrellone chiuso, un palo con la punta
+        ctx.fillStyle = '#8a7c60'; ctx.fillRect(px + 34 * sc, py - 44 * sc, 3 * sc, 46 * sc);
+        ctx.fillStyle = '#6a8ea8'; ctx.fillRect(px + 32 * sc, py - 46 * sc, 7 * sc, 14 * sc);
+      }
+
+      // IL LUNGOMARE: il muretto, il marciapiede, l'asfalto
+      muretto(ctx, 0, stradaY - 12, W, 14, '#b8ac94', r);
+      blocks(ctx, 0, stradaY + 2, W, H - stradaY - 2, '#4e4a46', 14, r, 0.08);
+      ctx.fillStyle = 'rgba(255,248,224,.12)';
+      for (let x = 0; x < W; x += 46) ctx.fillRect(x, H - 12, 26, 3);   // la riga tratteggiata
+
+      /* LA MACCHINA parcheggiata come si parcheggia quando si parte per quattro
+         giorni: due ruote sul marciapiede, il portellone aperto. E in mezzo alla
+         strada il borsone che nessuno dei due ha deciso di caricare per primo. */
+      const cx2 = W * 0.13, cy2 = H - 16;
+      ctx.fillStyle = 'rgba(10,10,14,.34)'; pixelEllipse(ctx, cx2 + 42, cy2 + 3, 62, 7, 4);
+      ctx.fillStyle = '#2e3a44'; ctx.fillRect(cx2 - 24, cy2 - 34, 132, 30);
+      ctx.fillStyle = '#3e4c58'; ctx.fillRect(cx2 - 24, cy2 - 34, 132, 4);
+      ctx.fillStyle = '#8aa4b4'; ctx.fillRect(cx2 + 4, cy2 - 30, 44, 13);       // il lunotto
+      ctx.fillStyle = '#141a20'; pixelDisc(ctx, cx2 - 8, cy2 - 4, 9, 3); pixelDisc(ctx, cx2 + 86, cy2 - 4, 9, 3);
+      ctx.fillStyle = '#2e3a44'; ctx.fillRect(cx2 + 96, cy2 - 62, 26, 30);      // il portellone alzato
+      ctx.fillStyle = '#3e4c58'; ctx.fillRect(cx2 + 96, cy2 - 62, 26, 4);
+      ctx.fillStyle = '#e8d8a0'; ctx.fillRect(cx2 + 100, cy2 - 12, 8, 5);       // la luce del baule
+      const boX = W * 0.34;
+      ctx.fillStyle = 'rgba(10,10,14,.30)'; pixelEllipse(ctx, boX + 20, H - 9, 26, 5, 3);
+      ctx.fillStyle = '#5a4636'; ctx.fillRect(boX, H - 30, 42, 20);             // il borsone, in mezzo alla strada
+      ctx.fillStyle = '#6e5644'; ctx.fillRect(boX, H - 30, 42, 4);
+      ctx.fillStyle = '#3a2e24'; ctx.fillRect(boX + 12, H - 34, 18, 5);         // il manico
+
+      // il velo del bordo, come in tutte le altre
+      for (let i = 0; i < 4; i++) {
+        ctx.fillStyle = `rgba(8,10,16,${0.03 + i * 0.03})`;
+        ctx.fillRect(0, 0, W, 5 + i * 5); ctx.fillRect(0, H - 5 - i * 5, W, 5 + i * 5);
+        ctx.fillRect(0, 0, 7 + i * 6, H); ctx.fillRect(W - 7 - i * 6, 0, 7 + i * 6, H);
+      }
+    },
+
     alba(ctx, W, H) {
       // L'ALBA DAL MARE. È l'unico sfondo caldo del gioco, e il motore non ci mette
       // sopra il velo della profondità: qui si respira. Il sole che esce dall'acqua,
@@ -2849,8 +3058,8 @@ const Scenes = (() => {
       const horiz = H * 0.62;
       // IL SOLE che esce dall'acqua, appena a sinistra del centro
       const sx = W * 0.42;
-      glow(ctx, sx, horiz - 10, 140, 104, '255,196,110');
-      glow(ctx, sx, horiz - 8, 76, 58, '255,224,150');
+      glow(ctx, sx, horiz - 10, 62, 44, '255,196,110');
+      glow(ctx, sx, horiz - 8, 30, 22, '255,224,150');
       ctx.fillStyle = '#ffcc6c'; pixelDisc(ctx, sx, horiz - 4, 36, 4);
       ctx.fillStyle = '#fff2c0'; pixelDisc(ctx, sx, horiz - 4, 21, 4);
       // le nuvole basse, accese da sotto

@@ -199,8 +199,8 @@ const WORLD_MAP = [
    mappa. Se aggiungete una location, aggiungetela QUI nello stesso commit.   */
 
 const MAP_ZONE_BY_LOCATION = {
-  // il mare aperto, l'andata e il ritorno
-  traghetto: 'traversata', barca: 'traversata', alba: 'traversata',
+  // il mare aperto, l'andata e il ritorno — e Scauri, che è dove l'andata comincia
+  traghetto: 'traversata', barca: 'traversata', alba: 'traversata', scauri: 'traversata',
   // il porto romano, Cala Rossano, i pontili
   porto: 'porto', molo: 'porto',
   // il paese: Piazza Castello, la chiesa di Santa Candida, il museo, il forno

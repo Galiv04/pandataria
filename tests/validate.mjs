@@ -4,6 +4,7 @@
    sprite ben formati, raggiungibilità dei finali, sanità dei dadi, bilanciamento. */
 
 import { readFileSync } from 'fs';
+import { spawnSync } from 'child_process';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
@@ -900,6 +901,41 @@ function testFlagRichiestiMaiImpostati() {
   }
 }
 testFlagRichiestiMaiImpostati();
+
+/* ---------- il link a Pages nel README ----------
+   Regola del committente, 23 agosto 2026: «nei README delle varie repo ci deve
+   sempre essere il link a Pages, perché da mobile altrimenti non lo riesco a
+   trovare facilmente». Da telefono la scheda di una repo mostra il README e non
+   il pannello di destra: se il link non sta nelle prime righe, il gioco non si
+   raggiunge. Pandataria era il caso peggiore — linkava gli altri quattro giochi
+   e non sé stessa. Deve stare in alto, non solo esistere. */
+function testLinkPagesNelReadme() {
+  const REPO = 'pandataria';
+  let righe;
+  try { righe = readFileSync(join(root, 'README.md'), 'utf8').split('\n'); }
+  catch { fail('manca il README'); return; }
+  const atteso = `https://galiv04.github.io/${REPO}/`;
+  const dove = righe.findIndex(r => r.includes(atteso));
+  if (dove < 0) fail(`il README non contiene il link a Pages (${atteso})`);
+  else if (dove > 5) fail(`il link a Pages sta alla riga ${dove + 1} del README: da mobile `
+      + 'non si trova. Va nelle prime righe, subito sotto il titolo.');
+  else { ok(); console.log(`  ✔ link a Pages nel README, riga ${dove + 1}`); }
+}
+testLinkPagesNelReadme();
+
+/* ---------- il generato deve venire dai draft ----------
+   Regola della pipeline: js/campaign.js si RIGENERA, non si edita. Il 23 agosto
+   2026 questa regola era stata violata in silenzio — tre schede di oggetti
+   scritte a mano nel generato — e il primo assemble successivo le ha cancellate.
+   Un errore che non lascia traccia se nessuno guarda. Ora lo guarda questo. */
+function testGeneratoDaiDraft() {
+  const r = spawnSync(process.execPath, [join(root, 'tests/assemble.mjs'), '--check'],
+    { encoding: 'utf8', cwd: root });
+  if (r.status === 0) { ok(); console.log('  ✔ js/campaign.js corrisponde ai draft'); }
+  else fail('js/campaign.js non corrisponde ai draft (modificato a mano, o assemble non lanciato): '
+      + (r.stderr || r.stdout || '').trim().split('\n').slice(0, 2).join(' · '));
+}
+testGeneratoDaiDraft();
 
 /* ---------- esito ---------- */
 console.log('\n' + '═'.repeat(50));
