@@ -1128,6 +1128,9 @@ scenarios.push(scenario(
     d11_vuoto: 'Al tavolino in fondo alla piazza',
     d11_signora_ok: 'Ringraziarla',
     d11_signora_nome: 'Al porto',
+    // i due premi dei misteri: la promessa a Giulia e il nome della bambina
+    d8_giulia: 'Dirle dov\'è la sesta cisterna',
+    d12_bambina: 'Chiamarla per nome',
     // mistero 3 — il cavallino nella stiva a quarantacinque metri
     d13_fossa: 'Scendere col bombolino riparato',
     d13_stiva: 'Cinque secondi in più',

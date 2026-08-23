@@ -149,9 +149,6 @@ for (const scene of Object.values(CAMPAIGN)) {
 let flagProblems = 0;
 for (const [id, scene] of Object.entries(CAMPAIGN)) {
   for (const c of scene.choices || []) {
-    for (const fRef of [c.requires?.flag, c.requires?.flag2, c.requires?.notFlag]) {
-      if (fRef && !knownFlags.has(fRef) && !FLAG_DEL_MOTORE.has(fRef)) { fail(`scena "${id}": richiede flag mai impostato "${fRef}"`); flagProblems++; }
-    }
     for (const hRef of [c.requires?.hero, c.requires?.heroDead]) {
       if (hRef && !HEROES.some(h => h.id === hRef)) { fail(`scena "${id}": requires.hero inesistente "${hRef}"`); flagProblems++; }
     }
@@ -854,6 +851,55 @@ function testRetroOggetti() {
   else if (conLore.length) { ok(); console.log('  ✔ nessun aggettivo che fa il lavoro al posto del dettaglio'); }
 }
 testRetroOggetti();
+
+/* ---------- 46. scelte chiuse dietro un flag che nessuno imposta ----------
+   Trovato così (agosto 2026) un'intera scena di Corona — k_torvald, «da cuoco a cuoco»
+   con Monsieur Ragoût — chiusa dietro `torvald_presente`, un flag che nessuna scena e
+   nessun modulo impostava mai: scritta, testata, e invisibile a chiunque abbia giocato.
+   Il controllo guarda anche fuori da campaign.js, perché i premi dei misteri e delle
+   ricette sono flag impostati dai loro moduli. */
+function testFlagRichiestiMaiImpostati() {
+  console.log('\n▸ Scelte chiuse dietro flag inesistenti');
+  const impostati = new Set();
+  for (const s of Object.values(CAMPAIGN)) {
+    for (const f of Object.keys(s.sets || {})) impostati.add(f);
+    for (const c of (s.choices || [])) {
+      for (const f of Object.keys(c.sets || {})) impostati.add(f);
+      for (const f of Object.keys(c.sacrificeSets || {})) impostati.add(f);
+    }
+  }
+  if (typeof RECIPES !== 'undefined') for (const r of RECIPES) if (r.flag) impostati.add(r.flag);
+  if (typeof MISTERI !== 'undefined') for (const m of MISTERI) if (m.premio && m.premio.flag) impostati.add(m.premio.flag);
+  for (const f of ['js/misteri.js', 'js/crafting.js', 'js/engine.js', 'js/combat.js', 'js/minigames.js']) {
+    let src = '';
+    try { src = readFileSync(new URL('../' + f, import.meta.url), 'utf8'); } catch { continue; }
+    for (const m of src.matchAll(/G\.flags\[['"]([a-z0-9_]+)['"]\]\s*=/gi)) impostati.add(m[1]);
+  }
+  const morti = new Map(), inutili = new Map();
+  for (const [id, s] of Object.entries(CAMPAIGN)) for (const c of (s.choices || [])) {
+    const r = c.requires; if (!r) continue;
+    for (const f of [r.flag, r.flag2, ...(r.flagAny || [])]) {
+      if (!f || impostati.has(f)) continue;
+      if (!morti.has(f)) morti.set(f, []);
+      morti.get(f).push(id);
+    }
+    if (r.notFlag && !impostati.has(r.notFlag)) {
+      if (!inutili.has(r.notFlag)) inutili.set(r.notFlag, []);
+      inutili.get(r.notFlag).push(id);
+    }
+  }
+  if (morti.size) {
+    for (const [f, scene] of morti) {
+      fail(`flag "${f}" richiesto da una scelta ma MAI impostato da nessuna scena né da nessun modulo: `
+         + `contenuto irraggiungibile in ${scene.join(', ')}`);
+    }
+  } else { ok(); console.log('  ✔ ogni scelta condizionata può davvero comparire'); }
+  for (const [f, scene] of inutili) {
+    warn(`notFlag "${f}" non è mai impostato da nessuno: la condizione è sempre vera `
+       + `(intenzione morta in ${scene.join(', ')})`);
+  }
+}
+testFlagRichiestiMaiImpostati();
 
 /* ---------- esito ---------- */
 console.log('\n' + '═'.repeat(50));

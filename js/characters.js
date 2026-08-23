@@ -153,18 +153,16 @@ const BESTIARY = {
     attack: { name: 'Le parole giuste', bonus: 7, dice: [1, 8], plus: 1 },
     flavor: 'Ha la voce della persona con cui dormi. Dice le cose che dice lei, nell\'ordine in cui le dice lei, e ha ragione. È la cosa più difficile del gioco perché non vuoi che smetta di parlare.',
   },
-  polpo: {
-    name: 'Il Polpo della Peschiera', short: 'Il Polpo', sprite: 'polpo',
-    maxHp: 24, ac: 15, ai: 'weakest',
-    special: 'latch',
-    attack: { name: 'Otto braccia e un becco', bonus: 6, dice: [1, 8], plus: 2 },
-    flavor: 'Non c\'entra niente col Coro: è un animale, vive nella peschiera romana da anni, pesa quattordici chili e quella è CASA SUA. Onestamente, avete torto voi.',
-  },
+  /* Il POLPO è stato tolto dal bestiario di proposito. Questo gioco ha già un polpo:
+     quello di Cala Nave che guarda Claudia da un buco «con quell'occhio orizzontale e
+     decide che non vale la pena spostarsi», ed è uno dei momenti belli del 27 agosto.
+     Farne un mostro con «otto braccia e un becco» contraddiceva la sua scena migliore.
+     Una creatura che il gioco stesso smentisce si toglie, non si forza dentro. */
   murena: {
     name: 'La Murena del Relitto', short: 'Murena', sprite: 'murena',
     maxHp: 20, ac: 16, ai: 'random',
     special: 'evasive',
-    attack: { name: 'Morso che non lascia', bonus: 7, dice: [1, 10], plus: 1 },
+    attack: { name: 'Morso che non lascia', bonus: 7, dice: [1, 8], plus: 1 },
     flavor: 'Due metri, dentro la stiva della Santa Lucia da chissà quanto. I denti sono curvi all\'indietro: quello che entra non esce. Non ce l\'ha con voi. È che voi siete entrati in un tubo dove lei aspettava.',
   },
   sciame_voci: {

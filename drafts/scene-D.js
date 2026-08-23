@@ -1212,7 +1212,7 @@ Canta piano, con la faccia in su, e nell'aria aperta la sua voce arriva sottilis
 **(⚠️ Assuntina. Se avete la sua ninnananna, o se sapete il suo nome per intero, qui non c'è niente da combattere. Se non le avete, **rispondere** vi costa: questa cosa ha sei anni e non lo fa per cattiveria, e sarà peggio così.)**`,
     choices: [
       { text: '🎵 Cantarle la seconda strofa. Quella che nessuno le ha mai cantato', requires: { item: 'ninnananna' }, next: 'd12_dorme' },
-      { text: '🕯 Chiamarla per nome: "Assuntina". E dirle che la barca è arrivata', requires: { flag: 'sa_ninnananna' }, next: 'd12_nome' },
+      { text: '🕯 Chiamarla per nome: "Assuntina". E dirle che la barca è arrivata', requires: { flag: 'i_nome_lista' }, next: 'd12_nome' },
       { text: '🫂 Risponderle. Dirle la verità: "Abbiamo paura pure noi. Tantissima."', once: true, damage: 3, gold: 1, next: 'd12_boss' },
       { text: '🔦 Non avete niente da cantarle. Accendere la luce e prepararsi', goldLoss: 1, next: 'd12_boss' },
     ],
@@ -1407,9 +1407,47 @@ Il silenzio, quaggiù, è il modo che ha questa cosa per dirvi che ha smesso di 
     sets: { i_giocattolo: true },
     choices: [
       { text: '🐎 Risalire. Adesso. Senza guardare altro', next: 'd14_coro' },
-      { text: '🧳 Cinque secondi in più: leggere il nome sull\'etichetta di una valigia', once: true, damage: 4, sets: { nome_valigia: true }, next: 'd14_coro' },
+      { text: '🧳 Cinque secondi in più: leggere il nome sull\'etichetta di una valigia', once: true, damage: 4, sets: { nome_valigia: true }, next: 'd13_murena' },
       { text: '📿 Lasciare qui dentro qualcosa, al posto di quello che avete preso', requires: { item: 'medaglietta_giulia' }, once: true, removeItem: 'medaglietta_giulia', gold: 2, next: 'd14_coro' },
     ],
+  },
+
+  /* LA MURENA DEL RELITTO. Murena e Annegata erano due schede complete — sprite, attacchi,
+     e in combat.js perfino le due reazioni «se c'è Ciro contro la murena» e «se c'è Claudia
+     contro l'annegata» — che nessuna scena faceva comparire: anche quegli echi erano codice
+     morto. Lo scontro è il PREZZO dei cinque secondi in più nella stiva, non una tassa
+     casuale: chi risale subito non incontra niente. Danno 5,5 + 5,5 = 11 al round, metà dei
+     22 punti vita di Claudia, e subito dopo d14_coro cura di 12. */
+  d13_murena: {
+    location: 'relitto',
+    caption: 'Cinque secondi in più — meno quarantacinque metri',
+    stinger: 'pressione',
+    metri: 45,
+    text: `L'etichetta della valigia dice **SPINELLI ASSUNTA — NAPOLI**, e leggerla costa cinque secondi.
+
+Cinque secondi, a quarantacinque metri, sono un'unità di misura del corpo: il diaframma comincia a contrarsi da solo, non per volontà, e ogni contrazione è un promemoria che l'aria è finita da un po'.
+
+E in cinque secondi il relitto capisce che siete fermi.
+
+Dal passo d'uomo alla vostra sinistra — quello che prima era vuoto — esce **una murena**. Non a scatti: continua, come si sfila una corda da un buco, un metro e venti di muscolo grigioverde che non ha nessuna intenzione di spaventarvi. Le murene non spaventano: chiudono la bocca e non la riaprono.
+
+E dalla paratia in fondo, dove l'acqua è più scura, si stacca **una forma che ha la misura di una donna**. Cappottino. Le braccia lungo i fianchi. Viene verso di voi con la stessa calma con cui è stata ferma per ottantadue anni, e la calma è la cosa peggiore, perché vuol dire che non ha fretta e voi sì.
+
+> Gaetano: *(dentro l'erogatore, che trasforma tutto in un ringhio)* "RISALIRE."
+
+> Claudia: *(che ha già alzato il telefono come si alza uno scudo)* "Non ci lascia."
+
+E qui una cosa va detta adesso, perché dopo non ci sarà tempo: **quella donna non vi vuole fare del male.** Sta tenendo. Ha tenuto un corridoio, una cuccetta, una mano, per ottantadue anni, e nessuno le ha mai insegnato a lasciare — le hanno solo insegnato a tenere, sul molo, il 24 ottobre, dicendole di non mollare per nessun motivo. Ha obbedito.
+
+Quello che dovete rompere non è lei. È la presa.
+
+**(⚔️ Un metro e venti di murena, e una passeggera che non ha imparato a lasciare. Vincere qui vuol dire farsi lasciare andare: del male, a lei, l'hanno già fatto nel Quarantatré.)**`,
+    combat: {
+      enemies: ['murena', 'annegata'],
+      victory: 'd14_coro',
+      defeat: 'd9_ko',
+      loot: { gold: 2 },
+    },
   },
 
   d14_coro: {
