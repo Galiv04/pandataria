@@ -1,7 +1,7 @@
 /* ============ PERSONAGGI — Gaetano, Claudia, Ciro, e le voci ============
    Sistema della serie: caratteristiche come modificatori diretti, d20 + mod vs CD.
    PV = TENUTA 💪 · Valuta = FIATO 🫁 (G.gold, 0-20)
-   h.veleno = INCANTATO 🎵 (-2, e ti compaiono scelte che l'altro non vede)
+   h.veleno = ACQUA NEI POLMONI 🎵 (-2, e ti compaiono scelte che l'altro non vede)
    h.morto  = PRESO DAL CORO (morte vera: resta come VOCE; torna con l'Àncora di Voce)
    undead: true su un nemico = è una VOCE → prende danni doppi dalle armi della realtà
    (`holy`): il sale della sua stessa acqua, la luce vera, il nome che aveva da vivo. */

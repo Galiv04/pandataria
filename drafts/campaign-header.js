@@ -1,7 +1,7 @@
 /* ============ PANDATARIA — dati della campagna ============
    ITEMS · RECIPES (crafting) · MISTERI (il Quaderno) · CHECKPOINT_FLAGS
    Valuta: G.gold = FIATO 🫁 (0-20, cap in engine.js) — quanto sei disposto a scendere.
-   PV = TENUTA. h.veleno = INCANTATO 🎵. h.morto = PRESO DAL CORO.
+   PV = TENUTA. h.veleno = ACQUA NEI POLMONI 🎵. h.morto = PRESO DAL CORO.
    Armi della realtà (`holy`, danni DOPPI alle voci): il sale della loro acqua, la luce
    vera, il nome che avevano da vivi, il fuoco.
    Vedi docs/DESIGN.md — è la fonte unica.                                             */

@@ -1270,8 +1270,14 @@ section('Copertura totale della campagna');
   const E = game.api.Engine;
   const tuttiGliEroi = game.api.HEROES;
   game.act(() => E.newGame(tuttiGliEroi.filter(h => !h.locked).slice(0, 2).map(h => ({ heroId: h.id, player: '' }))));
-  const STATI = [{}, { veleno: true }, { down: true }, { preso: true }, { morto: true },
-                 { rimasto: true }, { veleno: true, down: true }, { veleno: true, morto: true }];
+  /* Solo gli stati che QUESTO motore conosce: cercare un blocco "Condizioni attive"
+     per uno stato che il gioco non ha mai sarebbe un test che chiede l'impossibile.
+     La lista si deduce dal codice del motore, non si scrive a memoria. */
+  const engineSrc = readFileSync(join(root, 'js/engine.js'), 'utf8');
+  const STATI_NOTI = ['veleno', 'down', 'preso', 'morto', 'rimasto']
+    .filter(s => new RegExp(`h\\.${s}\\b`).test(engineSrc) && new RegExp(`if \\(h\\.${s}\\) conditions\\.push`).test(engineSrc));
+  const STATI = [{}, ...STATI_NOTI.map(s => ({ [s]: true }))];
+  if (STATI_NOTI.length >= 2) STATI.push({ [STATI_NOTI[0]]: true, [STATI_NOTI[1]]: true });
   let rotte = 0, aperte = 0;
   for (const base of tuttiGliEroi) {
     for (const stato of STATI) {

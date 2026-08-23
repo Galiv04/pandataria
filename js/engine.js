@@ -324,7 +324,7 @@ const Engine = (() => {
             const box = $('modal-generic-content');
             box.innerHTML = `<h2>🫁 UN GIORNO IN MENO — Checkpoint</h2>
               <p style="font-size:20px;line-height:1.6;margin:10px 0">Al B&B Le Paracine, dentro i muretti a secco, per qualche ora non arriva niente: <b>TENUTA al massimo</b> e <b>mosse ricaricate</b>.<br>
-              <span style="color:var(--text-dim)">Le condizioni (🎵 INCANTATO, 🕸 trattenuto, 👻 preso) restano: quelle vogliono le loro cure.</span></p>
+              <span style="color:var(--text-dim)">Le condizioni (🎵 acqua nei polmoni, 🕸 trattenuto, 👻 preso) restano: quelle vogliono le loro cure.</span></p>
               <button class="btn btn-gold" onclick="document.getElementById('modal-generic').classList.add('hidden')">▶ Si continua</button>`;
             $('modal-generic').classList.remove('hidden');
             renderPartyBar('party-bar');
@@ -345,7 +345,7 @@ const Engine = (() => {
       }
       // le condizioni dell'isola: colpiscono chi ha appena tirato il dado
       if (scene.poisonRoller && G.lastRoller != null && G.party[G.lastRoller]) {
-        G.party[G.lastRoller].veleno = true; // INCANTATO: ha sentito il Coro troppo da vicino
+        G.party[G.lastRoller].veleno = true; // ACQUA NEI POLMONI: ha sentito il Coro troppo da vicino
       }
       if (scene.captureRoller && G.lastRoller != null && G.party[G.lastRoller]) {
         const attivi = G.party.filter(h => !h.preso && !h.down && !h.morto && !h.rimasto).length;
@@ -664,7 +664,7 @@ const Engine = (() => {
 
   function heroCheckMod(h, stat) {
     let m = h.stats[stat] || 0;
-    if (h.veleno) m -= 2; // INCANTATO: ha sentito il Coro troppo da vicino
+    if (h.veleno) m -= 2; // ACQUA NEI POLMONI: ha sentito il Coro troppo da vicino
     if (h.id === 'gaetano' && stat === 'INT') m += 2;
     if (h.id === 'claudia' && stat === 'SAG') m += 2;
     if (h.id === 'ciro' && stat === 'FOR') m += 2;   // trent'anni di rete tirata a mano
@@ -680,7 +680,7 @@ const Engine = (() => {
       const mod = heroCheckMod(h, check.stat);
       const b = document.createElement('button');
       b.className = 'choice-btn';
-      b.innerHTML = `${h.name}${h.veleno ? ' 🎵' : ''} <span class="choice-tag">${STAT_NAMES[check.stat]}: ${mod >= 0 ? '+' + mod : mod}${h.veleno ? ' (INCANTATO)' : ''}${h.player ? ' · giocato da ' + h.player : ''}</span>`;
+      b.innerHTML = `${h.name}${h.veleno ? ' 🎵' : ''} <span class="choice-tag">${STAT_NAMES[check.stat]}: ${mod >= 0 ? '+' + mod : mod}${h.veleno ? ' (ACQUA NEI POLMONI)' : ''}${h.player ? ' · giocato da ' + h.player : ''}</span>`;
       b.onclick = () => {
         G.lastRoller = hIdx;   // il Coro ricorda chi ha osato tirare
         $('modal-generic').classList.add('hidden');
@@ -757,10 +757,13 @@ const Engine = (() => {
        cioè la scheda del personaggio CRASHAVA a ogni click (trovato il 23
        ago 2026 guardando il gioco vero). */
       const conditions = [];
-    if (h.veleno) conditions.push(`<div class="ability-box" style="border-left:5px solid var(--red)"><span class="ability-name">🎵 INCANTATO</span><div class="ability-desc">Ha sentito il Coro troppo da vicino e adesso una nota gli resta in testa: <b>−2 a TUTTE le prove e agli attacchi</b>. E gli compaiono <b>scelte che l'altro non vede</b> — alcune sono buone, alcune non sono sue. Si cura col caffè del B&B, col grido di Ciro, o con l'altro che lo chiama per nome.</div></div>`);
+    if (h.veleno) conditions.push(`<div class="ability-box" style="border-left:5px solid var(--red)"><span class="ability-name">🎵 ACQUA NEI POLMONI</span><div class="ability-desc">Ha sentito il Coro troppo da vicino e adesso una nota gli resta in testa: <b>−2 a TUTTE le prove e agli attacchi</b>. E gli compaiono <b>scelte che l'altro non vede</b> — alcune sono buone, alcune non sono sue. Si cura col caffè del B&B, col grido di Ciro, o con l'altro che lo chiama per nome.</div></div>`);
     if (h.preso) conditions.push(`<div class="ability-box" style="border-left:5px solid var(--red)"><span class="ability-name">🕸 TRATTENUTO</span><div class="ability-desc">Qualcosa lo tiene e non lo lascia: fuori gioco finché non lo strappate via.</div></div>`);
     if (h.morto) conditions.push(`<div class="ability-box" style="border-left:5px solid var(--red)"><span class="ability-name">👻 PRESO DAL CORO</span><div class="ability-desc">Il Coro lo ha PRESO. Il corpo è ancora qui, il resto no: continua a camminare con voi ma quello che parla, adesso, canta. Non tira dadi, non combatte. Torna solo con l'<b>Àncora di Voce</b> — o nei due finali che se lo meritano.</div></div>`);
-    if (h.down) conditions.push(`<div class="ability-box" style="border-left:5px solid var(--red)"><span class="ability-name">💀 A TERRA</span><div class="ability-desc">Serve una cura per rialzarlo.</div></div>`);
+    if (h.down) conditions.push(`<div class="ability-box" style="border-left:5px solid var(--red)"><span class="ability-name">💀 A TERRA</span><div class="ability-desc">A zero punti vita: non agisce e non tira. Serve una cura o una pozione per rialzarlo, e in combattimento rialzarlo costa un turno a chi lo fa. A fine scontro vinto si rialza da solo, con 1 PV.</div></div>`);
+    /* RIMASTO non è morto, ed è la differenza su cui poggia il finale più bello del
+       gioco: chi resta ha SCELTO, respira, e gli epiloghi ne parlano al presente. */
+    if (h.rimasto) conditions.push(`<div class="ability-box" style="border-left:5px solid var(--green)"><span class="ability-name">🌊 È RIMASTO</span><div class="ability-desc"><b>Non è morto: ha scelto di restare.</b> Respira, mangia, dorme, e domani mattina alle sette scende a Cala Nave. Fuori dalla squadra e fuori dagli scontri — ma vivo, e di sua volontà. Non si "cura" e non si riporta indietro: si accetta.</div></div>`);
     const stats = Object.entries(h.stats).map(([k, v]) =>
       `<div class="stat-chip"><span class="stat-label">${k}</span><span class="stat-val">${v >= 0 ? '+' + v : v}</span></div>`).join('');
     const abilities = h.abilities.map(ab => {
