@@ -530,23 +530,55 @@ const Scenes = (() => {
       // tagliata a picco, i segni degli scalpelli, e gli alloggiamenti quadrati
       // per le travi a un metro dall'acqua. Alcuni, i più grandi, erano per le catene.
       const r = rng(seedOf('porto'));
-      skyGradient(ctx, W, H * 0.34, '#7ec0dc', '#cfe4ea', 8);
-      const waterY = H * 0.56, quayY = H * 0.80;
+      /* Riscritto dopo la verifica visiva su Pages (23 ago 2026): la parete di tufo
+         era un lastrone piatto che occupava mezza inquadratura, le case sul ciglio
+         restavano sepolte e i segni degli scalpelli non si vedevano. Adesso il cielo
+         corre in alto su tutta la larghezza, il ciglio si legge contro il cielo, e la
+         parete ha le facce verticali della cava e due nicchie scavate. */
+      skyGradient(ctx, W, H * 0.30, '#7ec0dc', '#cfe4ea', 8);
+      const waterY = H * 0.56, quayY = H * 0.80, cigli = H * 0.20;
       // il mare aperto che si vede fuori dalla cava, a destra
-      sea(ctx, W, H * 0.30, waterY, '#1d6a86', '#2a7e9a', r, 6, 0.6);
+      sea(ctx, W, H * 0.26, waterY, '#1d6a86', '#2a7e9a', r, 6, 0.6);
       // LA PARETE DI TUFO tagliata a picco: da sinistra fino a tre quarti
-      const cliffW = W * 0.74;
-      blocks(ctx, 0, H * 0.06, cliffW, waterY - H * 0.06, '#d0a860', 12, r, 0.12);
-      // il ciglio in alto, con la vegetazione secca e due case sul bordo
-      blocks(ctx, 0, H * 0.04, cliffW, 12, '#c09850', 10, r, 0.10);
-      sterpaglie(ctx, 0, H * 0.06, cliffW, '#8a8a52', r, 22);
-      house(ctx, W * 0.10, H * 0.06, 54, 34, '#e8d8b0', '#c07a58', r, false);
-      house(ctx, W * 0.30, H * 0.06, 44, 28, '#e0cca8', '#b06a50', r, false);
-      // i SEGNI DEGLI SCALPELLI: righe parallele a mezzo metro l'una dall'altra
-      for (let y = H * 0.12; y < waterY - 6; y += 13) {
-        ctx.fillStyle = 'rgba(120,88,44,.26)';
+      const cliffW = W * 0.70;
+      blocks(ctx, 0, cigli, cliffW, waterY - cigli, '#d0a860', 12, r, 0.12);
+      // LE FACCE DELLA CAVA: bande verticali di tono diverso, larghe come un uomo
+      // e sfalsate, perché il tufo non è stato tagliato tutto nello stesso giorno
+      let fx = 0;
+      while (fx < cliffW) {
+        const fw = 34 + (r() * 46 | 0);
+        const t = 0.90 + r() * 0.20;
+        ctx.fillStyle = shade('#d0a860', t);
+        ctx.fillRect(fx, cigli + (r() * 14 | 0), Math.min(fw, cliffW - fx), waterY - cigli);
+        // lo spigolo fra due facce: una riga d'ombra e una di luce
+        ctx.fillStyle = 'rgba(96,68,30,.30)'; ctx.fillRect(fx, cigli, 2, waterY - cigli);
+        ctx.fillStyle = 'rgba(255,240,198,.14)'; ctx.fillRect(fx + 2, cigli, 1, waterY - cigli);
+        fx += fw;
+      }
+      // IL CIGLIO, che adesso si vede contro il cielo: una riga di tufo chiaro,
+      // le sterpaglie secche e due case bianche sul bordo, come stanno davvero
+      ctx.fillStyle = '#e0bc78'; ctx.fillRect(0, cigli - 5, cliffW, 7);
+      ctx.fillStyle = 'rgba(255,246,214,.30)'; ctx.fillRect(0, cigli - 5, cliffW, 2);
+      sterpaglie(ctx, 0, cigli - 4, cliffW, '#8a8a52', r, 26);
+      house(ctx, W * 0.09, cigli - 6, 58, 38, '#f0e2bc', '#c07a58', r, false);
+      house(ctx, W * 0.31, cigli - 6, 46, 30, '#e8d4ae', '#b06a50', r, false);
+      house(ctx, W * 0.52, cigli - 6, 38, 24, '#e0cca8', '#a86048', r, false);
+      // LE NICCHIE scavate nella parete: due archi, uno pieno d'ombra
+      for (const nf of [0.16, 0.46]) {
+        const nx = cliffW * nf, ny = waterY - 96, nw = 52, nh = 74;
+        ctx.fillStyle = 'rgba(84,58,24,.42)'; ctx.fillRect(nx - 3, ny - 3, nw + 6, nh + 3);
+        ctx.fillStyle = '#8a6a34'; ctx.fillRect(nx, ny, nw, nh);
+        pixelEllipse(ctx, nx + nw / 2, ny, nw / 2, 16, 4);
+        ctx.fillStyle = '#4a3418'; ctx.fillRect(nx + 6, ny + 8, nw - 12, nh - 8);
+        pixelEllipse(ctx, nx + nw / 2, ny + 8, nw / 2 - 6, 12, 4);
+        ctx.fillStyle = '#120c06'; ctx.fillRect(nx + 12, ny + 20, nw - 24, nh - 20);
+      }
+      // i SEGNI DEGLI SCALPELLI: righe parallele a mezzo metro l'una dall'altra,
+      // e adesso si vedono davvero
+      for (let y = cigli + 10; y < waterY - 6; y += 12) {
+        ctx.fillStyle = 'rgba(104,72,28,.44)';
         ctx.fillRect(0, y, cliffW, 2);
-        ctx.fillStyle = 'rgba(255,236,190,.10)';
+        ctx.fillStyle = 'rgba(255,240,198,.22)';
         ctx.fillRect(0, y + 2, cliffW, 1);
       }
       // ombra alla base della parete, dove il tufo entra in acqua

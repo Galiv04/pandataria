@@ -276,29 +276,6 @@ const Main = (() => {
     const grid = $('char-grid');
     grid.innerHTML = '';
 
-    // gli eroi bloccati (Ciro) si VEDONO ma non si scelgono: la scheda resta leggibile
-    for (const h of HEROES.filter(x => x.locked)) {
-      const card = document.createElement('div');
-      card.className = 'char-card locked';
-      card.innerHTML = `
-        <div class="char-card-top">
-          <canvas width="72" height="72"></canvas>
-          <div>
-            <div class="char-name">${h.name} 🔒</div>
-            <div class="char-class">${h.class}</div>
-          </div>
-        </div>
-        <div class="char-tag">"${h.tagline}"</div>
-        <div class="char-card-btns">
-          <button class="btn btn-small" data-act="story">📜 Storia</button>
-          <button class="btn btn-small" disabled title="Si unisce il 29 agosto, se vi guadagnate la sua fiducia">🔒 Si unisce il 29 agosto</button>
-        </div>`;
-      const cv = card.querySelector('canvas');
-      Sprites.renderToCanvas(cv, Sprites.registry[h.sprite]);
-      card.querySelector('[data-act="story"]').onclick = e => { e.stopPropagation(); showCharDetail(h); };
-      grid.appendChild(card);
-    }
-
     for (const h of selectableHeroes()) {
       const card = document.createElement('div');
       card.className = 'char-card' + (selection[h.id].selected ? ' selected' : '');
@@ -337,6 +314,30 @@ const Main = (() => {
       }
       grid.appendChild(card);
     }
+
+    // gli eroi bloccati (Ciro) si VEDONO ma non si scelgono: la scheda resta leggibile
+    for (const h of HEROES.filter(x => x.locked)) {
+      const card = document.createElement('div');
+      card.className = 'char-card locked';
+      card.innerHTML = `
+        <div class="char-card-top">
+          <canvas width="72" height="72"></canvas>
+          <div>
+            <div class="char-name">${h.name} 🔒</div>
+            <div class="char-class">${h.class}</div>
+          </div>
+        </div>
+        <div class="char-tag">"${h.tagline}"</div>
+        <div class="char-card-btns">
+          <button class="btn btn-small" data-act="story">📜 Storia</button>
+          <button class="btn btn-small" disabled title="Si unisce il 29 agosto, se vi guadagnate la sua fiducia">🔒 Si unisce il 29 agosto</button>
+        </div>`;
+      const cv = card.querySelector('canvas');
+      Sprites.renderToCanvas(cv, Sprites.registry[h.sprite]);
+      card.querySelector('[data-act="story"]').onclick = e => { e.stopPropagation(); showCharDetail(h); };
+      grid.appendChild(card);
+    }
+
     updateSetupBar();
   }
 
