@@ -836,6 +836,10 @@ const Scenes = (() => {
       const facciate = [
         [0.00, 0.15, '#e8c878', '#b0603c'], [0.15, 0.13, '#e0a898', '#a85a48'],
         [0.28, 0.12, '#f0d898', '#b8704a'], [0.40, 0.10, '#d8b0a0', '#a05a4a'],
+        /* Questa mancava. Il filare arrivava a 0.50 e ripartiva da 0.62, e il
+           campanile che sta in mezzo è più stretto del vuoto: restava una fessura
+           nera alta mezza inquadratura, e sembrava un vicolo. */
+        [0.50, 0.125, '#e4cfa4', '#ac6a4a'],
         [0.62, 0.14, '#e8cc90', '#b06a44'], [0.76, 0.12, '#dcb4a4', '#a86050'],
         [0.88, 0.12, '#f0dca8', '#b87850'],
       ];
@@ -2121,6 +2125,15 @@ const Scenes = (() => {
       const gun = x => H * 0.50 + Math.pow(x / W, 0.7) * H * 0.10 - (x < W * 0.22 ? (W * 0.22 - x) * 0.16 : 0);
       for (let x = 0; x < W; x += 4) {
         const y = gun(x);
+        /* Il mare finisce a H*0.56 ma il capo di banda scende verso poppa fino a
+           H*0.60: fra i due restava una striscia di 292×9 che nessuno dipingeva, e
+           nel riquadro si vedeva nera. Qui il mare arriva fino alla barca, colonna
+           per colonna, che è l'unico modo di non lasciare fessure fra due profili
+           che non hanno la stessa forma. */
+        if (y > H * 0.56 - 1) {
+          ctx.fillStyle = '#1a5c80';
+          ctx.fillRect(x, H * 0.56 - 1, 4, y - H * 0.56 + 2);
+        }
         ctx.fillStyle = '#f0ecdc'; ctx.fillRect(x, y, 4, 9);                 // il bianco del capo di banda
         ctx.fillStyle = '#3a7290'; ctx.fillRect(x, y + 9, 4, 15);            // la fascia azzurra consumata
         ctx.fillStyle = '#2a5670'; ctx.fillRect(x, y + 22, 4, 5);
