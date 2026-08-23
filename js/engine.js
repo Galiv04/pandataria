@@ -860,7 +860,13 @@ const Engine = (() => {
     /* La PIETÀ: il Coro si consuma anche lui a rifarvi. Ogni ritorno gli toglie il 12%
        delle forze (fino a un terzo), così un gruppo troppo debole per uno scontro non
        resta chiuso lì per sempre. Vedi Combat.start(): legge G.pieta. */
-    G.pieta = Math.min(0.34, ritorni * 0.12);
+    /* Il conto che CONTA è per SCONTRO, non a vita: cadere più volte in punti
+       diversi di una storia lunga è normale. Quello che va scontato — e
+       sorvegliato — è rimbalzare sullo STESSO scontro. */
+    const _scontro = G.lastCombatSceneId || G.sceneId || '?';
+    G.stats.ritorniPerScontro = G.stats.ritorniPerScontro || {};
+    G.stats.ritorniPerScontro[_scontro] = (G.stats.ritorniPerScontro[_scontro] || 0) + 1;
+    G.pieta = Math.min(0.34, G.stats.ritorniPerScontro[_scontro] * 0.12);
 
     /* Si NAVIGA subito. La modale racconta, non decide: se il giocatore la chiude a
        caso (o la chiude un test), deve trovarsi in una scena valida e non sulla

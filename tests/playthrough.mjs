@@ -543,8 +543,12 @@ function runGame(scenario) {
       /* Se il gruppo rimbalza fra checkpoint e sconfitta, la partita non finisce mai:
          è un loop, non una partita difficile. Va scoperto qui, con un messaggio chiaro,
          invece di far girare la suite per minuti. */
-      if (G && G.stats && (G.stats.checkpointRitorni || 0) > 4) {
-        throw new Error(`LOOP DI CHECKPOINT: ${G.stats.checkpointRitorni} ritorni dallo stesso punto — il gruppo non è in grado di superare questo scontro e il gioco non offre una via d'uscita`);
+      {
+        const _perScontro = (G && G.stats && G.stats.ritorniPerScontro) || {};
+        const _peggio = Object.entries(_perScontro).sort((a, b) => b[1] - a[1])[0];
+        if (_peggio && _peggio[1] > 3) {
+          throw new Error(`LOOP DI CHECKPOINT: ${_peggio[1]} ritorni sullo STESSO scontro ("${_peggio[0]}") — il gruppo non lo supera e il gioco non offre una via d'uscita`);
+        }
       }
       const sceneId = G.sceneId;
       const scene = api.CAMPAIGN[sceneId];
