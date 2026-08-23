@@ -26,35 +26,49 @@ const ITEMS = {
   lenza: { name: 'Lenza a mano', desc: 'Cinquanta metri su un rocchetto di sughero, come si pescava prima dei mulinelli.', usable: false },
   amo_grande: { name: 'Amo da cernia', desc: 'Acciaio, curvo, grosso come un dito. Fa una brutta impressione anche fuori dall\'acqua.', usable: false },
   tappo_sughero: { name: 'Sughero da rete', desc: 'Galleggiante da rete da posta, consumato dal sale.', usable: false },
-  calce: { name: 'Sacchetto di calce', desc: 'Dal cantiere della strada per Punta Eolo. Calce viva: quella con cui si chiudevano le cose, una volta.', usable: false },
-  pietra_carcere: { name: 'Pietra di Santo Stefano', desc: 'Un pezzo di muro del panopticon, staccato dove era già staccato. Tufo e calce, e dentro qualcosa di scuro che non è muffa.', usable: false },
-  registratore: { name: 'Registratore a cassette', desc: 'Un Geloso a batterie, dalla casa di Ciro. Funziona. Ciro dice che è meglio se resta senza nastro.', usable: false },
+  calce: { name: 'Sacchetto di calce', desc: 'Dal cantiere della strada per Punta Eolo. Calce viva: quella con cui si chiudevano le cose, una volta.', usable: false,
+    lore: `Un sacchetto da cantiere. Ossido di calcio: sull'etichetta il simbolo del corrosivo e la scritta EVITARE IL CONTATTO CON GLI OCCHI.\n\nCon l'acqua fa una reazione che scalda, e il sacchetto diventa tiepido in mano. Con qualcosa di organico fa una reazione che non è il caso di descrivere e che, prima dei frigoriferi e dei sacchi di plastica, era il modo normale di chiudere una faccenda.\n\nSull'isola ce n'è dappertutto: nei muri, nelle cisterne, nel muro del panopticon che ha preso la forma delle dita. Non è un caso. È un posto dove le cose si chiudevano.` },
+  pietra_carcere: { name: 'Pietra di Santo Stefano', desc: 'Un pezzo di muro del panopticon, staccato dove era già staccato. Tufo e calce, e dentro qualcosa di scuro che non è muffa.', usable: false,
+    lore: `Tufo e calce, pesa come un mattone, e si è staccato da solo: l'avete solo raccolto.\n\nSulla faccia interna, quella che stava dentro il muro, ci sono dei segni. Non incisi: impressi. La calce fresca ha preso la forma di quello che le stava contro mentre asciugava, e quello che le stava contro erano dita.\n\nIl panopticon ha chiuso nel 1965. La calce di quel muro è del 1795.` },
+  registratore: { name: 'Registratore a cassette', desc: 'Un Geloso a batterie, dalla casa di Ciro. Funziona. Ciro dice che è meglio se resta senza nastro.', usable: false,
+    lore: `Un Geloso a quattro pile grandi, cinghia di finta pelle spellata sull'angolo. Ciro lo teneva nell'armadio con le lenzuola, avvolto in una federa.\n\nFunziona. Il motore fa un ronzio basso e il contagiri di plastica gira davvero. Il tasto REC è più duro degli altri: qualcuno l'ha premuto molte volte.\n\n«Meglio se resta senza nastro», dice Ciro. Non lo dice come una superstizione. Lo dice come si dice di non lasciare le forbici aperte in casa: una cosa pratica, imparata.` },
   nastro_1965: { name: 'Il nastro del 1965', desc: '⚠️ Una cassetta senza custodia, etichetta a penna: "2 SETT. \'65 — ULTIMA NOTTE — NON". La frase finisce lì. Ciro dice di non suonarlo. Ciro dice anche molte altre cose.', usable: false,
     lore: `L'etichetta dice: "2 SETT. '65 — ULTIMA NOTTE — NON".\n\nNon cosa? Non suonare. Non ascoltare. Non buttare. Non dimenticare. Chiunque l'abbia scritta si è fermato lì, e la cosa peggiore è che si è fermata di mano ferma: non è un tratto interrotto di fretta. È uno che ha deciso, a metà parola, che il resto era meglio non scriverlo.\n\nCiro l'ha tenuto in un cassetto per sessant'anni senza aprirlo. Quando ve lo dà non dice "custoditelo". Dice: "Adesso è vostro. Io non lo voglio più in casa."` },
   rum_di_ciro: { name: 'Rum di Ciro', desc: 'Bottiglia senza etichetta, 60 gradi buoni, dal fondo della barca. "Serve per il freddo, signò. E per le altre cose."', usable: true, heal: 6 },
   benzina: { name: 'Taniga di benzina', desc: 'Cinque litri per il fuoribordo. Nell\'acqua non serve a niente. Dentro una cella, invece.', usable: false },
   medaglietta_giulia: { name: 'Medaglietta romana', desc: 'Un disco di bronzo ossidato trovato nel tufo: un profilo di donna e tre lettere, IVL. Iulia. Pesa più di quanto dovrebbe.', usable: false,
     lore: `Un disco di bronzo, grande come una moneta da due euro, verde di ossido tranne dove qualcuno l'ha strofinato — di recente, e non siete stati voi.\n\nDa una parte un profilo di donna col naso importante e i capelli raccolti come si usava sotto Augusto. Dall'altra tre lettere incise a punta: IVL.\n\nIulia. Giulia.\n\nSe la tieni nel palmo chiuso per più di dieci secondi si SCALDA, e non è il calore della mano: è il verso opposto, come una cosa che si accorge di essere tenuta.` },
-  foto_bambina: { name: 'Foto dal museo', desc: 'La riproduzione di una foto del 1943: una bambina di sei anni sul molo di Napoli, cappottino buono, la mano nella mano di qualcuno tagliato via dall\'inquadratura. Sotto: "imbarco del 24.10".', usable: false },
-  lista_imbarco: { name: 'Lista d\'imbarco della Santa Lucia', desc: 'Fotocopia da un archivio: centoquarantasei nomi a macchina, e uno aggiunto a penna in fondo, in fretta. Quello a penna è di una bambina.', usable: false },
-  giocattolo: { name: 'Un cavallino di celluloide', desc: 'Recuperato dalla stiva del relitto a quarantacinque metri. Giallo, era. Una zampa manca. Ha fatto ottantadue anni sotto sale e ha ancora la faccia allegra.', usable: false },
-  anello_gaetano: { name: 'La fede di Gaetano', desc: 'Se la tolse in acqua nel 2019 e per miracolo la ritrovò. Da allora, in mare, la tiene al collo.', usable: false },
-  anello_claudia: { name: 'La fede di Claudia', desc: 'Identica all\'altra, mezza misura più piccola. Dentro, incisa, una data e due iniziali.', usable: false },
+  foto_bambina: { name: 'Foto dal museo', desc: 'La riproduzione di una foto del 1943: una bambina di sei anni sul molo di Napoli, cappottino buono, la mano nella mano di qualcuno tagliato via dall\'inquadratura. Sotto: "imbarco del 24.10".', usable: false,
+    lore: `La riproduzione costa due euro al museo e ha una cornice di cartone che non regge.\n\nLa bambina guarda l'obiettivo come guardavano i bambini nel 1943: seria, perché una macchina fotografica era una cosa importante. Il cappottino è buono, col collo di velluto. Qualcuno l'ha vestita bene per il viaggio.\n\nLa mano che tiene la sua entra da destra e finisce lì, tagliata dal bordo. È una mano d'uomo, con la fede. Nella lista d'imbarco della Santa Lucia c'è un solo cognome che compare due volte.` },
+  lista_imbarco: { name: 'Lista d\'imbarco della Santa Lucia', desc: 'Fotocopia da un archivio: centoquarantasei nomi a macchina, e uno aggiunto a penna in fondo, in fretta. Quello a penna è di una bambina.', usable: false,
+    lore: `Centoquarantasei nomi battuti a macchina, in colonna, con l'età accanto. La macchina aveva la «e» che batteva alta: si vede in tutta la pagina.\n\nPoi, in fondo, uno aggiunto a penna. Grafia diversa, inchiostro diverso, e la riga non è dritta perché chi scriveva teneva il foglio in mano e non sul tavolo. Sei anni.\n\nQualcuno l'ha imbarcata all'ultimo momento, e per farlo ha dovuto scrivere il suo nome su una lista già chiusa. È un gesto gentile. È il gesto più gentile di tutta questa storia, e ha ucciso una bambina.` },
+  giocattolo: { name: 'Un cavallino di celluloide', desc: 'Recuperato dalla stiva del relitto a quarantacinque metri. Giallo, era. Una zampa manca. Ha fatto ottantadue anni sotto sale e ha ancora la faccia allegra.', usable: false,
+    lore: `Celluloide gialla, otto centimetri, di quelli stampati in due metà e incollati sulla schiena: la giunta si vede ancora.\n\nLa zampa posteriore destra manca, e non si è rotta sotto: il moncone è liscio, consumato da una mano che lo teneva sempre nello stesso punto. Era già rotto quando è salito a bordo. Era il suo cavallino rotto, quello che ti porti perché è tuo.\n\nOttantadue anni a quarantacinque metri, e la faccia dipinta è ancora allegra. La celluloide non lo sa.` },
+  anello_gaetano: { name: 'La fede di Gaetano', desc: 'Se la tolse in acqua nel 2019 e per miracolo la ritrovò. Da allora, in mare, la tiene al collo.', usable: false,
+    lore: `Oro giallo, sottile, di quelli che non si notano. Dentro, una data.\n\nNel 2019 se l'è tolta in acqua per non perderla — che è la cosa più stupida che si possa fare — e l'ha ritrovata sul fondo, in un metro e mezzo di sabbia mossa, dopo quaranta minuti di apnee. Ne parla ancora come di una cosa capitata a un altro.\n\nDa allora, in mare, la tiene al collo insieme a quella di Claudia. Le due fedi sullo stesso filo fanno un rumore piccolo quando nuoti. Sotto i quindici metri quel rumore si sente ancora, e non dovrebbe: l'acqua non porta i suoni piccoli. Li porta il Coro, che ha imparato a fare anche quello.` },
+  anello_claudia: { name: 'La fede di Claudia', desc: 'Identica all\'altra, mezza misura più piccola. Dentro, incisa, una data e due iniziali.', usable: false,
+    lore: `Mezza misura più piccola, e più lucida: lei non la toglie mai, quindi si consuma uniforme.\n\nDentro, la stessa data e due iniziali. Le ha volute lei, contro il parere del negoziante, che diceva che su un anello così sottile l'incisione dopo qualche anno non si legge più. Si legge ancora.\n\nQuando Gaetano se la mette al collo con la sua, lei glielo lascia fare e non dice niente. Sa perché lo fa: perché se una delle due torna a riva, tornano tutte e due.` },
   caffe_paracine: { name: 'Il caffè delle Paracine', desc: 'Fatto con la moka della signora, bevuto in terrazza guardando Santo Stefano. Toglie la nota dalla testa: la cosa più concreta dell\'isola.', usable: true, heal: 8, cureVeleno: true },
   taralli: { name: 'Taralli', desc: 'Comprati al forno del paese, sacchetto di carta unto. Il cibo vero è un\'arma della realtà, e questi sono molto veri.', usable: true, heal: 5 },
   telo_mare: { name: 'Telo da mare', desc: 'A righe, gigante, di quelli che si portano in due. Asciuga, scalda, e serve per una cosa a cui nessuno ha pensato.', usable: false },
-  maschera_buona: { name: 'La maschera buona (per due)', desc: 'Gaetano ne ha comprate DUE, identiche, e non l\'ha detto. Vetro temperato, silicone morbido. Vedere bene, sotto, cambia tutto — in tutti e due i sensi.', usable: false },
+  maschera_buona: { name: 'La maschera buona (per due)', desc: 'Gaetano ne ha comprate DUE, identiche, e non l\'ha detto. Vetro temperato, silicone morbido. Vedere bene, sotto, cambia tutto — in tutti e due i sensi.', usable: false,
+    lore: `Vetro temperato singolo, silicone trasparente, volume interno piccolo per compensare in fretta. Le ha comprate a Formia mentre lei era al bar. Due identiche. Non l'ha detto.\n\nNon l'ha detto perché dirlo era ammettere che pensava che sarebbe scesa. E pensarlo, a febbraio, mentre prenoti quattro giorni di vacanza, è una cosa che non si dice ad alta voce a una persona che ha paura dell'acqua profonda da quando ha sei anni.\n\nLe ha prese uguali per un'altra ragione. Sotto, con la maschera buona, si vede la faccia dell'altro. E se scendi con qualcuno, sapere che faccia sta facendo è la sola informazione che conta.` },
 
   /* --- risultati del crafting --- */
   torcia_da_casco: { name: 'Torcia da casco', desc: 'La torcia fasciata al cinturino della maschera con tre giri di nastro. Mani libere. Serve per la fossa: laggiù, con una mano occupata, non si torna su.', usable: false },
   idrofono: { name: 'Idrofono artigianale', desc: 'Microfono a clip sigillato in un preservativo, calato su una prolunga. Si fa DAVVERO così. Sente le voci e dà loro una coordinata: al Coro, essere localizzato fa male.', combat: { dice: [2, 6], distract: true, distractText: ' — la voce si sente MISURATA, e per un attimo non sa più dove stare!' }, icon: '🎙' },
-  idrofono_profondo: { name: 'Idrofono profondo', desc: 'L\'idrofono su venticinque metri di cavo, con la resina sui contatti. Arriva a sentire il relitto. Sentirlo è brutto, ma è l\'unico modo di sapere.', usable: false },
-  occhio_lungo: { name: 'L\'occhio lungo', desc: 'GoPro all\'asta telescopica, nastro e resina. Guardi dentro senza entrare — dentro le cisterne sigillate, dentro le celle, dentro le cose.', usable: false },
+  idrofono_profondo: { name: 'Idrofono profondo', desc: 'L\'idrofono su venticinque metri di cavo, con la resina sui contatti. Arriva a sentire il relitto. Sentirlo è brutto, ma è l\'unico modo di sapere.', usable: false,
+    lore: `Venticinque metri di prolunga, un microfono a clip dentro un preservativo, resina epossidica sui contatti. Costo totale: undici euro e cinquanta. Funziona meglio di quanto sia decente.\n\nA dieci metri si sente il mare. A venti si sente il mare e qualcosa sotto il mare. A venticinque, che è tutto il cavo, si sente il relitto: il ferro che si muove di un millimetro all'anno e fa un suono da millimetro.\n\nE dentro quel suono, le altre cose. L'idrofono non le aggiunge: le porta su. È una differenza importante, e conviene ricordarla quando viene voglia di dare la colpa all'attrezzo.` },
+  occhio_lungo: { name: 'L\'occhio lungo', desc: 'GoPro all\'asta telescopica, nastro e resina. Guardi dentro senza entrare — dentro le cisterne sigillate, dentro le celle, dentro le cose.', usable: false,
+    lore: `Un'asta da selfie da quattro euro, allungata a due metri e dieci, con la GoPro legata in punta da tre giri di nastro isolante e una colata di resina che ha preso male e resterà appiccicosa per sempre.\n\nServe a guardare dentro senza entrare: dentro una cisterna murata, dentro una cella, dentro un buco nel tufo. Registra e non ha paura, che sono le sue due qualità.\n\nC'è una regola, imparata la prima volta: il video si guarda DOPO, alla luce, in due. Chi lo guarda da solo sullo schermino, sul posto, vede meno di quello che c'è. E a volte vede più.` },
   coltello_da_cintura: { name: 'Coltello da cintura', desc: 'Coltellino annegato nella resina dentro un pezzo di tubo, legato alla cintura. In acqua non lo perdi. In acqua, perdere il coltello è come perdere la mano.', combat: { dice: [1, 8] }, icon: '🔪' },
   salamoia: { name: 'Salamoia di Pandataria', desc: 'Sale di questo mare disciolto nell\'acqua della cisterna. Alle voci fa un male atroce: è la loro stessa acqua, ma CONCENTRATA — la cosa che sono state senza il resto.', combat: { dice: [2, 8], holy: true }, icon: '🧂' },
-  bombola_riparata: { name: 'Bombolino riparato', desc: 'Rubinetto nuovo, guarnizione di fortuna, tre litri a duecento bar. Non è un\'immersione: sono quattro minuti. Ma quattro minuti, laggiù, sono un\'era.', usable: false },
-  collana_di_giulia: { name: 'La collana di Giulia', desc: 'La medaglietta IVL appesa al filo di nylon, al collo. Chi la porta viene RICONOSCIUTO: Giulia non tocca chi porta il suo nome. Una volta.', usable: false },
-  la_voce_del_65: { name: 'La voce del \'65', desc: '⚠️ Il registratore col nastro dentro, pronto a partire. Fa sentire al Coro la voce di una guardia che piangeva. È l\'arma migliore che avete. È anche la cosa che vi ha fregato.', combat: { all: true, distract: true, dice: [2, 6], distractText: ' — sente la voce del \'65 e si FERMA: quella voce la conosce!' }, icon: '📻' },
+  bombola_riparata: { name: 'Bombolino riparato', desc: 'Rubinetto nuovo, guarnizione di fortuna, tre litri a duecento bar. Non è un\'immersione: sono quattro minuti. Ma quattro minuti, laggiù, sono un\'era.', usable: false,
+    lore: `Tre litri, duecento bar, un rubinetto nuovo da quindici euro e una guarnizione ricavata da un tappo di sughero e dalla resina. Tiene. Non dovrebbe, e tiene.\n\nQuattro minuti. È tutto quello che c'è dentro: quattro minuti a venticinque metri se respiri come si deve, due se hai paura, e la paura consuma aria a una velocità che non si crede finché non si guarda il manometro.\n\nL'affare vero non è l'aria. È che con l'erogatore in bocca non puoi urlare, e a un certo punto ti verrà voglia di urlare. A quel momento ci si prepara adesso, o non ci si prepara.` },
+  collana_di_giulia: { name: 'La collana di Giulia', desc: 'La medaglietta IVL appesa al filo di nylon, al collo. Chi la porta viene RICONOSCIUTO: Giulia non tocca chi porta il suo nome. Una volta.', usable: false,
+    lore: `Filo di nylon da pesca, 0,40, due nodi doppi. Il bronzo ci sta appeso al centro e batte sullo sterno a ogni bracciata.\n\nAl collo la medaglietta si comporta diversamente che in tasca: non si scalda. Sta fredda, esattamente della temperatura dell'acqua, anche quando l'acqua è a ventidue gradi e tu no.\n\nGiulia Maggiore ha passato cinque anni su questo scoglio, poi l'hanno spostata a Reggio, e nel 14 dopo Cristo l'hanno lasciata morire di fame. Sua madre Scribonia l'aveva seguita in esilio per scelta propria. Giulia non tocca chi porta il suo nome. Una volta. Che cosa fa la seconda, non lo sa nessuno: nessuno è stato tanto scemo da chiederglielo due volte.` },
+  la_voce_del_65: { name: 'La voce del \'65', desc: '⚠️ Il registratore col nastro dentro, pronto a partire. Fa sentire al Coro la voce di una guardia che piangeva. È l\'arma migliore che avete. È anche la cosa che vi ha fregato.', combat: { all: true, distract: true, dice: [2, 6], distractText: ' — sente la voce del \'65 e si FERMA: quella voce la conosce!' }, icon: '📻',
+    lore: `Il nastro è dentro, riavvolto, e il contagiri segna 000. Non è così che l'avete trovato.\n\nDura quattro minuti e diciotto. Per i primi tre non c'è niente: la stanza, una sedia che si muove, il mare fuori. Poi un uomo comincia a parlare, e non sta parlando a nessuno. Sta dicendo i numeri delle celle, uno dopo l'altro, e piange senza smettere di dire i numeri.\n\nAl Coro questa voce fa male perché è una delle sue. È l'unica volta che uno di loro ha detto la verità con la propria bocca, di sua volontà, sapendo che qualcuno l'avrebbe sentito. Non l'hanno perdonato. Non l'hanno perdonato ancora.` },
   palamito: { name: 'Palamito', desc: 'Lenza, amo da cernia, sughero. Si cala e si aspetta. Serve a tirare su qualcosa dal fondo senza scendere — che a volte è saggio e a volte è peggio.', usable: false },
   stucco: { name: 'Stucco di calce e tufo', desc: 'Calce viva impastata con la pietra macinata del carcere. Con questo si CHIUDE una bocca: è così che i romani hanno sigillato quattro cisterne.', usable: false },
   molotov_di_ciro: { name: 'La bottiglia di Ciro', desc: 'Rum a 60 gradi, benzina, e uno straccio del telo. Sott\'acqua non serve a niente. In una cella di due metri per tre, invece, è la fine di una conversazione.', combat: { dice: [3, 6], holy: true }, icon: '🔥' },
@@ -5081,7 +5095,7 @@ Claudia si è fermata a quattro metri dal muro. Gaetano un passo davanti a lei.
 **(⚠️ La voce più antica del Coro, e la più chiara. C'è un modo di passare senza combattere, e passa per il suo NOME o per una cosa che lei riconosce. Se non ce l'avete, resta la verità — e la verità, con Giulia, è un tiro di dado.)**`,
     choices: [
       { text: '📿 Tirare fuori la collana e appoggiarla al muro: il suo nome, portato al collo', requires: { item: 'collana_di_giulia' }, next: 'd8_evitata' },
-      { text: '🧱 Dirle dov\'è la sesta cisterna, e che la chiuderete voi', requires: { flag: 'sa_sesta_cisterna' }, next: 'd8_evitata' },
+      { text: '🧱 Dirle dov\'è la sesta cisterna, e che la chiuderete voi', requires: { flag: 'sa_sesta_cisterna' }, next: 'd8_promessa' },
       { text: '🗣 Risponderle. La verità, tutta, con rispetto, guardando il muro', tag: 'Prova di Carisma — CD 14', check: { stat: 'CAR', dc: 14, success: 'd8_evitata', fail: 'd8_boss', failDamage: 3 } },
       { text: '🤐 Non dirle niente. Il silenzio: l\'unica cosa che nessuno le ha mai fatto', goldLoss: 1, next: 'd8_boss' },
     ],
@@ -5115,6 +5129,94 @@ E allora Giulia urla, e l'urlo di Giulia fa cadere il cocciopesto dalle volte in
       loot: { gold: 2, items: ['medaglietta_giulia'] },
     },
     choices: [],
+  },
+
+  /* La promessa a Giulia ha la SUA scena: prima finiva in d8_evitata, che è scritta per
+     chi le appoggia la collana al muro. Chi le prometteva di chiudere la sesta cisterna
+     si ritrovava in un dialogo su una collana che non aveva mostrato. */
+  d8_promessa: {
+    location: 'cisterna_sigillata',
+    caption: 'La promessa — ore 12:20',
+    stinger: 'sigillo',
+    gold: 2, heal: 4,
+    sets: { giulia_risparmia: true, sa_di_marisa: true, promesso_a_giulia: true },
+    text: `Gaetano parla al muro come si parla a un ufficio: piano, in ordine, coi numeri.
+
+Dice che sono sei. Dice che due si visitano col biglietto e quattro sono murate. Dice che la sesta non è murata, è **sotto**, e che ci si arriva dalla fossa a quarantacinque metri. Dice l'ora del traghetto di domenica. Dice che prima di quell'ora la chiuderanno.
+
+La calce non vibra più. Il silenzio dura abbastanza da diventare imbarazzante.
+
+> Giulia: "A me le promesse le hanno fatte in latino."
+
+> Gaetano: "Lo immagino."
+
+> Giulia: "Mio padre mi ha promesso che sarebbe stato per poco. Il senato mi ha promesso una revisione. Il capitano che mi ha portata qui mi ha promesso che tornava a settembre." *(pausa)* "Sai qual è la differenza fra le loro promesse e la tua?"
+
+> Gaetano: "No."
+
+> Giulia: "La tua ha un numero dentro. Quarantacinque metri. E un'ora: le diciassette e trenta di domenica." *(e la voce si abbassa di un tono, e diventa una cosa più vecchia e più stanca)* "Le promesse vere hanno l'orario. Quelle false hanno gli aggettivi."
+
+Un rumore lungo dietro il muro: qualcosa che si sposta di lato. Non si apre niente. Semplicemente, la pressione che c'era sul petto di tutti e due non c'è più.
+
+> Giulia: "Passate. E siccome mi hai dato un'ora, te ne do una io: quella piccola che canta, in fondo, non chiama nessuno. Ha paura e non lo sa dire. L'ultima che le ha risposto stava a quarantacinque metri e faceva la maestra di nuoto."
+
+> Claudia: "Come si chiamava?"
+
+> Giulia: "Marisa. Nel novantasette." *(pausa)* "Sbrigatevi. Le promesse con l'orario dentro hanno un difetto: l'orario passa."
+
+**(🫁 Fiato +2, 💪 TENUTA +4. Giulia vi risparmia perché le avete dato una data invece di una speranza. E vi ha detto il nome di Marisa, 1997.)**`,
+    choices: [
+      { text: '🧱 Misurare il muro: quanti blocchi, quanto spesso', next: 'd9_traghetto', sets: { muro_misurato: true } },
+      { text: '⚓ Fuori. Sono le dodici e mezza e il traghetto parte domenica', next: 'd9_traghetto' },
+    ],
+  },
+
+  /* Il nome della bambina ha la SUA scena. Prima questa scelta finiva in d12_dorme, dove
+     Claudia CANTA: chi la chiamava per nome non sentiva mai pronunciare il nome. */
+  d12_nome: {
+    location: 'barca',
+    caption: 'Assuntina — ore 11:52',
+    stinger: 'sigillo',
+    metri: 0,
+    gold: 3, heal: 6,
+    sets: { assuntina_dorme: true, chiamata_per_nome: true },
+    text: `Claudia si sporge sul pagliolo, verso l'acqua, e non canta.
+
+Dice un nome.
+
+> Claudia: "Assuntina."
+
+Non succede niente per due secondi interi. Poi l'acqua sotto la barca fa una cosa che l'acqua non fa: si liscia. Non si calma — si **liscia**, come un lenzuolo tirato dai piedi del letto, e per un attimo si vede il fondo che non si dovrebbe vedere da qui.
+
+> Claudia: "Assuntina, la barca è arrivata."
+
+Il nome era su una lista d'imbarco, aggiunto a penna in fondo, con la riga storta perché chi scriveva teneva il foglio in mano. Centoquarantasettesimo di centoquarantasei. Dopo quel foglio nessuno l'ha più scritto, e in ottantadue anni nessuno l'ha più detto ad alta voce: sul molo la chiamavano, in mare la contavano, e da allora è stata «la bambina».
+
+> La bambina: *(e la voce arriva da vicinissimo, dal bordo, non dal fondo)* "Chi t'ha ditto comme me chiammo?"
+
+> Claudia: "Tua madre. L'ha scritto su un foglio, all'ultimo momento, per portarti con sé."
+
+> La bambina: "E la barca?"
+
+> Claudia: "È questa. È in ritardo di ottantadue anni. Mi dispiace."
+
+Una mano si appoggia al bordo di legno — piccola, con le unghie da bambina che ha giocato con la sabbia — e non stringe. Si appoggia soltanto, come si fa quando si sale su una barca aiutati da qualcuno.
+
+> La bambina: "Aggio fatto tarde?"
+
+> Claudia: "No. Sei arrivata giusta."
+
+Poi il legno è libero, l'acqua smette di essere liscia, e sotto la barca non c'è più nessuno che chiama.
+
+> Gaetano: *(che ha registrato tutto e non se n'è accorto)* "Il Coro ha perso metà della voce."
+
+> Claudia: "Ha perso quella che teneva il tempo. Aveva sei anni e reggeva tutto."
+
+**(🫁 Fiato +3, 💪 TENUTA +6. Assuntina non chiama più: qualcuno ha detto il suo nome. In fondo alla fossa sanno che state arrivando e non hanno più nessuno che tenga il ritmo.)**`,
+    choices: [
+      { text: '🌊 Vestirsi. Bombolino, torcia, coltello, cima. Si scende', next: 'd13_fossa' },
+      { text: '🫂 Restare seduti sul pagliolo, tutti e due, per il tempo di un respiro', next: 'd13_fossa' },
+    ],
   },
 
   d8_evitata: {
@@ -5622,7 +5724,7 @@ Canta piano, con la faccia in su, e nell'aria aperta la sua voce arriva sottilis
 **(⚠️ Assuntina. Se avete la sua ninnananna, o se sapete il suo nome per intero, qui non c'è niente da combattere. Se non le avete, **rispondere** vi costa: questa cosa ha sei anni e non lo fa per cattiveria, e sarà peggio così.)**`,
     choices: [
       { text: '🎵 Cantarle la seconda strofa. Quella che nessuno le ha mai cantato', requires: { item: 'ninnananna' }, next: 'd12_dorme' },
-      { text: '🕯 Chiamarla per nome: "Assuntina". E dirle che la barca è arrivata', requires: { flag: 'sa_ninnananna' }, next: 'd12_dorme' },
+      { text: '🕯 Chiamarla per nome: "Assuntina". E dirle che la barca è arrivata', requires: { flag: 'sa_ninnananna' }, next: 'd12_nome' },
       { text: '🫂 Risponderle. Dirle la verità: "Abbiamo paura pure noi. Tantissima."', once: true, damage: 3, gold: 1, next: 'd12_boss' },
       { text: '🔦 Non avete niente da cantarle. Accendere la luce e prepararsi', goldLoss: 1, next: 'd12_boss' },
     ],

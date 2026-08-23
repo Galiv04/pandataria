@@ -583,7 +583,7 @@ Claudia si è fermata a quattro metri dal muro. Gaetano un passo davanti a lei.
 **(⚠️ La voce più antica del Coro, e la più chiara. C'è un modo di passare senza combattere, e passa per il suo NOME o per una cosa che lei riconosce. Se non ce l'avete, resta la verità — e la verità, con Giulia, è un tiro di dado.)**`,
     choices: [
       { text: '📿 Tirare fuori la collana e appoggiarla al muro: il suo nome, portato al collo', requires: { item: 'collana_di_giulia' }, next: 'd8_evitata' },
-      { text: '🧱 Dirle dov\'è la sesta cisterna, e che la chiuderete voi', requires: { flag: 'sa_sesta_cisterna' }, next: 'd8_evitata' },
+      { text: '🧱 Dirle dov\'è la sesta cisterna, e che la chiuderete voi', requires: { flag: 'sa_sesta_cisterna' }, next: 'd8_promessa' },
       { text: '🗣 Risponderle. La verità, tutta, con rispetto, guardando il muro', tag: 'Prova di Carisma — CD 14', check: { stat: 'CAR', dc: 14, success: 'd8_evitata', fail: 'd8_boss', failDamage: 3 } },
       { text: '🤐 Non dirle niente. Il silenzio: l\'unica cosa che nessuno le ha mai fatto', goldLoss: 1, next: 'd8_boss' },
     ],
@@ -617,6 +617,94 @@ E allora Giulia urla, e l'urlo di Giulia fa cadere il cocciopesto dalle volte in
       loot: { gold: 2, items: ['medaglietta_giulia'] },
     },
     choices: [],
+  },
+
+  /* La promessa a Giulia ha la SUA scena: prima finiva in d8_evitata, che è scritta per
+     chi le appoggia la collana al muro. Chi le prometteva di chiudere la sesta cisterna
+     si ritrovava in un dialogo su una collana che non aveva mostrato. */
+  d8_promessa: {
+    location: 'cisterna_sigillata',
+    caption: 'La promessa — ore 12:20',
+    stinger: 'sigillo',
+    gold: 2, heal: 4,
+    sets: { giulia_risparmia: true, sa_di_marisa: true, promesso_a_giulia: true },
+    text: `Gaetano parla al muro come si parla a un ufficio: piano, in ordine, coi numeri.
+
+Dice che sono sei. Dice che due si visitano col biglietto e quattro sono murate. Dice che la sesta non è murata, è **sotto**, e che ci si arriva dalla fossa a quarantacinque metri. Dice l'ora del traghetto di domenica. Dice che prima di quell'ora la chiuderanno.
+
+La calce non vibra più. Il silenzio dura abbastanza da diventare imbarazzante.
+
+> Giulia: "A me le promesse le hanno fatte in latino."
+
+> Gaetano: "Lo immagino."
+
+> Giulia: "Mio padre mi ha promesso che sarebbe stato per poco. Il senato mi ha promesso una revisione. Il capitano che mi ha portata qui mi ha promesso che tornava a settembre." *(pausa)* "Sai qual è la differenza fra le loro promesse e la tua?"
+
+> Gaetano: "No."
+
+> Giulia: "La tua ha un numero dentro. Quarantacinque metri. E un'ora: le diciassette e trenta di domenica." *(e la voce si abbassa di un tono, e diventa una cosa più vecchia e più stanca)* "Le promesse vere hanno l'orario. Quelle false hanno gli aggettivi."
+
+Un rumore lungo dietro il muro: qualcosa che si sposta di lato. Non si apre niente. Semplicemente, la pressione che c'era sul petto di tutti e due non c'è più.
+
+> Giulia: "Passate. E siccome mi hai dato un'ora, te ne do una io: quella piccola che canta, in fondo, non chiama nessuno. Ha paura e non lo sa dire. L'ultima che le ha risposto stava a quarantacinque metri e faceva la maestra di nuoto."
+
+> Claudia: "Come si chiamava?"
+
+> Giulia: "Marisa. Nel novantasette." *(pausa)* "Sbrigatevi. Le promesse con l'orario dentro hanno un difetto: l'orario passa."
+
+**(🫁 Fiato +2, 💪 TENUTA +4. Giulia vi risparmia perché le avete dato una data invece di una speranza. E vi ha detto il nome di Marisa, 1997.)**`,
+    choices: [
+      { text: '🧱 Misurare il muro: quanti blocchi, quanto spesso', next: 'd9_traghetto', sets: { muro_misurato: true } },
+      { text: '⚓ Fuori. Sono le dodici e mezza e il traghetto parte domenica', next: 'd9_traghetto' },
+    ],
+  },
+
+  /* Il nome della bambina ha la SUA scena. Prima questa scelta finiva in d12_dorme, dove
+     Claudia CANTA: chi la chiamava per nome non sentiva mai pronunciare il nome. */
+  d12_nome: {
+    location: 'barca',
+    caption: 'Assuntina — ore 11:52',
+    stinger: 'sigillo',
+    metri: 0,
+    gold: 3, heal: 6,
+    sets: { assuntina_dorme: true, chiamata_per_nome: true },
+    text: `Claudia si sporge sul pagliolo, verso l'acqua, e non canta.
+
+Dice un nome.
+
+> Claudia: "Assuntina."
+
+Non succede niente per due secondi interi. Poi l'acqua sotto la barca fa una cosa che l'acqua non fa: si liscia. Non si calma — si **liscia**, come un lenzuolo tirato dai piedi del letto, e per un attimo si vede il fondo che non si dovrebbe vedere da qui.
+
+> Claudia: "Assuntina, la barca è arrivata."
+
+Il nome era su una lista d'imbarco, aggiunto a penna in fondo, con la riga storta perché chi scriveva teneva il foglio in mano. Centoquarantasettesimo di centoquarantasei. Dopo quel foglio nessuno l'ha più scritto, e in ottantadue anni nessuno l'ha più detto ad alta voce: sul molo la chiamavano, in mare la contavano, e da allora è stata «la bambina».
+
+> La bambina: *(e la voce arriva da vicinissimo, dal bordo, non dal fondo)* "Chi t'ha ditto comme me chiammo?"
+
+> Claudia: "Tua madre. L'ha scritto su un foglio, all'ultimo momento, per portarti con sé."
+
+> La bambina: "E la barca?"
+
+> Claudia: "È questa. È in ritardo di ottantadue anni. Mi dispiace."
+
+Una mano si appoggia al bordo di legno — piccola, con le unghie da bambina che ha giocato con la sabbia — e non stringe. Si appoggia soltanto, come si fa quando si sale su una barca aiutati da qualcuno.
+
+> La bambina: "Aggio fatto tarde?"
+
+> Claudia: "No. Sei arrivata giusta."
+
+Poi il legno è libero, l'acqua smette di essere liscia, e sotto la barca non c'è più nessuno che chiama.
+
+> Gaetano: *(che ha registrato tutto e non se n'è accorto)* "Il Coro ha perso metà della voce."
+
+> Claudia: "Ha perso quella che teneva il tempo. Aveva sei anni e reggeva tutto."
+
+**(🫁 Fiato +3, 💪 TENUTA +6. Assuntina non chiama più: qualcuno ha detto il suo nome. In fondo alla fossa sanno che state arrivando e non hanno più nessuno che tenga il ritmo.)**`,
+    choices: [
+      { text: '🌊 Vestirsi. Bombolino, torcia, coltello, cima. Si scende', next: 'd13_fossa' },
+      { text: '🫂 Restare seduti sul pagliolo, tutti e due, per il tempo di un respiro', next: 'd13_fossa' },
+    ],
   },
 
   d8_evitata: {
@@ -1124,7 +1212,7 @@ Canta piano, con la faccia in su, e nell'aria aperta la sua voce arriva sottilis
 **(⚠️ Assuntina. Se avete la sua ninnananna, o se sapete il suo nome per intero, qui non c'è niente da combattere. Se non le avete, **rispondere** vi costa: questa cosa ha sei anni e non lo fa per cattiveria, e sarà peggio così.)**`,
     choices: [
       { text: '🎵 Cantarle la seconda strofa. Quella che nessuno le ha mai cantato', requires: { item: 'ninnananna' }, next: 'd12_dorme' },
-      { text: '🕯 Chiamarla per nome: "Assuntina". E dirle che la barca è arrivata', requires: { flag: 'sa_ninnananna' }, next: 'd12_dorme' },
+      { text: '🕯 Chiamarla per nome: "Assuntina". E dirle che la barca è arrivata', requires: { flag: 'sa_ninnananna' }, next: 'd12_nome' },
       { text: '🫂 Risponderle. Dirle la verità: "Abbiamo paura pure noi. Tantissima."', once: true, damage: 3, gold: 1, next: 'd12_boss' },
       { text: '🔦 Non avete niente da cantarle. Accendere la luce e prepararsi', goldLoss: 1, next: 'd12_boss' },
     ],
