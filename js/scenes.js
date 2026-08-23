@@ -930,11 +930,7 @@ const Scenes = (() => {
         ctx.fillStyle = '#4a7a48';
         for (let k = 0; k < 12; k++) pixelEllipse(ctx, r() * W, ly - 18 + r() * 16, 6, 4, 3);
       }
-      // la scaletta di parracine che sale da un livello all'altro, a destra
-      for (let i = 0; i < 9; i++) {
-        ctx.fillStyle = '#cfb078'; ctx.fillRect(W * 0.90, H * 0.44 + i * 12, 88 - i, 8);
-        ctx.fillStyle = 'rgba(90,70,34,.30)'; ctx.fillRect(W * 0.90, H * 0.44 + i * 12 + 8, 88 - i, 4);
-      }
+      // (la scaletta a destra si disegna in fondo al painter, sopra i livelli di terra)
       // LA CASA: bassa, tufo giallo, finestre verdi, tetto piano, sul livello alto
       const hx = W * 0.05, hw = W * 0.32, hy = H * 0.16, hh = H * 0.30;
       ctx.fillStyle = 'rgba(70,54,26,.24)'; ctx.fillRect(hx + 8, hy + hh - 4, hw, 10);
@@ -992,26 +988,52 @@ const Scenes = (() => {
         pixelDisc(ctx, px2 + (i % 2 ? 9 : -8), H * 0.53 + (i % 3) * 11, 5, 3);
         pixelDisc(ctx, px2 - 6, H * 0.59, 4, 3);
       }
-      // IL BASILICO nel bidone di latta tagliato a metà
-      ctx.fillStyle = '#5a7a8a'; ctx.fillRect(W * 0.855, H * 0.53, 46, 30);
-      ctx.fillStyle = '#48687a'; ctx.fillRect(W * 0.855, H * 0.53, 46, 5);
-      ctx.fillStyle = '#3a5464'; ctx.fillRect(W * 0.855, H * 0.53 + 12, 46, 3);
+      /* IL BASILICO nel bidone di latta tagliato a metà. Spostato a sinistra: stava
+         a W*0.855, cioè esattamente sopra la scaletta, e il parapetto gli passava
+         dietro come un palo — sullo schermo era una fioriera in cima a un bastone. */
+      const bidX = W * 0.795;
+      ctx.fillStyle = '#5a7a8a'; ctx.fillRect(bidX, H * 0.53, 46, 30);
+      ctx.fillStyle = '#48687a'; ctx.fillRect(bidX, H * 0.53, 46, 5);
+      ctx.fillStyle = '#3a5464'; ctx.fillRect(bidX, H * 0.53 + 12, 46, 3);
       ctx.fillStyle = '#4a8a48';
-      for (let k = 0; k < 9; k++) pixelEllipse(ctx, W * 0.858 + 6 + k * 5, H * 0.52 - (k % 4) * 5, 7, 5, 3);
-      // IL TAVOLINO DI FERRO con la moka da sei e le tazzine, e TRE sedie di
-      // plastica: la terza la tira su Ada dal muretto.
+      for (let k = 0; k < 9; k++) pixelEllipse(ctx, bidX + 9 + k * 5, H * 0.52 - (k % 4) * 5, 7, 5, 3);
+      /* IL TAVOLINO DI FERRO con la moka da sei e le tazzine, e TRE sedie di
+         plastica: la terza la tira su Ada dal muretto.
+         Rifatto il 23 agosto 2026 dopo averlo guardato a tre volte il vero: in mezzo
+         al tavolo c'era un monumento. Due errori sovrapposti — la terza sedia era
+         disegnata DOPO il tavolo (quindi davanti, non dietro) e proprio all'altezza
+         della moka, così spalliera + caffettiera + tazzine si fondevano in un unico
+         piedistallo chiaro; e la moka era un parallelepipedo grigio 18×30, un terzo
+         del tavolo, senza vita. Ordine giusto: la sedia di fondo, poi il tavolo che la
+         copre, poi le due davanti. E la moka ha la sua sagoma. */
       const tx = W * 0.26, ty = H * 0.86;
+      // la sedia di fondo, spostata di lato: dietro il tavolo e fuori dall'asse della moka
+      {
+        const sx = tx - W * 0.042, syy = ty - H * 0.075;
+        ctx.fillStyle = '#d4d0c4'; ctx.fillRect(sx - 15, syy + 8, 30, 6);
+        ctx.fillStyle = '#c0bcb0'; ctx.fillRect(sx - 15, syy - 26, 26, 6);
+        ctx.fillRect(sx - 15, syy - 26, 5, 34);
+        ctx.fillStyle = '#aca89c'; ctx.fillRect(sx - 12, syy + 14, 5, 26); ctx.fillRect(sx + 8, syy + 14, 5, 26);
+      }
       ctx.fillStyle = 'rgba(70,54,26,.26)'; pixelEllipse(ctx, tx, ty + 42, 52, 10, 4);
       ctx.fillStyle = '#3a4a46'; ctx.fillRect(tx - 40, ty, 80, 7);
       ctx.fillStyle = '#4a5a54'; ctx.fillRect(tx - 40, ty - 2, 80, 3);
       ctx.fillStyle = '#2e3a36'; ctx.fillRect(tx - 5, ty + 7, 10, 34); ctx.fillRect(tx - 20, ty + 41, 40, 5);
-      ctx.fillStyle = '#9a9aa0'; ctx.fillRect(tx - 9, ty - 20, 18, 20);      // la moka da sei
-      ctx.fillStyle = '#74747c'; ctx.fillRect(tx - 7, ty - 29, 14, 10);
-      ctx.fillStyle = '#2a2a2e'; ctx.fillRect(tx + 9, ty - 25, 8, 4);
+      /* LA MOKA DA SEI: caldaia ottagonale che si stringe alla vita, bricco più
+         stretto, coperchio col pomello, manico nero. Alta 21, larga 13 in basso. */
+      ctx.fillStyle = '#8e8e96'; ctx.fillRect(tx - 7, ty - 9, 13, 9);        // caldaia
+      ctx.fillStyle = '#a6a6ae'; ctx.fillRect(tx - 7, ty - 9, 3, 9);         // lo spigolo in luce
+      ctx.fillStyle = '#5e5e66'; ctx.fillRect(tx - 7, ty - 11, 13, 2);       // la vita, in ombra
+      ctx.fillStyle = '#9a9aa2'; ctx.fillRect(tx - 5, ty - 19, 10, 8);       // bricco
+      ctx.fillStyle = '#b0b0b8'; ctx.fillRect(tx - 5, ty - 19, 2, 8);
+      ctx.fillStyle = '#6e6e76'; ctx.fillRect(tx - 6, ty - 21, 12, 2);       // coperchio
+      ctx.fillStyle = '#c8c8d0'; ctx.fillRect(tx - 1, ty - 23, 2, 2);        // il pomello
+      ctx.fillStyle = '#26262a'; ctx.fillRect(tx + 6, ty - 18, 6, 3);        // il manico
+      ctx.fillRect(tx + 10, ty - 15, 2, 5);
       ctx.fillStyle = '#f4f0e4'; ctx.fillRect(tx - 30, ty - 9, 11, 9); ctx.fillRect(tx + 18, ty - 9, 11, 9);
       ctx.fillStyle = '#6a4a2a'; ctx.fillRect(tx - 28, ty - 7, 7, 3); ctx.fillRect(tx + 20, ty - 7, 7, 3);
-      for (const [sfx, sy0] of [[-0.085, 0], [0.085, 0], [0.0, -0.055]]) {
-        const sx = tx + W * sfx, syy = ty + H * sy0;
+      for (const sfx of [-0.085, 0.085]) {
+        const sx = tx + W * sfx, syy = ty;
         ctx.fillStyle = '#e0dcd0'; ctx.fillRect(sx - 16, syy + 8, 32, 6);
         ctx.fillRect(sx + (sfx < 0 ? -16 : 10), syy - 28, 6, 38);
         ctx.fillStyle = '#ccc8bc'; ctx.fillRect(sx - 16 + (sfx < 0 ? 0 : 4), syy - 28, 28, 6);
@@ -1022,21 +1044,37 @@ const Scenes = (() => {
          dettaglio vero di questo posto — la spiaggia sta sotto, a una rampa di distanza
          — ed è anche la ragione per cui questo rifugio confina col mare profondo.
          Disegnati QUI, dopo i livelli di terra: prima li coprivano e non si vedevano. */
+      /* Secondo giro, 23 agosto 2026, guardando il bordo destro a tre volte il vero.
+         Due errori, e il secondo era grosso.
+         Uno: non leggevano come gradini che scendono ma come MENSOLE appoggiate al
+         muro — barre tutte della stessa lunghezza e della stessa luce, senza alzata in
+         ombra e senza niente che dicesse "questi vanno via".
+         Due: in quell'angolo c'erano DUE scale sovrapposte. Una c'era già («la
+         scaletta di parracine che sale da un livello all'altro»), e a febbraio le ho
+         affiancato quella per Cala Nave senza accorgermene: si incrociavano per
+         quaranta pixel. Adesso è una sola rampa — quella vera del posto, che dal
+         cancello alto scende di livello in livello e poi se ne va giù alla cala — coi
+         gradini che si accorciano e si spengono (è così che si fa la profondità, non
+         col colore), il parapetto in muratura vera, e il buco d'ombra dove svolta. */
       {
-        const gx0 = W * 0.90, gy0 = H * 0.62;
-        for (let k = 0; k < 9; k++) {
-          const gx = gx0 - k * 2, gy = gy0 + k * 7;
-          if (gy > H - 6) break;
-          ctx.fillStyle = k % 2 ? '#b8a074' : '#cdb689';
-          ctx.fillRect(gx, gy, W - gx, 5);
-          ctx.fillStyle = 'rgba(58,46,30,.40)';
-          ctx.fillRect(gx, gy + 5, W - gx, 2);
-          ctx.fillStyle = 'rgba(255,236,190,.16)';          // il filo di luce sul bordo del gradino
+        const gx0 = W * 0.87, gy0 = H * 0.44, nG = 17, passo = 9;
+        muretto(ctx, gx0 - 15, gy0 - 10, 13, H - gy0 + 10, '#c4a870', r);
+        let ky = 0;
+        for (let k = 0; k < nG; k++) {
+          const gx = gx0 + k * 5, gy = gy0 + k * passo;
+          if (gy > H - 9) break;
+          ky = gy;
+          const sc = 1 - k * 0.042;                            // scendono all'ombra del ciglio
+          ctx.fillStyle = shade(k % 2 ? '#b8a074' : '#cdb689', sc);
+          ctx.fillRect(gx, gy, W - gx, 6);
+          ctx.fillStyle = `rgba(34,28,18,${0.32 + k * 0.020})`;  // l'alzata: è lei che fa lo scalino
+          ctx.fillRect(gx, gy + 6, W - gx, 3);
+          ctx.fillStyle = `rgba(255,236,190,${0.18 * sc})`;      // il filo di luce sullo spigolo
           ctx.fillRect(gx, gy, W - gx, 1);
         }
-        // il muretto che accompagna la rampa, e il buco nero dove la rampa svolta
-        ctx.fillStyle = 'rgba(96,80,52,.55)'; ctx.fillRect(gx0 - 20, gy0 - 4, 5, H - gy0);
-        ctx.fillStyle = 'rgba(14,20,18,.5)'; ctx.fillRect(gx0 - 16, gy0 + 58, 16, 8);
+        // il buco d'ombra dove la rampa svolta e se ne va sotto il ciglio
+        ctx.fillStyle = 'rgba(10,16,14,.55)';
+        ctx.fillRect(gx0 - 2, ky + 9, 26, H - ky - 9);
       }
 
     },
