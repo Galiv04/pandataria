@@ -1152,6 +1152,17 @@ scenarios.push(scenario(
     },
   },
 ));
+/* ---- LA CAPPELLA AL CENTRO DEL PANOPTICON (c4_conta, minigioco della memoria): dal
+   centro si sceglie una sola direzione, e tutti gli scenari andavano al secondo anello
+   verso la cella 47. Questo va nella cappella. In coda alla lista: i semi sono un
+   contatore progressivo. ---- */
+scenarios.push(scenario(
+  'la cappella al centro: quale porta ha fatto clac (minigioco della memoria)',
+  ['gaetano', 'claudia'],
+  { c3: 'Scendere nella cappella' },
+  { seed: 606003 },
+));
+
 
 /* ==================== ESECUZIONE ==================== */
 
