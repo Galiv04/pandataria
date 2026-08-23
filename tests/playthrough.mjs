@@ -32,7 +32,7 @@ const root = join(__dirname, '..');
 const FILES = [
   'js/sound.js', 'js/sprites.js', 'js/scenes.js', 'js/characters.js', 'js/campaign.js',
   'js/epilogues.js', 'js/rules.js', 'js/dice.js', 'js/combat.js', 'js/minigames.js',
-  'js/crafting.js', 'js/misteri.js', 'js/engine.js',
+  'js/crafting.js', 'js/misteri.js', 'js/luoghi.js', 'js/engine.js',
 ];
 const SOURCES = FILES.map(f => ({ name: f, code: readFileSync(join(root, f), 'utf8') }));
 
@@ -191,7 +191,7 @@ const scriptCache = SOURCES.map(s => ({ name: s.name, script: new vm.Script(s.co
 const scriptGetG = new vm.Script('(typeof G !== "undefined" ? G : null)');
 let itemsRef = null;   // popolato da buildGame: serve a checkInvariants
 const itemiIgnotiVisti = new Set();   // un oggetto sconosciuto si segnala UNA volta, non a ogni passo
-const scriptGetApi = new vm.Script('({Engine, Combat, Dice, HEROES, BESTIARY, ITEMS, CAMPAIGN, CAMPAIGN_START, CHAPTERS, WORLD_MAP, Crafting, Misteri, RECIPES, MISTERI, CHECKPOINT_FLAGS})');
+const scriptGetApi = new vm.Script('({Engine, Combat, Dice, HEROES, BESTIARY, ITEMS, CAMPAIGN, CAMPAIGN_START, CHAPTERS, WORLD_MAP, Crafting, Misteri, RECIPES, MISTERI, CHECKPOINT_FLAGS, Luoghi})');
 
 function makeTimers() {
   let seq = 0;
@@ -1346,6 +1346,14 @@ section('Copertura totale della campagna');
     if (typeof E[nome] !== 'function') continue;
     try { game.act(() => E[nome]()); aperte++; }
     catch (e) { fail(`${nome}() esplode: ${(e && e.message) || e}`); rotte++; }
+  }
+  /* LE SCHEDE DEI LUOGHI (il pulsante 🔎). Ventuno template che disegnano elenchi:
+     una scheda malformata si vede solo aprendola. Si aprono tutte. */
+  if (game.api.Luoghi) {
+    for (const k of Object.keys(game.api.Luoghi.LUOGHI)) {
+      try { game.act(() => game.api.Luoghi.apri(k, 'prova')); aperte++; }
+      catch (e) { fail(`la scheda del luogo "${k}" esplode: ${(e && e.message) || e}`); rotte++; }
+    }
   }
   /* il retro degli oggetti: template a sé, e con quarantadue testi dietro */
   if (typeof E.inspectItem === 'function') {
