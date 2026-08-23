@@ -2373,7 +2373,23 @@ Il gioco vi lascia guardare questa scena per tutto il tempo che volete, perché 
 
 Qui, nel **2 avanti Cristo**, Augusto ha relegato **sua figlia**. Giulia maggiore, l'unica figlia che aveva, con l'accusa di adulterio — che era il capo d'accusa quando il capo d'accusa vero era politico. Aveva trentasette anni e cinque figli, e non li ha più visti.
 
-Della villa restano: una piattaforma di opus reticolatum sul precipizio, i resti di un ninfeo, il taglio delle vasche nella roccia, e un panorama che ti spacca in due. Da qui si vede Santo Stefano intero, con il carcere in cima come un anello di pietra.
+Della villa restano: una piattaforma di opus reticolatum sul precipizio, i resti di un ninfeo, il taglio delle vasche nella roccia, e un panorama che ti spacca in due. Trecento metri per cento, tutta girata a est — perché il sole di qui, quello che conta, è quello del mattino.
+
+E poi c'è la peschiera, che è la cosa che Gaetano ha letto tre volte prima di crederci. Non una vasca: un impianto. Scavata nella roccia, collegata al mare da canali, con un bacino grande diviso in due da un muretto che una volta aveva le **paratoie** — si apriva e si chiudeva — e dentro gli scomparti per tenere i pesci divisi per taglia. E ai lati due vasche **coperte**, dentro due stanze a volta, che guardano il bacino grande da dietro.
+
+> Claudia: "Coperte perché?"
+
+> Gaetano: "Perché al buio i pesci stanno più tranquilli e crescono meglio." *(pausa)* "E c'è un'altra cosa. Nella cisterna della villa avevano messo un dispositivo per **muovere** l'acqua."
+
+> Claudia: "Muoverla."
+
+> Gaetano: "Per ossigenarla. Acqua ferma va a male: si scalda, si chiude, muore. Loro l'hanno capito duemila anni prima di noi e hanno costruito un aggeggio perché in quella cisterna l'acqua non stesse mai ferma."
+
+Claudia si guarda intorno: la piattaforma, le vasche tagliate nel tufo, la peschiera con i canali murati dal tempo.
+
+> Claudia: "E adesso?"
+
+> Gaetano: "Adesso è tutta ferma. Da qui si vede Santo Stefano intero, con il carcere in cima come un anello di pietra.
 
 È rimasta su questo scoglio **cinque anni**, con la madre che l'aveva seguita per non lasciarla sola, senza vino, senza visite e senza uno specchio, sorvegliata da uomini che suo padre pagava. Poi l'hanno spostata in Calabria, dove è morta di fame in una stanza, e Augusto ha messo per iscritto una cosa sola: che le sue ossa **non entrassero nel Mausoleo di famiglia**.
 
@@ -3713,7 +3729,27 @@ E dentro il portone c'è la cosa.
 
 **Il ferro di cavallo.** Novantanove celle su tre piani, disposte a semicerchio intorno a un pozzo vuoto, e in mezzo al pozzo una cappella tonda col tetto crollato. Le porte delle celle non guardano il corridoio: guardano **il centro**. Tutte. Tutte alla stessa distanza dal centro, tutte inclinate dello stesso angolo, tutte con lo spioncino alla stessa altezza da terra.
 
-Costruito nel 1797 da cento deportati in due anni. Chiuso il **2 settembre 1965**, "perché inutilmente duro".
+Cominciato nel 1795 per volere di Ferdinando IV, finito nel 1797, tirato su da cento deportati in due anni. Chiuso il **2 settembre 1965**, "perché inutilmente duro".
+
+Le celle erano di quattro metri e mezzo per quattro e venti. Poi, a un certo punto, le hanno **divise in due** per farci stare il doppio delle persone.
+
+> Gaetano: *(che ha letto anche questa e la dice piano)* "E c'è un'altra cosa. La pianta di questo posto è sovrapponibile a quella del **Teatro San Carlo** di Napoli."
+
+> Claudia: "In che senso sovrapponibile."
+
+> Gaetano: "Nel senso che se prendi la pianta del teatro e la metti sopra questa, combaciano. Stessa curva, stessi ordini di palchi." *(pausa)* "L'hanno fatto apposta. Il posto da cui si guarda è il palco reale."
+
+Claudia si gira verso la cappella tonda in mezzo al pozzo. Poi verso le celle. Poi di nuovo verso la cappella, e fa il conto che chiunque farebbe.
+
+> Claudia: "Quindi novantanove palchi."
+
+> Gaetano: "Novantanove palchi."
+
+> Claudia: "E uno spettatore solo."
+
+> Gaetano: "Uno."
+
+> Claudia: *(e lo dice con la calma di una che di mestiere decide come si guardano le cose)* "E lo spettacolo chi lo faceva, Gaetà?" 
 
 > Gaetano: *(e parla come parla quando ha bisogno di trasformare una cosa in un dato)* "Panopticon. Bentham. L'idea è che una guardia sola, dalla cappella, veda dentro tutte le celle contemporaneamente — e che i detenuti non vedano lei. Il punto non è la sorveglianza: è che tu non sai *quando*. Quindi ti comporti come se fosse sempre."
 

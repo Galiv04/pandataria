@@ -1058,19 +1058,19 @@ const Scenes = (() => {
          baia. Prua bassa, fianco lungo, la cintura nera delle patelle sul pelo
          dell'acqua e due gabbiani sopra. Nel quadro non c'era, e senza di lui questa
          non era Cala Nave: era una cala qualunque. */
-      const scX = W * 0.885, scY = rigaY + 4;
-      ctx.fillStyle = 'rgba(10,28,38,.45)'; pixelEllipse(ctx, scX, scY + 9, 62, 8, 3);
-      for (let dx = -60; dx < 62; dx += 3) {
-        const t = dx / 60;
+      const scX = W * 0.175, scY = rigaY + 4;
+      ctx.fillStyle = 'rgba(10,28,38,.45)'; pixelEllipse(ctx, scX, scY + 9, 50, 8, 3);
+      for (let dx = -48; dx < 50; dx += 3) {
+        const t = dx / 48;
         // profilo asimmetrico: la prua a sinistra è più bassa, la poppa più alta
-        const hh = 30 * Math.pow(Math.max(0, 1 - t * t), 0.46) * (t < 0 ? 0.72 : 1.0) + Math.sin(dx * 0.09) * 2;
-        ctx.fillStyle = '#8e7a52';
+        const hh = 26 * Math.pow(Math.max(0, 1 - t * t), 0.46) * (t < 0 ? 0.70 : 1.0) + Math.sin(dx * 0.09) * 2;
+        ctx.fillStyle = '#a9997a';
         ctx.fillRect(scX + dx, scY - hh, 3, hh + 6);
         ctx.fillStyle = 'rgba(255,206,150,.30)';                      // il sole basso sul fianco
         ctx.fillRect(scX + dx, scY - hh, 3, 2);
         if (dx % 9 === 0) { ctx.fillStyle = 'rgba(46,36,26,.55)'; ctx.fillRect(scX + dx, scY + 2, 3, 4); }  // patelle
       }
-      ctx.fillStyle = '#e8e4dc'; ctx.fillRect(scX - 12, scY - 33, 3, 2); ctx.fillRect(scX + 16, scY - 29, 3, 2);   // due gabbiani
+      ctx.fillStyle = '#e8e4dc'; ctx.fillRect(scX - 10, scY - 29, 3, 2); ctx.fillRect(scX + 13, scY - 25, 3, 2);   // due gabbiani
 
       // LA BOA GIALLA, a sessanta metri, appena oltre la riga: calda di sole e
       // scivolosa di alghe
@@ -1239,24 +1239,35 @@ const Scenes = (() => {
       // LA COSA FREDDA: in mezzo al campo di luci gialle, una luce che non è
       // gialla — è bianco-azzurra, ed è SOTTO la linea dell'acqua.
       const cx = W * 0.66, cy = horiz + H * 0.10;
-      glow(ctx, cx, cy, 40, 26, '150,196,214');
-      ctx.fillStyle = '#a8d4e4'; ctx.fillRect(cx - 2, cy - 1, 4, 3);
+      for (let y = cy - 10; y < cy + H * 0.16; y += 3) {
+        const t = (y - (cy - 10)) / (H * 0.16 + 10);
+        const larg = 6 + t * 40;
+        const n = 2 + (r() * 3 | 0);
+        for (let k = 0; k < n; k++) {
+          const ww = 2 + r() * larg * 0.5;
+          const off = (r() - 0.5) * (larg - ww) * 1.4;
+          ctx.fillStyle = `rgba(158,202,220,${(0.13 - t * 0.105) * (0.5 + r() * 0.8)})`;
+          ctx.fillRect((cx + off) | 0, y | 0, ww | 0, 2);
+        }
+      }
+      ctx.fillStyle = 'rgba(196,228,240,.20)'; ctx.fillRect((cx - 3) | 0, (cy - 12) | 0, 6, 2);
+      ctx.fillStyle = 'rgba(196,228,240,.12)'; ctx.fillRect((cx + 3) | 0, (cy - 8) | 0, 4, 2);
       // IL MURETTO A SECCO su cui si tengono i piedi
       muretto(ctx, 0, murettoY, W, H - murettoY, '#6a5a3e', r);
       ctx.fillStyle = 'rgba(255,230,170,.06)'; ctx.fillRect(0, murettoY, W, 4);
       /* IL GAZEBO DI CANNE: sulla terrazza solarium la colazione si fa qui sotto, e di
          notte le canne tagliano il cielo in strisce sopra la testa. Dà il soffitto a
          un'inquadratura che prima era tutta cielo aperto. */
-      for (let i = 0; i < 7; i++) {
-        const gy = 3 + i * 5;
-        ctx.fillStyle = `rgba(38,30,20,${0.55 - i * 0.055})`;
+      for (let i = 0; i < 5; i++) {
+        const gy = 2 + i * 5;
+        ctx.fillStyle = `rgba(38,30,20,${0.40 - i * 0.055})`;
         ctx.fillRect(0, gy, W, 2);
       }
-      for (let gx = 8; gx < W; gx += 26) {
-        ctx.fillStyle = 'rgba(46,36,24,.42)';
-        ctx.fillRect(gx, 0, 3, 34);
+      for (let gx = 8; gx < W; gx += 30) {
+        ctx.fillStyle = 'rgba(46,36,24,.30)';
+        ctx.fillRect(gx, 0, 3, 24);
       }
-      ctx.fillStyle = 'rgba(58,46,30,.55)'; ctx.fillRect(0, 34, W, 3);
+      ctx.fillStyle = 'rgba(58,46,30,.42)'; ctx.fillRect(0, 24, W, 2);
 
       // IL TAVOLINO e LE DUE SEDIE DI PLASTICA, in controluce
       const tx = W * 0.30, ty = murettoY - 4;

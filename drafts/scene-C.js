@@ -195,7 +195,27 @@ E dentro il portone c'è la cosa.
 
 **Il ferro di cavallo.** Novantanove celle su tre piani, disposte a semicerchio intorno a un pozzo vuoto, e in mezzo al pozzo una cappella tonda col tetto crollato. Le porte delle celle non guardano il corridoio: guardano **il centro**. Tutte. Tutte alla stessa distanza dal centro, tutte inclinate dello stesso angolo, tutte con lo spioncino alla stessa altezza da terra.
 
-Costruito nel 1797 da cento deportati in due anni. Chiuso il **2 settembre 1965**, "perché inutilmente duro".
+Cominciato nel 1795 per volere di Ferdinando IV, finito nel 1797, tirato su da cento deportati in due anni. Chiuso il **2 settembre 1965**, "perché inutilmente duro".
+
+Le celle erano di quattro metri e mezzo per quattro e venti. Poi, a un certo punto, le hanno **divise in due** per farci stare il doppio delle persone.
+
+> Gaetano: *(che ha letto anche questa e la dice piano)* "E c'è un'altra cosa. La pianta di questo posto è sovrapponibile a quella del **Teatro San Carlo** di Napoli."
+
+> Claudia: "In che senso sovrapponibile."
+
+> Gaetano: "Nel senso che se prendi la pianta del teatro e la metti sopra questa, combaciano. Stessa curva, stessi ordini di palchi." *(pausa)* "L'hanno fatto apposta. Il posto da cui si guarda è il palco reale."
+
+Claudia si gira verso la cappella tonda in mezzo al pozzo. Poi verso le celle. Poi di nuovo verso la cappella, e fa il conto che chiunque farebbe.
+
+> Claudia: "Quindi novantanove palchi."
+
+> Gaetano: "Novantanove palchi."
+
+> Claudia: "E uno spettatore solo."
+
+> Gaetano: "Uno."
+
+> Claudia: *(e lo dice con la calma di una che di mestiere decide come si guardano le cose)* "E lo spettacolo chi lo faceva, Gaetà?" 
 
 > Gaetano: *(e parla come parla quando ha bisogno di trasformare una cosa in un dato)* "Panopticon. Bentham. L'idea è che una guardia sola, dalla cappella, veda dentro tutte le celle contemporaneamente — e che i detenuti non vedano lei. Il punto non è la sorveglianza: è che tu non sai *quando*. Quindi ti comporti come se fosse sempre."
 

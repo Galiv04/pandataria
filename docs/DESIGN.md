@@ -42,7 +42,8 @@ Le tappe della sua collezione (tutte agganciate a storia vera):
   l'acqua. Oggi ne restano visibili **due** (Villa Stefania e "dei Detenuti"). Le altre quattro sono
   state **sigillate**, perché erano camere di risonanza e dentro si sentiva troppo. Giulia è la
   prima voce: la sua è ancora la più chiara, e chiede ancora di suo padre.
-- **1797-1965 — il Panopticon.** Il carcere borbonico di Santo Stefano, costruito in due anni da
+- **1795-1965 — il Panopticon.** Il carcere borbonico di Santo Stefano — cominciato nel 1795 per
+  volere di Ferdinando IV e finito nel 1797 — costruito in due anni da
   circa cento deportati. Ferro di cavallo, celle affacciate su un pozzo centrale: una macchina per
   guardare, dice l'architettura. Il Coro l'ha capita meglio: è una macchina per **ascoltare**.
   Novecento uomini che non possono tacere. Chiuso il 2 settembre 1965 "perché inutilmente duro".
@@ -277,6 +278,10 @@ push, eseguiti **senza pipe** (una pipe restituisce l'exit code di `tail`, non d
 - Pandataria = nome greco di Ventotene; la leggenda delle sirene che tentarono Ulisse
 - Acquedotto romano: sei cisterne scavate nel tufo, due visibili (Villa Stefania, dei Detenuti)
 - Villa Giulia a Punta Eolo: le donne della famiglia imperiale esiliate per circa un secolo
+- **La pianta del carcere è sovrapponibile a quella del Teatro San Carlo di Napoli**: stessa curva,
+  stessi ordini di palchi, e il punto da cui si guarda è il palco reale. Novantanove celle di
+  4,50 × 4,20 m, poi DIVISE IN DUE per raddoppiare i detenuti, su tre piani. Per una storia il cui
+  mostro è un CORO questo è il fatto vero più utile che esista, ed è documentato.
 - Carcere borbonico di Santo Stefano: 1795-1797, progetto Carpi su modello del panopticon di
   Bentham, costruito da ~100 deportati, chiuso il 2 settembre 1965
 - Relitto della Santa Lucia: piroscafo affondato nel 1943, spezzato in due, a ~45 m

@@ -938,7 +938,23 @@ Il gioco vi lascia guardare questa scena per tutto il tempo che volete, perché 
 
 Qui, nel **2 avanti Cristo**, Augusto ha relegato **sua figlia**. Giulia maggiore, l'unica figlia che aveva, con l'accusa di adulterio — che era il capo d'accusa quando il capo d'accusa vero era politico. Aveva trentasette anni e cinque figli, e non li ha più visti.
 
-Della villa restano: una piattaforma di opus reticolatum sul precipizio, i resti di un ninfeo, il taglio delle vasche nella roccia, e un panorama che ti spacca in due. Da qui si vede Santo Stefano intero, con il carcere in cima come un anello di pietra.
+Della villa restano: una piattaforma di opus reticolatum sul precipizio, i resti di un ninfeo, il taglio delle vasche nella roccia, e un panorama che ti spacca in due. Trecento metri per cento, tutta girata a est — perché il sole di qui, quello che conta, è quello del mattino.
+
+E poi c'è la peschiera, che è la cosa che Gaetano ha letto tre volte prima di crederci. Non una vasca: un impianto. Scavata nella roccia, collegata al mare da canali, con un bacino grande diviso in due da un muretto che una volta aveva le **paratoie** — si apriva e si chiudeva — e dentro gli scomparti per tenere i pesci divisi per taglia. E ai lati due vasche **coperte**, dentro due stanze a volta, che guardano il bacino grande da dietro.
+
+> Claudia: "Coperte perché?"
+
+> Gaetano: "Perché al buio i pesci stanno più tranquilli e crescono meglio." *(pausa)* "E c'è un'altra cosa. Nella cisterna della villa avevano messo un dispositivo per **muovere** l'acqua."
+
+> Claudia: "Muoverla."
+
+> Gaetano: "Per ossigenarla. Acqua ferma va a male: si scalda, si chiude, muore. Loro l'hanno capito duemila anni prima di noi e hanno costruito un aggeggio perché in quella cisterna l'acqua non stesse mai ferma."
+
+Claudia si guarda intorno: la piattaforma, le vasche tagliate nel tufo, la peschiera con i canali murati dal tempo.
+
+> Claudia: "E adesso?"
+
+> Gaetano: "Adesso è tutta ferma. Da qui si vede Santo Stefano intero, con il carcere in cima come un anello di pietra.
 
 È rimasta su questo scoglio **cinque anni**, con la madre che l'aveva seguita per non lasciarla sola, senza vino, senza visite e senza uno specchio, sorvegliata da uomini che suo padre pagava. Poi l'hanno spostata in Calabria, dove è morta di fame in una stanza, e Augusto ha messo per iscritto una cosa sola: che le sue ossa **non entrassero nel Mausoleo di famiglia**.
 
