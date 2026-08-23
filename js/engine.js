@@ -909,7 +909,7 @@ Fuori, il mare è calmo. Sotto, qualcuno sta contando fino a quando tornate.</di
       return;
     }
     box.innerHTML = `<h2>🌈 ${ITEMS[itemId].name}</h2><p style="margin-bottom:12px">Chi la prende?</p>` +
-      G.party.map((h, i) => h.veleno ? `<button class="choice-btn" onclick="Engine.applyAntidote('${itemId}', ${i})">${h.name} <span class="choice-tag">🎵 INCANTATO</span></button>` : '').join('');
+      G.party.map((h, i) => h.veleno ? `<button class="choice-btn" onclick="Engine.applyAntidote('${itemId}', ${i})">${h.name} <span class="choice-tag">🎵 ACQUA NEI POLMONI</span></button>` : '').join('');
     $('modal-generic').classList.remove('hidden');
   }
 
