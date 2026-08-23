@@ -1023,10 +1023,22 @@ Fuori, il mare è calmo. Sotto, qualcuno sta contando fino a quando tornate.</di
 
   /* ---------- mappa ---------- */
 
+  /* La pianta è un canvas da 720 mostrato a 289 sul telefono: il 40%. Un'etichetta da
+     9px arrivava a 3,6px, cioè un impasto. Nella pianta restano i NUMERI, che si leggono
+     anche rimpiccioliti; i nomi stanno qui sotto in testo vero, che non rimpicciolisce
+     con l'immagine. */
+  function legendaMappa() {
+    const cur = WORLD_MAP.find(w => w.scenes && G && w.scenes.includes(G.sceneId));
+    return '<div class="mappa-legenda">' + WORLD_MAP.map((l, i) => {
+      const qui = cur && cur.key === l.key;
+      return `<span class="mappa-voce${qui ? ' qui' : ''}"><b>${i + 1}</b> ${l.label}${qui ? ' ⭐' : ''}</span>`;
+    }).join('') + '</div>';
+  }
+
   function showMap() {
     const box = $('modal-generic-content');
-    box.innerHTML = `<h2>🗺 L'isola — la carta di Gaetano (per quello che vale)</h2><canvas id="map-canvas" width="720" height="480"></canvas>
-      <p style="color:var(--text-dim);font-size:19px;margin-top:8px">⭐ = dove siete adesso. La carta l'ha disegnata Gaetano sul retro di una ricevuta del traghetto, e per la terraferma è giusta. Per quello che c'è sotto, no.</p>
+    box.innerHTML = `<h2>🗺 L'isola — la carta di Gaetano (per quello che vale)</h2><canvas id="map-canvas" width="720" height="480"></canvas>${legendaMappa()}
+      <p style="color:var(--text-dim);font-size:19px;margin-top:8px">⭐ = dove siete adesso, e i numeri sulla pianta sono nell'elenco qui sopra. La carta l'ha disegnata Gaetano sul retro di una ricevuta del traghetto, e per la terraferma è giusta. Per quello che c'è sotto, no.</p>
       <button class="btn" style="margin-top:10px" onclick="document.getElementById('modal-generic').classList.add('hidden')">✔ Chiudi</button>`;
     $('modal-generic').classList.remove('hidden');
     drawMap();
@@ -1085,7 +1097,8 @@ Fuori, il mare è calmo. Sotto, qualcuno sta contando fino a quando tornate.</di
       // etichetta
       ctx.font = "9px 'Press Start 2P'";
       ctx.fillStyle = isCur ? '#e8b64c' : '#8a94ac';
-      ctx.fillText(loc.label, x, y + rh / 2 + 14);
+      ctx.font = "26px 'Press Start 2P'";
+      ctx.fillText(String(WORLD_MAP.indexOf(loc) + 1), x, y + rh / 2 + 31);
       if (isCur) { ctx.font = "14px 'Press Start 2P'"; ctx.fillStyle = '#e8b64c'; ctx.fillText('⭐', x, y - rh / 2 - 8); }
       ctx.textAlign = 'left';
     }

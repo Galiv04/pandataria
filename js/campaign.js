@@ -5384,7 +5384,7 @@ Ha la faccia di una signora di settantacinque anni che ha fatto le pulizie per c
 >
 > Che songo?"
 
-*(Non ho voce, e parlo. Non ho mani, e trattengo. Chi mi guarda da sopra non mi vede, chi mi guarda da sotto non torna.)*`,
+<span class="minigame-gloss">(Non ho voce, e parlo. Non ho mani, e trattengo. Chi mi guarda da sopra non mi vede, chi mi guarda da sotto non torna.)</span>`,
         risposte: [
           { t: '💧 L\'acqua', ok: true },
           { t: '🕳 Il buio' },
