@@ -41,7 +41,9 @@ const Misteri = (() => {
   /* barra dell'ATTENZIONE del Coro: 0-6, sale scendendo e ascoltando */
   function barraAttenzione() {
     const a = Math.max(0, Math.min(6, (G.flags && G.flags.attenzione) || 0));
-    return '▓'.repeat(a) + '░'.repeat(6 - a);
+    /* ▓ e ░ si impastano in un blocco grigio: da lontano il livello non si legge.
+       Cerchio pieno contro cerchio vuoto si distingue, e il numero toglie ogni dubbio. */
+    return '●'.repeat(a) + '○'.repeat(6 - a) + ' ' + a + '/6';
   }
 
   function show() {

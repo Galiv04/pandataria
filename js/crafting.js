@@ -50,7 +50,9 @@ const Crafting = (() => {
       const n = counts[it];
       const disabled = !sel && picked.length >= 2;
       return `<button class="choice-btn${sel ? ' selected' : ''}" ${disabled ? 'disabled' : ''}
-        onclick="Crafting.pick('${it}')">${sel ? '✅ ' : ''}${ITEMS[it].name}${n > 1 ? ' ×' + n : ''}</button>`;
+        onclick="Crafting.pick('${it}')">${sel ? '✅' : '⬜'} ${ITEMS[it].name}${n > 1 ? ' ×' + n : ''}</button>`;
+      /* La casella c'è sempre, vuota o spuntata: se comparisse solo da selezionato la
+         riga si allargherebbe al clic e gli oggetti accanto scapperebbero sotto il dito. */
     }).join('');
 
     const canGo = picked.length === 2;
