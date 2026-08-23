@@ -1257,6 +1257,49 @@ section('Copertura totale della campagna');
   if (pct < 55) fail(`copertura troppo bassa (${pct}%): gli scenari non esplorano abbastanza campagna`);
 }
 
+
+/* ==================== SCHEDA DEL PERSONAGGIO ====================
+   Nessuna partita simulata clicca su un eroe, quindi per mesi la scheda ha potuto
+   crashare senza che nessun test lo notasse: `conditions` era dichiarata dentro il
+   ciclo delle abilità e il template la cercava fuori — ReferenceError a ogni click,
+   proprio sulla schermata che il committente aveva chiesto per vedere gli stati.
+   Questa prova apre la scheda di OGNI eroe in OGNI combinazione di stati. */
+(function testSchedaPersonaggio() {
+  section('Scheda del personaggio: si apre sempre, in ogni stato');
+  const game = buildGame(424242);
+  const E = game.api.Engine;
+  const tuttiGliEroi = game.api.HEROES;
+  game.act(() => E.newGame(tuttiGliEroi.filter(h => !h.locked).slice(0, 2).map(h => ({ heroId: h.id, player: '' }))));
+  const STATI = [{}, { veleno: true }, { down: true }, { preso: true }, { morto: true },
+                 { rimasto: true }, { veleno: true, down: true }, { veleno: true, morto: true }];
+  let rotte = 0, aperte = 0;
+  for (const base of tuttiGliEroi) {
+    for (const stato of STATI) {
+      // una copia dell'eroe con lo stato addosso, come lo vedrebbe il giocatore
+      const h = Object.assign(JSON.parse(JSON.stringify(base)), { hp: 3, player: 'Gali' }, stato);
+      try {
+        const html = E.heroSheetHTML(h);
+        aperte++;
+        if (typeof html !== 'string' || html.length < 200) { fail(`scheda di "${base.id}" con stato ${JSON.stringify(stato)}: HTML vuoto o troppo corto`); rotte++; }
+        const conStato = Object.keys(stato).length > 0;
+        if (conStato && !/Condizioni attive/.test(html)) { fail(`scheda di "${base.id}" con stato ${JSON.stringify(stato)}: nessun blocco "Condizioni attive" — lo stato è invisibile al giocatore`); rotte++; }
+        if (/undefined|\[object Object\]|NaN/.test(html)) { fail(`scheda di "${base.id}" con stato ${JSON.stringify(stato)}: contiene "undefined"/"NaN" nel testo mostrato`); rotte++; }
+      } catch (e) {
+        fail(`scheda di "${base.id}" con stato ${JSON.stringify(stato)} ESPLODE: ${e.message}`);
+        rotte++;
+      }
+    }
+  }
+  // e la modale vera, quella che si apre cliccando nella barra del gruppo
+  try {
+    game.act(() => E.showHeroSheetIdx(0));
+    const box = game.doc.getElementById('modal-generic-content');
+    if (!box.innerHTML || box.innerHTML.length < 200) { fail('showHeroSheetIdx(0): la modale resta vuota'); rotte++; }
+    if (game.doc.getElementById('modal-generic').classList.contains('hidden')) { fail('showHeroSheetIdx(0): la modale non si apre'); rotte++; }
+  } catch (e) { fail(`showHeroSheetIdx(0) esplode: ${e.message}`); rotte++; }
+  if (!rotte) console.log(`  ✅ ${aperte} schede aperte (${tuttiGliEroi.length} eroi × ${STATI.length} stati), tutte complete e con le condizioni visibili`);
+})();
+
 console.log('\n' + '═'.repeat(60));
 if (failures === 0) {
   console.log(`✅ TUTTE LE PARTITE SIMULATE COMPLETATE SENZA ERRORI (${results.length} run, ${allScenesSeen.size} scene distinte, ${allEndings.size} finali distinti)`);

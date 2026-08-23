@@ -751,15 +751,20 @@ const Engine = (() => {
   /* ---------- schede e modali ---------- */
 
   function heroSheetHTML(h, withUses = true) {
-    const stats = Object.entries(h.stats).map(([k, v]) =>
-      `<div class="stat-chip"><span class="stat-label">${k}</span><span class="stat-val">${v >= 0 ? '+' + v : v}</span></div>`).join('');
-    const abilities = h.abilities.map(ab => {
-      const left = withUses && G && G.uses[h.id] ? ` — usi rimasti: <b>${G.uses[h.id][ab.id]}</b>` : ` — usi per avventura: <b>${ab.uses}</b>`;
+    /* Le CONDIZIONI vanno calcolate al livello della funzione, non dentro il
+       ciclo delle abilità: là dentro `conditions` nasceva e moriva a ogni
+       abilità, e il template in fondo trovava una variabile inesistente —
+       cioè la scheda del personaggio CRASHAVA a ogni click (trovato il 23
+       ago 2026 guardando il gioco vero). */
       const conditions = [];
     if (h.veleno) conditions.push(`<div class="ability-box" style="border-left:5px solid var(--red)"><span class="ability-name">🎵 INCANTATO</span><div class="ability-desc">Ha sentito il Coro troppo da vicino e adesso una nota gli resta in testa: <b>−2 a TUTTE le prove e agli attacchi</b>. E gli compaiono <b>scelte che l'altro non vede</b> — alcune sono buone, alcune non sono sue. Si cura col caffè del B&B, col grido di Ciro, o con l'altro che lo chiama per nome.</div></div>`);
     if (h.preso) conditions.push(`<div class="ability-box" style="border-left:5px solid var(--red)"><span class="ability-name">🕸 TRATTENUTO</span><div class="ability-desc">Qualcosa lo tiene e non lo lascia: fuori gioco finché non lo strappate via.</div></div>`);
     if (h.morto) conditions.push(`<div class="ability-box" style="border-left:5px solid var(--red)"><span class="ability-name">👻 PRESO DAL CORO</span><div class="ability-desc">Il Coro lo ha PRESO. Il corpo è ancora qui, il resto no: continua a camminare con voi ma quello che parla, adesso, canta. Non tira dadi, non combatte. Torna solo con l'<b>Àncora di Voce</b> — o nei due finali che se lo meritano.</div></div>`);
     if (h.down) conditions.push(`<div class="ability-box" style="border-left:5px solid var(--red)"><span class="ability-name">💀 A TERRA</span><div class="ability-desc">Serve una cura per rialzarlo.</div></div>`);
+    const stats = Object.entries(h.stats).map(([k, v]) =>
+      `<div class="stat-chip"><span class="stat-label">${k}</span><span class="stat-val">${v >= 0 ? '+' + v : v}</span></div>`).join('');
+    const abilities = h.abilities.map(ab => {
+      const left = withUses && G && G.uses[h.id] ? ` — usi rimasti: <b>${G.uses[h.id][ab.id]}</b>` : ` — usi per avventura: <b>${ab.uses}</b>`;
     return `<div class="ability-box"><span class="ability-name">✨ ${ab.name}</span>${left}<div class="ability-desc">${ab.desc}</div></div>`;
     }).join('');
     return `
