@@ -241,6 +241,11 @@ const Scenes = (() => {
 
   // Alone luminoso morbido: dischi pixelati concentrici, MAI rettangoli
   // (i rettangoli annidati creavano aloni squadrati attorno a ogni luce)
+  /* ATTENZIONE ALLE MISURE: w e h NON sono l'ingombro dell'alone, sono il suo NUCLEO.
+     L'anello più esterno ha semiassi w*2 e h*2, quindi l'alone finito è larghezza 4w e
+     altezza 4h. Passare `W * 0.40` qui dentro significa un alone più largo del canvas:
+     è così che l'alone del paese, nel titolo, tingeva di ocra tutta l'isola e mezzo
+     cielo. Regola: w ≈ un quarto di quanto si vuole vedere. */
   function glow(ctx, x, y, w, h, rgb) {
     for (let i = 4; i >= 1; i--) {
       ctx.fillStyle = `rgba(${rgb},${0.022 * i})`;
@@ -456,7 +461,7 @@ const Scenes = (() => {
       stars(ctx, W, H * 0.86, r, 80);
       const horiz = H * 0.60;
       // la luna bassa a sinistra: è lei che decide da che lato le cose prendono luce
-      glow(ctx, W * 0.15, H * 0.16, H * 0.26, H * 0.24, '186,204,232');
+      glow(ctx, W * 0.15, H * 0.16, H * 0.075, H * 0.068, '186,204,232');
       moon(ctx, W * 0.15, H * 0.16, H * 0.048, '#dde4f0');
 
       /* L'ISOLA: un tavolato di tufo, basso e lungo, col ciglio tagliato a picco sul
@@ -478,12 +483,25 @@ const Scenes = (() => {
           ctx.fillRect(ix + dx, horiz - hh, 3, 2);
         }
       }
+      /* La macchia sul tavolato: prima di ridurre l'alone del paese, questa parete era
+         tinta d'ocra dalla luce e sembrava texturata. Togliendo l'ocra restava un
+         rettangolo nero morto. Quindi la texture ci va per davvero: cespugli di
+         fico degli ottentotti a chiazze, appena più chiari del tufo, solo dove il
+         cielo li stacca. Niente sotto il ciglio: là il buio è giusto che sia pieno. */
+      for (let i = 0; i < 90; i++) {
+        const dx = (r() - 0.5) * iw * 0.94;
+        const hh = quotaAl(dx);
+        if (hh < ih * 0.30) continue;
+        const y = horiz - hh + r() * Math.min(9, hh * 0.35);
+        ctx.fillStyle = `rgba(84,102,86,${0.05 + r() * 0.07})`;
+        ctx.fillRect((ix + dx) | 0, y | 0, 2 + (r() * 4 | 0), 1);
+      }
 
       /* IL PAESE: case cubiche appoggiate sul ciglio, non puntini sparsi. Ognuna ha il
          suo tetto piatto e una o due finestre accese. È il grappolo attorno a Santa
          Candida, cioè la parte alta dell'isola. */
       const paeseDa = -iw * 0.30, paeseA = iw * 0.06;
-      glow(ctx, ix + (paeseDa + paeseA) / 2, horiz - ih * 0.55, iw * 0.40, ih * 1.05, '224,178,90');
+      glow(ctx, ix + (paeseDa + paeseA) / 2, horiz - ih * 0.88, iw * 0.09, ih * 0.14, '224,178,90');
       for (let dx = paeseDa; dx < paeseA; dx += 7) {
         const suolo = horiz - quotaAl(dx);
         const hw = 5 + (r() * 4 | 0), hh2 = 4 + (r() * 5 | 0);
@@ -499,30 +517,41 @@ const Scenes = (() => {
         }
       }
 
-      /* IL CAMPANILE DI SANTA CANDIDA: l'unica cosa verticale dell'isola, e va letta
-         come un edificio. Base che affonda nei tetti, cella campanaria con l'arco
-         scuro, cornicione, tetto piramidale, e il lato di sinistra illuminato dalla
-         luna. La lampada è piccola: una lampada, non un faro. */
+      /* IL CAMPANILE DI SANTA CANDIDA. Secondo giro di correzioni, 23 agosto 2026,
+         guardandolo su Pages a due volte e mezzo: era ancora sbagliato. Alto 48 px
+         contro case di 6 — otto volte un tetto — e con la lampada appiccicata al
+         bordo destro, il mezzo alone per tre quarti fuori dalla muratura. Da lontano:
+         un faro, cioè di nuovo una luce sospesa accanto a un palo.
+         Adesso è BASSO e LARGO (27×12: due volte e mezzo una casa, come un campanile
+         vero visto da tre miglia) e la luce sta DENTRO l'arco della cella, che è
+         l'unica apertura dell'isola illuminata da dentro. Una finestra accesa in un
+         muro non può sembrare sospesa: è il muro che la tiene. */
       const bcx = Math.round(ix - iw * 0.14);
       const bBase = horiz - quotaAl(-iw * 0.14) + 3;         // dentro i tetti, non sopra
-      const bW = 13, bH = ih * 1.05;
+      const bW = 12, bH = Math.round(ih * 0.60);
       const bTop = bBase - bH;
       ctx.fillStyle = '#0e1620'; ctx.fillRect(bcx, bTop, bW, bH);
-      ctx.fillStyle = 'rgba(158,176,206,.16)'; ctx.fillRect(bcx, bTop, 2, bH);          // lato luna
+      ctx.fillStyle = 'rgba(158,176,206,.18)'; ctx.fillRect(bcx, bTop, 2, bH);          // lato luna
       ctx.fillStyle = 'rgba(4,8,15,.55)'; ctx.fillRect(bcx + bW - 2, bTop, 2, bH);      // lato ombra
-      // la cella campanaria: un arco scuro dove sta la campana
-      const cellaY = bTop + Math.round(bH * 0.16);
-      ctx.fillStyle = '#050a11'; ctx.fillRect(bcx + 4, cellaY, 5, 6);
-      ctx.fillStyle = '#050a11'; ctx.fillRect(bcx + 5, cellaY - 1, 3, 1);
-      // cornicione e tetto piramidale
-      ctx.fillStyle = '#141d28'; ctx.fillRect(bcx - 2, bTop - 2, bW + 4, 2);
-      for (let k = 0; k < 5; k++) {
-        ctx.fillStyle = k === 0 ? 'rgba(158,176,206,.20)' : '#101923';
-        ctx.fillRect(bcx + 1 + k, bTop - 3 - k, bW - 2 - k * 2, 1);
+      /* LA CELLA CAMPANARIA: cornice scura, interno caldo, arco in cima. La campana
+         è la barretta nera in mezzo alla luce — si vede perché è controluce. */
+      const cellaY = bTop + 4, cellaX = bcx + 4, cellaW = 5, cellaH = 6;
+      ctx.fillStyle = '#04080e';
+      ctx.fillRect(cellaX - 1, cellaY - 2, cellaW + 2, cellaH + 3);
+      ctx.fillStyle = '#c8a054'; ctx.fillRect(cellaX, cellaY, cellaW, cellaH);
+      ctx.fillStyle = '#e8c47c'; ctx.fillRect(cellaX + 1, cellaY - 1, cellaW - 2, 2);   // l'arco
+      ctx.fillStyle = '#0a0f16'; ctx.fillRect(cellaX + 2, cellaY + 1, 1, 3);            // la campana
+      glow(ctx, cellaX + cellaW / 2, cellaY + 2, 5, 4, '240,208,120');
+      // cornicione: sporge di due pixel per lato, ed è la riga che prende la luna
+      ctx.fillStyle = '#16202c'; ctx.fillRect(bcx - 2, bTop - 2, bW + 4, 2);
+      ctx.fillStyle = 'rgba(158,176,206,.22)'; ctx.fillRect(bcx - 2, bTop - 2, bW + 4, 1);
+      // tetto piramidale basso: quattro gradini, il versante di luna più chiaro
+      for (let k = 0; k < 4; k++) {
+        const rw = bW - 1 - k * 2, rx = bcx + (bW - rw) / 2;
+        ctx.fillStyle = '#0c141d'; ctx.fillRect(rx, bTop - 3 - k, rw, 1);
+        ctx.fillStyle = 'rgba(158,176,206,.13)'; ctx.fillRect(rx, bTop - 3 - k, Math.max(1, rw / 2 | 0), 1);
       }
-      // la lampada sotto il cornicione, piccola, col suo mezzo alone
-      ctx.fillStyle = '#f0d078'; ctx.fillRect(bcx + bW - 4, cellaY + 8, 2, 2);
-      glow(ctx, bcx + bW - 3, cellaY + 9, 9, 7, '240,208,120');
+      ctx.fillStyle = 'rgba(158,176,206,.16)'; ctx.fillRect(bcx + bW / 2 - 1 | 0, bTop - 8, 1, 2);  // la croce
 
       // SANTO STEFANO, a destra: nessuna luce, e l'anello del panopticon appena leggibile
       santoStefanoLontano(ctx, W * 0.88, horiz, W * 0.17, H * 0.13, '#070c12', '#111a23');
@@ -547,36 +576,39 @@ const Scenes = (() => {
         ctx.fillStyle = `rgba(206,156,72,${0.20 - (ry2 - horiz) / (H * 0.10) * 0.12})`;
         ctx.fillRect(rx2 | 0, ry2 | 0, 4 + r() * 12 | 0, 2);
       }
+      /* LA COSA: in mezzo al braccio di mare fra le due isole, SOTTO il pelo
+         dell'acqua, un chiarore che sale. Prima era un'ellisse a bordo netto e
+         sembrava un uovo; poi è diventata una colonna di trattini azzurri che si
+         allargava scendendo — cioè la stessa forma e lo stesso colore della colonna
+         della luna, mezzo canvas più a destra. Sullo schermo si leggevano due lune.
+         Quattro correzioni: il colore vira al verde marcio (la luna è argento, questa
+         no); la colonna NON si allarga, stringe (il sentiero lunare si allarga perché
+         viene verso di te, una luce ferma sul fondo no); il punto più chiaro non è più
+         al pelo dell'acqua ma a metà profondità, perché una cosa illuminata da sotto
+         non ha il massimo in superficie; e le righe del respiro del mare le passano
+         SOPRA — è quel passare sopra che la mette sott'acqua. */
+      const bx = W * 0.68;
+      for (let y = horiz + 3; y < horiz + H * 0.30; y += 3) {
+        const t = (y - horiz) / (H * 0.30);
+        const larg = 26 - t * 9;                                    // stretta, e stringe
+        const fuoco = Math.max(0, 1 - Math.abs(t - 0.42) / 0.52);   // il massimo a metà
+        const n = 2 + (r() * 3 | 0);
+        for (let k = 0; k < n; k++) {
+          const ww = 2 + r() * larg * 0.45;
+          const off = (r() - 0.5) * (larg - ww);
+          ctx.fillStyle = `rgba(132,186,158,${(0.018 + fuoco * 0.058) * (0.55 + r() * 0.7)})`;
+          ctx.fillRect((bx + off) | 0, y, ww | 0, 2);
+        }
+      }
+
       /* IL RESPIRO DEL MARE nella parte bassa: righe lunghissime e quasi invisibili.
          Prima quel terzo era nero piatto e sembrava una fascia morta. */
-      for (let y = horiz + H * 0.14; y < H - 4; y += 7) {
+      for (let y = horiz + H * 0.10; y < H - 4; y += 7) {
         const t = (y - horiz) / (H - horiz);
         ctx.fillStyle = `rgba(96,124,160,${0.030 - t * 0.014})`;
         const lw = W * (0.30 + r() * 0.55);
         ctx.fillRect((r() * (W - lw)) | 0, y | 0, lw | 0, 1);
       }
-
-      /* LA COSA: in mezzo al braccio di mare fra le due isole, SOTTO il pelo
-         dell'acqua, un chiarore che sale. Era un'ellisse a bordo netto e sembrava un
-         uovo: adesso è una colonna di trattini irregolari, più stretta e più chiara
-         appena sotto la superficie, che si sfilaccia scendendo. Niente simmetria. */
-      const bx = W * 0.68;
-      for (let y = horiz + 4; y < horiz + H * 0.34; y += 3) {
-        const t = (y - horiz) / (H * 0.34);
-        const larg = 5 + t * 46;
-        const n = 2 + (r() * 3 | 0);
-        for (let k = 0; k < n; k++) {
-          const ww = 2 + r() * larg * 0.5;
-          const off = (r() - 0.5) * (larg - ww) * 1.3;
-          ctx.fillStyle = `rgba(176,212,228,${(0.085 - t * 0.070) * (0.55 + r() * 0.7)})`;
-          ctx.fillRect((bx + off) | 0, y, ww | 0, 2);
-        }
-      }
-      // il punto più chiaro, appena sotto il pelo: due trattini e basta
-      ctx.fillStyle = 'rgba(214,238,246,.13)';
-      ctx.fillRect((bx - 4) | 0, (horiz + 3) | 0, 7, 2);
-      ctx.fillStyle = 'rgba(214,238,246,.08)';
-      ctx.fillRect((bx + 2) | 0, (horiz + 6) | 0, 5, 2);
 
       // il velo di nero sul bordo: l'inquadratura si chiude da sola
       for (let i = 0; i < 5; i++) {
