@@ -2953,235 +2953,281 @@ const Scenes = (() => {
 
     scauri(ctx, W, H) {
       /* SCAURI, LUNGOMARE, ore 06:55 — la prima immagine del gioco.
-         Trovata sbagliata il 23 agosto 2026 mentre scrivevo le schede dei luoghi:
-         a0 usava il painter di Cala Nave. Cioè la scena d'apertura, che si svolge
-         sulla terraferma all'alba, mostrava un tramonto a Ventotene con dentro lo
-         SCOGLIO che dà il nome a una spiaggia a centoventi chilometri da lì. Tre cose
-         sbagliate — posto, ora e monumento — nel primo fotogramma che il giocatore
-         vede. Questo quadro dice quello che dice il testo: la sabbia scura, la fila
-         dei lidi che va verso Gianola, le sdraio ancora accatastate e legate, e
-         l'acqua che è una lastra.
-         La cosa fredda: all'orizzonte, quasi niente, due sagome. Una lunga e bassa e
-         una tozza. Da Scauri, nei mattini puliti, Ventotene si vede — e quindi il
-         posto dove stanno andando li sta già guardando da casa. */
+         QUARTA STESURA, e questa volta da zero. Il committente, guardando la terza:
+         «non capisco assolutamente che cosa fa vedere l'immagine. Vedo tipo una
+         strada, la spiaggia, e tipo delle scale senza senso da sole; la macchina è
+         fatta male». Aveva ragione su tutto, e la causa era una: le tre stesure prima
+         erano un PANORAMA — cielo, mare, spiaggia, lidi, muretto, asfalto, macchina —
+         sette cose in 960×360, ognuna troppo piccola per leggersi, e nessuna che
+         facesse da soggetto. Le «scale senza senso» erano le pile di lettini: a
+         quaranta pixel non c'è verso di far capire cos'è una pila di lettini.
+         Adesso c'è UN soggetto grande e inconfondibile — la macchina di profilo col
+         PORTELLONE APERTO e il borsone in terra accanto — e dietro solo il minimo che
+         serve a dire dove siamo: il mare all'alba, la battigia, il muretto del
+         lungomare. Un lampione tagliato dal bordo dà la scala. Cinque cose in tutto,
+         tutte abbastanza grandi da riconoscersi. */
       const r = rng(seedOf('scauri'));
-      /* Proporzioni riviste dopo la verifica su Pages: erano cielo 40%, mare 18%,
-         spiaggia 22%, strada 20% — cioè il 42% del quadro era spiaggia e asfalto
-         vuoti, e il mare, che è il soggetto della scena («l'acqua è una lastra»),
-         ne aveva meno di un quinto. Adesso il mare ne ha quasi un terzo. */
-      const horiz = H * 0.32, spiaggiaY = H * 0.62, stradaY = H * 0.845;
-      // il cielo dell'alba: già chiaro, il sole è sorto da venti minuti e sta dietro
-      skyGradient(ctx, W, horiz + 2, '#5d7ba0', '#e8d0a8', 12);
-      ctx.fillStyle = 'rgba(255,226,170,.18)'; ctx.fillRect(0, horiz - 26, W, 26);
+      const horiz = Math.round(H * 0.30);        // l'orizzonte, alto: il mare fa da fondo
+      const riva = Math.round(H * 0.50);         // la battigia
+      const muro = Math.round(H * 0.62);         // il muretto del lungomare
+      const asfalto = Math.round(H * 0.70);      // e la strada, dove sta la macchina
 
-      /* IL PROMONTORIO DI GAETA a destra: Monte Orlando, la gobba che chiude il golfo.
-         Rifatto: la prima versione era una rampa che saliva verso il bordo destro con
-         un'opacità del 50% — sullo schermo non si vedeva niente, e dove si intuiva
-         qualcosa sembrava una nuvola bassa. Una montagna a venti chilometri, controluce
-         all'alba, è una SAGOMA PIENA con un profilo netto: scura, non trasparente, e
-         con la cima dentro l'inquadratura, non oltre il bordo. */
+      /* IL CIELO dell'alba: il sole è sorto da venti minuti ma sta dietro le case,
+         quindi il cielo è già chiaro e la luce viene da dietro l'osservatore. */
+      skyGradient(ctx, W, horiz + 2, '#4e6d94', '#e9d3ac', 12);
+      ctx.fillStyle = 'rgba(255,226,178,.20)'; ctx.fillRect(0, horiz - 30, W, 30);
+
+      /* IL PROMONTORIO DI GAETA, a destra: Monte Orlando chiude il golfo. Sagoma
+         piena e profilo netto — a venti chilometri, controluce, una montagna non è
+         una velatura. */
       {
-        const pcx = W * 0.80, pw2 = W * 0.30, ph2 = H * 0.155;
-        for (let dx = -pw2 / 2; dx < pw2 / 2 + 3; dx += 3) {
-          const t = dx / (pw2 / 2);
-          let hh = ph2 * Math.pow(Math.max(0, 1 - t * t), 0.42);
-          hh *= 0.86 + Math.sin(dx * 0.06) * 0.09 + Math.sin(dx * 0.021) * 0.05;
+        /* Piu' scuro e con la cima piu' piatta: alla prima stesura era un azzurro
+           chiaro con un profilo tondo, e sopra il mare sembrava una nuvola bassa. Una
+           montagna controluce e' quasi nera, e Monte Orlando e' un tavolato, non una
+           gobba. La riga di base sull'orizzonte e' quella che la tiene attaccata al
+           mare invece di farla galleggiare. */
+        const pcx = Math.round(W * 0.80), pw = W * 0.30, ph = H * 0.145;
+        for (let dx = -pw / 2; dx < pw / 2 + 2; dx += 2) {
+          const t = Math.abs(dx / (pw / 2));
+          let hh = ph * Math.pow(Math.max(0, 1 - t * t), 0.22);   // spalle ripide, cima piatta
+          hh *= 0.90 + Math.sin(dx * 0.055) * 0.07;
           if (hh < 1) continue;
-          ctx.fillStyle = '#5d7086';
-          ctx.fillRect(pcx + dx, horiz - hh, 3, hh + 2);
-          // il ciglio che prende il primo sole, che sorge dietro di lui
-          ctx.fillStyle = 'rgba(255,226,180,.30)';
-          ctx.fillRect(pcx + dx, horiz - hh, 3, 1);
+          ctx.fillStyle = '#37485c';
+          ctx.fillRect(pcx + dx, horiz - Math.round(hh), 2, Math.round(hh) + 2);
+          ctx.fillStyle = 'rgba(255,224,178,.20)';
+          ctx.fillRect(pcx + dx, horiz - Math.round(hh), 2, 1);
         }
-        // il paese di Gaeta alla base: una riga di puntini caldi, ancora accesi
-        for (let i = 0; i < 26; i++) {
-          ctx.fillStyle = `rgba(255,224,168,${0.20 + r() * 0.26})`;
-          ctx.fillRect((pcx - pw2 / 2 + r() * pw2) | 0, (horiz - 2 - r() * 4) | 0, 1, 1);
+        ctx.fillStyle = 'rgba(18,26,36,.45)';                     // la base, sull'acqua
+        ctx.fillRect(Math.round(pcx - pw / 2), horiz, Math.round(pw), 2);
+      }
+      /* LE DUE SAGOME all'orizzonte, a sinistra: una lunga e bassa, una tozza. Da
+         Scauri, nei mattini puliti, Ventotene si vede — e quindi il posto dove stanno
+         andando li sta già guardando da casa. È la cosa fredda di questa scena. */
+      for (const [fx, larg, alt] of [[0.24, 34, 4], [0.305, 9, 5]]) {
+        for (let dx = -larg / 2; dx < larg / 2; dx += 2) {
+          const hh = alt * Math.pow(Math.max(0, 1 - Math.pow(dx / (larg / 2), 2)), 0.36);
+          ctx.fillStyle = 'rgba(120,138,166,.40)';
+          ctx.fillRect(Math.round(W * fx + dx), horiz - Math.round(hh), 2, Math.round(hh) + 1);
         }
-      }
-      // LE DUE SAGOME, all'orizzonte, a sinistra: dove stanno andando
-      for (let dx = -30; dx < 30; dx += 2) {
-        const hh = 4 * Math.pow(Math.max(0, 1 - (dx / 30) ** 2), 0.35);
-        ctx.fillStyle = 'rgba(126,144,172,.34)';
-        ctx.fillRect(W * 0.23 + dx, horiz - hh, 2, hh + 1);
-      }
-      for (let dx = -7; dx < 7; dx += 2) {
-        const hh = 5 * Math.pow(Math.max(0, 1 - (dx / 7) ** 2), 0.40);
-        ctx.fillStyle = 'rgba(126,144,172,.30)';
-        ctx.fillRect(W * 0.295 + dx, horiz - hh, 2, hh + 1);
       }
 
-      // IL MARE: una lastra. Nessuna onda, solo tre righe di luce che non si muovono.
-      sea(ctx, W, horiz, spiaggiaY, '#7a94ac', '#4a6c8c', r, 8, 0.15);
+      /* IL MARE: una lastra. Nessuna onda — non c'è vento — solo tre righe di luce
+         ferme e la fascia più chiara vicino a riva, dove il fondo si alza. */
+      ctx.fillStyle = '#3f6183'; ctx.fillRect(0, horiz, W, riva - horiz);
+      for (let y = horiz; y < riva; y++) {
+        const t = (y - horiz) / (riva - horiz);
+        ctx.fillStyle = mix('#3f6183', '#7fa2bd', Math.pow(t, 1.5));
+        ctx.fillRect(0, y, W, 1);
+      }
       for (let i = 0; i < 3; i++) {
-        const y = horiz + 8 + i * 13, lw = W * (0.34 + r() * 0.44);
-        ctx.fillStyle = `rgba(255,236,196,${0.16 - i * 0.04})`;
-        ctx.fillRect((r() * (W - lw)) | 0, y | 0, lw | 0, 2);
+        const y = horiz + 6 + i * 9, lw = Math.round(W * (0.30 + r() * 0.44));
+        ctx.fillStyle = `rgba(255,238,200,${0.11 - i * 0.03})`;
+        ctx.fillRect(Math.round(r() * (W - lw)), y, lw, 1);
       }
-      /* LA SABBIA e la BATTIGIA. La battigia era una riga orizzontale perfetta da un
-         bordo all'altro, e insieme a cielo/mare/sabbia/muretto/asfalto faceva cinque
-         bande impilate: esattamente la composizione che il documento di design vieta.
-         Adesso la riva sale da sinistra a destra di venticinque pixel e ha il suo
-         profilo irregolare, quindi c'è una diagonale in mezzo alle orizzontali e
-         l'occhio ha una strada da fare. */
-      const rivaA = dx => spiaggiaY + 13 - (dx / W) * 25;
-      /* LA SPIAGGIA, terza stesura. Le prime due leggevano come un argine di terra
-         smossa, e il motivo era concettuale: stavo dipingendo la sabbia come un COLORE
-         con sopra delle chiazze, invece che come una superficie che va via.
-         Da qui, dal muretto, la sabbia si allontana: il bordo in alto è la battigia e
-         sta a trenta metri, il bordo in basso è a due passi. Quindi la sabbia non ha un
-         colore: ne ha due, e in quest'ordine — scura e compatta in alto (bagnata,
-         lontana, in ombra perché a quest'ora il sole è ancora dietro le case) e chiara
-         e mossa in basso (asciutta, vicina, che prende la prima luce). Il colore si
-         interpola riga per riga.
-         E la GRANA cresce venendo avanti: in alto niente, in basso i granelli si
-         contano uno per uno. È la grana, non il colore, che dice a un occhio che una
-         cosa è vicina — e prima ne avevo la stessa quantità dappertutto, che è il modo
-         più sicuro di appiattire una superficie. */
-      /* Fondo opaco prima di tutto. Senza, le righe della sfumatura — alte un pixel e
-         appoggiate su una y FRAZIONARIA — venivano antialiasate dal canvas: la
-         copertura si fermava a 215 su 255 e sullo schermo il testo della narrazione si
-         vedeva ATTRAVERSO la spiaggia. Da qui in poi ogni y di questa fascia è
-         arrotondata: un rettangolo alto un pixel su coordinate non intere non è un
-         rettangolo alto un pixel, sono due righe mezze trasparenti. */
-      ctx.fillStyle = '#6b6055';
-      ctx.fillRect(0, Math.round(spiaggiaY) - 16, W, Math.round(stradaY) - Math.round(spiaggiaY) + 16);
+
+      /* LA BATTIGIA e LA SABBIA SCURA. La riva sale appena da sinistra a destra: una
+         diagonale in mezzo alle orizzontali, così l'occhio ha una strada da fare. La
+         sabbia è scura e bagnata verso l'acqua, chiara e asciutta venendo avanti. */
+      /* La battigia, seconda taratura. Prima: dodici pixel di pendenza piu' un seno,
+         sabbia bagnata quasi nera sotto un'acqua chiara — sullo schermo un ARGINE di
+         terra con il bordo dentellato. Il contrasto stava tutto su un bordo
+         irregolare, ed e' quello che fa leggere «scarpata» invece di «riva». Adesso la
+         pendenza e' meta', l'acqua bassa si schiarisce arrivando a terra, la schiuma e'
+         una riga vera (due pixel, non uno) e la sabbia bagnata parte da un marrone
+         chiaro: fra acqua e sabbia c'e' un passaggio, non un taglio. */
+      const rivaA = dx => riva + 4 - Math.round((dx / W) * 6);
+      ctx.fillStyle = '#6b6055'; ctx.fillRect(0, riva - 3, W, muro - riva + 5);
       for (let dx = 0; dx < W; dx += 2) {
-        const yRiva = Math.round(rivaA(dx) + Math.sin(dx * 0.05) * 2 + (r() - 0.5) * 2.4);
-        const alt = Math.round(stradaY) - yRiva;
-        ctx.fillStyle = '#4a6c8c';                    // il mare rientra seguendo la riva
-        ctx.fillRect(dx, Math.round(spiaggiaY) - 16, 2, yRiva - (Math.round(spiaggiaY) - 16));
-        for (let y = 0; y < alt; y++) {
-          const t = y / alt;                          // 0 = battigia lontana, 1 = sotto i piedi
-          ctx.fillStyle = mix('#584f45', '#b3a284', Math.pow(t, 0.72));
-          ctx.fillRect(dx, yRiva + y, 2, 1);
+        const y0 = rivaA(dx) + Math.round(Math.sin(dx * 0.035) * 1.4);
+        for (let y = riva - 3; y < y0; y++) {          // l'acqua bassa, che si schiarisce
+          const t = (y - (riva - 3)) / Math.max(1, y0 - riva + 3);
+          ctx.fillStyle = mix('#7fa2bd', '#b9cede', Math.pow(t, 1.2));
+          ctx.fillRect(dx, y, 2, 1);
         }
-        ctx.fillStyle = 'rgba(240,248,252,.22)'; ctx.fillRect(dx, yRiva, 2, 1);
-        ctx.fillStyle = 'rgba(30,26,22,.30)'; ctx.fillRect(dx, yRiva + 1, 2, 2);
-        for (let g = 0; g < 5; g++) {                  // la grana, che cresce venendo avanti
-          const t = 0.30 + r() * 0.70;
-          if (r() > 0.16 + t * 0.42) continue;
-          ctx.fillStyle = r() > 0.42
-            ? `rgba(${208 + r() * 36 | 0},${192 + r() * 30 | 0},${162 + r() * 26 | 0},${0.10 + t * 0.26})`
-            : `rgba(${52 + r() * 30 | 0},${46 + r() * 26 | 0},${38 + r() * 22 | 0},${0.10 + t * 0.30})`;
-          ctx.fillRect(dx, (yRiva + t * alt) | 0, 1 + (r() * 2 | 0), 1);
+        ctx.fillStyle = 'rgba(248,252,255,.42)'; ctx.fillRect(dx, y0, 2, 2);
+        const alt = muro - y0;
+        for (let y = 2; y < alt; y++) {
+          ctx.fillStyle = mix('#8a7b66', '#b5a488', Math.pow((y - 2) / (alt - 2), 0.85));
+          ctx.fillRect(dx, y0 + y, 2, 1);
         }
-        if (r() > 0.72) {                             // la riga dei sassolini del mare
-          ctx.fillStyle = `rgba(${118 + r() * 46 | 0},${106 + r() * 38 | 0},${92 + r() * 32 | 0},.60)`;
-          ctx.fillRect(dx, (yRiva + alt * 0.30 + r() * 4) | 0, 2, 1);
+        if (r() > 0.78) {
+          ctx.fillStyle = `rgba(${214 + r() * 30 | 0},${200 + r() * 26 | 0},${170 + r() * 22 | 0},.36)`;
+          ctx.fillRect(dx, y0 + 4 + Math.round(r() * Math.max(1, alt - 6)), 2, 1);
         }
       }
-      /* Due impronte che vanno all'acqua e non tornano: c'è qualcuno che si è fatto
-         il bagno alle sette meno un quarto, e non siete voi. È l'unico segno di vita
-         sulla spiaggia, e basta lui a dire che ore sono. */
-      for (let k = 0; k < 7; k++) {
-        const t = k / 6;
-        const ix2 = W * 0.30 + t * W * 0.055, iy = stradaY - 14 - t * (stradaY - rivaA(W * 0.32) - 18);
-        ctx.fillStyle = `rgba(48,42,34,${0.30 - t * 0.10})`;
-        ctx.fillRect(ix2 + (k % 2 ? 5 : 0), iy, 4, 3);
+      /* Due impronte che vanno all'acqua e non tornano: c'è qualcuno che si è fatto il
+         bagno alle sette meno un quarto, e non sono loro. Basta questo a dire l'ora. */
+      for (let k = 0; k < 6; k++) {
+        const t = k / 5;
+        const ix = Math.round(W * 0.62 + t * 26), iy = Math.round(muro - 6 - t * (muro - rivaA(W * 0.63) - 8));
+        ctx.fillStyle = `rgba(58,50,40,${0.34 - t * 0.12})`;
+        ctx.fillRect(ix + (k % 2 ? 5 : 0), iy, 4, 3);
       }
-      /* La doccia della spiaggia: un tubo con la testina, l'unica cosa verticale sulla
-         sabbia. Serve alla scala — è alta due metri, quindi dice quanto è grande tutto
-         il resto — e serve a interrompere le orizzontali una volta di più. */
+
+      /* IL MURETTO del lungomare e il marciapiede: la quinta che separa la spiaggia
+         dalla strada. Basso, in ombra — a quest'ora il sole non lo prende. */
+      muretto(ctx, 0, muro, W, asfalto - muro, '#8f8672', r);
+      ctx.fillStyle = 'rgba(255,232,190,.12)'; ctx.fillRect(0, muro, W, 2);
+      ctx.fillStyle = '#4e4a46'; ctx.fillRect(0, asfalto, W, H - asfalto);
+      for (let i = 0; i < 260; i++) {
+        ctx.fillStyle = `rgba(${88 + r() * 30 | 0},${84 + r() * 26 | 0},${80 + r() * 24 | 0},.30)`;
+        ctx.fillRect(Math.round(r() * W), asfalto + 2 + Math.round(r() * (H - asfalto - 4)), 2, 2);
+      }
+      ctx.fillStyle = 'rgba(255,248,224,.16)';
+      for (let x = 0; x < W; x += 78) ctx.fillRect(x, H - 9, 40, 3);   // la riga tratteggiata
+
+      /* Qui c'era un fascio di ombrelloni chiusi appoggiato al muretto. Tre stesure,
+         tre volte illeggibile: guglia, obelisco, e infine una lama pallida che
+         spuntava da dietro la macchina. Tolto. In questo quadro ci sono cinque cose e
+         si riconoscono tutte; sei, e non se ne riconosceva nessuna. Un oggetto che non
+         si riesce a far leggere si toglie: non e' un pareggio, e' una scena piu'
+         pulita. */
+
+      /* IL LAMPIONE, tagliato dal bordo di sopra: è lui che dà la scala a tutto il
+         resto — cinque metri veri — e tiene insieme il lato destro. Ancora accesa,
+         perché a quest'ora i lampioni del lungomare non li ha spenti nessuno. */
       {
-        const dxx = W * 0.615, base = stradaY - 6, altD = 52;
-        ctx.fillStyle = 'rgba(30,26,20,.28)'; pixelEllipse(ctx, dxx + 2, base + 2, 9, 3, 3);
-        ctx.fillStyle = '#8d9298'; ctx.fillRect(dxx, base - altD, 4, altD);
-        ctx.fillStyle = '#a9aeb4'; ctx.fillRect(dxx, base - altD, 1, altD);
-        ctx.fillStyle = '#8d9298'; ctx.fillRect(dxx - 7, base - altD, 15, 3);
-        ctx.fillStyle = '#6f747a'; ctx.fillRect(dxx - 5, base - altD + 3, 4, 4);
-        ctx.fillStyle = '#7e838a'; ctx.fillRect(dxx - 2, base - 5, 8, 4);      // il pedale
+        const lx = Math.round(W * 0.905);
+        ctx.fillStyle = 'rgba(20,18,16,.30)'; pixelEllipse(ctx, lx + 4, asfalto + 8, 16, 4, 3);
+        ctx.fillStyle = '#5e6266'; ctx.fillRect(lx, 0, 9, asfalto + 6);
+        ctx.fillStyle = '#767b80'; ctx.fillRect(lx, 0, 3, asfalto + 6);
+        ctx.fillStyle = '#4a4e52'; ctx.fillRect(lx - 5, asfalto - 2, 19, 8);   // il plinto
+        ctx.fillStyle = '#5e6266'; ctx.fillRect(lx - 26, 22, 30, 7);           // il braccio
+        ctx.fillStyle = '#3a3e42'; ctx.fillRect(lx - 40, 26, 20, 9);           // l'armatura
+        ctx.fillStyle = '#ffe9a8'; ctx.fillRect(lx - 38, 35, 16, 4);           // la luce
+        glow(ctx, lx - 30, 39, 13, 9, '255,226,150');
       }
 
-      /* I LIDI verso Gianola. Prima versione: nove pile identiche, alla stessa altezza,
-         a distanza regolare, ognuna con una cinghia verticale scura nel mezzo. Sullo
-         schermo era una FILA DI FINESTRE in un muro — quattro stecche chiare, il
-         montante scuro in centro, ripetuto nove volte. E l'ombrellone chiuso, un palo
-         sottile con una punta azzurrina, sembrava un tubo al neon accesso.
-         Adesso sono TRE lidi a tre distanze diverse, non nove alla stessa: uno grande
-         in basso a sinistra, uno di mezzo, uno piccolo in fondo a destra. La pila di
-         sdraio è inclinata (una pila di lettini appoggiata al muretto non sta in
-         squadra) e la cinghia gira attorno, non attraverso. Gli ombrelloni chiusi sono
-         un FASCIO legato insieme, grosso in basso e affusolato in cima, che è come
-         stanno la mattina: tre o quattro per fascio, non uno per pila. */
-      for (const [fx, fy, sc] of [[0.045, 0.88, 1.15], [0.42, 0.50, 0.78], [0.74, 0.20, 0.50]]) {
-        const px = W * fx, py = spiaggiaY + 8 + (stradaY - spiaggiaY - 16) * fy;
-        ctx.fillStyle = 'rgba(26,22,16,.30)';
-        pixelEllipse(ctx, px + 30 * sc, py + 5 * sc, 40 * sc, 6 * sc, 3);
-        // LA PILA DI LETTINI: bassa e lunga. Prima era alta e corta e insieme al fascio
-        // faceva una piramide — sullo schermo un obelisco, non un lido.
-        for (let k = 0; k < 5; k++) {
-          const sporge = k * 3.2 * sc;
-          ctx.fillStyle = k % 2 ? '#cfc3a8' : '#b3a68c';
-          ctx.fillRect(px + sporge, py - k * 3.4 * sc, 62 * sc, 2.6 * sc);
-          ctx.fillStyle = 'rgba(38,32,24,.34)';
-          ctx.fillRect(px + sporge, py - k * 3.4 * sc + 2.6 * sc, 62 * sc, 1.2 * sc);
+      /* LA MACCHINA, il soggetto. Di PROFILO, che in pixel art è la vista che si
+         riconosce sempre — un tre quarti a questa dimensione diventa una macchia — con
+         il muso a sinistra e il PORTELLONE ALZATO a destra, che è la sagoma che dice
+         «si sta caricando» senza bisogno di spiegarlo. Station wagon, 420 px per 4,2
+         metri veri: cento pixel il metro, ed è la misura con cui è disegnato tutto il
+         resto del quadro. */
+      {
+        const cx = Math.round(W * 0.235), lung = 420, terra = H - 16;
+        const x0 = cx - (lung >> 1);
+        const tetto = terra - 118, cofano = terra - 74, sotto = terra - 26;
+
+        ctx.fillStyle = 'rgba(10,10,14,.40)';
+        pixelEllipse(ctx, cx + 6, terra + 4, (lung >> 1) - 6, 9, 4);
+
+        /* IL PORTELLONE ALZATO. Prima era un pannello rettangolare in alto a destra,
+           staccato dal tetto: sullo schermo un cartello stradale appoggiato sulla
+           macchina. Un portellone e' INCERNIERATO al bordo del tetto e sta INCLINATO
+           indietro, e la cerniera si deve vedere: e' quella che dice che appartiene
+           alla macchina. Disegnato a colonne, ognuna un pixel piu' su della
+           precedente, cosi' l'inclinazione c'e' per davvero. */
+        {
+          const cerX = x0 + lung - 82, larg = 80, altP = 46, alza = 22;
+          for (let k = 0; k < larg; k++) {
+            const t = k / (larg - 1);
+            const cima = tetto - Math.round(t * alza) - altP + 34;
+            ctx.fillStyle = '#22303c';
+            ctx.fillRect(cerX + k, cima, 1, altP);
+            if (k > 9 && k < larg - 11) {
+              ctx.fillStyle = '#5b7488';                      // il lunotto, scuro: e' controluce
+              ctx.fillRect(cerX + k, cima + 8, 1, altP - 24);
+            }
+            ctx.fillStyle = '#33465a';                        // il bordo superiore, in luce
+            ctx.fillRect(cerX + k, cima, 1, 4);
+          }
+          ctx.fillStyle = '#1a242e';                          // la cerniera, sul tetto
+          ctx.fillRect(cerX - 2, tetto - 2, 16, 7);
         }
-        ctx.fillStyle = 'rgba(52,40,28,.66)';        // la cinghia gira attorno: sopra e sotto
-        ctx.fillRect(px + 30 * sc, py - 15 * sc, 4 * sc, 2.6 * sc);
-        ctx.fillRect(px + 18 * sc, py - 1 * sc, 4 * sc, 3.4 * sc);
-        /* IL FASCIO DI OMBRELLONI CHIUSI. Qui stava l'errore vero: l'avevo disegnato
-           stretto in cima e grosso in basso, cioè una GUGLIA. Un fascio di ombrelloni
-           chiusi è il contrario — sotto ci sono i pali, sottili, e sopra ci sono i
-           teli avvolti, grossi: si assottiglia verso il BASSO. E sta appoggiato di
-           sbieco al muretto, non in piedi da solo, perché in piedi da solo non ci
-           starebbe. Legato in due punti, che è come li legano. */
-        const ox = px + 72 * sc, alt = 46 * sc, pend = 9 * sc;
-        for (let k = 0; k < 16; k++) {
-          const t = k / 15;
-          const larg = (2.6 + t * t * 8.4) * sc;             // sottile sotto, grosso sopra
-          const cx3 = ox + pend * t;                          // e appoggiato di sbieco
-          ctx.fillStyle = mix('#7e6f52', '#c2b294', 0.15 + t * 0.75);
-          ctx.fillRect(cx3 - larg / 2, py - 2 * sc - t * alt, larg, 3.4 * sc);
+
+        /* LA SAGOMA, per colonne. Prima era fatta di rettangoli sovrapposti e il muso
+           era una parete verticale: sullo schermo un furgone. Un'automobile la si
+           riconosce da tre curve — il cofano che scende davanti, il parabrezza
+           inclinato, e il montante di coda — e da due passaruota. Per colonne, con il
+           profilo calcolato x per x, si ottengono tutte e cinque senza trigonometria. */
+        const cofX = x0 + 96, parX = x0 + 150, codaX = x0 + lung - 78;
+        const cima = x => {
+          if (x < cofX) {                                  // il cofano, che scende avanti
+            const t = (cofX - x) / (cofX - x0);
+            return cofano + Math.round(Math.pow(t, 1.5) * 16);
+          }
+          if (x < parX) {                                  // il parabrezza, inclinato
+            const t = (x - cofX) / (parX - cofX);
+            return cofano - Math.round(Math.pow(t, 0.85) * (cofano - tetto));
+          }
+          if (x < codaX) return tetto;                     // il tetto, piatto
+          const t = (x - codaX) / (x0 + lung - codaX);      // il montante di coda
+          return tetto + Math.round(Math.pow(t, 2.2) * 10);
+        };
+        for (let x = 0; x < lung; x++) {
+          const xx = x0 + x, cy = cima(xx);
+          ctx.fillStyle = '#2b3742';
+          ctx.fillRect(xx, cy, 1, sotto - cy);
+          ctx.fillStyle = '#3b4c5e';                        // il filo di luce sul bordo alto
+          ctx.fillRect(xx, cy, 1, 3);
+          ctx.fillStyle = '#1c242c';                        // e l'ombra sotto la fiancata
+          ctx.fillRect(xx, sotto - 9, 1, 9);
         }
-        ctx.fillStyle = 'rgba(46,36,24,.60)';                 // le due corde
-        ctx.fillRect(ox + pend * 0.42 - 4 * sc, py - 2 * sc - alt * 0.42, 9 * sc, 2.2 * sc);
-        ctx.fillRect(ox + pend * 0.86 - 6 * sc, py - 2 * sc - alt * 0.86, 13 * sc, 2.2 * sc);
-        ctx.fillStyle = 'rgba(26,22,16,.26)';
-        pixelEllipse(ctx, ox, py + 3 * sc, 7 * sc, 3 * sc, 3);
+        // I VETRI, dentro il volume: parabrezza inclinato e due laterali
+        for (let x = cofX + 6; x < codaX - 4; x++) {
+          const cy = cima(x) + 7;
+          const fondo = cofano - 8;
+          if (fondo <= cy) continue;
+          const laterale = x > parX + 8;
+          ctx.fillStyle = laterale ? '#89a4b6' : '#7d99ab';
+          ctx.fillRect(x, cy, 1, fondo - cy);
+          ctx.fillStyle = 'rgba(255,244,214,.20)';
+          ctx.fillRect(x, cy, 1, 3);
+        }
+        ctx.fillStyle = '#2b3742';                          // i montanti fra i vetri
+        ctx.fillRect(parX + 4, tetto + 4, 9, cofano - tetto - 8);
+        ctx.fillRect(codaX - 44, tetto + 4, 9, cofano - tetto - 8);
+        // le portiere, le maniglie, gli specchietti e i fanali
+        ctx.fillStyle = 'rgba(12,18,24,.42)';
+        ctx.fillRect(parX + 6, cofano + 4, 3, sotto - cofano - 14);
+        ctx.fillRect(codaX - 42, cofano + 4, 3, sotto - cofano - 14);
+        ctx.fillStyle = '#8f9aa2';
+        ctx.fillRect(parX + 46, cofano + 20, 20, 5);
+        ctx.fillRect(codaX - 74, cofano + 20, 20, 5);
+        ctx.fillStyle = '#22303c'; ctx.fillRect(parX - 4, cofano - 6, 15, 9);   // lo specchietto
+        ctx.fillStyle = '#f4e6bc'; ctx.fillRect(x0 + 1, cofano + 20, 11, 10);   // il fanale davanti
+        ctx.fillStyle = '#c02a24'; ctx.fillRect(x0 + lung - 13, cofano + 10, 11, 20);
+        ctx.fillStyle = '#e8564c'; ctx.fillRect(x0 + lung - 13, cofano + 10, 11, 5);
+        ctx.fillStyle = '#3c464e'; ctx.fillRect(x0 + lung - 26, sotto - 14, 24, 6);  // il paraurti
+        // il baule aperto: dentro e' buio, e la lucina e' accesa
+        ctx.fillStyle = '#161d24'; ctx.fillRect(codaX - 6, cofano + 2, 74, 28);
+        ctx.fillStyle = '#e8d8a0'; ctx.fillRect(codaX + 40, cofano + 8, 13, 7);
+        glow(ctx, codaX + 46, cofano + 12, 11, 7, '232,216,160');
+        // LE RUOTE: gomma, cerchio, e il passaruota che le contiene
+        for (const wx of [x0 + 86, x0 + lung - 96]) {
+          /* IL PASSARUOTA: l'arco scavato nella fiancata sopra la ruota. È il dettaglio
+             che distingue un'automobile da una scatola coi cerchi sotto, e prima non
+             c'era. Si disegna come un arco d'ombra dentro la lamiera. */
+          for (let dx = -40; dx <= 40; dx++) {
+            const h = Math.round(Math.sqrt(Math.max(0, 1600 - dx * dx)) * 0.52);
+            if (h < 1) continue;
+            ctx.fillStyle = '#141b22';
+            ctx.fillRect(wx + dx, sotto - h - 2, 1, h + 2);
+            ctx.fillStyle = 'rgba(120,138,156,.20)';
+            ctx.fillRect(wx + dx, sotto - h - 2, 1, 1);
+          }
+          ctx.fillStyle = '#12181e'; pixelDisc(ctx, wx, sotto + 2, 29, 3);
+          ctx.fillStyle = '#2a333b'; pixelDisc(ctx, wx, sotto + 2, 17, 3);
+          ctx.fillStyle = '#59636b'; pixelDisc(ctx, wx, sotto + 2, 8, 3);
+          ctx.fillStyle = '#7d878f'; ctx.fillRect(wx - 3, sotto - 1, 6, 6);
+        }
       }
 
-      // IL LUNGOMARE: il muretto, il marciapiede, l'asfalto
-      // il muretto: era il bianco più chiaro dell'inquadratura e si mangiava l'occhio,
-      // e a quest'ora un muretto sul lungomare è in ombra, non in luce
-      muretto(ctx, 0, stradaY - 12, W, 14, '#8f8672', r);
-      ctx.fillStyle = 'rgba(255,232,190,.10)'; ctx.fillRect(0, stradaY - 12, W, 2);
-      blocks(ctx, 0, stradaY + 2, W, H - stradaY - 2, '#4e4a46', 14, r, 0.08);
-      ctx.fillStyle = 'rgba(255,248,224,.12)';
-      for (let x = 0; x < W; x += 46) ctx.fillRect(x, H - 12, 26, 3);   // la riga tratteggiata
-
-      /* LA MACCHINA parcheggiata come si parcheggia quando si parte per quattro
-         giorni: due ruote sul marciapiede, il portellone aperto. E in mezzo alla
-         strada il borsone che nessuno dei due ha deciso di caricare per primo. */
-      /* Ingrandita e portata in primo piano, mezza fuori dall'inquadratura a sinistra:
-         era larga 132 px in fondo a un quadro di 960 e leggeva come un giocattolo
-         parcheggiato lontano. Una cosa tagliata dal bordo è la cosa più vicina che c'è:
-         è quella che dà la profondità a tutto il resto. Vista da dietro-tre-quarti,
-         perché è così che la si guarda quando si sta caricando. */
-      const cx2 = W * 0.045, cy2 = H - 13, cw2 = 214;
-      ctx.fillStyle = 'rgba(10,10,14,.36)'; pixelEllipse(ctx, cx2 + cw2 * 0.42, cy2 + 4, 104, 9, 4);
-      ctx.fillStyle = '#2b3742'; ctx.fillRect(cx2 - 78, cy2 - 52, cw2, 46);           // fiancata
-      ctx.fillStyle = '#374553'; ctx.fillRect(cx2 - 78, cy2 - 52, cw2, 5);            // il tetto in luce
-      ctx.fillStyle = '#1e262e'; ctx.fillRect(cx2 - 78, cy2 - 12, cw2, 6);            // il sottoscocca in ombra
-      ctx.fillStyle = '#7e98a8'; ctx.fillRect(cx2 - 62, cy2 - 46, 56, 20);            // finestrini
-      ctx.fillStyle = '#8aa4b4'; ctx.fillRect(cx2 + 4, cy2 - 46, 40, 20);
-      ctx.fillStyle = '#2b3742'; ctx.fillRect(cx2 - 4, cy2 - 46, 5, 20);              // il montante
-      ctx.fillStyle = '#141a20';
-      pixelDisc(ctx, cx2 - 46, cy2 - 6, 13, 3); pixelDisc(ctx, cx2 + 96, cy2 - 6, 13, 3);
-      ctx.fillStyle = '#3a4650';
-      pixelDisc(ctx, cx2 - 46, cy2 - 6, 6, 3); pixelDisc(ctx, cx2 + 96, cy2 - 6, 6, 3);
-      // IL PORTELLONE ALZATO: la sagoma che dice "si sta caricando", e la luce dentro
-      ctx.fillStyle = '#2b3742'; ctx.fillRect(cx2 + cw2 - 88, cy2 - 96, 44, 46);
-      ctx.fillStyle = '#374553'; ctx.fillRect(cx2 + cw2 - 88, cy2 - 96, 44, 5);
-      ctx.fillStyle = '#1a2128'; ctx.fillRect(cx2 + cw2 - 84, cy2 - 50, 36, 38);      // il baule aperto, buio
-      ctx.fillStyle = '#e8d8a0'; ctx.fillRect(cx2 + cw2 - 74, cy2 - 26, 12, 6);       // la lucina
-      glow(ctx, cx2 + cw2 - 68, cy2 - 23, 9, 6, '232,216,160');
-      ctx.fillStyle = '#c02a24'; ctx.fillRect(cx2 + cw2 - 96, cy2 - 34, 7, 9);        // il fanale
-      const boX = W * 0.34;
-      ctx.fillStyle = 'rgba(10,10,14,.30)'; pixelEllipse(ctx, boX + 20, H - 9, 26, 5, 3);
-      ctx.fillStyle = '#5a4636'; ctx.fillRect(boX, H - 30, 42, 20);             // il borsone, in mezzo alla strada
-      ctx.fillStyle = '#6e5644'; ctx.fillRect(boX, H - 30, 42, 4);
-      ctx.fillStyle = '#3a2e24'; ctx.fillRect(boX + 12, H - 34, 18, 5);         // il manico
+      /* IL BORSONE in mezzo alla strada, quello che nessuno dei due ha deciso di
+         caricare per primo. Vicino al portellone aperto, e abbastanza grande da
+         leggersi: manici, cerniera, e la tracolla per terra. */
+      {
+        const bx = Math.round(W * 0.545), by = H - 30;
+        ctx.fillStyle = 'rgba(10,10,14,.34)'; pixelEllipse(ctx, bx + 32, by + 24, 40, 6, 3);
+        ctx.fillStyle = '#5a4636'; ctx.fillRect(bx, by, 66, 26);
+        ctx.fillStyle = '#6e5644'; ctx.fillRect(bx, by, 66, 5);
+        ctx.fillStyle = '#41332a'; ctx.fillRect(bx, by + 12, 66, 3);          // la cerniera
+        ctx.fillStyle = '#3a2e24'; ctx.fillRect(bx + 18, by - 9, 30, 5);      // i manici
+        ctx.fillStyle = '#5a4636'; ctx.fillRect(bx + 18, by - 9, 4, 10); ctx.fillRect(bx + 44, by - 9, 4, 10);
+        ctx.fillStyle = '#4a3a2c'; ctx.fillRect(bx + 62, by + 20, 34, 4);     // la tracolla per terra
+        ctx.fillRect(bx + 92, by + 16, 4, 8);
+      }
 
       // il velo del bordo, come in tutte le altre
       for (let i = 0; i < 4; i++) {
