@@ -3012,45 +3012,43 @@ const Scenes = (() => {
          profilo irregolare, quindi c'è una diagonale in mezzo alle orizzontali e
          l'occhio ha una strada da fare. */
       const rivaA = dx => spiaggiaY + 13 - (dx / W) * 25;
-      blocks(ctx, 0, spiaggiaY - 14, W, stradaY - spiaggiaY + 16, '#6b6055', 12, r, 0.10);
-      for (let dx = 0; dx < W; dx += 4) {
-        const y = rivaA(dx) + Math.sin(dx * 0.05) * 2 + (r() - 0.5) * 3;
-        ctx.fillStyle = '#4a6c8c';                       // il mare che rientra sopra la riva
-        ctx.fillRect(dx, spiaggiaY - 14, 4, y - (spiaggiaY - 14));
-        ctx.fillStyle = 'rgba(240,248,252,.26)';         // il filo bagnato, senza schiuma
-        ctx.fillRect(dx, y, 4, 2);
-        /* La battigia non è uno spigolo: è una fascia bagnata scura che schiarisce
-           salendo verso l'asciutto, e sopra la fascia la riga dei sassolini che il
-           mare ha lasciato. Senza questa sfumatura il mare finiva su un argine. */
-        for (let k = 0; k < 9; k++) {
-          ctx.fillStyle = `rgba(52,46,40,${0.38 - k * 0.040})`;
-          ctx.fillRect(dx, y + 2 + k, 4, 1);
+      /* LA SPIAGGIA, terza stesura. Le prime due leggevano come un argine di terra
+         smossa, e il motivo era concettuale: stavo dipingendo la sabbia come un COLORE
+         con sopra delle chiazze, invece che come una superficie che va via.
+         Da qui, dal muretto, la sabbia si allontana: il bordo in alto è la battigia e
+         sta a trenta metri, il bordo in basso è a due passi. Quindi la sabbia non ha un
+         colore: ne ha due, e in quest'ordine — scura e compatta in alto (bagnata,
+         lontana, in ombra perché a quest'ora il sole è ancora dietro le case) e chiara
+         e mossa in basso (asciutta, vicina, che prende la prima luce). Il colore si
+         interpola riga per riga.
+         E la GRANA cresce venendo avanti: in alto niente, in basso i granelli si
+         contano uno per uno. È la grana, non il colore, che dice a un occhio che una
+         cosa è vicina — e prima ne avevo la stessa quantità dappertutto, che è il modo
+         più sicuro di appiattire una superficie. */
+      for (let dx = 0; dx < W; dx += 2) {
+        const yRiva = rivaA(dx) + Math.sin(dx * 0.05) * 2 + (r() - 0.5) * 2.4;
+        const alt = stradaY - yRiva;
+        ctx.fillStyle = '#4a6c8c';                    // il mare rientra seguendo la riva
+        ctx.fillRect(dx, spiaggiaY - 16, 2, yRiva - (spiaggiaY - 16));
+        for (let y = 0; y < alt; y++) {
+          const t = y / alt;                          // 0 = battigia lontana, 1 = sotto i piedi
+          ctx.fillStyle = mix('#584f45', '#b3a284', Math.pow(t, 0.72));
+          ctx.fillRect(dx, yRiva + y, 2, 1);
         }
-        if (r() > 0.55) {
-          ctx.fillStyle = `rgba(${104 + r() * 40 | 0},${96 + r() * 34 | 0},${84 + r() * 30 | 0},.55)`;
-          ctx.fillRect(dx + (r() * 3 | 0), y + 9 + (r() * 4 | 0), 2, 1);
+        ctx.fillStyle = 'rgba(240,248,252,.22)'; ctx.fillRect(dx, yRiva, 2, 1);
+        ctx.fillStyle = 'rgba(30,26,22,.30)'; ctx.fillRect(dx, yRiva + 1, 2, 2);
+        for (let g = 0; g < 5; g++) {                  // la grana, che cresce venendo avanti
+          const t = 0.30 + r() * 0.70;
+          if (r() > 0.16 + t * 0.42) continue;
+          ctx.fillStyle = r() > 0.42
+            ? `rgba(${208 + r() * 36 | 0},${192 + r() * 30 | 0},${162 + r() * 26 | 0},${0.10 + t * 0.26})`
+            : `rgba(${52 + r() * 30 | 0},${46 + r() * 26 | 0},${38 + r() * 22 | 0},${0.10 + t * 0.30})`;
+          ctx.fillRect(dx, (yRiva + t * alt) | 0, 1 + (r() * 2 | 0), 1);
         }
-      }
-      /* La sabbia era un marrone unico pieno di puntini scuri: leggeva come terra
-         smossa, non come una spiaggia all'alba. Una spiaggia ha due sabbie — quella
-         bagnata, scura e compatta in basso verso l'acqua, e quella asciutta, più
-         chiara e più mossa, salendo verso il muretto — e il confine fra le due si
-         vede a occhio da qualunque distanza. */
-      for (let dx = 0; dx < W; dx += 4) {
-        for (let k = 0; k < 16; k++) {
-          const y = rivaA(dx) + 10 + k * ((stradaY - rivaA(dx) - 10) / 16);
-          const t = k / 15;
-          ctx.fillStyle = `rgba(158,142,116,${0.05 + t * 0.30})`;
-          ctx.fillRect(dx, y, 4, (stradaY - rivaA(dx) - 10) / 16 + 1);
+        if (r() > 0.72) {                             // la riga dei sassolini del mare
+          ctx.fillStyle = `rgba(${118 + r() * 46 | 0},${106 + r() * 38 | 0},${92 + r() * 32 | 0},.60)`;
+          ctx.fillRect(dx, (yRiva + alt * 0.30 + r() * 4) | 0, 2, 1);
         }
-      }
-      for (let i = 0; i < 190; i++) {
-        const x = r() * W, y = spiaggiaY + 6 + r() * (stradaY - spiaggiaY - 8);
-        const chiaro = r() > 0.55;
-        ctx.fillStyle = chiaro
-          ? `rgba(${196 + r() * 40 | 0},${182 + r() * 34 | 0},${152 + r() * 30 | 0},.36)`
-          : `rgba(${44 + r() * 34 | 0},${40 + r() * 28 | 0},${34 + r() * 24 | 0},.44)`;
-        ctx.fillRect(x | 0, y | 0, 2 + (r() * 3 | 0), 2);
       }
       /* Due impronte che vanno all'acqua e non tornano: c'è qualcuno che si è fatto
          il bagno alle sette meno un quarto, e non siete voi. È l'unico segno di vita
