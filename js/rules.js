@@ -10,7 +10,7 @@
 const RULES_STORY = `
 <h3>⛵ Dove state andando</h3>
 <p><b>Giovedì 27 agosto, mezzogiorno, Scauri.</b> La macchina parcheggiata male sul lungomare, due ruote sul marciapiede e in mezzo alla strada un borsone che nessuno dei due ha deciso di caricare per primo. Ventidue chilometri di Domiziana fino a <b>Formia</b>, il molo Azzurra, il traghetto delle tredici. Due ore e quaranta di mare aperto.</p>
-<p>Quattro giorni a <b>Ventotene</b>, in un B&amp;B con la terrazza e il limone in vaso: <b>Le Paracine</b> — che in dialetto sono i muretti a secco, quelli che sull'isola tengono su la terra e lasciano passare il vento, perché se li fai pieni il vento li butta giù. Prenotato a febbraio. Pagato. Meritato.</p>
+<p>Quattro giorni a <b>Ventotene</b>, in un B&amp;B con la terrazza e il limone in vaso: <b>Le Parracine</b> — che in dialetto sono i muretti a secco, quelli che sull'isola tengono su la terra e lasciano passare il vento, perché se li fai pieni il vento li butta giù. Prenotato a febbraio. Pagato. Meritato.</p>
 <p>Si torna <b>domenica 30 col traghetto delle 17:30</b>. Sta scritto sul biglietto, e a un certo punto sarà l'unica cosa a cui tenersi.</p>
 
 <h3>🪨 Che posto è</h3>
@@ -22,7 +22,7 @@ const RULES_STORY = `
 
 <h3>🎭 Chi siete</h3>
 <p><b>Gaetano</b> progetta satelliti: misura cose a settecento chilometri e ha un vizio che è anche la sua virtù — se una cosa non la puoi misurare, per lui non esiste ancora. <b>Claudia</b> di lavoro decide come le cose vengono <i>viste</i>: dieci anni a inquadrare, tagliare, e accorgersi prima di tutti quando una storia non torna.</p>
-<p>Stanno insieme da quattordici anni. Lei ha paura dell'acqua dove non si tocca — non della piscina, non del bagno a riva: del punto esatto in cui il fondo scompare e sotto c'è solo blu che continua. Ci ha fatto pace come si fa pace con le cose che non passano: ci gira intorno, non ne parla, e ogni tanto ci prova.</p>
+<p>Stanno insieme da dieci anni. Lei ha paura dell'acqua dove non si tocca — non della piscina, non del bagno a riva: del punto esatto in cui il fondo scompare e sotto c'è solo blu che continua. Ci ha fatto pace come si fa pace con le cose che non passano: ci gira intorno, non ne parla, e ogni tanto ci prova.</p>
 <p>Lui ha portato la maschera buona. Ne ha portate <b>due</b>, identiche, e non l'ha detto.</p>
 
 <h3>🌊 Come comincia</h3>
@@ -48,14 +48,14 @@ const RULES_HOWTO = `
 <h3>💪 TENUTA, e le condizioni</h3>
 <p>I punti vita qui si chiamano <b>TENUTA</b>: non è muscolo, è quanto regge la testa. A zero si va <b>A TERRA</b> e serve una cura per rialzarsi (a fine scontro vinto si riparte da 1). In certi snodi — <b>sempre annunciati prima</b> — non si sviene: il Coro ti <b>PRENDE</b>. Chi è <b>👻 PRESO DAL CORO</b> resta con voi come <b>voce</b>, si sente cantare nelle scene dopo, e ogni tanto dice una cosa utile e strappante. Non tira dadi, non combatte. Torna solo con l'<b>Àncora di Voce</b>.</p>
 <p>C'è un'altra cosa, e non è la stessa: <b>🌊 È RIMASTO</b>. Qualcuno può <b>scegliere</b> di restare — sull'isola, o più giù — perché l'altro salga sul traghetto. Chi è rimasto <b>non è morto</b>: respira, sta in un posto preciso, e il gioco ne parla al presente. Esce dalla squadra e dai combattimenti, ma non dalla storia: gli epiloghi lo raccontano vivo, perché lo è. È il cuore di uno dei sei finali, e il motore tiene i due stati separati proprio per non confonderli mai.</p>
-<p><b>🎵 ACQUA NEI POLMONI</b> è la condizione di chi ha sentito il Coro troppo da vicino: una nota che ti resta in testa, <b>−2 a tutte le prove e a tutti gli attacchi</b>, e scelte in più che l'altro non vede — alcune buone, alcune non tue. Si toglie in tre modi, tutti umani: il <b>caffè di Ada</b> alle Paracine, il grido di Ciro, o <b>l'altro che ti chiama per nome</b>. La scheda del personaggio lo spiega ogni volta, dentro il gioco.</p>
+<p><b>🎵 ACQUA NEI POLMONI</b> è la condizione di chi ha sentito il Coro troppo da vicino: una nota che ti resta in testa, <b>−2 a tutte le prove e a tutti gli attacchi</b>, e scelte in più che l'altro non vede — alcune buone, alcune non tue. Si toglie in tre modi, tutti umani: il <b>caffè di Ada</b> alle Parracine, il grido di Ciro, o <b>l'altro che ti chiama per nome</b>. La scheda del personaggio lo spiega ogni volta, dentro il gioco.</p>
 
 <h3>🫁 Il FIATO</h3>
 <p><b>Non è denaro e non compra niente: in questo gioco non c'è nessun negozio.</b> Il Fiato (0-20) è l'aria con cui scendete, e fa due cose sole — entrambe le vedete.</p>
 <p><b>Uno:</b> stabilisce con quanta aria parte ogni <b>apnea</b>, e quindi <b>a quanti metri arrivate</b>, contando che dovete anche risalire. I numeri veri sono questi: si comincia con <b>6</b> di fiato (8 se gioca uno solo), che vuol dire circa <b>tredici metri</b>; col tetto (<b>20</b>) e il bombolino riparato si arriva a circa <b>ventisei</b>. Più giù, col solo fiato, <b>non si va</b>: oltre i ventisei metri servono la barca di Ciro e la cima a nodi.</p>
 <p>Prima di ogni immersione il briefing vi scrive nero su bianco a che profondità arrivate e dove sta la cosa che vi serve. Se il conto non torna, non ce la fate: <i>«Con il fiato che avete adesso arrivate a circa 13 metri — e quella cosa sta a 18.»</i> E infatti <b>la prima immersione chiede 7 di fiato</b>, cioè uno in più di quello con cui partite: prima si mangia, o si dorme. È voluto, ed è tutta la lezione dell'economia di questo gioco in una riga.</p>
 <p><b>Due:</b> le scelte che spingono più giù lo <b>consumano</b>, e alcune scelte in fondo al mare lo <b>richiedono</b>, dicendovi prima quanto ne serve.</p>
-<p>Si guadagna <b>solo</b> con le cose vere: dormire alle Paracine, mangiare come si deve alla Marisqueria o da Mimì, il caffè di Ada, <b>ridere</b>, stare fermi un momento con l'altro. Mai combattendo per combattere. Nello zaino trovate sempre il numero e i metri già calcolati.</p>
+<p>Si guadagna <b>solo</b> con le cose vere: dormire alle Parracine, mangiare come si deve alla Marisqueria o da Mimì, il caffè di Ada, <b>ridere</b>, stare fermi un momento con l'altro. Mai combattendo per combattere. Nello zaino trovate sempre il numero e i metri già calcolati.</p>
 
 <h3>🔧 Combinare le cose</h3>
 <p>Nello zaino c'è un pulsante: <b>🔧 Combinare due cose</b>. Sedici combinazioni funzionano e <b>nessuna sta scritta da nessuna parte</b>: si intuiscono dai testi. Un microfono a clip dentro un preservativo e sigillato col nastro fa un <b>idrofono</b> — si fa davvero così. I tentativi assurdi non puniscono: rispondono con una battuta.</p>
@@ -73,7 +73,7 @@ const RULES_HOWTO = `
 <p>A turni, in ordine di iniziativa. Nel proprio turno: <b>attacco</b>, <b>abilità speciale</b> (usi limitati, si ricaricano dormendo e mangiando), <b>oggetto</b> o <b>difesa totale</b> (+3 CA fino al turno dopo).</p>
 <p>Le creature qui non sono mostri: sono <b>voci</b> che hanno preso una forma provvisoria per venirvi incontro. Nella lista dei bersagli sono segnate «non-morto», e prendono <b>danni doppi</b> dalle armi della realtà: il <b>sale</b> della loro stessa acqua, il <b>fuoco</b>, la <b>luce vera</b>, e il <b>nome</b> che avevano da vivi.</p>
 <p>I quattro scontri grossi sono <b>lunghi di proposito</b>: dai sei ai dieci giri con la squadra al completo. Non si passano a forza di attacchi: si accorciano con le cose che avete costruito e con i misteri che avete chiuso, e il log lo <b>dice</b> a ogni effetto che scatta. Se un boss vi sembra infinito, la risposta non è ritirare il dado: è che vi manca un oggetto, o un nome.</p>
-<p>Nello zaino, il primo giorno, ci sono un <b>telo da mare</b> e un <b>coltellino</b>. Tutto il resto si compra al negozio del porto, si trova cercando, o si mette insieme. Chi gioca da solo parte con un <b>caffè delle Paracine</b> in più: serve.</p>
+<p>Nello zaino, il primo giorno, ci sono un <b>telo da mare</b> e un <b>coltellino</b>. Tutto il resto si compra al negozio del porto, si trova cercando, o si mette insieme. Chi gioca da solo parte con un <b>caffè delle Parracine</b> in più: serve.</p>
 
 <h3>🎮 I minigiochi</h3>
 <p>Otto momenti in cui scegliere non basta. L'<b>apnea</b> ha un comando solo: <b>TIENI PREMUTO</b> (spazio, dito o mouse) per scendere, lasci e il corpo risale da sé. Il fiato scende sempre, e più giù sei più se ne va in fretta. In fondo c'è quello che vi serve; cinque metri più giù c'è qualcosa che <b>non</b> vi serve e che vorrete vedere. Quando basta lo decidete voi, e a fiato zero, in difficoltà Apnea, si muore.</p>
@@ -81,7 +81,7 @@ const RULES_HOWTO = `
 
 <h3>🌊 Se cadete tutti: NON è game over</h3>
 <p>Se va giù tutta la squadra, il gioco non vi rimanda al titolo.</p>
-<p>Se avete l'<b>ÀNCORA DI VOCE</b> si <b>consuma</b>: vi rialza tutti a metà TENUTA e lo scontro riprende da lì. Altrimenti si torna all'<b>ultimo checkpoint</b> — la fine di una giornata, o il mattino in cui Ciro sale in barca con voi — con lo <b>stato di allora</b>: gruppo, zaino, indizi, fiato, cose combinate. Quello che avevate capito dopo <b>l'avete perso</b>, e la modale vi dice <b>per nome</b> cosa vi manca. Vi svegliate asciutti alle Paracine, e l'essere asciutti è la parte peggiore.</p>
+<p>Se avete l'<b>ÀNCORA DI VOCE</b> si <b>consuma</b>: vi rialza tutti a metà TENUTA e lo scontro riprende da lì. Altrimenti si torna all'<b>ultimo checkpoint</b> — la fine di una giornata, o il mattino in cui Ciro sale in barca con voi — con lo <b>stato di allora</b>: gruppo, zaino, indizi, fiato, cose combinate. Quello che avevate capito dopo <b>l'avete perso</b>, e la modale vi dice <b>per nome</b> cosa vi manca. Vi svegliate asciutti alle Parracine, e l'essere asciutti è la parte peggiore.</p>
 <p>E se un checkpoint non esiste ancora — cioè se cadete il primo giorno — non c'è nessuna schermata di sconfitta: il gioco vi porta a <b>uno dei sei finali</b>, quello scritto esattamente per questo. Il Coro vi ha presi. È una fine, non un errore di sistema.</p>
 
 <h3>💾 Salvataggi e difficoltà</h3>
@@ -101,5 +101,5 @@ const RULES_QUICK = `
 <div class="ability-box"><span class="ability-name">🕯 Il Quaderno (menu ☰)</span><div class="ability-desc">Tre misteri da quattro indizi. Gli slot vuoti restano ❓, senza spoiler. Al 4/4 il premio è un effetto reale: un turno bloccato ai morti di Santo Stefano, +1 a tutti i tiri, un finale in cui si sigilla invece di combattere.</div></div>
 <div class="ability-box"><span class="ability-name">🎵 Attenzione del Coro</span><div class="ability-desc">●●●○○○ 3/6 nel Quaderno. Sale sotto i 15 metri e ogni volta che vi fermate ad ascoltare. A 5+ i nemici hanno +2 ai colpi e +6 PV; a 0 partono con svantaggio. Nell'ultima immersione decide quanti vengono a prendervi.</div></div>
 <div class="ability-box"><span class="ability-name">🫁 Apnea</span><div class="ability-desc">Un comando solo: TIENI PREMUTO (spazio / dito / mouse) per scendere, lascia e il corpo risale. Il fiato scende sempre, più in fretta più vai giù. Cinque metri sotto quello che vi serve c'è qualcosa che non vi serve. Torna su col fiato ancora in petto.</div></div>
-<div class="ability-box"><span class="ability-name">🌊 Se cadete tutti</span><div class="ability-desc">Non è game over. L'Àncora di Voce si consuma e vi rialza tutti a metà TENUTA; altrimenti si torna all'ultimo checkpoint con lo stato DI ALLORA, e la modale vi dice per nome cosa avete perso. Vi svegliate asciutti alle Paracine. Se un checkpoint non c'è ancora, non c'è una sconfitta: c'è un FINALE.</div></div>
+<div class="ability-box"><span class="ability-name">🌊 Se cadete tutti</span><div class="ability-desc">Non è game over. L'Àncora di Voce si consuma e vi rialza tutti a metà TENUTA; altrimenti si torna all'ultimo checkpoint con lo stato DI ALLORA, e la modale vi dice per nome cosa avete perso. Vi svegliate asciutti alle Parracine. Se un checkpoint non c'è ancora, non c'è una sconfitta: c'è un FINALE.</div></div>
 `;

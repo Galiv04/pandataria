@@ -13,7 +13,7 @@ non Finisce, L'Effetto Zoom). I documenti di serie stanno in `../dnd-motore/docs
 
 ## Il gioco in tre righe
 
-Gaetano e Claudia in vacanza a **Ventotene dal 27 al 30 agosto 2026**, B&B **Le Paracine**. Sotto
+Gaetano e Claudia in vacanza a **Ventotene dal 27 al 30 agosto 2026**, B&B **Le Parracine**. Sotto
 l'isola, nelle cisterne romane murate e in una fossa a quarantacinque metri, c'è **IL CORO**: le voci
 di tutti quelli che duemila anni di storia hanno portato su quest'isola senza farli più uscire —
 relegati imperiali, detenuti del panopticon di Santo Stefano, i bambini di una nave del 1943. Il Coro
@@ -49,7 +49,7 @@ Non è una valuta e **non compra niente: non c'è negozio**. È l'aria delle imm
 `Engine.apneaFiato()` la calcola, `Engine.metriPossibili()` dice a quanti metri arrivi. Con poco
 fiato certi oggetti sono **fisicamente fuori portata**, e il briefing dell'apnea lo dice al giocatore
 prima di farlo scendere. Si guadagna **solo** con le cose umane: mangiare vero, dormire alle
-Paracine, il caffè di Ada, ridere, stare fermi un momento con l'altro.
+Parracine, il caffè di Ada, ridere, stare fermi un momento con l'altro.
 
 Rapporto da rispettare: **dare/spendere sotto 6:1**, altrimenti il tetto si satura entro il primo
 atto e il numero smette di significare qualcosa (è l'errore dei quattro giochi precedenti).
@@ -87,7 +87,7 @@ Gaetano e Claudia sono persone vere. L'orrore li distrugge ma **il ritratto rest
 eroico**: mai umiliazione, degradazione o sessualizzazione, mai sesso esplicito. La **paura di
 Claudia** per l'acqua e la profondità è la sua **forza narrativa** — è lei che sente le cose prima —
 mai una debolezza da compatire e mai materiale da battuta. I ventotenesi vivi **non sono i cattivi**:
-Ada delle Paracine e Ciro il pescatore sono alleati, sempre, senza doppi fondi. Il linguaggio crudo
+Ada delle Parracine e Ciro il pescatore sono alleati, sempre, senza doppi fondi. Il linguaggio crudo
 è voluto (sono adulti), l'oscenità è chirurgica: una parola sola, al punto giusto, mai gratuita.
 
 ## Ambiente

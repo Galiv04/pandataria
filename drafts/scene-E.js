@@ -44,7 +44,7 @@ Il mare non fa niente. Non è calmo nel senso bello: è **fermo**, e ci vuole un
 
 Alle nove, davanti al porto, tre bambini e un cane fanno il casino di sempre a due metri dall'acqua. Lì non c'è niente. Non c'è mai stato niente: la cosa ha un **perimetro**, e il perimetro finisce dove comincia la gente. Una signora che puliva fagiolini l'aveva detto in due secondi, il primo giorno, senza sapere di dire una cosa esatta.
 
-Alle Paracine il caffè è nel thermos di acciaio, quello col tappo che si svita male. Sul tavolo della cucina, accanto al thermos, c'è il registratore.
+Alle Parracine il caffè è nel thermos di acciaio, quello col tappo che si svita male. Sul tavolo della cucina, accanto al thermos, c'è il registratore.
 
 > Claudia: "Ada. Si sieda."
 
@@ -87,7 +87,7 @@ Ada annuisce piano, due volte, come si annuisce a un medico. Poi si alza, prende
 
 Ponte di poppa, lo stesso dell'andata. Le mani sul parapetto: la vernice bianca è calda, ha preso sole tutto il giorno. Sotto le mani non c'è il rumore del motore, c'è la **vibrazione** — quella che arriva ai denti e non smette per due ore e quaranta.
 
-L'isola si stacca. È questo che fa: non sei tu che vai via, è lei che si stacca. Il paese giallo e rosa diventa una fila di sassi ordinati, la scaletta delle paracine una riga, Cala Nave una virgola bianca. La boa gialla si vede per quattro minuti e poi non si vede più.
+L'isola si stacca. È questo che fa: non sei tu che vai via, è lei che si stacca. Il paese giallo e rosa diventa una fila di sassi ordinati, la scaletta delle parracine una riga, Cala Nave una virgola bianca. La boa gialla si vede per quattro minuti e poi non si vede più.
 
 Santo Stefano resta a destra. Alle 17:52 è un dente. Alle 18:20 è una macchia. Poi è la faccia del mare e basta.
 
@@ -152,7 +152,21 @@ Della sesta cisterna non hanno detto niente a nessuno, e su questo si sono trova
 
 Ad Ada arriva una pagina sola, a mano. Non risponde per due settimane, e poi manda un messaggio di undici parole: *"Ho letto. L'ho letta a mio marito. Grazie. La stanza c'è."*
 
-Il resto è la vita. Gaetano ha ripreso a misurare cose lontanissime. Claudia ha ripreso a decidere come si guardano le cose. Il 4 ottobre, a Serapo, con l'acqua a diciannove gradi e la spiaggia vuota, è entrata e ha nuotato fino alla terza boa senza chiedere a nessuno quanto fosse profondo.
+**Il primo settembre sono dieci anni.** Cade di martedì, come previsto, e il martedì si lavora: quindi la cena è alle nove e mezza in una pizzeria di Formia con l'aria condizionata troppo forte, e il regalo dei dieci anni è già stato speso tutto — quattro giorni su un'isola, prenotati a febbraio, pagati, e tenuti segreti per un mese e mezzo.
+
+Claudia tira fuori dalla borsa una cosa piccola avvolta nella carta del pane e la posa sul tavolo, in mezzo ai bicchieri.
+
+È una maschera. Non una nuova: **la sua**, quella di marzo, col silicone segnato dove l'ha stretta troppo. E dentro, sul bordo del vetro, scritto col pennarello indelebile in stampatello — come si scrivono le cose sulle attrezzature, per non confonderle con quelle di un altro — ci sono **una data e due iniziali**. Le stesse che stanno incise dentro le fedi.
+
+> Gaetano: *(che ha capito e non riesce a dirlo)* "Claudia."
+
+> Claudia: "Tu me ne hai comprate due a marzo e non me l'hai detto. Io te ne segno una e te lo dico." *(la spinge di due centimetri verso di lui)* "Non è un regalo. È un'attrezzatura assegnata."
+
+Poi dice la frase per cui dieci anni sono stati una specie di rincorsa, e la dice guardando il tovagliolo, perché certe cose non si dicono in faccia:
+
+> Claudia: "L'anno prossimo la fossa la guardiamo insieme. Non da sopra." *(pausa)* "E la prima che scende sono io."
+
+Il resto è la vita. Gaetano ha ripreso a misurare cose lontanissime. Claudia ha ripreso a decidere come si guardano le cose. Il 4 ottobre, a Serapo, con l'acqua a diciannove gradi e la spiaggia vuota, è entrata con maschera, pinne e boccaglio e ha nuotato fino alla terza boa senza chiedere a nessuno quanto fosse profondo.
 
 Quando escono a cena e qualcuno chiede com'è andata a Ventotene, dicono: bellissima.
 
@@ -175,6 +189,8 @@ Le cinque foto mosse stanno in una cartella che si chiama VENTOTENE 2026, tra la
 Nella cisterna murata, sul tufo, c'è ancora scritto **E SIAMO TORNATI SU**, e non lo leggerà nessuno, e va bene: era un impegno preso in due, e in due è stato mantenuto.
 
 Ada ha scritto a Natale, uno di quei messaggi con troppi puntini: *"Auguri a voi due, siete stati bravi ragazzi, quando volete la stanza c'è."* Non ha scritto altro e non c'era altro da scrivere. Il nome di sua sorella, dentro quel messaggio, non c'è — ma c'è nella testa di tre persone invece che di una, e questa è la differenza.
+
+Il primo settembre, che è due giorni dopo il ritorno, sono dieci anni. Cade di martedì e si lavora, quindi si festeggia alle nove e mezza con una pizza, e nessuno dei due dice ad alta voce che il regalo dei dieci anni sono stati quattro giorni in cui hanno tenuto la bocca chiusa davanti a una cosa che chiedeva di essere lasciata entrare. Claudia gli mette in mano la sua maschera, con una data e due iniziali scritte dentro col pennarello, le stesse delle fedi. Non serve aggiungere altro.
 
 Il primo agosto dell'anno dopo Claudia prenota quattro giorni, la stanza con la terrazza, e non ne parlano prima di partire. Alla Terrazza di Mimì il cameriere si ricorda di lei e della boa, e le porta un limoncello che non ha ordinato.
 
@@ -312,6 +328,8 @@ Tornano il 27 agosto dell'anno dopo, e quello dopo, e quello dopo. Ada tiene la 
 Alla Marisqueria prendono sempre lo stesso piatto. Alla Terrazza di Mimì il tavolo contro la ringhiera lo tengono per loro. La boa gialla è sempre lì, e Claudia ci arriva ogni volta, e ogni volta ci resta appesa un minuto in più.
 
 Non risentono niente. Mai. Undici anni di 30 agosto, e il mare che fa il mare.
+
+Quello che invece si sente ogni anno è il primo settembre: dieci anni, poi undici, poi dodici. Cade sempre in mezzo alla settimana e si festeggia sempre di corsa, e va bene così — perché quella data non ha bisogno di prove. È l'unica cosa di tutta questa storia che non gli serve dimostrare a nessuno.
 
 La cartella si chiama VENTOTENE e dentro ci sono quattromiladuecento file, e non uno di quei file risponde alla domanda.
 
@@ -604,7 +622,7 @@ Il fiato finisce. Prima a uno, poi all'altro, con dodici secondi di differenza. 
 
   e_coro_insieme: {
     location: 'fossa',
-    caption: 'Dentro la nota — e alle Paracine, il 31 agosto',
+    caption: 'Dentro la nota — e alle Parracine, il 31 agosto',
     ending: true,
     text: `Non c'è buio. Il buio era prima, quando c'erano gli occhi.
 
@@ -620,7 +638,7 @@ Il Coro adesso ha una cosa che in duemila anni non aveva mai avuto: due voci che
 
 ---
 
-Alle Paracine, il 31 agosto alle undici, Ada entra nella stanza con la terrazza. Trova due borsoni fatti a metà, un phon, due maschere identiche appoggiate una sull'altra e un foglietto attaccato allo specchio col nastro, con due righe di penna diversa.
+Alle Parracine, il 31 agosto alle undici, Ada entra nella stanza con la terrazza. Trova due borsoni fatti a metà, un phon, due maschere identiche appoggiate una sull'altra e un foglietto attaccato allo specchio col nastro, con due righe di penna diversa.
 
 Chiama la Capitaneria. Poi il figlio. Poi non chiama più nessuno.
 
@@ -757,7 +775,7 @@ E non è brutto. È questa la cosa: **non è brutto.** È comodissimo.
      Il punto: andarsene deve essere una FINE, non una resa. */
   e_abbandono: {
     location: 'bnb',
-    caption: 'Le Paracine, camera due — la terza volta',
+    caption: 'Le Parracine, camera due — la terza volta',
     text: `La terza volta che vi svegliate asciutti, non vi guardate.
 
 Gaetano si mette a sedere sul bordo del letto e resta lì con i piedi sul cotto freddo. Claudia sta girata verso il muro e non dorme, e lui lo sa perché il respiro è sbagliato.

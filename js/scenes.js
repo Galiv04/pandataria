@@ -325,7 +325,7 @@ const Scenes = (() => {
   }
 
   // MURETTO A SECCO: pietre di tufo incastrate senza malta, fughe scure.
-  // È la texture di Ventotene: le paracine, il cimitero, la terrazza.
+  // È la texture di Ventotene: le parracine, il cimitero, la terrazza.
   function muretto(ctx, x, y, w, h, color, rand) {
     ctx.fillStyle = shade(color, 0.55);
     ctx.fillRect(x, y, w, h);
@@ -440,52 +440,96 @@ const Scenes = (() => {
   const painters = {
 
     titolo(ctx, W, H) {
-      // Ventotene di notte, vista dal mare: l'isola bassa, il paese giallo, il
-      // campanile, Santo Stefano a destra senza una luce. E sotto il pelo
-      // dell'acqua, in mezzo alle due isole, un chiarore che non dovrebbe esserci.
-      // È l'incipit: la storia sta tutta in questa inquadratura.
+      /* Ventotene di notte, vista dal mare da nord-est. Riscritto il 24 agosto 2026
+         dopo che il committente ha indicato la cosa giusta: «quella luce tipo lampione
+         che sembra sospesa in aria». Era il campanile di Santa Candida — una barra
+         scura larga otto pixel con un puntino giallo in cima e un alone, cioè
+         esattamente la forma di un lampione. Adesso il campanile è un EDIFICIO: base
+         quadrata appoggiata sui tetti del paese, cella campanaria con l'arco, tetto
+         piramidale, e il lato rivolto alla luna che prende luce. Il paese non è più
+         una manciata di puntini sparsi ma un grappolo di case cubiche sul ciglio, con
+         le finestre accese: da lontano si legge come un paese, che è quello che è.
+         E il chiarore sotto il pelo dell'acqua non è più un'ellisse a bordo netto —
+         sembrava un uovo — ma una colonna di trattini irregolari che sale dal fondo. */
       const r = rng(seedOf('titolo'));
       skyGradient(ctx, W, H, '#04080f', '#16243c', 12);
       stars(ctx, W, H * 0.86, r, 80);
-      const horiz = H * 0.54;
-      // la luna bassa a sinistra, e il suo alone (piccolo: è una luna, non un sole)
+      const horiz = H * 0.60;
+      // la luna bassa a sinistra: è lei che decide da che lato le cose prendono luce
       glow(ctx, W * 0.15, H * 0.16, H * 0.26, H * 0.24, '186,204,232');
       moon(ctx, W * 0.15, H * 0.16, H * 0.048, '#dde4f0');
-      // L'ISOLA: bassa, lunga, appoggiata sull'acqua, col ciglio che prende la luna
-      const ix = W * 0.40, iw = W * 0.76, ih = H * 0.19;
-      for (let dx = -iw / 2; dx < iw / 2; dx += 4) {
+
+      /* L'ISOLA: un tavolato di tufo, basso e lungo, col ciglio tagliato a picco sul
+         mare. Ventotene è piatta: il profilo è una linea, non una gobba. */
+      const ix = W * 0.42, iw = W * 0.80, ih = H * 0.17;
+      const quotaAl = (dx) => {
         const t = dx / (iw / 2);
-        const prof = Math.pow(Math.max(0, 1 - t * t), 0.42);
-        const hh = ih * prof * (0.74 + (Math.sin(dx * 0.055) + Math.sin(dx * 0.021)) * 0.13);
+        const prof = Math.pow(Math.max(0, 1 - t * t), 0.30);   // spalle ripide, cima piatta
+        return ih * prof * (0.80 + Math.sin(dx * 0.031) * 0.06 + Math.sin(dx * 0.011) * 0.05);
+      };
+      for (let dx = -iw / 2; dx < iw / 2; dx += 3) {
+        const hh = quotaAl(dx);
         ctx.fillStyle = '#0a1119';
-        ctx.fillRect(ix + dx, horiz - hh, 4, hh + 2);
-        // il tufo che prende la luna: solo sul versante rivolto verso di lei
-        if (dx < 0) {
-          ctx.fillStyle = `rgba(140,158,188,${0.05 + (1 - Math.abs(t)) * 0.10})`;
-          ctx.fillRect(ix + dx, horiz - hh, 4, 5);
+        ctx.fillRect(ix + dx, horiz - hh, 3, hh + 2);
+        // il ciglio che prende la luna: una riga sola, e solo sul versante di sinistra
+        if (dx < iw * 0.10) {
+          const t = Math.abs(dx / (iw / 2));
+          ctx.fillStyle = `rgba(150,168,198,${0.06 + (1 - t) * 0.13})`;
+          ctx.fillRect(ix + dx, horiz - hh, 3, 2);
         }
       }
-      // il paese: una manciata di luci gialle appoggiate sul tufo, e il loro alone
-      glow(ctx, ix - iw * 0.10, horiz - ih * 0.30, iw * 0.44, ih * 1.1, '224,178,90');
-      for (let i = 0; i < 44; i++) {
-        const u = (r() - 0.5) * 1.1;
-        const lx = ix + u * iw * 0.5;
-        const prof = Math.pow(Math.max(0, 1 - u * u * 4), 0.5);
-        const ly = horiz - 3 - r() * ih * prof * 0.9;
-        ctx.fillStyle = r() > 0.78 ? '#fff0c0' : (r() > 0.36 ? '#e8b860' : '#c09040');
-        ctx.fillRect(lx | 0, ly | 0, 2 + (r() > 0.85 ? 1 : 0), 2);
+
+      /* IL PAESE: case cubiche appoggiate sul ciglio, non puntini sparsi. Ognuna ha il
+         suo tetto piatto e una o due finestre accese. È il grappolo attorno a Santa
+         Candida, cioè la parte alta dell'isola. */
+      const paeseDa = -iw * 0.30, paeseA = iw * 0.06;
+      glow(ctx, ix + (paeseDa + paeseA) / 2, horiz - ih * 0.55, iw * 0.40, ih * 1.05, '224,178,90');
+      for (let dx = paeseDa; dx < paeseA; dx += 7) {
+        const suolo = horiz - quotaAl(dx);
+        const hw = 5 + (r() * 4 | 0), hh2 = 4 + (r() * 5 | 0);
+        const hx = ix + dx + (r() * 3 | 0), hy = suolo - hh2 + 1;
+        ctx.fillStyle = '#101823';
+        ctx.fillRect(hx, hy, hw, hh2 + 2);
+        ctx.fillStyle = 'rgba(150,168,198,.10)';            // il tetto piatto, appena chiaro
+        ctx.fillRect(hx, hy, hw, 1);
+        if (r() > 0.30) {                                   // la finestra accesa
+          const fx = hx + 1 + (r() * Math.max(1, hw - 3) | 0);
+          ctx.fillStyle = r() > 0.72 ? '#fff0c0' : '#e8b860';
+          ctx.fillRect(fx, hy + 1 + (r() * Math.max(1, hh2 - 2) | 0), 2, 2);
+        }
       }
-      // il campanile di Santa Candida: l'unica cosa verticale, con la sua lampada
-      const bcx = ix - iw * 0.13;
-      ctx.fillStyle = '#0c1218'; ctx.fillRect(bcx, horiz - ih * 1.34, 8, ih * 0.9);
-      ctx.fillStyle = '#141c24'; ctx.fillRect(bcx - 2, horiz - ih * 1.40, 12, ih * 0.10);
-      ctx.fillStyle = '#f0d078'; ctx.fillRect(bcx + 2, horiz - ih * 1.24, 4, 5);
-      glow(ctx, bcx + 4, horiz - ih * 1.22, 18, 14, '240,208,120');
-      // SANTO STEFANO, a destra: nessuna luce, e l'anello appena leggibile
-      santoStefanoLontano(ctx, W * 0.87, horiz, W * 0.19, H * 0.155, '#070c12', '#111a23');
-      // IL MARE: nero lucido. Non ha onde: ha una lastra che si muove appena.
+
+      /* IL CAMPANILE DI SANTA CANDIDA: l'unica cosa verticale dell'isola, e va letta
+         come un edificio. Base che affonda nei tetti, cella campanaria con l'arco
+         scuro, cornicione, tetto piramidale, e il lato di sinistra illuminato dalla
+         luna. La lampada è piccola: una lampada, non un faro. */
+      const bcx = Math.round(ix - iw * 0.14);
+      const bBase = horiz - quotaAl(-iw * 0.14) + 3;         // dentro i tetti, non sopra
+      const bW = 13, bH = ih * 1.05;
+      const bTop = bBase - bH;
+      ctx.fillStyle = '#0e1620'; ctx.fillRect(bcx, bTop, bW, bH);
+      ctx.fillStyle = 'rgba(158,176,206,.16)'; ctx.fillRect(bcx, bTop, 2, bH);          // lato luna
+      ctx.fillStyle = 'rgba(4,8,15,.55)'; ctx.fillRect(bcx + bW - 2, bTop, 2, bH);      // lato ombra
+      // la cella campanaria: un arco scuro dove sta la campana
+      const cellaY = bTop + Math.round(bH * 0.16);
+      ctx.fillStyle = '#050a11'; ctx.fillRect(bcx + 4, cellaY, 5, 6);
+      ctx.fillStyle = '#050a11'; ctx.fillRect(bcx + 5, cellaY - 1, 3, 1);
+      // cornicione e tetto piramidale
+      ctx.fillStyle = '#141d28'; ctx.fillRect(bcx - 2, bTop - 2, bW + 4, 2);
+      for (let k = 0; k < 5; k++) {
+        ctx.fillStyle = k === 0 ? 'rgba(158,176,206,.20)' : '#101923';
+        ctx.fillRect(bcx + 1 + k, bTop - 3 - k, bW - 2 - k * 2, 1);
+      }
+      // la lampada sotto il cornicione, piccola, col suo mezzo alone
+      ctx.fillStyle = '#f0d078'; ctx.fillRect(bcx + bW - 4, cellaY + 8, 2, 2);
+      glow(ctx, bcx + bW - 3, cellaY + 9, 9, 7, '240,208,120');
+
+      // SANTO STEFANO, a destra: nessuna luce, e l'anello del panopticon appena leggibile
+      santoStefanoLontano(ctx, W * 0.88, horiz, W * 0.17, H * 0.13, '#070c12', '#111a23');
+
+      // IL MARE: una lastra nera lucida che si muove appena
       sea(ctx, W, horiz, H, '#04080e', '#0a121c', r, 10, 0.30);
-      // la colonna della luna, spezzata in trattini che si allargano venendo avanti
+      // la colonna della luna, che si allarga venendo avanti
       for (let y = horiz + 2; y < H; y += 5) {
         const t = (y - horiz) / (H - horiz);
         const spread = 14 + t * 120;
@@ -496,25 +540,44 @@ const Scenes = (() => {
           ctx.fillRect(W * 0.15 + off, y, ww, 3);
         }
       }
-      // il riflesso giallo del paese sull'acqua: trattini corti, non una fascia
+      // il riflesso giallo del paese: trattini corti sotto le case, non una fascia
       for (let i = 0; i < 46; i++) {
-        const rx2 = ix - iw * 0.34 + r() * iw * 0.58;
-        const ry2 = horiz + 3 + r() * H * 0.11;
-        ctx.fillStyle = `rgba(206,156,72,${0.20 - (ry2 - horiz) / (H * 0.11) * 0.12})`;
+        const rx2 = ix - iw * 0.32 + r() * iw * 0.42;
+        const ry2 = horiz + 3 + r() * H * 0.10;
+        ctx.fillStyle = `rgba(206,156,72,${0.20 - (ry2 - horiz) / (H * 0.10) * 0.12})`;
         ctx.fillRect(rx2 | 0, ry2 | 0, 4 + r() * 12 | 0, 2);
       }
-      // LA COSA: in mezzo al braccio di mare tra le due isole, SOTTO il pelo
-      // dell'acqua, un chiarore pallido che sale. Non è un riflesso: non c'è niente,
-      // là sopra, che possa riflettersi.
-      const bx = W * 0.68;
-      for (let k = 4; k >= 1; k--) {
-        ctx.fillStyle = `rgba(128,176,196,${0.009 * k})`;
-        pixelEllipse(ctx, bx, horiz + H * 0.20, 13 * k, H * 0.075 * k, 4);
+      /* IL RESPIRO DEL MARE nella parte bassa: righe lunghissime e quasi invisibili.
+         Prima quel terzo era nero piatto e sembrava una fascia morta. */
+      for (let y = horiz + H * 0.14; y < H - 4; y += 7) {
+        const t = (y - horiz) / (H - horiz);
+        ctx.fillStyle = `rgba(96,124,160,${0.030 - t * 0.014})`;
+        const lw = W * (0.30 + r() * 0.55);
+        ctx.fillRect((r() * (W - lw)) | 0, y | 0, lw | 0, 1);
       }
-      ctx.fillStyle = 'rgba(168,206,222,.055)';
-      pixelEllipse(ctx, bx, horiz + H * 0.17, 14, H * 0.10, 4);
-      ctx.fillStyle = 'rgba(198,226,236,.05)';
-      pixelEllipse(ctx, bx, horiz + H * 0.14, 6, H * 0.06, 4);
+
+      /* LA COSA: in mezzo al braccio di mare fra le due isole, SOTTO il pelo
+         dell'acqua, un chiarore che sale. Era un'ellisse a bordo netto e sembrava un
+         uovo: adesso è una colonna di trattini irregolari, più stretta e più chiara
+         appena sotto la superficie, che si sfilaccia scendendo. Niente simmetria. */
+      const bx = W * 0.68;
+      for (let y = horiz + 4; y < horiz + H * 0.34; y += 3) {
+        const t = (y - horiz) / (H * 0.34);
+        const larg = 5 + t * 46;
+        const n = 2 + (r() * 3 | 0);
+        for (let k = 0; k < n; k++) {
+          const ww = 2 + r() * larg * 0.5;
+          const off = (r() - 0.5) * (larg - ww) * 1.3;
+          ctx.fillStyle = `rgba(176,212,228,${(0.085 - t * 0.070) * (0.55 + r() * 0.7)})`;
+          ctx.fillRect((bx + off) | 0, y, ww | 0, 2);
+        }
+      }
+      // il punto più chiaro, appena sotto il pelo: due trattini e basta
+      ctx.fillStyle = 'rgba(214,238,246,.13)';
+      ctx.fillRect((bx - 4) | 0, (horiz + 3) | 0, 7, 2);
+      ctx.fillStyle = 'rgba(214,238,246,.08)';
+      ctx.fillRect((bx + 2) | 0, (horiz + 6) | 0, 5, 2);
+
       // il velo di nero sul bordo: l'inquadratura si chiude da sola
       for (let i = 0; i < 5; i++) {
         ctx.fillStyle = `rgba(1,4,9,${0.05 + i * 0.04})`;
@@ -801,7 +864,7 @@ const Scenes = (() => {
     },
 
     bnb(ctx, W, H) {
-      // LE PARACINE. È il rifugio, e deve sembrarlo: un fazzoletto di terra tenuto
+      // LE PARRACINE. È il rifugio, e deve sembrarlo: un fazzoletto di terra tenuto
       // su da TRE livelli di muretti a secco, la casa bassa di tufo giallo con le
       // finestre verdi, i pomodori sulle canne, il basilico nel bidone tagliato e
       // un limone in vaso che ha più limoni di quanti ne possa mangiare una famiglia.
@@ -812,6 +875,20 @@ const Scenes = (() => {
       sea(ctx, W, horiz, H * 0.44, '#1a6484', '#2f88a6', r, 8, 0.7);
       ctx.fillStyle = 'rgba(255,255,255,.20)'; ctx.fillRect(0, horiz, W, 2);
       santoStefanoLontano(ctx, W * 0.84, horiz + 2, W * 0.13, H * 0.062, '#42585e', '#8a9088');
+      /* I GRADINI CHE SCENDONO A CALA NAVE, sulla destra del giardino: dal muretto più
+         basso una rampa stretta scompare oltre il ciglio. È il dettaglio vero di questo
+         posto — la spiaggia sta sotto, a una rampa di distanza — ed è anche la ragione
+         per cui questo rifugio confina col mare profondo. */
+      const grX = W * 0.80;
+      for (let k = 0; k < 7; k++) {
+        const gy = H * 0.455 + k * 5;
+        ctx.fillStyle = k % 2 ? '#b09468' : '#c8ac7e';
+        ctx.fillRect(grX + k * 3, gy, 26 - k * 2, 4);
+        ctx.fillStyle = 'rgba(60,48,32,.45)';
+        ctx.fillRect(grX + k * 3, gy + 4, 26 - k * 2, 1);
+      }
+      ctx.fillStyle = 'rgba(20,28,24,.5)'; ctx.fillRect(grX + 20, H * 0.455 + 34, 12, 6);   // dove la rampa scompare
+
       // LA COSA FREDDA: sul mare, in mezzo tra le due isole, una banda verticale
       // larga tre dita dove l'aria non è nitida come tutto il resto.
       ctx.fillStyle = 'rgba(146,182,196,.26)'; ctx.fillRect(W * 0.735, horiz - 18, 14, H * 0.16 + 18);
@@ -835,7 +912,7 @@ const Scenes = (() => {
         ctx.fillStyle = '#4a7a48';
         for (let k = 0; k < 12; k++) pixelEllipse(ctx, r() * W, ly - 18 + r() * 16, 6, 4, 3);
       }
-      // la scaletta di paracine che sale da un livello all'altro, a destra
+      // la scaletta di parracine che sale da un livello all'altro, a destra
       for (let i = 0; i < 9; i++) {
         ctx.fillStyle = '#cfb078'; ctx.fillRect(W * 0.90, H * 0.44 + i * 12, 88 - i, 8);
         ctx.fillStyle = 'rgba(90,70,34,.30)'; ctx.fillRect(W * 0.90, H * 0.44 + i * 12 + 8, 88 - i, 4);
@@ -977,6 +1054,24 @@ const Scenes = (() => {
       ctx.fillStyle = 'rgba(70,90,80,.30)';
       for (let i = 0; i < 130; i++) pixelEllipse(ctx, r() * W, rigaY + 34 + r() * (shoreY - rigaY - 38), 4 + r() * 6, 3, 3);
       ctx.fillStyle = 'rgba(255,214,150,.12)'; ctx.fillRect(0, rigaY + 30, W, shoreY - rigaY - 30);
+      /* LO SCOGLIO DELLA NAVE, a destra, oltre la riga: è quello che dà il nome alla
+         baia. Prua bassa, fianco lungo, la cintura nera delle patelle sul pelo
+         dell'acqua e due gabbiani sopra. Nel quadro non c'era, e senza di lui questa
+         non era Cala Nave: era una cala qualunque. */
+      const scX = W * 0.885, scY = rigaY + 4;
+      ctx.fillStyle = 'rgba(10,28,38,.45)'; pixelEllipse(ctx, scX, scY + 9, 62, 8, 3);
+      for (let dx = -60; dx < 62; dx += 3) {
+        const t = dx / 60;
+        // profilo asimmetrico: la prua a sinistra è più bassa, la poppa più alta
+        const hh = 30 * Math.pow(Math.max(0, 1 - t * t), 0.46) * (t < 0 ? 0.72 : 1.0) + Math.sin(dx * 0.09) * 2;
+        ctx.fillStyle = '#8e7a52';
+        ctx.fillRect(scX + dx, scY - hh, 3, hh + 6);
+        ctx.fillStyle = 'rgba(255,206,150,.30)';                      // il sole basso sul fianco
+        ctx.fillRect(scX + dx, scY - hh, 3, 2);
+        if (dx % 9 === 0) { ctx.fillStyle = 'rgba(46,36,26,.55)'; ctx.fillRect(scX + dx, scY + 2, 3, 4); }  // patelle
+      }
+      ctx.fillStyle = '#e8e4dc'; ctx.fillRect(scX - 12, scY - 33, 3, 2); ctx.fillRect(scX + 16, scY - 29, 3, 2);   // due gabbiani
+
       // LA BOA GIALLA, a sessanta metri, appena oltre la riga: calda di sole e
       // scivolosa di alghe
       const boaX = W * 0.56;
@@ -1009,12 +1104,21 @@ const Scenes = (() => {
       // LA RIVA: profilo irregolare di sabbia bagnata, e la schiuma piccola
       for (let x = 0; x < W; x += 12) {
         const off = Math.round((r() - 0.5) * 7);
-        ctx.fillStyle = '#c8b490'; ctx.fillRect(x, shoreY + off, 12, 10);
+        ctx.fillStyle = '#4a423c'; ctx.fillRect(x, shoreY + off, 12, 10);   // sabbia bagnata: scura, vulcanica
         ctx.fillStyle = 'rgba(255,255,250,.42)'; ctx.fillRect(x, shoreY + off - 4, 12, 4);
       }
       // LA SABBIA, calda di sole basso
-      ground(ctx, W, H, shoreY + 10, '#e0c493', r, 12, 9);
-      ctx.fillStyle = 'rgba(255,186,104,.20)'; ctx.fillRect(0, shoreY + 10, W, H - shoreY - 10);
+      ground(ctx, W, H, shoreY + 10, '#6b6055', r, 12, 9);
+      ctx.fillStyle = 'rgba(255,186,104,.16)'; ctx.fillRect(0, shoreY + 10, W, H - shoreY - 10);
+      /* I SASSOLINI: Cala Nave è sabbia vulcanica scura mescolata a ghiaia, ed è la
+         prima cosa che si sente sotto i piedi nudi. Senza, la spiaggia sembrava
+         quella dorata di un altro mare. */
+      for (let i = 0; i < 260; i++) {
+        const sx = r() * W, sy = shoreY + 12 + r() * (H - shoreY - 14);
+        const c = r();
+        ctx.fillStyle = c > 0.72 ? 'rgba(212,198,180,.55)' : (c > 0.4 ? 'rgba(150,138,124,.5)' : 'rgba(58,50,44,.55)');
+        ctx.fillRect(sx | 0, sy | 0, 2 + (r() > 0.8 ? 1 : 0), 2);
+      }
       ctx.fillStyle = 'rgba(120,96,60,.22)';
       for (let i = 0; i < 60; i++) ctx.fillRect(r() * W | 0, shoreY + 18 + r() * (H - shoreY - 22) | 0, 3, 2);
       // GLI OMBRELLONI, piantati nella sabbia a profondità diverse: due aperti e
@@ -1081,7 +1185,7 @@ const Scenes = (() => {
     },
 
     terrazza(ctx, W, H) {
-      // LA TERRAZZA DELLE PARACINE, mezzanotte e quaranta. Il paese sotto quasi
+      // LA TERRAZZA DELLE PARRACINE, mezzanotte e quaranta. Il paese sotto quasi
       // spento, il mare una lastra nera, Santo Stefano a tre chilometri che non è
       // più un ferro di cavallo: è solo una gobba scura. E più stelle del necessario.
       const r = rng(seedOf('terrazza'));
@@ -1105,6 +1209,29 @@ const Scenes = (() => {
         glow(ctx, lx, ly, 26, 18, '232,192,110');
         ctx.fillStyle = '#f0d078'; ctx.fillRect(lx - 2, ly - 2, 5, 4);
       }
+      /* LA COSTA NAPOLETANA, all'orizzonte: da questa terrazza si vede il golfo — Ischia,
+         Procida, e in fondo il Vesuvio. Di notte non si vedono le sagome: si vedono le
+         LUCI, una riga bassissima e interrotta, con un grumo più fitto dove sta Ischia.
+         Sessanta chilometri di golfo da una sedia di plastica. Nel quadro non c'erano. */
+      for (let i = 0; i < 120; i++) {
+        const lx = r() * W * 0.80;
+        const ly = horiz - 1 - (r() > 0.85 ? 1 : 0);
+        ctx.fillStyle = `rgba(226,196,140,${0.10 + r() * 0.16})`;
+        ctx.fillRect(lx | 0, ly | 0, 1 + (r() > 0.9 ? 1 : 0), 1);
+      }
+      // Ischia: il grumo più fitto, e il suo alone appena accennato
+      glow(ctx, W * 0.24, horiz - 2, 90, 10, '226,196,140');
+      for (let i = 0; i < 34; i++) {
+        ctx.fillStyle = `rgba(240,214,160,${0.14 + r() * 0.20})`;
+        ctx.fillRect((W * 0.24 + (r() - 0.5) * 78) | 0, (horiz - 1 - r() * 2) | 0, 1, 1);
+      }
+      // il Vesuvio: una gobba bassissima e senza luci, appena più scura del cielo
+      for (let dx = -34; dx < 34; dx += 2) {
+        const hh = 5 * Math.pow(Math.max(0, 1 - (dx / 34) ** 2), 0.5);
+        ctx.fillStyle = 'rgba(10,16,28,.55)';
+        ctx.fillRect((W * 0.52 + dx) | 0, (horiz - hh) | 0, 2, hh + 1);
+      }
+
       // IL MARE: una lastra nera che si muove appena
       sea(ctx, W, horiz, murettoY, '#040810', '#0a1220', r, 8, 0.2);
       // SANTO STEFANO: una gobba scura contro il cielo, senza una luce
@@ -1117,6 +1244,20 @@ const Scenes = (() => {
       // IL MURETTO A SECCO su cui si tengono i piedi
       muretto(ctx, 0, murettoY, W, H - murettoY, '#6a5a3e', r);
       ctx.fillStyle = 'rgba(255,230,170,.06)'; ctx.fillRect(0, murettoY, W, 4);
+      /* IL GAZEBO DI CANNE: sulla terrazza solarium la colazione si fa qui sotto, e di
+         notte le canne tagliano il cielo in strisce sopra la testa. Dà il soffitto a
+         un'inquadratura che prima era tutta cielo aperto. */
+      for (let i = 0; i < 7; i++) {
+        const gy = 3 + i * 5;
+        ctx.fillStyle = `rgba(38,30,20,${0.55 - i * 0.055})`;
+        ctx.fillRect(0, gy, W, 2);
+      }
+      for (let gx = 8; gx < W; gx += 26) {
+        ctx.fillStyle = 'rgba(46,36,24,.42)';
+        ctx.fillRect(gx, 0, 3, 34);
+      }
+      ctx.fillStyle = 'rgba(58,46,30,.55)'; ctx.fillRect(0, 34, W, 3);
+
       // IL TAVOLINO e LE DUE SEDIE DI PLASTICA, in controluce
       const tx = W * 0.30, ty = murettoY - 4;
       ctx.fillStyle = '#1a1d22'; ctx.fillRect(tx - 30, ty - 44, 60, 6);
@@ -1720,7 +1861,7 @@ const Scenes = (() => {
       for (let i = 0; i < 4; i++) ctx.fillRect(dxh + 26 + i * 44, by - 54, 5, 20);
       ctx.fillStyle = '#d2dae2'; ctx.fillRect(bx + bw - 98, by - 72, 86, 22);       // il cuscino occupato
       ctx.fillStyle = 'rgba(70,82,96,.36)'; ctx.fillRect(bx + bw - 72, by - 64, 44, 11);
-      // LA GAMBA FUORI DAL LENZUOLO: come sempre, come ogni notte da quattordici anni
+      // LA GAMBA FUORI DAL LENZUOLO: come sempre, come ogni notte da dieci anni
       ctx.fillStyle = '#c8a888'; ctx.fillRect(dxh + 4, by - 48, 42, 13);
       ctx.fillStyle = '#b89878'; ctx.fillRect(dxh - 8, by - 44, 15, 9);
       // LA SEDIA coi vestiti piegati come li piega lei, maniche in dentro

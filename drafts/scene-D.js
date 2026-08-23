@@ -16,7 +16,7 @@ const SCENE_D = {
 
   d0: {
     location: 'alba',
-    caption: 'Le Paracine — domenica 30 agosto, ore 07:10',
+    caption: 'Le Parracine — domenica 30 agosto, ore 07:10',
     stinger: 'heal',
     metri: 0,
     text: `Il ventilatore a pale gira piano. Entra un'aria che sa di limone e di sale, e sul muro sopra il letto c'è il rettangolo di sole che alle sette e dieci arriva sempre allo stesso posto.
@@ -55,7 +55,7 @@ E sul tavolino c'è anche la bottiglia dell'acqua. Un litro e mezzo. Ieri notte 
 
 E per un'ora e mezza è vero, e per un'ora e mezza è la vacanza più bella che abbiano fatto.
 
-**(💪 TENUTA piena, mosse ricaricate: dentro le paracine si dorme. 🫁 Fiato +2. Il Quaderno registra la prima cosa sbagliata della mattina — la bottiglia col sigillo intatto — e ce n'è una seconda, più tardi, e sono due.)**`,
+**(💪 TENUTA piena, mosse ricaricate: dentro le parracine si dorme. 🫁 Fiato +2. Il Quaderno registra la prima cosa sbagliata della mattina — la bottiglia col sigillo intatto — e ce n'è una seconda, più tardi, e sono due.)**`,
     gold: 2,
     fullHeal: true,
     recharge: true,
@@ -88,7 +88,7 @@ Claudia resta con la maglietta a mezz'aria.
 
 > Gaetano: "Non l'ho registrata."
 
-> Claudia: *(e lo guarda, e lo conosce da quattordici anni)* "Gaetano."
+> Claudia: *(e lo guarda, e lo conosce da dieci anni)* "Gaetano."
 
 > Gaetano: *(e cede subito, perché con lei ha smesso di provarci)* "L'ho registrata."
 
@@ -113,7 +113,7 @@ Claudia ascolta tutto. Poi si siede sul bordo del letto con il telefono in mano.
 
   d1_colazione: {
     location: 'terrazza',
-    caption: 'La terrazza delle Paracine — ore 08:20',
+    caption: 'La terrazza delle Parracine — ore 08:20',
     metri: 0,
     text: `Ada porta la moka, il pane con la marmellata di fichi che fa lei, e due albicocche in un piattino perché "quelle di ieri erano acerbe e mi è rimasto il magone".
 
@@ -249,7 +249,7 @@ E poi il ventilatore a pale gira piano, ed entra un'aria che sa di limone e di s
 
   d4_ciclo2: {
     location: 'alba',
-    caption: 'Le Paracine — domenica 30 agosto, ore 07:10 (di nuovo)',
+    caption: 'Le Parracine — domenica 30 agosto, ore 07:10 (di nuovo)',
     stinger: 'voce_amata',
     metri: 0,
     text: `Sono svegli tutti e due. Da subito. Nessuno dei due ha aperto gli occhi piano.
@@ -295,7 +295,7 @@ E dal piano di sotto, dalla cucina, si sente Ada che mette la moka sul fuoco.
 
   d5_ada: {
     location: 'bnb',
-    caption: 'La cucina delle Paracine — ore 07:55',
+    caption: 'La cucina delle Parracine — ore 07:55',
     metri: 0,
     text: `Ada è girata verso il fuoco. La moka borbotta. Sul tavolo ci sono tre tazzine, e nessuno le ha detto che scendevano in due.
 
@@ -789,7 +789,7 @@ Non c'è un lampo, non c'è un buio, non c'è nessun effetto: il numero passa da
 
   d9_ko: {
     location: 'bnb',
-    caption: 'Le Paracine — vi svegliate ASCIUTTI',
+    caption: 'Le Parracine — vi svegliate ASCIUTTI',
     stinger: 'defeat',
     metri: 0,
     fullHeal: true,
@@ -830,7 +830,7 @@ Fuori, in cucina, Ada mette la moka sul fuoco. Sono le sette e cinquanta di dome
 
   d10_ciclo3: {
     location: 'alba',
-    caption: 'Le Paracine — 30 agosto, ore 07:10 (la terza volta)',
+    caption: 'Le Parracine — 30 agosto, ore 07:10 (la terza volta)',
     stinger: 'coro',
     metri: 0,
     text: `Il ventilatore non gira.
@@ -851,7 +851,7 @@ La moka è sul fuoco, e il fuoco è **spento**, e la moka è calda. Sul tavolo t
 
 Ada non è di là.
 
-E nel corridoio, davanti alla porta di casa, c'è **acqua**. Un velo alto un dito che entra da sotto la porta e arriva fino al primo gradino delle scale, e Le Paracine stanno a quarantadue metri sul livello del mare.
+E nel corridoio, davanti alla porta di casa, c'è **acqua**. Un velo alto un dito che entra da sotto la porta e arriva fino al primo gradino delle scale, e Le Parracine stanno a quarantadue metri sul livello del mare.
 
 > Gaetano: "Ada?"
 
@@ -1553,7 +1553,7 @@ Sono in piedi sulla banchina con le sacche in mano, bagnati, e uno dei due ha in
 
 Il sole è basso. L'ombra del campanile arriva a metà della rampa.
 
-Dietro di loro l'isola: le case gialle, la scaletta delle paracine, il limone in vaso di Ada che ha più limoni di quanti se ne possano mangiare. Davanti, trenta metri di lamiera vuota.
+Dietro di loro l'isola: le case gialle, la scaletta delle parracine, il limone in vaso di Ada che ha più limoni di quanti se ne possano mangiare. Davanti, trenta metri di lamiera vuota.
 
 > Claudia: "Ok." *(gli prende la mano — non per aiuto: per riferimento)* "Decidiamo."
 
@@ -1567,7 +1567,7 @@ Dietro di loro l'isola: le case gialle, la scaletta delle paracine, il limone in
       { text: '🚢 Salire e basta. Vivi, insieme, e senza aver capito un cazzo', gold: 1, next: 'e_vittoria_muta' },
       { text: '🕯 Uno dei due non sale. E non sale perché salga l\'altro', next: 'd15_scambio' },
       { text: '🏠 Uno dei due non sale, e non è per l\'altro: è perché ha deciso di restare', next: 'd15_resta' },
-      { text: '🛏 Non salire. Tornare alle Paracine, mettersi a letto, e domani è oggi', tag: '⚠️ Nessuno vi prende, nessuno muore. È la fine peggiore che abbia questo gioco', next: 'e_loop' },
+      { text: '🛏 Non salire. Tornare alle Parracine, mettersi a letto, e domani è oggi', tag: '⚠️ Nessuno vi prende, nessuno muore. È la fine peggiore che abbia questo gioco', next: 'e_loop' },
     ],
   },
 
@@ -1576,7 +1576,7 @@ Dietro di loro l'isola: le case gialle, la scaletta delle paracine, il limone in
     caption: 'Sulla rampa — uno dei due',
     stinger: 'voce_amata',
     metri: 0,
-    text: `Non è una discussione. Le discussioni le hanno già fatte tutte, in quattordici anni, sul phon e sulle valigie e su chi ha ragione.
+    text: `Non è una discussione. Le discussioni le hanno già fatte tutte, in dieci anni, sul phon e sulle valigie e su chi ha ragione.
 
 Questa è una di quelle cose che si dicono una volta e restano dette.
 

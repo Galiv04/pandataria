@@ -9,7 +9,7 @@ const SCENE_B = {
 
   b0: {
     location: 'bnb',
-    caption: 'Venerdì 28 agosto, ore 08:20 — la terrazza delle Paracine',
+    caption: 'Venerdì 28 agosto, ore 08:20 — la terrazza delle Parracine',
     text: `Il caffè di Ada arriva in una tazza spessa, di quelle che scaldano le mani anche ad agosto. Sul tavolino ci sono un cestino di fette biscottate, un vasetto di marmellata di albicocche con l'etichetta scritta a penna, e un piattino con quattro fichi aperti a croce.
 
 Claudia ha dormito nove ore. Ha la faccia di una che ha dormito nove ore. Guarda il mare oltre i muretti e dice: "Amore. Ieri sono arrivata alla boa."
@@ -37,7 +37,7 @@ Sul foglietto attaccato allo specchio, con il nastro, il programma di oggi: **le
 
   b0_ada: {
     location: 'bnb',
-    caption: 'Le Paracine, ore 08:40 — la cucina',
+    caption: 'Le Parracine, ore 08:40 — la cucina',
     text: `Ada sta sbucciando patate dentro un catino di plastica verde. Non alza la testa.
 
 "Le cisterne. Quelle dietro la chiesa."
@@ -73,7 +73,7 @@ Silenzio. La radio in cucina fa una canzone di Nino D'Angelo.
 
   b0_ada_chi: {
     location: 'bnb',
-    caption: 'Le Paracine, ore 08:47',
+    caption: 'Le Parracine, ore 08:47',
     text: `Ada mette la patata nel catino. Si gira. Ha gli occhi di una che ha deciso di rispondere e già se ne pente.
 
 "Nessuno dei due."
@@ -102,7 +102,7 @@ Claudia impara a nuotare a ventinove anni, in una piscina di Latina, con un istr
 
   b0_mano: {
     location: 'bnb',
-    caption: 'Le Paracine, ore 08:49 — quattro secondi',
+    caption: 'Le Parracine, ore 08:49 — quattro secondi',
     text: `Gaetano allunga la mano e prende quella di Claudia. Non la stringe: la tiene. Ada guarda il catino delle patate come se fosse interessantissimo.
 
 Claudia ha la mano fredda ad agosto, alle nove del mattino, in cucina.
@@ -132,7 +132,7 @@ E lei fa quella cosa che fa quando decide di non avere paura: tira su col naso u
 
   b0_scrivere: {
     location: 'bnb',
-    caption: 'Le Paracine, il tavolino della terrazza',
+    caption: 'Le Parracine, il tavolino della terrazza',
     text: `Gaetano scrive sul retro della ricevuta del traghetto, con la penna del comodino:
 
 > *stateve accort' a chella ca nun sape natà*
@@ -1288,7 +1288,7 @@ E, sotto tutto, quella che Gaetano tira su per ultima e che gli fa dire *porca p
 "O gliel'hanno tolta."
 
 **(🎁 Oggetti: la MASCHERA BUONA — vetro temperato, si può usare, va solo cambiato l'elastico — e un TELO che era in fondo, di spugna, con dentro ancora la sabbia. 🎵 Attenzione +1: la roba a galla adesso gira in senso contrario.)**`,
-    item: 'maschera_buona',
+    item: 'maschera_1997',
     attenzione: 1,
     sets: { sa_maschera_novanta: true, sa_secchiello_A: true },
     choices: [
@@ -1487,13 +1487,13 @@ Tossisce a lungo. Molto a lungo. Poi si mette a sedere da sola, con la schiena a
 
 Le tiene un braccio dietro le spalle. Le sta bagnando la maglietta. Fuori, sopra i quattro metri di corda e il buco nel muro del 1957, è ancora un pomeriggio d'agosto e ci sono trentun gradi.
 
-**(💪 −6 e ACQUA NEI POLMONI: −2 a tutto, e la vedete scritta nella scheda del personaggio col rimedio. Si toglie con il caffè delle Paracine, o quando qualcuno la chiama per nome nel modo giusto. 🎵 Attenzione +1.)**`,
+**(💪 −6 e ACQUA NEI POLMONI: −2 a tutto, e la vedete scritta nella scheda del personaggio col rimedio. Si toglie con il caffè delle Parracine, o quando qualcuno la chiama per nome nel modo giusto. 🎵 Attenzione +1.)**`,
     damage: 6,
     attenzione: 1,
     sets: { claudia_tenuta_giu: true },
     poisonRoller: true,
     choices: [
-      { text: '☕ Il caffè delle Paracine. Adesso, subito, qui sul gradino', requires: { item: 'caffe_paracine' }, once: true, removeItem: 'caffe_paracine', next: 'b8_caffe' },
+      { text: '☕ Il caffè delle Parracine. Adesso, subito, qui sul gradino', requires: { item: 'caffe_parracine' }, once: true, removeItem: 'caffe_parracine', next: 'b8_caffe' },
       { text: '🪜 Su. Portarla su e basta', next: 'b9' },
     ],
   },
@@ -1519,7 +1519,7 @@ Poi dice: "Là sotto c'è un corridoio, va verso il mare, e qualcuno negli anni 
     sets: { sa_cunicolo: true, sa_sub_anni90: true },
     stinger: 'apnea',
     choices: [
-      { text: '☕ Il caffè di Ada. Ha la faccia di una che ne ha bisogno', requires: { item: 'caffe_paracine' }, once: true, removeItem: 'caffe_paracine', next: 'b8_caffe' },
+      { text: '☕ Il caffè di Ada. Ha la faccia di una che ne ha bisogno', requires: { item: 'caffe_parracine' }, once: true, removeItem: 'caffe_parracine', next: 'b8_caffe' },
       { text: '🪜 Su. E domani si va a Santo Stefano', next: 'b9' },
     ],
   },
@@ -1528,7 +1528,7 @@ Poi dice: "Là sotto c'è un corridoio, va verso il mare, e qualcuno negli anni 
     location: 'sotto',
     metri: 4,
     caption: 'Il gradino verde — un caffè in un thermos da B&B',
-    text: `Il caffè delle Paracine, che Ada mette in un thermos di acciaio con il tappo che si svita male, è ancora caldo alle cinque del pomeriggio, e questo è un piccolo miracolo domestico che nessuno dei due commenta.
+    text: `Il caffè delle Parracine, che Ada mette in un thermos di acciaio con il tappo che si svita male, è ancora caldo alle cinque del pomeriggio, e questo è un piccolo miracolo domestico che nessuno dei due commenta.
 
 Gaetano le tiene la nuca con una mano e il tappo con l'altra e le fa bere due sorsi.
 
@@ -1544,7 +1544,7 @@ Gaetano guarda il thermos. Poi guarda la scala che porta fuori dal buco nel muro
 
 "No," dice. "Secondo me no."
 
-**(☕ ACQUA NEI POLMONI curata: −2 tolto, la scheda del personaggio è pulita. Il caffè è finito, l'oggetto è consumato, e Ada delle Paracine non è una signora che affitta camere: è una che sa cosa succede e vi prepara le cose giuste senza dirvelo.)**`,
+**(☕ ACQUA NEI POLMONI curata: −2 tolto, la scheda del personaggio è pulita. Il caffè è finito, l'oggetto è consumato, e Ada delle Parracine non è una signora che affitta camere: è una che sa cosa succede e vi prepara le cose giuste senza dirvelo.)**`,
     heal: 6,
     sets: { ada_sa: true },
     stinger: 'heal',
@@ -1763,7 +1763,7 @@ Claudia allunga la mano sul tavolo, gira il palmo in su, e aspetta. Lui ci mette
     stinger: 'heal',
     sets: { patto_trenta_secondi: true, gaetano_ha_taciuto: false },
     choices: [
-      { text: '🛏 Alle Paracine. Domani alle nove, il molo', next: 'b11' },
+      { text: '🛏 Alle Parracine. Domani alle nove, il molo', next: 'b11' },
     ],
   },
 
@@ -1776,7 +1776,7 @@ Claudia lo guarda. Tre secondi.
 
 Poi fa una cosa che è mille volte peggio di qualunque litigio: **dice "ah, ok"**, prende la forchetta, e torna a mangiare le lenticchie.
 
-E per il resto della cena parlano della macchina da far revisionare, e del matrimonio di Serena a ottobre, e del gatto, e lei ride due volte, e le risate sono giuste, e il conto lo paga lui, e camminano fino alle Paracine tenendosi per mano.
+E per il resto della cena parlano della macchina da far revisionare, e del matrimonio di Serena a ottobre, e del gatto, e lei ride due volte, e le risate sono giuste, e il conto lo paga lui, e camminano fino alle Parracine tenendosi per mano.
 
 E dentro quella mano tenuta, adesso, c'è una cosa che non c'era ieri.
 
@@ -1823,14 +1823,14 @@ Claudia lo guarda a lungo. Poi fa una cosa generosa e adulta: **accetta**.
 
 Finiscono le lenticchie. Prendono un limoncello che non hanno ordinato e che il ragazzo dei tavoli porta perché siamo in un'isola e sono i signori di ieri. Sotto la ringhiera il gatto è tornato e si è messo a dormire su un motorino.
 
-Camminano alle Paracine parlando di niente, e la cosa non detta cammina con loro, un passo indietro, come un cane a cui hanno detto di stare.
+Camminano alle Parracine parlando di niente, e la cosa non detta cammina con loro, un passo indietro, come un cane a cui hanno detto di stare.
 
 **(🫁 Fiato +1 — una sera intera in cui non succede niente vale un punto di fiato. Ma la verità è rinviata, non detta: e in questo gioco le cose rinviate arrivano sempre nel momento peggiore, non nel momento comodo.)**`,
     gold: 1,
     sets: { verita_rinviata: true },
     choices: [
       { text: '💡 Ripensarci a metà strada. Fermarsi sotto un lampione e dirglielo', once: true, next: 'b10_verita' },
-      { text: '🛏 Le Paracine', next: 'b11' },
+      { text: '🛏 Le Parracine', next: 'b11' },
     ],
   },
 
@@ -1838,7 +1838,7 @@ Camminano alle Paracine parlando di niente, e la cosa non detta cammina con loro
 
   b11: {
     location: 'notte',
-    caption: 'Venerdì 28, ore 23:50 — le Paracine, camera due',
+    caption: 'Venerdì 28, ore 23:50 — le Parracine, camera due',
     text: `Il ventilatore a pale. La persiana a righe. Le cicale, che ad agosto smettono verso l'una.
 
 Claudia si addormenta in quattro minuti, come sempre, con una gamba fuori dal lenzuolo. Gaetano no.
@@ -1979,7 +1979,7 @@ E così, alle sei e mezza del mattino, in una camera di B&B, Claudia canta cinqu
 
   b12: {
     location: 'bnb',
-    caption: 'Sabato 29 agosto, ore 07:50 — la terrazza delle Paracine',
+    caption: 'Sabato 29 agosto, ore 07:50 — la terrazza delle Parracine',
     text: `Ada porta il caffè e mette sul tavolino, senza dire niente, **un thermos di acciaio** con il tappo che si svita male. Poi porta le fette biscottate, la marmellata di albicocche, quattro fichi aperti a croce.
 
 Poi si ferma, con il vassoio vuoto sotto il braccio, e guarda Claudia.
@@ -1992,7 +1992,7 @@ Non è una domanda. Claudia mette giù la tazza.
 
 "Perché il pavimento di sopra è di cotto e si sente tutto." Ada si sistema una ciocca. "E perché camminavi verso il mare, non verso il bagno."
 
-Si siede. Ada delle Paracine, che ha una struttura da gestire e le lenzuola da cambiare in tre camere, alle otto meno dieci di un sabato di agosto si siede al tavolo dei clienti, e questo su un'isola vuol dire una cosa sola.
+Si siede. Ada delle Parracine, che ha una struttura da gestire e le lenzuola da cambiare in tre camere, alle otto meno dieci di un sabato di agosto si siede al tavolo dei clienti, e questo su un'isola vuol dire una cosa sola.
 
 "Adesso mi ascoltate," dice. "Poi fate quello che volete, che siete grandi e non siete figli miei." Conta sulle dita, come Gaetano. "Uno: quest'anno l'acqua è alta. Nel pozzo della chiesa, a giugno, stava tre metri sotto; adesso sta uno e mezzo. Questo succede tre-quattro volte in un secolo e in paese quelli vecchi lo chiamano **la corda**."
 
@@ -2010,7 +2010,7 @@ Ada guarda il thermos.
     fullHeal: true,
     recharge: true,
     gold: 2,
-    item: 'caffe_paracine',
+    item: 'caffe_parracine',
     sets: { sa_corda_spiegata: true, sa_sorella_ada: true, giorno_28_chiuso: true },
     stinger: 'heal',
     choices: [
@@ -2021,7 +2021,7 @@ Ada guarda il thermos.
 
   b12_sorella: {
     location: 'bnb',
-    caption: 'Le Paracine, ore 08:05 — la fotografia dentro il buffet',
+    caption: 'Le Parracine, ore 08:05 — la fotografia dentro il buffet',
     text: `Ada si alza, va dentro, torna con una cornice di legno che tiene per il vetro, con due dita, come si tiene una cosa che si guarda poco.
 
 Nella foto ci sono due ragazze sul molo di Cala Rossano, con la maglietta della stessa marca, il taglio di capelli di metà anni Novanta e la faccia di due che ridono per una cosa detta un secondo prima. Quella a sinistra è Ada, giovane. Quella a destra ha la stessa faccia e cinque anni in meno.
@@ -2053,7 +2053,7 @@ Prende la cornice e la rimette sotto il braccio, e prima di rientrare dice l'ult
 
   b12_caffe_tutto: {
     location: 'bnb',
-    caption: 'Le Paracine, ore 08:20 — fino in fondo',
+    caption: 'Le Parracine, ore 08:20 — fino in fondo',
     text: `Bevono il caffè tutto, fino in fondo, anche la parte con la polvere, in silenzio, uno di fronte all'altro, come si prende una medicina.
 
 Poi Claudia svita il thermos, controlla che sia pieno, lo avvita, e se lo mette nello zaino nella tasca laterale, quella dell'acqua, dove si prende senza guardare.
@@ -2064,14 +2064,14 @@ Ada, da dentro, con la voce di una che sta rifacendo un letto: "**E non risponde
 
 "Non ho sentito."
 
-"NON RISPONDIAMO," dicono tutti e due, come due scolari, e Ada da dentro fa un verso che è quasi una risata, e per un secondo le Paracine sono solo un B&B con una signora simpatica e una terrazza coi limoni.
+"NON RISPONDIAMO," dicono tutti e due, come due scolari, e Ada da dentro fa un verso che è quasi una risata, e per un secondo le Parracine sono solo un B&B con una signora simpatica e una terrazza coi limoni.
 
 Poi escono nel sole, e sono le otto e venti di sabato ventinove agosto, e al molo di Cala Rossano c'è un vecchio con una lampara che li aspetta da mezz'ora perché sull'isola nove significa otto e mezza.
 
 **(💪 TENUTA piena, 🫁 Fiato +1, il THERMOS nello zaino. La regola è ripetuta a voce due volte, e il gioco la registra: quando qualcuno vi chiamerà per nome — e vi chiamerà — vi ricorderete di aver promesso.)**`,
     fullHeal: true,
     gold: 1,
-    item: 'caffe_paracine',
+    item: 'caffe_parracine',
     sets: { promessa_non_rispondere: true },
     stinger: 'heal',
     choices: [

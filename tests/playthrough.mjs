@@ -747,8 +747,8 @@ const BASE_CHOICES = {
   /* --- A: giovedì 27, l'arrivo --- */
   a0: 'Restare sul ponte',
   a0b: 'Il traghetto attracca',
-  a1: 'Su, alle Paracine',
-  a2: 'Arrivare alle Paracine',
+  a1: 'Su, alle Parracine',
+  a2: 'Arrivare alle Parracine',
   a3: 'Al mare, subito',
   a4: 'Entrare insieme',
   a5: 'Bastare così',
@@ -784,14 +784,14 @@ const BASE_CHOICES = {
   b8_idro: 'Cantare la ninnananna',
   b8_cantare: 'Scendere. Con lei che canta',
   b8_apnea_ok: 'Su. Basta',
-  b8_apnea_ko: 'Il caffè delle Paracine',
+  b8_apnea_ko: 'Il caffè delle Parracine',
   b8_caffe: 'Su. Aria vera',
   b9: 'Il ragazzo con la maschera',
   b9_ragazzo: 'Quanto costa noleggiare',
   b9_noleggio: 'A cena',
   b10: 'Dirglielo',
   b10_verita: 'Lasciarla parlare',
-  b10_litigio: 'Alle Paracine',
+  b10_litigio: 'Alle Parracine',
   b11: 'Svegliarla e dirglielo',
   b11_trenta: 'Il molo, alle nove',
   b12: 'Il molo',
@@ -931,7 +931,7 @@ scenarios.push(scenario(
 scenarios.push(scenario(
   'Il loop per sempre (e_loop, non salgono)',
   ['gaetano', 'claudia'],
-  { d15_uscite: 'Non salire. Tornare alle Paracine' },
+  { d15_uscite: 'Non salire. Tornare alle Parracine' },
   {
     verify: (r, expect) => {
       expect(/^e_loop/.test(r.log.ending || ''), `finale atteso e_loop*, trovato ${r.log.ending}`);

@@ -24,7 +24,7 @@ Non dice buongiorno. Guarda prima lei, poi lui, poi ancora lei. E poi fa la cosa
 
 > Gaetano: "Cosa?"
 
-> Ciro: "Che avete sentito." *(pausa)* "Giovedì notte i cani. Vi ho visti in terrazza, dalla barca: alle Paracine la luce si vede da qua. E stamattina state al molo alle nove meno dieci con la faccia di chi non ha dormito." *(e adesso li guarda in faccia per davvero, e non c'è niente di strano nei suoi occhi: c'è uno che ha deciso di smettere di non sapere)* "Signò. Che avete sentito."
+> Ciro: "Che avete sentito." *(pausa)* "Giovedì notte i cani. Vi ho visti in terrazza, dalla barca: alle Parracine la luce si vede da qua. E stamattina state al molo alle nove meno dieci con la faccia di chi non ha dormito." *(e adesso li guarda in faccia per davvero, e non c'è niente di strano nei suoi occhi: c'è uno che ha deciso di smettere di non sapere)* "Signò. Che avete sentito."
 
 Dietro di loro il traghetto delle nove carica quattordici persone e due cani. Un carrello di ghiaccio passa cigolando. È una mattina normalissima di fine agosto, e un vecchio di settantadue anni sta aspettando una risposta con una cima in mano.
 
@@ -838,7 +838,7 @@ Ciro butta fuori l'aria dal naso. Non dice grazie. Si alza e va a sedersi su un 
 
 > Gaetano: *(e lo dice per esattezza, perché è il suo modo)* "Non 'forse'. Là dentro ci sta l'unica testimonianza diretta di uno che era qui la notte in cui hanno chiuso. Quello che sapeva lui, adesso, non lo sappiamo. E magari ci serviva."
 
-> Claudia: "Lo so." *(si mette il palmo aperto sulla tasca dei pantaloni di Gaetano, sopra la cassetta, senza premere)* "E lo teniamo. Ce lo portiamo a Ventotene, ce lo portiamo alle Paracine, e se stanotte ci serve lo suoniamo lì, dove c'è la luce accesa e la gente in strada e Ada in cucina." *(pausa)* "Non qua dentro. Non in mezzo a novantanove porte che stanno tutte girate verso di noi."
+> Claudia: "Lo so." *(si mette il palmo aperto sulla tasca dei pantaloni di Gaetano, sopra la cassetta, senza premere)* "E lo teniamo. Ce lo portiamo a Ventotene, ce lo portiamo alle Parracine, e se stanotte ci serve lo suoniamo lì, dove c'è la luce accesa e la gente in strada e Ada in cucina." *(pausa)* "Non qua dentro. Non in mezzo a novantanove porte che stanno tutte girate verso di noi."
 
 Ciro, dal gradino sopra, senza voltarsi:
 
@@ -888,7 +888,7 @@ E qui Gaetano non fa il conto, non fa il numero, non fa la spiegazione. Sta ferm
 
 Silenzio.
 
-> Gaetano: "Ci hai messo quattordici anni. Ci sei arrivata giovedì alle sette e dieci di sera, hai bestemmiato due volte, mi hai abbracciato attaccata a una boa di plastica, e mi hai detto *un secondo così*." *(la voce gli va)* "E io alle due di notte avevo in mano una cosa che te lo portava via. E ho pensato: gliela dico domani. E ieri ho pensato: gliela dico dopo le cisterne, che oggi ha già avuto la sua parte. E oggi me l'ha detto quel coso al posto mio, con la voce di un morto, davanti a un vecchio." *(si passa la mano sulla faccia)* "Ho fatto una cosa di merda per un motivo tenero, che è il modo peggiore di fare le cose di merda, perché mentre la fai ti sembra di volere bene."
+> Gaetano: "Ci hai messo dieci anni. Ci sei arrivata giovedì alle sette e dieci di sera, hai bestemmiato due volte, mi hai abbracciato attaccata a una boa di plastica, e mi hai detto *un secondo così*." *(la voce gli va)* "E io alle due di notte avevo in mano una cosa che te lo portava via. E ho pensato: gliela dico domani. E ieri ho pensato: gliela dico dopo le cisterne, che oggi ha già avuto la sua parte. E oggi me l'ha detto quel coso al posto mio, con la voce di un morto, davanti a un vecchio." *(si passa la mano sulla faccia)* "Ho fatto una cosa di merda per un motivo tenero, che è il modo peggiore di fare le cose di merda, perché mentre la fai ti sembra di volere bene."
 
 Claudia sta ferma ancora due secondi. Poi gli mette una mano dietro il collo e gli tira la testa sulla propria spalla, in piedi, sul terrazzamento di un carcere borbonico, alle quattro del pomeriggio.
 
@@ -1024,17 +1024,17 @@ E accanto ad alcune coppie di righe mette una freccia.
     choices: [
       { text: '🍽 Le lenticchie di Ventotene, e chiederne il bis senza vergogna', once: true, gold: 1, heal: 4 },
       { text: '🥃 L\'ultimo rum con Ciro, e stare zitti insieme per l\'ultimo minuto', requires: { item: 'rum_di_ciro' }, once: true, gold: 1, heal: 3 },
-      { text: '🏠 Su, alle Paracine. Duecento metri di muretti a secco', next: 'c15' },
+      { text: '🏠 Su, alle Parracine. Duecento metri di muretti a secco', next: 'c15' },
     ],
   },
 
   c15: {
     location: 'bnb',
-    caption: 'Le Paracine, ore 00:20 — fine del terzo giorno',
+    caption: 'Le Parracine, ore 00:20 — fine del terzo giorno',
     stinger: 'heal',
     text: `La salita coi muretti a secco, di notte, coi capperi che sanno di limone se li strofini. A metà scala la porta della signora dei fagiolini è chiusa e la luce è spenta.
 
-In cima, Le Paracine. Ada ha lasciato accesa la lampadina sotto la pergola e un piatto coperto da un altro piatto sul tavolo di fuori, con un foglietto sopra: *"Se avete fame."* Non hanno fame. Il gesto conta uguale.
+In cima, Le Parracine. Ada ha lasciato accesa la lampadina sotto la pergola e un piatto coperto da un altro piatto sul tavolo di fuori, con un foglietto sopra: *"Se avete fame."* Non hanno fame. Il gesto conta uguale.
 
 Nessuno dei due le dice, stasera, che sul nastro di una guardia morta nel sessantacinque c'è la voce di sua sorella. Ci sono cose che si dicono di giorno.
 
@@ -1068,7 +1068,7 @@ Non una nota. Non un cane. Non una porta. Niente di niente, per tutta la notte, 
 
 Ed è, di gran lunga, la cosa più preoccupante che abbia fatto finora.
 
-**(Oggetto: RESINA EPOSSIDICA. 🫁🫁 IL TERZO GIORNO È CHIUSO. ⛑ CHECKPOINT: dentro le paracine si dorme — TENUTA piena, mosse ricaricate, e da qui si riparte se domani va male. Domani è domenica 30 agosto: valigie, ultimo bagno, e il traghetto per Formia alle 17:30.)**`,
+**(Oggetto: RESINA EPOSSIDICA. 🫁🫁 IL TERZO GIORNO È CHIUSO. ⛑ CHECKPOINT: dentro le parracine si dorme — TENUTA piena, mosse ricaricate, e da qui si riparte se domani va male. Domani è domenica 30 agosto: valigie, ultimo bagno, e il traghetto per Formia alle 17:30.)**`,
     gold: 1,
     item: 'resina',
     fullHeal: true,

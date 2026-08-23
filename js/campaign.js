@@ -19,7 +19,7 @@ const ITEMS = {
   asta_selfie: { name: 'Asta telescopica', desc: 'Un metro e venti di alluminio, comprata per ridere. Serve a guardare dentro i posti senza entrarci.', usable: false },
   coltello: { name: 'Coltellino', desc: 'Nel portachiavi di Gaetano da otto anni. Lama da sei centimetri, un cavatappi e una lima. Non ha mai tagliato niente di più duro del nastro adesivo. Fino a stanotte.', combat: { dice: [1, 6] }, icon: '🔪' },
   resina: { name: 'Resina epossidica', desc: 'Bicomponente, dal cassetto degli attrezzi del B&B. Indurisce in dieci minuti e tiene sott\'acqua: se qualcosa deve NON staccarsi, si usa questa.', usable: false },
-  sale_grosso: { name: 'Sale grosso', desc: 'Un chilo, dalla cucina delle Paracine. Sale marino, di QUESTO mare: raccolto, essiccato, macinato dall\'acqua in cui vivono loro.', usable: false },
+  sale_grosso: { name: 'Sale grosso', desc: 'Un chilo, dalla cucina delle Parracine. Sale marino, di QUESTO mare: raccolto, essiccato, macinato dall\'acqua in cui vivono loro.', usable: false },
   bombola_piccola: { name: 'Bombolino da 3 litri', desc: 'Una mini-bombola da diving comprata usata da Ciro. Rubinetto che perde, quindici minuti d\'aria se non perdesse.', usable: false },
   rubinetto_rotto: { name: 'Rubinetto di ricambio', desc: 'Ottone, filettato, ammaccato. Ciro ne ha una cassa: "Su un\'isola non si butta niente, signò."', usable: false },
   filo_nylon: { name: 'Filo di nylon 0,60', desc: 'Da pesca, resistente a venti chili. Tiene un pesce serio o una cosa piccola che non vuoi perdere.', usable: false },
@@ -48,11 +48,27 @@ const ITEMS = {
     lore: `Oro giallo, sottile, di quelli che non si notano. Dentro, una data.\n\nNel 2019 se l'è tolta in acqua per non perderla — che è la cosa più stupida che si possa fare — e l'ha ritrovata sul fondo, in un metro e mezzo di sabbia mossa, dopo quaranta minuti di apnee. Ne parla ancora come di una cosa capitata a un altro.\n\nDa allora, in mare, la tiene al collo insieme a quella di Claudia. Le due fedi sullo stesso filo fanno un rumore piccolo quando nuoti. Sotto i quindici metri quel rumore si sente ancora, e non dovrebbe: l'acqua non porta i suoni piccoli. Li porta il Coro, che ha imparato a fare anche quello.` },
   anello_claudia: { name: 'La fede di Claudia', desc: 'Identica all\'altra, mezza misura più piccola. Dentro, incisa, una data e due iniziali.', usable: false,
     lore: `Mezza misura più piccola, e più lucida: lei non la toglie mai, quindi si consuma uniforme.\n\nDentro, la stessa data e due iniziali. Le ha volute lei, contro il parere del negoziante, che diceva che su un anello così sottile l'incisione dopo qualche anno non si legge più. Si legge ancora.\n\nQuando Gaetano se la mette al collo con la sua, lei glielo lascia fare e non dice niente. Sa perché lo fa: perché se una delle due torna a riva, tornano tutte e due.` },
-  caffe_paracine: { name: 'Il caffè delle Paracine', desc: 'Fatto con la moka della signora, bevuto in terrazza guardando Santo Stefano. Toglie la nota dalla testa: la cosa più concreta dell\'isola.', usable: true, heal: 8, cureVeleno: true },
+  caffe_parracine: { name: 'Il caffè delle Parracine', desc: 'Fatto con la moka della signora, bevuto in terrazza guardando Santo Stefano. Toglie la nota dalla testa: la cosa più concreta dell\'isola.', usable: true, heal: 8, cureVeleno: true },
   taralli: { name: 'Taralli', desc: 'Comprati al forno del paese, sacchetto di carta unto. Il cibo vero è un\'arma della realtà, e questi sono molto veri.', usable: true, heal: 5 },
   telo_mare: { name: 'Telo da mare', desc: 'A righe, gigante, di quelli che si portano in due. Asciuga, scalda, e serve per una cosa a cui nessuno ha pensato.', usable: false },
   maschera_buona: { name: 'La maschera buona (per due)', desc: 'Gaetano ne ha comprate DUE, identiche, e non l\'ha detto. Vetro temperato, silicone morbido. Vedere bene, sotto, cambia tutto — in tutti e due i sensi.', usable: false,
     lore: `Vetro temperato singolo, silicone trasparente, volume interno piccolo per compensare in fretta. Le ha comprate a Formia mentre lei era al bar. Due identiche. Non l'ha detto.\n\nNon l'ha detto perché dirlo era ammettere che pensava che sarebbe scesa. E pensarlo, a febbraio, mentre prenoti quattro giorni di vacanza, è una cosa che non si dice ad alta voce a una persona che ha paura dell'acqua profonda da quando ha sei anni.\n\nLe ha prese uguali per un'altra ragione. Sotto, con la maschera buona, si vede la faccia dell'altro. E se scendi con qualcuno, sapere che faccia sta facendo è la sola informazione che conta.` },
+  /* Le PINNE e il BOCCAGLIO sono attrezzatura vera, comprata a marzo in saldo, e non
+     sono decorazione: ognuno dei tre pezzi apre scelte diverse. La maschera fa VEDERE
+     (e il problema di Claudia non è l'acqua, è il non vedere). Il boccaglio fa RESTARE
+     a guardare senza alzare la testa — e alzare la testa è il gesto della paura
+     travestito da gesto tecnico. Le pinne fanno TORNARE: con quelle la distanza smette
+     di essere un muro e diventa un numero. */
+  pinne: { name: 'Due paia di pinne', desc: 'Comprate a marzo in saldo, taglia sua e taglia tua. Non servono ad andare veloce: servono a poter tornare, e questo cambia tutto quello che sei disposto a raggiungere.', usable: false,
+    lore: `Pinne da snorkeling, gomma nera, il tallone aperto col cinturino. Sulla suola c'è ancora l'adesivo del prezzo, e sotto il prezzo un altro prezzo, più basso.\n\nGaetano le ha comprate a marzo, con i boccagli, cinque mesi prima di dire a Claudia dove andavano. Le ha tenute in garage in una busta, e ogni tanto la busta la spostava per fare spazio a qualcos'altro e ci pensava.\n\nNon servono ad andare veloce. Servono a poter tornare: con le pinne ottanta metri sono venti secondi, e venti secondi sono una cosa che si può decidere. È la differenza fra una distanza e un muro, ed è tutta lì.` },
+  boccaglio: { name: 'Due boccagli', desc: 'Ancora nella busta del negozio, con lo scontrino dentro. Col boccaglio non devi alzare la testa per respirare: puoi tenere la faccia dentro e continuare a guardare.', usable: false,
+    lore: `Due boccagli di plastica trasparente col boccheruolo di silicone, ancora attaccati al cartoncino, e nella busta lo scontrino: marzo.\n\nIl boccaglio è il pezzo che nessuno pensa sia importante e che invece decide tutto. Senza, per respirare devi alzare la testa: e alzare la testa vuol dire perdere di vista il fondo per un secondo, e in quel secondo la testa ricomincia da zero a immaginare. È il gesto della paura travestito da gesto tecnico.\n\nCol boccaglio la faccia resta dentro e il respiro va avanti da solo, come a letto. Puoi guardare una cosa finché non hai finito di guardarla — e una cosa guardata per intero, come dice Claudia di mestiere, perde il diritto di cambiare forma.` },
+  /* La maschera trovata nella cisterna murata NON è «la maschera buona» di Gaetano:
+     era di Marisa, la maestra di nuoto del 1997, e il gioco la dava come se fosse una
+     delle due comprate a marzo. Due oggetti diversissimi con lo stesso significato
+     meccanico era una bugia: adesso ha la sua scheda. */
+  maschera_1997: { name: 'La maschera del 1997', desc: 'Silicone azzurro sbiadito, vetro singolo, cinghiolo marcito e rifatto con un elastico. Anni Novanta. Non era di un bambino: era di un adulto che scendeva.', usable: false,
+    lore: `Silicone azzurro di quelli che negli anni Novanta si vendevano in tutte le bancarelle, diventato quasi bianco dove ha preso la luce. Il vetro è singolo, senza bordo, e ha una riga di calcare che non viene via.\n\nIl cinghiolo originale si è marcito e qualcuno l'ha rifatto con un elastico da mercerie, annodato due volte. Chi lo ha rifatto voleva usarla ancora: non si aggiusta una maschera che non si ha intenzione di rimettere.\n\nMarisa insegnava nuoto a Formia e veniva qui d'estate. Nel novantasette è scesa nella cisterna murata perché aveva sentito una bambina chiamare e le ha risposto — e questo è tutto quello che di lei si sa con certezza. La maschera era rimasta a galla.` },
 
   /* --- risultati del crafting --- */
   torcia_da_casco: { name: 'Torcia da casco', desc: 'La torcia fasciata al cinturino della maschera con tre giri di nastro. Mani libere. Serve per la fossa: laggiù, con una mano occupata, non si torna su.', usable: false },
@@ -348,13 +364,23 @@ const SCENE_A = {
        di una macchina parcheggiata male sul marciapiede. `cala` è la spiaggia col
        mare davanti, che è esattamente quello che si vede da lì. */
     location: 'cala',
-    caption: 'Scauri, lungomare — giovedì 27 agosto, ore 11:50',
+    caption: 'Scauri, lungomare — giovedì 27 agosto, ore 06:55',
     stinger: 'gold',
-    text: `**Giovedì 27 agosto, undici e cinquanta. Scauri, lungomare, all'altezza del Litoriente.**
+    text: `**Giovedì 27 agosto, sette meno cinque. Scauri, lungomare, all'altezza del Litoriente.**
 
 La macchina è parcheggiata male come si parcheggia quando si parte per quattro giorni: due ruote sul marciapiede, il portellone aperto, e in mezzo alla strada un borsone che nessuno dei due ha deciso di caricare per primo.
 
-Il mare qui lo conoscono a memoria: è quello di casa, quello di sempre, con la sabbia scura e i bagnanti di agosto e la fila di lidi che arriva fino a Gianola. È bello. Ma è il mare che si guarda dal lungomare mentre si va a prendere il caffè.
+Il mare qui lo conoscono a memoria: è quello di casa, quello di sempre, con la sabbia scura e la fila di lidi che arriva fino a Gianola. A quest'ora non c'è nessuno: le sdraio sono ancora accatastate e legate, e l'acqua è una lastra. È bello. Ma è il mare che si guarda dal lungomare mentre si va a prendere il caffè.
+
+E poi c'è la ragione per cui la macchina è aperta alle sette meno cinque di un giovedì di agosto. **Il primo settembre sono dieci anni.** Dieci anni esatti, e cade di martedì: il martedì della settimana in cui tornano a lavorare tutti e due. Quindi il regalo è anticipato — si parte oggi, si torna domenica trenta col traghetto delle 17:30, e martedì si festeggia lavorando. Quattro giorni su un'isola, prenotati a febbraio, pagati, e tenuti segreti per un mese e mezzo prima di dirglielo.
+
+> Claudia: *(che lo sa da giugno e fa finta di no da giugno)* "Comunque non mi hai ancora detto quanto è costato."
+
+> Gaetano: "No."
+
+> Claudia: "Mai?"
+
+> Gaetano: "Mai."
 
 > Claudia: *(chiudendo il portellone con l'anca)* "Le chiavi di casa."
 
@@ -370,9 +396,9 @@ Il mare qui lo conoscono a memoria: è quello di casa, quello di sempre, con la 
 
 > Claudia: "Perché tu dici sempre 'ce l'hanno' e poi non ce l'hanno mai."
 
-Ventidue chilometri di Domiziana fino a **Formia**, che vuol dire venti minuti se la strada è pulita e cinquanta se c'è il finimondo di agosto. Oggi c'è il finimondo di agosto.
+Ventidue chilometri di Domiziana fino a **Formia**, che a quest'ora vuol dire venti minuti: la strada di agosto alle sette è una strada di novembre, con i furgoni della frutta e nessun altro.
 
-Il molo Azzurra di Formia alle tredici è una battaglia: valigie, gente che urla il numero del biglietto, un tizio che vende ghiaccio da un carrellino, e il traghetto per Ponza e Ventotene attaccato alla banchina che sembra troppo piccolo per tutta quella coda.
+Il molo Azzurra alle otto è già una battaglia, ma una battaglia sveglia: valigie, gente che urla il numero del biglietto, un tizio che vende ghiaccio da un carrellino, e il traghetto per Ponza e Ventotene attaccato alla banchina che sembra troppo piccolo per tutta quella coda. **Partenza alle otto e mezza.**
 
 > Claudia: *(sul ponte, quando finalmente si molla)* "Quattro giorni."
 
@@ -384,11 +410,11 @@ Il molo Azzurra di Formia alle tredici è una battaglia: valigie, gente che urla
 
 ---
 
-**Due ore e quaranta di mare aperto. Il ponte di poppa, e quel vento che ti asciuga il sudore prima che ti arrivi in fondo alla schiena.**
+**Due ore e un quarto di mare aperto. Il ponte di poppa, il sole ancora basso, e quel vento che ti asciuga il sudore prima che ti arrivi in fondo alla schiena.**
 
-Claudia sta appoggiata alla ringhiera con la faccia dentro il vento e gli occhi chiusi, e Gaetano la guarda fare questa cosa da quattordici anni senza essersene ancora stancato. Quattro giorni. Ventotene. Un B&B con la terrazza che si chiama **Le Paracine** — che in dialetto, ha letto Gaetano su un forum, vuol dire i muretti a secco, quelli che sull'isola tengono su la terra e tengono fuori il vento.
+Claudia sta appoggiata alla ringhiera con la faccia dentro il vento e gli occhi chiusi, e Gaetano la guarda fare questa cosa da dieci anni senza essersene ancora stancato. Quattro giorni. Ventotene. Un B&B con la terrazza che si chiama **Le Parracine** — che in dialetto, ha letto Gaetano su un forum, vuol dire i muretti a secco, quelli che sull'isola tengono su la terra e tengono fuori il vento.
 
-> Gaetano: "Sai che le paracine le costruivano senza malta? Solo pietre incastrate. Reggono da secoli perché lasciano passare l'aria: se le fai piene, il vento le butta giù."
+> Gaetano: "Sai che le parracine le costruivano senza malta? Solo pietre incastrate. Reggono da secoli perché lasciano passare l'aria: se le fai piene, il vento le butta giù."
 
 > Claudia: *(senza aprire gli occhi)* "Amore. Sono in vacanza da due ore e mi hai già spiegato un muro."
 
@@ -410,7 +436,7 @@ Claudia lo guarda per un secondo di troppo.
 
 Il traghetto vira, e per un momento il carcere resta esattamente al centro dell'inquadratura, e Claudia — che di mestiere decide come si guardano le cose — non fa la foto.
 
-**(🫁 Fiato +1: due ore e quaranta di mare aperto, con una birra piccola e nessuno che vi chiede niente. Il Quaderno registra la prima cosa: il carcere si vede da qui, e lei ha scelto di non fotografarlo.)**`,
+**(🫁 Fiato +1: due ore e un quarto di mare aperto, con un caffè del bar di bordo e nessuno che vi chiede niente. Il Quaderno registra la prima cosa: il carcere si vede da qui, e lei ha scelto di non fotografarlo.)**`,
     gold: 1,
     sets: { partiti: true },
     choices: [
@@ -464,7 +490,7 @@ Salva le foto. Tutte e cinque. È una cosa che farà, tra due giorni, la differe
 
 > Gaetano: "Ne ho portate due."
 
-Claudia si gira. Lo guarda. Sa esattamente cosa sta facendo, perché lo conosce da quattordici anni, e Gaetano sa che lei lo sa, e questa è la parte in cui uno dei due deve decidere di essere gentile.
+Claudia si gira. Lo guarda. Sa esattamente cosa sta facendo, perché lo conosce da dieci anni, e Gaetano sa che lei lo sa, e questa è la parte in cui uno dei due deve decidere di essere gentile.
 
 > Claudia: *(sceglie di esserlo)* "Due maschere."
 
@@ -498,7 +524,7 @@ Ride. Ride davvero, e poi guarda l'acqua sotto lo scafo — quel blu che dopo i 
 
   a1: {
     location: 'porto',
-    caption: 'Porto Romano — ore 17:20',
+    caption: 'Porto Romano — ore 10:50',
     text: `Si scende in mezzo al casino bellissimo di un'isola d'agosto: carrelli, cani, bambini urlanti, tre motorini che portano quattro persone ciascuno, una signora che grida un nome verso una finestra e la finestra che risponde.
 
 Il porto è scavato nel tufo. Non "costruito": **scavato**. I romani sono arrivati qui, hanno guardato una parete di roccia gialla e hanno deciso di levare tutto quello che non era porto. Le pareti hanno ancora i segni degli scalpelli, righe parallele a mezzo metro l'una dall'altra, e in mezzo — a un metro dall'acqua — dei buchi quadrati, regolari, ordinatissimi.
@@ -511,7 +537,7 @@ Il porto è scavato nel tufo. Non "costruito": **scavato**. I romani sono arriva
 
 > Gaetano: "Catene."
 
-Sopra le loro teste, appoggiato sul bordo della cava, il paese comincia con una fila di case gialle. Una scaletta di pietra sale a zig-zag, e in cima si vede un cartello di legno dipinto a mano: **LE PARACINE — B&B — 200 m**, con una freccia storta e un disegno di un muretto a secco.
+Sopra le loro teste, appoggiato sul bordo della cava, il paese comincia con una fila di case gialle. Una scaletta di pietra sale a zig-zag, e in cima si vede un cartello di legno dipinto a mano: **LE PARRACINE — B&B — 200 m**, con una freccia storta e un disegno di un muretto a secco.
 
 > Claudia: *(caricandosi il borsone)* "Duecento metri in salita con trentasei chili di roba. Chi ha fatto le valigie?"
 
@@ -523,7 +549,7 @@ Sopra le loro teste, appoggiato sul bordo della cava, il paese comincia con una 
 
 > Claudia: "Bene. Volevo solo che fosse verbalizzato."`,
     choices: [
-      { text: '🪜 Su, alle Paracine', next: 'a2' },
+      { text: '🪜 Su, alle Parracine', next: 'a2' },
       { text: '🏪 Prima una tappa: il negozio di articoli da mare, sul molo', once: true, next: 'a1_negozio' },
       { text: '🏛 C\'è un museo archeologico piccolo, sulla piazza: due minuti', once: true, next: 'a1_museo' },
     ],
@@ -567,7 +593,7 @@ Fuori, in mezzo al sole delle sei di sera, la frase resta lì tra loro due per u
     item2: 'nastro_isolante',
     gold: 1,
     choices: [
-      { text: '🪜 Su, alle Paracine', next: 'a2' },
+      { text: '🪜 Su, alle Parracine', next: 'a2' },
       { text: '🧂 Chiedere anche una tanica e del sale grosso "per il pesce"', once: true, item: 'sale_grosso', next: 'a2' },
     ],
   },
@@ -601,13 +627,13 @@ Claudia si ferma davanti a quella foto più tempo di quanto avrebbe voluto.
     sets: { i_foto_museo: true },
     choices: [
       { text: '🗺 Fotografare la carta delle sei cisterne, prima di uscire', once: true, gold: 1, sets: { i_registro_acqua: true }, next: 'a2' },
-      { text: '🪜 Su, alle Paracine: si è fatto tardi', next: 'a2' },
+      { text: '🪜 Su, alle Parracine: si è fatto tardi', next: 'a2' },
     ],
   },
 
   a2: {
     location: 'paese',
-    caption: 'La salita — duecento metri di paracine',
+    caption: 'La salita — duecento metri di parracine',
     text: `La scaletta sale tra due muretti a secco alti un metro e mezzo. Pietre di tufo incastrate senza malta, generazioni di mani, e dentro le fessure crescono capperi, fichi d'India e un'erba grassa che sa di limone quando la strofini.
 
 Fa caldo. Sono le sei e venti e fa ancora un caldo da spaccare le pietre, e i borsoni pesano il doppio di quanto pesavano a Formia.
@@ -618,7 +644,7 @@ A metà salita, seduta su uno sgabello davanti a una porta aperta, una signora d
 
 > La signora: "Buonasera. Turisti?"
 
-> Gaetano: "Quattro giorni. Stiamo alle Paracine."
+> Gaetano: "Quattro giorni. Stiamo alle Parracine."
 
 > La signora: *(annuisce, continua a pulire fagiolini)* "Buoni, quelli. Brava gente." *(un fagiolino nel catino)* "Fate i bagni dove c'è la gente."
 
@@ -647,7 +673,7 @@ Riprendono la salita in silenzio per una decina di gradini.
     attenzione: 1,
     sets: { avviso_fagiolini: true },
     choices: [
-      { text: '🏠 Arrivare alle Paracine', next: 'a3' },
+      { text: '🏠 Arrivare alle Parracine', next: 'a3' },
       { text: '❓ Tornare indietro e chiedere alla signora COSA vuol dire', once: true, next: 'a2_domanda' },
     ],
   },
@@ -683,21 +709,25 @@ Un fagiolino nel catino. Un altro.
 
   a3: {
     location: 'bnb',
-    caption: 'B&B Le Paracine — il rifugio',
+    caption: 'B&B Le Parracine — il rifugio',
     stinger: 'heal',
-    text: `E poi, in cima alla scaletta, la cosa bella.
+    text: `E poi, in cima alla salita, la cosa bella.
 
-**Le Paracine** è una casa bassa di tufo giallo con le finestre verdi, dentro un fazzoletto di terra tenuto su da tre livelli di muretti a secco. Sui muretti crescono pomodori, basilico in un bidone tagliato, e un limone in vaso che ha più limoni di quanti ne possa mangiare una famiglia.
+**Le Parracine** sta in via Fontanelle, appena fuori dal paese: dieci minuti a piedi dalla piazza, e sotto — proprio sotto, a una rampa di gradini dal giardino — **Cala Nave**. È una casa bassa di tufo giallo con le finestre verdi, dentro un fazzoletto di terra tenuto su da tre livelli di muretti a secco. Sui muretti crescono pomodori, basilico in un bidone tagliato, e un limone in vaso che ha più limoni di quanti ne possa mangiare una famiglia.
+
+La navetta li ha portati su dal porto in quattro minuti, con i borsoni infilati dietro come sacchi di cemento, e il ragazzo che guidava ha detto una frase sola per tutta la salita: «Oggi il mare è una tavola.»
 
 I proprietari sono due: **la signora Ada** — sessant'anni, capelli raccolti con un elastico, l'aria di una che alle sette del mattino ha già fatto tre cose — e il marito, che dice "buonasera" dalla cucina e non si vede mai per intero.
 
 > Ada: "Voi siete quelli dei quattro giorni. La stanza sopra, quella con la terrazza. Venite."
 
-La stanza è semplice e perfetta: letto grande, un ventilatore a pale, il pavimento di graniglia freddo sotto i piedi. E la **terrazza**: due sedie di plastica, un tavolino, una vista che ti spacca in due.
+La stanza è semplice e perfetta: letto grande, un ventilatore a pale, il pavimento di graniglia freddo sotto i piedi, il frigo piccolo che ronza. E sopra, sul tetto, la **terrazza solarium**: un gazebo di canne, un tavolo apparecchiato per la colazione di domani, due sedie di plastica e una vista che ti spacca in due.
 
-Da lassù si vede tutto. Il paese sotto, il porto, il mare che diventa scuro dove diventa profondo, e all'orizzonte — a tre chilometri, chiarissimo nella luce delle sette — il ferro di cavallo di **Santo Stefano**, appoggiato sull'acqua come un dente cariato.
+Guardando a nord, di là dal braccio di mare, c'è tutta la costa napoletana messa in fila come una cosa fatta per essere guardata da qui: **Ischia** a sinistra, poi Procida, e in fondo — quando l'aria è pulita come stamattina — la gobba del **Vesuvio**. Sessanta chilometri di golfo, e li vedi da una sedia di plastica.
 
-> Ada: "La colazione dalle otto. Il caffè lo faccio con la moka, non ho la macchinetta e non la voglio." *(posa le chiavi sul tavolino)* "E se sentite i cani abbaiare di notte, non è niente: qua abbaiano tutti insieme, si mettono d'accordo."
+Poi si gira a destra, verso est, e a tre chilometri c'è il ferro di cavallo di **Santo Stefano**, appoggiato sull'acqua come un dente cariato.
+
+> Ada: "La colazione dalle otto, qua sopra sotto il gazebo. Ciambellone e marmellata, che le faccio io: quella di limone è di quelli lì." *(indica il vaso col mento.)* "Il caffè lo faccio con la moka, non ho la macchinetta e non la voglio." *(posa le chiavi sul tavolino)* "E se sentite i cani abbaiare di notte, non è niente: qua abbaiano tutti insieme, si mettono d'accordo."
 
 > Claudia: "Si mettono d'accordo?"
 
@@ -713,10 +743,10 @@ Restano soli, sulla terrazza, con i borsoni in mezzo alla stanza e quattro giorn
 
 Il sole scende. Il muretto a secco, sotto i piedi di Claudia, tiene su la terra e lascia passare il vento.
 
-**(🫁 Fiato +3. Le Paracine è un RIFUGIO: qui, dentro i muretti, non arriva niente. Quando dormite qui, il giorno si chiude.)**`,
+**(🫁 Fiato +3. Le Parracine è un RIFUGIO: qui, dentro i muretti, non arriva niente. Quando dormite qui, il giorno si chiude.)**`,
     gold: 2,
     heal: 6,
-    sets: { arrivati_paracine: true },
+    sets: { arrivati_parracine: true },
     choices: [
       { text: '🧳 Disfare le valigie (e vedere cosa c\'è, davvero, in questi borsoni)', once: true, next: 'a3_valigie' },
       { text: '🏖 Al mare, subito: c\'è ancora un\'ora di sole a Cala Nave', next: 'a4' },
@@ -731,7 +761,9 @@ Il sole scende. Il muretto a secco, sotto i piedi di Claudia, tiene su la terra 
 
 Claudia: tre costumi, il beauty, la macchina fotografica vera, la GoPro con la custodia da sessanta metri, un'asta telescopica comprata per ridere, il microfono a clip dei video, il ring light "che magari faccio due storie dalla terrazza", e il phon che non serviva.
 
-Gaetano: due maschere identiche (**due**), un coltellino nel portachiavi, il caricatore, un quaderno, e — nel fondo, avvolti in una calza — la sua fede e quella di Claudia, che in mare si tolgono e si tengono al collo, dal 2019, da quando lui l'ha perduta per venti minuti nella sabbia di Serapo ed è diventato insopportabile.
+Gaetano: due maschere identiche (**due**), due paia di **pinne**, due **boccagli** ancora nella busta del negozio, un coltellino nel portachiavi, il caricatore, un quaderno, e — nel fondo, avvolti in una calza — la sua fede e quella di Claudia, che in mare si tolgono e si tengono al collo, dal 2019, da quando lui l'ha perduta per venti minuti nella sabbia di Serapo ed è diventato insopportabile.
+
+Tre pezzi, e ognuno fa una cosa diversa. La **maschera** trasforma il fondo in una cosa che si vede: e il problema di Claudia non è mai stata l'acqua, è il non vedere. Il **boccaglio** toglie il gesto che rovina tutto — quello di alzare la testa per respirare, che è il gesto della paura travestito da gesto tecnico: col boccaglio puoi tenere la faccia dentro e continuare a guardare, e respiri come se fossi a letto. Le **pinne** non servono ad andare veloce: servono a poter tornare. Con le pinne la distanza smette di essere un muro e diventa un numero, e i numeri Claudia li sa gestire.
 
 > Claudia: *(tenendo su l'asta telescopica con due dita)* "Perché ho portato questa?"
 
@@ -743,13 +775,17 @@ Gaetano: due maschere identiche (**due**), un coltellino nel portachiavi, il car
 
 > Claudia: "E ogni anno è vero fino al secondo giorno." *(butta l'asta sul letto, sopra la GoPro)* "Vabbè. Metti tutto in un angolo che poi si vede."
 
-Poi guarda le due maschere. Le prende, una in ogni mano, e le tiene su come si tengono due cose che pesano lo stesso.
+Poi guarda le due maschere. Le prende, una in ogni mano, e le tiene su come si tengono due cose che pesano lo stesso. Poi guarda i due boccagli ancora nella busta, con lo scontrino dentro.
 
-> Claudia: "Due maschere, Gaetà."
+> Claudia: "Due maschere, due pinne, due boccagli."
 
 > Gaetano: "Ho capito, basta—"
 
-> Claudia: "No, no. Ti sto dicendo grazie." *(si mette la sua sulla fronte, ridicola, e non se la toglie)* "Andiamo a fare questo bagno del cazzo."
+> Claudia: "No, no. Ti sto dicendo grazie." *(legge lo scontrino, e la data la becca in pieno: è di marzo)* "Marzo, Gaetà. Li hai comprati a marzo."
+
+> Gaetano: "Erano in saldo."
+
+> Claudia: "Erano in saldo." *(si mette la maschera sulla fronte, ridicola, e non se la toglie)* "Andiamo a fare questo bagno del cazzo."
 
 **(Oggetti: tutta la roba della vacanza. 🔧 Nel Zaino, adesso, c'è un bottone "Combinare": nessuno vi ha dato istruzioni. Arrangiatevi, come tutti.)**`,
     item: 'microfono',
@@ -813,8 +849,8 @@ Il caffè è forte, denso, di quelli che ti raddrizzano la schiena.
 
 > Ada: *(alzandosi, tazzine in mano)* "Andate al mare che c'è ancora luce. E se domani volete vedere le cisterne, l'ingresso è dietro la chiesa: dite che vi manda Ada."
 
-**(Oggetto: il CAFFÈ DELLE PARACINE — se una nota vi resta in testa, questo la porta via. 🫁 Fiato +2.)**`,
-    item: 'caffe_paracine',
+**(Oggetto: il CAFFÈ DELLE PARRACINE — se una nota vi resta in testa, questo la porta via. 🫁 Fiato +2.)**`,
+    item: 'caffe_parracine',
     gold: 1,
     heal: 4,
     sets: { ada_amica: true },
@@ -860,13 +896,15 @@ Riprende le tazzine.
 
 Il sole è basso e arancione, la sabbia è ancora calda sotto e fresca sopra, e in acqua ci sono trenta persone che fanno le cose che fa la gente al mare alle sette di sera: due ragazzi che giocano a racchettoni male, una famiglia che chiama un bambino che non risponde, un signore che nuota lentissimo e perfetto parallelo alla riva, avanti e indietro, come fa da quarant'anni.
 
-Il mare è calmo. Trasparente sui primi metri, con i sassi sul fondo che si vedono uno per uno, e poi — a una ventina di metri dalla riva — quella riga dove l'azzurro cambia colore e diventa **blu**.
+La sabbia è **scura**, di quelle vulcaniche, e mescolata a un'infinità di sassolini che sotto i piedi nudi sono una piccola vendetta. A destra, staccato dalla riva, c'è lo scoglio che dà il nome alla baia: da lontano, con quella prua bassa e quel fianco lungo, sembra davvero **una nave** che si è messa lì e ha spento i motori.
+
+Il mare è calmo. Trasparente sui primi metri, coi sassi sul fondo che si vedono uno per uno, e poi — a una ventina di metri dalla riva — quella riga dove l'azzurro cambia colore e diventa **blu**. Non un blu più scuro: un altro blu. E dietro, all'orizzonte, la gobba di Santo Stefano che da qui sembra piccola.
 
 Claudia si spoglia, piega il vestito, mette il telo. Fa tutte queste cose con la calma di una che sta prendendo tempo, e Gaetano lo sa e non dice niente, perché non dire niente è l'unica cosa utile che sa fare in questi momenti.
 
 > Claudia: "Dove tocca fino a dove?"
 
-> Gaetano: *(guardando)* "Fino alla riga scura. Poi va giù piano, non di botto. Qua non ci sono franate."
+> Gaetano: *(e qui c'è il momento in cui potrebbe dirle una bugia gentile, e non lo fa)* "Fino alla riga scura tocchi. Dopo la riga no." *(pausa)* "Qui scende presto, amore. Non a strapiombo, ma presto: è per questo che a Cala Nave ci vengono quelli che nuotano." "
 
 > Claudia: "E la boa?"
 
@@ -884,7 +922,54 @@ La boa gialla è a ottanta metri. Sta lì che fa la boa, gialla, tranquilla, sen
     choices: [
       { text: '🏊 Entrare insieme, e restare dove si tocca. Basta e avanza', next: 'a5' },
       { text: '🤿 Provare subito le maschere sugli scogli a destra: pesci, polpi, cose belle', once: true, next: 'a4_maschere' },
+      /* Le pinne servono a poter TORNARE: quindi rendono raggiungibile una cosa lontana
+         di traverso, che per chi ha paura del profondo è un'altra faccenda dal profondo. */
+      { text: '🐟 Con le pinne, fino allo scoglio della nave: ottanta metri di traverso, non di profondità',
+        requires: { item: 'pinne' }, once: true, next: 'a4_scoglio' },
       { text: '🍺 Prima una birra al chiosco: il mare non scappa', once: true, heal: 3, gold: 1, next: 'a5' },
+    ],
+  },
+
+  /* LO SCOGLIO DELLA NAVE — quello che dà il nome alla baia. Le pinne cambiano una cosa
+     sola e la cambiano del tutto: la distanza smette di essere un muro e diventa un
+     numero. Ottanta metri di traverso non sono ottanta metri di profondità, e per
+     Claudia la differenza è tutto. */
+  a4_scoglio: {
+    location: 'cala',
+    caption: 'Lo scoglio della nave — ore 19:20',
+    stinger: 'apnea',
+    gold: 2, heal: 3,
+    sets: { scoglio_nave: true },
+    text: `Le pinne si infilano con quella manovra scema che si fa da seduti sul bagnasciuga, bagnando prima il tallone, e la prima pinneggiata dice subito perché costano quello che costano: con due gambe che non fanno quasi niente, ti sposti.
+
+Ottanta metri. Con le pinne sono venti secondi di andata e venti di ritorno, e Claudia lo calcola prima di partire, ad alta voce, perché è così che funziona la sua testa.
+
+> Claudia: "Venti e venti. Quaranta secondi in tutto, se torniamo subito."
+
+> Gaetano: "Quaranta secondi."
+
+> Claudia: "E sotto quanto c'è?"
+
+> Gaetano: *(e di nuovo la verità, che è l'unica cosa che gli riesce bene)* "In mezzo otto, nove metri. Sotto lo scoglio meno: quattro."
+
+> Claudia: "Quindi si passa sopra nove metri di niente."
+
+> Gaetano: "Sopra nove metri di ACQUA. Che poi è una cosa che regge: ti tiene su meglio un metro di mare che un metro di aria."
+
+Lo scoglio della nave, da vicino, non somiglia più a una nave: è tufo mangiato dal sale, con la cintura nera delle patelle e sopra due gabbiani che si spostano di mezzo metro per farvi capire che vi hanno visti e non gliene importa.
+
+Ma la cosa vera è sotto. Il fianco scende a gradoni, e ogni gradone è un condominio: nuvole di castagnole nere, un branco di occhiate che gira tutto insieme come una cosa sola, i ricci nelle fessure, e nell'ombra sotto un tetto di roccia due saraghi grossi, fermi, con l'aria di chi paga l'affitto da anni.
+
+Claudia tiene la faccia dentro. Non alza la testa — col boccaglio non serve, e non alzare la testa vuol dire non ricominciare da zero a immaginare. Guarda per due minuti interi, che per lei è un record che nessuno registrerà mai.
+
+Poi tira su la maschera e dice la frase che Gaetano si scriverà sul quaderno stasera:
+
+> Claudia: "Non è profondo. È **alto**. Siamo noi che stiamo sopra."
+
+**(🫁 Fiato +2, 💪 TENUTA +3. Ottanta metri di traverso, andati e tornati: per Claudia la distanza è diventata un numero.)**`,
+    choices: [
+      { text: '🌊 Verso la riga scura, adesso che le gambe sanno di funzionare', next: 'a5' },
+      { text: '🏖 A riva, e basta per oggi: era già tanto', next: 'a5' },
     ],
   },
 
@@ -894,6 +979,10 @@ La boa gialla è a ottanta metri. Sta lì che fa la boa, gialla, tranquilla, sen
     text: `Gli scogli a destra della cala, dove l'acqua è alta un metro e mezzo e piena di roba.
 
 E qui succede la cosa bella: Claudia, con la maschera, **guarda**. Perché il suo problema non è mai stata l'acqua: è il non vedere. E con dieci centimetri di vetro temperato davanti agli occhi, il fondo diventa una cosa nitida, misurabile, finita — e sopportabile.
+
+Poi si mette il boccaglio, e succede la seconda cosa, che è più piccola e più grossa. Senza boccaglio, per respirare devi alzare la testa: e ogni volta che la alzi perdi il fondo di vista per un secondo, e in quel secondo la testa ricomincia da zero a immaginare cosa c'è. È il gesto della paura travestito da gesto tecnico, e lo fa da quando aveva sei anni.
+
+Col boccaglio la faccia resta dentro. Il respiro va avanti da solo, come a letto. E Claudia scopre — in un metro e mezzo d'acqua, a Cala Nave, il primo pomeriggio di una vacanza di quattro giorni — che si può guardare una cosa **finché non si è finito di guardarla**.
 
 Sotto di loro c'è un mondo che fa il suo lavoro senza spettatori: una nuvola di castagnole nere che si apre e si richiude come una mano, due saraghi che stanno immobili sotto un tetto di roccia con l'aria di due che aspettano il proprio turno, un polpo — un polpo VERO — che li guarda da un buco con quell'occhio orizzontale, incredibilmente intelligente, e decide che non vale la pena spostarsi.
 
@@ -1120,7 +1209,7 @@ Claudia racconta la storia della boa a tre tavoli diversi. Il cameriere, quando 
 
 > Claudia: "Alla boa gialla di Cala Nave."
 
-> Il cameriere: "Brava. Mia moglie ci ha messo quattordici anni." *(posa il limoncello)* "Offre la casa."
+> Il cameriere: "Brava. Mia moglie ci ha messo dieci anni." *(posa il limoncello)* "Offre la casa."
 
 Alla fine sono le undici, sono pieni, sono felici, ed è quel tipo di stanchezza buona che ti prende dopo un giorno di sole e di acqua salata.
 
@@ -1132,7 +1221,7 @@ Sulla via del ritorno passano davanti al forno che sta già impastando per doman
     sets: { cena_paese: true },
     choices: [
       { text: '🥨 Un sacchetto di taralli caldi per la terrazza', once: true, item: 'taralli', gold: 1, next: 'a7' },
-      { text: '🏠 Su alle Paracine: la terrazza aspetta', next: 'a7' },
+      { text: '🏠 Su alle Parracine: la terrazza aspetta', next: 'a7' },
       { text: '⚓ Fare due passi al porto: c\'è ancora gente sui pontili', once: true, next: 'a6_porto' },
     ],
   },
@@ -1144,7 +1233,7 @@ Sulla via del ritorno passano davanti al forno che sta già impastando per doman
 
 Al terzo pontile, seduto su una cassetta di polistirolo, un vecchio sta sistemando una rete. Settanta e passa, mani enormi, canottiera, occhiali da vista tenuti insieme col nastro adesivo. Lavora con la testa bassa e le dita che vanno da sole, come chi fa una cosa da sessant'anni.
 
-> Gaetano: "Buonasera. Cerchiamo Ciro. Ci ha detto Ada, delle Paracine."
+> Gaetano: "Buonasera. Cerchiamo Ciro. Ci ha detto Ada, delle Parracine."
 
 Il vecchio non alza la testa.
 
@@ -1180,7 +1269,7 @@ Il mare, dentro il porto romano, non fa una piega. Da qualche parte oltre l'imbo
   a7: {
     location: 'terrazza',
     caption: 'La terrazza — ore 00:40',
-    text: `La terrazza delle Paracine a mezzanotte e quaranta è il posto migliore in cui siano stati quest'anno.
+    text: `La terrazza delle Parracine a mezzanotte e quaranta è il posto migliore in cui siano stati quest'anno.
 
 Il paese sotto è quasi spento. Il mare è una lastra nera che si muove appena, e in mezzo — a tre chilometri — la sagoma di Santo Stefano non è più un ferro di cavallo: è solo una gobba scura contro un cielo che ha più stelle di quante ne servano.
 
@@ -1335,7 +1424,7 @@ E sotto, con un'altra penna, aggiunto stasera:
 
 **"il microfono."**
 
-**(🫁🫁 IL PRIMO GIORNO È CHIUSO. Dentro le paracine si dorme: TENUTA piena, mosse ricaricate. Fuori, sotto tre metri di tufo e ottanta metri d'acqua, una cosa che ha imparato un nome nuovo lo prova, piano, tutta la notte.)**`,
+**(🫁🫁 IL PRIMO GIORNO È CHIUSO. Dentro le parracine si dorme: TENUTA piena, mosse ricaricate. Fuori, sotto tre metri di tufo e ottanta metri d'acqua, una cosa che ha imparato un nome nuovo lo prova, piano, tutta la notte.)**`,
     gold: 1,
     sets: { giorno_27_chiuso: true },
     choices: [
@@ -1355,7 +1444,7 @@ const SCENE_B = {
 
   b0: {
     location: 'bnb',
-    caption: 'Venerdì 28 agosto, ore 08:20 — la terrazza delle Paracine',
+    caption: 'Venerdì 28 agosto, ore 08:20 — la terrazza delle Parracine',
     text: `Il caffè di Ada arriva in una tazza spessa, di quelle che scaldano le mani anche ad agosto. Sul tavolino ci sono un cestino di fette biscottate, un vasetto di marmellata di albicocche con l'etichetta scritta a penna, e un piattino con quattro fichi aperti a croce.
 
 Claudia ha dormito nove ore. Ha la faccia di una che ha dormito nove ore. Guarda il mare oltre i muretti e dice: "Amore. Ieri sono arrivata alla boa."
@@ -1383,7 +1472,7 @@ Sul foglietto attaccato allo specchio, con il nastro, il programma di oggi: **le
 
   b0_ada: {
     location: 'bnb',
-    caption: 'Le Paracine, ore 08:40 — la cucina',
+    caption: 'Le Parracine, ore 08:40 — la cucina',
     text: `Ada sta sbucciando patate dentro un catino di plastica verde. Non alza la testa.
 
 "Le cisterne. Quelle dietro la chiesa."
@@ -1419,7 +1508,7 @@ Silenzio. La radio in cucina fa una canzone di Nino D'Angelo.
 
   b0_ada_chi: {
     location: 'bnb',
-    caption: 'Le Paracine, ore 08:47',
+    caption: 'Le Parracine, ore 08:47',
     text: `Ada mette la patata nel catino. Si gira. Ha gli occhi di una che ha deciso di rispondere e già se ne pente.
 
 "Nessuno dei due."
@@ -1448,7 +1537,7 @@ Claudia impara a nuotare a ventinove anni, in una piscina di Latina, con un istr
 
   b0_mano: {
     location: 'bnb',
-    caption: 'Le Paracine, ore 08:49 — quattro secondi',
+    caption: 'Le Parracine, ore 08:49 — quattro secondi',
     text: `Gaetano allunga la mano e prende quella di Claudia. Non la stringe: la tiene. Ada guarda il catino delle patate come se fosse interessantissimo.
 
 Claudia ha la mano fredda ad agosto, alle nove del mattino, in cucina.
@@ -1478,7 +1567,7 @@ E lei fa quella cosa che fa quando decide di non avere paura: tira su col naso u
 
   b0_scrivere: {
     location: 'bnb',
-    caption: 'Le Paracine, il tavolino della terrazza',
+    caption: 'Le Parracine, il tavolino della terrazza',
     text: `Gaetano scrive sul retro della ricevuta del traghetto, con la penna del comodino:
 
 > *stateve accort' a chella ca nun sape natà*
@@ -2634,7 +2723,7 @@ E, sotto tutto, quella che Gaetano tira su per ultima e che gli fa dire *porca p
 "O gliel'hanno tolta."
 
 **(🎁 Oggetti: la MASCHERA BUONA — vetro temperato, si può usare, va solo cambiato l'elastico — e un TELO che era in fondo, di spugna, con dentro ancora la sabbia. 🎵 Attenzione +1: la roba a galla adesso gira in senso contrario.)**`,
-    item: 'maschera_buona',
+    item: 'maschera_1997',
     attenzione: 1,
     sets: { sa_maschera_novanta: true, sa_secchiello_A: true },
     choices: [
@@ -2833,13 +2922,13 @@ Tossisce a lungo. Molto a lungo. Poi si mette a sedere da sola, con la schiena a
 
 Le tiene un braccio dietro le spalle. Le sta bagnando la maglietta. Fuori, sopra i quattro metri di corda e il buco nel muro del 1957, è ancora un pomeriggio d'agosto e ci sono trentun gradi.
 
-**(💪 −6 e ACQUA NEI POLMONI: −2 a tutto, e la vedete scritta nella scheda del personaggio col rimedio. Si toglie con il caffè delle Paracine, o quando qualcuno la chiama per nome nel modo giusto. 🎵 Attenzione +1.)**`,
+**(💪 −6 e ACQUA NEI POLMONI: −2 a tutto, e la vedete scritta nella scheda del personaggio col rimedio. Si toglie con il caffè delle Parracine, o quando qualcuno la chiama per nome nel modo giusto. 🎵 Attenzione +1.)**`,
     damage: 6,
     attenzione: 1,
     sets: { claudia_tenuta_giu: true },
     poisonRoller: true,
     choices: [
-      { text: '☕ Il caffè delle Paracine. Adesso, subito, qui sul gradino', requires: { item: 'caffe_paracine' }, once: true, removeItem: 'caffe_paracine', next: 'b8_caffe' },
+      { text: '☕ Il caffè delle Parracine. Adesso, subito, qui sul gradino', requires: { item: 'caffe_parracine' }, once: true, removeItem: 'caffe_parracine', next: 'b8_caffe' },
       { text: '🪜 Su. Portarla su e basta', next: 'b9' },
     ],
   },
@@ -2865,7 +2954,7 @@ Poi dice: "Là sotto c'è un corridoio, va verso il mare, e qualcuno negli anni 
     sets: { sa_cunicolo: true, sa_sub_anni90: true },
     stinger: 'apnea',
     choices: [
-      { text: '☕ Il caffè di Ada. Ha la faccia di una che ne ha bisogno', requires: { item: 'caffe_paracine' }, once: true, removeItem: 'caffe_paracine', next: 'b8_caffe' },
+      { text: '☕ Il caffè di Ada. Ha la faccia di una che ne ha bisogno', requires: { item: 'caffe_parracine' }, once: true, removeItem: 'caffe_parracine', next: 'b8_caffe' },
       { text: '🪜 Su. E domani si va a Santo Stefano', next: 'b9' },
     ],
   },
@@ -2874,7 +2963,7 @@ Poi dice: "Là sotto c'è un corridoio, va verso il mare, e qualcuno negli anni 
     location: 'sotto',
     metri: 4,
     caption: 'Il gradino verde — un caffè in un thermos da B&B',
-    text: `Il caffè delle Paracine, che Ada mette in un thermos di acciaio con il tappo che si svita male, è ancora caldo alle cinque del pomeriggio, e questo è un piccolo miracolo domestico che nessuno dei due commenta.
+    text: `Il caffè delle Parracine, che Ada mette in un thermos di acciaio con il tappo che si svita male, è ancora caldo alle cinque del pomeriggio, e questo è un piccolo miracolo domestico che nessuno dei due commenta.
 
 Gaetano le tiene la nuca con una mano e il tappo con l'altra e le fa bere due sorsi.
 
@@ -2890,7 +2979,7 @@ Gaetano guarda il thermos. Poi guarda la scala che porta fuori dal buco nel muro
 
 "No," dice. "Secondo me no."
 
-**(☕ ACQUA NEI POLMONI curata: −2 tolto, la scheda del personaggio è pulita. Il caffè è finito, l'oggetto è consumato, e Ada delle Paracine non è una signora che affitta camere: è una che sa cosa succede e vi prepara le cose giuste senza dirvelo.)**`,
+**(☕ ACQUA NEI POLMONI curata: −2 tolto, la scheda del personaggio è pulita. Il caffè è finito, l'oggetto è consumato, e Ada delle Parracine non è una signora che affitta camere: è una che sa cosa succede e vi prepara le cose giuste senza dirvelo.)**`,
     heal: 6,
     sets: { ada_sa: true },
     stinger: 'heal',
@@ -3109,7 +3198,7 @@ Claudia allunga la mano sul tavolo, gira il palmo in su, e aspetta. Lui ci mette
     stinger: 'heal',
     sets: { patto_trenta_secondi: true, gaetano_ha_taciuto: false },
     choices: [
-      { text: '🛏 Alle Paracine. Domani alle nove, il molo', next: 'b11' },
+      { text: '🛏 Alle Parracine. Domani alle nove, il molo', next: 'b11' },
     ],
   },
 
@@ -3122,7 +3211,7 @@ Claudia lo guarda. Tre secondi.
 
 Poi fa una cosa che è mille volte peggio di qualunque litigio: **dice "ah, ok"**, prende la forchetta, e torna a mangiare le lenticchie.
 
-E per il resto della cena parlano della macchina da far revisionare, e del matrimonio di Serena a ottobre, e del gatto, e lei ride due volte, e le risate sono giuste, e il conto lo paga lui, e camminano fino alle Paracine tenendosi per mano.
+E per il resto della cena parlano della macchina da far revisionare, e del matrimonio di Serena a ottobre, e del gatto, e lei ride due volte, e le risate sono giuste, e il conto lo paga lui, e camminano fino alle Parracine tenendosi per mano.
 
 E dentro quella mano tenuta, adesso, c'è una cosa che non c'era ieri.
 
@@ -3169,14 +3258,14 @@ Claudia lo guarda a lungo. Poi fa una cosa generosa e adulta: **accetta**.
 
 Finiscono le lenticchie. Prendono un limoncello che non hanno ordinato e che il ragazzo dei tavoli porta perché siamo in un'isola e sono i signori di ieri. Sotto la ringhiera il gatto è tornato e si è messo a dormire su un motorino.
 
-Camminano alle Paracine parlando di niente, e la cosa non detta cammina con loro, un passo indietro, come un cane a cui hanno detto di stare.
+Camminano alle Parracine parlando di niente, e la cosa non detta cammina con loro, un passo indietro, come un cane a cui hanno detto di stare.
 
 **(🫁 Fiato +1 — una sera intera in cui non succede niente vale un punto di fiato. Ma la verità è rinviata, non detta: e in questo gioco le cose rinviate arrivano sempre nel momento peggiore, non nel momento comodo.)**`,
     gold: 1,
     sets: { verita_rinviata: true },
     choices: [
       { text: '💡 Ripensarci a metà strada. Fermarsi sotto un lampione e dirglielo', once: true, next: 'b10_verita' },
-      { text: '🛏 Le Paracine', next: 'b11' },
+      { text: '🛏 Le Parracine', next: 'b11' },
     ],
   },
 
@@ -3184,7 +3273,7 @@ Camminano alle Paracine parlando di niente, e la cosa non detta cammina con loro
 
   b11: {
     location: 'notte',
-    caption: 'Venerdì 28, ore 23:50 — le Paracine, camera due',
+    caption: 'Venerdì 28, ore 23:50 — le Parracine, camera due',
     text: `Il ventilatore a pale. La persiana a righe. Le cicale, che ad agosto smettono verso l'una.
 
 Claudia si addormenta in quattro minuti, come sempre, con una gamba fuori dal lenzuolo. Gaetano no.
@@ -3325,7 +3414,7 @@ E così, alle sei e mezza del mattino, in una camera di B&B, Claudia canta cinqu
 
   b12: {
     location: 'bnb',
-    caption: 'Sabato 29 agosto, ore 07:50 — la terrazza delle Paracine',
+    caption: 'Sabato 29 agosto, ore 07:50 — la terrazza delle Parracine',
     text: `Ada porta il caffè e mette sul tavolino, senza dire niente, **un thermos di acciaio** con il tappo che si svita male. Poi porta le fette biscottate, la marmellata di albicocche, quattro fichi aperti a croce.
 
 Poi si ferma, con il vassoio vuoto sotto il braccio, e guarda Claudia.
@@ -3338,7 +3427,7 @@ Non è una domanda. Claudia mette giù la tazza.
 
 "Perché il pavimento di sopra è di cotto e si sente tutto." Ada si sistema una ciocca. "E perché camminavi verso il mare, non verso il bagno."
 
-Si siede. Ada delle Paracine, che ha una struttura da gestire e le lenzuola da cambiare in tre camere, alle otto meno dieci di un sabato di agosto si siede al tavolo dei clienti, e questo su un'isola vuol dire una cosa sola.
+Si siede. Ada delle Parracine, che ha una struttura da gestire e le lenzuola da cambiare in tre camere, alle otto meno dieci di un sabato di agosto si siede al tavolo dei clienti, e questo su un'isola vuol dire una cosa sola.
 
 "Adesso mi ascoltate," dice. "Poi fate quello che volete, che siete grandi e non siete figli miei." Conta sulle dita, come Gaetano. "Uno: quest'anno l'acqua è alta. Nel pozzo della chiesa, a giugno, stava tre metri sotto; adesso sta uno e mezzo. Questo succede tre-quattro volte in un secolo e in paese quelli vecchi lo chiamano **la corda**."
 
@@ -3356,7 +3445,7 @@ Ada guarda il thermos.
     fullHeal: true,
     recharge: true,
     gold: 2,
-    item: 'caffe_paracine',
+    item: 'caffe_parracine',
     sets: { sa_corda_spiegata: true, sa_sorella_ada: true, giorno_28_chiuso: true },
     stinger: 'heal',
     choices: [
@@ -3367,7 +3456,7 @@ Ada guarda il thermos.
 
   b12_sorella: {
     location: 'bnb',
-    caption: 'Le Paracine, ore 08:05 — la fotografia dentro il buffet',
+    caption: 'Le Parracine, ore 08:05 — la fotografia dentro il buffet',
     text: `Ada si alza, va dentro, torna con una cornice di legno che tiene per il vetro, con due dita, come si tiene una cosa che si guarda poco.
 
 Nella foto ci sono due ragazze sul molo di Cala Rossano, con la maglietta della stessa marca, il taglio di capelli di metà anni Novanta e la faccia di due che ridono per una cosa detta un secondo prima. Quella a sinistra è Ada, giovane. Quella a destra ha la stessa faccia e cinque anni in meno.
@@ -3399,7 +3488,7 @@ Prende la cornice e la rimette sotto il braccio, e prima di rientrare dice l'ult
 
   b12_caffe_tutto: {
     location: 'bnb',
-    caption: 'Le Paracine, ore 08:20 — fino in fondo',
+    caption: 'Le Parracine, ore 08:20 — fino in fondo',
     text: `Bevono il caffè tutto, fino in fondo, anche la parte con la polvere, in silenzio, uno di fronte all'altro, come si prende una medicina.
 
 Poi Claudia svita il thermos, controlla che sia pieno, lo avvita, e se lo mette nello zaino nella tasca laterale, quella dell'acqua, dove si prende senza guardare.
@@ -3410,14 +3499,14 @@ Ada, da dentro, con la voce di una che sta rifacendo un letto: "**E non risponde
 
 "Non ho sentito."
 
-"NON RISPONDIAMO," dicono tutti e due, come due scolari, e Ada da dentro fa un verso che è quasi una risata, e per un secondo le Paracine sono solo un B&B con una signora simpatica e una terrazza coi limoni.
+"NON RISPONDIAMO," dicono tutti e due, come due scolari, e Ada da dentro fa un verso che è quasi una risata, e per un secondo le Parracine sono solo un B&B con una signora simpatica e una terrazza coi limoni.
 
 Poi escono nel sole, e sono le otto e venti di sabato ventinove agosto, e al molo di Cala Rossano c'è un vecchio con una lampara che li aspetta da mezz'ora perché sull'isola nove significa otto e mezza.
 
 **(💪 TENUTA piena, 🫁 Fiato +1, il THERMOS nello zaino. La regola è ripetuta a voce due volte, e il gioco la registra: quando qualcuno vi chiamerà per nome — e vi chiamerà — vi ricorderete di aver promesso.)**`,
     fullHeal: true,
     gold: 1,
-    item: 'caffe_paracine',
+    item: 'caffe_parracine',
     sets: { promessa_non_rispondere: true },
     stinger: 'heal',
     choices: [
@@ -3453,7 +3542,7 @@ Non dice buongiorno. Guarda prima lei, poi lui, poi ancora lei. E poi fa la cosa
 
 > Gaetano: "Cosa?"
 
-> Ciro: "Che avete sentito." *(pausa)* "Giovedì notte i cani. Vi ho visti in terrazza, dalla barca: alle Paracine la luce si vede da qua. E stamattina state al molo alle nove meno dieci con la faccia di chi non ha dormito." *(e adesso li guarda in faccia per davvero, e non c'è niente di strano nei suoi occhi: c'è uno che ha deciso di smettere di non sapere)* "Signò. Che avete sentito."
+> Ciro: "Che avete sentito." *(pausa)* "Giovedì notte i cani. Vi ho visti in terrazza, dalla barca: alle Parracine la luce si vede da qua. E stamattina state al molo alle nove meno dieci con la faccia di chi non ha dormito." *(e adesso li guarda in faccia per davvero, e non c'è niente di strano nei suoi occhi: c'è uno che ha deciso di smettere di non sapere)* "Signò. Che avete sentito."
 
 Dietro di loro il traghetto delle nove carica quattordici persone e due cani. Un carrello di ghiaccio passa cigolando. È una mattina normalissima di fine agosto, e un vecchio di settantadue anni sta aspettando una risposta con una cima in mano.
 
@@ -4267,7 +4356,7 @@ Ciro butta fuori l'aria dal naso. Non dice grazie. Si alza e va a sedersi su un 
 
 > Gaetano: *(e lo dice per esattezza, perché è il suo modo)* "Non 'forse'. Là dentro ci sta l'unica testimonianza diretta di uno che era qui la notte in cui hanno chiuso. Quello che sapeva lui, adesso, non lo sappiamo. E magari ci serviva."
 
-> Claudia: "Lo so." *(si mette il palmo aperto sulla tasca dei pantaloni di Gaetano, sopra la cassetta, senza premere)* "E lo teniamo. Ce lo portiamo a Ventotene, ce lo portiamo alle Paracine, e se stanotte ci serve lo suoniamo lì, dove c'è la luce accesa e la gente in strada e Ada in cucina." *(pausa)* "Non qua dentro. Non in mezzo a novantanove porte che stanno tutte girate verso di noi."
+> Claudia: "Lo so." *(si mette il palmo aperto sulla tasca dei pantaloni di Gaetano, sopra la cassetta, senza premere)* "E lo teniamo. Ce lo portiamo a Ventotene, ce lo portiamo alle Parracine, e se stanotte ci serve lo suoniamo lì, dove c'è la luce accesa e la gente in strada e Ada in cucina." *(pausa)* "Non qua dentro. Non in mezzo a novantanove porte che stanno tutte girate verso di noi."
 
 Ciro, dal gradino sopra, senza voltarsi:
 
@@ -4317,7 +4406,7 @@ E qui Gaetano non fa il conto, non fa il numero, non fa la spiegazione. Sta ferm
 
 Silenzio.
 
-> Gaetano: "Ci hai messo quattordici anni. Ci sei arrivata giovedì alle sette e dieci di sera, hai bestemmiato due volte, mi hai abbracciato attaccata a una boa di plastica, e mi hai detto *un secondo così*." *(la voce gli va)* "E io alle due di notte avevo in mano una cosa che te lo portava via. E ho pensato: gliela dico domani. E ieri ho pensato: gliela dico dopo le cisterne, che oggi ha già avuto la sua parte. E oggi me l'ha detto quel coso al posto mio, con la voce di un morto, davanti a un vecchio." *(si passa la mano sulla faccia)* "Ho fatto una cosa di merda per un motivo tenero, che è il modo peggiore di fare le cose di merda, perché mentre la fai ti sembra di volere bene."
+> Gaetano: "Ci hai messo dieci anni. Ci sei arrivata giovedì alle sette e dieci di sera, hai bestemmiato due volte, mi hai abbracciato attaccata a una boa di plastica, e mi hai detto *un secondo così*." *(la voce gli va)* "E io alle due di notte avevo in mano una cosa che te lo portava via. E ho pensato: gliela dico domani. E ieri ho pensato: gliela dico dopo le cisterne, che oggi ha già avuto la sua parte. E oggi me l'ha detto quel coso al posto mio, con la voce di un morto, davanti a un vecchio." *(si passa la mano sulla faccia)* "Ho fatto una cosa di merda per un motivo tenero, che è il modo peggiore di fare le cose di merda, perché mentre la fai ti sembra di volere bene."
 
 Claudia sta ferma ancora due secondi. Poi gli mette una mano dietro il collo e gli tira la testa sulla propria spalla, in piedi, sul terrazzamento di un carcere borbonico, alle quattro del pomeriggio.
 
@@ -4453,17 +4542,17 @@ E accanto ad alcune coppie di righe mette una freccia.
     choices: [
       { text: '🍽 Le lenticchie di Ventotene, e chiederne il bis senza vergogna', once: true, gold: 1, heal: 4 },
       { text: '🥃 L\'ultimo rum con Ciro, e stare zitti insieme per l\'ultimo minuto', requires: { item: 'rum_di_ciro' }, once: true, gold: 1, heal: 3 },
-      { text: '🏠 Su, alle Paracine. Duecento metri di muretti a secco', next: 'c15' },
+      { text: '🏠 Su, alle Parracine. Duecento metri di muretti a secco', next: 'c15' },
     ],
   },
 
   c15: {
     location: 'bnb',
-    caption: 'Le Paracine, ore 00:20 — fine del terzo giorno',
+    caption: 'Le Parracine, ore 00:20 — fine del terzo giorno',
     stinger: 'heal',
     text: `La salita coi muretti a secco, di notte, coi capperi che sanno di limone se li strofini. A metà scala la porta della signora dei fagiolini è chiusa e la luce è spenta.
 
-In cima, Le Paracine. Ada ha lasciato accesa la lampadina sotto la pergola e un piatto coperto da un altro piatto sul tavolo di fuori, con un foglietto sopra: *"Se avete fame."* Non hanno fame. Il gesto conta uguale.
+In cima, Le Parracine. Ada ha lasciato accesa la lampadina sotto la pergola e un piatto coperto da un altro piatto sul tavolo di fuori, con un foglietto sopra: *"Se avete fame."* Non hanno fame. Il gesto conta uguale.
 
 Nessuno dei due le dice, stasera, che sul nastro di una guardia morta nel sessantacinque c'è la voce di sua sorella. Ci sono cose che si dicono di giorno.
 
@@ -4497,7 +4586,7 @@ Non una nota. Non un cane. Non una porta. Niente di niente, per tutta la notte, 
 
 Ed è, di gran lunga, la cosa più preoccupante che abbia fatto finora.
 
-**(Oggetto: RESINA EPOSSIDICA. 🫁🫁 IL TERZO GIORNO È CHIUSO. ⛑ CHECKPOINT: dentro le paracine si dorme — TENUTA piena, mosse ricaricate, e da qui si riparte se domani va male. Domani è domenica 30 agosto: valigie, ultimo bagno, e il traghetto per Formia alle 17:30.)**`,
+**(Oggetto: RESINA EPOSSIDICA. 🫁🫁 IL TERZO GIORNO È CHIUSO. ⛑ CHECKPOINT: dentro le parracine si dorme — TENUTA piena, mosse ricaricate, e da qui si riparte se domani va male. Domani è domenica 30 agosto: valigie, ultimo bagno, e il traghetto per Formia alle 17:30.)**`,
     gold: 1,
     item: 'resina',
     fullHeal: true,
@@ -4528,7 +4617,7 @@ const SCENE_D = {
 
   d0: {
     location: 'alba',
-    caption: 'Le Paracine — domenica 30 agosto, ore 07:10',
+    caption: 'Le Parracine — domenica 30 agosto, ore 07:10',
     stinger: 'heal',
     metri: 0,
     text: `Il ventilatore a pale gira piano. Entra un'aria che sa di limone e di sale, e sul muro sopra il letto c'è il rettangolo di sole che alle sette e dieci arriva sempre allo stesso posto.
@@ -4567,7 +4656,7 @@ E sul tavolino c'è anche la bottiglia dell'acqua. Un litro e mezzo. Ieri notte 
 
 E per un'ora e mezza è vero, e per un'ora e mezza è la vacanza più bella che abbiano fatto.
 
-**(💪 TENUTA piena, mosse ricaricate: dentro le paracine si dorme. 🫁 Fiato +2. Il Quaderno registra la prima cosa sbagliata della mattina — la bottiglia col sigillo intatto — e ce n'è una seconda, più tardi, e sono due.)**`,
+**(💪 TENUTA piena, mosse ricaricate: dentro le parracine si dorme. 🫁 Fiato +2. Il Quaderno registra la prima cosa sbagliata della mattina — la bottiglia col sigillo intatto — e ce n'è una seconda, più tardi, e sono due.)**`,
     gold: 2,
     fullHeal: true,
     recharge: true,
@@ -4600,7 +4689,7 @@ Claudia resta con la maglietta a mezz'aria.
 
 > Gaetano: "Non l'ho registrata."
 
-> Claudia: *(e lo guarda, e lo conosce da quattordici anni)* "Gaetano."
+> Claudia: *(e lo guarda, e lo conosce da dieci anni)* "Gaetano."
 
 > Gaetano: *(e cede subito, perché con lei ha smesso di provarci)* "L'ho registrata."
 
@@ -4625,7 +4714,7 @@ Claudia ascolta tutto. Poi si siede sul bordo del letto con il telefono in mano.
 
   d1_colazione: {
     location: 'terrazza',
-    caption: 'La terrazza delle Paracine — ore 08:20',
+    caption: 'La terrazza delle Parracine — ore 08:20',
     metri: 0,
     text: `Ada porta la moka, il pane con la marmellata di fichi che fa lei, e due albicocche in un piattino perché "quelle di ieri erano acerbe e mi è rimasto il magone".
 
@@ -4761,7 +4850,7 @@ E poi il ventilatore a pale gira piano, ed entra un'aria che sa di limone e di s
 
   d4_ciclo2: {
     location: 'alba',
-    caption: 'Le Paracine — domenica 30 agosto, ore 07:10 (di nuovo)',
+    caption: 'Le Parracine — domenica 30 agosto, ore 07:10 (di nuovo)',
     stinger: 'voce_amata',
     metri: 0,
     text: `Sono svegli tutti e due. Da subito. Nessuno dei due ha aperto gli occhi piano.
@@ -4807,7 +4896,7 @@ E dal piano di sotto, dalla cucina, si sente Ada che mette la moka sul fuoco.
 
   d5_ada: {
     location: 'bnb',
-    caption: 'La cucina delle Paracine — ore 07:55',
+    caption: 'La cucina delle Parracine — ore 07:55',
     metri: 0,
     text: `Ada è girata verso il fuoco. La moka borbotta. Sul tavolo ci sono tre tazzine, e nessuno le ha detto che scendevano in due.
 
@@ -5301,7 +5390,7 @@ Non c'è un lampo, non c'è un buio, non c'è nessun effetto: il numero passa da
 
   d9_ko: {
     location: 'bnb',
-    caption: 'Le Paracine — vi svegliate ASCIUTTI',
+    caption: 'Le Parracine — vi svegliate ASCIUTTI',
     stinger: 'defeat',
     metri: 0,
     fullHeal: true,
@@ -5342,7 +5431,7 @@ Fuori, in cucina, Ada mette la moka sul fuoco. Sono le sette e cinquanta di dome
 
   d10_ciclo3: {
     location: 'alba',
-    caption: 'Le Paracine — 30 agosto, ore 07:10 (la terza volta)',
+    caption: 'Le Parracine — 30 agosto, ore 07:10 (la terza volta)',
     stinger: 'coro',
     metri: 0,
     text: `Il ventilatore non gira.
@@ -5363,7 +5452,7 @@ La moka è sul fuoco, e il fuoco è **spento**, e la moka è calda. Sul tavolo t
 
 Ada non è di là.
 
-E nel corridoio, davanti alla porta di casa, c'è **acqua**. Un velo alto un dito che entra da sotto la porta e arriva fino al primo gradino delle scale, e Le Paracine stanno a quarantadue metri sul livello del mare.
+E nel corridoio, davanti alla porta di casa, c'è **acqua**. Un velo alto un dito che entra da sotto la porta e arriva fino al primo gradino delle scale, e Le Parracine stanno a quarantadue metri sul livello del mare.
 
 > Gaetano: "Ada?"
 
@@ -6065,7 +6154,7 @@ Sono in piedi sulla banchina con le sacche in mano, bagnati, e uno dei due ha in
 
 Il sole è basso. L'ombra del campanile arriva a metà della rampa.
 
-Dietro di loro l'isola: le case gialle, la scaletta delle paracine, il limone in vaso di Ada che ha più limoni di quanti se ne possano mangiare. Davanti, trenta metri di lamiera vuota.
+Dietro di loro l'isola: le case gialle, la scaletta delle parracine, il limone in vaso di Ada che ha più limoni di quanti se ne possano mangiare. Davanti, trenta metri di lamiera vuota.
 
 > Claudia: "Ok." *(gli prende la mano — non per aiuto: per riferimento)* "Decidiamo."
 
@@ -6079,7 +6168,7 @@ Dietro di loro l'isola: le case gialle, la scaletta delle paracine, il limone in
       { text: '🚢 Salire e basta. Vivi, insieme, e senza aver capito un cazzo', gold: 1, next: 'e_vittoria_muta' },
       { text: '🕯 Uno dei due non sale. E non sale perché salga l\'altro', next: 'd15_scambio' },
       { text: '🏠 Uno dei due non sale, e non è per l\'altro: è perché ha deciso di restare', next: 'd15_resta' },
-      { text: '🛏 Non salire. Tornare alle Paracine, mettersi a letto, e domani è oggi', tag: '⚠️ Nessuno vi prende, nessuno muore. È la fine peggiore che abbia questo gioco', next: 'e_loop' },
+      { text: '🛏 Non salire. Tornare alle Parracine, mettersi a letto, e domani è oggi', tag: '⚠️ Nessuno vi prende, nessuno muore. È la fine peggiore che abbia questo gioco', next: 'e_loop' },
     ],
   },
 
@@ -6088,7 +6177,7 @@ Dietro di loro l'isola: le case gialle, la scaletta delle paracine, il limone in
     caption: 'Sulla rampa — uno dei due',
     stinger: 'voce_amata',
     metri: 0,
-    text: `Non è una discussione. Le discussioni le hanno già fatte tutte, in quattordici anni, sul phon e sulle valigie e su chi ha ragione.
+    text: `Non è una discussione. Le discussioni le hanno già fatte tutte, in dieci anni, sul phon e sulle valigie e su chi ha ragione.
 
 Questa è una di quelle cose che si dicono una volta e restano dette.
 
@@ -6204,7 +6293,7 @@ Il mare non fa niente. Non è calmo nel senso bello: è **fermo**, e ci vuole un
 
 Alle nove, davanti al porto, tre bambini e un cane fanno il casino di sempre a due metri dall'acqua. Lì non c'è niente. Non c'è mai stato niente: la cosa ha un **perimetro**, e il perimetro finisce dove comincia la gente. Una signora che puliva fagiolini l'aveva detto in due secondi, il primo giorno, senza sapere di dire una cosa esatta.
 
-Alle Paracine il caffè è nel thermos di acciaio, quello col tappo che si svita male. Sul tavolo della cucina, accanto al thermos, c'è il registratore.
+Alle Parracine il caffè è nel thermos di acciaio, quello col tappo che si svita male. Sul tavolo della cucina, accanto al thermos, c'è il registratore.
 
 > Claudia: "Ada. Si sieda."
 
@@ -6247,7 +6336,7 @@ Ada annuisce piano, due volte, come si annuisce a un medico. Poi si alza, prende
 
 Ponte di poppa, lo stesso dell'andata. Le mani sul parapetto: la vernice bianca è calda, ha preso sole tutto il giorno. Sotto le mani non c'è il rumore del motore, c'è la **vibrazione** — quella che arriva ai denti e non smette per due ore e quaranta.
 
-L'isola si stacca. È questo che fa: non sei tu che vai via, è lei che si stacca. Il paese giallo e rosa diventa una fila di sassi ordinati, la scaletta delle paracine una riga, Cala Nave una virgola bianca. La boa gialla si vede per quattro minuti e poi non si vede più.
+L'isola si stacca. È questo che fa: non sei tu che vai via, è lei che si stacca. Il paese giallo e rosa diventa una fila di sassi ordinati, la scaletta delle parracine una riga, Cala Nave una virgola bianca. La boa gialla si vede per quattro minuti e poi non si vede più.
 
 Santo Stefano resta a destra. Alle 17:52 è un dente. Alle 18:20 è una macchia. Poi è la faccia del mare e basta.
 
@@ -6312,7 +6401,21 @@ Della sesta cisterna non hanno detto niente a nessuno, e su questo si sono trova
 
 Ad Ada arriva una pagina sola, a mano. Non risponde per due settimane, e poi manda un messaggio di undici parole: *"Ho letto. L'ho letta a mio marito. Grazie. La stanza c'è."*
 
-Il resto è la vita. Gaetano ha ripreso a misurare cose lontanissime. Claudia ha ripreso a decidere come si guardano le cose. Il 4 ottobre, a Serapo, con l'acqua a diciannove gradi e la spiaggia vuota, è entrata e ha nuotato fino alla terza boa senza chiedere a nessuno quanto fosse profondo.
+**Il primo settembre sono dieci anni.** Cade di martedì, come previsto, e il martedì si lavora: quindi la cena è alle nove e mezza in una pizzeria di Formia con l'aria condizionata troppo forte, e il regalo dei dieci anni è già stato speso tutto — quattro giorni su un'isola, prenotati a febbraio, pagati, e tenuti segreti per un mese e mezzo.
+
+Claudia tira fuori dalla borsa una cosa piccola avvolta nella carta del pane e la posa sul tavolo, in mezzo ai bicchieri.
+
+È una maschera. Non una nuova: **la sua**, quella di marzo, col silicone segnato dove l'ha stretta troppo. E dentro, sul bordo del vetro, scritto col pennarello indelebile in stampatello — come si scrivono le cose sulle attrezzature, per non confonderle con quelle di un altro — ci sono **una data e due iniziali**. Le stesse che stanno incise dentro le fedi.
+
+> Gaetano: *(che ha capito e non riesce a dirlo)* "Claudia."
+
+> Claudia: "Tu me ne hai comprate due a marzo e non me l'hai detto. Io te ne segno una e te lo dico." *(la spinge di due centimetri verso di lui)* "Non è un regalo. È un'attrezzatura assegnata."
+
+Poi dice la frase per cui dieci anni sono stati una specie di rincorsa, e la dice guardando il tovagliolo, perché certe cose non si dicono in faccia:
+
+> Claudia: "L'anno prossimo la fossa la guardiamo insieme. Non da sopra." *(pausa)* "E la prima che scende sono io."
+
+Il resto è la vita. Gaetano ha ripreso a misurare cose lontanissime. Claudia ha ripreso a decidere come si guardano le cose. Il 4 ottobre, a Serapo, con l'acqua a diciannove gradi e la spiaggia vuota, è entrata con maschera, pinne e boccaglio e ha nuotato fino alla terza boa senza chiedere a nessuno quanto fosse profondo.
 
 Quando escono a cena e qualcuno chiede com'è andata a Ventotene, dicono: bellissima.
 
@@ -6335,6 +6438,8 @@ Le cinque foto mosse stanno in una cartella che si chiama VENTOTENE 2026, tra la
 Nella cisterna murata, sul tufo, c'è ancora scritto **E SIAMO TORNATI SU**, e non lo leggerà nessuno, e va bene: era un impegno preso in due, e in due è stato mantenuto.
 
 Ada ha scritto a Natale, uno di quei messaggi con troppi puntini: *"Auguri a voi due, siete stati bravi ragazzi, quando volete la stanza c'è."* Non ha scritto altro e non c'era altro da scrivere. Il nome di sua sorella, dentro quel messaggio, non c'è — ma c'è nella testa di tre persone invece che di una, e questa è la differenza.
+
+Il primo settembre, che è due giorni dopo il ritorno, sono dieci anni. Cade di martedì e si lavora, quindi si festeggia alle nove e mezza con una pizza, e nessuno dei due dice ad alta voce che il regalo dei dieci anni sono stati quattro giorni in cui hanno tenuto la bocca chiusa davanti a una cosa che chiedeva di essere lasciata entrare. Claudia gli mette in mano la sua maschera, con una data e due iniziali scritte dentro col pennarello, le stesse delle fedi. Non serve aggiungere altro.
 
 Il primo agosto dell'anno dopo Claudia prenota quattro giorni, la stanza con la terrazza, e non ne parlano prima di partire. Alla Terrazza di Mimì il cameriere si ricorda di lei e della boa, e le porta un limoncello che non ha ordinato.
 
@@ -6472,6 +6577,8 @@ Tornano il 27 agosto dell'anno dopo, e quello dopo, e quello dopo. Ada tiene la 
 Alla Marisqueria prendono sempre lo stesso piatto. Alla Terrazza di Mimì il tavolo contro la ringhiera lo tengono per loro. La boa gialla è sempre lì, e Claudia ci arriva ogni volta, e ogni volta ci resta appesa un minuto in più.
 
 Non risentono niente. Mai. Undici anni di 30 agosto, e il mare che fa il mare.
+
+Quello che invece si sente ogni anno è il primo settembre: dieci anni, poi undici, poi dodici. Cade sempre in mezzo alla settimana e si festeggia sempre di corsa, e va bene così — perché quella data non ha bisogno di prove. È l'unica cosa di tutta questa storia che non gli serve dimostrare a nessuno.
 
 La cartella si chiama VENTOTENE e dentro ci sono quattromiladuecento file, e non uno di quei file risponde alla domanda.
 
@@ -6764,7 +6871,7 @@ Il fiato finisce. Prima a uno, poi all'altro, con dodici secondi di differenza. 
 
   e_coro_insieme: {
     location: 'fossa',
-    caption: 'Dentro la nota — e alle Paracine, il 31 agosto',
+    caption: 'Dentro la nota — e alle Parracine, il 31 agosto',
     ending: true,
     text: `Non c'è buio. Il buio era prima, quando c'erano gli occhi.
 
@@ -6780,7 +6887,7 @@ Il Coro adesso ha una cosa che in duemila anni non aveva mai avuto: due voci che
 
 ---
 
-Alle Paracine, il 31 agosto alle undici, Ada entra nella stanza con la terrazza. Trova due borsoni fatti a metà, un phon, due maschere identiche appoggiate una sull'altra e un foglietto attaccato allo specchio col nastro, con due righe di penna diversa.
+Alle Parracine, il 31 agosto alle undici, Ada entra nella stanza con la terrazza. Trova due borsoni fatti a metà, un phon, due maschere identiche appoggiate una sull'altra e un foglietto attaccato allo specchio col nastro, con due righe di penna diversa.
 
 Chiama la Capitaneria. Poi il figlio. Poi non chiama più nessuno.
 
@@ -6917,7 +7024,7 @@ E non è brutto. È questa la cosa: **non è brutto.** È comodissimo.
      Il punto: andarsene deve essere una FINE, non una resa. */
   e_abbandono: {
     location: 'bnb',
-    caption: 'Le Paracine, camera due — la terza volta',
+    caption: 'Le Parracine, camera due — la terza volta',
     text: `La terza volta che vi svegliate asciutti, non vi guardate.
 
 Gaetano si mette a sedere sul bordo del letto e resta lì con i piedi sul cotto freddo. Claudia sta girata verso il muro e non dorme, e lui lo sa perché il respiro è sbagliato.
@@ -6987,16 +7094,16 @@ const CAMPAIGN_START = 'a0';
 const CHAPTERS = [
   { id: 'a0', prefixes: ['a'],
     label: '☀️ Giovedì 27 — l\'arrivo',
-    desc: 'Scauri, Formia, il traghetto. Le Paracine, Cala Nave, la boa gialla. E una nota sola.' },
+    desc: 'Scauri, Formia, il traghetto. Le Parracine, Cala Nave, la boa gialla. E una nota sola.' },
 
   { id: 'b0', prefixes: ['b'],
     label: '🕯 Venerdì 28 — le cisterne',
     desc: 'Dietro la chiesa, sotto il paese: sei cisterne, quattro murate, e la prima voce che risponde.',
-    flags: { giorno_27_chiuso: true, arrivati_paracine: true, ada_amica: true, gaetano_crede: true,
+    flags: { giorno_27_chiuso: true, arrivati_parracine: true, ada_amica: true, gaetano_crede: true,
              valigie_fatte: true, i_registro_acqua: true, i_foto_museo: true, sa_la_corda: true,
              sa_di_ciro: true, registrata_nota: true, sa_il_nome: true },
     items: ['torcia_sub', 'nastro_isolante', 'microfono', 'preservativo', 'gopro', 'asta_selfie',
-            'coltello', 'filo_nylon', 'foto_bambina', 'caffe_paracine', 'maschera_buona',
+            'coltello', 'filo_nylon', 'foto_bambina', 'caffe_parracine', 'maschera_buona',
             'anello_gaetano', 'anello_claudia'] },
 
   { id: 'c0', prefixes: ['c'],
@@ -7006,7 +7113,7 @@ const CHAPTERS = [
              i_registro_acqua: true, i_foto_museo: true, i_iscrizione: true, i_seconda: true,
              i_eco_misurata: true, i_ninna_sentita: true, promessa_incisa: true, sa_confine: true },
     items: ['torcia_sub', 'nastro_isolante', 'cavo_lungo', 'medaglietta_giulia', 'sale_grosso',
-            'resina', 'filo_nylon', 'foto_bambina', 'caffe_paracine', 'taralli',
+            'resina', 'filo_nylon', 'foto_bambina', 'caffe_parracine', 'taralli',
             'idrofono', 'torcia_da_casco', 'anello_gaetano', 'anello_claudia'] },
 
   { id: 'd0', prefixes: ['d'],
@@ -7034,7 +7141,7 @@ const CHAPTERS = [
              i_graffito: true, i_registro_detenuti: true, i_ciro_racconta: true, i_osso: true,
              i_foto_museo: true, i_giocattolo: true, i_nome_lista: true, i_ninna_sentita: true },
     items: ['torcia_da_casco', 'ancora_di_voce', 'le_due_fedi', 'ninnananna', 'la_voce_del_65',
-            'idrofono_profondo', 'stucco', 'giocattolo', 'caffe_paracine'] },
+            'idrofono_profondo', 'stucco', 'giocattolo', 'caffe_parracine'] },
 ];
 
 /* ============ IL DIARIO DI VIAGGIO — 📔 le cose che sapete, in chiaro ============
@@ -7081,13 +7188,13 @@ const DIARY_FLAGS = [
   ['ciro_conosciuto',     'Ciro, settantadue anni, canottiera e occhiali tenuti col nastro adesivo: «Gli altri due vi portano e non vi raccontano niente. Io non vi racconto niente e in più vi riporto indietro. Fate voi.»'],
   ['appuntamento_ciro',   'Appuntamento con Ciro: sabato 29, alle nove del mattino, terzo pontile. Quaranta euro andata e ritorno.'],
   ['ciro_in_squadra',     'Ciro è con voi. Nel 1965 aveva undici anni ed era sul molo: sa cose, e le dice quando servono. In acqua il coltello si lega, sempre — e il primo fallimento in apnea, con lui a bordo, è gratis.'],
-  ['ada_amica',           'Ada delle Paracine è un\'alleata, non un mistero: il caffè con la moka da sei, il thermos di acciaio col tappo che si svita male, e la porta della cucina aperta anche all\'una di notte.'],
+  ['ada_amica',           'Ada delle Parracine è un\'alleata, non un mistero: il caffè con la moka da sei, il thermos di acciaio col tappo che si svita male, e la porta della cucina aperta anche all\'una di notte.'],
   ['visto_polpo',         'Il polpo di Cala Nave, che ha guardato Claudia da un buco con quell\'occhio orizzontale e ha deciso che non valeva la pena spostarsi. «C\'È UN POLPO E MI HA GUARDATA.»'],
   ['promessa_boa',        'La promessa detta a voce alta sopra il mare, arrivando: quest\'anno ci prova, e se dice basta si torna. Due maschere identiche comprate senza dirlo.'],
   ['boa_raggiunta',       'Claudia ha toccato la boa gialla di Cala Nave con tutte e due le mani, con ventidue metri d\'acqua sotto i piedi. Questo è avvenuto, ed è la cosa che non si cancella.'],
   ['guardato_sotto',      '«Io non ho paura di quello che c\'è sotto: ho paura di quello che NON SO se c\'è. È diverso, e si cura guardando.» Regola operativa del gioco: guardare costa, e paga sempre.'],
   ['gaetano_crede',       'Gaetano ha scelto di CREDERLE. Non per gentilezza: perché su una cosa che ha sentito lei non si è mai sbagliata. È la trave che tiene su tutta questa storia.'],
-  ['nota_da_terra',       'La nota arrivata dal BASSO, sotto la terrazza delle Paracine, sotto il tufo dell\'isola — e non dal mare. Prima i dieci cani che si fermano tutti insieme sulla stessa battuta, poi lei.'],
+  ['nota_da_terra',       'La nota arrivata dal BASSO, sotto la terrazza delle Parracine, sotto il tufo dell\'isola — e non dal mare. Prima i dieci cani che si fermano tutti insieme sulla stessa battuta, poi lei.'],
   ['registrata_nota',     'La registrazione: sol basso, sostenuto, calante di un quarto di tono, con sotto un\'altra nota a un intervallo che sul pianoforte non esiste. Due note che non possono stare insieme, e stanno insieme.'],
   ['promessa_incisa',     'Nella cisterna murata, incise nel tufo con un chiodo: CI SIAMO STATI. C. E G. — 28.8.26. E sotto: E SIAMO TORNATI SU. «È al futuro, è un impegno: adesso è scritto sul muro, quindi si fa.»'],
   ['claudia_ha_promesso', 'Claudia ha promesso a una bambina morta il 24 ottobre 1943 che le insegna a nuotare. L\'ha detto con la sua voce, e quella ci ha creduto. È la promessa più grossa di tutto il gioco.'],
@@ -7119,9 +7226,9 @@ const DIARY_FLAGS = [
   ['r_fedi',              '🔧 LE DUE FEDI — due anelli d\'oro su un filo da pesca da venti chili. Non cura, non illumina, non taglia. «Una cosa che è di tutti e due, in fondo al mare, è un indirizzo.»'],
 
   /* --- i giorni chiusi: dentro i muretti a secco non arriva niente --- */
-  ['giorno_27_chiuso',    '✔ Giovedì 27 chiuso alle Paracine: una boa raggiunta, un polpo, dieci cani fermati sulla stessa battuta e una nota dentro un telefono.'],
-  ['giorno_28_chiuso',    '✔ Venerdì 28 chiuso alle Paracine: le cisterne sotto il paese, l\'eco che risponde prima, e una riga incisa nel tufo al futuro.'],
-  ['giorno_29_chiuso',    '✔ Sabato 29 chiuso alle Paracine: Santo Stefano, la cella 47, il cimitero — e Ciro che a settantadue anni ha deciso di raccontare.'],
+  ['giorno_27_chiuso',    '✔ Giovedì 27 chiuso alle Parracine: una boa raggiunta, un polpo, dieci cani fermati sulla stessa battuta e una nota dentro un telefono.'],
+  ['giorno_28_chiuso',    '✔ Venerdì 28 chiuso alle Parracine: le cisterne sotto il paese, l\'eco che risponde prima, e una riga incisa nel tufo al futuro.'],
+  ['giorno_29_chiuso',    '✔ Sabato 29 chiuso alle Parracine: Santo Stefano, la cella 47, il cimitero — e Ciro che a settantadue anni ha deciso di raccontare.'],
 ];
 
 /* ============ LA MAPPA DELL'ISOLA ============
@@ -7137,7 +7244,7 @@ const WORLD_MAP = [
   { key: 'traversata', label: 'La traversata', x: 0.12, y: 0.14, scenes: [] },
   { key: 'porto',      label: 'Il porto',      x: 0.30, y: 0.40, scenes: [] },
   { key: 'paese',      label: 'Il paese',      x: 0.44, y: 0.26, scenes: [] },
-  { key: 'bnb',        label: 'Le Paracine',   x: 0.22, y: 0.62, scenes: [] },
+  { key: 'bnb',        label: 'Le Parracine',   x: 0.22, y: 0.62, scenes: [] },
   { key: 'cisterne',   label: 'Le cisterne',   x: 0.48, y: 0.50, scenes: [] },
   { key: 'rovine',     label: 'Punta Eolo',    x: 0.62, y: 0.12, scenes: [] },
   { key: 'mare',       label: 'Le calette',    x: 0.16, y: 0.84, scenes: [] },

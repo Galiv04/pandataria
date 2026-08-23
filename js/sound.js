@@ -205,7 +205,7 @@ const Sound = (() => {
       bass: [38, null, 45, null, 38, null, 43, null, 38, null, 45, null, 41, null, 40, null],
       lead: [62, null, 66, 69, null, 66, null, 62, null, 64, null, 67, null, null, null, null],
     },
-    // Le Paracine: il rifugio. L'unica traccia che si può ascoltare in pace
+    // Le Parracine: il rifugio. L'unica traccia che si può ascoltare in pace
     bnb: {
       bpm: 60, vol: 0.036,
       bass: [36, null, null, null, 43, null, null, null, 36, null, null, null, 41, null, null, null],

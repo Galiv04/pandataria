@@ -1,7 +1,7 @@
 # PANDATARIA — documento di design (fonte unica)
 
 > Quinto gioco della serie. Horror sommerso per **2 giocatori**: Gaetano e Claudia.
-> Ventotene, **27-30 agosto 2026**, B&B Le Paracine.
+> Ventotene, **27-30 agosto 2026**, B&B Le Parracine.
 > Motore: quello della Casa che non Finisce (morte vera) + pipeline a draft dell'Effetto Zoom.
 > Regole di serie e lezioni: `../dnd-motore/docs/` — in particolare LESSONS-LEARNED.md § Agosto 2026.
 
@@ -25,7 +25,7 @@ tutti in primo piano:
   e che stanotte fanno cose enormi.
 - **Niente sesso esplicito.**
 - Ventotene è reale: l'isola, il carcere, le cisterne, il relitto sono documentati. **Le persone
-  reali dell'isola non sono i cattivi**: il B&B Le Paracine e i suoi proprietari sono ALLEATI e
+  reali dell'isola non sono i cattivi**: il B&B Le Parracine e i suoi proprietari sono ALLEATI e
   rifugio; nessun abitante vivo è complice. L'orrore è antico e non umano.
 - La paura di Claudia (acqua, profondità, ignoto) è la sua **forza narrativa**, non il suo scherno:
   è l'unica che SENTE, e alla fine è quella che decide.
@@ -85,7 +85,7 @@ Sa cose. Non le dice per cattiveria: le dice quando servono.
 
 | Atto | Quando | Dove | Cuore |
 |---|---|---|---|
-| **A** — `a*` | gio 27 ago | traghetto, porto romano, B&B Le Paracine, Cala Nave | La vacanza vera. Il primo bagno. La prima nota che solo Claudia sente. |
+| **A** — `a*` | gio 27 ago | traghetto, porto romano, B&B Le Parracine, Cala Nave | La vacanza vera. Il primo bagno. La prima nota che solo Claudia sente. |
 | **B** — `b*` | ven 28 ago | Cisterne romane, Villa Giulia a Punta Eolo | Le sei cisterne, le quattro sigillate, la voce di Giulia. Primo scontro vero. |
 | **C** — `c*` | sab 29 ago | Santo Stefano: panopticon, cella 47, il cimitero | Il carcere. Ciro si unisce. La cosa peggiore del gioco sta qui. |
 | **D** — `d*` | dom 30 ago | IL GIORNO CHE NON FINISCE | Il traghetto non parte. Il 30 si ripete. Ogni ciclo il Coro ha una voce in più — e alla terza è una vostra. |
@@ -192,7 +192,7 @@ Il Fiato **non compra niente**. Non c'è un negozio. Fa esattamente due cose, en
 2. **Le scelte che spingono più giù lo consumano** (`goldLoss` / `gold` negativo sulla scelta) e le
    scelte in fondo al mare lo **richiedono** (`requiresGold`), con l'avviso di quanto ne serve.
 
-Si recupera **solo con le cose umane**: dormire alle Paracine, mangiare come si deve (Mimì, la
+Si recupera **solo con le cose umane**: dormire alle Parracine, mangiare come si deve (Mimì, la
 marisqueria), il caffè di Ada, ridere, restare un momento fermi con l'altro. Mai combattendo per
 combattere. La HUD dello zaino spiega tutto questo dentro il gioco, non nei doc.
 
@@ -232,7 +232,7 @@ Non «game over, ricomincia». `Engine.riprendiDaCheckpoint()`:
 1. Se avete l'**Àncora di Voce** si consuma e lo scontro riprende, tutti a metà PV.
 2. Altrimenti si torna all'ultimo **checkpoint** con lo **snapshot di allora** (party, zaino, flag,
    fiato, ricette): quello che avevate capito dopo, **l'avete perso**, e la modale vi dice per nome
-   cosa vi manca. Vi svegliate asciutti alle Paracine — e l'essere asciutti è la parte peggiore.
+   cosa vi manca. Vi svegliate asciutti alle Parracine — e l'essere asciutti è la parte peggiore.
 3. Solo se non esiste nessun checkpoint (morire nel primo giorno) si va al game over vero.
 
 **Checkpoint**: `CHECKPOINT_FLAGS = ['giorno_27_chiuso','giorno_28_chiuso','giorno_29_chiuso','ciro_in_squadra']`

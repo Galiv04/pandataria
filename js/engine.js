@@ -9,7 +9,7 @@ const FIATO_MAX = 20;   // 🫁 la RISORSA del gioco, non una valuta decorativa
       immersione, quindi in METRI raggiungibili. Con poco fiato certe cose,
       fisicamente, non le prendi: il gioco te lo dice PRIMA di farti scendere.
    2. Le scelte che spingono più giù lo CONSUMANO (goldLoss / gold negativo).
-   Si recupera solo con le cose umane: dormire alle Paracine, mangiare vero,
+   Si recupera solo con le cose umane: dormire alle Parracine, mangiare vero,
    il caffè di Ada, ridere, l'altro che ti tiene la mano. */
 function apneaFiato() {
   const base = 50;
@@ -95,7 +95,9 @@ const Engine = (() => {
       /* Lo zaino di partenza è quello che si porta davvero in vacanza: il telo
          da mare, il coltellino nel beauty. Chi gioca da solo ha anche un caffè
          in più, perché non ha nessuno che lo chiami per nome. */
-      inventory: solo ? ['telo_mare', 'coltello', 'caffe_paracine'] : ['telo_mare', 'coltello'],
+      /* L'attrezzatura da snorkeling la portano da casa, comprata a marzo: sta qui e
+         non si trova sull'isola. Ognuno dei tre pezzi apre scelte diverse. */
+      inventory: solo ? ['telo_mare', 'coltello', 'caffe_parracine', 'maschera_buona', 'pinne', 'boccaglio'] : ['telo_mare', 'coltello', 'maschera_buona', 'pinne', 'boccaglio'],
       flags: solo ? { solo: true } : {},
       pieta: 0,   // sconto sulle forze del Coro: sale a ogni ritorno da un checkpoint
       sceneId: CAMPAIGN_START,
@@ -122,7 +124,7 @@ const Engine = (() => {
         <p style="margin-bottom:12px">${G.party[0].name} lo gioca qualcuno; l'altro c'è comunque, in ogni scena, ma lo tiene il Narratore. Chi scende con un paio di mani sole in meno parte con qualcosa in più:</p>
         <div class="ability-box"><span class="ability-name">💪 +10 TENUTA massima e +1 CA</span></div>
         <div class="ability-box"><span class="ability-name">✨ +1 uso a ogni abilità speciale</span></div>
-        <div class="ability-box"><span class="ability-name">🫁 Fiato iniziale 8 invece di 6, e un caffè delle Paracine già nello zaino</span></div>
+        <div class="ability-box"><span class="ability-name">🫁 Fiato iniziale 8 invece di 6, e un caffè delle Parracine già nello zaino</span></div>
         <p style="color:var(--text-dim);margin-top:10px">Consiglio del narratore: quaggiù la cosa che salva non è la forza, è che qualcuno ti chiami per nome. Con un giocatore solo, quel qualcuno lo devi ricordare tu.</p>`;
       }
       html += `<button class="btn btn-gold" style="margin-top:12px" onclick="document.getElementById('modal-generic').classList.add('hidden')">🌙 Che la notte cominci</button>`;
@@ -323,7 +325,7 @@ const Engine = (() => {
           setTimeout(() => {
             const box = $('modal-generic-content');
             box.innerHTML = `<h2>🫁 UN GIORNO IN MENO — Checkpoint</h2>
-              <p style="font-size:20px;line-height:1.6;margin:10px 0">Al B&B Le Paracine, dentro i muretti a secco, per qualche ora non arriva niente: <b>TENUTA al massimo</b> e <b>mosse ricaricate</b>.<br>
+              <p style="font-size:20px;line-height:1.6;margin:10px 0">Al B&B Le Parracine, dentro i muretti a secco, per qualche ora non arriva niente: <b>TENUTA al massimo</b> e <b>mosse ricaricate</b>.<br>
               <span style="color:var(--text-dim)">Le condizioni (🎵 acqua nei polmoni, 🕸 trattenuto, 👻 preso) restano: quelle vogliono le loro cure.</span></p>
               <button class="btn btn-gold" onclick="document.getElementById('modal-generic').classList.add('hidden')">▶ Si continua</button>`;
             $('modal-generic').classList.remove('hidden');
@@ -846,7 +848,7 @@ const Engine = (() => {
       <div class="gold-display">🫁 Fiato: ${G.gold}/${FIATO_MAX}</div>
       <div class="ability-box" style="border-left:5px solid var(--cyan);margin-bottom:10px">
         <span class="ability-name">Con questo fiato scendete a circa ${metriPossibili()} metri</span>
-        <div class="ability-desc">Il Fiato non è denaro: è quanto reggete sotto. In immersione partite con <b>${apneaFiato()}</b> di aria${G.inventory.includes('bombola_riparata') ? ' <span style="color:var(--green)">(+80 dal bombolino riparato)</span>' : ''}, e l'aria si brucia più veloce più vai giù. Le cose che stanno a −30 o −40 metri, con poco fiato, <b>non le prendete e basta</b>. Si recupera dormendo alle Paracine, mangiando come si deve, e stando un momento fermi con l'altro.</div></div>
+        <div class="ability-desc">Il Fiato non è denaro: è quanto reggete sotto. In immersione partite con <b>${apneaFiato()}</b> di aria${G.inventory.includes('bombola_riparata') ? ' <span style="color:var(--green)">(+80 dal bombolino riparato)</span>' : ''}, e l'aria si brucia più veloce più vai giù. Le cose che stanno a −30 o −40 metri, con poco fiato, <b>non le prendete e basta</b>. Si recupera dormendo alle Parracine, mangiando come si deve, e stando un momento fermi con l'altro.</div></div>
       <button class="btn btn-gold" style="margin-bottom:10px" onclick="Crafting.open()">🔧 Combinare due cose</button>
       ${itemsHtml}
       <button class="btn" style="margin-top:14px" onclick="document.getElementById('modal-generic').classList.add('hidden')">✔ Chiudi</button>`;
@@ -898,7 +900,7 @@ const Engine = (() => {
     const box = $('modal-generic-content');
     box.innerHTML = `<h2 style="color:var(--red)">🌊 L'acqua vi ha ridato indietro</h2>
       <div class="backstory" style="white-space:pre-wrap">Vi svegliate asciutti, e questa è la cosa peggiore.
-Asciutti, vestiti, sul letto delle Paracine, con la luce che entra dalla persiana a righe come se non fosse successo niente. Vi guardate. Vi ricordate tutti e due di essere morti. Non lo dite.
+Asciutti, vestiti, sul letto delle Parracine, con la luce che entra dalla persiana a righe come se non fosse successo niente. Vi guardate. Vi ricordate tutti e due di essere morti. Non lo dite.
 
 Il Coro non vi ha uccisi: vi ha <b>rimessi a posto</b>. Come si rimette a posto un giocattolo che ti serve ancora.
 

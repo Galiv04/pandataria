@@ -26,16 +26,16 @@
 const CHAPTERS = [
   { id: 'a0', prefixes: ['a'],
     label: '☀️ Giovedì 27 — l\'arrivo',
-    desc: 'Scauri, Formia, il traghetto. Le Paracine, Cala Nave, la boa gialla. E una nota sola.' },
+    desc: 'Scauri, Formia, il traghetto. Le Parracine, Cala Nave, la boa gialla. E una nota sola.' },
 
   { id: 'b0', prefixes: ['b'],
     label: '🕯 Venerdì 28 — le cisterne',
     desc: 'Dietro la chiesa, sotto il paese: sei cisterne, quattro murate, e la prima voce che risponde.',
-    flags: { giorno_27_chiuso: true, arrivati_paracine: true, ada_amica: true, gaetano_crede: true,
+    flags: { giorno_27_chiuso: true, arrivati_parracine: true, ada_amica: true, gaetano_crede: true,
              valigie_fatte: true, i_registro_acqua: true, i_foto_museo: true, sa_la_corda: true,
              sa_di_ciro: true, registrata_nota: true, sa_il_nome: true },
     items: ['torcia_sub', 'nastro_isolante', 'microfono', 'preservativo', 'gopro', 'asta_selfie',
-            'coltello', 'filo_nylon', 'foto_bambina', 'caffe_paracine', 'maschera_buona',
+            'coltello', 'filo_nylon', 'foto_bambina', 'caffe_parracine', 'maschera_buona',
             'anello_gaetano', 'anello_claudia'] },
 
   { id: 'c0', prefixes: ['c'],
@@ -45,7 +45,7 @@ const CHAPTERS = [
              i_registro_acqua: true, i_foto_museo: true, i_iscrizione: true, i_seconda: true,
              i_eco_misurata: true, i_ninna_sentita: true, promessa_incisa: true, sa_confine: true },
     items: ['torcia_sub', 'nastro_isolante', 'cavo_lungo', 'medaglietta_giulia', 'sale_grosso',
-            'resina', 'filo_nylon', 'foto_bambina', 'caffe_paracine', 'taralli',
+            'resina', 'filo_nylon', 'foto_bambina', 'caffe_parracine', 'taralli',
             'idrofono', 'torcia_da_casco', 'anello_gaetano', 'anello_claudia'] },
 
   { id: 'd0', prefixes: ['d'],
@@ -73,7 +73,7 @@ const CHAPTERS = [
              i_graffito: true, i_registro_detenuti: true, i_ciro_racconta: true, i_osso: true,
              i_foto_museo: true, i_giocattolo: true, i_nome_lista: true, i_ninna_sentita: true },
     items: ['torcia_da_casco', 'ancora_di_voce', 'le_due_fedi', 'ninnananna', 'la_voce_del_65',
-            'idrofono_profondo', 'stucco', 'giocattolo', 'caffe_paracine'] },
+            'idrofono_profondo', 'stucco', 'giocattolo', 'caffe_parracine'] },
 ];
 
 /* ============ IL DIARIO DI VIAGGIO — 📔 le cose che sapete, in chiaro ============
@@ -120,13 +120,13 @@ const DIARY_FLAGS = [
   ['ciro_conosciuto',     'Ciro, settantadue anni, canottiera e occhiali tenuti col nastro adesivo: «Gli altri due vi portano e non vi raccontano niente. Io non vi racconto niente e in più vi riporto indietro. Fate voi.»'],
   ['appuntamento_ciro',   'Appuntamento con Ciro: sabato 29, alle nove del mattino, terzo pontile. Quaranta euro andata e ritorno.'],
   ['ciro_in_squadra',     'Ciro è con voi. Nel 1965 aveva undici anni ed era sul molo: sa cose, e le dice quando servono. In acqua il coltello si lega, sempre — e il primo fallimento in apnea, con lui a bordo, è gratis.'],
-  ['ada_amica',           'Ada delle Paracine è un\'alleata, non un mistero: il caffè con la moka da sei, il thermos di acciaio col tappo che si svita male, e la porta della cucina aperta anche all\'una di notte.'],
+  ['ada_amica',           'Ada delle Parracine è un\'alleata, non un mistero: il caffè con la moka da sei, il thermos di acciaio col tappo che si svita male, e la porta della cucina aperta anche all\'una di notte.'],
   ['visto_polpo',         'Il polpo di Cala Nave, che ha guardato Claudia da un buco con quell\'occhio orizzontale e ha deciso che non valeva la pena spostarsi. «C\'È UN POLPO E MI HA GUARDATA.»'],
   ['promessa_boa',        'La promessa detta a voce alta sopra il mare, arrivando: quest\'anno ci prova, e se dice basta si torna. Due maschere identiche comprate senza dirlo.'],
   ['boa_raggiunta',       'Claudia ha toccato la boa gialla di Cala Nave con tutte e due le mani, con ventidue metri d\'acqua sotto i piedi. Questo è avvenuto, ed è la cosa che non si cancella.'],
   ['guardato_sotto',      '«Io non ho paura di quello che c\'è sotto: ho paura di quello che NON SO se c\'è. È diverso, e si cura guardando.» Regola operativa del gioco: guardare costa, e paga sempre.'],
   ['gaetano_crede',       'Gaetano ha scelto di CREDERLE. Non per gentilezza: perché su una cosa che ha sentito lei non si è mai sbagliata. È la trave che tiene su tutta questa storia.'],
-  ['nota_da_terra',       'La nota arrivata dal BASSO, sotto la terrazza delle Paracine, sotto il tufo dell\'isola — e non dal mare. Prima i dieci cani che si fermano tutti insieme sulla stessa battuta, poi lei.'],
+  ['nota_da_terra',       'La nota arrivata dal BASSO, sotto la terrazza delle Parracine, sotto il tufo dell\'isola — e non dal mare. Prima i dieci cani che si fermano tutti insieme sulla stessa battuta, poi lei.'],
   ['registrata_nota',     'La registrazione: sol basso, sostenuto, calante di un quarto di tono, con sotto un\'altra nota a un intervallo che sul pianoforte non esiste. Due note che non possono stare insieme, e stanno insieme.'],
   ['promessa_incisa',     'Nella cisterna murata, incise nel tufo con un chiodo: CI SIAMO STATI. C. E G. — 28.8.26. E sotto: E SIAMO TORNATI SU. «È al futuro, è un impegno: adesso è scritto sul muro, quindi si fa.»'],
   ['claudia_ha_promesso', 'Claudia ha promesso a una bambina morta il 24 ottobre 1943 che le insegna a nuotare. L\'ha detto con la sua voce, e quella ci ha creduto. È la promessa più grossa di tutto il gioco.'],
@@ -158,9 +158,9 @@ const DIARY_FLAGS = [
   ['r_fedi',              '🔧 LE DUE FEDI — due anelli d\'oro su un filo da pesca da venti chili. Non cura, non illumina, non taglia. «Una cosa che è di tutti e due, in fondo al mare, è un indirizzo.»'],
 
   /* --- i giorni chiusi: dentro i muretti a secco non arriva niente --- */
-  ['giorno_27_chiuso',    '✔ Giovedì 27 chiuso alle Paracine: una boa raggiunta, un polpo, dieci cani fermati sulla stessa battuta e una nota dentro un telefono.'],
-  ['giorno_28_chiuso',    '✔ Venerdì 28 chiuso alle Paracine: le cisterne sotto il paese, l\'eco che risponde prima, e una riga incisa nel tufo al futuro.'],
-  ['giorno_29_chiuso',    '✔ Sabato 29 chiuso alle Paracine: Santo Stefano, la cella 47, il cimitero — e Ciro che a settantadue anni ha deciso di raccontare.'],
+  ['giorno_27_chiuso',    '✔ Giovedì 27 chiuso alle Parracine: una boa raggiunta, un polpo, dieci cani fermati sulla stessa battuta e una nota dentro un telefono.'],
+  ['giorno_28_chiuso',    '✔ Venerdì 28 chiuso alle Parracine: le cisterne sotto il paese, l\'eco che risponde prima, e una riga incisa nel tufo al futuro.'],
+  ['giorno_29_chiuso',    '✔ Sabato 29 chiuso alle Parracine: Santo Stefano, la cella 47, il cimitero — e Ciro che a settantadue anni ha deciso di raccontare.'],
 ];
 
 /* ============ LA MAPPA DELL'ISOLA ============
@@ -176,7 +176,7 @@ const WORLD_MAP = [
   { key: 'traversata', label: 'La traversata', x: 0.12, y: 0.14, scenes: [] },
   { key: 'porto',      label: 'Il porto',      x: 0.30, y: 0.40, scenes: [] },
   { key: 'paese',      label: 'Il paese',      x: 0.44, y: 0.26, scenes: [] },
-  { key: 'bnb',        label: 'Le Paracine',   x: 0.22, y: 0.62, scenes: [] },
+  { key: 'bnb',        label: 'Le Parracine',   x: 0.22, y: 0.62, scenes: [] },
   { key: 'cisterne',   label: 'Le cisterne',   x: 0.48, y: 0.50, scenes: [] },
   { key: 'rovine',     label: 'Punta Eolo',    x: 0.62, y: 0.12, scenes: [] },
   { key: 'mare',       label: 'Le calette',    x: 0.16, y: 0.84, scenes: [] },

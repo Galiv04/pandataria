@@ -48,12 +48,12 @@ acqua si prende **ACQUA NEI POLMONI** (−2 a tutto, scritto nella scheda con il
 Il **FIATO** 🫁 non è denaro e non c'è nessun negozio: è l'aria delle immersioni. Prima di ogni
 discesa il gioco ti dice in chiaro «con il fiato che avete adesso arrivate a circa ventidue metri, e
 quella cosa sta a trentaquattro: non ce la fate». Si guadagna **solo** con le cose umane — mangiare
-come si deve, dormire alle Paracine, il caffè di Ada, ridere, stare un momento fermi con l'altro.
+come si deve, dormire alle Parracine, il caffè di Ada, ridere, stare un momento fermi con l'altro.
 Mai combattendo per combattere.
 
 E se cadete tutti **non è game over**: si riparte dall'ultimo checkpoint, con lo stato di allora.
 Quello che avevate capito dopo l'avete perso, e il gioco vi dice per nome cosa vi manca. Vi svegliate
-asciutti alle Paracine, e l'essere asciutti è la parte peggiore. A meno che non abbiate costruito
+asciutti alle Parracine, e l'essere asciutti è la parte peggiore. A meno che non abbiate costruito
 l'**Àncora di Voce**: quella si spacca in mano e vi tira su.
 
 ## I posti sono veri
