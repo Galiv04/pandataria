@@ -476,3 +476,16 @@ html.text-large .title-incipit-close { font-size: 21px; }
 .minigame-simon-btn:disabled { opacity: .8; cursor: default; }
 .minigame-timerbar { height: 10px; background: #0c2230; border: 2px solid var(--border, #1d3b2a); margin: 8px 0 14px; }
 .minigame-timerbar > div { height: 100%; width: 100%; background: var(--gold, #ffd27f); transition: width .1s linear; }
+
+/* La schermata del titolo NON si centra verticalmente quando il contenuto è più alto
+   dello schermo: `justify-content: center` su un flex che sfora spinge il contenuto
+   SOPRA l'origine dello scroll, e scorrendo si vede un buco vuoto in cima. È il
+   difetto che il committente ha visto («la schermata iniziale è tutta sbagliata»).
+   `safe center` centra quando c'è spazio e si comporta da flex-start quando non c'è. */
+#screen-title.active {
+  justify-content: safe center;
+  padding-block: 18px;
+}
+@supports not (justify-content: safe center) {
+  #screen-title.active { justify-content: flex-start; }
+}
