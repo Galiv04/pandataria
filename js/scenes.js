@@ -1917,15 +1917,70 @@ const Scenes = (() => {
       sea(ctx, W, blueY + 1, shoreY, '#8ad8cc', '#2f8ea8', r, 7, 1.0);
       ctx.fillStyle = 'rgba(60,80,70,.26)';
       for (let i = 0; i < 70; i++) ctx.fillRect(r() * W | 0, blueY + 8 + r() * (shoreY - blueY - 12) | 0, 5 + r() * 6 | 0, 3);
-      // LA PARETE DEL PORTO che sta sopra la spiaggia, a sinistra: tufo giallo
-      blocks(ctx, 0, H * 0.02, W * 0.26, shoreY - H * 0.02, '#c8a058', 12, r, 0.12);
-      for (let y = H * 0.08; y < shoreY - 6; y += 14) {
-        ctx.fillStyle = 'rgba(110,80,40,.24)'; ctx.fillRect(0, y, W * 0.26, 2);
+      /* LA PARETE DEL PORTO sopra la spiaggia, a sinistra. Era un lastrone giallo
+         piatto con qualche riga orizzontale: sullo schermo un foglio di compensato
+         appoggiato al bordo dell'inquadratura. Il tufo di Ventotene è cenere vulcanica
+         compattata e si legge da quattro cose, tutte assenti: gli STRATI (bande di
+         colore diverso, perché ogni eruzione ha lasciato la sua cenere), il TAGLIO
+         VERTICALE degli scalpelli, le FESSURE con dentro i capperi, e il fatto che la
+         parete non è a piombo — si svasa scendendo, e alla base c'è il detrito che ne
+         è caduto. Anche il profilo del bordo non è una riga: è una linea rotta. */
+      {
+        const pw = Math.round(W * 0.265), cima = Math.round(H * 0.02);
+        const bordoA = y => pw - Math.round(Math.pow((y - cima) / (shoreY - cima), 1.6) * 26)
+                            + Math.round(Math.sin(y * 0.11) * 3);
+        for (let y = cima; y < shoreY; y++) {
+          const larg = bordoA(y);
+          const t = (y - cima) / (shoreY - cima);
+          // gli strati: bande larghe da dodici a venti pixel, ognuna di un giallo suo
+          /* Gli strati. NOTA: shade() vuole un esadecimale e mix() restituisce
+             `rgb(...)`, quindi shade(mix(...)) fa parseInt('gb(200,...)', 16) = NaN e
+             produce `rgb(NaN,NaN,NaN)`. Il browser ignora un colore non valido e riusa
+             quello di prima — quindi il bug non si vede — mentre il rasterizzatore lo
+             rendeva NERO, ed è così che l'ho scoperto: la parete di tufo, in PNG, era
+             una lastra nera. Qui si passa sempre esadecimale a shade(). */
+          const banda = Math.floor((y - cima) / 17);
+          const strati = ['#c8a058', '#c3995a', '#bd934e', '#b78c46', '#c09550'];
+          ctx.fillStyle = shade(strati[banda % strati.length], 0.99 - t * 0.34);
+          ctx.fillRect(0, y, larg, 1);
+          // la riga d'ombra fra due strati
+          if ((y - cima) % 17 === 0) { ctx.fillStyle = 'rgba(96,68,30,.30)'; ctx.fillRect(0, y, larg, 2); }
+          // lo spigolo: una riga di luce sul bordo, e il taglio in ombra sotto
+          ctx.fillStyle = 'rgba(255,238,190,.24)'; ctx.fillRect(larg - 3, y, 3, 1);
+          ctx.fillStyle = 'rgba(60,40,16,.34)'; ctx.fillRect(larg - 1, y, 2, 1);
+        }
+        // IL TAGLIO DEGLI SCALPELLI: righe verticali regolari, un uomo con un martello
+        for (let k = 0; k < 22; k++) {
+          const x = 6 + k * 11 + (r() * 3 | 0);
+          const da = cima + 8 + (r() * 30 | 0), a = Math.min(shoreY - 4, da + 60 + r() * 140);
+          if (x > bordoA(a)) continue;
+          ctx.fillStyle = `rgba(92,66,28,${0.10 + r() * 0.12})`;
+          ctx.fillRect(x, da, 2, a - da);
+          ctx.fillStyle = 'rgba(255,240,200,.10)';
+          ctx.fillRect(x + 2, da, 1, a - da);
+        }
+        // LE FESSURE coi capperi: l'unico verde della parete
+        for (let k = 0; k < 12; k++) {
+          const y = cima + 20 + r() * (shoreY - cima - 50);
+          const x = 4 + r() * (bordoA(y) - 20);
+          ctx.fillStyle = 'rgba(48,34,14,.42)'; ctx.fillRect(x, y, 12 + r() * 16, 3);
+          ctx.fillStyle = '#4a7a3e';
+          for (let q = 0; q < 4; q++) pixelEllipse(ctx, x + 4 + q * 6, y + 4 + (q % 2) * 4, 6, 4, 3);
+        }
+        // IL DETRITO alla base: quello che la parete ha perso
+        for (let k = 0; k < 40; k++) {
+          const y = shoreY - 4 - r() * 22;
+          ctx.fillStyle = shade('#b08c4a', 0.7 + r() * 0.4);
+          ctx.fillRect(bordoA(y) - 6 + r() * 16, y, 4 + r() * 6, 3);
+        }
+        // LA BANCHINA in cima, e una bitta in controluce
+        ctx.fillStyle = '#a09884'; ctx.fillRect(0, cima, bordoA(cima) + 2, 9);
+        ctx.fillStyle = '#7e7768'; ctx.fillRect(0, cima + 9, bordoA(cima) + 2, 3);
+        ctx.fillStyle = '#4e4a42';
+        ctx.fillRect(Math.round(pw * 0.42), cima - 11, 11, 12);
+        ctx.fillRect(Math.round(pw * 0.42) - 3, cima - 13, 17, 4);
+        sterpaglie(ctx, 0, cima - 1, Math.round(pw * 0.9), '#8a8a52', r, 12);
       }
-      ctx.fillStyle = '#b08c4a'; ctx.fillRect(W * 0.24, H * 0.02, 12, shoreY - H * 0.02);
-      sterpaglie(ctx, 0, H * 0.04, W * 0.26, '#8a8a52', r, 14);
-      // la banchina del porto in cima, con le bitte in controluce
-      ctx.fillStyle = '#a09884'; ctx.fillRect(0, H * 0.02, W * 0.26, 8);
       // LA RIVA e LA GHIAIA GROSSA: sassi disegnati uno per uno, che fanno male ai piedi
       for (let x = 0; x < W; x += 12) {
         const off = Math.round((r() - 0.5) * 8);
@@ -3155,29 +3210,59 @@ const Scenes = (() => {
           const t = (x - codaX) / (x0 + lung - codaX);      // il montante di coda
           return tetto + Math.round(Math.pow(t, 2.2) * 10);
         };
+        /* LA LAMIERA IN TRE FASCE. Prima era un blu piatto con un filo chiaro sopra, e
+           una lamiera piatta non legge come metallo: legge come cartone. La convenzione
+           dei veicoli in pixel art (verificata sui tutorial, non inventata) è sempre la
+           stessa e sono quattro righe di codice — fascia alta più chiara (il cielo ci si
+           riflette), fascia media il colore base, fascia bassa più scura (ci si riflette
+           l'asfalto), e sopra tutto il FILO DI CINTURA: un pixel chiaro dove la portiera
+           incontra il vetro. È quel pixel che fa la macchina. */
         for (let x = 0; x < lung; x++) {
           const xx = x0 + x, cy = cima(xx);
-          ctx.fillStyle = '#2b3742';
-          ctx.fillRect(xx, cy, 1, sotto - cy);
-          ctx.fillStyle = '#3b4c5e';                        // il filo di luce sul bordo alto
-          ctx.fillRect(xx, cy, 1, 3);
-          ctx.fillStyle = '#1c242c';                        // e l'ombra sotto la fiancata
-          ctx.fillRect(xx, sotto - 9, 1, 9);
+          const cint = Math.max(cy, cofano);            // la linea di cintura
+          for (let y = cy; y < sotto; y++) {
+            const alto = y < cint;
+            const t = (y - cy) / Math.max(1, sotto - cy);
+            ctx.fillStyle = alto ? '#33424f'
+                          : t > 0.78 ? '#1e2831'
+                          : mix('#2f3d49', '#25313b', (t - 0.4) / 0.5);
+            ctx.fillRect(xx, y, 1, 1);
+          }
+          ctx.fillStyle = '#43566a'; ctx.fillRect(xx, cy, 1, 2);          // il bordo alto in luce
+          ctx.fillStyle = '#5d7488'; ctx.fillRect(xx, cint - 1, 1, 1);    // IL FILO DI CINTURA
+          ctx.fillStyle = '#141b22'; ctx.fillRect(xx, sotto - 5, 1, 5);   // il brancardo, in ombra
         }
-        // I VETRI, dentro il volume: parabrezza inclinato e due laterali
-        for (let x = cofX + 6; x < codaX - 4; x++) {
-          const cy = cima(x) + 7;
-          const fondo = cofano - 8;
-          if (fondo <= cy) continue;
-          const laterale = x > parX + 8;
-          ctx.fillStyle = laterale ? '#89a4b6' : '#7d99ab';
-          ctx.fillRect(x, cy, 1, fondo - cy);
-          ctx.fillStyle = 'rgba(255,244,214,.20)';
-          ctx.fillRect(x, cy, 1, 3);
+        /* I VETRI, quattro luci separate come su una station wagon vera: parabrezza,
+           porta davanti, porta dietro, e il quarto di coda. Prima erano una banda unica
+           con due montanti sottili, e una banda unica di vetro e' un monovolume. */
+        {
+          /* Le tre luci laterali si spartiscono lo spazio che c'è: prima le avevo messe
+             a misura fissa e la quarta veniva larga OTTO pixel, quindi la coda restava
+             un blocco cieco. Si calcolano. */
+          const daX = parX + 12, aX = codaX - 6, mont = 8;
+          const larg = Math.max(18, Math.round((aX - daX - mont * 2) / 3));
+          const luci = [[cofX + 4, parX - 2],
+                        [daX, daX + larg],
+                        [daX + larg + mont, daX + larg * 2 + mont],
+                        [daX + larg * 2 + mont * 2, aX]];
+          for (const [a, b] of luci) {
+            for (let x = a; x < b; x++) {
+              const su = cima(x) + 6, giu = cofano - 7;
+              if (giu <= su) continue;
+              for (let y = su; y < giu; y++) {
+                const t = (y - su) / (giu - su);
+                ctx.fillStyle = mix('#9fb8c8', '#5f7d92', Math.pow(t, 0.8));
+                ctx.fillRect(x, y, 1, 1);
+              }
+              ctx.fillStyle = 'rgba(255,248,224,.26)'; ctx.fillRect(x, su, 1, 2);
+            }
+          }
+          // i montanti: A dietro il parabrezza, B e C fra le porte, D sulla coda
+          ctx.fillStyle = '#2a3742';
+          for (const [mx, mw] of [[parX - 2, 14], [daX + larg, mont], [daX + larg * 2 + mont, mont], [aX, 10]]) {
+            ctx.fillRect(mx, tetto + 2, mw, cofano - tetto - 6);
+          }
         }
-        ctx.fillStyle = '#2b3742';                          // i montanti fra i vetri
-        ctx.fillRect(parX + 4, tetto + 4, 9, cofano - tetto - 8);
-        ctx.fillRect(codaX - 44, tetto + 4, 9, cofano - tetto - 8);
         // le portiere, le maniglie, gli specchietti e i fanali
         ctx.fillStyle = 'rgba(12,18,24,.42)';
         ctx.fillRect(parX + 6, cofano + 4, 3, sotto - cofano - 14);
@@ -3190,27 +3275,45 @@ const Scenes = (() => {
         ctx.fillStyle = '#c02a24'; ctx.fillRect(x0 + lung - 13, cofano + 10, 11, 20);
         ctx.fillStyle = '#e8564c'; ctx.fillRect(x0 + lung - 13, cofano + 10, 11, 5);
         ctx.fillStyle = '#3c464e'; ctx.fillRect(x0 + lung - 26, sotto - 14, 24, 6);  // il paraurti
-        // il baule aperto: dentro e' buio, e la lucina e' accesa
-        ctx.fillStyle = '#161d24'; ctx.fillRect(codaX - 6, cofano + 2, 74, 28);
-        ctx.fillStyle = '#e8d8a0'; ctx.fillRect(codaX + 40, cofano + 8, 13, 7);
-        glow(ctx, codaX + 46, cofano + 12, 11, 7, '232,216,160');
+        /* IL BAULE APERTO. Era un rettangolo nero e sullo schermo la coda diventava un
+           blocco cieco. Un baule aperto visto di fianco ha tre cose: il vano scuro, il
+           BORDO TAGLIATO della lamiera che ci prende luce (è quello che dice «qui è
+           aperto» e non «qui è nero»), e dentro qualcosa. Qui dentro c'è il telo da
+           mare piegato, che è il primo oggetto dell'inventario del gioco. */
+        const vanoX = codaX - 4, vanoW = 70;
+        ctx.fillStyle = '#12181f'; ctx.fillRect(vanoX, cofano + 1, vanoW, 30);
+        ctx.fillStyle = '#20303c'; ctx.fillRect(vanoX, cofano + 26, vanoW, 5);     // il piano di carico
+        ctx.fillStyle = '#6d8698'; ctx.fillRect(vanoX, cofano, vanoW, 2);          // il bordo tagliato, in luce
+        ctx.fillStyle = '#4e6272'; ctx.fillRect(vanoX, cofano + 2, 2, 28);
+        ctx.fillStyle = '#c9b48e'; ctx.fillRect(vanoX + 8, cofano + 14, 26, 12);   // il telo piegato
+        ctx.fillStyle = '#ddc9a4'; ctx.fillRect(vanoX + 8, cofano + 14, 26, 3);
+        ctx.fillStyle = '#8f9aa2'; ctx.fillRect(vanoX + 40, cofano + 18, 16, 8);   // e una busta
+        ctx.fillStyle = '#e8d8a0'; ctx.fillRect(vanoX + 58, cofano + 6, 10, 6);    // la lucina
+        glow(ctx, vanoX + 63, cofano + 9, 10, 6, '232,216,160');
         // LE RUOTE: gomma, cerchio, e il passaruota che le contiene
         for (const wx of [x0 + 86, x0 + lung - 96]) {
           /* IL PASSARUOTA: l'arco scavato nella fiancata sopra la ruota. È il dettaglio
              che distingue un'automobile da una scatola coi cerchi sotto, e prima non
              c'era. Si disegna come un arco d'ombra dentro la lamiera. */
-          for (let dx = -40; dx <= 40; dx++) {
-            const h = Math.round(Math.sqrt(Math.max(0, 1600 - dx * dx)) * 0.52);
+          /* Il passaruota deve stare ADDOSSO alla gomma: prima l'arco era largo
+             quaranta e la ruota ventinove, e fra i due si vedeva la carrozzeria — sullo
+             schermo un buco nero nella fiancata. Un passaruota vero segue il
+             pneumatico a quattro pixel di distanza. */
+          const rg = 36;
+          for (let dx = -rg - 4; dx <= rg + 4; dx++) {
+            const h = Math.round(Math.sqrt(Math.max(0, (rg + 4) * (rg + 4) - dx * dx)) * 0.62);
             if (h < 1) continue;
             ctx.fillStyle = '#141b22';
-            ctx.fillRect(wx + dx, sotto - h - 2, 1, h + 2);
-            ctx.fillStyle = 'rgba(120,138,156,.20)';
-            ctx.fillRect(wx + dx, sotto - h - 2, 1, 1);
+            ctx.fillRect(wx + dx, sotto - h, 1, h + 4);
+            ctx.fillStyle = 'rgba(140,158,176,.22)';
+            ctx.fillRect(wx + dx, sotto - h, 1, 1);
           }
-          ctx.fillStyle = '#12181e'; pixelDisc(ctx, wx, sotto + 2, 29, 3);
-          ctx.fillStyle = '#2a333b'; pixelDisc(ctx, wx, sotto + 2, 17, 3);
-          ctx.fillStyle = '#59636b'; pixelDisc(ctx, wx, sotto + 2, 8, 3);
-          ctx.fillStyle = '#7d878f'; ctx.fillRect(wx - 3, sotto - 1, 6, 6);
+          ctx.fillStyle = '#0f141a'; pixelDisc(ctx, wx, sotto + 1, rg, 3);      // il pneumatico
+          ctx.fillStyle = '#232c34'; pixelDisc(ctx, wx, sotto + 1, rg - 9, 3);
+          ctx.fillStyle = '#4e5860'; pixelDisc(ctx, wx, sotto + 1, rg - 17, 3); // il cerchio
+          ctx.fillStyle = '#7d878f'; pixelDisc(ctx, wx, sotto + 1, 6, 3);       // il mozzo
+          ctx.fillStyle = '#0f141a'; ctx.fillRect(wx - 2, sotto - rg + 2, 4, 5); // il battistrada in luce
+          ctx.fillStyle = 'rgba(150,166,182,.18)'; ctx.fillRect(wx - rg + 3, sotto - 6, 8, 3);
         }
       }
 

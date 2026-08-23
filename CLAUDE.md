@@ -90,6 +90,30 @@ mai una debolezza da compatire e mai materiale da battuta. I ventotenesi vivi **
 Ada delle Parracine e Ciro il pescatore sono alleati, sempre, senza doppi fondi. Il linguaggio crudo
 è voluto (sono adulti), l'oscenità è chirurgica: una parola sola, al punto giusto, mai gratuita.
 
+## 🔎 Guardare le grafiche: strumenti, non pazienza
+
+Prima di toccare un painter e prima di dire che una scena è a posto:
+
+```bash
+node ../dnd-motore/tools/fondali-in-png.mjs                 # tutti in /tmp/fondali
+node ../dnd-motore/tools/fondali-in-png.mjs --solo nome     # uno, subito
+node ../dnd-motore/tools/fondali-in-png.mjs --provino       # tutti su una lastra
+node ../dnd-motore/tools/fondali-in-png.mjs --sfondo '#ff00ff'   # i buchi si vedono
+node ../dnd-motore/tools/fondali-in-png.mjs --pulisci       # e si buttano
+```
+
+`tools/provino.html` fa la stessa cosa nel browser (anche da telefono, via Pages) con
+fondo magenta, scala e velo di profondità.
+
+**Le tre regole che valgono più di ogni ritocco** (lezioni 58-62):
+1. **Un fondale ha UN soggetto**, grande almeno un terzo dell'inquadratura, più due o
+   tre elementi di contesto sopra i cento pixel. Sotto i sessanta pixel un oggetto non
+   dice cosa è, dice solo che c'è.
+2. **Le proporzioni delle cose vere si cercano, non si stimano** — e un oggetto che dopo
+   due tentativi non si riconosce si TOGLIE, non si ritocca una terza volta.
+3. **Il quadro deve mostrare quello che il testo dice.** Si rilegge la scena, si segnano
+   le cose che nomina, e si verifica che ci siano tutte.
+
 ## Ambiente
 
 - **Su questa macchina localhost va in timeout**: si testa headless (Node) o su Pages. La verifica
