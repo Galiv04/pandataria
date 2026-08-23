@@ -15,11 +15,12 @@ function apneaFiato() {
   const base = 50;
   const perPunto = 6.0;
   const bombola = (G && G.inventory && G.inventory.includes('bombola_riparata')) ? 80 : 0;
+  const lezione = (G && G.flags && G.flags.lezione_lilia) ? 22 : 0;
   /* Taratura (22 ago 2026): con il fiato iniziale (6) si arriva a ~13 m; col tetto (20)
-     e la bombola riparata a ~26 m. Il doppio: una progressione che si sente.
+     la bombola riparata e la lezione di Lilia a ~28 m. Il doppio: una progressione che si sente.
      Oltre i 26 m NON ci si arriva col fiato — servono la barca di Ciro e la cima a nodi.
      La fossa a 45 m resta un'impresa di squadra, non un numero da far salire. */
-  return Math.round(base + ((G && G.gold) || 0) * perPunto + bombola);
+  return Math.round(base + ((G && G.gold) || 0) * perPunto + bombola + lezione);
 }
 /* A quanti metri arrivi, più o meno, col fiato che hai adesso. Serve ai testi:
    il gioco deve poter scrivere "con questo fiato arrivi a 22 metri". */

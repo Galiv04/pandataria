@@ -424,6 +424,26 @@ Claudia sta appoggiata alla ringhiera con la faccia dentro il vento e gli occhi 
 
 Il mare, oggi, è di un blu che sembra photoshoppato. E davanti, all'orizzonte, cominciano a staccarsi due sagome: una lunga e bassa, che è Ventotene, e una tozza, scura, con sopra un affare enorme a forma di ferro di cavallo.
 
+> Gaetano: *(col telefono in mano, che è il suo modo di guardare le cose)* "Sai come si chiamava, quella?"
+
+> Claudia: "Ventotene."
+
+> Gaetano: "Da cent'anni. Prima si chiamava **Pandataria**." *(scandisce)* "Pan-da-tà-ria. È greco."
+
+> Claudia: "E vuol dire?"
+
+> Gaetano: "**Dispensatrice di ogni bene.**" *(alza gli occhi dal telefono)* "*Pan*, tutto. *Dateomai*, distribuire. Quella che dà tutto. Gliel'hanno messo i greci perché ci si fermavano volentieri: buona posizione, terra grassa, si mangiava."
+
+Claudia guarda l'isola bassa che cresce, e poi quella tozza col ferro di cavallo sopra.
+
+> Claudia: "Quella che dà tutto."
+
+> Gaetano: "Quella che dà tutto."
+
+> Claudia: *(e non lo dice per fare la spiritosa, lo dice perché lo pensa)* "E poi ci hanno messo un carcere."
+
+> Gaetano: "E poi ci hanno messo un carcere.
+
 > Claudia: *(che ha aperto gli occhi, e adesso guarda quella)* "Quello cos'è?"
 
 > Gaetano: "Santo Stefano. Il carcere borbonico. Del 1795, chiuso nel '65." *(controlla sul telefono, che è il suo modo di dire "ho paura di dire una cosa sbagliata")* "Panopticon: celle a ferro di cavallo intorno a un pozzo centrale. Una guardia sola, in mezzo, vede dentro tutte le celle contemporaneamente."
@@ -751,6 +771,119 @@ Il sole scende. Il muretto a secco, sotto i piedi di Claudia, tiene su la terra 
       { text: '🧳 Disfare le valigie (e vedere cosa c\'è, davvero, in questi borsoni)', once: true, next: 'a3_valigie' },
       { text: '🏖 Al mare, subito: c\'è ancora un\'ora di sole a Cala Nave', next: 'a4' },
       { text: '☕ Chiedere ad Ada un caffè, tanto per parlare un po\'', once: true, next: 'a3_ada' },
+      { text: '📷 Sulla scaletta del giardino sale qualcuno con le pinne in mano', once: true, next: 'a3_lilia' },
+    ],
+  },
+
+  /* LILIA. Persona vera: la figlia di Ada, che gestisce Le Parracine con lei. Gaetano e
+     Claudia la conoscono da anni e non si sentono da un pezzo, quindi questa non è una
+     presentazione: è un ritrovarsi. Vale per lei la regola dei ventotenesi vivi — è
+     un'alleata, sempre, senza doppi fondi — e il ritratto è affettuoso: quello che
+     conta di lei è cosa SA FARE, non come è fatta. Porta il secondo strato del nome
+     dell'isola, quello che non sta nei libri ma nella bocca di chi va in barca. */
+  a3_lilia: {
+    location: 'bnb',
+    npc: ['lilia'],
+    caption: 'Il giardino delle Parracine — ore 12:20',
+    stinger: 'voce_amata',
+    gold: 2, heal: 2,
+    sets: { conosciuta_lilia: true },
+    text: `Dalla scaletta che scende in spiaggia sale una ragazza a piedi nudi, con un paio di pinne in una mano, la maschera sulla fronte e i capelli — castano dorato, di quel biondo che fa il sole e non il parrucchiere — legati in un nodo che si sta già disfacendo. Ha ancora il sale addosso, e non le pesa: cammina sul tufo caldo come se avesse la pianta dei piedi di cuoio.
+
+Si ferma a metà gradino. Guarda Gaetano tre secondi di troppo.
+
+> Lilia: "No."
+
+> Gaetano: "..."
+
+> Lilia: "**No.** Gaetano?"
+
+E qui succede quella cosa imbarazzante e bella di quando due persone che si conoscono da anni, e che non si sentono da altrettanti, si ritrovano in un posto dove nessuno dei due si aspettava l'altro — con le mani che partono per stringersi, ci ripensano, e finiscono in un abbraccio storto con le pinne in mezzo.
+
+> Lilia: "Ma tu sei quello dei satelliti! Quanti anni sono?"
+
+> Gaetano: "Tanti. Tre? Quattro?"
+
+> Lilia: "Cinque, secondo il mio telefono." *(a Claudia, e le porge la mano bagnata senza scusarsi, che è il modo migliore)* "Lilia. La stanza sopra ve l'ho data io: mia madre prende le prenotazioni e poi mi dice cos'ha fatto."
+
+Claudia le stringe la mano e vede due cose nello stesso momento: gli occhi, che sono di un azzurro che sull'isola sembra un dispetto, e la macchina fotografica appesa di traverso alla spalla, una reflex vera con la ghiera consumata sul bordo.
+
+> Claudia: "Che obiettivo tieni su?"
+
+> Lilia: *(la faccia di una che ha appena capito con chi sta parlando)* "Trentacinque fisso."
+
+> Claudia: "Perché il trentacinque."
+
+> Lilia: "Perché ti costringe ad avvicinarti."
+
+E in tre battute si sono riconosciute: due persone che di mestiere decidono come si guardano le cose.
+
+Lilia posa le pinne sul muretto, si siede sul gradino e fa la domanda che fanno tutti quelli che vivono qui.
+
+> Lilia: "Quanto restate?"
+
+> Gaetano: "Fino a domenica. Traghetto delle 17:30."
+
+> Lilia: "Bene. Allora domani vi porto alle calette, che con questo mare è un peccato stare a Cala Nave." *(guarda l'attrezzatura appena tirata fuori dai borsoni, e nota le due maschere identiche prima di chiunque altro, e non dice niente, e questo Claudia se lo ricorderà)* "Sapete che l'isola prima si chiamava un'altra cosa?"
+
+> Gaetano: "Pandataria. Dispensatrice di ogni bene."
+
+> Lilia: *(ride)* "Lo sapevi. Vabbè, con te era prevedibile." *(poi diventa un po' più seria, e dice la cosa che a Gaetano non stava nel telefono)* "Però quella è la versione dei libri. Mio nonno la chiamava a un altro modo, e i pescatori vecchi ancora la dicono così: **l'isola dei buoni fondali**."
+
+> Claudia: "Fondali belli da vedere?"
+
+> Lilia: "No no. Fondali di **tenuta**." *(fa il gesto con la mano, il gesto di una cima che si tende)* "È un termine da barca. Un fondale di tenuta è un fondo dove l'ancora **fa presa** e non striscia. Ci sono posti dove butti l'ancora e la barca cammina tutta la notte. Qui no: qui quello che butti sotto, sotto **rimane**."
+
+Il limone in vaso fa il suo odore. Il mare, quaranta metri più giù, è una tavola.
+
+> Lilia: *(alzandosi, e già con un piede sul gradino)* "Comunque è una cosa buona, eh! Per le barche è il complimento più grosso che si può fare a un posto."
+
+**(🫁 Fiato +2, 💪 TENUTA +2. Avete ritrovato Lilia, e sapete la seconda metà del nome: quella che dà tutto, e sotto tiene.)**`,
+    choices: [
+      { text: '📷 Chiederle di vedere le sue foto dell\'isola', once: true, next: 'a3_lilia_foto' },
+      { text: '🧳 Finire di disfare i borsoni', next: 'a3_valigie' },
+      { text: '🏖 Al mare, che è quello che si è venuti a fare', next: 'a4' },
+    ],
+  },
+
+  /* Le foto di Lilia: dieci anni di isola guardata col trentacinque. È un ARCHIVIO, e in
+     un archivio le cose ci sono anche quando nessuno le ha cercate. Qui non si trova
+     ancora niente — è troppo presto, ed è giusto che il giocatore se ne accorga dopo —
+     ma si stabilisce che l'archivio esiste, e dove sta. */
+  a3_lilia_foto: {
+    location: 'bnb',
+    npc: ['lilia'],
+    caption: 'Le foto di Lilia — ore 12:35',
+    gold: 1,
+    sets: { archivio_lilia: true },
+    text: `Il telefono di Lilia è un disastro organizzato: cartelle per anno, e dentro ogni anno cartelle per mese, e dentro agosto una cartella che si chiama solo «buone».
+
+Dieci anni di isola guardata col trentacinque fisso. La stessa cala in ottanta luci diverse. Il porto vuoto a marzo, che nessuno vede mai. Una mareggiata di gennaio che ha portato la ghiaia fino alla piazza. Ada che ride con la mano davanti alla bocca. Un polpo su un piatto e un polpo in un buco, a due foto di distanza, e lei che dice «quello nel piatto non era lo stesso, per la cronaca».
+
+> Claudia: "Quante ne hai?"
+
+> Lilia: "Su questo? Ventimila e qualcosa. Sul disco a casa non lo so."
+
+> Claudia: *(e lo dice con l'invidia sana di una che lavora con le immagini)* "Ventimila foto dello stesso scoglio."
+
+> Lilia: "Dello stesso scoglio **in momenti diversi**. Che è il contrario."
+
+Poi arriva a una cartella di quattro anni fa, la supera, e Claudia le ferma la mano.
+
+> Claudia: "Torna indietro."
+
+> Lilia: "Quale?"
+
+> Claudia: "Quella di prima. Non so perché."
+
+Lilia torna indietro. È una foto normalissima: il mare fra Ventotene e Santo Stefano, verso le sette di sera, con la luce che fa quella cosa. Claudia la guarda per otto secondi e poi dice «niente, scusa», e Lilia chiude e passa avanti, senza insistere, perché è educata.
+
+Ma la cartella ha un nome, e il nome adesso lo sanno tutti e tre.
+
+**(📷 Sapete che esiste l'archivio di Lilia: ventimila foto dell'isola in dieci anni, ordinate per mese. Se un giorno vi servirà una prova, la prova potrebbe essere già stata scattata da qualcun altro.)**`,
+    choices: [
+      { text: '🧳 Finire di disfare i borsoni', next: 'a3_valigie' },
+      { text: '🏖 Al mare', next: 'a4' },
     ],
   },
 
@@ -975,6 +1108,7 @@ Poi tira su la maschera e dice la frase che Gaetano si scriverà sul quaderno st
 
   a4_maschere: {
     location: 'cala',
+    npc: ['polpo'],
     caption: 'Le maschere, la prima volta',
     text: `Gli scogli a destra della cala, dove l'acqua è alta un metro e mezzo e piena di roba.
 
@@ -2373,6 +2507,24 @@ Il gioco vi lascia guardare questa scena per tutto il tempo che volete, perché 
 
 Qui, nel **2 avanti Cristo**, Augusto ha relegato **sua figlia**. Giulia maggiore, l'unica figlia che aveva, con l'accusa di adulterio — che era il capo d'accusa quando il capo d'accusa vero era politico. Aveva trentasette anni e cinque figli, e non li ha più visti.
 
+> Claudia: *(che sta guardando il mare da dove non c'è più un muro)* "Ripetimi come si chiamava l'isola."
+
+> Gaetano: "Pandataria."
+
+> Claudia: "E vuol dire quella che dà tutto."
+
+> Gaetano: "Dispensatrice di ogni bene."
+
+> Claudia: "Bene." *(pausa lunga)* "Quindi hanno preso il posto che si chiama *quella che dà tutto* e ci hanno mandato una donna a non avere più niente. E il nome se lo sono tenuto."
+
+> Gaetano: "Per cinque anni. Poi l'hanno spostata a Reggio e l'hanno lasciata morire di fame nel quattordici dopo Cristo."
+
+> Claudia: "E sua madre?"
+
+> Gaetano: *(e questa è la cosa che gli piace di più di tutta la storia, e si sente)* "Sua madre è **venuta qui con lei**. Scribonia. Nessuno l'aveva condannata: ha chiesto di seguirla e le hanno detto sì." *(pausa)* "Cinque anni su questo scoglio, per scelta propria, per non lasciarla sola."
+
+Claudia non dice niente per un po'. Poi si sposta di due metri e fa la prima foto della giornata: non le rovine, non il panorama. La terra.
+
 Della villa restano: una piattaforma di opus reticolatum sul precipizio, i resti di un ninfeo, il taglio delle vasche nella roccia, e un panorama che ti spacca in due. Trecento metri per cento, tutta girata a est — perché il sole di qui, quello che conta, è quello del mattino.
 
 E poi c'è la peschiera, che è la cosa che Gaetano ha letto tre volte prima di crederci. Non una vasca: un impianto. Scavata nella roccia, collegata al mare da canali, con un bacino grande diviso in due da un muretto che una volta aveva le **paratoie** — si apriva e si chiudeva — e dentro gli scomparti per tenere i pesci divisi per taglia. E ai lati due vasche **coperte**, dentro due stanze a volta, che guardano il bacino grande da dietro.
@@ -2643,11 +2795,123 @@ Poi il conto: sessantadue euro. Gaetano lascia settanta. Il cameriere dice "graz
       { text: '🧱 Al muro dei Coraggio. Si scende', requires: { flag: 'muro_aperto' }, next: 'b8' },
       { text: '🧱 Al muro dietro l\'orto. C\'è un muro da aprire', requires: { notFlag: 'muro_aperto' }, next: 'b4' },
       { text: '🏖 Cala Rossano, come ha detto il cameriere. Un bagno prima del buio', next: 'b9' },
+      /* Lilia aveva detto «domani vi porto alle calette»: qui la promessa si mantiene, e
+         quello che insegna a Claudia le serve DAVVERO più tardi, sotto l'isola. */
+      { text: '🤿 Lilia aveva detto le calette. Chiamarla e andare, con maschere pinne e boccagli',
+        requires: { flag: 'conosciuta_lilia' }, once: true, next: 'b7_calette' },
       { text: '🗿 Villa Giulia, se non ci siete ancora andati', requires: { notFlag: 'visto_villa_giulia' }, next: 'b6' },
     ],
   },
 
   /* ---------------- LA DISCESA: IL PRIMO SOTTO ---------------- */
+
+  /* LA LEZIONE DI LILIA. È la scena in cui l'arco di Claudia avanza per mano di una
+     persona che nell'acqua sta come in salotto — e non per mano di Gaetano, che è
+     importante: lui la accompagna da dieci anni, ma non può insegnarle una cosa che a
+     lui non è mai costata niente. Quello che Lilia insegna ha un effetto MECCANICO
+     reale (flag lezione_lilia, letta da Engine.apneaFiato): non è un incoraggiamento,
+     è una tecnica. E arriva due ore prima della cisterna murata, di proposito. */
+  b7_calette: {
+    location: 'mare',
+    npc: ['lilia'],
+    caption: 'Le calette con Lilia — ore 14:50',
+    stinger: 'apnea',
+    gold: 3, heal: 4,
+    sets: { lezione_lilia: true },
+    text: `Lilia arriva con un gommone di quattro metri che è più vecchio di lei, un motore che parte al secondo strappo e zero borse: ha un telo, una bottiglia d'acqua e la reflex in un sacco stagno.
+
+Le calette sotto Punta Eolo non hanno un nome sulle mappe e ne hanno tre in paese. Ci si arriva in dieci minuti stando larghi dagli scogli, e quando spegne il motore l'acqua sotto il gommone è così ferma che si vedono le ancore di sabbia disegnate sul fondo a sette metri.
+
+Claudia guarda i sette metri. Il fondo si vede, e questo — lo sa adesso, da ieri — è la differenza fra una cosa sopportabile e una no.
+
+> Lilia: *(che si è già messa le pinne sedendosi sul bordo, senza cerimonie)* "Allora. Tu hai paura del profondo, giusto?"
+
+> Claudia: *(a cui nessuno l'ha mai chiesto così, in faccia, senza pietà)* "...sì."
+
+> Lilia: "Bene, è la cosa giusta. Il profondo è profondo." *(si sputa nel vetro della maschera e lo strofina, il gesto più antiestetico e più utile del mondo)* "Adesso ti dico l'unica cosa che serve, che non è coraggio. Il coraggio dura trenta secondi e poi finisce."
+
+> Claudia: "E cosa serve?"
+
+> Lilia: "**Annoiarti.**"
+
+Claudia la guarda.
+
+> Lilia: "La paura è una cosa che tiene la testa occupata. Se stai sotto trenta secondi, la paura vince, perché in trenta secondi la testa ha il tempo di raccontarti tutto. Se stai sotto **cinque minuti**, a un certo punto la testa si stanca di raccontare, e comincia a **guardare**." *(si mette la maschera sulla fronte)* "L'unica cosa che devi fare è restare abbastanza per annoiarti. Il resto viene da solo."
+
+Poi le insegna le tre cose che nessuno le ha mai spiegate perché tutti danno per scontato che si sappiano:
+
+**Uno.** Butta fuori l'aria piano, non tutta insieme: se svuoti i polmoni di colpo il corpo si spaventa da solo e ti fa risalire lui, senza chiedertelo.
+
+**Due.** Non guardare **giù**: guarda **avanti**. Sott'acqua giù e avanti sono la stessa direzione, ma la testa non lo sa, e se le dici che stai guardando avanti si comporta meglio.
+
+**Tre.** Col boccaglio non alzare mai la testa. Mai. Se la alzi hai rimesso la paura al suo posto e devi ricominciare.
+
+Poi si buttano, e per cinquanta minuti nessuno dice niente perché non si può parlare con un boccaglio in bocca.
+
+Alla fine Claudia si tira su la maschera e ha il segno del silicone sulla faccia e la faccia di una che ha capito una cosa.
+
+> Claudia: "Mi sono annoiata."
+
+> Lilia: *(che si sta legando i capelli con l'elastico che tiene al polso)* "Eh."
+
+> Claudia: "Mi sono ANNOIATA, Lilia. A quattro metri. Stavo guardando una bavosa che difendeva un buco da un'altra bavosa e mi sono ROTTA."
+
+> Lilia: "Benvenuta."
+
+Sul gommone, tornando, Lilia scatta una foto sola: Claudia di spalle, con la maschera sulla fronte e i capelli incollati, che guarda l'isola da fuori. Non gliela fa vedere. Dice che gliela manda.
+
+**(🫁 Fiato +3, 💪 TENUTA +4. 🤿 LA LEZIONE DI LILIA: da adesso in immersione hai più aria — non perché sei coraggiosa, ma perché sai buttarla fuori piano, guardare avanti e non alzare la testa. Il gioco lo conta davvero.)**`,
+    choices: [
+      { text: '🧱 Al muro dei Coraggio, adesso. Si scende', next: 'b8' },
+      { text: '📷 Prima chiederle di quella cartella di quattro anni fa', requires: { flag: 'archivio_lilia' }, once: true, next: 'b7_archivio' },
+      { text: '🏖 Restare in acqua un\'altra mezz\'ora, e al muro ci si va dopo', next: 'b8' },
+    ],
+  },
+
+  /* L'ARCHIVIO, secondo passaggio: adesso hanno una ragione per cercare, e la foto di
+     quattro anni fa esiste davvero. Non è una prova di niente: è una banda verticale in
+     una foto normale, cioè esattamente la cosa che Claudia ha già visto dal traghetto.
+     Vale come indizio del mistero delle cisterne. */
+  b7_archivio: {
+    location: 'mare',
+    npc: ['lilia'],
+    caption: 'Il telefono di Lilia, sul gommone — ore 15:40',
+    gold: 1,
+    sets: { i_foto_lilia: true },
+    text: `Il gommone è legato alla boa e il telefono passa di mano tre volte prima di arrivare dove deve arrivare.
+
+Agosto di quattro anni fa. La cartella «buone». Ottantasei foto, e Lilia le scorre col pollice alla velocità di chi le conosce a memoria.
+
+> Lilia: "Ecco, questa è quella che avevi fermato ieri."
+
+Il mare fra Ventotene e Santo Stefano, alle sette di sera, controluce. Una foto bella e normalissima, di quelle che si fanno mille volte.
+
+Solo che a metà del canale, verticale, dal pelo dell'acqua verso il basso, c'è **una banda** dove la luce non si comporta come intorno. Non è una scia: le scie sono orizzontali. Non è un riflesso: i riflessi stanno sopra.
+
+> Claudia: "Tu questa l'hai guardata."
+
+> Lilia: "Mille volte. Pensavo fosse l'obiettivo." *(si stringe le spalle, e per la prima volta da quando l'hanno ritrovata sembra una che ha vent'anni)* "Ho anche cambiato obiettivo, quell'anno."
+
+> Gaetano: "E la banda?"
+
+> Lilia: "La banda è rimasta."
+
+Silenzio, e il rumore del gommone che batte piano contro la boa.
+
+> Lilia: *(e lo dice ridendo, perché è l'unico modo)* "Vabbè, mi state dicendo che ho una foto di una cosa?"
+
+> Claudia: "Ti stiamo dicendo che hai una foto della stessa cosa che ho io. Fatta dal traghetto. Mercoledì."
+
+> Lilia: "...quattro anni dopo."
+
+> Claudia: "Quattro anni dopo, nello stesso punto."
+
+**(📷 INDIZIO: la banda verticale c'è anche in una foto di quattro anni fa, nello stesso braccio di mare. Non è la macchina fotografica, e non è ieri.)**`,
+    choices: [
+      { text: '🧱 Al muro dei Coraggio. Adesso c\'è più fretta di prima', next: 'b8' },
+      { text: '📓 Prima scrivere sul Quaderno: data, ora, punto', next: 'b8', sets: { annotato_foto: true } },
+    ],
+  },
 
   b8: {
     location: 'sotto',
@@ -6109,6 +6373,22 @@ E una viene avanti, e questa è italiano di trent'anni fa, con l'accento di qui,
 Risalgono alla sosta dei dieci metri, dove c'è aria in bocca per parlare. Claudia si strappa l'erogatore e la prima cosa che dice non è una domanda.
 
 > Claudia: "Non le rispondo. Non le rispondo, Gaetano, mi ha chiamata per nome e non le rispondo."
+*(e poi, se c'è stato un venerdì pomeriggio su un gommone)*
+
+> Claudia: "E poi mi ha detto una cosa sbagliata."
+
+> Gaetano: "Quale?"
+
+> Claudia: "Che mi insegna a respirare." *(si asciuga la faccia con la mano bagnata, gesto inutile e umanissimo)* "Me l'ha già insegnato Lilia. Venerdì, alle tre del pomeriggio, in mezzo alle calette, con l'elastico nei capelli e le pinne in mano. E non mi ha promesso che non avrei più avuto paura: mi ha detto di **annoiarmi**." *(guarda il nero)* "Quella lì mi promette che non avrò più paura di niente. Chi ti promette che non avrai più paura di niente ti sta chiedendo tutto."
+
+E qui il Coro fa la sua unica mossa elegante di tutta la notte. Tutte le voci, insieme, dicono la parola che duemila anni di gente ha usato per dire *questo posto*:
+
+> IL CORO: "**Pandataria.** Dispensatrice di ogni bene."
+
+Lo dice come si dice un titolo. Come chi presenta la casa.
+
+> Gaetano: *(e per la prima volta stanotte gli trema la voce, e non è paura, è rabbia)* "Dà tutto e non restituisce niente. Non è generosità, quella." *(e lo dice all'acqua, non a Claudia)* "È un **fondale di tenuta**. Ce l'hai scritto in tutti i nomi che ti hanno dato: quello che ti butti sotto, sotto rimane."
+
 
 > Gaetano: "Brava. **Brava.**" *(e poi si ferma, perché ha appena finito un conto lunghissimo)* "Claudia. Giulia l'hanno **portata**. I detenuti li hanno **portati**. I bambini del quarantatré li hanno **imbarcati**. Marisa è scesa perché una voce l'ha chiamata e lei ha risposto." *(la guarda)* "Nessuno di quelli là sotto è venuto qui volendo. In duemila anni, **nessuno**."
 
@@ -6436,6 +6716,12 @@ Della lista d'imbarco non è cambiato niente in nessun archivio dello Stato. Ma 
 Della sesta cisterna non hanno detto niente a nessuno, e su questo si sono trovati d'accordo senza parlarne: certe cose è meglio che restino chiuse anche negli archivi.
 
 Ad Ada arriva una pagina sola, a mano. Non risponde per due settimane, e poi manda un messaggio di undici parole: *"Ho letto. L'ho letta a mio marito. Grazie. La stanza c'è."*
+
+A Lilia arriva tutto: le tredici pagine, i file, le misure, la lista con l'ultimo nome battuto a macchina. Risponde in ventidue minuti con un vocale di quattro secondi in cui si sente solo che sta camminando, e poi: *"Vi richiamo che sto salendo."* Richiama alle undici di sera e stanno al telefono un'ora e dieci.
+
+Alla fine chiede una cosa sola, e la chiede da fotografa: *"La cartella di quattro anni fa la posso tenere?"* E poi, prima di chiudere: *"Quella foto sul gommone, quella di Claudia di spalle — l'ho stampata. Sta sul frigo anche a me."*
+
+Del nome dell'isola non parlano più con nessuno, ma fra loro tre è diventata una battuta che non fa ridere. Quando qualcuno in chat dice «bella Ventotene», uno dei tre risponde sempre con la stessa parola sola: **Pandataria.** E gli altri due mettono il cuore, e nessuno spiega niente.
 
 **Il primo settembre sono dieci anni.** Cade di martedì, come previsto, e il martedì si lavora: quindi la cena è alle nove e mezza in una pizzeria di Formia con l'aria condizionata troppo forte, e il regalo dei dieci anni è già stato speso tutto — quattro giorni su un'isola, prenotati a febbraio, pagati, e tenuti segreti per un mese e mezzo.
 
@@ -7225,6 +7511,13 @@ const DIARY_FLAGS = [
   ['appuntamento_ciro',   'Appuntamento con Ciro: sabato 29, alle nove del mattino, terzo pontile. Quaranta euro andata e ritorno.'],
   ['ciro_in_squadra',     'Ciro è con voi. Nel 1965 aveva undici anni ed era sul molo: sa cose, e le dice quando servono. In acqua il coltello si lega, sempre — e il primo fallimento in apnea, con lui a bordo, è gratis.'],
   ['ada_amica',           'Ada delle Parracine è un\'alleata, non un mistero: il caffè con la moka da sei, il thermos di acciaio col tappo che si svita male, e la porta della cucina aperta anche all\'una di notte.'],
+  ['conosciuta_lilia',    'Lilia, la figlia di Ada: cinque anni senza sentirsi, e un abbraccio storto con le pinne in mezzo. È lei che ha dato la stanza con la terrazza, ed è lei che ha detto la seconda metà del nome dell\'isola — quella che non sta nei libri ma nella bocca di chi va in barca: l\'isola dei buoni fondali. Fondali di TENUTA.'],
+  ['archivio_lilia',      'Ventimila foto dell\'isola in dieci anni, ordinate per mese, tutte fatte col trentacinque fisso «perché ti costringe ad avvicinarti». Se un giorno servirà una prova, la prova potrebbe essere già stata scattata da qualcun altro.'],
+  ['lezione_lilia',       'La lezione delle calette, venerdì alle tre del pomeriggio: butta fuori l\'aria PIANO, guarda AVANTI e non alzare mai la testa col boccaglio. E soprattutto: non serve coraggio, serve ANNOIARSI. «Il coraggio dura trenta secondi e poi finisce.» Da allora, in immersione, c\'è più aria.'],
+  ['i_foto_lilia',        'La banda verticale nel canale c\'è anche in una foto di quattro anni fa, nello stesso punto, alla stessa ora. Lilia l\'aveva guardata mille volte e aveva cambiato obiettivo. La banda è rimasta.'],
+  ['scoglio_nave',        'Ottanta metri di traverso fino allo scoglio che dà il nome alla baia, andati e tornati con le pinne. «Non è profondo: è ALTO. Siamo noi che stiamo sopra.»'],
+  ['promesso_a_giulia',   'A Giulia è stata detta una promessa con un numero e un\'ora dentro, e lei ha spiegato la differenza: «Le promesse vere hanno l\'orario. Quelle false hanno gli aggettivi.»'],
+  ['chiamata_per_nome',   'Il nome della bambina, detto ad alta voce sopra la fossa: Assuntina. Era su una lista d\'imbarco, aggiunto a penna in fondo, centoquarantasettesimo di centoquarantasei — e in ottantadue anni nessuno l\'aveva più pronunciato.'],
   ['visto_polpo',         'Il polpo di Cala Nave, che ha guardato Claudia da un buco con quell\'occhio orizzontale e ha deciso che non valeva la pena spostarsi. «C\'È UN POLPO E MI HA GUARDATA.»'],
   ['promessa_boa',        'La promessa detta a voce alta sopra il mare, arrivando: quest\'anno ci prova, e se dice basta si torna. Due maschere identiche comprate senza dirlo.'],
   ['boa_raggiunta',       'Claudia ha toccato la boa gialla di Cala Nave con tutte e due le mani, con ventidue metri d\'acqua sotto i piedi. Questo è avvenuto, ed è la cosa che non si cancella.'],

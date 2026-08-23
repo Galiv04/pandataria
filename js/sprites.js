@@ -116,6 +116,50 @@ const Sprites = (() => {
     ],
   };
 
+  /* LILIA — la figlia di Ada, che gestisce Le Parracine con lei. Persona vera, e quindi
+     ritratta come si deve: quello che si vede addosso è quello che FA. Maschera sulla
+     fronte (non se la toglie mai del tutto), reflex a tracolla col trentacinque fisso,
+     piedi nudi sul tufo caldo, capelli biondo dorato legati alla svelta. Gli occhi
+     azzurri sono l'unico dettaglio che il gioco si permette di sottolineare, perché
+     sull'isola sembrano un dispetto. (32x28) */
+  const lilia = {
+    palette: { s:'#d8a878', h:'#c89a44', w:'#f4f2ea', e:'#4a94c4', W:'#1f4a6a', n:'#b8895e', r:'#a84a58', t:'#2a8e98', T:'#1f6f78', D:'#3a5a78', m:'#9fd8e6', M:'#23262c', c:'#2a2a2e', C:'#6a6a74' },
+    map: [
+      '................................',
+      '................................',
+      '..........MMMMMMMMMMMM..........',
+      '.........MmmmmmmmmmmmmM.........',
+      '.........hhhhhhhhhhhhhh.........',
+      '........hhhhhhhhhhhhhhhh........',
+      '........hhhssssssssssshh........',
+      '........hhhshhhsshhhsshh........',
+      '........hhhswwwsswwwsshh........',
+      '........hhhsweWsseWsshhh........',
+      '........hhhssssnnsssshhh........',
+      '........hhhsssrrrrssshhh........',
+      '........hhhsssssssssshhh........',
+      '........hhh...ssss...hhh........',
+      '.........h....ssss....h.........',
+      '........tttttttttttttt..........',
+      '.......ttttTTTTTTTTTTtt.........',
+      '.......ttttTTTTTTTTTTtt....cc...',
+      '.......ttttTTTTTTTTTTtt...cCCc..',
+      '.......ttttTTTTTTTTTTtt...cCCc..',
+      '.......ssttTTTTTTTTTTtt....cc...',
+      '.......sstttttttttttttt.........',
+      '..........DDDDDDDDDDDD..........',
+      '..........DDDDDDDDDDDD..........',
+      '...........ssss..ssss...........',
+      '...........ssss..ssss...........',
+      '...........ssss..ssss...........',
+      '...........ssss..ssss...........',
+      '...........ssss..ssss...........',
+      '..........sssss..sssss..........',
+      '..........sssss..sssss..........',
+      '................................'
+    ],
+  };
+
   // Ciro — il pescatore: ottant'anni, canottiera slavata, mani enormi, la lampara (32x32)
   const ciro = {
     palette: { s:'#b58259', S:'#8a5c3c', n:'#d3a377', h:'#dedac9', H:'#a9a496', e:'#23232a', w:'#f0ecdd', k:'#3b2d23', c:'#e2ddcd', C:'#b6b0a0', t:'#7c7660', T:'#5c5747', y:'#ffd27f', Y:'#c8961f', K:'#241c1a' },
@@ -513,7 +557,7 @@ const Sprites = (() => {
 
   const registry = {
     // i tre eroi
-    gaetano, claudia, ciro,
+    gaetano, claudia, ciro, lilia,
     // le undici voci del bestiario
     eco, annegata, detenuto, guardia, giulia, bambina, coro,
     se_stessa: seStessa, polpo, murena, sciame_voci: sciameVoci,

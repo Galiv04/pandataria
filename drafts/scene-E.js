@@ -152,6 +152,12 @@ Della sesta cisterna non hanno detto niente a nessuno, e su questo si sono trova
 
 Ad Ada arriva una pagina sola, a mano. Non risponde per due settimane, e poi manda un messaggio di undici parole: *"Ho letto. L'ho letta a mio marito. Grazie. La stanza c'è."*
 
+A Lilia arriva tutto: le tredici pagine, i file, le misure, la lista con l'ultimo nome battuto a macchina. Risponde in ventidue minuti con un vocale di quattro secondi in cui si sente solo che sta camminando, e poi: *"Vi richiamo che sto salendo."* Richiama alle undici di sera e stanno al telefono un'ora e dieci.
+
+Alla fine chiede una cosa sola, e la chiede da fotografa: *"La cartella di quattro anni fa la posso tenere?"* E poi, prima di chiudere: *"Quella foto sul gommone, quella di Claudia di spalle — l'ho stampata. Sta sul frigo anche a me."*
+
+Del nome dell'isola non parlano più con nessuno, ma fra loro tre è diventata una battuta che non fa ridere. Quando qualcuno in chat dice «bella Ventotene», uno dei tre risponde sempre con la stessa parola sola: **Pandataria.** E gli altri due mettono il cuore, e nessuno spiega niente.
+
 **Il primo settembre sono dieci anni.** Cade di martedì, come previsto, e il martedì si lavora: quindi la cena è alle nove e mezza in una pizzeria di Formia con l'aria condizionata troppo forte, e il regalo dei dieci anni è già stato speso tutto — quattro giorni su un'isola, prenotati a febbraio, pagati, e tenuti segreti per un mese e mezzo.
 
 Claudia tira fuori dalla borsa una cosa piccola avvolta nella carta del pane e la posa sul tavolo, in mezzo ai bicchieri.

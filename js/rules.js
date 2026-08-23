@@ -9,9 +9,17 @@
 
 const RULES_STORY = `
 <h3>⛵ Dove state andando</h3>
-<p><b>Giovedì 27 agosto, mezzogiorno, Scauri.</b> La macchina parcheggiata male sul lungomare, due ruote sul marciapiede e in mezzo alla strada un borsone che nessuno dei due ha deciso di caricare per primo. Ventidue chilometri di Domiziana fino a <b>Formia</b>, il molo Azzurra, il traghetto delle tredici. Due ore e quaranta di mare aperto.</p>
+<p><b>Giovedì 27 agosto, sette meno cinque del mattino, Scauri.</b> La macchina parcheggiata male sul lungomare, due ruote sul marciapiede e in mezzo alla strada un borsone che nessuno dei due ha deciso di caricare per primo. Ventidue chilometri di Domiziana fino a <b>Formia</b> — che alle sette di agosto è una strada di novembre — il molo Azzurra, e il <b>traghetto delle 8:30</b>. Due ore e un quarto di mare aperto.</p>
+<p>Il perché è una data: <b>il primo settembre sono dieci anni</b>. Cade di martedì, e il martedì si lavora — quindi il regalo è anticipato, prenotato a febbraio e tenuto segreto per un mese e mezzo. Nel borsone, comprati in saldo a marzo: <b>due maschere identiche, due paia di pinne e due boccagli</b>.</p>
 <p>Quattro giorni a <b>Ventotene</b>, in un B&amp;B con la terrazza e il limone in vaso: <b>Le Parracine</b> — che in dialetto sono i muretti a secco, quelli che sull'isola tengono su la terra e lasciano passare il vento, perché se li fai pieni il vento li butta giù. Prenotato a febbraio. Pagato. Meritato.</p>
 <p>Si torna <b>domenica 30 col traghetto delle 17:30</b>. Sta scritto sul biglietto, e a un certo punto sarà l'unica cosa a cui tenersi.</p>
+
+<h3>⚱️ Perché si chiama Pandataria</h3>
+<p>Ventotene si chiama Ventotene solo da un secolo. Prima era <b>Pandataria</b> — greco <i>Πανδατερία</i>, latino <i>Pandataria</i> — e il nome vuol dire una cosa precisa: <b>«dispensatrice di ogni bene»</b>. Da <i>pan</i>, tutto, e la radice di <i>dateomai</i>, distribuire. Gliel'hanno dato i greci, che qui si fermavano nelle prime navigazioni per la posizione e per la terra grassa: l'isola che dà tutto.</p>
+<p>Poi Roma ha preso l'isola che dà tutto e l'ha usata per <b>togliere</b> tutto alle sue donne. Giulia maggiore, figlia di Augusto, cinque anni qui. Sua madre <b>Scribonia</b>, che la segue in esilio per scelta propria. Agrippina maggiore. Ottavia, moglie ripudiata di Nerone. Giulia Livilla. Un nome che promette abbondanza, appiccicato al posto dove si mandava la gente a smettere di esistere.</p>
+<p>E il nome, dopo, cambia per mille anni. <b>Pandatera</b> in età tardoromana. <b>Bentilem</b> durante le incursioni saracene del nono secolo. Poi <b>Vendutena</b>, <b>Vetotiene</b>, <b>Ventatere</b> nel medioevo, fino al <b>Ventotene</b> che si diffonde solo nel Novecento.</p>
+<p>Di una di quelle forme intermedie — <i>Bentitiene</i> — si è proposta una lettura da gente di mare: <b>«isola dai buoni fondali di tenuta»</b>. Fondali che <b>tengono</b>: è il termine con cui si dice che un fondo è buono, che l'ancora fa presa e non striscia.</p>
+<p>Quindi il nome di questo posto, nei suoi due strati, dice due cose. Che dà tutto. E che sotto <b>tiene</b>.</p>
 
 <h3>🪨 Che posto è</h3>
 <p>Ventotene è tre chilometri di <b>tufo</b> in mezzo al Tirreno. Il porto non è costruito: è <b>scavato</b>. I romani sono arrivati, hanno guardato una parete di roccia gialla e hanno levato tutto quello che non era porto. Dopo duemila anni è ancora il porto, perché certe cose se le fai bene non le rifai più.</p>
@@ -23,7 +31,7 @@ const RULES_STORY = `
 <h3>🎭 Chi siete</h3>
 <p><b>Gaetano</b> progetta satelliti: misura cose a settecento chilometri e ha un vizio che è anche la sua virtù — se una cosa non la puoi misurare, per lui non esiste ancora. <b>Claudia</b> di lavoro decide come le cose vengono <i>viste</i>: dieci anni a inquadrare, tagliare, e accorgersi prima di tutti quando una storia non torna.</p>
 <p>Stanno insieme da dieci anni. Lei ha paura dell'acqua dove non si tocca — non della piscina, non del bagno a riva: del punto esatto in cui il fondo scompare e sotto c'è solo blu che continua. Ci ha fatto pace come si fa pace con le cose che non passano: ci gira intorno, non ne parla, e ogni tanto ci prova.</p>
-<p>Lui ha portato la maschera buona. Ne ha portate <b>due</b>, identiche, e non l'ha detto.</p>
+<p>Lui ha portato la maschera buona. Ne ha portate <b>due</b>, identiche, e non l'ha detto. E con le maschere due paia di pinne e due boccagli, comprati a marzo: tre pezzi che fanno tre cose diverse alla paura di lei. La <b>maschera</b> fa vedere — e il suo problema non è l'acqua, è il non vedere. Il <b>boccaglio</b> toglie il gesto di alzare la testa per respirare, che è il gesto della paura travestito da gesto tecnico. Le <b>pinne</b> non servono ad andare veloce: servono a poter tornare, e con quelle la distanza smette di essere un muro e diventa un numero.</p>
 
 <h3>🌊 Come comincia</h3>
 <p>Il primo pomeriggio è la vacanza perfetta: il bagno delle sette a Cala Nave, gli scogli pieni di roba, un polpo in un anfratto, e Claudia che per la prima volta in vita sua nuota fino alla boa e la tocca con tutte e due le mani.</p>

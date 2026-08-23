@@ -1472,6 +1472,22 @@ E una viene avanti, e questa è italiano di trent'anni fa, con l'accento di qui,
 Risalgono alla sosta dei dieci metri, dove c'è aria in bocca per parlare. Claudia si strappa l'erogatore e la prima cosa che dice non è una domanda.
 
 > Claudia: "Non le rispondo. Non le rispondo, Gaetano, mi ha chiamata per nome e non le rispondo."
+*(e poi, se c'è stato un venerdì pomeriggio su un gommone)*
+
+> Claudia: "E poi mi ha detto una cosa sbagliata."
+
+> Gaetano: "Quale?"
+
+> Claudia: "Che mi insegna a respirare." *(si asciuga la faccia con la mano bagnata, gesto inutile e umanissimo)* "Me l'ha già insegnato Lilia. Venerdì, alle tre del pomeriggio, in mezzo alle calette, con l'elastico nei capelli e le pinne in mano. E non mi ha promesso che non avrei più avuto paura: mi ha detto di **annoiarmi**." *(guarda il nero)* "Quella lì mi promette che non avrò più paura di niente. Chi ti promette che non avrai più paura di niente ti sta chiedendo tutto."
+
+E qui il Coro fa la sua unica mossa elegante di tutta la notte. Tutte le voci, insieme, dicono la parola che duemila anni di gente ha usato per dire *questo posto*:
+
+> IL CORO: "**Pandataria.** Dispensatrice di ogni bene."
+
+Lo dice come si dice un titolo. Come chi presenta la casa.
+
+> Gaetano: *(e per la prima volta stanotte gli trema la voce, e non è paura, è rabbia)* "Dà tutto e non restituisce niente. Non è generosità, quella." *(e lo dice all'acqua, non a Claudia)* "È un **fondale di tenuta**. Ce l'hai scritto in tutti i nomi che ti hanno dato: quello che ti butti sotto, sotto rimane."
+
 
 > Gaetano: "Brava. **Brava.**" *(e poi si ferma, perché ha appena finito un conto lunghissimo)* "Claudia. Giulia l'hanno **portata**. I detenuti li hanno **portati**. I bambini del quarantatré li hanno **imbarcati**. Marisa è scesa perché una voce l'ha chiamata e lei ha risposto." *(la guarda)* "Nessuno di quelli là sotto è venuto qui volendo. In duemila anni, **nessuno**."
 

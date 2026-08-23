@@ -485,7 +485,7 @@ section('Chiavi dei dati (niente campi che il motore non legge)');
 const CHIAVI_SCENA = new Set(['location','caption','text','choices','gold','goldLoss','heal','damage',
   'item','item2','sets','attenzione','stinger','silenzio','metri','combat','minigame','fullHeal',
   'recharge','freeAll','reviveAll','killRoller','poisonRoller','captureRoller','ending','unlockHero',
-  'onEnterOnce']);
+  'onEnterOnce', 'npc']);
 const CHIAVI_SCELTA = new Set(['text','next','once','requires','requiresGold','removeItem','removeItem2',
   'item','item2','sets','check','heal','damage','gold','goldLoss','tag','sacrifice','sacrificeSets','resta',
   'sacrificeTitle','sacrificeText','hero']);

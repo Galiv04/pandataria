@@ -1162,6 +1162,32 @@ scenarios.push(scenario(
   { c3: 'Scendere nella cappella' },
   { seed: 606003 },
 ));
+/* ---- LILIA e il filo del nome dell'isola: il ritrovarsi alle Parracine, l'archivio
+   delle ventimila foto, la lezione delle calette (che vale aria vera in immersione) e
+   la foto di quattro anni fa. In coda alla lista, con seme esplicito. ---- */
+scenarios.push(scenario(
+  'Lilia: il ritrovarsi, le calette e la foto di quattro anni fa',
+  ['gaetano', 'claudia'],
+  {
+    a3: 'Sulla scaletta del giardino sale qualcuno',
+    a3_lilia: 'Chiederle di vedere le sue foto',
+    a4: 'Con le pinne, fino allo scoglio della nave',
+    b7: 'Lilia aveva detto le calette',
+    b7_calette: 'Prima chiederle di quella cartella',
+    b7_archivio: 'Prima scrivere sul Quaderno',
+  },
+  {
+    seed: 707001,
+    verify: (r, expect) => {
+      const f = r.log.flags;
+      expect(r.log.scenes.includes('a3_lilia'), 'il ritrovarsi con Lilia non è avvenuto');
+      expect(f.lezione_lilia, 'la lezione delle calette non è stata fatta: senza quella, in immersione manca aria');
+      expect(f.i_foto_lilia, 'la foto di quattro anni fa non è stata trovata');
+      expect(r.log.scenes.includes('a4_scoglio'), 'lo scoglio della nave non è stato raggiunto con le pinne');
+    },
+  },
+));
+
 
 
 /* ==================== ESECUZIONE ==================== */

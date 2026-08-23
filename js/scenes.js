@@ -910,8 +910,10 @@ const Scenes = (() => {
       blocks(ctx, hx - 8, hy - 11, hw + 16, 13, '#c08a54', 9, r, 0.10);
       ctx.fillStyle = 'rgba(255,248,210,.16)'; ctx.fillRect(hx, hy + 13, hw, 6);
       ctx.fillStyle = 'rgba(120,90,40,.14)'; ctx.fillRect(hx, hy + hh - 30, hw, 30);
-      for (const wfx of [0.10, 0.46, 0.80]) {
-        const wx = hx + hw * wfx, wy = hy + hh * 0.22;
+      const finW = 42, finMarg = 7, nFin = 3;
+      const finSpazio = Math.max(0, hw - finMarg * 2 - finW);
+      for (let iFin = 0; iFin < nFin; iFin++) {
+        const wx = hx + finMarg + 5 + finSpazio * iFin / (nFin - 1), wy = hy + hh * 0.22;
         ctx.fillStyle = '#f8f0de'; ctx.fillRect(wx - 5, wy - 5, 42, 50);
         ctx.fillStyle = '#3a7a52'; ctx.fillRect(wx, wy, 32, 40);
         ctx.fillStyle = '#2e6442';
