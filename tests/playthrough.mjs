@@ -919,9 +919,16 @@ scenarios.push(scenario(
 scenarios.push(scenario(
   'Il Coro vince (e_coro, hanno risposto)',
   ['gaetano', 'claudia'],
-  { d2_paese: 'Rispondere. Mettere la faccia sotto', d14_coro: 'Rispondere di sì',
-    // il percorso resta quello di prima: qui si prova il FINALE, non il debito della voce
-    d5_ada: 'Alla cisterna dei Detenuti' },
+  /* Le chiavi del PERCORSO, non solo quelle della prova. Questo scenario verifica un
+     FINALE, e per arrivare a un finale bisogna arrivarci: con le sole due chiavi della
+     prova il percorso cambiava a ogni scena nuova aggiunta a monte (due volte in un
+     giorno, e le due volte ha detto un finale diverso). Un test che dipende dal caso
+     non prova niente. */
+  { d2_paese: 'Rispondere. Mettere la faccia sotto',
+    d5_ada: 'Alla cisterna dei Detenuti',
+    d1_colazione_bis: 'Alla cisterna dei Detenuti',
+    d13_fossa: 'Scendere col bombolino riparato',
+    d14_coro: 'Rispondere di sì' },
   {
     verify: (r, expect) => {
       expect(/^e_coro/.test(r.log.ending || ''), `finale atteso e_coro*, trovato ${r.log.ending}`);
@@ -1484,7 +1491,19 @@ section('Copertura totale della campagna');
 
 console.log('\n' + '═'.repeat(60));
 if (failures === 0) {
-  console.log(`✅ TUTTE LE PARTITE SIMULATE COMPLETATE SENZA ERRORI (${results.length} run, ${allScenesSeen.size} scene distinte, ${allEndings.size} finali distinti)`);
+  /* I FINALI NON COPERTI. Prima qui c'era solo un numero — «10 finali distinti» — e un
+     numero non dice QUALI mancano. Aggiungendo tre scene ai draft il conto e scivolato da
+     dieci a sette senza che niente diventasse rosso: i semi delle partite sono cambiati e
+     tre finali hanno smesso di essere visitati, in silenzio. Un finale che nessuna partita
+     simulata raggiunge e un finale che nessuno ha piu provato. */
+  const tuttiIFinali = Object.entries(buildGame(1).api.CAMPAIGN)
+    .filter(([, sc]) => sc.ending).map(([id]) => id);
+  const scoperti = tuttiIFinali.filter(id => !allEndings.has(id));
+  console.log(`✅ TUTTE LE PARTITE SIMULATE COMPLETATE SENZA ERRORI (${results.length} run, ${allScenesSeen.size} scene distinte, ${allEndings.size}/${tuttiIFinali.length} finali distinti)`);
+  if (scoperti.length) {
+    console.log(`  ⚠ finali che nessuna partita simulata raggiunge: ${scoperti.join(', ')}`);
+    console.log('     (non e un errore: e il conto di quello che nessuno sta piu provando)');
+  }
   process.exit(0);
 } else {
   console.log(`❌ ${failures} PROBLEMI RILEVATI su ${results.length} partite simulate`);

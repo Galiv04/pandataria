@@ -613,11 +613,23 @@ for (const [id, scene] of Object.entries(CAMPAIGN)) {
 section('Attenzione del Coro (0-6)');
 
 const attScene = Object.entries(CAMPAIGN).filter(([, s]) => s.attenzione);
+const attGiu = attScene.filter(([, s]) => s.attenzione < 0);
+if (attGiu.length > 1) {
+  fail(`${attGiu.length} scene abbassano l'attenzione del Coro (${attGiu.map(([i]) => i).join(', ')}): `
+     + 'deve restare una sola, o la barra diventa una risorsa che si ricarica e la minaccia sparisce');
+} else if (attGiu.length === 1) {
+  ok(); console.log(`  ✔ una sola scena abbassa l'attenzione del Coro: ${attGiu[0][0]}`);
+}
 const attTot = attScene.reduce((t, [, s]) => t + s.attenzione, 0);
 if (!attScene.length) fail('nessuna scena alza l\'attenzione del Coro: la barra del Quaderno resterebbe sempre a zero');
 else console.log(`  ℹ ${attScene.length} scene alzano l'attenzione, per un totale teorico di +${attTot} (la barra si ferma a 6)`);
 for (const [id, s] of attScene) {
-  if (s.attenzione < 1 || s.attenzione > 3) fail(`scena "${id}": attenzione ${s.attenzione} fuori dalla scala sensata (1-3 per scena)`);
+  /* La scala e 1-3 per le scene che ALZANO l'attenzione. Il -1 e ammesso ed e uno solo:
+     la scena in cui si sovrappongono le due tracce del loop e si da un numero a una cosa
+     impossibile. Se un giorno diventassero due, questo controllo lo dice — perche
+     un'attenzione che si puo abbassare a piacere e una risorsa senza minaccia. */
+  if (s.attenzione === -1) continue;
+  if (s.attenzione < 1 || s.attenzione > 3) fail(`scena "${id}": attenzione ${s.attenzione} fuori dalla scala sensata (1-3 per scena, oppure -1 nell'unica scena che la fa scendere)`);
 }
 if (!engineAll.includes('attenzione')) fail('il motore non legge scene.attenzione: il campo sarebbe una bugia');
 else ok();

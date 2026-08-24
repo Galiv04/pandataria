@@ -5284,10 +5284,10 @@ Poi tira fuori dal cassetto della credenza una fotocopia piegata in quattro: l'e
     gold: 1,
     sets: { i_nome_lista: true, d_acqua_alta: true, sa_la_corda: true, sa_di_marisa: true },
     choices: [
-      { text: '🧂 "Signora, ci regala un chilo di sale grosso e un barattolo vuoto?"', once: true, item: 'sale_grosso', gold: 1, next: 'd6_cisterna' },
-      { text: '🗒 [Ciro] Portare la lista a Ciro: i nomi di quest\'isola li sa leggere lui', requires: { hero: 'ciro' }, once: true, sets: { nome_letto_da_ciro: true }, gold: 1, next: 'd6_cisterna' },
+      { text: '🧂 "Signora, ci regala un chilo di sale grosso e un barattolo vuoto?"', once: true, item: 'sale_grosso', gold: 1, next: 'd1_colazione_bis' },
+      { text: '🗒 [Ciro] Portare la lista a Ciro: i nomi di quest\'isola li sa leggere lui', requires: { hero: 'ciro' }, once: true, sets: { nome_letto_da_ciro: true }, gold: 1, next: 'd1_colazione_bis' },
       { text: '📱 [Gaetano] La traccia di ieri pomeriggio alla boa. Registra sempre, e ieri registrava', requires: { flag: 'ha_risposto' }, once: true, next: 'd5_voce_registrata' },
-      { text: '🕳 Alla cisterna dei Detenuti: oggi la porta dietro la chiesa è aperta', next: 'd6_cisterna' },
+      { text: '🕳 Alla cisterna dei Detenuti: oggi la porta dietro la chiesa è aperta', next: 'd1_colazione_bis' },
     ],
   },
 
@@ -5345,10 +5345,108 @@ Claudia si porta la mano alla medaglietta di bronzo che ha al collo. È fredda, 
     attenzione: 1,
     sets: { debito_di_voce: true },
     choices: [
-      { text: '🗑 Cancellare il file. Adesso, tenendo premuto, guardando la barretta', once: true, damage: 2, sets: { file_cancellato: true }, next: 'd6_cisterna' },
-      { text: '🎧 Riascoltare il secondo «sono qui» dieci volte e imparare in cosa è diverso', once: true, gold: 1, sets: { sa_dove_sbaglia: true }, next: 'd6_cisterna' },
-      { text: '🫂 Dirlo ad alta voce tutti e due: "ho risposto io, e non lo rifaccio"', once: true, heal: 4, sets: { risposta_ammessa: true }, next: 'd6_cisterna' },
-      { text: '🕳 Alla cisterna dei Detenuti. Adesso, prima di pensarci', next: 'd6_cisterna' },
+      { text: '🗑 Cancellare il file. Adesso, tenendo premuto, guardando la barretta', once: true, damage: 2, sets: { file_cancellato: true }, next: 'd1_colazione_bis' },
+      { text: '🎧 Riascoltare il secondo «sono qui» dieci volte e imparare in cosa è diverso', once: true, gold: 1, sets: { sa_dove_sbaglia: true }, next: 'd1_colazione_bis' },
+      { text: '🫂 Dirlo ad alta voce tutti e due: "ho risposto io, e non lo rifaccio"', once: true, heal: 4, sets: { risposta_ammessa: true }, next: 'd1_colazione_bis' },
+      { text: '🕳 Alla cisterna dei Detenuti. Adesso, prima di pensarci', next: 'd1_colazione_bis' },
+    ],
+  },
+
+  /* LA COLAZIONE DEL SECONDO GIRO. Il testo e quello di d1_colazione parola per parola —
+     Ada, il libeccio, la coppia di Bologna che piangeva, la signora dei fagiolini col suo
+     «c'era» — e cambia esattamente un dato misurabile: un'albicocca invece di due, con la
+     stessa battuta identica sul magone. La ripetizione e uno strumento di misura, e va
+     spesa con l'accetta: qui e in d10_ciclo3, e mai piu.
+     Ed e l'UNICO posto del gioco in cui l'Attenzione del Coro SCENDE, perche la passiva
+     di Gaetano dice che ogni cosa misurata gli fa perdere una nota, e questa e la prima
+     volta che il gioco la applica al tempo invece che a un mostro. */
+  d1_colazione_bis: {
+    location: 'terrazza',
+    caption: 'La terrazza delle Parracine — ore 08:20 (di nuovo)',
+    metri: 0,
+    text: `Ada porta la moka, il pane con la marmellata di fichi che fa lei, e **un'albicocca** in un piattino perché "quelle di ieri erano acerbe e mi è rimasto il magone".
+
+Il mare, da lassù, è una lastra. Santo Stefano è appoggiato all'orizzonte e per la prima volta in tre giorni nessuno dei due lo guarda.
+
+> Ada: "E allora oggi partite."
+
+> Claudia: "Alle cinque e mezza."
+
+> Ada: "Il libeccio non c'è, quindi parte. Se c'è libeccio non parte e vi tocca restare." *(versa il caffè, prima a Claudia)* "L'anno scorso una coppia di Bologna è rimasta tre giorni in più. Piangevano. Poi non volevano andarsene più."
+
+Il caffè è quello di Ada: denso, forte, di quelli che ti raddrizzano la schiena e ti levano una cosa dalla testa.
+
+E il rumore del caffè che cade nella tazzina arriva **prima** che Ada inclini la caffettiera. Non di molto: di quel poco che si sente e non si può dimostrare, lo stesso poco dell'eco nella seconda cisterna.
+
+Giù per la scaletta passa la signora dei fagiolini col catino sotto il braccio. Alza gli occhi, li vede, e dice la frase che ha detto giovedì.
+
+> La signora: "Buongiorno. Turisti?"
+
+> Gaetano: "Ci andiamo oggi, signora. Alle cinque e mezza."
+
+> La signora: *(un fagiolino nel catino)* "Buoni, quelli. Brava gente." *(un altro)* "Fate i bagni dove **c'era** la gente."
+
+Riprende la scaletta. Il catino cigola. Gaetano ha la tazzina a mezz'aria.
+
+> Claudia: "Ha detto c'era."
+
+> Gaetano: "Ha detto c'è. Ha l'accento chiuso, mangia le vocali—"
+
+E si ferma. Non perché lei lo guardi: lei non lo sta guardando. Si ferma perché ha sentito la propria voce fare una cosa che la propria voce ha già fatto.
+
+> Gaetano: "L'ho già detto."
+
+> Claudia: "Parola per parola." *(mette giù la tazzina senza rumore)* "Anche l'accento chiuso. Anche le vocali."
+
+Nel piattino c'è un'albicocca. Ieri erano due, e la frase sul magone era la stessa.
+
+Ada, dalla porta, si è girata a guardare la scaletta dove non c'è più nessuno. Poi rientra in cucina e dice, senza rivolgersi a nessuno in particolare, la cosa che vi ha già detto due volte.
+
+> Ada: "Finché è aperta, non si risponde."
+
+**(🫁 Fiato +2, 💪 TENUTA +6: il caffè di Ada resta la cosa più concreta dell'isola anche il secondo giro. Il Quaderno registra la differenza esatta di stamattina — un'albicocca invece di due, e il caffè che si sente cadere prima di cadere. Non è il giorno che si ripete male: è che si ripete BENE, e a sbagliare siete voi.)**`,
+    gold: 2,
+    heal: 6,
+    sets: { d_colazione_bis: true },
+    choices: [
+      { text: '📹 Filmare la signora e sovrapporre l\'audio di ieri sulla stessa traccia: due «c\'era» a confronto', once: true, next: 'd1_confronto' },
+      { text: '🥨 Farsi mettere in tasca il sacchetto di taralli, come ieri, con le stesse parole', once: true, item: 'taralli', gold: 1, next: 'd6_cisterna' },
+      { text: '🍑 Chiedere ad Ada dov\'è la seconda albicocca', once: true, damage: 2, sets: { d_albicocca_chiesta: true }, next: 'd6_cisterna' },
+      { text: '🕳 Alla cisterna dei Detenuti: oggi la porta dietro la chiesa è aperta', next: 'd6_cisterna' },
+    ],
+  },
+
+  /* IL CONFRONTO. La scelta prometteva di sovrapporre due tracce audio, e una scelta che
+     promette deve mantenere: qui la promessa e la scena. E questo e l'UNICO punto del
+     gioco in cui l'Attenzione del Coro SCENDE, perche la passiva di Gaetano dice che ogni
+     cosa misurata gli fa perdere una nota — e finora il gioco l'aveva applicata solo ai
+     mostri, mai al tempo. Nota tecnica: `attenzione` il motore la legge sulle SCENE, non
+     sulle scelte (il validatore me l'ha bocciata), e va bene cosi: un effetto del genere
+     merita un posto dove accade. */
+  d1_confronto: {
+    location: 'terrazza',
+    caption: 'La terrazza — le due tracce, una sopra l\'altra',
+    metri: 0,
+    text: `Ci vogliono quattro minuti col telefono appoggiato al muretto, e Gaetano li fa senza dire una parola: allinea l'audio di giovedì con quello di stamattina sulla stessa traccia, sposta di qualche fotogramma, e mette il volume basso perché non serve alto.
+
+Le due «c'era» partono insieme.
+
+Non è che si assomigliano: **è la stessa**. Stessa durata, stessa cadenza, stesso cigolio del catino a un decimo di secondo dopo, stesso respiro della signora prima della parola. Due registrazioni fatte a tre giorni di distanza che si sovrappongono come una sola.
+
+> Claudia: *(che di mestiere fa questo, e quindi lo dice come lo direbbe a un cliente)* "Non è una persona che ripete una frase. È la stessa frase, rimessa."
+
+> Gaetano: "Ventidue fagiolini. Li ho contati giovedì perché non avevo niente da fare e li ho contati adesso perché avevo paura." *(mette giù il telefono)* "Ventidue e ventidue."
+
+E succede una cosa che in tre giorni non era mai successa: per un momento il rumore di fondo — quello che c'è sempre, sotto tutto, da giovedì pomeriggio — **si abbassa**. Non finisce. Si abbassa, come si abbassa una radio quando qualcuno in casa alza la voce.
+
+Perché una cosa misurata è una cosa che ha perso una nota.
+
+**(🫁 Fiato +1. 🎵 Attenzione del Coro −1, e in tutto il gioco succede solo qui: gli avete dato un numero e il numero non si discute. Il Quaderno registra ventidue fagiolini giovedì e ventidue stamattina.)**`,
+    gold: 1,
+    attenzione: -1,
+    sets: { d_loop_misurato: true, d_fagiolini_contati: true },
+    choices: [
+      { text: '🕳 Alla cisterna dei Detenuti. Con il telefono in tasca e un numero in testa', next: 'd6_cisterna' },
     ],
   },
 
@@ -7628,6 +7726,7 @@ const DIARY_FLAGS = [
   ['i_registro_detenuti', 'Il registro dei trasferimenti del 1965: la cella 47 risulta VUOTA dal 1943 e OCCUPATA dal 1943, sulla stessa pagina, con due grafie diverse.'],
   ['i_ciro_racconta',     'Ciro, undici anni, sul molo il 2 settembre 1965: una guardia che piangeva mentre gli altri caricavano le brande. Non piangeva per i detenuti. Chiedeva di restare.'],
   ['sa_i_tre_piani',      'I tre piani del panopticon si chiamavano inferno, purgatorio e paradiso. Non è una metafora di nessuno: è la nomenclatura di servizio, sta sul pannello del Comune all\'ingresso e prima stava sul registro. Qualcuno, a tavolino, ha deciso che un uomo può salire di un piano ed essere meno dannato.'],
+  ['d_loop_misurato',     'La colazione del secondo giro e identica a quella del primo, parola per parola: la stessa frase di Ada sul magone, lo stesso «c\'era» della signora dei fagiolini, lo stesso accento chiuso. Cambia un dato solo — un\'albicocca invece di due — e il caffe si sente cadere prima che la caffettiera si inclini. Non e il giorno che si ripete male: si ripete BENE.'],
   ['i_osso',              'Nel cimitero dei detenuti le fosse contate sono novantatré e i nomi novantadue. In quella in più non c\'è una divisa da carcerato: ci sono bottoni di ottone.'],
 
   /* --- la bambina che canta --- */

@@ -303,7 +303,12 @@ const Engine = (() => {
     if (firstVisit) {
       if (scene.sets) Object.assign(G.flags, scene.sets);
       // L'ATTENZIONE del Coro (0-6): sale scendendo e ascoltando (DESIGN § 10.3)
-      if (scene.attenzione) G.flags.attenzione = Math.min(6, (G.flags.attenzione || 0) + scene.attenzione);
+      /* L'Attenzione del Coro sale ascoltando e scendendo, e da oggi in UN posto scende:
+         la scena in cui Gaetano sovrappone le due tracce audio del loop e da un numero a
+         una cosa impossibile. Quindi il clamp serve da tutte e due i lati: senza il
+         Math.max un -1 con l'attenzione a zero lasciava un credito negativo che avrebbe
+         mangiato il primo +1 successivo, cioe una scena che non fa niente. */
+      if (scene.attenzione) G.flags.attenzione = Math.max(0, Math.min(6, (G.flags.attenzione || 0) + scene.attenzione));
       // CHECKPOINT: prima volta che si completa una pista (CHECKPOINT_FLAGS in campaign.js)
       if (typeof CHECKPOINT_FLAGS !== 'undefined' && scene.sets) {
         if (!G.checkpointsDone) G.checkpointsDone = [];
