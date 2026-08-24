@@ -1329,6 +1329,44 @@ scenarios.push(scenario(
       `finale atteso e_resta_inverno, trovato ${r.log.ending}`) },
 ));
 
+/* ---- LE QUATTRO SCENE DI SCONFITTA, che nessuna partita raggiungeva ----
+   La revisione ha trovato il buco piu grosso della copertura: NESSUNA delle ventuno
+   partite simulate moriva mai. Le quattro scene di sconfitta — b8_apnea_ko,
+   c5_graffito_ko, c6_ko, d9_ko — erano tutte fra le mai visitate, e il validatore
+   controllava soltanto che ESISTESSERO. Cioe: il momento in cui il gioco dice al
+   giocatore «sei caduto, e adesso questo e quello che ti costa» non lo aveva mai letto
+   nessuno, e la catena morte → checkpoint non era verificata sui minigiochi.
+   Queste due partite ci passano di proposito: `minigames` forza il fallimento
+   dell'apnea e del conteggio delle tacche, e da li si arriva alle scene di sconfitta. */
+scenarios.push(scenario(
+  'Le sconfitte dei minigiochi (b8_apnea_ko e c5_graffito_ko)',
+  ['gaetano', 'claudia'],
+  { b8: 'Recuperare il secchiello', c5_cella: 'Gaetano conta un campione' },
+  {
+    minigames: { b8_apnea: 'fail', c5_tacche: 'fail' },
+    verify: (r, expect) => {
+      const viste = r.log.scenes;
+      expect(viste.includes('b8_apnea_ko') || viste.includes('c5_graffito_ko'),
+        'nessuna delle due scene di sconfitta dei minigiochi e stata raggiunta');
+      expect(r.log.ending, 'la partita non e arrivata a un finale dopo le sconfitte');
+    },
+  },
+));
+
+scenarios.push(scenario(
+  'La sconfitta in fondo (d9_ko, e la risalita dopo)',
+  ['gaetano', 'claudia'],
+  { d13_fossa: 'Scendere col bombolino riparato' },
+  {
+    minigames: { d13_apnea: 'fail' },
+    verify: (r, expect) => {
+      expect(r.log.scenes.includes('d9_ko'),
+        `la scena di sconfitta della fossa non e stata raggiunta: ultime ${r.log.scenes.slice(-4).join(' > ')}`);
+      expect(r.log.ending, 'la partita non e arrivata a un finale dopo la sconfitta in fondo');
+    },
+  },
+));
+
 
 
 

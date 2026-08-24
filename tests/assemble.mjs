@@ -24,8 +24,17 @@ const parts = [
    gioco: js/campaign.js aveva 248 scene, i draft 184. Lanciare l'assemble avrebbe
    cancellato 64 scene in silenzio. Da ora si rifiuta di scrivere se il risultato
    perde scene rispetto al file che sta per sovrascrivere. */
+/* Conta le SCENE, e solo quelle. La prima stesura contava ogni chiave di primo livello
+   `  nome: {`, che pesca anche gli oggetti di ITEMS e le ricette: in un gioco stampava
+   «145 scene» dove CAMPAIGN ne ha 133, cioe 133 scene piu 12 oggetti. Come guardia
+   funzionava comunque (confronta un numero con lo stesso numero di prima), ma il numero
+   che stampava era falso — e un numero falso in un messaggio di collaudo e peggio di
+   nessun numero, perche lo si cita. Qui si conta solo da dove cominciano i blocchi delle
+   scene, cioe dopo la testa del file. */
 function contaScene(testo) {
-  return (testo.match(/^  [a-z0-9_]+: \{$/gm) || []).length;
+  const inizio = testo.search(/^const SCENE_[A-Z]/m);
+  const corpo = inizio >= 0 ? testo.slice(inizio) : testo;
+  return (corpo.match(/^  [a-z0-9_]+: \{$/gm) || []).length;
 }
 const nuovo = parts.join('\n');
 const dest = join(root, 'js/campaign.js');
