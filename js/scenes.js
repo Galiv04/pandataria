@@ -870,6 +870,22 @@ const Scenes = (() => {
         ctx.fillStyle = 'rgba(255,240,198,.14)'; ctx.fillRect(fx + 2, cigli, 1, waterY - cigli);
         fx += fw;
       }
+      /* I SEGNI DEGLI SCALPELLI, che sono la firma di questo posto e che il testo della
+         scena nomina per primi: «righe verticali regolari su tutta la parete. Ogni riga e
+         un uomo con un martello, duemila anni fa». Nel quadro, prima, le righe che si
+         vedevano erano ORIZZONTALI — il reticolo di blocks() a dodici pixel — e la parete
+         leggeva come muratura di conci. Il testo diceva una cosa e il quadro un'altra.
+         Cento colpi verticali, corti, di lunghezza diversa e mai allineati: la regolarita
+         sta nella direzione, non nella griglia. */
+      for (let k = 0; k < 110; k++) {
+        const x = (r() * cliffW) | 0;
+        const da = cigli + 4 + (r() * (waterY - cigli - 40) | 0);
+        const lung = 18 + (r() * 70 | 0);
+        ctx.fillStyle = `rgba(104,72,28,${0.09 + r() * 0.12})`;
+        ctx.fillRect(x, da, 2, Math.min(lung, waterY - da - 2));
+        ctx.fillStyle = 'rgba(255,244,206,.09)';
+        ctx.fillRect(x + 2, da, 1, Math.min(lung, waterY - da - 2));
+      }
       // IL CIGLIO, che adesso si vede contro il cielo: una riga di tufo chiaro,
       // le sterpaglie secche e due case bianche sul bordo, come stanno davvero
       ctx.fillStyle = '#e0bc78'; ctx.fillRect(0, cigli - 5, cliffW, 7);
@@ -942,16 +958,29 @@ const Scenes = (() => {
           ctx.fillStyle = 'rgba(255,240,198,.24)'; ctx.fillRect(bs, y, 1, 1);
           ctx.fillStyle = 'rgba(96,68,30,.26)'; ctx.fillRect(bs + 1, y, 2, 1);
         }
-        for (const ff of [0.34, 0.70]) {                       // le facce verticali della cava
-          const fxx = Math.round(spx + (W - spx) * ff);
-          ctx.fillStyle = 'rgba(96,68,30,.24)'; ctx.fillRect(fxx, spTop, 2, waterY - spTop);
-          ctx.fillStyle = 'rgba(255,240,198,.14)'; ctx.fillRect(fxx + 2, spTop, 1, waterY - spTop);
+        /* Terza stesura della faccia, dopo il collaudo: «e una GRIGLIA REGOLARE, righe
+           orizzontali ogni otto pixel piu due giunti verticali per tutta l'altezza —
+           legge come muro costruito, non come parete di tufo scalpellata». Vero, e la
+           causa era proprio quella regolarita: due facce verticali continue piu una riga
+           orizzontale ogni diciassette fanno un reticolo, e un reticolo e muratura.
+           Il Porto Romano e SCAVATO, e la sua firma sono le striature VERTICALI degli
+           scalpelli — corte, di lunghezza diversa, mai allineate — piu gli strati di
+           cenere, che sono orizzontali ma irregolari e non passano da parte a parte. */
+        for (let k = 0; k < 46; k++) {                          // i colpi di scalpello, verticali
+          const x = spx + 5 + (r() * (W - spx - 8) | 0);
+          const da = spTop + 4 + (r() * (waterY - spTop - 30) | 0);
+          const lung = 14 + (r() * 46 | 0);
+          ctx.fillStyle = `rgba(104,72,28,${0.10 + r() * 0.13})`;
+          ctx.fillRect(x, da, 2, Math.min(lung, waterY - da - 2));
+          ctx.fillStyle = 'rgba(255,244,206,.10)';
+          ctx.fillRect(x + 2, da, 1, Math.min(lung, waterY - da - 2));
         }
-        for (let y = spTop + 9; y < waterY - 6; y += 17) {      // gli stessi segni di scalpello
-          ctx.fillStyle = 'rgba(104,72,28,.20)'; ctx.fillRect(prof[y] + 4, y, W, 2);
+        for (let k = 0; k < 9; k++) {                           // gli strati, che non attraversano
+          const y = spTop + 8 + (r() * (waterY - spTop - 20) | 0);
+          const x0 = spx + 2 + (r() * 30 | 0);
+          ctx.fillStyle = `rgba(96,68,30,${0.12 + r() * 0.10})`;
+          ctx.fillRect(x0, y, (W - x0) * (0.45 + r() * 0.55), 2);
         }
-        ctx.fillStyle = 'rgba(70,48,20,.34)';                  // il piede, dove entra in acqua
-        ctx.fillRect(prof[waterY - 14] + 5, waterY - 24, W, 24);
         ctx.fillStyle = '#e0bc78'; ctx.fillRect(prof[spTop], spTop - 5, W, 7);
         ctx.fillStyle = 'rgba(255,246,214,.30)'; ctx.fillRect(prof[spTop], spTop - 5, W, 2);
         sterpaglie(ctx, prof[spTop] + 6, spTop - 4, W - prof[spTop] - 10, '#8a8a52', r, 7);
@@ -960,6 +989,39 @@ const Scenes = (() => {
       sea(ctx, W, waterY, quayY, '#0e3038', '#134048', r, 7, 0.3);
       ctx.fillStyle = 'rgba(200,160,88,.13)';
       for (let y = waterY + 2; y < quayY; y += 6) ctx.fillRect(0, y, cliffW, 3);
+      /* IL PIEDE DELLA SPALLA, disegnato QUI e non dentro il suo blocco: il mare si dipinge
+         DOPO la spalla, quindi la fascia bagnata, le alghe e il riflesso finivano sotto
+         l'acqua e sullo schermo restava la riga retta di prima. Un difetto di ORDINE, non
+         di disegno — e per due render di seguito ho creduto che il codice non funzionasse. */
+      {
+        const spx2 = Math.round(W * 0.885);
+          /* IL PIEDE. Il collaudo: «la spalla finisce su un taglio orizzontale perfettamente
+             rettilineo che coincide col cambio di banda dell'acqua, senza ombra portata,
+             senza filo di bagnasciuga, senza detrito». Era una lastra appoggiata sul mare.
+             Servono quattro cose, e sono le stesse di qualunque cosa che entra nell'acqua:
+             la fascia BAGNATA piu scura appena sopra il pelo, il filo di alghe, il riflesso
+             che scende nell'acqua sotto, e il detrito caduto ai piedi. */
+          for (let x = spx2 - 6; x < W; x++) {
+            const onda = Math.round(Math.sin(x * 0.09) * 1.6 + (r() - 0.5) * 1.4);
+            const pelo = waterY + onda;
+            for (let k = 0; k < 16; k++) {                        // la fascia bagnata che schiarisce salendo
+              ctx.fillStyle = `rgba(58,40,16,${0.34 - k * 0.020})`;
+              ctx.fillRect(x, pelo - 16 + k, 1, 1);
+            }
+            // il filo di alghe: a .44 su tre pixel leggeva come ERBA, un prato sul pelo
+          // dell'acqua. Un filo di alghe su una parete e una riga scura sottile e sfrangiata.
+          if (r() > 0.30) { ctx.fillStyle = 'rgba(40,56,36,.30)'; ctx.fillRect(x, pelo - 1, 1, 1 + (r() > 0.7 ? 1 : 0)); }
+            for (let k = 0; k < 9; k++) {                        // il riflesso nell'acqua ferma
+              ctx.fillStyle = `rgba(200,160,88,${0.16 - k * 0.017})`;
+              if (r() > 0.35) ctx.fillRect(x, pelo + 2 + k * 2, 1, 2);
+            }
+          }
+          for (let k = 0; k < 14; k++) {                          // il detrito ai piedi della cava
+            const x = spx2 - 6 + 2 + (r() * (W - spx2 - 6 - 6) | 0);
+            ctx.fillStyle = shade('#b08c4a', 0.66 + r() * 0.34);
+            ctx.fillRect(x, waterY - 3 - (r() * 5 | 0), 3 + (r() * 5 | 0), 3);
+          }
+      }
       /* LE BARCHE: di legno, ormeggiate lungo la parete. Erano quattro rettangoli
          identici allineati alla stessa altezza — adesso hanno il profilo (barchetta()),
          lunghezze e colori diversi, la prua girata da parti diverse e una quota d'acqua
@@ -2226,15 +2288,44 @@ const Scenes = (() => {
          dal buio: si riconosce dal FONDO. Sotto il bordo c'è la fascia buia che il
          bordo stesso fa d'ombra, e più sotto il fondo di tufo che prende luce piena —
          e fra i due si legge la profondità. Il buio da solo non dice niente. */
+      /* Seconda stesura, dopo il collaudo: «a 1x le tre celle dentro una cornice chiara
+         continua leggono come UN PANNELLO CON TRE FINESTRE SCURE, e la vasca non ha un
+         dentro: e una nicchia in un muro visto di faccia». Vero, e la cosa che mancava
+         non era il buio giusto: era la PROSPETTIVA. Una vasca la si riconosce da una cosa
+         sola — il fondo che si STRINGE allontanandosi — piu la parete di fondo che prende
+         luce e quella vicina che sta in ombra. Tre rettangoli concentrici non lo diranno
+         mai, per bravi che siano i toni.
+         E ci va dentro un dito d'acqua ferma, perche e una peschiera e perche il testo
+         della scena dice che l'acqua adesso e tutta ferma. */
       for (let i = 0; i < 3; i++) {
-        const vx = W * 0.03 + i * W * 0.045, vy = H * 0.78, vw = W * 0.040;
-        ctx.fillStyle = '#b8a882'; ctx.fillRect(vx - 3, vy - 3, vw + 6, 40);        // il bordo scavato
-        ctx.fillStyle = 'rgba(255,252,230,.30)'; ctx.fillRect(vx - 3, vy - 3, vw + 6, 3);
-        ctx.fillStyle = '#5e5442'; ctx.fillRect(vx, vy, vw, 34);                    // la parete di fondo
-        ctx.fillStyle = '#433b2c'; ctx.fillRect(vx, vy, vw, 13);                    // l'ombra del bordo
-        ctx.fillStyle = '#83795d'; ctx.fillRect(vx + 4, vy + 23, vw - 8, 11);       // IL FONDO, al sole
-        ctx.fillStyle = 'rgba(255,250,222,.20)'; ctx.fillRect(vx + 4, vy + 23, vw - 8, 2);
-        ctx.fillStyle = 'rgba(28,24,16,.40)'; ctx.fillRect(vx, vy, 4, 34);          // lo spigolo interno
+        const vx = Math.round(W * 0.03 + i * W * 0.048), vy = Math.round(H * 0.78);
+        const vw = Math.round(W * 0.042), vh = 36, fuga = 7;
+        // la vera del bordo, tutt'attorno: e la cosa che prende piu luce
+        ctx.fillStyle = '#c3b28c'; ctx.fillRect(vx - 4, vy - 4, vw + 8, vh + 8);
+        ctx.fillStyle = 'rgba(255,252,230,.34)'; ctx.fillRect(vx - 4, vy - 4, vw + 8, 3);
+        // il vano: per righe, e ogni riga piu strettadella precedente andando in su
+        for (let y = 0; y < vh; y++) {
+          const t = y / (vh - 1);
+          const stretta = Math.round((1 - t) * fuga);
+          const x0 = vx + stretta, larg = vw - stretta * 2;
+          if (larg < 4) continue;
+          // in alto la parete di fondo, che prende luce; scendendo si passa al fondo
+          ctx.fillStyle = t < 0.42
+            ? mix('#6a5f49', '#8d8265', t / 0.42)
+            : mix('#8d8265', '#a2977a', (t - 0.42) / 0.58);
+          ctx.fillRect(x0, vy + y, larg, 1);
+        }
+        // l'ombra della vera sulla parete di fondo: tre righe, non una fascia
+        for (let k = 0; k < 4; k++) {
+          ctx.fillStyle = `rgba(36,30,20,${0.34 - k * 0.07})`;
+          ctx.fillRect(vx + fuga - k, vy + k, vw - (fuga - k) * 2, 1);
+        }
+        // gli spigoli interni: quello a sinistra in ombra, quello a destra in luce
+        ctx.fillStyle = 'rgba(30,26,16,.34)'; ctx.fillRect(vx, vy + fuga, 3, vh - fuga);
+        ctx.fillStyle = 'rgba(255,250,222,.16)'; ctx.fillRect(vx + vw - 3, vy + fuga, 2, vh - fuga);
+        // IL DITO D'ACQUA sul fondo, ferma: una riga scura e una riga di cielo dentro
+        ctx.fillStyle = 'rgba(46,62,58,.52)'; ctx.fillRect(vx + 2, vy + vh - 7, vw - 4, 6);
+        ctx.fillStyle = 'rgba(168,200,208,.26)'; ctx.fillRect(vx + 3, vy + vh - 7, vw - 6, 2);
       }
       // IL NINFEO sul filo del precipizio: un cubo di roccia aperto sul mare da
       // tre archi che non ci sono più, e venti gradi invece di trentaquattro.
