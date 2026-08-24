@@ -1194,6 +1194,12 @@ scenarios.push(scenario(
   ['gaetano', 'claudia'],
   {},
   {
+    /* E LA ROBA COSTRUITA. Questo scenario deve arrivare in fondo con il Quaderno
+       pieno, e per arrivare in fondo bisogna vincere l'ultimo scontro: senza le
+       ricette il gruppo lo perdeva tre volte su tre e finiva in `e_abbandono`,
+       dove i flag del giorno sono gia' riavvolti. Le ricette sono la strada che
+       il gioco stesso indica per quello scontro. */
+    craft: 'tutto',
     verify: (r, expect) => {
       expect(r.log.flags.ciro_in_squadra, 'Ciro non è mai entrato in squadra');
       expect(r.log.ending, 'nessun finale raggiunto');
@@ -1250,6 +1256,18 @@ scenarios.push(scenario(
   },
   {
     craft: 'tutto',
+    /* LE PROVE, FORZATE A RIUSCIRE. Questo scenario verifica IL QUADERNO, non i
+       dadi: con le prove nuove il percorso perdeva l'attenzione del Coro per
+       strada (undici porte aperte, una stanza saltata) e arrivava al boss finale
+       con +2 ai colpi e +6 PV contro — e la partita finiva in `e_abbandono`,
+       cioe' con i flag riavvolti dal checkpoint e i tre premi mai assegnati.
+       Un test che verifica una cosa non deve poter fallire per un'altra. */
+    checkOutcomes: {
+      b1: 'success', b2_incidere: 'success',
+      d0: 'success', d3_traghetto: 'success', d4_ciclo2: 'success', d5_ada: 'success',
+      d10_ciclo3: 'success', d12_bambina: 'success', d13_cinque_secondi: 'success',
+      d13_ancora: 'success', d14_sosta1: 'success',
+    },
     verify: (r, expect) => {
       const f = r.log.flags;
       expect(f.i_iscrizione && f.i_seconda && f.i_registro_acqua && f.i_eco_misurata,

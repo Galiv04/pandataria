@@ -2513,8 +2513,8 @@ Trentuno. Trentatré.
 
 Lo stacca al trentaseiesimo. Un secondo prima della fine, che è peggio di zero secondi prima della fine, perché il trentasettesimo lo avete sentito lo stesso: è l'ultimo mezzo respiro di una cosa che ha smesso di respirare nel 1943, e adesso sta nella pergola delle Parracine, all'una meno venti di notte, con due bicchieri e un piatto di taralli.
 
-**(💪 TENUTA −2. 🎵 Attenzione del Coro +1: sono passati trentasei secondi invece di ventitré, e li hanno contati in due. Il Quaderno segna che il registratore ha il tasto rotto — e chi lo sa, la prossima volta, stacca prima.)**`,
-    attenzione: 1,
+**(💪 TENUTA −2. 🫁 Fiato −2: sono passati trentasei secondi invece di ventitré, e li hanno contati in due. Il Quaderno segna che il registratore ha il tasto rotto — e chi lo sa, la prossima volta, stacca prima.)**`,
+    gold: -2,
     sets: { tasto_rotto: true },
     choices: [
       { text: '🌙 Andare a dormire. Domani è il trenta, ed è l\'ultimo giorno', next: 'c15_dopo' },

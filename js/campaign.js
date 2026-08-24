@@ -4503,8 +4503,8 @@ Il metodo è giusto. L'esecuzione no: Gaetano batte prima di avviare il cronomet
 
 Il file resta: tre colpi, tre silenzi, e in mezzo la voce di un uomo di quarantadue anni che dice *"vaffanculo"* con una tenerezza che non si può spiegare a chi non c'era.
 
-**(🎵 Attenzione del Coro +1: tre colpi in un vano di pietra si sentono comunque. La misura no.)**`,
-    attenzione: 1,
+**(🫁 Fiato −2: mezz'ora di esperimento sbagliato, in un vano di pietra, con la sensazione di essere ascoltati mentre lo si sbaglia. La misura non c'è.)**`,
+    gold: -2,
     choices: [
       { text: '🎧 Claudia: rispondere. Dire una parola e vedere cosa fa', next: 'b3_rispondere' },
       { text: '🚶 Uscire. Al sole. La misura la si rifà domani, con la testa', next: 'b4' },
@@ -7211,8 +7211,8 @@ Trentuno. Trentatré.
 
 Lo stacca al trentaseiesimo. Un secondo prima della fine, che è peggio di zero secondi prima della fine, perché il trentasettesimo lo avete sentito lo stesso: è l'ultimo mezzo respiro di una cosa che ha smesso di respirare nel 1943, e adesso sta nella pergola delle Parracine, all'una meno venti di notte, con due bicchieri e un piatto di taralli.
 
-**(💪 TENUTA −2. 🎵 Attenzione del Coro +1: sono passati trentasei secondi invece di ventitré, e li hanno contati in due. Il Quaderno segna che il registratore ha il tasto rotto — e chi lo sa, la prossima volta, stacca prima.)**`,
-    attenzione: 1,
+**(💪 TENUTA −2. 🫁 Fiato −2: sono passati trentasei secondi invece di ventitré, e li hanno contati in due. Il Quaderno segna che il registratore ha il tasto rotto — e chi lo sa, la prossima volta, stacca prima.)**`,
+    gold: -2,
     sets: { tasto_rotto: true },
     choices: [
       { text: '🌙 Andare a dormire. Domani è il trenta, ed è l\'ultimo giorno', next: 'c15_dopo' },
@@ -7302,8 +7302,8 @@ Claudia si mette a sedere e guarda la stanza: la sacca aperta, il phon che non s
     recharge: true,
     sets: { d_ultimo_giorno: true, ciclo: 1 },
     choices: [
-      { text: '🍶 La bottiglia dell\'acqua sul tavolino: ieri notte alle due se ne era bevuto mezzo litro', next: 'd0_bottiglia' },
-      { text: '👕 I vestiti piegati sulla sedia, con la piega delle maniche in dentro: li piega lei, e non li ha piegati', once: true, sets: { d_vestiti: true }, next: 'd0_bottiglia' },
+      { text: '🍶 La bottiglia dell\'acqua sul tavolino: ieri notte alle due se ne era bevuto mezzo litro', tag: 'Prova di INTELLIGENZA — CD 10 (ricordarsi il livello esatto di una bottiglia che hai guardato mezzo addormentato)', check: { stat: 'INT', dc: 10, success: 'd0_bottiglia', fail: 'd0_niente' } },
+      { text: '👕 I vestiti piegati sulla sedia, con la piega delle maniche in dentro: li piega lei, e non li ha piegati', tag: 'Prova di INTELLIGENZA — CD 11 (accorgersi che una cosa giusta è al posto sbagliato è più difficile che accorgersi di una cosa sbagliata)', check: { stat: 'INT', dc: 11, success: 'd0_bottiglia', fail: 'd0_niente' }, once: true, sets: { d_vestiti: true } },
       { text: '🫂 Niente. Dieci minuti così, senza alzarsi e senza cercare niente', once: true, gold: 2, next: 'd0_bottiglia' },
     ],
   },
@@ -7588,7 +7588,7 @@ E poi il ventilatore a pale gira piano, ed entra un'aria che sa di limone e di s
 
 **(⚠️ Non c'è niente da segnare. Nessun oggetto, nessun indizio, nessun danno, nessun mostro. È esattamente questo il problema.)**`,
     choices: [
-      { text: '🌅 Restare in coperta a guardare l\'isola che se ne va', gold: 1, next: 'd4_ciclo2' },
+      { text: '🌅 Restare in coperta a guardare l\'isola che se ne va', tag: 'Prova di SAGGEZZA — CD 10 (guardare un\'isola che se ne va, sapendo quello che sapete, e non voltarsi)', check: { stat: 'SAG', dc: 10, success: 'd4_ciclo2', fail: 'd3_voltarsi' } },
       { text: '☕ Scendere al bar del traghetto: due caffè e un cornetto di plastica', heal: 3, gold: 1, next: 'd4_ciclo2' },
     ],
   },
@@ -7635,7 +7635,7 @@ E dal piano di sotto, dalla cucina, si sente Ada che mette la moka sul fuoco.
     sets: { ciclo1_fatto: true, ciclo: 2 },
     choices: [
       { text: '📷 Riguardare la foto della bottiglia di stamattina — di STAMATTINA', requires: { flag: 'd_prova' }, once: true, sets: { d_prova_regge: true }, gold: 1, next: 'd5_ada' },
-      { text: '🧾 Cercare il biglietto nella sacca e guardare il tagliando', once: true, sets: { d_biglietto_intero: true }, next: 'd5_ada' },
+      { text: '🧾 Cercare il biglietto nella sacca e guardare il tagliando', once: true, sets: { d_biglietto_intero: true }, tag: 'Prova di INTELLIGENZA — CD 10 (un tagliando di traghetto strappato a metà: la metà che conta è quella che non hai)', check: { stat: 'INT', dc: 10, success: 'd5_ada', fail: 'd3_voltarsi' } },
       { text: '🫂 Dirlo ad alta voce, in faccia all\'altro: "sta succedendo, e non siamo pazzi"', once: true, heal: 5, gold: 2, next: 'd5_ada' },
       { text: '☕ Giù da Ada. Adesso', next: 'd5_ada' },
     ],
@@ -7667,7 +7667,7 @@ Fuori dalla finestra il mare è alto di uno scalino, e sul tavolo ci sono tre ta
     sets: { sa_la_corda: true, d_acqua_alta: true },
     choices: [
       { text: '☕ Sedersi e bere il caffè con lei, senza chiedere niente, per due minuti', heal: 4, gold: 2, next: 'd5_lista' },
-      { text: '🌊 "Di quanto è salito, signora? Esatto: me lo dica in centimetri"', once: true, sets: { scalino_misurato: true }, next: 'd5_lista' },
+      { text: '🌊 "Di quanto è salito, signora? Esatto: me lo dica in centimetri"', once: true, tag: 'Prova di CARISMA — CD 11 (ad Ada il mare è salito «fino al terzo scalino», e i centimetri sono una cosa da terraferma)', check: { stat: 'CAR', dc: 11, success: 'd5_lista', fail: 'd5_scalino' }, sets: { scalino_misurato: true } },
       { text: '🤲 Prendere la caffettiera e versare la terza tazzina, quella che nessuno ha chiesto', once: true, heal: 3, gold: 1, next: 'd5_lista' },
     ],
   },
@@ -8981,7 +8981,7 @@ Canta piano, con la faccia in su, e nell'aria aperta la sua voce arriva sottilis
     choices: [
       { text: '🎵 Cantarle la seconda strofa. Quella che nessuno le ha mai cantato', requires: { item: 'ninnananna' }, next: 'd12_dorme' },
       { text: '🕯 Chiamarla per nome: "Assuntina". E dirle che la barca è arrivata', requires: { flag: 'i_nome_lista' }, next: 'd12_nome' },
-      { text: '🫂 Risponderle. Dirle la verità: "Abbiamo paura pure noi. Tantissima."', once: true, damage: 3, gold: 1, next: 'd12_boss' },
+      { text: '🫂 Risponderle. Dirle la verità: "Abbiamo paura pure noi. Tantissima."', once: true, tag: 'Prova di SAGGEZZA — CD 12 (dire la verità a una bambina è facile; dirla senza spaventarla di più, no)', check: { stat: 'SAG', dc: 12, success: 'd12_boss', fail: 'd12_troppo_vera' }, damage: 3, gold: 1 },
       { text: '🔦 Non avete niente da cantarle. Accendere la luce e prepararsi', goldLoss: 1, next: 'd12_boss' },
     ],
   },
@@ -9153,7 +9153,7 @@ Trentuno nodi e la cima trova.
     choices: [
       { text: '🫧 Scendere col bombolino riparato: tre litri, duecento bar, quattro minuti', requires: { item: 'bombola_riparata' }, requiresGold: 10, tag: '(serve il bombolino riparato e 10 di 🫁 fiato)', next: 'd13_apnea' },
       { text: '🫁 Scendere in apnea pura, senza bombola, con quello che avete in petto', requiresGold: 17, tag: '(senza bombola servono 17 di 🫁 fiato — e sarà appena appena)', next: 'd13_apnea' },
-      { text: '🥨 Risalire in barca: taralli, acqua, venti minuti fermi al sole. Poi si riprova', once: true, gold: 4, heal: 6, next: 'd13_fossa' },
+      { text: '🥨 Risalire in barca: taralli, acqua, venti minuti fermi al sole. Poi si riprova', once: true, tag: 'Prova di COSTITUZIONE — CD 10 (risalire da meno diciotto senza aver finito è più faticoso che scendere)', check: { stat: 'COS', dc: 10, success: 'd13_fossa', fail: 'd13_risalita_storta' }, gold: 4, heal: 6 },
       { text: '🥃 [Ciro] Farsi versare due dita di rum e sentirsi dire com\'è finita Marisa', requires: { hero: 'ciro' }, once: true, gold: 2, heal: 4, sets: { ciro_racconta_marisa: true }, next: 'd13_fossa' },
       { text: '⚓ Non oggi. Mollare la cima, rientrare al porto e decidere lì', next: 'd15_uscite' },
     ],
@@ -9316,7 +9316,7 @@ La cima, sotto il guanto, c'è ancora: è l'unica cosa in tutta la fossa che sta
 Uno dei due la sente in mano. L'altro no.`,
 
     choices: [
-      { text: '🪢 Tirare la cima. Con due mani, con la schiena, coi piedi puntati sulla lamiera', next: 'd13_cima_vuota' },
+      { text: '🪢 Tirare la cima. Con due mani, con la schiena, coi piedi puntati sulla lamiera', tag: 'Prova di FORZA — CD 12 (a quarantacinque metri la forza è quella che hai, e in più c\'è la muta)', check: { stat: 'FOR', dc: 12, success: 'd13_cima_vuota', fail: 'd13_cima_ferma', failDamage: 2 } },
       { text: '🔦 Spazzare il grigio col fascio prima di tirare: tre secondi, non uno di più', once: true, goldLoss: 1, next: 'd13_cima_vuota' },
       { text: '✋ Battere due colpetti sulla lamiera col manico del coltello: il segnale che usate da dieci anni', once: true, sets: { colpetti_dati: true }, next: 'd13_cima_vuota' },
     ],
@@ -9376,7 +9376,7 @@ Poi l'Àncora tace, perché era per un uso solo, ed è stato quello.
     reviveAll: true,
     sets: { ancora_ha_funzionato: true },
     choices: [
-      { text: '⬆️ Su. Alla sosta dei dieci metri, insieme', next: 'd14_coro' },
+      { text: '⬆️ Su. Alla sosta dei dieci metri, insieme', tag: 'Prova di COSTITUZIONE — CD 11 (trentacinque metri di risalita con quello che vi resta in petto e nella bombola)', check: { stat: 'COS', dc: 11, success: 'd14_coro', fail: 'd13_risalita_lenta' } },
     ],
   },
 
@@ -9878,7 +9878,7 @@ Sette minuti sono quattrocentoventi secondi: il tempo di una canzone e mezza. So
         requires: { hero: 'gaetano' }, once: true, sets: { sosta_misurata: true }, gold: 1, next: 'd14_sosta2' },
       { text: '🫂 Maschera contro maschera, faccia a faccia, e respirare insieme', once: true, heal: 4, next: 'd14_sosta2' },
       { text: '🔦 Spegnere le torce. Tutte e due. Venti secondi', once: true, sets: { torcia_spenta: true }, next: 'd14_sosta2' },
-      { text: '⏱ Contare. Solo contare, fino alla fine', next: 'd14_sosta2' },
+      { text: '⏱ Contare. Solo contare, fino alla fine', tag: 'Prova di SAGGEZZA — CD 11 (sette minuti a dieci metri, con qualcosa che canta sotto, e il conto che deve restare un conto)', check: { stat: 'SAG', dc: 11, success: 'd14_sosta2', fail: 'd14_perso_il_conto' } },
     ],
   },
 
@@ -10119,6 +10119,11 @@ Il corridoio delle Parracine ha sei porte. Le contano da fuori, dal fondo, tutte
     goldLoss: 1,
     sets: { i_porta_aperta: true },
     choices: [
+      /* E LA STRADA PER LE UNDICI PORTE. Il ramo «hai saltato una stanza» ha un
+         seguito naturale — le rifai tutte, con calma — e il seguito è peggio
+         del fallimento: tornano tutte. Senza questa uscita la scena delle undici
+         porte era orfana, cioè scritta per nessuno. */
+      { text: '🚪 Rifarle. Tutte e undici, dalla prima, con calma e contando ad alta voce', once: true, next: 'd10_undici_stanze' },
       { text: '🏠 Giù in paese. Fuori da questa casa, adesso', next: 'd11_vuoto' },
     ],
   },
@@ -10178,6 +10183,254 @@ Restano fermi in mezzo al diving vuoto, con una muta appesa a un gancio, e per l
     sets: { misura_solo_confermata: true },
     choices: [
       { text: '📋 Sul bancone c\'è dell\'altro. Le carte', next: 'd11_registro' },
+    ],
+  },
+
+/* ============================================================================
+   LE NOVE SCENE DI FALLIMENTO dell'atto D. È l'atto del 30 agosto che non
+   finisce, e qui una prova fallita non può quasi mai essere «si torna indietro»:
+   il giorno ricomincia comunque. Quindi il costo è quello giusto per questo
+   atto — una cosa che NON hai visto, una frase detta male, un minuto perso a
+   quarantacinque metri.
+   ========================================================================== */
+
+  d0_niente: {
+    location: 'notte',
+    caption: 'Le Parracine — le sette e dieci, e tutto è a posto',
+    stinger: 'fail',
+    text: `I vestiti sono piegati sulla sedia con la piega delle maniche in dentro.
+
+È il modo in cui li piega Claudia, ed è giusto, ed è per questo che non ci si fa caso: le cose sbagliate si notano, le cose giuste al posto sbagliato no.
+
+Gaetano li guarda per due secondi e pensa *"li ha piegati lei"*, che è vero tutte le mattine tranne questa, perché stamattina lei si è alzata dopo di lui e non si è avvicinata alla sedia.
+
+Il pensiero passa. La giornata comincia.
+
+> Claudia: *(dal bagno)* "Che ore sono?"
+
+> Gaetano: "Le sette e dieci."
+
+> Claudia: "...eh."
+
+Il *"eh"* dura mezzo secondo di troppo, e neanche a quello si fa caso.
+
+**(Nessun dettaglio per il Quaderno stamattina. Il gioco non ve lo dice adesso: ve lo farà notare più tardi, quando la sedia sarà l'unica cosa che vi resta da guardare.)**`,
+    choices: [
+      { text: '🍶 La bottiglia dell\'acqua sul tavolino, allora', next: 'd0_bottiglia' },
+      { text: '🫂 Niente. Dieci minuti così, senza alzarsi e senza cercare niente', once: true, gold: 2, next: 'd0_bottiglia' },
+    ],
+  },
+
+  d5_scalino: {
+    location: 'bnb',
+    caption: 'La cucina delle Parracine — i centimetri non esistono',
+    stinger: 'fail',
+    text: `> Gaetano: "Di quanto è salito, signora? Esatto: me lo dica in centimetri."
+
+Ada posa la caffettiera. Non si offende — Ada non si offende mai — ma fa la faccia di una a cui hanno chiesto di che colore è martedì.
+
+> Ada: "Dottò. Il mare non sale in centimetri. Il mare sale fino al terzo scalino, o fino al secondo, o fino a dove sta la corda di mio marito buonanima. I centimetri li tenete voi."
+
+> Gaetano: "...e il terzo scalino quanto è alto?"
+
+> Ada: "E che ne saccio. È il terzo."
+
+Restano lì tutti e tre — Ada, Gaetano e la caffettiera — in un silenzio che non è imbarazzato, è solo di due lingue diverse che parlano dello stesso mare.
+
+Claudia, dal tavolo, dice la cosa che risolve: *"Signora, ce lo fa vedere?"*. E allora sì. Ma nel frattempo sono passati sei minuti, e alle otto meno cinque del 30 agosto sei minuti sono sei minuti.
+
+**(Nessuna misura per il Quaderno. Ma il Quaderno segna la lezione di Ada, che vale più di un numero: *i centimetri li tenete voi.* E segna anche che a quella domanda ha risposto Claudia.)**`,
+    sets: { lezione_di_ada: true },
+    choices: [
+      { text: '👀 "Signora, ce lo fa vedere?" — e andare a guardare lo scalino insieme', next: 'd5_lista' },
+      { text: '☕ Sedersi e bere il caffè con lei, senza chiedere più niente', heal: 4, gold: 2, next: 'd5_lista' },
+    ],
+  },
+
+  d10_undici_stanze: {
+    location: 'bnb',
+    caption: 'Le Parracine — undici porte, e tornano tutte',
+    stinger: 'fail',
+    text: `Undici stanze. Le apre tutte, una per una, e il problema non è che una non torna: è che tornano tutte.
+
+Il letto della quattro rifatto con l'angolo dell'ospedale, che è come lo fa Ada. Gli asciugamani della sette piegati a tre. Il cartellino della sei col nome scritto a matita e cancellato tre volte, che è normale, perché i nomi cambiano ogni settimana.
+
+Undici stanze giuste, in un B&B dove non c'è nessuno da tre giorni.
+
+> Gaetano: *(fermo nel corridoio, con la mano ancora sulla maniglia dell'undici)* "Sono tutte in ordine."
+
+> Claudia: "E allora?"
+
+> Gaetano: "E allora chi le tiene in ordine."
+
+Non è una domanda a cui si può rispondere in un corridoio alle sette e venti del mattino, quindi nessuno risponde, e si scende. Ma qualcosa in quelle undici stanze c'era, e non era la cosa in disordine: era che una delle undici era stata rifatta **stamattina**, e a distinguerla dalle altre dieci serviva guardare l'unica cosa che a Gaetano non è venuto in mente di guardare — l'umidità sotto le brocche.
+
+**(Nessun indizio, e undici minuti che non tornano. Il Fiato non lo tocca: aprire delle porte non è un'immersione — ma le sette e venti diventano le sette e trentuno, e oggi il tempo è l'unica cosa che si consuma davvero.)**`,
+    choices: [
+      { text: '☕ Bere il caffè che qualcuno ha fatto per voi. Tutto. In piedi', once: true, gold: 2, heal: 4, next: 'd11_vuoto' },
+      { text: '🚪 Scendere in paese. È il 30 agosto, di nuovo, e c\'è da fare', next: 'd11_vuoto' },
+    ],
+  },
+
+  d12_troppo_vera: {
+    location: 'barca',
+    caption: 'Sopra la fossa — la verità detta tutta',
+    stinger: 'fail',
+    text: `> Gaetano: "Abbiamo paura pure noi. Tantissima. Non sappiamo se ne usciamo, non sappiamo cosa c'è là sotto, e ogni volta che scendiamo—"
+
+Non finisce la frase, perché sull'acqua, a nove metri dalla barca, l'increspatura che c'era **non c'è più.**
+
+Non se n'è andata: si è **ferma**. Come si ferma un bambino a cui hai detto una cosa che non doveva sentire.
+
+> Claudia: *(pianissimo)* "Gaetano."
+
+> Gaetano: "...ho sbagliato."
+
+> Claudia: "Le hai detto che gli adulti hanno paura. Aveva sei anni nel 1943, amore. Gliel'aveva già detto qualcuno, quella cosa, e le si era rotto il mondo."
+
+Ci vogliono quattro minuti perché l'increspatura ricominci. Quattro minuti sopra una fossa di quarantacinque metri, in una barca di sei, con due persone che non si guardano.
+
+Poi ricomincia. Più piccola.
+
+> Claudia: *(all'acqua, senza chiedere il permesso a nessuno)* "Non a te. Noi abbiamo paura di quello che c'è sotto. Di te no. Di te mai."
+
+E allora l'increspatura si allarga di nuovo.
+
+**(💪 TENUTA −3: quattro minuti così si pagano. Ma la frase che rimette a posto le cose la dice Claudia, e il Quaderno la scrive con il suo nome accanto.)**`,
+    sets: { claudia_ha_rimesso_a_posto: true },
+    choices: [
+      { text: '🔦 Accendere la luce e prepararsi. Adesso si scende', next: 'd12_boss' },
+    ],
+  },
+
+  d13_risalita_storta: {
+    location: 'barca',
+    caption: 'Risalita da meno diciotto, senza aver finito',
+    stinger: 'fail',
+    text: `Risalire senza aver finito è più faticoso che scendere, e non per i muscoli: per la testa, che tutto il tempo ripete *stai tornando su a mani vuote*.
+
+Gaetano risale troppo in fretta negli ultimi otto metri. Non abbastanza da farsi male sul serio: abbastanza da arrivare in superficie con quel mal di testa dietro gli occhi che si prende quando si sale male, e con le dita che formicolano.
+
+Ciro lo guarda dalla barca prima ancora che si tolga la maschera.
+
+> Ciro: "Siete salito storto."
+
+> Gaetano: "Sto bene."
+
+> Ciro: *(già versando l'acqua)* "Non ho detto che state male. Ho detto che siete salito storto. Bevete, statevi fermo quaranta minuti, e non mi guardate l'orologio."
+
+Quaranta minuti fermi al sole, con l'acqua e i taralli, alle undici e mezza del 30 agosto, e la fossa lì sotto che aspetta.
+
+Sono quaranta minuti veri e il gioco non ve li sconta. Ma sono anche quaranta minuti in cui Ciro racconta di sua sorella, e quelli non li avreste avuti.
+
+**(💪 TENUTA −2 per la testa. 🫁 Fiato +6: quaranta minuti fermi al sole con l\'acqua e i taralli fanno esattamente quello che devono fare. E si sente una storia che non era in programma.)**`,
+    gold: 6,
+    damage: 2,
+    sets: { ciro_sorella_raccontata: true },
+    choices: [
+      { text: '🤿 Adesso sì. Giù, e stavolta fino in fondo', next: 'd13_fossa' },
+    ],
+  },
+
+  d13_cima_ferma: {
+    location: 'relitto',
+    caption: 'Meno quarantacinque — la cima non viene',
+    stinger: 'fail',
+    text: `Due mani, la schiena, i piedi puntati sulla lamiera.
+
+La cima non viene. Non è incastrata: è **tenuta**, e la differenza fra le due cose la sente nei polsi chiunque abbia mai tirato una cima incastrata.
+
+Una cosa incastrata cede a scatti. Una cosa tenuta cede quando decide.
+
+Gaetano tira per undici secondi — undici, li conta perché a quarantacinque metri si conta tutto — poi lascia, perché a quarantacinque metri l'unica cosa più stupida di tirare una cima che non viene è tirarla per dodici.
+
+Il manometro dice quarantasei bar. Il briefing diceva di risalire a sessanta.
+
+> *(Non c'è dialogo, quaggiù. C'è una mano guantata che si apre e lascia andare la cima, e il fascio della torcia che si alza verso la superficie, e il rumore delle bolle che è l'unico rumore del mondo.)*
+
+E mentre si stacca dalla lamiera, la cima — che nessuno sta più tirando — **rientra.** Di trenta centimetri. Da sola.
+
+**(💪 TENUTA −2 per le mani. 🫁 Fiato −2: undici secondi di sforzo massimo a quarantacinque metri costano più di quanto costerebbero in superficie, ed è per questo che quaggiù non si tira due volte. Il Quaderno registra la cosa peggiore: *la cima è rientrata da sola.*)**`,
+    gold: -2,
+    sets: { cima_rientrata: true },
+    choices: [
+      { text: '⬆️ Su. Alla sosta dei dieci metri, e non guardare giù', next: 'd13_ancora' },
+    ],
+  },
+
+  d13_risalita_lenta: {
+    location: 'relitto',
+    caption: 'Trentacinque metri, e la bombola dice quello che dice',
+    stinger: 'fail',
+    text: `Trentacinque metri di risalita si fanno in tre minuti e mezzo, se si hanno tre minuti e mezzo d'aria.
+
+A meno venti il manometro entra nella zona rossa, e a meno quindici Gaetano fa la cosa che si fa: batte due dita sul manometro e lo gira verso Claudia, perché quaggiù una cosa che si dice a gesti è più vera di una cosa che si dice a parole.
+
+Lei guarda. Poi si stacca l'erogatore di scorta dal fianco e glielo mette in mano, senza chiedere, senza contrattare, senza uno di quei momenti che nei film durano tre secondi.
+
+Salgono a due su una bombola per gli ultimi quindici metri, faccia a faccia, con un braccio ciascuno intorno all'altro perché a respirare insieme si sale insieme o non si sale.
+
+Alla sosta dei dieci metri sono ancora così.
+
+> *(Non c'è niente da dire, e infatti nessuno dice niente. Ma quello che il Coro sente, per sette minuti a dieci metri, sono due persone che respirano dalla stessa aria — e non è un rumore che gli piace.)*
+
+**(🫁 Fiato −2: la risalita è costata quello che costa. Ma il Quaderno registra la cosa che conta: *hanno respirato dalla stessa bombola per quindici metri*, e nella scena che segue questo pesa.)**`,
+    gold: -2,
+    sets: { stessa_bombola: true },
+    choices: [
+      { text: '⬆️ Alla sosta. Sette minuti a dieci metri, e sotto qualcosa canta', next: 'd14_coro' },
+    ],
+  },
+
+  d14_perso_il_conto: {
+    location: 'fossa',
+    caption: 'La sosta — al quattrocentododicesimo',
+    stinger: 'fail',
+    text: `Sette minuti a dieci metri fanno quattrocentoventi secondi, e il modo per farli è contarli.
+
+Gaetano conta. Arriva a quattrocentododici e perde il conto, e non lo perde perché si distrae: lo perde perché **qualcuno conta con lui**, mezzo numero indietro, e al quattrocentododicesimo il mezzo numero indietro diventa mezzo numero **avanti**.
+
+Ricomincia da capo. È l'unica cosa che si può fare, ed è anche la cosa che quel qualcuno voleva.
+
+Il secondo conto arriva a duecentonovanta. Il terzo a centosette.
+
+Al quarto Claudia gli prende la mano e gliela stringe una volta ogni secondo, e per centoquaranta secondi il conto è quello: la sua mano, non la voce.
+
+Salgono con quaranta secondi di sosta in meno e con l'aria contata, e a due metri dalla superficie il sole delle cinque e mezza entra nell'acqua e fa la cosa che fa: sembra normale.
+
+**(🫁 Fiato −2, e la sosta non è stata completa: nella scena che viene il corpo se ne ricorderà. Il Quaderno segna che il conto, alla fine, l'ha tenuto lei — con la mano.)**`,
+    gold: -2,
+    sets: { conto_con_la_mano: true },
+    choices: [
+      { text: '⬆️ Su. Gli ultimi dieci metri, e poi il sole', next: 'd14_sosta2' },
+    ],
+  },
+
+  d3_voltarsi: {
+    location: 'traghetto',
+    caption: 'In coperta — l\'isola che se ne va',
+    stinger: 'fail',
+    text: `Guardare un'isola che se ne va è facile. Guardarla sapendo quello che sapete, e non voltarsi, no.
+
+Gaetano resta in coperta e la guarda per undici minuti, e all'undicesimo fa la cosa che si era ripromesso di non fare: cerca con gli occhi, sul costone sopra il porto, il punto esatto in cui sta la bocca della sesta cisterna.
+
+Lo trova. È un'ombra fra due parracine, larga come una porta, a duecento metri sul livello del mare.
+
+E l'ombra, a due miglia di distanza, dal ponte di un traghetto che va a diciotto nodi, **è più grande di come l'aveva lasciata.**
+
+> Claudia: *(che è arrivata alle sue spalle e ha seguito lo sguardo)* "Gaetano. Non guardarla."
+
+> Gaetano: "È aperta di più."
+
+> Claudia: "Non. Guardarla."
+
+Si voltano tutti e due insieme, e guardano la prua, e il mare davanti, e Ponza che comincia a farsi vedere a dritta. Ma il pomeriggio è cambiato, e la sera in albergo a Formia sarà una sera di due persone che non parlano molto.
+
+**(Undici minuti a fissare una cosa che si allarga non sono riposo, e il pomeriggio è cambiato. Il Quaderno registra quello che ha visto — e il gioco, più tardi, ci torna.)**`,
+    sets: { bocca_piu_grande: true },
+    choices: [
+      { text: '☕ Scendere al bar. Due caffè e un cornetto di plastica, e parlare d\'altro', heal: 3, gold: 2, next: 'd4_ciclo2' },
+      { text: '🌊 Restare a prua. Guardare avanti, che è l\'unica direzione che non fa male', next: 'd4_ciclo2' },
     ],
   },
 

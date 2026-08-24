@@ -2637,8 +2637,8 @@ Il metodo è giusto. L'esecuzione no: Gaetano batte prima di avviare il cronomet
 
 Il file resta: tre colpi, tre silenzi, e in mezzo la voce di un uomo di quarantadue anni che dice *"vaffanculo"* con una tenerezza che non si può spiegare a chi non c'era.
 
-**(🎵 Attenzione del Coro +1: tre colpi in un vano di pietra si sentono comunque. La misura no.)**`,
-    attenzione: 1,
+**(🫁 Fiato −2: mezz'ora di esperimento sbagliato, in un vano di pietra, con la sensazione di essere ascoltati mentre lo si sbaglia. La misura non c'è.)**`,
+    gold: -2,
     choices: [
       { text: '🎧 Claudia: rispondere. Dire una parola e vedere cosa fa', next: 'b3_rispondere' },
       { text: '🚶 Uscire. Al sole. La misura la si rifà domani, con la testa', next: 'b4' },
