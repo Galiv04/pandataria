@@ -1220,6 +1220,7 @@ Claudia guarda per due minuti interi senza dire una parola.
 
   a6: {
     location: 'paese',
+    notturno: true,
     caption: 'Il paese, di sera — ore 21:30',
     text: `Il paese di sera è una cosa che ti fa pensare di volerci vivere.
 
@@ -1252,6 +1253,7 @@ Sulla via del ritorno passano davanti al forno che sta già impastando per doman
 
   a6_porto: {
     location: 'porto',
+    notturno: true,
     caption: 'Il terzo pontile — ore 23:15',
     text: `Il porto di notte è più bello che di giorno. L'acqua nera e liscia dentro la cava di tufo, le luci che si rompono in mille pezzi giallo, e una quiete piena di rumori piccoli: cime che scricchiolano, un motore che gira al minimo, qualcuno che ride su una barca.
 
@@ -1362,7 +1364,6 @@ La stessa di Cala Nave. Bassa, lunga, pulita. Due secondi e mezzo.
 Stavolta la sentono in due.
 
 **(⚠️ 🎵 L'attenzione del Coro sale per la prima volta: non perché abbiate fatto qualcosa, ma perché adesso la sentite in due, e una cosa sentita in due è una cosa che ha attaccato.)**`,
-    silenzio: true,
     stinger: 'coro',
     attenzione: 1,
     sets: { nota_da_terra: true },
@@ -1375,6 +1376,7 @@ Stavolta la sentono in due.
 
   a7_ada_notte: {
     location: 'bnb',
+    notturno: true,
     caption: 'Ada, all\'una di notte',
     text: `La luce della cucina è accesa. Ada è in piedi davanti al lavello con un bicchiere d'acqua in mano, e non sta bevendo: sta ferma.
 
@@ -1443,7 +1445,6 @@ Poi guarda Claudia che dorme sulla sedia di plastica, con la bocca aperta e i ca
   a8_mezzosecondo: {
     location: 'terrazza',
     caption: 'Mezzo secondo',
-    silenzio: true,
     stinger: 'voce_amata',
     text: `Volume al massimo. Cuffie. Il cursore che torna indietro di mezzo secondo, ancora e ancora, su una fetta di forma d'onda larga come un'unghia.
 
@@ -1474,6 +1475,7 @@ Poi la sveglia piano — "amore, andiamo a letto" — e la porta dentro tenendol
 
   a9: {
     location: 'bnb',
+    notturno: true,
     caption: 'La stanza, ore 02:10 — fine del primo giorno',
     stinger: 'heal',
     text: `Il ventilatore a pale gira piano. Il lenzuolo è fresco, la finestra è aperta, entrano le cicale e l'odore del limone in vaso.

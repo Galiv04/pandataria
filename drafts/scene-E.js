@@ -824,7 +824,6 @@ E sul frigo, attaccati con la calamita del Parco Nazionale, ci sono due bigliett
 
 **(⚠️ Non è una resa e il gioco non vi giudica. Sotto c'è ancora tutto quello che c'era, e adesso il Coro è più stanco di voi. Ma i biglietti sono sul frigo da tre giorni, e nessuno vi obbliga a scendere un'altra volta.)**`,
     stinger: 'penna',
-    silenzio: true,
     sets: { tre_volte_rimessi_a_posto: true },
     choices: [
       { text: '🌊 Ci scendiamo. Un\'altra volta, e questa è l\'ultima', next: 'RIPRENDI_CHECKPOINT' },

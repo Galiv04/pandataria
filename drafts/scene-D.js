@@ -536,6 +536,7 @@ Ada, in cucina, sposta la caffettiera sul marmo. Il catino cigola sulla scaletta
 Nessuno dei due ha ancora detto la parola «ieri».`,
 
     choices: [
+      { text: '⏱ Il caffè si è sentito cadere prima. Misurarlo: seconda tazzina, cronometro, e Ada che versa un\'altra volta', requires: { flag: 'sa_anticipo' }, once: true, next: 'd1_riprodotto' },
       { text: '🫂 Sotto il tavolo, una mano sul ginocchio dell\'altro, e tenerla lì', heal: 3, gold: 1, next: 'd1_colazione_eco' },
       { text: '🥨 Farsi mettere in tasca il sacchetto di taralli, come ieri, con le stesse parole', once: true, item: 'taralli', gold: 1, next: 'd1_colazione_eco' },
       { text: '🫘 Contarli. I fagiolini nel catino, uno per uno, prima che risalga la scaletta: ventidue, come giovedì', once: true, sets: { d_fagiolini_visti: true }, next: 'd1_colazione_eco' },
@@ -1061,6 +1062,7 @@ Non c'è un lampo, non c'è un buio, non c'è nessun effetto: il numero passa da
     gold: 1,
     sets: { d_esperimento_fatto: true },
     choices: [
+      { text: '🖊 Prima di alzare gli occhi dallo schermo: dire l\'ora ad alta voce, tutti e due insieme, perché era scritta', requires: { flag: 'registro_visite' }, once: true, gold: 2, sets: { ora_prevista: true }, next: 'd10_ciclo3' },
       { text: '🌊 Allora si scende. E si scende oggi', next: 'd10_ciclo3' },
       { text: '🫂 Prima cinque minuti abbracciati al buio, senza dire una parola', once: true, heal: 6, gold: 2, next: 'd10_ciclo3' },
     ],
@@ -1181,6 +1183,7 @@ Sul bancone, sotto la fotografia, c'è un registro aperto a metà, con la biro a
 **(Oggetto: un sacco di CALCE, dal cantiere della strada per Punta Eolo. 🎵 Attenzione del Coro +1: un'isola vuota vi sta guardando girare.)**`,
     item: 'calce',
     choices: [
+      { text: '📋 Sul bancone, sotto il registro, c\'è una cartella a molla con dei moduli prestampati', requires: { flag: 'sa_di_marisa' }, once: true, next: 'd11_moduli' },
       { text: '📖 Il registro sul bancone. Aprirlo all\'ultima pagina scritta', next: 'd11_registro' },
       { text: '🍽 Entrare nella cucina della Marisqueria e mangiare come si deve, l\'ultima volta', once: true, gold: 3, heal: 8, next: 'd11_registro' },
       { text: '🤿 Staccare la muta dal gancio e guardarci dentro: taglia, cuciture, il nome scritto col pennarello', once: true, sets: { muta_guardata: true }, next: 'd11_registro' },
@@ -1265,7 +1268,6 @@ Ha la faccia di una signora di settantacinque anni che ha fatto le pulizie per c
 > "Mo' te faccio 'na domanda. Si m'a 'nnovini, te dico una cosa ca t'aiuta. Si nun m'a 'nnovini, nun te dico niente e vaje pe' 'a strada tua, ca è 'na strada brutta."
 
 **(🗝 Un indovinello, in dialetto, da una signora coi fagiolini, in una piazza vuota. Se lo prendete, lei vi dice l'unica cosa che vi serve sapere prima di scendere.)**`,
-    silenzio: true,
     minigame: {
       type: 'indovinello',
       success: 'd11_signora_ok',
@@ -1397,9 +1399,102 @@ Claudia non dice niente. Gaetano, dietro di lei, mette una mano sulla sua spalla
 **(💪 TENUTA +4. E adesso sapete che la bambina che canta sotto quest'isola porta il nome di metà delle donne che ci sono nate — che è il modo in cui questo gioco vi dice, senza dirlo, che laggiù non c'è un mostro: c'è una di loro.)**`,
     heal: 4,
     sets: { sa_nome_assunta: true },
-    silenzio: true,
     choices: [
       { text: '🪞 Al porto', next: 'd11_specchio' },
+    ],
+  },
+
+  /* IL GIORNO NON SI RIPETE: SI RIPRODUCE. Il testo di d1_colazione_bis diceva «di quel poco
+     che si sente e non si puo' dimostrare», che in questo gioco e' una resa: Gaetano dimostra
+     le cose per mestiere, e l'anticipo l'ha gia' misurato sul nastro. Qui il numero torna una
+     terza volta, su una caffettiera, in cucina, alle otto e ventisei. */
+  d1_riprodotto: {
+    location: 'terrazza',
+    caption: 'La terrazza — la seconda tazzina, ore 08:26',
+    stinger: 'penna',
+    metri: 0,
+    text: `> Gaetano: "Ada. Me ne fa un'altra?"
+
+> Ada: *(che non chiede perché, e questa è la ragione per cui in questa storia lei è un rifugio)* "Te ne faccio tre, se te le bevi."
+
+Il telefono sta sul tavolo con il registratore aperto e lo schermo in giù. Gaetano guarda solo la mano di Ada.
+
+Il suono del caffè che cade nella tazzina sta sulla traccia a **00:11,3**. La caffettiera si inclina a **00:12,7**.
+
+Un secondo e quattro decimi.
+
+Lo rifà con la terza tazzina. Un secondo e quattro decimi. Lo rifà con il cucchiaino sul bordo del piattino, che è un suono più netto e si misura meglio: un secondo e quattro decimi.
+
+> Claudia: "È il numero del nastro."
+
+> Gaetano: "È il numero del nastro." *(e mette giù il telefono e non lo riprende)* "Claudia, un giorno che si ripete lo sbaglia, prima o poi. Sbaglia un'albicocca, sbaglia una parola, sbaglia un fagiolino. Questo non sbaglia niente e arriva sempre un secondo e quattro decimi in ritardo su se stesso."
+
+> Claudia: "Dillo semplice."
+
+> Gaetano: "Non si ripete. Si **riproduce**. C'è una registrazione, e noi stiamo un secondo e quattro decimi dietro alla registrazione."
+
+Claudia guarda la sua tazzina. Poi guarda la scaletta dove la signora dei fagiolini non c'è più.
+
+> Claudia: "Quindi quello che sto per dirti adesso sta già scritto da qualche parte."
+
+> Gaetano: "Sì."
+
+> Claudia: "E anche questo."
+
+> Gaetano: "Anche questo."
+
+**(🫁 Fiato +1, 💪 TENUTA −3. Il Quaderno registra la terza misura dello stesso anticipo: un secondo e quattro decimi, su una caffettiera, alle otto e ventisei. 🎵 L'attenzione del Coro non si muove: misurare la giornata non gli toglie una nota, perché la giornata non è sua — è la registrazione a essere sua, e quella l'avete solo capita.)**`,
+    gold: 1,
+    damage: 3,
+    sets: { giorno_riprodotto: true },
+    choices: [
+      { text: '📹 Filmare la signora e sovrapporre l\'audio di ieri sulla stessa traccia', once: true, next: 'd1_confronto' },
+      { text: '🕳 Alla cisterna dei Detenuti. Con un numero in testa e la tazzina finita', next: 'd6_cisterna' },
+    ],
+  },
+
+  /* I MODULI DEL DIVING. `sa_marisa` — quello che si prende strappandolo ad Ada con una prova
+     di Carisma a CD 13 — non lo leggeva nessuno. Qui e' il cancello, e la ricompensa e' la
+     carta che riguarda OGGI: non una cosa interrotta, una pratica AVVIATA. La cosa non li
+     vuole morti, li vuole presenti — e per essere presenti serve un modulo. */
+  d11_moduli: {
+    location: 'paese',
+    caption: 'Il diving — la cartella a molla, ore 08:55',
+    stinger: 'pressione',
+    metri: 0,
+    text: `Nella cartella a molla ci sono i moduli del diving: due facciate fotocopiate, intestazione col logo, e in cima la riga *SCHEDA DI IMMERSIONE E DICHIARAZIONE DI RESPONSABILITÀ*.
+
+I primi due sono compilati.
+
+Stampatello maiuscolo, penna nera, la calligrafia di uno abituato a riempire moduli tutto il giorno. Cognome, nome, luogo e data di nascita: giusti. Brevetto: la casella *nessuno* barrata per lei, e per lui *primo livello — 2019*, che è vero e non se lo ricordava nemmeno lui. *Contatto in caso di emergenza*: sua sorella per lei, con il numero giusto; sua madre per lui, con il numero giusto.
+
+*Profondità massima richiesta:* **45 m.**
+
+*Data:* oggi.
+
+Alla riga della firma non c'è una firma. C'è un timbro, di quelli a tampone che si fanno fare in cartoleria per venti euro, battuto nello spazio dove va la firma.
+
+**RICHIESTA ACQUISITA**
+
+> Claudia: "Nessuno ci ha chiesto niente."
+
+> Gaetano: *(che ha girato il foglio due volte cercando il retro, e il retro è bianco)* "No. Dice acquisita, non accolta. È la formula che usano gli uffici quando una cosa è arrivata e sta in coda."
+
+Sotto i loro due c'è un terzo modulo. Stessa fotocopia, carta ingiallita, data **23 settembre 1997**, nome **CORAGGIO MARISA**, brevetto istruttore, profondità richiesta 45.
+
+Quello è firmato. Firma vera, larga, con lo svolazzo.
+
+E sopra la firma, nello stesso punto dei loro, lo stesso timbro.
+
+**(🎵 Attenzione del Coro +1. 💪 TENUTA −4, 🫁 Fiato −2: leggere il proprio nome su un modulo che non si è compilato toglie l'aria in un modo che non ha niente a che fare con l'acqua. Il Quaderno registra le tre schede, la profondità richiesta e il timbro. E registra la differenza fra le due date: Marisa ha firmato. Voi no, e non è servito.)**`,
+    attenzione: 1,
+    damage: 4,
+    goldLoss: 2,
+    sets: { moduli_compilati: true },
+    choices: [
+      { text: '📋 Prendere la scheda di Marisa e portarsela via. Le altre due lasciarle dove stanno', once: true, gold: 2, sets: { scheda_di_marisa: true }, next: 'd11_specchio' },
+      { text: '✏️ Barrare la casella dei quarantacinque metri e scriverci accanto: ZERO. Con la loro penna', once: true, damage: 2, gold: 2, next: 'd11_specchio' },
+      { text: '🪑 Rimettere tutto nella cartella e chiudere la molla', next: 'd11_specchio' },
     ],
   },
 
@@ -1433,6 +1528,7 @@ E il corpo fa la cosa che fa il corpo quando l'occhio trova l'errore: si ferma, 
 **(💪 TENUTA +10 e mosse ricaricate: quella cosa ha copiato tutto, e ha copiato anche allo specchio — trovare l'errore rimette in piedi. Ciò che viene GUARDATO per intero perde il diritto di cambiare forma.)**`,
 
     choices: [
+      { text: '⏱ Il cronometro. Riprenderla e guardare la bocca contro la voce, come si guarda un doppiaggio fuori sincrono', requires: { flag: 'sa_anticipo' }, once: true, next: 'd11_anticipo' },
       { text: '📸 Inquadrarla adesso, prima che parli: treppiede, luce, e tutta dentro il fotogramma', once: true, sets: { specchio_documentato: true }, next: 'd11_specchio_parla' },
       { text: '🫂 Voltarle la schiena e guardare solo lui, tenendogli la faccia con due mani', heal: 4, gold: 2, next: 'd11_specchio_parla' },
       { text: '👂 Lasciarla parlare. Tutto quello che ha da dire, fino in fondo', next: 'd11_specchio_parla' },
@@ -1468,6 +1564,48 @@ Claudia non risponde.
       { text: '🎙 "Me l\'ha detto lui. In cisterna, da solo, senza che glielo chiedessi": la verità detta regge', requires: { flag: 'verita_detta' }, once: true, heal: 5, gold: 2, next: 'd11_boss' },
       { text: '🕳 Lei sa la cosa che Gaetano non ha detto. Lasciarglielo dire e restare in piedi', requires: { flag: 'bugia_detta' }, once: true, damage: 4, sets: { bugia_pagata: true }, next: 'd11_boss' },
       { text: '🗣 Rispondere: "Hai ragione. Ho paura. E scendo comunque"', heal: 2, gold: 1, next: 'd11_boss' },
+    ],
+  },
+
+  /* IL NUMERO CHE TORNA. `sa_anticipo` — un secondo e quattro decimi, misurato tre volte sul
+     nastro alle Parracine — non lo leggeva nessuno; e `sorpresa` (js/combat.js: «primo giro
+     con VANTAGGIO agli attacchi») era un premio del motore che NESSUNA scena poteva dare, e
+     stava nascosto dentro la whitelist del validatore fra i flag «che li imposta il motore»,
+     quindi invisibile a tutti e due i controlli. Si pagano insieme, ed e' lo stesso
+     fenomeno: quella cosa non parla in ritardo, parla in ANTICIPO. */
+  d11_anticipo: {
+    location: 'paese',
+    caption: 'Il tavolino sotto il fico — un secondo e quattro decimi',
+    stinger: 'penna',
+    metri: 0,
+    text: `Gaetano non discute con lei e non la guarda in faccia: fa la cosa che sa fare. Appoggia il telefono al muretto, inquadra il tavolino, blocca l'esposizione e riprende ventidue secondi.
+
+Poi si mette in un angolo di piazza vuota, con Claudia addosso alla spalla, e guarda il girato a un quarto di velocità.
+
+La bocca dell'altra dice *amore*. La parola nell'audio arriva **prima** che le labbra si aprano.
+
+Non di un fotogramma: di trentacinque. A venticinque al secondo fa un secondo e quattro decimi.
+
+> Gaetano: "Un virgola quattro."
+
+> Claudia: "Come il nastro."
+
+> Gaetano: "Come il nastro. Stessa cifra, misurata su due macchine diverse a ventun ore di distanza." *(e per la prima volta da giovedì la sua faccia non è quella di uno che ha paura: è quella di uno al lavoro)* "Claudia, quella non parla dopo aver deciso. Parla e **poi** decide di muovere la bocca. Vuol dire che la frase esiste prima."
+
+> Claudia: "E quindi?"
+
+> Gaetano: "E quindi la sappiamo un secondo e quattro decimi prima di lei." *(le gira lo schermo)* "La prossima cosa che dice è *facciamo come vuoi tu*."
+
+Un secondo e quattro decimi dopo, dal tavolino sotto il fico, arriva: *«Va bene, amore. Facciamo come vuoi tu.»*
+
+Claudia non ha nemmeno il tempo di avere paura. Ha il tempo di alzare la ring light.
+
+**(⚡ IL VANTAGGIO. Adesso avete un secondo e quattro decimi su quella cosa, e non è un modo di dire: **il primo giro dello scontro lo fate con vantaggio agli attacchi**, e il registro del combattimento lo scriverà per esteso. È il numero del nastro, misurato una seconda volta su una macchina diversa. 🫁 Fiato +1: avere un numero, per lui, è riposare.)**`,
+    gold: 1,
+    sets: { sorpresa: true, specchio_smascherato: true, anticipo_usato: true },
+    choices: [
+      { text: '💡 Alzare la luce. Adesso, mentre siamo avanti', next: 'd11_boss' },
+      { text: '📼 Prima salvare il file in tre copie, che è la regola', once: true, gold: 1, next: 'd11_boss' },
     ],
   },
 
@@ -1787,7 +1925,7 @@ Il Coro non canta. Nessuno parla. Nessuna faccia ai bordi dell'inquadratura.
 
 Il silenzio, quaggiù, è il modo che ha questa cosa per dirvi che ha smesso di fingere di essere un rumore.
 
-**(Oggetto: il CAVALLINO DI CELLULOIDE. 🫁 Fiato −4: quarantacinque metri si pagano. Il Quaderno registra il giocattolo dalla stiva, e il mistero della bambina della Santa Lucia ha il suo quarto indizio.)**`,
+**(Oggetto: il CAVALLINO DI CELLULOIDE. 🫁 Fiato −4: quarantacinque metri si pagano. Il Quaderno registra il giocattolo dalla stiva, e il mistero della bambina della Santa Lucia ha il suo quarto indizio. 🔇 Terza e ultima volta che il gioco spegne la musica. Da qui in avanti, se il suono manca, è perché manca.)**`,
     sets: { i_giocattolo: true },
     choices: [
       { text: '🤝 Prenderle la mano. Cinque secondi, senza nessun motivo tecnico', once: true, next: 'd13_mano' },
@@ -1859,7 +1997,6 @@ Quello che dovete rompere non è lei. È la presa.
     caption: 'Cinque secondi in più — meno quarantacinque metri',
     metri: 45,
     stinger: 'voce_amata',
-    silenzio: true,
     text: `L'etichetta dice **SPINELLI ASSUNTA — NAPOLI**, e leggerla costa cinque secondi. A quarantacinque metri cinque secondi non sono un tempo: sono una quantità, e si toglie da un posto che ne aveva già poca.
 
 Il diaframma si chiude da solo. Non è volontà: è un muscolo che ha finito la pazienza, e ogni contrazione è un promemoria scritto in prima persona.
@@ -2061,7 +2198,6 @@ Poi lascia andare tutta l'aria che aveva in bocca per parlare, e non parla più 
     caption: 'Cinque secondi, senza nessun motivo tecnico',
     metri: 45,
     stinger: 'voce_amata',
-    silenzio: true,
     text: `Non c'è un motivo tecnico. È l'unica cosa di tutta la giornata che non ha un motivo tecnico.
 
 Claudia è in ginocchio sul sedimento con il cavallino chiuso in pugno, il fascio della torcia da casco dentro una valigia di cartone pressato, e a quarantacinque metri il corpo fa una cosa che non aveva mai fatto: comincia a contare da solo. Il battito rallenta. Le dita si aprono e si chiudono senza ordine.
@@ -2325,7 +2461,6 @@ Sette minuti sono quattrocentoventi secondi: il tempo di una canzone e mezza. So
     caption: 'La sosta — gli ultimi tre minuti',
     metri: 10,
     stinger: 'apnea',
-    silenzio: true,
     text: `Tre minuti. A dieci metri, con l'aria che basta, tre minuti sono una cosa lunghissima e non c'è niente da fare che li accorci.
 
 La superficie continua a essere là. Il disco di luce si muove piano, e ogni tanto una piccola onda lo taglia in due e poi lo rimette insieme.
@@ -2437,6 +2572,7 @@ Trenta metri di lamiera davanti. Dietro, la scaletta delle Parracine e il limone
 E la domanda è una sola: chi lo scrive, questo verbale.`,
 
     choices: [
+      { text: '📄 "Il verbale ce l\'abbiamo letto ieri. Ci hai messi NON RECLAMATI." — e appoggiare la pagina strappata sulla banchina bagnata, davanti all\'acqua', requires: { flag: 'non_reclamati' }, once: true, heal: 4, gold: 2, sets: { reclamati: true }, next: 'd15_uscite' },
       { text: '🕯 Rispondere al verbale con un nome: «Nicola Sperduto, quarantatré anni, rimasto in servizio. Questo non risulta a nessuno, e lo sappiamo noi.»',
         requires: { flag: 'sa_nome_guardia' }, once: true, heal: 6, gold: 2,
         sets: { verbale_rifiutato: true }, next: 'd15_uscite' },

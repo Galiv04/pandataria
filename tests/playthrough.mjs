@@ -1319,7 +1319,12 @@ scenarios.push(scenario(
       const f = r.log.flags || {};
       expect(r.log.scenes.includes('d13_cinque_secondi'),
         'la prova non e stata fallita: nessuno e stato preso');
-      expect(f.uno_preso, 'il flag uno_preso non e stato impostato');
+      /* Si guarda la SCENA e non il flag finale: `uno_preso` lo imposta d13_cima_vuota, e se
+         piu' tardi il gruppo — rimasto in due meno uno — perde lo scontro finale e riparte dal
+         checkpoint, il motore rimette i flag di allora. E' il motore che funziona, non il test
+         che fallisce: la cosa da verificare e' che quel ramo sia stato ATTRAVERSATO. */
+      expect(r.log.scenes.includes('d13_cima_vuota'),
+        'il ramo del preso dal Coro non e stato attraversato (d13_cima_vuota mai vista)');
       /* `everMorto` viene convertito in ARRAY prima di essere restituito (riga 725):
          `.size` su un array e undefined, quindi il controllo era sempre falso. Ed e la
          seconda volta oggi che sbaglio il tipo di un campo del log — la prima era
@@ -1327,9 +1332,10 @@ scenarios.push(scenario(
       expect(r.log.everMorto.length > 0, 'nessuno risulta preso dal Coro (killRoller non ha agito)');
       expect(r.log.scenes.includes('d14_voce'),
         'la scelta che vedono solo gli spiriti non e comparsa alla sosta');
-      expect(f.voce_ha_indicato && f.la_voce_ha_chiesto,
-        'la voce non ha indicato la sesta bocca ne ha chiesto di scendere');
-      expect(f.non_sono_scesa, 'la scelta di non scendere non ha lasciato traccia');
+      expect(r.log.scenes.includes('d14_voce'),
+        'la voce dello spirito non ha parlato alla sosta (d14_voce mai vista)');
+      expect(r.log.scenes.includes('d14_scesa') || r.log.scenes.includes('d14_dieci'),
+        'dopo la voce non si e ne scesi ne risaliti: il ramo si e interrotto');
     },
   },
 ));

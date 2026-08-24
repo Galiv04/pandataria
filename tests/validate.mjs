@@ -140,7 +140,10 @@ section('Scelte, oggetti e flag');
    Tenere questo elenco allineato è parte del contratto: un flag non elencato e non
    impostato da nessuna scena è una porta che non si apre mai. */
 const FLAG_DEL_MOTORE = new Set([
-  'sorpresa', 'ciro_in_squadra', 'attenzione',
+  /* `sorpresa` era qui dentro e NON lo impostava il motore: era un premio di combat.js che
+     nessuna scena poteva dare, nascosto in una whitelist e quindi invisibile sia al controllo
+     dei flag morti sia a quello dei flag orfani. Adesso lo imposta d11_anticipo. */
+  'ciro_in_squadra', 'attenzione',
   'tornati_dal_checkpoint',                             // Engine.riprendiDaCheckpoint
   ...RECIPES.map(r => r.flag).filter(Boolean),          // impostati da Crafting.combine
   ...MISTERI.map(m => m.premio && m.premio.flag).filter(Boolean),  // impostati da Misteri.check
@@ -501,6 +504,28 @@ section('Ogni scena ha un\'uscita che non si consuma');
   if (!rischio) { ok(); console.log('  ✔ nessuna scena si chiude addosso a chi ci ritorna'); }
 }
 
+/* ---------- il silenzio si spende TRE volte, e il gioco lo dice al giocatore ---------- */
+/* docs/DESIGN.md §10.7: «Tre volte in tutto il gioco, in punti stabiliti, non c'e' musica e
+   non c'e' suono». E la cella 47 lo scrive in faccia al giocatore: «succede tre volte in
+   tutta la storia, e questa e' la seconda». Il 24 agosto 2026 le scene con `silenzio: true`
+   erano DICIOTTO. Due danni: alla quarta volta il silenzio non e' piu' un evento ma
+   l'impostazione audio del gioco, e quando arriva la stiva a quarantacinque metri — dove
+   deve essere insopportabile — il giocatore l'ha gia' sentito quattordici volte; e poi c'e'
+   un NUMERO FALSO in un messaggio al giocatore, che e' la cosa che questo progetto odia di
+   piu', perche' il giocatore conta (gliel'abbiamo insegnato per tre giorni) e il conto non
+   torna. Le tre sono: b8 (la cisterna murata), c5_cella (la 47), d13_stiva (i quarantacinque
+   metri). Nient'altro, mai. */
+section('Il silenzio si spende tre volte, non una in piu\'');
+{
+  const zitte = Object.entries(CAMPAIGN).filter(([, sc]) => sc.silenzio).map(([id]) => id);
+  const attese = ['b8', 'c5_cella', 'd13_stiva'];
+  const inatteso = zitte.filter(id => !attese.includes(id));
+  const mancanti = attese.filter(id => !zitte.includes(id));
+  if (inatteso.length) fail(`silenzio: true in scene non previste (${inatteso.join(', ')}): il gioco dice al giocatore che accade TRE volte, e il conto deve tornare`);
+  if (mancanti.length) fail(`manca silenzio: true in ${mancanti.join(', ')}: sono le tre di docs/DESIGN.md §10.7`);
+  if (!inatteso.length && !mancanti.length) { ok(); console.log('  ✔ il silenzio sta in tre scene, e sono le tre giuste'); }
+}
+
 /* ---------- paragrafi ripetuti dentro la stessa scena ---------- */
 /* PERCHE' ESISTE. Le scene si modificano con inserimenti chirurgici — un paragrafo nuovo
    prima di un'ancora — e quando l'ancora somiglia a quello che si sta inserendo capita di
@@ -632,7 +657,7 @@ section('Chiavi dei dati (niente campi che il motore non legge)');
 /* La lezione più costosa della serie: se inventi un campo e non lo implementi, il gioco
    non dà errore — semplicemente quella riga di dati non fa niente, e te ne accorgi giocando.
    Questa whitelist è il contratto: aggiungere una chiave qui richiede di implementarla. */
-const CHIAVI_SCENA = new Set(['location','caption','text','choices','gold','goldLoss','heal','damage',
+const CHIAVI_SCENA = new Set(['notturno','location','caption','text','choices','gold','goldLoss','heal','damage',
   'item','item2','sets','attenzione','stinger','silenzio','metri','combat','minigame','fullHeal',
   'recharge','freeAll','reviveAll','killRoller','poisonRoller','captureRoller','ending','unlockHero',
   'onEnterOnce', 'npc']);

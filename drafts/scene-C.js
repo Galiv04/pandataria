@@ -371,6 +371,7 @@ Ciro non si è avvicinato al pannello. Sta sotto l'arco, gira la faccia verso il
     attenzione: 1,
     sets: { sa_i_tre_piani: true },
     choices: [
+      { text: '🖊 Nella guardiola, sul ripiano, c\'è un registro aperto con la penna sopra', once: true, next: 'c3_registro_visite' },
       /* IL RITORNO AL POZZO, e serve per una ragione precisa. La scelta di c3_purgatorio che
          porta all'inferno e la scena di sconfitta della scala — c3_scalino, il quinto
          scalino dall'ultimo e i tre ritorni di cui il terzo viene da un piano vuoto — stanno
@@ -719,6 +720,7 @@ Claudia beve, tossisce, ride di quella risata sbagliata che viene dopo. Poi pass
     heal: 4,
     sets: { claudia_ascoltata: true },
     choices: [
+      { text: '🚪 Sulla porta della 44 c\'è ancora il portacartellino di ottone. Guardarci dentro', requires: { flag: 'porta_44_vista' }, once: true, next: 'c6_cartellino' },
       { text: '📚 L\'archivio, dietro la portineria', next: 'c7_archivio' },
       { text: '🕯 Sedersi fuori con Ciro: è ora che racconti', next: 'c8_ciro' },
       { text: '⛏ Il cimitero, prima che il sole si sposti', next: 'c9_cimitero' },
@@ -775,9 +777,12 @@ Gaetano se li mette davanti tutti e due, aperti, uno a destra e uno a sinistra, 
 Sullo scaffale basso, intanto, restano un quaderno d'infermeria con una grafia bellissima e una mazzetta di fatture legate con lo spago.`,
 
     choices: [
+      { text: '📋 Se qualcuno bussava, qualcuno l\'ha messo a verbale: cercare fra le carte di servizio', requires: { flag: 'sequenza_porte' }, once: true, next: 'c7_circolare' },
+      { text: '🕯 Sullo scaffale basso c\'è un registro sottile con la costa di tela: DEFUNTI', requires: { flag: 'fossa_rispettata', notFlag: 'i_osso' }, next: 'c9_registro_defunti' },
       { text: '📕 La 47. Su tutti e due i registri, alla stessa riga e alla stessa data', next: 'c7_quarantasette' },
       { text: '🕯 Prima il quaderno d\'infermeria: chi scrive così, in un posto così, va letto', once: true, heal: 3, next: 'c7_quarantasette' },
       { text: '🧱 Le fatture della calce: sacchi e sacchi, e l\'ordine più grosso è del novembre del quarantatré', once: true, next: 'c7_quarantasette' },
+      { text: '📖 Il PRESENZE non finisce dove finisce la rilegatura: girare fino all\'ultima pagina', once: true, next: 'c7_ultima_pagina' },
     ],
   },
 
@@ -1089,6 +1094,221 @@ Non corre. **Fa il giro.** E arriva uguale, perché il turno di notte non lo dec
 
   /* ==================== IL NASTRO ==================== */
 
+  /* LA STRADA DI CARTA PER L'OSSO. c9_rispetto dice al giocatore che l'indizio se lo deve
+     trovare «da un'altra parte», e da un'altra parte non c'era: `i_osso` aveva una sorgente
+     sola, la pala. Cioe' chi lasciava in pace una fossa comune — chi ha capito il gioco —
+     pagava il finale migliore, e il gioco gli aveva promesso per iscritto un'altra strada.
+     Adesso ce ne sono due, e non sono la stessa cosa: chi scava vede cinque bottoni, chi non
+     scava legge un timbro dell'ufficio del personale. La carta e' piu' cattiva del corpo. */
+  /* L'ULTIMA PAGINA. La tacca fresca della 47 (c5_graffito) era un sospetto e restava un
+     sospetto: qui diventa una riga compilata su un modulo, con la data di oggi, e il numero
+     non e' 1. Nessuna attenzione del Coro, e la ragione e' la cosa piu' fredda della scena:
+     non l'hanno svegliato loro. Era gia' scritto prima che arrivassero. */
+  /* IL CARTELLINO. `porta_44_vista` era il flag del momento in cui il mestiere di Claudia
+     batte i decimali di Gaetano, e non tornava da nessuna parte. Torna cosi': non si mostra
+     quell'uomo — la sofferenza dei morti si guarda con pieta', mai come spettacolo — si
+     legge il MODULO che lo riguardava. La formula sta su un cartoncino a quattro colonne, e
+     non l'ha inventata nessun fantasma. */
+  c6_cartellino: {
+    location: 'panopticon',
+    caption: 'Il portacartellino della 44',
+    stinger: 'penna',
+    text: `Ogni porta ha, a un metro e sessanta, una cornice di ottone larga come una mano: il portacartellino, dove sta il cartoncino con chi c'è dentro. Novantotto sono vuote, e in novantotto l'ottone è verde di ossido.
+
+Nella 44 il cartoncino c'è ancora. E l'ottone, lungo il bordo inferiore, è **lucido**: la striscia che fa il pollice di uno che ha tirato fuori e rimesso dentro lo stesso cartoncino qualche migliaio di volte.
+
+Quattro colonne a stampa, riempite a penna, con la grafia dell'impiegato che hanno già visto sui due registri.
+
+*Matricola:* un numero di cinque cifre.
+
+*Posizione giuridica:* una parola, scritta senza abbreviarla.
+
+*Provenienza:* Napoli, casa penale.
+
+*Fine pena:* e qui non c'è una data, perché per queste tre lettere il modulo prevedeva il timbro, e il timbro c'è, battuto bene, ben inchiostrato, dritto.
+
+**MAI**
+
+Claudia legge le quattro colonne una alla volta, ad alta voce, piano, come ha letto il pannello del Comune. Poi rimette il cartoncino dentro la cornice, e lo rimette dal verso giusto.
+
+> Claudia: "Gaetano, ce l'avevano un timbro. Un timbro fatto fare a posta, con dentro quella parola, perché serviva spesso."
+
+> Gaetano: "Novantanove celle."
+
+> Claudia: "Novantanove celle." *(e non tocca più niente)* "Quello che abbiamo appena colpito ha passato ventitré anni a quattro metri da un pezzo di ottone che diceva mai. Ad altezza occhi. Sul lato di fuori, dove lui non lo poteva leggere."
+
+**(🕯 Il Quaderno registra le quattro colonne del cartellino della 44, e registra che per l'ultima c'era un timbro. Nessun dado, nessun oggetto: 🫁 Fiato −1, e non lo recupererete leggendo un'altra carta.)**`,
+    goldLoss: 1,
+    sets: { fine_pena_mai: true },
+    choices: [
+      { text: '🚪 Chiudere la porta della 44. Accostarla, come si accosta la porta di uno che dorme', once: true, gold: 1, heal: 3, next: 'c7_archivio' },
+      { text: '📚 L\'archivio: quel numero di matricola sta su un registro', next: 'c7_archivio' },
+      { text: '🕯 Fuori con Ciro. Adesso', next: 'c8_ciro' },
+    ],
+  },
+
+  /* IL REGISTRO DELLE VISITE. Le 18:40 dell'atto D — il minuto in cui il trenta agosto si
+     riavvolge — arrivavano senza nessun preavviso. Adesso stanno in una colonna
+     prestampata, due giorni prima, scritte da qualcuno che sapeva anche i numeri di
+     documento. Non e' una minaccia: e' un modulo compilato. */
+  c3_registro_visite: {
+    location: 'panopticon',
+    caption: 'La guardiola — il registro delle visite, ore 10:26',
+    stinger: 'penna',
+    text: `Dentro la guardiola c'è un ripiano di formica verde, una sedia girevole senza una rotella, e un registro aperto con una biro appoggiata sopra la piega.
+
+È un registro moderno, di cartoleria, di quelli che si comprano al supermercato per dieci euro. Colonne prestampate: *Cognome e nome · Provenienza · N. documento · Ora d'ingresso · Ora d'uscita · Firma.*
+
+Le ultime visite guidate sono di giugno. Poi due pagine bianche.
+
+Poi l'ultima riga scritta, e la biro è quella.
+
+**Sabato 29 agosto.** Due nomi: il suo e il suo, scritti per esteso, con la provenienza giusta — *Scauri (LT)* — e i due numeri di documento **giusti**, cifra per cifra, compresa la lettera finale della carta d'identità di Claudia che nemmeno lei si ricorda mai.
+
+Ora d'ingresso: **10:05**. Che è l'ora in cui sono sbarcati, e sono le dieci e ventisei.
+
+La colonna della firma è vuota.
+
+La colonna dell'ora d'uscita, invece, è compilata. Stessa biro, stessa mano.
+
+**18:40**
+
+> Gaetano: *(che ha già il telefono in mano e sta fotografando prima di parlare, perché è il suo modo di non urlare)* "Alle diciotto e quaranta noi siamo a Ventotene. Ciro chiude alle sei. Non c'è nessuna barca dopo le sei."
+
+> Claudia: "Allora è sbagliata."
+
+> Gaetano: "Sono sbagliate le altre due colonne, Claudia. Quella è l'unica che non può essere sbagliata, perché **non è ancora successa**."
+
+**(🎵 Attenzione del Coro +1: qualcuno sapeva i vostri numeri di documento. 🫁 Fiato −1. Il Quaderno registra l'ora d'uscita scritta in anticipo: **18:40** — e tenetevela in testa, perché è un numero, e in questo gioco i numeri tornano.)**`,
+    attenzione: 1,
+    goldLoss: 1,
+    sets: { registro_visite: true },
+    choices: [
+      { text: '🖊 Prendere la biro e firmare tutti e due la colonna della firma', once: true, damage: 3, gold: 1, sets: { firmato_il_registro: true }, next: 'c5_cella' },
+      { text: '🖊 Cancellare l\'ora d\'uscita. Con la punta, girando la biro, finché il foglio non si buca', once: true, gold: 2, next: 'c5_cella' },
+      { text: '🚪 Non toccare niente e salire al purgatorio', next: 'c5_cella' },
+    ],
+  },
+
+  c7_ultima_pagina: {
+    location: 'panopticon',
+    caption: 'PRESENZE — l\'ultima pagina, ore 13:20',
+    stinger: 'pressione',
+    text: `Il **PRESENZE** ha due fascicoli, e questo si vede solo tenendolo aperto contro la finestra.
+
+Il primo è cucito con lo spago, ed è quello che hanno letto: la colonna dei 1 che arriva al 31 agosto 1965.
+
+Il secondo è **incollato**. Fogli aggiunti dopo, carta diversa, più bianca, con la colla che ha fatto le bolle e ha tirato la pagina. Nessuna intestazione a stampa: la griglia è tirata a mano, con la riga, colonna per colonna, uguale a quella stampata.
+
+E i 1 continuano. Senza date, riga dopo riga, per undici pagine, sempre la stessa mano e sempre la stessa pressione: quella di uno che appoggia la penna, fa il segno, e non guarda quello che ha scritto perché lo scrive da ventidue anni.
+
+L'ultima riga compilata ha una data. È l'unica di tutto il secondo fascicolo che ce l'ha: **29 agosto 2026**.
+
+E il numero, in quella riga, non è 1.
+
+> Claudia: "Due."
+
+> Gaetano: "Due."
+
+E nella colonna delle annotazioni — che in ottomila righe è vuota, sempre, in tutte le pagine di tutti gli anni — stavolta ci sono due parole, scritte piccole per starci dentro.
+
+**non reclamati**
+
+> Gaetano: *(e chiude il libro con due mani, piano, come si chiude una cosa che potrebbe avere ancora pagine)* "È la formula del cimitero. Sta sul muretto all'ingresso: il posto dove finiva chi non veniva reclamato da nessuno."
+
+> Claudia: "Noi non siamo morti."
+
+> Gaetano: "No. Siamo **presenti**. È una colonna diversa, ed è quella che tiene lui."
+
+**(💪 TENUTA −2, 🫁 Fiato −2. 🎵 L'attenzione del Coro NON sale, e la cosa da guardare è questa: stavolta non avete fatto rumore, non avete letto ad alta voce, non avete acceso niente. Era già scritto prima che arrivaste. Il Quaderno registra la riga del 29 agosto 2026, il numero 2, e le due parole nella colonna delle annotazioni.)**`,
+    damage: 2,
+    goldLoss: 2,
+    sets: { non_reclamati: true },
+    choices: [
+      { text: '✏️ Strappare la pagina. Adesso, con le due mani, e portarsela via', once: true, damage: 2, gold: 1, sets: { pagina_strappata: true }, next: 'c8_ciro' },
+      { text: '📖 Rimetterlo dove stava, con la costa allineata alle altre due', gold: 1, next: 'c8_ciro' },
+      { text: '⛏ Il cimitero. Se la formula è quella, il posto è quello', next: 'c9_cimitero' },
+    ],
+  },
+
+  c9_registro_defunti: {
+    location: 'panopticon',
+    caption: 'La stanza dei registri — ore 15:40, il libro più sottile',
+    stinger: 'penna',
+    text: `Sullo scaffale basso, dietro i due libroni, c'è un registro sottile con la costa di tela grigia e una parola sola scritta a pennello: **DEFUNTI**.
+
+Non è un libro di parole: è un modulo prestampato. Colonne verticali, intestazioni in corpo sei ripetute in cima a ogni pagina. *N. d'ordine · Matricola · Data del decesso · Causa · Fossa · Annotazioni.*
+
+Righe compilate: **trentanove**. E la colonna del nome non c'è. Non l'hanno lasciata in bianco: non l'hanno prevista. Chi ha disegnato il modulo, a tavolino, con la riga, ha deciso quante colonne servivano per seppellire un uomo, e il nome non era fra quelle.
+
+Poi c'è la quarantesima riga.
+
+Ha il numero d'ordine. Ha la fossa: *angolo di nord-est*. Non ha la matricola, perché la matricola la danno ai detenuti. E nella colonna della causa non c'è una grafia: c'è un **timbro** a tampone, battuto storto e ribattuto sopra perché la prima volta era venuto chiaro.
+
+**CESSAZIONE DEL SERVIZIO**
+
+> Claudia: *(che si è messa il dito sotto la riga e non lo alza)* "Gaetano. Questo timbro non è di un cimitero."
+
+> Gaetano: "No. È di un ufficio del personale." *(gira la pagina, e dietro non c'è niente)* "Uno è morto in una cella, e l'hanno archiviato come uno che ha smesso di lavorare. Con il timbro giusto. Perché il timbro giusto ce l'avevano."
+
+**(🕯 Il Quaderno registra il quarto indizio sulla cella 47, e lo registra senza aprire niente: trentanove righe con la matricola, una quarantesima senza, e un timbro del personale al posto della causa di morte. 🫁 Fiato −1: la stanza dei registri, alle quattro meno venti, è più buia di quanto sia ragionevole.)**`,
+    goldLoss: 1,
+    sets: { i_osso: true },
+    choices: [
+      { text: '📄 Fotografare la pagina intera, con l\'intestazione e il timbro dentro l\'inquadratura', once: true, gold: 1, next: 'c10_nastro' },
+      { text: '🕯 Uscire e dirlo a Ciro: il quarantesimo lui l\'ha visto quando aveva undici anni', next: 'c8_ciro' },
+      { text: '📻 Basta carte. Il nastro del sessantacinque', next: 'c10_nastro' },
+    ],
+  },
+
+  /* LA CIRCOLARE. `sequenza_porte` era un minigioco intero — Claudia impara a memoria
+     l'ordine in cui quattro porte si aprono in un carcere vuoto — e non tornava da nessuna
+     parte: zero letture in tutta la campagna. Torna qui, e la regola che questo gioco
+     ripete piu' di ogni altra (Ada due volte, Ciro come regola tre) smette di essere una
+     superstizione di paese e diventa una disposizione di servizio, numerata, con la
+     ricevuta. E' la cosa piu' cattiva che questa storia possa dire: nel 1949 lo sapevano
+     tutti, e la soluzione che hanno trovato e' stata una CIRCOLARE. */
+  c7_circolare: {
+    location: 'panopticon',
+    caption: 'Le carte di servizio — un foglio ciclostilato, ore 13:35',
+    stinger: 'penna',
+    text: `Le carte di servizio stanno in una scatola di cartone senza coperchio, e sopra tutte c'è un foglio ciclostilato viola, di quelli in cui l'inchiostro sbava sulle curve.
+
+Intestazione a stampa. Numero di protocollo. Data: **14 marzo 1949**.
+
+**OGGETTO: battiture sulle imposte e sui tubi. Disposizioni al personale di vigilanza.**
+
+Tre punti, numerati, nella lingua in cui gli uffici dicono le cose che non vogliono spiegare.
+
+> *1) Il personale annoterà sul brogliaccio l'ora d'inizio e la durata, con l'approssimazione del minuto.*
+
+> *2) Il personale **non risponderà in nessun caso**, né battendo né a voce, né in forma di scherzo.*
+
+> *3) Il personale non conterà i colpi ad alta voce.*
+
+In fondo, la firma del direttore, la sigla di chi ha ciclostilato, e sul margine — a matita, con la grafia larga di uno che scriveva appoggiato al muro — quattro parole aggiunte da un altro:
+
+**il due è quello importante**
+
+> Claudia: *(che ha il foglio in mano e non lo sta più leggendo)* "Gaetà. Il punto due è la frase di Ada."
+
+> Gaetano: "È la frase di Ada."
+
+> Claudia: "Ada dice che gliel'ha insegnata sua madre." *(guarda la data)* "E questa è del quarantanove, ed è battuta a macchina, e ha un numero di protocollo. Qualcuno l'ha scritta, qualcuno l'ha ciclostilata, e novanta uomini hanno firmato per ricevuta."
+
+> Gaetano: "Il che vuol dire che nel quarantanove lo sapevano tutti, e la soluzione che hanno trovato è stata **una circolare**."
+
+**(🕯 Il Quaderno registra la circolare del 14 marzo 1949, i tre punti e la nota a matita sul margine. La regola che vi hanno ripetuto in tre giorni — non si risponde — non è una superstizione di quest'isola: è una disposizione di servizio, e fu emanata perché serviva. 🫁 Fiato −1, 💪 TENUTA −2.)**`,
+    goldLoss: 1,
+    damage: 2,
+    sets: { circolare_1949: true },
+    choices: [
+      { text: '📄 Piegare il foglio in quattro e metterlo in tasca: è la prova più pulita che abbiate', once: true, gold: 1, next: 'c8_ciro' },
+      { text: '⛏ Il cimitero: se qualcuno bussava, qualcuno bussava da qualche parte', next: 'c9_cimitero' },
+      { text: '📻 Il nastro. Adesso ha un altro peso', next: 'c10_nastro' },
+    ],
+  },
+
   c10_nastro: {
     location: 'panopticon',
     caption: 'La cappella, ore 15:10 — il nastro',
@@ -1110,6 +1330,8 @@ Nessuno dei tre lo tocca. Per un minuto intero l'unico rumore nel pozzo è un fr
 Poi Ciro tira su la testa, perché una cosa la vuole dire prima.`,
 
     choices: [
+      { text: '📚 Prima di toccare quel tasto: in archivio c\'era un terzo registro, sottile, che non avete aperto', requires: { flag: 'fossa_rispettata', notFlag: 'i_osso' }, next: 'c9_registro_defunti' },
+      { text: '📋 "Ciro. La regola tre, quella sua. Nel quarantanove l\'avevano già scritta a macchina."', requires: { flag: 'circolare_1949' }, once: true, gold: 2, heal: 4 },
       { text: '👂 "Ciro. Dica quello che deve dire."', next: 'c10_ciro_dice' },
       { text: '🕯 Chiudere il vano del Geloso mentre si parla, così nessuno lo preme per sbaglio', once: true, next: 'c10_ciro_dice' },
       { text: '🤲 Sedersi accanto a lui sul gradino, spalla a spalla, e stare zitti un minuto prima di parlare del nastro', once: true, gold: 1, heal: 3, next: 'c10_ciro_dice' },
@@ -1613,6 +1835,7 @@ Ciro parte primo. Settantadue anni, il ginocchio malandato, la gaffa in mano com
 
   c14_cena: {
     location: 'paese',
+    notturno: true,
     caption: 'Ventotene, la Marisqueria — ore 21:10',
     stinger: 'heal',
     text: `Sono in barca alle cinque e diciotto. Ciro non commenta i tre minuti.
@@ -1637,6 +1860,7 @@ Alle sei e dieci sono sul molo con le bombole vuote, la muta addosso e la faccia
      scena, sempre — e cinquecentonovantaquattro parole erano due scene travestite da una. */
   c14_marisqueria: {
     location: 'paese',
+    notturno: true,
     caption: 'La Marisqueria — ore 21:10',
     stinger: 'heal',
     text: `---
@@ -1671,6 +1895,7 @@ Ciro racconta di quando nel millenovecentonovantuno portò a Santo Stefano un tr
      hanno chiuso cinque cisterne. Sono due cose diverse e vanno guardate separate. */
   c14_tovaglietta: {
     location: 'paese',
+    notturno: true,
     caption: 'La tovaglietta di carta, girata',
     stinger: 'penna',
     text: `Poi Gaetano fa la cosa da Gaetano. Prende la tovaglietta di carta, la gira, e con la biro del conto ci scrive quello che hanno addosso, in colonna, come una lista della spesa.
@@ -1699,6 +1924,7 @@ E accanto ad alcune coppie di righe mette una freccia.
 
   c15: {
     location: 'bnb',
+    notturno: true,
     caption: 'Le Parracine, ore 00:20 — fine del terzo giorno',
     stinger: 'heal',
     text: `La salita coi muretti a secco, di notte, coi capperi che sanno di limone se li strofini. A metà scala la porta della signora dei fagiolini è chiusa e la luce è spenta.
@@ -1736,6 +1962,7 @@ E accanto, aggiunto stasera con la biro del conto della Marisqueria, con la graf
      intera non può stare in fondo a una salita di muretti a secco. */
   c15_notte: {
     location: 'bnb',
+    notturno: true,
     caption: 'La notte in cui l\'isola non fa niente',
     stinger: 'voce_amata',
     text: `Claudia si addormenta in quattro minuti, come sempre, con una gamba fuori dal lenzuolo e la fede al collo.
@@ -1779,6 +2006,7 @@ Ed è, di gran lunga, la cosa più preoccupante che abbia fatto finora.
      di Ada, il piatto coperto dall'altro piatto. Gaetano non lo commenta: lo cronometra. */
   c15_nastro: {
     location: 'bnb',
+    notturno: true,
     caption: 'Le Parracine, sotto la pergola — ore 00:41',
     stinger: 'voce_amata',
     text: `Lo fanno sul tavolo di fuori, sotto la lampadina, col piatto coperto dall'altro piatto spostato di venti centimetri per fare posto.
@@ -1823,6 +2051,7 @@ Perché quel ronzio è **un ventilatore a pale**. Ed è il ventilatore di Ada, q
      che il nastro ha smesso, perché è tutta nel silenzio che viene dopo. */
   c15_dopo: {
     location: 'bnb',
+    notturno: true,
     caption: 'Il piatto sta dove lo hanno spostato',
     stinger: 'voce_amata',
     text: `Gaetano stacca a **00:33**. Quattro secondi prima del previsto, e questa è l'unica bugia che dice in tutta la vacanza.
@@ -1851,6 +2080,7 @@ Restano fermi. Il piatto sta dove lo hanno spostato. Il ventilatore di Ada gira.
 
   c15_bruciato: {
     location: 'bnb',
+    notturno: true,
     caption: 'La cucina di Ada — ore 00:58',
     stinger: 'sigillo',
     text: `Ada non fa domande. Questa è la cosa che di lei non si dimenticherà.
@@ -1885,6 +2115,7 @@ Ada non guarda il fornello. Guarda Claudia, e non è la prima volta stasera.
      due persone. Ada e' un'alleata senza doppi fondi e non parla in coda a un falo'. */
   c15_ada: {
     location: 'bnb',
+    notturno: true,
     caption: 'Ada, in cucina, col ventilatore fermo — ore 01:05',
     stinger: 'campana',
     text: `> Ada: "Mia sorella cantava a bocca chiusa. Come lei." *(indica Claudia col mento, senza guardarla)* "L'ho sentita, la prima notte, dal corridoio. E non v'ho detto niente perché non si dice."
@@ -1908,6 +2139,7 @@ Quando il nastro è finito, il ventilatore riparte da solo, dalla metà di giro 
 
   c15_tempi: {
     location: 'bnb',
+    notturno: true,
     caption: 'Sotto la pergola, con le cuffie — ore 01:20',
     stinger: 'penna',
     text: `Tre passaggi, cuffie chiuse, il cronometro del telefono in mano e il Quaderno aperto sul tavolo.

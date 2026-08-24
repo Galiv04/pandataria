@@ -1585,6 +1585,7 @@ Claudia guarda per due minuti interi senza dire una parola.
 
   a6: {
     location: 'paese',
+    notturno: true,
     caption: 'Il paese, di sera — ore 21:30',
     text: `Il paese di sera è una cosa che ti fa pensare di volerci vivere.
 
@@ -1617,6 +1618,7 @@ Sulla via del ritorno passano davanti al forno che sta già impastando per doman
 
   a6_porto: {
     location: 'porto',
+    notturno: true,
     caption: 'Il terzo pontile — ore 23:15',
     text: `Il porto di notte è più bello che di giorno. L'acqua nera e liscia dentro la cava di tufo, le luci che si rompono in mille pezzi giallo, e una quiete piena di rumori piccoli: cime che scricchiolano, un motore che gira al minimo, qualcuno che ride su una barca.
 
@@ -1727,7 +1729,6 @@ La stessa di Cala Nave. Bassa, lunga, pulita. Due secondi e mezzo.
 Stavolta la sentono in due.
 
 **(⚠️ 🎵 L'attenzione del Coro sale per la prima volta: non perché abbiate fatto qualcosa, ma perché adesso la sentite in due, e una cosa sentita in due è una cosa che ha attaccato.)**`,
-    silenzio: true,
     stinger: 'coro',
     attenzione: 1,
     sets: { nota_da_terra: true },
@@ -1740,6 +1741,7 @@ Stavolta la sentono in due.
 
   a7_ada_notte: {
     location: 'bnb',
+    notturno: true,
     caption: 'Ada, all\'una di notte',
     text: `La luce della cucina è accesa. Ada è in piedi davanti al lavello con un bicchiere d'acqua in mano, e non sta bevendo: sta ferma.
 
@@ -1808,7 +1810,6 @@ Poi guarda Claudia che dorme sulla sedia di plastica, con la bocca aperta e i ca
   a8_mezzosecondo: {
     location: 'terrazza',
     caption: 'Mezzo secondo',
-    silenzio: true,
     stinger: 'voce_amata',
     text: `Volume al massimo. Cuffie. Il cursore che torna indietro di mezzo secondo, ancora e ancora, su una fetta di forma d'onda larga come un'unghia.
 
@@ -1839,6 +1840,7 @@ Poi la sveglia piano — "amore, andiamo a letto" — e la porta dentro tenendol
 
   a9: {
     location: 'bnb',
+    notturno: true,
     caption: 'La stanza, ore 02:10 — fine del primo giorno',
     stinger: 'heal',
     text: `Il ventilatore a pale gira piano. Il lenzuolo è fresco, la finestra è aperta, entrano le cicale e l'odore del limone in vaso.
@@ -2089,7 +2091,6 @@ Scendono. Ventidue gradini di tufo, umidi al quarto, freddi al decimo. A metà s
 Peppe accende la luce. La stanza si apre e Claudia dice "oh" senza volerlo.
 
 **(🫁 Fiato −0: si scende con le scale, non col fiato. Ma da qui in giù la temperatura è tredici gradi e nessuna delle due maniche lunghe ce l'avete.)**`,
-    silenzio: true,
     choices: [
       { text: '👁 Guardare la stanza. Guardarla bene, prima di ascoltare la guida', next: 'b2' },
       { text: '🗣 Chiedere a Peppe delle altre quattro cisterne', once: true, next: 'b1_peppe' },
@@ -2382,7 +2383,6 @@ Poi Claudia riprende fiato per dire qualcos'altro — e **prima che apra la bocc
 *"Ciao."*
 
 **(🎵 Il Coro non ha ripetuto. Ha ANTICIPATO. Il Quaderno vuole questo indizio, ed è il più difficile da mettere per iscritto senza sentirsi scemi.)**`,
-    silenzio: true,
     stinger: 'coro',
     sets: { eco_anticipata: true },
     choices: [
@@ -2702,7 +2702,6 @@ E in mezzo all'acqua, a galla, c'è una cosa gialla di plastica che a duemila an
     sets: { muro_aperto: true, sa_secchiello: true },
     attenzione: 1,
     stinger: 'sigillo',
-    silenzio: true,
     choices: [
       { text: '🪜 Scendere. Adesso, con la torcia e la corda', tag: 'Prova di DESTREZZA — CD 12 (si scende su una corda in un buco di quarantasei centimetri)', check: { stat: 'DES', dc: 12, success: 'b8', fail: 'b4_scivolata', failDamage: 3 } },
       { text: '🔧 Non così. Prima attrezzarsi come si deve', next: 'b4_prepararsi' },
@@ -3050,7 +3049,6 @@ E in mezzo ai nomi, a un certo punto, dice: *Iulia*. E dopo *Iulia* fa una pausa
     attenzione: 2,
     sets: { sa_appello: true, sa_giulia_prima: true },
     stinger: 'coro',
-    silenzio: true,
     choices: [
       { text: '📢 Rispondere all\'appello. Dire "presente" al posto di Giulia', once: true, next: 'b6_presente' },
       { text: '🔌 Tirare su l\'idrofono. Basta. Basta adesso', tag: 'Prova di FORZA — CD 11', check: { stat: 'FOR', dc: 11, success: 'b7', fail: 'b6_cavo', failDamage: 1 } },
@@ -3455,6 +3453,7 @@ Rosa non risponde. Ma non dice no.
 
   b12_thermos: {
     location: 'bnb',
+    notturno: true,
     caption: 'Il thermos di acciaio, sul tavolo',
     stinger: 'fail',
     text: `Gaetano la fa nel modo in cui fa le domande difficili: pulita, corta, coi dati dentro. E in cucina, alle undici di sera, a una donna di sessant'anni, quel modo è una scortesia che lui non sa di fare.
@@ -3502,7 +3501,7 @@ Roba da bambini. Tutta roba da bambini. Galleggia in cerchio, piano, come se gir
 
 E in mezzo al cerchio l'acqua è **più scura**: c'è un buco nel fondo, e il buco scende.
 
-**(🫁 Fiato −2: qui sotto l'aria è pesante e si respira male. Il buco nel fondo è il punto in cui questo gioco comincia a chiedere il fiato che avete accumulato mangiando e dormendo.)**`,
+**(🫁 Fiato −2: qui sotto l'aria è pesante e si respira male. Il buco nel fondo è il punto in cui questo gioco comincia a chiedere il fiato che avete accumulato mangiando e dormendo. 🔇 E qui il gioco ha spento la musica: non è un guasto. Accade **tre volte in tutta la storia** e questa è la prima. Se accade una quarta volta, quella è un guasto.)**`,
     goldLoss: 2,
     sets: { scesa_cisterna: true },
     silenzio: true,
@@ -3637,7 +3636,6 @@ Claudia si toglie le cuffie e le tiene in mano. Ha gli occhi asciutti e la facci
     sets: { i_ninna_sentita: true, sa_bambina_tiene_tempo: true },
     attenzione: 1,
     stinger: 'coro',
-    silenzio: true,
     choices: [
       { text: '🤿 Giù. Claudia scende', requiresGold: 7, tag: '(servono 7 di 🫁 fiato: sotto quella soglia non arrivate al fondo e lo sapete)', next: 'b8_apnea' },
       { text: '🎶 Cantare la ninnananna dentro il buco. Rispondere con la sua canzone', once: true, requires: { flag: 'i_ninna_sentita' }, next: 'b8_cantare' },
@@ -3982,6 +3980,7 @@ Claudia tira su la testa. Ha gli occhi lucidi di sale e di un'altra cosa.
 
   b10: {
     location: 'porto',
+    notturno: true,
     caption: 'Venerdì 28, ore 21:15 — di nuovo alla Terrazza di Mimì, il tavolo di fuori',
     text: `Alla Terrazza di Mimì li riconoscono. Il ragazzo dei tavoli dice "ah, i signori di ieri" e li mette allo stesso tavolo, quello contro la ringhiera, che di sera è il migliore che c'è: sotto, l'isola scende verso il porto tutta di luci gialle, e in mezzo alle luci gialle passa la sagoma nera di un gatto.
 
@@ -3994,7 +3993,6 @@ Gaetano non capisce per un secondo e mezzo. Poi capisce benissimo.
 "Ieri notte, sul terrazzo," dice lei. "Hai registrato una cosa. Poi ti sei toccato le orecchie tre volte in dieci minuti e non mi hai fatto sentire niente, e stamattina hai portato il telefono in bagno." Beve un sorso. "Gaetano. Io ti conosco da undici anni. **Cosa c'era nel mezzo secondo?**"
 
 **(⚠️ Il momento è arrivato e il gioco non ve lo fa saltare. Le cose non dette, in questa storia, hanno gli interessi — e questi sono di ventisei ore.)**`,
-    silenzio: true,
     choices: [
       { text: '📱 Dirglielo. Tirare fuori il telefono e fargliela sentire, adesso', next: 'b10_verita' },
       { text: '🤥 "Niente. Un rumore. Un motore lontano."', next: 'b10_bugia' },
@@ -4040,6 +4038,7 @@ E Gaetano — che è un uomo che di mestiere fa i conti, e che ha avuto ventisei
 
   b10_litigio: {
     location: 'porto',
+    notturno: true,
     caption: 'La Terrazza di Mimì, ore 22:05 — quattro minuti al tavolo di fuori',
     text: `Claudia parla per quattro minuti e non alza mai la voce, e sarebbe stato mille volte meglio se l'avesse alzata.
 
@@ -4068,6 +4067,7 @@ Claudia lo guarda e aspetta. Non e' una pausa: e' il suo turno.`,
      dopo: il palmo girato in su sul tavolo, e una regola nuova che vale fino al 30. */
   b10_trenta_secondi: {
     location: 'porto',
+    notturno: true,
     caption: 'La Terrazza di Mimi\', ore 22:12 — il palmo girato in su',
     text: `Silenzio. Sotto la ringhiera, il gatto attraversa la luce di un lampione.
 
@@ -4190,7 +4190,6 @@ Gaetano non la sveglia. Non si può: si sa che non si sveglia chi cammina nel so
     attenzione: 1,
     sets: { claudia_sonnambula: true },
     stinger: 'coro',
-    silenzio: true,
     choices: [
       { text: '📱 Svegliarla e dirglielo. Entro trenta secondi, come promesso', requires: { flag: 'patto_trenta_secondi' }, once: true, next: 'b11_trenta' },
       { text: '📝 Scrivere tutto sul Quaderno e dirglielo a colazione', next: 'b12' },
@@ -4304,6 +4303,7 @@ E così, alle sei e mezza del mattino, in una camera di B&B, Claudia canta cinqu
 
   b12: {
     location: 'bnb',
+    notturno: true,
     caption: 'Sabato 29 agosto, ore 07:50 — la terrazza delle Parracine',
     text: `Ada porta il caffè e mette sul tavolino, senza dire niente, **un thermos di acciaio** con il tappo che si svita male. Poi porta le fette biscottate, la marmellata di albicocche, quattro fichi aperti a croce.
 
@@ -4820,6 +4820,7 @@ Ciro non si è avvicinato al pannello. Sta sotto l'arco, gira la faccia verso il
     attenzione: 1,
     sets: { sa_i_tre_piani: true },
     choices: [
+      { text: '🖊 Nella guardiola, sul ripiano, c\'è un registro aperto con la penna sopra', once: true, next: 'c3_registro_visite' },
       /* IL RITORNO AL POZZO, e serve per una ragione precisa. La scelta di c3_purgatorio che
          porta all'inferno e la scena di sconfitta della scala — c3_scalino, il quinto
          scalino dall'ultimo e i tre ritorni di cui il terzo viene da un piano vuoto — stanno
@@ -5168,6 +5169,7 @@ Claudia beve, tossisce, ride di quella risata sbagliata che viene dopo. Poi pass
     heal: 4,
     sets: { claudia_ascoltata: true },
     choices: [
+      { text: '🚪 Sulla porta della 44 c\'è ancora il portacartellino di ottone. Guardarci dentro', requires: { flag: 'porta_44_vista' }, once: true, next: 'c6_cartellino' },
       { text: '📚 L\'archivio, dietro la portineria', next: 'c7_archivio' },
       { text: '🕯 Sedersi fuori con Ciro: è ora che racconti', next: 'c8_ciro' },
       { text: '⛏ Il cimitero, prima che il sole si sposti', next: 'c9_cimitero' },
@@ -5224,9 +5226,12 @@ Gaetano se li mette davanti tutti e due, aperti, uno a destra e uno a sinistra, 
 Sullo scaffale basso, intanto, restano un quaderno d'infermeria con una grafia bellissima e una mazzetta di fatture legate con lo spago.`,
 
     choices: [
+      { text: '📋 Se qualcuno bussava, qualcuno l\'ha messo a verbale: cercare fra le carte di servizio', requires: { flag: 'sequenza_porte' }, once: true, next: 'c7_circolare' },
+      { text: '🕯 Sullo scaffale basso c\'è un registro sottile con la costa di tela: DEFUNTI', requires: { flag: 'fossa_rispettata', notFlag: 'i_osso' }, next: 'c9_registro_defunti' },
       { text: '📕 La 47. Su tutti e due i registri, alla stessa riga e alla stessa data', next: 'c7_quarantasette' },
       { text: '🕯 Prima il quaderno d\'infermeria: chi scrive così, in un posto così, va letto', once: true, heal: 3, next: 'c7_quarantasette' },
       { text: '🧱 Le fatture della calce: sacchi e sacchi, e l\'ordine più grosso è del novembre del quarantatré', once: true, next: 'c7_quarantasette' },
+      { text: '📖 Il PRESENZE non finisce dove finisce la rilegatura: girare fino all\'ultima pagina', once: true, next: 'c7_ultima_pagina' },
     ],
   },
 
@@ -5538,6 +5543,221 @@ Non corre. **Fa il giro.** E arriva uguale, perché il turno di notte non lo dec
 
   /* ==================== IL NASTRO ==================== */
 
+  /* LA STRADA DI CARTA PER L'OSSO. c9_rispetto dice al giocatore che l'indizio se lo deve
+     trovare «da un'altra parte», e da un'altra parte non c'era: `i_osso` aveva una sorgente
+     sola, la pala. Cioe' chi lasciava in pace una fossa comune — chi ha capito il gioco —
+     pagava il finale migliore, e il gioco gli aveva promesso per iscritto un'altra strada.
+     Adesso ce ne sono due, e non sono la stessa cosa: chi scava vede cinque bottoni, chi non
+     scava legge un timbro dell'ufficio del personale. La carta e' piu' cattiva del corpo. */
+  /* L'ULTIMA PAGINA. La tacca fresca della 47 (c5_graffito) era un sospetto e restava un
+     sospetto: qui diventa una riga compilata su un modulo, con la data di oggi, e il numero
+     non e' 1. Nessuna attenzione del Coro, e la ragione e' la cosa piu' fredda della scena:
+     non l'hanno svegliato loro. Era gia' scritto prima che arrivassero. */
+  /* IL CARTELLINO. `porta_44_vista` era il flag del momento in cui il mestiere di Claudia
+     batte i decimali di Gaetano, e non tornava da nessuna parte. Torna cosi': non si mostra
+     quell'uomo — la sofferenza dei morti si guarda con pieta', mai come spettacolo — si
+     legge il MODULO che lo riguardava. La formula sta su un cartoncino a quattro colonne, e
+     non l'ha inventata nessun fantasma. */
+  c6_cartellino: {
+    location: 'panopticon',
+    caption: 'Il portacartellino della 44',
+    stinger: 'penna',
+    text: `Ogni porta ha, a un metro e sessanta, una cornice di ottone larga come una mano: il portacartellino, dove sta il cartoncino con chi c'è dentro. Novantotto sono vuote, e in novantotto l'ottone è verde di ossido.
+
+Nella 44 il cartoncino c'è ancora. E l'ottone, lungo il bordo inferiore, è **lucido**: la striscia che fa il pollice di uno che ha tirato fuori e rimesso dentro lo stesso cartoncino qualche migliaio di volte.
+
+Quattro colonne a stampa, riempite a penna, con la grafia dell'impiegato che hanno già visto sui due registri.
+
+*Matricola:* un numero di cinque cifre.
+
+*Posizione giuridica:* una parola, scritta senza abbreviarla.
+
+*Provenienza:* Napoli, casa penale.
+
+*Fine pena:* e qui non c'è una data, perché per queste tre lettere il modulo prevedeva il timbro, e il timbro c'è, battuto bene, ben inchiostrato, dritto.
+
+**MAI**
+
+Claudia legge le quattro colonne una alla volta, ad alta voce, piano, come ha letto il pannello del Comune. Poi rimette il cartoncino dentro la cornice, e lo rimette dal verso giusto.
+
+> Claudia: "Gaetano, ce l'avevano un timbro. Un timbro fatto fare a posta, con dentro quella parola, perché serviva spesso."
+
+> Gaetano: "Novantanove celle."
+
+> Claudia: "Novantanove celle." *(e non tocca più niente)* "Quello che abbiamo appena colpito ha passato ventitré anni a quattro metri da un pezzo di ottone che diceva mai. Ad altezza occhi. Sul lato di fuori, dove lui non lo poteva leggere."
+
+**(🕯 Il Quaderno registra le quattro colonne del cartellino della 44, e registra che per l'ultima c'era un timbro. Nessun dado, nessun oggetto: 🫁 Fiato −1, e non lo recupererete leggendo un'altra carta.)**`,
+    goldLoss: 1,
+    sets: { fine_pena_mai: true },
+    choices: [
+      { text: '🚪 Chiudere la porta della 44. Accostarla, come si accosta la porta di uno che dorme', once: true, gold: 1, heal: 3, next: 'c7_archivio' },
+      { text: '📚 L\'archivio: quel numero di matricola sta su un registro', next: 'c7_archivio' },
+      { text: '🕯 Fuori con Ciro. Adesso', next: 'c8_ciro' },
+    ],
+  },
+
+  /* IL REGISTRO DELLE VISITE. Le 18:40 dell'atto D — il minuto in cui il trenta agosto si
+     riavvolge — arrivavano senza nessun preavviso. Adesso stanno in una colonna
+     prestampata, due giorni prima, scritte da qualcuno che sapeva anche i numeri di
+     documento. Non e' una minaccia: e' un modulo compilato. */
+  c3_registro_visite: {
+    location: 'panopticon',
+    caption: 'La guardiola — il registro delle visite, ore 10:26',
+    stinger: 'penna',
+    text: `Dentro la guardiola c'è un ripiano di formica verde, una sedia girevole senza una rotella, e un registro aperto con una biro appoggiata sopra la piega.
+
+È un registro moderno, di cartoleria, di quelli che si comprano al supermercato per dieci euro. Colonne prestampate: *Cognome e nome · Provenienza · N. documento · Ora d'ingresso · Ora d'uscita · Firma.*
+
+Le ultime visite guidate sono di giugno. Poi due pagine bianche.
+
+Poi l'ultima riga scritta, e la biro è quella.
+
+**Sabato 29 agosto.** Due nomi: il suo e il suo, scritti per esteso, con la provenienza giusta — *Scauri (LT)* — e i due numeri di documento **giusti**, cifra per cifra, compresa la lettera finale della carta d'identità di Claudia che nemmeno lei si ricorda mai.
+
+Ora d'ingresso: **10:05**. Che è l'ora in cui sono sbarcati, e sono le dieci e ventisei.
+
+La colonna della firma è vuota.
+
+La colonna dell'ora d'uscita, invece, è compilata. Stessa biro, stessa mano.
+
+**18:40**
+
+> Gaetano: *(che ha già il telefono in mano e sta fotografando prima di parlare, perché è il suo modo di non urlare)* "Alle diciotto e quaranta noi siamo a Ventotene. Ciro chiude alle sei. Non c'è nessuna barca dopo le sei."
+
+> Claudia: "Allora è sbagliata."
+
+> Gaetano: "Sono sbagliate le altre due colonne, Claudia. Quella è l'unica che non può essere sbagliata, perché **non è ancora successa**."
+
+**(🎵 Attenzione del Coro +1: qualcuno sapeva i vostri numeri di documento. 🫁 Fiato −1. Il Quaderno registra l'ora d'uscita scritta in anticipo: **18:40** — e tenetevela in testa, perché è un numero, e in questo gioco i numeri tornano.)**`,
+    attenzione: 1,
+    goldLoss: 1,
+    sets: { registro_visite: true },
+    choices: [
+      { text: '🖊 Prendere la biro e firmare tutti e due la colonna della firma', once: true, damage: 3, gold: 1, sets: { firmato_il_registro: true }, next: 'c5_cella' },
+      { text: '🖊 Cancellare l\'ora d\'uscita. Con la punta, girando la biro, finché il foglio non si buca', once: true, gold: 2, next: 'c5_cella' },
+      { text: '🚪 Non toccare niente e salire al purgatorio', next: 'c5_cella' },
+    ],
+  },
+
+  c7_ultima_pagina: {
+    location: 'panopticon',
+    caption: 'PRESENZE — l\'ultima pagina, ore 13:20',
+    stinger: 'pressione',
+    text: `Il **PRESENZE** ha due fascicoli, e questo si vede solo tenendolo aperto contro la finestra.
+
+Il primo è cucito con lo spago, ed è quello che hanno letto: la colonna dei 1 che arriva al 31 agosto 1965.
+
+Il secondo è **incollato**. Fogli aggiunti dopo, carta diversa, più bianca, con la colla che ha fatto le bolle e ha tirato la pagina. Nessuna intestazione a stampa: la griglia è tirata a mano, con la riga, colonna per colonna, uguale a quella stampata.
+
+E i 1 continuano. Senza date, riga dopo riga, per undici pagine, sempre la stessa mano e sempre la stessa pressione: quella di uno che appoggia la penna, fa il segno, e non guarda quello che ha scritto perché lo scrive da ventidue anni.
+
+L'ultima riga compilata ha una data. È l'unica di tutto il secondo fascicolo che ce l'ha: **29 agosto 2026**.
+
+E il numero, in quella riga, non è 1.
+
+> Claudia: "Due."
+
+> Gaetano: "Due."
+
+E nella colonna delle annotazioni — che in ottomila righe è vuota, sempre, in tutte le pagine di tutti gli anni — stavolta ci sono due parole, scritte piccole per starci dentro.
+
+**non reclamati**
+
+> Gaetano: *(e chiude il libro con due mani, piano, come si chiude una cosa che potrebbe avere ancora pagine)* "È la formula del cimitero. Sta sul muretto all'ingresso: il posto dove finiva chi non veniva reclamato da nessuno."
+
+> Claudia: "Noi non siamo morti."
+
+> Gaetano: "No. Siamo **presenti**. È una colonna diversa, ed è quella che tiene lui."
+
+**(💪 TENUTA −2, 🫁 Fiato −2. 🎵 L'attenzione del Coro NON sale, e la cosa da guardare è questa: stavolta non avete fatto rumore, non avete letto ad alta voce, non avete acceso niente. Era già scritto prima che arrivaste. Il Quaderno registra la riga del 29 agosto 2026, il numero 2, e le due parole nella colonna delle annotazioni.)**`,
+    damage: 2,
+    goldLoss: 2,
+    sets: { non_reclamati: true },
+    choices: [
+      { text: '✏️ Strappare la pagina. Adesso, con le due mani, e portarsela via', once: true, damage: 2, gold: 1, sets: { pagina_strappata: true }, next: 'c8_ciro' },
+      { text: '📖 Rimetterlo dove stava, con la costa allineata alle altre due', gold: 1, next: 'c8_ciro' },
+      { text: '⛏ Il cimitero. Se la formula è quella, il posto è quello', next: 'c9_cimitero' },
+    ],
+  },
+
+  c9_registro_defunti: {
+    location: 'panopticon',
+    caption: 'La stanza dei registri — ore 15:40, il libro più sottile',
+    stinger: 'penna',
+    text: `Sullo scaffale basso, dietro i due libroni, c'è un registro sottile con la costa di tela grigia e una parola sola scritta a pennello: **DEFUNTI**.
+
+Non è un libro di parole: è un modulo prestampato. Colonne verticali, intestazioni in corpo sei ripetute in cima a ogni pagina. *N. d'ordine · Matricola · Data del decesso · Causa · Fossa · Annotazioni.*
+
+Righe compilate: **trentanove**. E la colonna del nome non c'è. Non l'hanno lasciata in bianco: non l'hanno prevista. Chi ha disegnato il modulo, a tavolino, con la riga, ha deciso quante colonne servivano per seppellire un uomo, e il nome non era fra quelle.
+
+Poi c'è la quarantesima riga.
+
+Ha il numero d'ordine. Ha la fossa: *angolo di nord-est*. Non ha la matricola, perché la matricola la danno ai detenuti. E nella colonna della causa non c'è una grafia: c'è un **timbro** a tampone, battuto storto e ribattuto sopra perché la prima volta era venuto chiaro.
+
+**CESSAZIONE DEL SERVIZIO**
+
+> Claudia: *(che si è messa il dito sotto la riga e non lo alza)* "Gaetano. Questo timbro non è di un cimitero."
+
+> Gaetano: "No. È di un ufficio del personale." *(gira la pagina, e dietro non c'è niente)* "Uno è morto in una cella, e l'hanno archiviato come uno che ha smesso di lavorare. Con il timbro giusto. Perché il timbro giusto ce l'avevano."
+
+**(🕯 Il Quaderno registra il quarto indizio sulla cella 47, e lo registra senza aprire niente: trentanove righe con la matricola, una quarantesima senza, e un timbro del personale al posto della causa di morte. 🫁 Fiato −1: la stanza dei registri, alle quattro meno venti, è più buia di quanto sia ragionevole.)**`,
+    goldLoss: 1,
+    sets: { i_osso: true },
+    choices: [
+      { text: '📄 Fotografare la pagina intera, con l\'intestazione e il timbro dentro l\'inquadratura', once: true, gold: 1, next: 'c10_nastro' },
+      { text: '🕯 Uscire e dirlo a Ciro: il quarantesimo lui l\'ha visto quando aveva undici anni', next: 'c8_ciro' },
+      { text: '📻 Basta carte. Il nastro del sessantacinque', next: 'c10_nastro' },
+    ],
+  },
+
+  /* LA CIRCOLARE. `sequenza_porte` era un minigioco intero — Claudia impara a memoria
+     l'ordine in cui quattro porte si aprono in un carcere vuoto — e non tornava da nessuna
+     parte: zero letture in tutta la campagna. Torna qui, e la regola che questo gioco
+     ripete piu' di ogni altra (Ada due volte, Ciro come regola tre) smette di essere una
+     superstizione di paese e diventa una disposizione di servizio, numerata, con la
+     ricevuta. E' la cosa piu' cattiva che questa storia possa dire: nel 1949 lo sapevano
+     tutti, e la soluzione che hanno trovato e' stata una CIRCOLARE. */
+  c7_circolare: {
+    location: 'panopticon',
+    caption: 'Le carte di servizio — un foglio ciclostilato, ore 13:35',
+    stinger: 'penna',
+    text: `Le carte di servizio stanno in una scatola di cartone senza coperchio, e sopra tutte c'è un foglio ciclostilato viola, di quelli in cui l'inchiostro sbava sulle curve.
+
+Intestazione a stampa. Numero di protocollo. Data: **14 marzo 1949**.
+
+**OGGETTO: battiture sulle imposte e sui tubi. Disposizioni al personale di vigilanza.**
+
+Tre punti, numerati, nella lingua in cui gli uffici dicono le cose che non vogliono spiegare.
+
+> *1) Il personale annoterà sul brogliaccio l'ora d'inizio e la durata, con l'approssimazione del minuto.*
+
+> *2) Il personale **non risponderà in nessun caso**, né battendo né a voce, né in forma di scherzo.*
+
+> *3) Il personale non conterà i colpi ad alta voce.*
+
+In fondo, la firma del direttore, la sigla di chi ha ciclostilato, e sul margine — a matita, con la grafia larga di uno che scriveva appoggiato al muro — quattro parole aggiunte da un altro:
+
+**il due è quello importante**
+
+> Claudia: *(che ha il foglio in mano e non lo sta più leggendo)* "Gaetà. Il punto due è la frase di Ada."
+
+> Gaetano: "È la frase di Ada."
+
+> Claudia: "Ada dice che gliel'ha insegnata sua madre." *(guarda la data)* "E questa è del quarantanove, ed è battuta a macchina, e ha un numero di protocollo. Qualcuno l'ha scritta, qualcuno l'ha ciclostilata, e novanta uomini hanno firmato per ricevuta."
+
+> Gaetano: "Il che vuol dire che nel quarantanove lo sapevano tutti, e la soluzione che hanno trovato è stata **una circolare**."
+
+**(🕯 Il Quaderno registra la circolare del 14 marzo 1949, i tre punti e la nota a matita sul margine. La regola che vi hanno ripetuto in tre giorni — non si risponde — non è una superstizione di quest'isola: è una disposizione di servizio, e fu emanata perché serviva. 🫁 Fiato −1, 💪 TENUTA −2.)**`,
+    goldLoss: 1,
+    damage: 2,
+    sets: { circolare_1949: true },
+    choices: [
+      { text: '📄 Piegare il foglio in quattro e metterlo in tasca: è la prova più pulita che abbiate', once: true, gold: 1, next: 'c8_ciro' },
+      { text: '⛏ Il cimitero: se qualcuno bussava, qualcuno bussava da qualche parte', next: 'c9_cimitero' },
+      { text: '📻 Il nastro. Adesso ha un altro peso', next: 'c10_nastro' },
+    ],
+  },
+
   c10_nastro: {
     location: 'panopticon',
     caption: 'La cappella, ore 15:10 — il nastro',
@@ -5559,6 +5779,8 @@ Nessuno dei tre lo tocca. Per un minuto intero l'unico rumore nel pozzo è un fr
 Poi Ciro tira su la testa, perché una cosa la vuole dire prima.`,
 
     choices: [
+      { text: '📚 Prima di toccare quel tasto: in archivio c\'era un terzo registro, sottile, che non avete aperto', requires: { flag: 'fossa_rispettata', notFlag: 'i_osso' }, next: 'c9_registro_defunti' },
+      { text: '📋 "Ciro. La regola tre, quella sua. Nel quarantanove l\'avevano già scritta a macchina."', requires: { flag: 'circolare_1949' }, once: true, gold: 2, heal: 4 },
       { text: '👂 "Ciro. Dica quello che deve dire."', next: 'c10_ciro_dice' },
       { text: '🕯 Chiudere il vano del Geloso mentre si parla, così nessuno lo preme per sbaglio', once: true, next: 'c10_ciro_dice' },
       { text: '🤲 Sedersi accanto a lui sul gradino, spalla a spalla, e stare zitti un minuto prima di parlare del nastro', once: true, gold: 1, heal: 3, next: 'c10_ciro_dice' },
@@ -6062,6 +6284,7 @@ Ciro parte primo. Settantadue anni, il ginocchio malandato, la gaffa in mano com
 
   c14_cena: {
     location: 'paese',
+    notturno: true,
     caption: 'Ventotene, la Marisqueria — ore 21:10',
     stinger: 'heal',
     text: `Sono in barca alle cinque e diciotto. Ciro non commenta i tre minuti.
@@ -6086,6 +6309,7 @@ Alle sei e dieci sono sul molo con le bombole vuote, la muta addosso e la faccia
      scena, sempre — e cinquecentonovantaquattro parole erano due scene travestite da una. */
   c14_marisqueria: {
     location: 'paese',
+    notturno: true,
     caption: 'La Marisqueria — ore 21:10',
     stinger: 'heal',
     text: `---
@@ -6120,6 +6344,7 @@ Ciro racconta di quando nel millenovecentonovantuno portò a Santo Stefano un tr
      hanno chiuso cinque cisterne. Sono due cose diverse e vanno guardate separate. */
   c14_tovaglietta: {
     location: 'paese',
+    notturno: true,
     caption: 'La tovaglietta di carta, girata',
     stinger: 'penna',
     text: `Poi Gaetano fa la cosa da Gaetano. Prende la tovaglietta di carta, la gira, e con la biro del conto ci scrive quello che hanno addosso, in colonna, come una lista della spesa.
@@ -6148,6 +6373,7 @@ E accanto ad alcune coppie di righe mette una freccia.
 
   c15: {
     location: 'bnb',
+    notturno: true,
     caption: 'Le Parracine, ore 00:20 — fine del terzo giorno',
     stinger: 'heal',
     text: `La salita coi muretti a secco, di notte, coi capperi che sanno di limone se li strofini. A metà scala la porta della signora dei fagiolini è chiusa e la luce è spenta.
@@ -6185,6 +6411,7 @@ E accanto, aggiunto stasera con la biro del conto della Marisqueria, con la graf
      intera non può stare in fondo a una salita di muretti a secco. */
   c15_notte: {
     location: 'bnb',
+    notturno: true,
     caption: 'La notte in cui l\'isola non fa niente',
     stinger: 'voce_amata',
     text: `Claudia si addormenta in quattro minuti, come sempre, con una gamba fuori dal lenzuolo e la fede al collo.
@@ -6228,6 +6455,7 @@ Ed è, di gran lunga, la cosa più preoccupante che abbia fatto finora.
      di Ada, il piatto coperto dall'altro piatto. Gaetano non lo commenta: lo cronometra. */
   c15_nastro: {
     location: 'bnb',
+    notturno: true,
     caption: 'Le Parracine, sotto la pergola — ore 00:41',
     stinger: 'voce_amata',
     text: `Lo fanno sul tavolo di fuori, sotto la lampadina, col piatto coperto dall'altro piatto spostato di venti centimetri per fare posto.
@@ -6272,6 +6500,7 @@ Perché quel ronzio è **un ventilatore a pale**. Ed è il ventilatore di Ada, q
      che il nastro ha smesso, perché è tutta nel silenzio che viene dopo. */
   c15_dopo: {
     location: 'bnb',
+    notturno: true,
     caption: 'Il piatto sta dove lo hanno spostato',
     stinger: 'voce_amata',
     text: `Gaetano stacca a **00:33**. Quattro secondi prima del previsto, e questa è l'unica bugia che dice in tutta la vacanza.
@@ -6300,6 +6529,7 @@ Restano fermi. Il piatto sta dove lo hanno spostato. Il ventilatore di Ada gira.
 
   c15_bruciato: {
     location: 'bnb',
+    notturno: true,
     caption: 'La cucina di Ada — ore 00:58',
     stinger: 'sigillo',
     text: `Ada non fa domande. Questa è la cosa che di lei non si dimenticherà.
@@ -6334,6 +6564,7 @@ Ada non guarda il fornello. Guarda Claudia, e non è la prima volta stasera.
      due persone. Ada e' un'alleata senza doppi fondi e non parla in coda a un falo'. */
   c15_ada: {
     location: 'bnb',
+    notturno: true,
     caption: 'Ada, in cucina, col ventilatore fermo — ore 01:05',
     stinger: 'campana',
     text: `> Ada: "Mia sorella cantava a bocca chiusa. Come lei." *(indica Claudia col mento, senza guardarla)* "L'ho sentita, la prima notte, dal corridoio. E non v'ho detto niente perché non si dice."
@@ -6357,6 +6588,7 @@ Quando il nastro è finito, il ventilatore riparte da solo, dalla metà di giro 
 
   c15_tempi: {
     location: 'bnb',
+    notturno: true,
     caption: 'Sotto la pergola, con le cuffie — ore 01:20',
     stinger: 'penna',
     text: `Tre passaggi, cuffie chiuse, il cronometro del telefono in mano e il Quaderno aperto sul tavolo.
@@ -6929,6 +7161,7 @@ Ada, in cucina, sposta la caffettiera sul marmo. Il catino cigola sulla scaletta
 Nessuno dei due ha ancora detto la parola «ieri».`,
 
     choices: [
+      { text: '⏱ Il caffè si è sentito cadere prima. Misurarlo: seconda tazzina, cronometro, e Ada che versa un\'altra volta', requires: { flag: 'sa_anticipo' }, once: true, next: 'd1_riprodotto' },
       { text: '🫂 Sotto il tavolo, una mano sul ginocchio dell\'altro, e tenerla lì', heal: 3, gold: 1, next: 'd1_colazione_eco' },
       { text: '🥨 Farsi mettere in tasca il sacchetto di taralli, come ieri, con le stesse parole', once: true, item: 'taralli', gold: 1, next: 'd1_colazione_eco' },
       { text: '🫘 Contarli. I fagiolini nel catino, uno per uno, prima che risalga la scaletta: ventidue, come giovedì', once: true, sets: { d_fagiolini_visti: true }, next: 'd1_colazione_eco' },
@@ -7454,6 +7687,7 @@ Non c'è un lampo, non c'è un buio, non c'è nessun effetto: il numero passa da
     gold: 1,
     sets: { d_esperimento_fatto: true },
     choices: [
+      { text: '🖊 Prima di alzare gli occhi dallo schermo: dire l\'ora ad alta voce, tutti e due insieme, perché era scritta', requires: { flag: 'registro_visite' }, once: true, gold: 2, sets: { ora_prevista: true }, next: 'd10_ciclo3' },
       { text: '🌊 Allora si scende. E si scende oggi', next: 'd10_ciclo3' },
       { text: '🫂 Prima cinque minuti abbracciati al buio, senza dire una parola', once: true, heal: 6, gold: 2, next: 'd10_ciclo3' },
     ],
@@ -7574,6 +7808,7 @@ Sul bancone, sotto la fotografia, c'è un registro aperto a metà, con la biro a
 **(Oggetto: un sacco di CALCE, dal cantiere della strada per Punta Eolo. 🎵 Attenzione del Coro +1: un'isola vuota vi sta guardando girare.)**`,
     item: 'calce',
     choices: [
+      { text: '📋 Sul bancone, sotto il registro, c\'è una cartella a molla con dei moduli prestampati', requires: { flag: 'sa_di_marisa' }, once: true, next: 'd11_moduli' },
       { text: '📖 Il registro sul bancone. Aprirlo all\'ultima pagina scritta', next: 'd11_registro' },
       { text: '🍽 Entrare nella cucina della Marisqueria e mangiare come si deve, l\'ultima volta', once: true, gold: 3, heal: 8, next: 'd11_registro' },
       { text: '🤿 Staccare la muta dal gancio e guardarci dentro: taglia, cuciture, il nome scritto col pennarello', once: true, sets: { muta_guardata: true }, next: 'd11_registro' },
@@ -7658,7 +7893,6 @@ Ha la faccia di una signora di settantacinque anni che ha fatto le pulizie per c
 > "Mo' te faccio 'na domanda. Si m'a 'nnovini, te dico una cosa ca t'aiuta. Si nun m'a 'nnovini, nun te dico niente e vaje pe' 'a strada tua, ca è 'na strada brutta."
 
 **(🗝 Un indovinello, in dialetto, da una signora coi fagiolini, in una piazza vuota. Se lo prendete, lei vi dice l'unica cosa che vi serve sapere prima di scendere.)**`,
-    silenzio: true,
     minigame: {
       type: 'indovinello',
       success: 'd11_signora_ok',
@@ -7790,9 +8024,102 @@ Claudia non dice niente. Gaetano, dietro di lei, mette una mano sulla sua spalla
 **(💪 TENUTA +4. E adesso sapete che la bambina che canta sotto quest'isola porta il nome di metà delle donne che ci sono nate — che è il modo in cui questo gioco vi dice, senza dirlo, che laggiù non c'è un mostro: c'è una di loro.)**`,
     heal: 4,
     sets: { sa_nome_assunta: true },
-    silenzio: true,
     choices: [
       { text: '🪞 Al porto', next: 'd11_specchio' },
+    ],
+  },
+
+  /* IL GIORNO NON SI RIPETE: SI RIPRODUCE. Il testo di d1_colazione_bis diceva «di quel poco
+     che si sente e non si puo' dimostrare», che in questo gioco e' una resa: Gaetano dimostra
+     le cose per mestiere, e l'anticipo l'ha gia' misurato sul nastro. Qui il numero torna una
+     terza volta, su una caffettiera, in cucina, alle otto e ventisei. */
+  d1_riprodotto: {
+    location: 'terrazza',
+    caption: 'La terrazza — la seconda tazzina, ore 08:26',
+    stinger: 'penna',
+    metri: 0,
+    text: `> Gaetano: "Ada. Me ne fa un'altra?"
+
+> Ada: *(che non chiede perché, e questa è la ragione per cui in questa storia lei è un rifugio)* "Te ne faccio tre, se te le bevi."
+
+Il telefono sta sul tavolo con il registratore aperto e lo schermo in giù. Gaetano guarda solo la mano di Ada.
+
+Il suono del caffè che cade nella tazzina sta sulla traccia a **00:11,3**. La caffettiera si inclina a **00:12,7**.
+
+Un secondo e quattro decimi.
+
+Lo rifà con la terza tazzina. Un secondo e quattro decimi. Lo rifà con il cucchiaino sul bordo del piattino, che è un suono più netto e si misura meglio: un secondo e quattro decimi.
+
+> Claudia: "È il numero del nastro."
+
+> Gaetano: "È il numero del nastro." *(e mette giù il telefono e non lo riprende)* "Claudia, un giorno che si ripete lo sbaglia, prima o poi. Sbaglia un'albicocca, sbaglia una parola, sbaglia un fagiolino. Questo non sbaglia niente e arriva sempre un secondo e quattro decimi in ritardo su se stesso."
+
+> Claudia: "Dillo semplice."
+
+> Gaetano: "Non si ripete. Si **riproduce**. C'è una registrazione, e noi stiamo un secondo e quattro decimi dietro alla registrazione."
+
+Claudia guarda la sua tazzina. Poi guarda la scaletta dove la signora dei fagiolini non c'è più.
+
+> Claudia: "Quindi quello che sto per dirti adesso sta già scritto da qualche parte."
+
+> Gaetano: "Sì."
+
+> Claudia: "E anche questo."
+
+> Gaetano: "Anche questo."
+
+**(🫁 Fiato +1, 💪 TENUTA −3. Il Quaderno registra la terza misura dello stesso anticipo: un secondo e quattro decimi, su una caffettiera, alle otto e ventisei. 🎵 L'attenzione del Coro non si muove: misurare la giornata non gli toglie una nota, perché la giornata non è sua — è la registrazione a essere sua, e quella l'avete solo capita.)**`,
+    gold: 1,
+    damage: 3,
+    sets: { giorno_riprodotto: true },
+    choices: [
+      { text: '📹 Filmare la signora e sovrapporre l\'audio di ieri sulla stessa traccia', once: true, next: 'd1_confronto' },
+      { text: '🕳 Alla cisterna dei Detenuti. Con un numero in testa e la tazzina finita', next: 'd6_cisterna' },
+    ],
+  },
+
+  /* I MODULI DEL DIVING. `sa_marisa` — quello che si prende strappandolo ad Ada con una prova
+     di Carisma a CD 13 — non lo leggeva nessuno. Qui e' il cancello, e la ricompensa e' la
+     carta che riguarda OGGI: non una cosa interrotta, una pratica AVVIATA. La cosa non li
+     vuole morti, li vuole presenti — e per essere presenti serve un modulo. */
+  d11_moduli: {
+    location: 'paese',
+    caption: 'Il diving — la cartella a molla, ore 08:55',
+    stinger: 'pressione',
+    metri: 0,
+    text: `Nella cartella a molla ci sono i moduli del diving: due facciate fotocopiate, intestazione col logo, e in cima la riga *SCHEDA DI IMMERSIONE E DICHIARAZIONE DI RESPONSABILITÀ*.
+
+I primi due sono compilati.
+
+Stampatello maiuscolo, penna nera, la calligrafia di uno abituato a riempire moduli tutto il giorno. Cognome, nome, luogo e data di nascita: giusti. Brevetto: la casella *nessuno* barrata per lei, e per lui *primo livello — 2019*, che è vero e non se lo ricordava nemmeno lui. *Contatto in caso di emergenza*: sua sorella per lei, con il numero giusto; sua madre per lui, con il numero giusto.
+
+*Profondità massima richiesta:* **45 m.**
+
+*Data:* oggi.
+
+Alla riga della firma non c'è una firma. C'è un timbro, di quelli a tampone che si fanno fare in cartoleria per venti euro, battuto nello spazio dove va la firma.
+
+**RICHIESTA ACQUISITA**
+
+> Claudia: "Nessuno ci ha chiesto niente."
+
+> Gaetano: *(che ha girato il foglio due volte cercando il retro, e il retro è bianco)* "No. Dice acquisita, non accolta. È la formula che usano gli uffici quando una cosa è arrivata e sta in coda."
+
+Sotto i loro due c'è un terzo modulo. Stessa fotocopia, carta ingiallita, data **23 settembre 1997**, nome **CORAGGIO MARISA**, brevetto istruttore, profondità richiesta 45.
+
+Quello è firmato. Firma vera, larga, con lo svolazzo.
+
+E sopra la firma, nello stesso punto dei loro, lo stesso timbro.
+
+**(🎵 Attenzione del Coro +1. 💪 TENUTA −4, 🫁 Fiato −2: leggere il proprio nome su un modulo che non si è compilato toglie l'aria in un modo che non ha niente a che fare con l'acqua. Il Quaderno registra le tre schede, la profondità richiesta e il timbro. E registra la differenza fra le due date: Marisa ha firmato. Voi no, e non è servito.)**`,
+    attenzione: 1,
+    damage: 4,
+    goldLoss: 2,
+    sets: { moduli_compilati: true },
+    choices: [
+      { text: '📋 Prendere la scheda di Marisa e portarsela via. Le altre due lasciarle dove stanno', once: true, gold: 2, sets: { scheda_di_marisa: true }, next: 'd11_specchio' },
+      { text: '✏️ Barrare la casella dei quarantacinque metri e scriverci accanto: ZERO. Con la loro penna', once: true, damage: 2, gold: 2, next: 'd11_specchio' },
+      { text: '🪑 Rimettere tutto nella cartella e chiudere la molla', next: 'd11_specchio' },
     ],
   },
 
@@ -7826,6 +8153,7 @@ E il corpo fa la cosa che fa il corpo quando l'occhio trova l'errore: si ferma, 
 **(💪 TENUTA +10 e mosse ricaricate: quella cosa ha copiato tutto, e ha copiato anche allo specchio — trovare l'errore rimette in piedi. Ciò che viene GUARDATO per intero perde il diritto di cambiare forma.)**`,
 
     choices: [
+      { text: '⏱ Il cronometro. Riprenderla e guardare la bocca contro la voce, come si guarda un doppiaggio fuori sincrono', requires: { flag: 'sa_anticipo' }, once: true, next: 'd11_anticipo' },
       { text: '📸 Inquadrarla adesso, prima che parli: treppiede, luce, e tutta dentro il fotogramma', once: true, sets: { specchio_documentato: true }, next: 'd11_specchio_parla' },
       { text: '🫂 Voltarle la schiena e guardare solo lui, tenendogli la faccia con due mani', heal: 4, gold: 2, next: 'd11_specchio_parla' },
       { text: '👂 Lasciarla parlare. Tutto quello che ha da dire, fino in fondo', next: 'd11_specchio_parla' },
@@ -7861,6 +8189,48 @@ Claudia non risponde.
       { text: '🎙 "Me l\'ha detto lui. In cisterna, da solo, senza che glielo chiedessi": la verità detta regge', requires: { flag: 'verita_detta' }, once: true, heal: 5, gold: 2, next: 'd11_boss' },
       { text: '🕳 Lei sa la cosa che Gaetano non ha detto. Lasciarglielo dire e restare in piedi', requires: { flag: 'bugia_detta' }, once: true, damage: 4, sets: { bugia_pagata: true }, next: 'd11_boss' },
       { text: '🗣 Rispondere: "Hai ragione. Ho paura. E scendo comunque"', heal: 2, gold: 1, next: 'd11_boss' },
+    ],
+  },
+
+  /* IL NUMERO CHE TORNA. `sa_anticipo` — un secondo e quattro decimi, misurato tre volte sul
+     nastro alle Parracine — non lo leggeva nessuno; e `sorpresa` (js/combat.js: «primo giro
+     con VANTAGGIO agli attacchi») era un premio del motore che NESSUNA scena poteva dare, e
+     stava nascosto dentro la whitelist del validatore fra i flag «che li imposta il motore»,
+     quindi invisibile a tutti e due i controlli. Si pagano insieme, ed e' lo stesso
+     fenomeno: quella cosa non parla in ritardo, parla in ANTICIPO. */
+  d11_anticipo: {
+    location: 'paese',
+    caption: 'Il tavolino sotto il fico — un secondo e quattro decimi',
+    stinger: 'penna',
+    metri: 0,
+    text: `Gaetano non discute con lei e non la guarda in faccia: fa la cosa che sa fare. Appoggia il telefono al muretto, inquadra il tavolino, blocca l'esposizione e riprende ventidue secondi.
+
+Poi si mette in un angolo di piazza vuota, con Claudia addosso alla spalla, e guarda il girato a un quarto di velocità.
+
+La bocca dell'altra dice *amore*. La parola nell'audio arriva **prima** che le labbra si aprano.
+
+Non di un fotogramma: di trentacinque. A venticinque al secondo fa un secondo e quattro decimi.
+
+> Gaetano: "Un virgola quattro."
+
+> Claudia: "Come il nastro."
+
+> Gaetano: "Come il nastro. Stessa cifra, misurata su due macchine diverse a ventun ore di distanza." *(e per la prima volta da giovedì la sua faccia non è quella di uno che ha paura: è quella di uno al lavoro)* "Claudia, quella non parla dopo aver deciso. Parla e **poi** decide di muovere la bocca. Vuol dire che la frase esiste prima."
+
+> Claudia: "E quindi?"
+
+> Gaetano: "E quindi la sappiamo un secondo e quattro decimi prima di lei." *(le gira lo schermo)* "La prossima cosa che dice è *facciamo come vuoi tu*."
+
+Un secondo e quattro decimi dopo, dal tavolino sotto il fico, arriva: *«Va bene, amore. Facciamo come vuoi tu.»*
+
+Claudia non ha nemmeno il tempo di avere paura. Ha il tempo di alzare la ring light.
+
+**(⚡ IL VANTAGGIO. Adesso avete un secondo e quattro decimi su quella cosa, e non è un modo di dire: **il primo giro dello scontro lo fate con vantaggio agli attacchi**, e il registro del combattimento lo scriverà per esteso. È il numero del nastro, misurato una seconda volta su una macchina diversa. 🫁 Fiato +1: avere un numero, per lui, è riposare.)**`,
+    gold: 1,
+    sets: { sorpresa: true, specchio_smascherato: true, anticipo_usato: true },
+    choices: [
+      { text: '💡 Alzare la luce. Adesso, mentre siamo avanti', next: 'd11_boss' },
+      { text: '📼 Prima salvare il file in tre copie, che è la regola', once: true, gold: 1, next: 'd11_boss' },
     ],
   },
 
@@ -8180,7 +8550,7 @@ Il Coro non canta. Nessuno parla. Nessuna faccia ai bordi dell'inquadratura.
 
 Il silenzio, quaggiù, è il modo che ha questa cosa per dirvi che ha smesso di fingere di essere un rumore.
 
-**(Oggetto: il CAVALLINO DI CELLULOIDE. 🫁 Fiato −4: quarantacinque metri si pagano. Il Quaderno registra il giocattolo dalla stiva, e il mistero della bambina della Santa Lucia ha il suo quarto indizio.)**`,
+**(Oggetto: il CAVALLINO DI CELLULOIDE. 🫁 Fiato −4: quarantacinque metri si pagano. Il Quaderno registra il giocattolo dalla stiva, e il mistero della bambina della Santa Lucia ha il suo quarto indizio. 🔇 Terza e ultima volta che il gioco spegne la musica. Da qui in avanti, se il suono manca, è perché manca.)**`,
     sets: { i_giocattolo: true },
     choices: [
       { text: '🤝 Prenderle la mano. Cinque secondi, senza nessun motivo tecnico', once: true, next: 'd13_mano' },
@@ -8252,7 +8622,6 @@ Quello che dovete rompere non è lei. È la presa.
     caption: 'Cinque secondi in più — meno quarantacinque metri',
     metri: 45,
     stinger: 'voce_amata',
-    silenzio: true,
     text: `L'etichetta dice **SPINELLI ASSUNTA — NAPOLI**, e leggerla costa cinque secondi. A quarantacinque metri cinque secondi non sono un tempo: sono una quantità, e si toglie da un posto che ne aveva già poca.
 
 Il diaframma si chiude da solo. Non è volontà: è un muscolo che ha finito la pazienza, e ogni contrazione è un promemoria scritto in prima persona.
@@ -8454,7 +8823,6 @@ Poi lascia andare tutta l'aria che aveva in bocca per parlare, e non parla più 
     caption: 'Cinque secondi, senza nessun motivo tecnico',
     metri: 45,
     stinger: 'voce_amata',
-    silenzio: true,
     text: `Non c'è un motivo tecnico. È l'unica cosa di tutta la giornata che non ha un motivo tecnico.
 
 Claudia è in ginocchio sul sedimento con il cavallino chiuso in pugno, il fascio della torcia da casco dentro una valigia di cartone pressato, e a quarantacinque metri il corpo fa una cosa che non aveva mai fatto: comincia a contare da solo. Il battito rallenta. Le dita si aprono e si chiudono senza ordine.
@@ -8718,7 +9086,6 @@ Sette minuti sono quattrocentoventi secondi: il tempo di una canzone e mezza. So
     caption: 'La sosta — gli ultimi tre minuti',
     metri: 10,
     stinger: 'apnea',
-    silenzio: true,
     text: `Tre minuti. A dieci metri, con l'aria che basta, tre minuti sono una cosa lunghissima e non c'è niente da fare che li accorci.
 
 La superficie continua a essere là. Il disco di luce si muove piano, e ogni tanto una piccola onda lo taglia in due e poi lo rimette insieme.
@@ -8830,6 +9197,7 @@ Trenta metri di lamiera davanti. Dietro, la scaletta delle Parracine e il limone
 E la domanda è una sola: chi lo scrive, questo verbale.`,
 
     choices: [
+      { text: '📄 "Il verbale ce l\'abbiamo letto ieri. Ci hai messi NON RECLAMATI." — e appoggiare la pagina strappata sulla banchina bagnata, davanti all\'acqua', requires: { flag: 'non_reclamati' }, once: true, heal: 4, gold: 2, sets: { reclamati: true }, next: 'd15_uscite' },
       { text: '🕯 Rispondere al verbale con un nome: «Nicola Sperduto, quarantatré anni, rimasto in servizio. Questo non risulta a nessuno, e lo sappiamo noi.»',
         requires: { flag: 'sa_nome_guardia' }, once: true, heal: 6, gold: 2,
         sets: { verbale_rifiutato: true }, next: 'd15_uscite' },
@@ -9742,7 +10110,6 @@ E sul frigo, attaccati con la calamita del Parco Nazionale, ci sono due bigliett
 
 **(⚠️ Non è una resa e il gioco non vi giudica. Sotto c'è ancora tutto quello che c'era, e adesso il Coro è più stanco di voi. Ma i biglietti sono sul frigo da tre giorni, e nessuno vi obbliga a scendere un'altra volta.)**`,
     stinger: 'penna',
-    silenzio: true,
     sets: { tre_volte_rimessi_a_posto: true },
     choices: [
       { text: '🌊 Ci scendiamo. Un\'altra volta, e questa è l\'ultima', next: 'RIPRENDI_CHECKPOINT' },
@@ -9898,7 +10265,17 @@ const DIARY_FLAGS = [
   ['sa_pandataria',       'Il nome vero dell\'isola: PANDATARIA, dal greco — pan, tutto, e la radice di dateomai, distribuire. «Dispensatrice di ogni bene.» Gliel\'hanno messo i greci perche\' ci si fermavano volentieri: buona posizione, terra grassa, si mangiava. Poi ci hanno mandato una donna a non avere piu\' niente, e il nome se lo sono tenuto.'],
   ['i_voce_guardia',      'La voce sul nastro: «Due settembre millenovecentosessantacinque, ore ventitre e dieci. Sperduto Nicola, guardia scelta. Sono rimasto io.» Poi la ronda: primo anello vuote, secondo anello vuote, cella quarantasette controllata VUOTA come da ventidue anni. E poi un uomo di quarantatre anni che piange davanti a un microfono per undici secondi, e sotto il pianto una bambina che canta.'],
   ['i_conto_fosse',       'Il cimitero dei detenuti, contato tre volte da tre persone separatamente: TRENTANOVE croci di ferro con un numero dipinto sopra, e QUARANTA avvallamenti nella terra. La quarantesima fossa sta nell\'angolo di nord-est e ci cresce sopra l\'erba grassa, che e\' l\'erba che viene dove sotto c\'e\' la calce.'],
-  ['i_osso',              'Nel cimitero dei detenuti le fosse contate sono novantatré e i nomi novantadue. In quella in più non c\'è una divisa da carcerato: ci sono bottoni di ottone.'],
+  ['i_osso',              'Il cimitero dei detenuti, contato tre volte da tre persone: TRENTANOVE croci di ferro con un numero dipinto sopra — nessun nome, in nessuna — e QUARANTA avvallamenti. Nel quarantesimo, sotto trenta centimetri di calce, cinque bottoni di metallo in fila come stavano cuciti, e su uno la stelletta: nel cimitero dei DETENUTI. E sul registro dei defunti la quarantesima riga e\' l\'unica senza matricola, chiusa con un timbro a tampone dell\'ufficio del personale: CESSAZIONE DEL SERVIZIO.'],
+  ['giorno_riprodotto',   'Terza misura dello stesso anticipo, su una caffettiera: il suono del caffe\' che cade sta sulla traccia a 00:11,3 e la caffettiera si inclina a 00:12,7. Rifatto con la terza tazzina e col cucchiaino sul piattino: un secondo e quattro decimi, sempre. Un giorno che si ripete prima o poi sbaglia un\'albicocca. Questo non sbaglia niente e arriva in ritardo su se stesso: non si ripete, si RIPRODUCE.'],
+  ['moduli_compilati',    'Nella cartella a molla del diving, tre SCHEDE DI IMMERSIONE E DICHIARAZIONE DI RESPONSABILITA\'. Due datate oggi, compilate in stampatello da una mano che riempie moduli per mestiere: nomi giusti, brevetti giusti, i due contatti in caso di emergenza giusti col numero di telefono. Profondita\' massima richiesta: 45 m. Nello spazio della firma, un timbro: RICHIESTA ACQUISITA. Acquisita, non accolta: e\' la formula per una pratica che e\' arrivata e sta in coda. La terza scheda e\' del 23 settembre 1997, nome Coraggio Marisa, e quella e\' firmata.'],
+  ['scheda_di_marisa',    'La scheda del 23 settembre 1997 sta piegata in quattro nella tasca interna dello zaino. Profondita\' richiesta 45, brevetto istruttore, firma vera con lo svolazzo. E\' l\'unico foglio di tutta questa storia che qualcuno ha firmato di sua mano.'],
+  ['anticipo_usato',      'Ventidue secondi di girato al tavolino sotto il fico, guardati a un quarto di velocita\': la parola arriva trentacinque fotogrammi prima che le labbra si aprano. A venticinque al secondo fa un secondo e quattro decimi — la stessa cifra del nastro, misurata su due macchine diverse a ventun ore di distanza. Quella cosa non parla in ritardo: parla in anticipo, e per un secondo e quattro decimi la frase la sappiamo prima noi.'],
+  ['fine_pena_mai',       'Il cartellino della cella 44, l\'unico rimasto nel portacartellino di ottone: matricola a cinque cifre, posizione giuridica scritta per esteso, provenienza Napoli casa penale. Alla colonna «fine pena» non c\'e\' una data: c\'e\' un timbro, ben inchiostrato e dritto, e dice MAI. Un timbro lo si fa fare quando serve spesso, e le celle erano novantanove.'],
+  ['registro_visite',     'Il registro delle visite nella guardiola del panopticon, sabato 29 agosto, ultima riga: i due nomi per esteso, la provenienza Scauri (LT), i due numeri di documento cifra per cifra. Ora d\'ingresso 10:05, giusta. Colonna della firma vuota. Colonna dell\'ora d\'uscita compilata, stessa biro: 18:40.'],
+  ['ora_prevista',        'Il giorno si riavvolge alle 18:40, e le 18:40 stavano scritte a biro nella colonna «ora d\'uscita» di un registro da cartoleria, in una guardiola di Santo Stefano, due giorni prima che significassero qualcosa. Non era una minaccia: era un modulo compilato.'],
+  ['non_reclamati',       'Il registro PRESENZE ha un secondo fascicolo, incollato, con la griglia tirata a mano: i 1 continuano per undici pagine dopo il 1965, senza date. L\'ultima riga compilata ha una data — 29 agosto 2026 — e il numero non e\' 1, e\' 2. E nella colonna delle annotazioni, vuota in ottomila righe, due parole: «non reclamati». E\' la formula del cimitero, e sta su un modulo delle presenze.'],
+  ['pagina_strappata',    'La pagina e\' stata strappata a mano dal secondo fascicolo del PRESENZE e sta piegata in quattro nella tasca di dietro. Lo strappo ha portato via mezza riga di quella successiva, che era vuota. Era vuota.'],
+  ['circolare_1949',      'Circolare del 14 marzo 1949, con protocollo, OGGETTO: battiture sulle imposte e sui tubi. Tre punti: annotare l\'ora al minuto, NON RISPONDERE in nessun caso ne\' battendo ne\' a voce, non contare i colpi ad alta voce. Sul margine, a matita, la grafia di uno che scriveva in piedi: «il due e\' quello importante». La regola di Ada, novanta firme per ricevuta, settantasette anni prima di Ada.'],
 
   /* --- la bambina che canta --- */
   ['i_foto_museo',        'La foto al museo: molo di Napoli, 24 ottobre 1943. Una bambina col cappottino buono, la mano dentro la mano di qualcuno che l\'inquadratura taglia via al polso.'],

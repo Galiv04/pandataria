@@ -1033,11 +1033,29 @@ const Scenes = (() => {
                                              [0.73, 84, '#cfd8de', -1, true]]) {
         barchetta(ctx, W * fx, waterY + 26 + (bw % 11), bw, col, r, dir, alb);
       }
-      // LA BANCHINA in primo piano: cemento vecchio, bitte, una cima avvolta
+      /* LA BANCHINA in primo piano: cemento vecchio, bitte, una cima avvolta.
+         E' UN PIANO ORIZZONTALE, e prima era dipinta come una parete: quattordici giunti
+         verticali da tre pixel, tirati per tutti i settantotto pixel di profondita' con zero
+         convergenza, piu' corsi trasversali di dodici pixel costanti. Su un piano orizzontale
+         i giunti longitudinali CONVERGONO verso il punto di fuga e i corsi trasversali si
+         ALLARGANO venendo avanti: sono due righe di codice in piu' e sono la differenza fra
+         un pavimento e un muro visto da davanti. Con l'orizzonte a y=94, sui settantotto
+         pixel di banchina lo spostamento e' di venti pixel, e i corsi passano da dodici a
+         diciassette. */
       blocks(ctx, 0, quayY - 6, W, H - quayY + 6, '#a8a094', 12, r, 0.10);
       ctx.fillStyle = 'rgba(255,255,240,.10)'; ctx.fillRect(0, quayY - 6, W, 3);
-      ctx.fillStyle = 'rgba(60,54,44,.30)';
-      for (let x = 0; x < W; x += 68) ctx.fillRect(x, quayY - 4, 3, H - quayY + 4);
+      const fugaX = W * 0.50;
+      for (let x0 = 0; x0 < W + 68; x0 += 68) {
+        for (let y = quayY - 4; y < H; y++) {
+          const t = (y - (quayY - 4)) / Math.max(1, H - quayY + 4);
+          const x = x0 + (fugaX - x0) * (1 - t) * 0.29;
+          ctx.fillStyle = 'rgba(60,54,44,.30)';
+          ctx.fillRect(Math.round(x), y, 3, 1);
+        }
+      }
+      for (let y = quayY - 4, passo = 12; y < H; y += passo, passo += 1.6) {
+        ctx.fillStyle = 'rgba(60,54,44,.22)'; ctx.fillRect(0, Math.round(y), W, 2);
+      }
       for (const fx of [0.20, 0.62]) {
         ctx.fillStyle = '#4a4640'; ctx.fillRect(W * fx - 7, quayY - 20, 15, 20);
         ctx.fillStyle = '#5c574e'; ctx.fillRect(W * fx - 10, quayY - 24, 21, 6);
@@ -1100,8 +1118,22 @@ const Scenes = (() => {
       }
       // IL PONTE: doghe di gomma grigio-azzurra, e la vibrazione che arriva ai denti
       blocks(ctx, 0, deckY, W, H - deckY, '#5a646c', 12, r, 0.09);
-      ctx.fillStyle = 'rgba(20,26,30,.24)';
-      for (let x = 0; x < W; x += 24) ctx.fillRect(x, deckY, 3, H - deckY);
+      /* Anche questo e' un PIANO ORIZZONTALE: quaranta giunti verticali ogni ventiquattro
+         pixel su centouno pixel di ponte, con zero convergenza, facevano di un ponte una
+         parete grigia vista di fronte. Con l'orizzonte a y=108 lo spostamento e' di
+         trentatre' pixel sui centouno di profondita', e i corsi trasversali passano da dieci
+         a sedici. */
+      for (let x0 = 0; x0 < W + 24; x0 += 24) {
+        for (let y = deckY; y < H; y++) {
+          const t = (y - deckY) / Math.max(1, H - deckY);
+          const x = x0 + (W * 0.40 - x0) * (1 - t) * 0.33;
+          ctx.fillStyle = 'rgba(20,26,30,.24)';
+          ctx.fillRect(Math.round(x), y, 3, 1);
+        }
+      }
+      for (let y = deckY, passo = 10; y < H; y += passo, passo += 1.5) {
+        ctx.fillStyle = 'rgba(20,26,30,.16)'; ctx.fillRect(0, Math.round(y), W, 2);
+      }
       ctx.fillStyle = 'rgba(255,255,255,.06)'; ctx.fillRect(0, deckY, W, 3);
       // la panca di poppa e il salvagente: il posto dove si sta
       ctx.fillStyle = '#7a6a4a'; ctx.fillRect(W * 0.66, deckY + 6, W * 0.22, 12);
@@ -1184,36 +1216,75 @@ const Scenes = (() => {
       ctx.fillStyle = '#e8e0c8'; ctx.fillRect(cx - 1, H * 0.31 - 9, 3, 10); ctx.fillRect(cx, H * 0.31, 8, 3);
       // LA PIAZZA: basolato di pietra vulcanica, caldo di sole
       blocks(ctx, 0, groundY, W, H - groundY, '#a89888', 14, r, 0.10);
-      ctx.fillStyle = 'rgba(70,58,44,.22)';
-      for (let y = groundY; y < H; y += 15) for (let x = ((y / 15) % 2) * 32; x < W; x += 64) ctx.fillRect(x, y, 60, 2);
+      /* Il basolato e' un piano orizzontale: il passo delle righe si ALLARGA venendo avanti
+         (da undici pixel in fondo a diciannove in primo piano) e i giunti fra i basoli
+         convergono verso il punto di fuga. A passo fisso sembrava un muro di mattoni messo
+         per terra, che e' esattamente quello che era. */
+      {
+        let y = groundY, passo = 11, riga = 0;
+        while (y < H) {
+          const largo = Math.round(60 * (0.78 + (y - groundY) / (H - groundY) * 0.34));
+          for (let x = (riga % 2) * (largo / 2); x < W; x += largo + 4) {
+            ctx.fillStyle = 'rgba(70,58,44,.22)';
+            ctx.fillRect(Math.round(x), Math.round(y), largo, 2);
+            ctx.fillRect(Math.round(x + largo), Math.round(y), 2, Math.round(passo));
+          }
+          y += passo; passo += 1.3; riga++;
+        }
+      }
       ctx.fillStyle = 'rgba(255,224,170,.12)'; ctx.fillRect(0, groundY, W, H - groundY);
-      // I TAVOLINI DI FERRO con le sedie: tre, apparecchiati
-      for (const [fx, fy] of [[0.10, 0.06], [0.30, 0.20], [0.78, 0.12]]) {
-        const tx = W * fx, ty = groundY + (H - groundY) * fy;
-        ctx.fillStyle = 'rgba(50,40,30,.28)'; pixelEllipse(ctx, tx, ty + 30, 30, 8, 4);
-        ctx.fillStyle = '#3a4a44'; ctx.fillRect(tx - 24, ty, 48, 5);          // il piano
-        ctx.fillStyle = '#f0ece0'; ctx.fillRect(tx - 22, ty - 3, 44, 4);      // tovaglia di carta
-        ctx.fillStyle = '#2e3a36'; ctx.fillRect(tx - 3, ty + 5, 6, 26);
-        ctx.fillRect(tx - 14, ty + 29, 28, 3);
-        ctx.fillStyle = '#3a4a44';                                            // due sedie
-        ctx.fillRect(tx - 40, ty + 6, 14, 4); ctx.fillRect(tx - 40, ty - 14, 4, 22);
-        ctx.fillRect(tx + 27, ty + 6, 14, 4); ctx.fillRect(tx + 37, ty - 14, 4, 22);
-        ctx.fillStyle = '#e8e4d4'; ctx.fillRect(tx - 8, ty - 9, 5, 7); ctx.fillRect(tx + 4, ty - 8, 4, 6);
+      /* UN TAVOLINO SOLO, GRANDE, TAGLIATO DAL BORDO. Prima ce n'erano tre col piano di
+         quarantotto pixel, due gatti da ventisei e un motorino da quarantasei. Il metro di
+         questo quadro e' la persiana — 22×28 px per una finestra di 1,10 × 1,45 m, cioe'
+         venti pixel il metro — e con quel metro un tavolino da bar (0,70 m) e' quindici
+         pixel, un gatto venticinque, una Vespa sessanta. Erano tutti e sei fuori scala di
+         tre volte E sotto la soglia di leggibilita' insieme: il motorino, nel PNG, leggeva
+         come un trattorino rosso senza sella ne' scudo ne' forcella.
+         La regola del progetto e' che un fondale ha UN soggetto grande almeno un terzo
+         dell'inquadratura, e che un oggetto che non si riesce a far leggere si TOGLIE. Quindi
+         qui adesso c'e' un tavolino in primo piano, tagliato dal bordo di sotto, dove la
+         scala e' quella giusta per farlo grande — e la piazza dietro e' vuota, che alle
+         nove e mezza di sera d'agosto e' anche piu' vero. */
+      {
+        const tx = Math.round(W * 0.20), ty = H - 46;
+        ctx.fillStyle = 'rgba(50,40,30,.30)'; pixelEllipse(ctx, tx, ty + 44, 62, 11, 4);
+        // le due sedie, dietro e di fianco: spalliera alta, ferro verniciato verde
+        for (const [sx, sy] of [[tx - 86, ty - 6], [tx + 84, ty - 2]]) {
+          ctx.fillStyle = '#2e3a36';
+          ctx.fillRect(sx - 22, sy + 10, 44, 6);                 // la seduta
+          ctx.fillRect(sx - 20, sy - 44, 6, 56); ctx.fillRect(sx + 14, sy - 44, 6, 56);
+          for (let k = 0; k < 4; k++) ctx.fillRect(sx - 20, sy - 40 + k * 11, 40, 5);
+          ctx.fillStyle = '#3a4a44';
+          ctx.fillRect(sx - 18, sy + 16, 5, 30); ctx.fillRect(sx + 13, sy + 16, 5, 30);
+        }
+        // il piano: settanta centimetri, cioe' settanta pixel di semiasse a questa distanza
+        ctx.fillStyle = '#2e3a36'; ctx.fillRect(tx - 6, ty + 8, 12, 40);
+        ctx.fillStyle = '#3a4a44'; pixelEllipse(ctx, tx, ty + 46, 26, 6, 3);
+        ctx.fillStyle = '#3a4a44'; pixelEllipse(ctx, tx, ty, 70, 17, 3);
+        ctx.fillStyle = '#4a5a52'; pixelEllipse(ctx, tx, ty - 3, 70, 16, 3);
+        ctx.fillStyle = '#f0ece0'; pixelEllipse(ctx, tx, ty - 4, 58, 13, 3);   // la tovaglia di carta
+        ctx.fillStyle = 'rgba(180,170,150,.40)'; ctx.fillRect(tx - 58, ty - 4, 116, 2);
+        // due bicchieri e un cestino del pane: le cose che stanno su un tavolo apparecchiato
+        ctx.fillStyle = '#dfe4e2'; ctx.fillRect(tx - 30, ty - 26, 13, 22);
+        ctx.fillStyle = '#c8d0ce'; ctx.fillRect(tx - 30, ty - 26, 13, 4);
+        ctx.fillStyle = '#dfe4e2'; ctx.fillRect(tx + 14, ty - 24, 12, 20);
+        ctx.fillStyle = '#c8d0ce'; ctx.fillRect(tx + 14, ty - 24, 12, 4);
+        ctx.fillStyle = '#b08a52'; pixelEllipse(ctx, tx - 4, ty - 12, 17, 7, 3);
+        ctx.fillStyle = '#e8d8a8'; pixelEllipse(ctx, tx - 4, ty - 16, 13, 5, 3);
       }
-      // I GATTI: uno sulla sedia, uno steso al sole in mezzo alla piazza
-      for (const [gx, gy, col] of [[W * 0.355, groundY + (H - groundY) * 0.20 - 12, '#c8b498'], [W * 0.55, H - 22, '#5a5248']]) {
-        ctx.fillStyle = col;
-        pixelEllipse(ctx, gx, gy, 13, 6, 3);
-        ctx.fillStyle = col; ctx.fillRect(gx + 9, gy - 9, 8, 8);
-        ctx.fillRect(gx + 9, gy - 13, 3, 5); ctx.fillRect(gx + 14, gy - 13, 3, 5);
-        ctx.fillStyle = shade(col, 0.7); ctx.fillRect(gx - 16, gy - 2, 8, 3);
+      /* IL GATTO, uno solo e grande: cinquanta pixel di lunghezza, steso sul basolato caldo
+         a due passi dal tavolino. A venticinque pixel era un'ellisse grigia. */
+      {
+        const gx = Math.round(W * 0.63), gy = H - 26;
+        ctx.fillStyle = 'rgba(50,40,30,.26)'; pixelEllipse(ctx, gx, gy + 7, 30, 6, 3);
+        ctx.fillStyle = '#5a5248'; pixelEllipse(ctx, gx, gy, 26, 11, 3);
+        ctx.fillStyle = '#6a6154'; pixelEllipse(ctx, gx, gy - 3, 24, 7, 3);
+        ctx.fillStyle = '#5a5248'; ctx.fillRect(gx + 20, gy - 16, 15, 15);          // la testa
+        ctx.fillRect(gx + 21, gy - 22, 5, 7); ctx.fillRect(gx + 29, gy - 22, 5, 7); // le orecchie
+        ctx.fillStyle = '#c8b070'; ctx.fillRect(gx + 24, gy - 11, 3, 3); ctx.fillRect(gx + 31, gy - 11, 3, 3);
+        ctx.fillStyle = '#4a443c'; ctx.fillRect(gx - 34, gy - 2, 16, 5);            // la coda
+        ctx.fillStyle = '#6a6154'; ctx.fillRect(gx - 6, gy + 8, 9, 5); ctx.fillRect(gx + 8, gy + 8, 9, 5);
       }
-      // il motorino appoggiato al muro col cavalletto giù
-      const mx = W * 0.455;
-      ctx.fillStyle = '#2a2a30'; pixelDisc(ctx, mx, groundY + 12, 10, 3); pixelDisc(ctx, mx + 34, groundY + 12, 10, 3);
-      ctx.fillStyle = '#7a2e2e'; ctx.fillRect(mx, groundY - 6, 36, 12);
-      ctx.fillStyle = '#3a3a40'; ctx.fillRect(mx + 24, groundY - 20, 8, 16);
-      ctx.fillStyle = '#5a5a62'; ctx.fillRect(mx + 20, groundY - 22, 18, 4);
       // il ballatoio a destra: sotto la ringhiera l'isola scende verso il porto
       ctx.fillStyle = '#8a8478'; ctx.fillRect(W * 0.955, groundY - 40, W * 0.045, 40);
       ctx.fillStyle = '#2a6a80'; ctx.fillRect(W * 0.955, groundY - 40, W * 0.045, 22);
@@ -1470,10 +1541,16 @@ const Scenes = (() => {
          SOTTO l'erba invece che addosso. Resta una sagoma e non diventa altro: qui
          non serve mostrare, serve che il giocatore non riesca a smettere di guardare. */
       {
-        const sgX = W * 0.30, sgY = rigaY + 11, sgL = W * 0.155;
+        /* VENTISEI PIXEL, non centoquarantanove. Il metro sono i bagnanti: chi nuota a
+           rigaY+52 e' alto ventitre' pixel per il metro che sporge, e alla riga della sagoma
+           la scala e' 14,4 px/m — quindi un corpo di 1,75 m fa venticinque pixel. A
+           centoquarantanove era lungo dieci metri, e a dieci metri non e' una sagoma: e' un
+           oggetto. Una sagoma si nota perche' sta nel posto sbagliato, non perche' e' grande:
+           a farla notare sono il contrasto e la radura, non la taglia. */
+        const sgX = W * 0.30, sgY = rigaY + 11, sgL = 26;
         for (let dx = 0; dx < sgL; dx += 2) {
           const t = dx / sgL;
-          const sp = 13 * (1 - t * 0.62) * (t < 0.10 ? 0.55 + t * 4.5 : 1);   // spalle, poi si assottiglia
+          const sp = 7 * (1 - t * 0.62) * (t < 0.10 ? 0.55 + t * 4.5 : 1);   // spalle, poi si assottiglia
           ctx.fillStyle = `rgba(3,12,18,${0.70 - t * 0.22})`;
           ctx.fillRect((sgX + dx) | 0, (sgY + (13 - sp) / 2) | 0, 2, Math.max(2, sp) | 0);
         }
@@ -1719,9 +1796,28 @@ const Scenes = (() => {
       }
       ctx.fillStyle = 'rgba(196,228,240,.20)'; ctx.fillRect((cx - 3) | 0, (cy - 12) | 0, 6, 2);
       ctx.fillStyle = 'rgba(196,228,240,.12)'; ctx.fillRect((cx + 3) | 0, (cy - 8) | 0, 4, 2);
-      // IL MURETTO A SECCO su cui si tengono i piedi
-      muretto(ctx, 0, murettoY, W, H - murettoY, '#6a5a3e', r);
-      ctx.fillStyle = 'rgba(255,230,170,.06)'; ctx.fillRect(0, murettoY, W, 4);
+      /* IL PAVIMENTO E IL PARAPETTO, che prima erano la stessa cosa. Il muretto occupava
+         tutti i novantaquattro pixel di primo piano — il 26% del quadro — con luminanza 100
+         contro un cielo a 18 e un mare a 12: otto volte piu' luminoso di tutto il resto, e
+         senza nessuna sorgente nell'inquadratura che lo illuminasse. E soprattutto la
+         terrazza non aveva un PAVIMENTO: il tavolino e le sedie stavano coi piedi a y=262 e
+         il muretto cominciava a 266, cioe' i mobili erano in equilibrio sul filo del
+         parapetto. Adesso sono due piani: il basolato in scorcio davanti (giunti trasversali
+         che si allargano venendo avanti, perche' e' un piano orizzontale) e il parapetto
+         solo dove sta un parapetto. */
+      const pavY = Math.round(H * 0.835);
+      muretto(ctx, 0, murettoY, W, pavY - murettoY, '#241f16', r);
+      ctx.fillStyle = 'rgba(255,230,170,.03)'; ctx.fillRect(0, murettoY, W, 3);
+      ctx.fillStyle = '#2a251c'; ctx.fillRect(0, pavY, W, H - pavY);
+      for (let y = pavY, passo = 9; y < H; y += passo, passo += 2) {
+        ctx.fillStyle = 'rgba(14,12,9,.55)'; ctx.fillRect(0, y, W, 2);
+      }
+      ctx.fillStyle = 'rgba(120,104,74,.10)'; ctx.fillRect(0, pavY, W, 2);
+      /* il filo del coronamento: due pixel piu' chiari sul bordo di sopra del parapetto.
+         Senza, parapetto e pavimento sono due marroni scuri attaccati e l'occhio non
+         capisce dove finisce il piano su cui si sta e dove comincia quello che ti tiene. */
+      ctx.fillStyle = 'rgba(168,150,112,.22)'; ctx.fillRect(0, murettoY, W, 2);
+      ctx.fillStyle = 'rgba(10,8,6,.50)'; ctx.fillRect(0, pavY - 2, W, 2);
       /* IL GAZEBO DI CANNE: sulla terrazza solarium la colazione si fa qui sotto, e di
          notte le canne tagliano il cielo in strisce sopra la testa. Dà il soffitto a
          un'inquadratura che prima era tutta cielo aperto. */
@@ -1737,7 +1833,7 @@ const Scenes = (() => {
       ctx.fillStyle = 'rgba(58,46,30,.42)'; ctx.fillRect(0, 24, W, 2);
 
       // IL TAVOLINO e LE DUE SEDIE DI PLASTICA, in controluce
-      const tx = W * 0.30, ty = murettoY - 4;
+      const tx = W * 0.30, ty = H - 20;      // i piedi sul PAVIMENTO, non sul filo del parapetto
       ctx.fillStyle = '#1a1d22'; ctx.fillRect(tx - 30, ty - 44, 60, 6);
       ctx.fillRect(tx - 3, ty - 38, 7, 38);
       ctx.fillRect(tx - 16, ty - 4, 34, 4);
@@ -1753,11 +1849,11 @@ const Scenes = (() => {
         ctx.fillRect(sx - 13, ty - 28, 5, 28); ctx.fillRect(sx + 8, ty - 28, 5, 28);
       }
       // il vaso dei limoni, a destra: mezzo metro d'acqua quaranta metri sopra il mare
-      ctx.fillStyle = '#3a2a20'; ctx.fillRect(W * 0.80, murettoY - 30, 40, 30);
-      ctx.fillStyle = '#0e1418'; ctx.fillRect(W * 0.803, murettoY - 28, 34, 6);
-      ctx.fillStyle = 'rgba(150,196,214,.14)'; ctx.fillRect(W * 0.803, murettoY - 28, 34, 3);
+      ctx.fillStyle = '#3a2a20'; ctx.fillRect(W * 0.80, H - 34, 40, 30);
+      ctx.fillStyle = '#0e1418'; ctx.fillRect(W * 0.803, H - 32, 34, 6);
+      ctx.fillStyle = 'rgba(150,196,214,.14)'; ctx.fillRect(W * 0.803, H - 32, 34, 3);
       ctx.fillStyle = '#1a2a1e';
-      for (const [ox, oy] of [[8, -52], [26, -48], [17, -62]]) pixelEllipse(ctx, W * 0.80 + ox, murettoY + oy, 14, 9, 3);
+      for (const [ox, oy] of [[8, -56], [26, -52], [17, -66]]) pixelEllipse(ctx, W * 0.80 + ox, H + oy, 14, 9, 3);
       ctx.fillStyle = '#6a5a20'; pixelDisc(ctx, W * 0.80 + 12, murettoY - 50, 4, 3);
       // il cavetto del microfono che scende oltre il muretto
       ctx.fillStyle = '#2a2e34';
@@ -2202,15 +2298,25 @@ const Scenes = (() => {
       const parete = x => 38 + Math.round(Math.sin(x * 0.037) * 6 + Math.sin(x * 0.113) * 3)
                         + (x > W * 0.84 ? Math.pow((x - W * 0.84) / (W * 0.16), 0.80) * 26 : 0);
       const eY = Math.round(edgeY);
+      /* LA RAMPA DI TONO ERA AL CONTRARIO. La parete andava da un ocra medio in cima a
+         #26200f — quasi nero — proprio SOTTO il ciglio, cioe' era piu' scura dove il sole di
+         mezzogiorno la prende e piu' chiara dove sta l'ombra propria. Sullo schermo la costa
+         diventava una fascia scura di quaranta pixel senza volume, e il filo di luce che
+         doveva separarla dalla terra bianca era di due pixel: invisibile. Invertita — buia al
+         PIEDE, sotto la cengia, e schiarita verso il ciglio — e il filo portato a cinque
+         pixel con l'ombra portata sopra: sono quegli otto pixel che dicono «qui la terra
+         finisce». */
       const tonoParete = (y, t0, d) =>
-        mix('#71624a', '#26200f', Math.pow(Math.min(1, Math.max(0, (y - t0) / Math.max(6, d))), 0.62));
+        mix('#3a3020', '#8a7c60', Math.pow(Math.min(1, Math.max(0, (y - t0) / Math.max(6, d))), 0.62));
       for (let x = 0; x < W; x += 2) {
         const d = Math.round(parete(x)), t0 = eY - d;
         for (let y = t0 + 3; y < eY; y++) {
           ctx.fillStyle = tonoParete(y, t0, d);
           ctx.fillRect(x, y, 2, 1);
         }
-        ctx.fillStyle = '#cfe6ee'; ctx.fillRect(x, t0, 2, 3);                  // la schiuma alla base
+        ctx.fillStyle = 'rgba(60,50,30,.45)'; ctx.fillRect(x, t0 - 3, 2, 3);   // l'ombra portata sul ciglio
+        ctx.fillStyle = 'rgba(255,250,214,.90)'; ctx.fillRect(x, t0, 2, 5);     // IL FILO al sole
+        ctx.fillStyle = '#cfe6ee'; ctx.fillRect(x, eY - 6, 2, 6);               // la schiuma alla base
         ctx.fillStyle = 'rgba(255,250,214,.80)'; ctx.fillRect(x, eY - 1, 2, 2); // il rim al sole
       }
       /* LO SPIGOLO dove la costa volta. Una parete che gira si riconosce dal filo
@@ -2552,54 +2658,16 @@ const Scenes = (() => {
       ctx.fillStyle = 'rgba(255,255,255,.44)'; ctx.fillRect(boax - 12, boay - 13, 12, 3);
       ctx.fillStyle = '#6a6a64'; ctx.fillRect(boax - 2, boay - 24, 4, 8);
       ctx.fillStyle = 'rgba(255,255,255,.26)'; pixelEllipse(ctx, boax, boay + 15, 22, 4, 3);
-      /* L'OMBRELLONE ancora aperto, in primo piano a sinistra: era un'asta con cinque
-         bande arancioni larga cento pixel a mezza altezza, e leggeva come un cartello.
-         Adesso è alto un metro e novanta come quelli veri, sta davanti alla falesia — e
-         quel sovrapporsi è anche l'unica cosa che dice quanto è vicino a noi. */
-      const ux = W * 0.135, uby = H - 16, uh = 128, ucw = 150;
-      ctx.fillStyle = '#7e6f52'; ctx.fillRect(ux - 3, uby - uh, 6, uh);
-      ctx.fillStyle = '#94836a'; ctx.fillRect(ux - 3, uby - uh, 2, uh);
-      ctx.fillStyle = 'rgba(60,54,44,.34)'; pixelEllipse(ctx, ux + 8, uby + 1, 22, 5, 3);
-      /* La cupola, colonna per colonna. A spicchi rettangolari veniva una striscia a
-         bande alta sedici pixel — un nastro da cantiere su un palo. Un ombrellone è un
-         CONO SCHIACCIATO: il colmo in mezzo, il bordo che scende di trentaquattro
-         pixel ai lati, e sotto il bordo la balza di tela che pende in ombra. */
-      /* Terza stesura della cupola. La seconda era un cono giusto in tutto tranne che in
-         una misura: centocinquanta pixel di larghezza e QUINDICI di spessore, cioe dieci a
-         uno — e a dieci a uno un cono non e un cono, e una fascia curva, e sullo schermo
-         leggeva come un arco rosso e bianco su un palo.
-         E c'e una seconda cosa, che e quella che lo fa diventare un ombrellone: un
-         ombrellone alto un metro e novanta lo si guarda DA SOTTO. Non si vede il telo al
-         sole: si vede il ROVESCIO, in ombra, con le stecche che partono dal centro come i
-         raggi di una ruota, e del telo illuminato resta solo un filo sul bordo. */
-      const uap = uby - uh - 6, uspess = 30;
-      for (let dxu = -ucw / 2; dxu < ucw / 2; dxu++) {
-        const t = Math.abs(dxu) / (ucw / 2);
-        const top = Math.round(uap + Math.pow(t, 1.8) * 30);
-        const spicchio = Math.floor((dxu + ucw / 2) / (ucw / 6)) % 2;
-        // il rovescio: gli stessi spicchi, ma in ombra, perche il sole sta di la
-        ctx.fillStyle = spicchio ? '#a8a294' : '#8e4632';
-        ctx.fillRect(ux + dxu, top, 1, uspess);
-        ctx.fillStyle = spicchio ? '#c2bcab' : '#a4553c';                 // e il rovescio schiarisce sul bordo
-        ctx.fillRect(ux + dxu, top + uspess - 8, 1, 8);
-        ctx.fillStyle = spicchio ? '#f4f0e2' : '#d86d48';                 // il filo di telo al sole, sul colmo
-        ctx.fillRect(ux + dxu, top, 1, 2);
-        ctx.fillStyle = 'rgba(58,46,32,.42)';                             // la balza che pende
-        ctx.fillRect(ux + dxu, top + uspess, 1, 5 + (Math.abs(dxu) % 7 < 3 ? 2 : 0));
-      }
-      // LE STECCHE, che partono dal centro: sono la firma del rovescio di un ombrellone
-      for (let k = -3; k <= 3; k++) {
-        const fine = k * (ucw / 7);
-        for (let q = 0; q <= 26; q++) {
-          const tq = q / 26;
-          const xq = Math.round(ux + fine * tq);
-          const t2 = Math.abs(fine * tq) / (ucw / 2);
-          const yq = Math.round(uap + Math.pow(t2, 1.8) * 30 + 4 + tq * 20);
-          ctx.fillStyle = 'rgba(96,78,54,.40)';
-          ctx.fillRect(xq, yq, 1, 2);
-        }
-      }
-      ctx.fillStyle = '#7e6f52'; ctx.fillRect(ux - 5, uby - uh - 12, 10, 9);   // il pomolo in cima
+      /* QUI C'ERA L'OMBRELLONE, e non c'e' piu'. Terza volta che un ombrellone viene
+         togliuto da un fondale di questo gioco, e stavolta il motivo e' un numero: la
+         calotta era larga 150 px con la base a y=344, mentre il gommone di Lilia — che sta
+         131 pixel PIU' IN ALTO nel quadro, cioe' piu' lontano — e' lungo 430 px per i
+         quattro metri che il testo gli da', cioe' 107 px/m. L'ombrellone stava a 75 px/m:
+         un oggetto piu' VICINO disegnato piu' PICCOLO del suo metro, che e' la cosa che
+         l'occhio non perdona mai. Alla distanza giusta sarebbe alto 496 px e largo 451: in
+         un canvas di 360 non ci sta, e un oggetto che non ci sta non si rimpicciolisce —
+         si toglie (lezione 60). Il primo piano lo tiene la ghiaia grossa con la grana che
+         cresce, che funziona da sola. */
       // IL CANE in acqua fino alla pancia, e non più giù: il testo di b9 lo nomina
       const dx2 = W * 0.855, dy2 = shoreY - 4;
       ctx.fillStyle = '#4a3e30'; pixelEllipse(ctx, dx2, dy2 - 9, 29, 12, 3);        // il corpo
@@ -2671,18 +2739,54 @@ const Scenes = (() => {
       ctx.fillStyle = '#4a3e2e'; ctx.fillRect(bx - 10, by - 30, bw + 20, 6);
       ctx.fillStyle = '#8e98a4'; ctx.fillRect(bx, by - 48, bw, 26);                 // il materasso
       ctx.fillStyle = 'rgba(40,48,58,.30)'; ctx.fillRect(bx, by - 48, bw, 7);       // il materasso nudo, a sinistra
-      // LA METÀ DI DESTRA: il lenzuolo, il corpo che ci dorme sotto, il cuscino
+      /* IL LETTO DI TRE QUARTI, e prima era tutto in alzato: nemmeno un pixel di PIANO di
+         sopra. Il corpo sotto il lenzuolo era un rettangolo piatto di 177×18 px — alla scala
+         della finestra, che e' 150 px/m, un rilievo di dodici centimetri — e «la gamba fuori
+         dal lenzuolo» era una barretta color pelle di 42×13, cioe' ventotto centimetri per
+         nove, in mezzo al letto e orizzontale. Un letto visto di fianco non puo' mostrare chi
+         ci dorme: serve il piano del materasso, e sul piano il corpo come DUE GOBBE
+         raccordate — spalla, vita, anca — perche' e' da quelle due gobbe che un occhio
+         riconosce una persona sotto una coperta. */
       const dxh = bx + bw * 0.46;
-      ctx.fillStyle = '#b0bac6'; ctx.fillRect(dxh + 10, by - 64, bw * 0.40, 18);    // il corpo sotto
-      ctx.fillStyle = '#c2ccd6'; ctx.fillRect(dxh, by - 56, bw * 0.54, 14);         // il lenzuolo
-      ctx.fillStyle = 'rgba(255,255,255,.18)'; ctx.fillRect(dxh + 16, by - 56, bw * 0.30, 6);
-      ctx.fillStyle = 'rgba(70,82,96,.34)';
-      for (let i = 0; i < 4; i++) ctx.fillRect(dxh + 26 + i * 44, by - 54, 5, 20);
-      ctx.fillStyle = '#d2dae2'; ctx.fillRect(bx + bw - 98, by - 72, 86, 22);       // il cuscino occupato
-      ctx.fillStyle = 'rgba(70,82,96,.36)'; ctx.fillRect(bx + bw - 72, by - 64, 44, 11);
-      // LA GAMBA FUORI DAL LENZUOLO: come sempre, come ogni notte da dieci anni
-      ctx.fillStyle = '#c8a888'; ctx.fillRect(dxh + 4, by - 48, 42, 13);
-      ctx.fillStyle = '#b89878'; ctx.fillRect(dxh - 8, by - 44, 15, 9);
+      // il piano del materasso: trapezio, bordo lontano piu' corto perche' e' piu' lontano
+      for (let k = 0; k < 14; k++) {
+        const t = k / 13, ins = Math.round((1 - t) * bw * 0.07);
+        ctx.fillStyle = mix('#7e8894', '#96a0ac', t);
+        ctx.fillRect(bx + ins, by - 52 + k, bw - ins * 2, 1);
+      }
+      // IL CORPO: due gobbe raccordate per righe. Spalla 26, vita 12, anca 22.
+      {
+        const x0 = dxh + 6, x1 = bx + bw - 24;
+        for (let x = x0; x < x1; x++) {
+          const u = (x - x0) / (x1 - x0);
+          /* La spalla sta VICINO AL CUSCINO, che sta a destra: al primo colpo l'avevo messa
+             a u=0,16, cioe' a sinistra, e il corpo dormiva coi piedi sul cuscino. */
+          const h = 26 * Math.exp(-Math.pow((u - 0.82) / 0.20, 2))
+                  + 22 * Math.exp(-Math.pow((u - 0.32) / 0.26, 2)) + 7;
+          const top = by - 52 - Math.round(h);
+          ctx.fillStyle = '#c2ccd6'; ctx.fillRect(x, top, 1, Math.round(h) + 10);
+          ctx.fillStyle = 'rgba(255,255,255,.16)'; ctx.fillRect(x, top, 1, 3);
+          ctx.fillStyle = 'rgba(70,82,96,.26)'; ctx.fillRect(x, top + Math.round(h) + 6, 1, 4);
+        }
+      }
+      ctx.fillStyle = 'rgba(70,82,96,.30)';
+      for (let i = 0; i < 3; i++) ctx.fillRect(dxh + 40 + i * 52, by - 50, 4, 14);   // le pieghe
+      ctx.fillStyle = '#d2dae2'; ctx.fillRect(bx + bw - 98, by - 78, 86, 26);        // il cuscino occupato
+      ctx.fillStyle = 'rgba(70,82,96,.36)'; ctx.fillRect(bx + bw - 74, by - 68, 46, 13);
+      /* LA GAMBA: sessanta centimetri per quattordici, OBLIQUA, che esce dal bordo VICINO del
+         lenzuolo e finisce col piede sul telaio. E' la cosa che il testo nomina ogni volta
+         che si entra in questa stanza — «dorme con una gamba fuori dal lenzuolo» — e per
+         dieci notti era una barretta orizzontale in mezzo al materasso. */
+      for (let k = 0; k < 88; k++) {
+        const t = k / 87;
+        const gx = dxh + 62 - k, gy = by - 46 + Math.round(t * 16);   // esce verso i PIEDI, a sinistra
+        const sp = Math.round(20 - t * 7);
+        ctx.fillStyle = mix('#c8a888', '#b08c6c', t);
+        ctx.fillRect(gx, gy, 1, sp);
+        ctx.fillStyle = 'rgba(255,232,200,.16)'; ctx.fillRect(gx, gy, 1, 2);
+      }
+      ctx.fillStyle = '#b89878'; ctx.fillRect(dxh - 40, by - 30, 17, 12);            // il piede sul telaio
+      ctx.fillStyle = 'rgba(30,36,44,.34)'; ctx.fillRect(dxh - 40, by - 26, 106, 4);  // l'ombra sotto
       // LA SEDIA coi vestiti piegati come li piega lei, maniche in dentro
       ctx.fillStyle = '#3a3a34'; ctx.fillRect(W * 0.855, floorY - 42, 52, 7);
       ctx.fillRect(W * 0.855, floorY - 88, 7, 50);
@@ -2915,9 +3019,14 @@ const Scenes = (() => {
       }
       // LO SCIVOLO DI CEMENTO colato sulla roccia negli anni Cinquanta: non c'è
       // un porto. Ciro ci appoggia la prua e tiene il motore in tiro con una mano.
-      for (let i = 0; i < 10; i++) {
+      /* LO SCIVOLO SCENDE, e prima saliva. Il ciclo partiva dall'orizzonte e andava verso
+         l'alto allargandosi: sessantacinque dei suoi settantuno pixel stavano nel CIELO, e
+         uno scivolo di alaggio che si allarga salendo e finisce in aria non e' uno scivolo,
+         e' un triangolo grigio appoggiato sulla roccia. Adesso parte attaccato alla roccia
+         all'altezza dell'orizzonte e si allarga SCENDENDO, fino a entrare nell'acqua. */
+      for (let i = 0; i < 8; i++) {
         ctx.fillStyle = shade('#b8b4a6', 1 - i * 0.02);
-        ctx.fillRect(W * 0.13 - i * 2, horiz - 2 - i * 7, 50 + i * 4, 8);
+        ctx.fillRect(W * 0.115 - i * 3, horiz + 2 + i * 4, 44 + i * 7, 5);
       }
       ctx.fillStyle = 'rgba(255,255,250,.24)'; ctx.fillRect(W * 0.11, horiz - 6, 66, 3);
       ctx.fillStyle = 'rgba(30,50,60,.44)'; ctx.fillRect(W * 0.12, horiz + 2, 62, 8);
@@ -2985,11 +3094,33 @@ const Scenes = (() => {
       ctx.fillStyle = 'rgba(60,50,32,.28)'; ctx.fillRect(gx + 12, ry + rh - 42, 9, 52);
       ctx.fillStyle = '#100f0c'; ctx.fillRect(gx - 13, ry + rh - 30, 26, 40);
       arco(ctx, gx, ry + rh - 26, 13, 15, 6, '#100f0c', r, 4);
-      // la scia della barca che ci ha portati: l'unica cosa che si muove
-      ctx.fillStyle = 'rgba(226,244,250,.30)';
-      for (let i = 0; i < 14; i++) {
-        const t = i / 14;
-        ctx.fillRect(W * 0.05 + t * W * 0.13, H - 8 - t * (H - horiz) * 0.62, 30 - t * 16, 4);
+      /* LA SCIA E LA BARCA DI CIRO. Prima la scia erano quattordici rettangoli alti quattro
+         pixel che scendevano in diagonale con un salto di undici pixel fra uno e l'altro: nel
+         PNG una scaletta di gradini pallidi appoggiata sull'acqua aperta, e in cima non c'era
+         nessuna barca. Una scia si disegna per colonne, con due lembi che divergono venendo
+         avanti; e in testa ci va la barca, che a questa inquadratura serve anche per un'altra
+         ragione — e' l'unico metro di scala. Ventisei pixel di scafo per una barca da sei
+         metri dicono all'occhio quanto e' grande l'isola dietro. */
+      {
+        /* La barca sta sull'ACQUA, al piede dello scivolo. Al primo colpo l'avevo messa a
+           y=205, che su questa inquadratura e' la parete di tufo dell'isola: una barca
+           bianca appoggiata sulla roccia a trenta metri dal mare. La linea d'acqua sta a
+           y=240, e il piede dello scivolo a 268. */
+        const px0 = 172, py0 = 268;
+        for (let x = 40; x < px0; x += 2) {
+          const t = (px0 - x) / (px0 - 40);
+          const y = py0 + t * (H - 18 - py0);
+          const div = (px0 - x) * 0.16;
+          ctx.fillStyle = `rgba(226,244,250,${0.34 - t * 0.24})`;
+          ctx.fillRect(x, Math.round(y - div * 0.5), 2, 2);
+          ctx.fillRect(x, Math.round(y + div * 0.5), 2, 2);
+        }
+        ctx.fillStyle = 'rgba(12,30,40,.30)'; pixelEllipse(ctx, px0, py0 + 5, 15, 3, 3);
+        ctx.fillStyle = '#e8ece6'; ctx.fillRect(px0 - 13, py0, 26, 5);        // lo scafo
+        ctx.fillStyle = '#c8ccc6'; ctx.fillRect(px0 - 13, py0 + 4, 26, 2);
+        ctx.fillStyle = '#e8ece6'; ctx.fillRect(px0 + 11, py0 - 2, 4, 4);     // la prua alzata
+        ctx.fillStyle = '#4a4238'; ctx.fillRect(px0 - 11, py0 - 4, 3, 5);     // Ciro, in piedi a poppa
+        ctx.fillStyle = '#8a7a5a'; ctx.fillRect(px0 - 11, py0 - 7, 3, 3);
       }
     },
 
@@ -3287,8 +3418,12 @@ const Scenes = (() => {
       const fosse = [];
       for (let row = 0; row < 3 && fosse.length < 40; row++) {
         for (let i = 0; i < 14 && fosse.length < 40; i++) {
-          fosse.push([W * 0.038 + i * W * 0.068 + row * W * 0.014,
-                      terrY + 48 + row * (H - terrY - 66) / 2.5, row]);
+          /* UN PO' DI DISORDINE, perche' un cimitero di fossa comune non e' un vivaio: il
+             passo era esatto — 65,3 px orizzontali, 13,4 di sfalsamento, tre righe — e
+             sullo schermo era un reticolo. Chi ha scavato queste quaranta fosse in
+             centoventisette anni non aveva una dima. */
+          fosse.push([W * 0.038 + i * W * 0.068 + row * W * 0.014 + ((i * 53) % 13 - 6),
+                      terrY + 48 + row * (H - terrY - 66) / 2.5 + ((i * 29) % 7 - 3), row]);
         }
       }
       for (const [x, y] of fosse) {
@@ -3301,19 +3436,31 @@ const Scenes = (() => {
         if (i === 39) continue;
         const [x, y, row] = fosse[i];
         const s = 0.74 + row * 0.18;
-        const tilt = ((i * 37) % 11 - 5) * 0.7;
+        /* LE CROCI SI INCLINANO DAVVERO. Il commento diceva «ognuna storta a modo suo» e il
+           codice sommava lo stesso `tilt` al palo E al braccio: cioe' traslava la croce
+           intera di tre pixel e mezzo, tenendola perfettamente a piombo. Tutte e trentanove.
+           Un'inclinazione vera si fa scostando ogni riga del palo di tan(angolo) per la sua
+           altezza — sono due righe di codice — e allora il ferro tondo saldato a mano da
+           centoventisette anni nella terra si vede che ha ceduto. */
+        const ang = ((i * 37) % 11 - 5) * 0.022;
         const hh = 44 * s;
         ctx.fillStyle = 'rgba(60,52,38,.26)'; ctx.fillRect(x + 5, y + 12, 17 * s, 4);
-        ctx.fillStyle = '#3a342c';
-        ctx.fillRect(x + tilt, y + 13 - hh, 5 * s, hh);
-        ctx.fillRect(x + tilt - 10 * s, y + 13 - hh * 0.70, 25 * s, 5 * s);
-        ctx.fillStyle = '#4e463c';
-        ctx.fillRect(x + tilt, y + 13 - hh, 2 * s, hh);
+        for (let k = 0; k < hh; k++) {
+          const yy = y + 13 - k, dx = Math.tan(ang) * k;
+          ctx.fillStyle = '#3a342c'; ctx.fillRect(x + dx, yy, 5 * s, 1);
+          ctx.fillStyle = '#4e463c'; ctx.fillRect(x + dx, yy, 2 * s, 1);
+        }
+        const bracY = y + 13 - hh * 0.70, bracDx = Math.tan(ang) * hh * 0.70;
+        for (let k = 0; k < 25 * s; k++) {
+          ctx.fillStyle = '#3a342c';
+          ctx.fillRect(x + bracDx - 10 * s + k, bracY + Math.round(Math.tan(ang) * (10 * s - k)), 1, 5 * s);
+        }
         // la piastra ovale col numero dipinto in bianco
-        ctx.fillStyle = '#5e564a'; pixelEllipse(ctx, x + tilt + 2, y + 13 - hh * 0.40, 9 * s, 7 * s, 3);
+        const piY = y + 13 - hh * 0.40, piDx = Math.tan(ang) * hh * 0.40;
+        ctx.fillStyle = '#5e564a'; pixelEllipse(ctx, x + piDx + 2, piY, 9 * s, 7 * s, 3);
         ctx.fillStyle = '#eceadc';
-        ctx.fillRect(x + tilt - 3 * s, y + 13 - hh * 0.42, 3 * s, 6 * s);
-        ctx.fillRect(x + tilt + 3 * s, y + 13 - hh * 0.42, 3 * s, 6 * s);
+        ctx.fillRect(x + piDx - 3 * s, piY - 3 * s, 3 * s, 6 * s);
+        ctx.fillRect(x + piDx + 3 * s, piY - 3 * s, 3 * s, 6 * s);
       }
       // IL QUARANTESIMO, nell'angolo: solo l'avvallamento. Nessuna croce, e la
       // calce intorno è più fresca di tutte le altre.
@@ -3425,12 +3572,21 @@ const Scenes = (() => {
       // LA TORCIA: dall'alto a sinistra. Illumina il fondo, e sulla bocca si ferma:
       // non c'è fondo da illuminare.
       conoTorcia(ctx, W * 0.10, H * 0.06, 0.66, 0.62, H * 0.62, 96);
-      // l'ombra della torcia: tutto quello che sta lontano dal fascio si spegne
-      for (let i = 0; i < 4; i++) {
-        ctx.fillStyle = `rgba(4,10,14,${0.08 + i * 0.05})`;
-        ctx.fillRect(W - 90 - i * 70, 0, 90 + i * 70, H);
+      /* L'OMBRA FUORI DAL FASCIO, per colonne e non a scalini. Prima erano quattro fillRect
+         annidati ancorati al bordo destro: quattro cuciture verticali nette alte trecentosessanta
+         pixel, visibilissime, che sembravano bande di rendering e non un decadimento di luce.
+         Trecentosessantacinque passi da un pixel con la curva a esponente 1,6 fanno il buio che
+         STRINGE — e non costano niente. Stessa forma per la fascia in basso. */
+      for (let x = Math.round(W * 0.62); x < W; x++) {
+        const t = (x - W * 0.62) / (W * 0.38);
+        ctx.fillStyle = `rgba(4,10,14,${(0.02 + Math.pow(t, 1.6) * 0.34).toFixed(3)})`;
+        ctx.fillRect(x, 0, 1, H);
       }
-      ctx.fillStyle = 'rgba(4,10,14,.20)'; ctx.fillRect(0, H - 60, W, 60);
+      for (let y = H - 90; y < H; y++) {
+        const t = (y - (H - 90)) / 90;
+        ctx.fillStyle = `rgba(4,10,14,${(0.02 + Math.pow(t, 1.6) * 0.26).toFixed(3)})`;
+        ctx.fillRect(0, y, W, 1);
+      }
       // LA NEVE MARINA nel fascio: l'unica cosa che si muove
       ctx.fillStyle = 'rgba(232,242,255,.62)';
       for (let i = 0; i < 70; i++) ctx.fillRect(W * 0.06 + r() * W * 0.56 | 0, r() * H * 0.9 | 0, 2, 2);
@@ -3545,14 +3701,20 @@ const Scenes = (() => {
       for (let k = -1; k < 2; k++) ctx.fillRect(W * 0.82 + k * 11 - 2, floorY - 12, 3, 28);
       ctx.fillStyle = '#e0d6bc'; ctx.fillRect(W * 0.816, floorY - 16, 12, 6);
       ctx.fillStyle = '#b0a690'; ctx.fillRect(W * 0.804, floorY - 14, 26, 3);
-      // la cesta di vimini con i barattoli dentro
-      ctx.fillStyle = '#a89058'; ctx.fillRect(W * 0.02, floorY - 36, 66, 40);
+      /* LA CESTA DI VIMINI, e prima non era nel quadro. Era disegnata a x=W*0.02, y=floorY−36
+         DENTRO il contesto ruotato di −0,52 rad attorno a (480, 180) — la stiva e' sbandata,
+         come una nave appoggiata sul fianco — e quella rotazione le portava lo spigolo piu'
+         alto a y=399 su una tela alta 360: fuori, tutta, compresi i barattoli. Sessantasei
+         per cinquantadue pixel di roba disegnata per nessuno. La stiva ruotata tiene solo la
+         banda centrale, quindi la cesta va dentro quella. */
+      const cesX = W * 0.16, cesY = floorY - 10;
+      ctx.fillStyle = '#a89058'; ctx.fillRect(cesX, cesY - 36, 66, 40);
       ctx.fillStyle = '#7a6840';
-      for (let k = 0; k < 7; k++) ctx.fillRect(W * 0.02, floorY - 34 + k * 6, 66, 3);
-      for (let k = 0; k < 5; k++) ctx.fillRect(W * 0.02 + k * 14, floorY - 36, 3, 40);
+      for (let k = 0; k < 7; k++) ctx.fillRect(cesX, cesY - 34 + k * 6, 66, 3);
+      for (let k = 0; k < 5; k++) ctx.fillRect(cesX + k * 14, cesY - 36, 3, 40);
       ctx.fillStyle = '#a8a89e';
-      for (let k = 0; k < 3; k++) { ctx.fillRect(W * 0.026 + k * 21, floorY - 48, 17, 14);
-        ctx.fillStyle = '#c8c8be'; ctx.fillRect(W * 0.026 + k * 21, floorY - 48, 17, 3); ctx.fillStyle = '#a8a89e'; }
+      for (let k = 0; k < 3; k++) { ctx.fillRect(cesX + 6 + k * 21, cesY - 48, 17, 14);
+        ctx.fillStyle = '#c8c8be'; ctx.fillRect(cesX + 6 + k * 21, cesY - 48, 17, 3); ctx.fillStyle = '#a8a89e'; }
       // UNA SCARPA DA UOMO, una sola, con la stringa fatta col doppio nodo di uno
       // che quella mattina aveva fretta
       ctx.fillStyle = '#4a3c30'; pixelEllipse(ctx, W * 0.37, floorY + 34, 28, 11, 3);
@@ -3563,12 +3725,30 @@ const Scenes = (() => {
       // lo appoggia un bambino quando ha le mani impegnate. È l'unica cosa calda.
       const cvx = W * 0.44 + 66, cvy = floorY - 62;
       glow(ctx, cvx + 14, cvy + 8, 62, 46, '220,170,96');
-      ctx.fillStyle = '#c89858'; ctx.fillRect(cvx, cvy, 30, 15);
-      ctx.fillRect(cvx + 22, cvy - 13, 11, 15);
-      ctx.fillStyle = '#e8b878'; ctx.fillRect(cvx, cvy, 30, 4); ctx.fillRect(cvx + 22, cvy - 13, 11, 4);
-      ctx.fillStyle = '#a87c40'; ctx.fillRect(cvx + 2, cvy + 15, 6, 12); ctx.fillRect(cvx + 20, cvy + 15, 6, 12);
-      ctx.fillStyle = '#8a6430'; ctx.fillRect(cvx + 28, cvy - 11, 6, 9);
-      ctx.fillStyle = '#3a2a18'; ctx.fillRect(cvx + 29, cvy - 10, 3, 3);   // l'occhio dipinto
+      /* IL CAVALLINO. E' l'oggetto piu' importante di tutto il gioco — quello che si puo'
+         riportare dov'era — e nel PNG era una macchia gialla di trenta pixel indistinguibile
+         dalle valigie di cartone, che sono dello stesso ocra a dieci pixel di distanza. Due
+         cose lo salvano, e nessuna delle due e' il colore: il CONTORNO scuro, che lo stacca
+         da tutto quello che gli sta attorno, e la SAGOMA — un cavallo si riconosce da collo,
+         groppa, coda e ZAMPE, e le zampe qui sono TRE, perche' il testo dice «con una zampa
+         in meno» e quello che il testo dice il quadro lo deve far vedere. Quarantasei pixel
+         invece di trenta: sotto quella misura, in mezzo a delle valigie, non c'e' contorno
+         che tenga. */
+      ctx.fillStyle = '#2a1e10';                                            // il contorno
+      ctx.fillRect(cvx - 2, cvy - 2, 46, 22);
+      ctx.fillRect(cvx + 30, cvy - 20, 17, 22);
+      ctx.fillStyle = '#c89858'; ctx.fillRect(cvx, cvy, 42, 18);            // la groppa
+      ctx.fillRect(cvx + 32, cvy - 18, 13, 20);                             // il collo
+      ctx.fillStyle = '#e8b878'; ctx.fillRect(cvx, cvy, 42, 5); ctx.fillRect(cvx + 32, cvy - 18, 13, 5);
+      ctx.fillStyle = '#2a1e10';                                            // le zampe: TRE
+      ctx.fillRect(cvx + 2, cvy + 18, 9, 18); ctx.fillRect(cvx + 30, cvy + 18, 9, 18);
+      ctx.fillStyle = '#a87c40';
+      ctx.fillRect(cvx + 3, cvy + 18, 7, 16); ctx.fillRect(cvx + 31, cvy + 18, 7, 16);
+      ctx.fillStyle = '#a87c40'; ctx.fillRect(cvx + 16, cvy + 18, 7, 11);   // la terza, spezzata
+      ctx.fillStyle = '#8a6430'; ctx.fillRect(cvx - 6, cvy + 1, 8, 14);     // la coda
+      ctx.fillStyle = '#8a6430'; ctx.fillRect(cvx + 43, cvy - 16, 8, 11);   // il muso
+      ctx.fillStyle = '#f0e0c0'; ctx.fillRect(cvx + 44, cvy - 15, 4, 4);    // l'occhio dipinto
+      ctx.fillStyle = '#3a2a18'; ctx.fillRect(cvx + 45, cvy - 14, 2, 2);
       ctx.restore();
       // LA TORCIA, dalla nostra parte: un cono che dentro la stiva non arriva da
       // nessuna parte, perché la stiva è più grande della luce.
@@ -4273,7 +4453,42 @@ const Scenes = (() => {
   /* Disegna una scena, con eventuali eroi e PNG.
      npcKeys accetta stringhe oppure oggetti posizionati:
      { key, x, y, scale, flip } con x/y in frazioni di larghezza/altezza. */
-  function paint(canvasId, locationKey, heroKeys = null, npcKeys = null) {
+  /* ============ IL VELO DELLA NOTTE ============
+     PERCHE' ESISTE. Cinque scene notturne stavano su fondali di pieno giorno: a6_porto apre
+     con «il porto di notte e' piu' bello che di giorno, l'acqua nera e liscia dentro la cava
+     di tufo» e mostrava il porto delle 17:20 col cielo #7ec0dc; c15_dopo da' l'ora esatta —
+     00:33 — sopra il fondale del B&B col mare turchese e il sole in faccia. E' la lezione 62
+     nella forma piu' pura (il quadro deve mostrare quello che il testo dice), ed e' il
+     difetto che il giocatore nota per primo, perche' ha appena letto la frase. In un gioco
+     dove il buio E' la minaccia, far vedere il pomeriggio mentre il testo dice «acqua nera»
+     disinnesca la scena.
+     COME. Tre veli rgba e niente altro: nessuna operazione di composizione, nessun accesso
+     ai pixel. La ragione e' pratica e vale piu' dell'eleganza — il rasterizzatore in Node
+     con cui si guardano i fondali (tools/fondali-in-png.mjs) deve vedere ESATTAMENTE quello
+     che vede il browser, altrimenti la verifica visiva non verifica niente.
+     E le luci calde: di notte un posto abitato non e' buio, e' buio CON DENTRO due luci. Il
+     grumo giallo delle barche al terzo pontile, e la finestra della cucina di Ada. */
+  const LUCI_DI_NOTTE = {
+    porto:    [[0.35, 0.58, 13, 8, '255,214,140'], [0.52, 0.55, 8, 6, '255,200,120']],
+    bnb:      [[0.62, 0.52, 10, 7, '255,226,160']],
+    paese:    [[0.30, 0.55, 11, 7, '255,220,150'], [0.66, 0.52, 9, 6, '255,210,140']],
+    terrazza: [[0.50, 0.40, 9, 6, '255,232,170']],
+  };
+
+  function notte(ctx, W, H, locationKey) {
+    const cielo = Math.round(H * 0.42);
+    ctx.fillStyle = 'rgba(6,10,22,.70)';   ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = 'rgba(0,0,0,.26)';     ctx.fillRect(0, 0, W, cielo);
+    ctx.fillStyle = 'rgba(16,24,50,.22)';  ctx.fillRect(0, cielo, W, H - cielo);
+    for (const [fx, fy, w, h, rgb] of (LUCI_DI_NOTTE[locationKey] || [])) {
+      const x = Math.round(W * fx), y = Math.round(H * fy);
+      glow(ctx, x, y, w, h, rgb);
+      ctx.fillStyle = `rgba(${rgb},.55)`;
+      ctx.fillRect(x - Math.round(w / 3), y - 2, Math.round(w * 2 / 3), 4);
+    }
+  }
+
+  function paint(canvasId, locationKey, heroKeys = null, npcKeys = null, opts = null) {
     const canvas = document.getElementById(canvasId);
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
@@ -4281,6 +4496,7 @@ const Scenes = (() => {
     const W = canvas.width, H = canvas.height;
     const painter = painters[locationKey] || painters.porto;
     painter(ctx, W, H);
+    if (opts && opts.notturno) notte(ctx, W, H, locationKey);
     // il velo della profondità: mai sull'alba, che è l'unica scena che respira
     if (locationKey !== 'alba') profondita(ctx, W, H, depthM);
     if (heroKeys && heroKeys.length) heroesRow(ctx, W, H - 8, heroKeys, 3);
@@ -4314,5 +4530,5 @@ const Scenes = (() => {
     }
   }
 
-  return { paint, painters, rng, blocks, shade, heroesRow, tree, willow, house, torch, sign, ground, hills, moon, setEclipse, getEclipse, setDepth, getDepth, pixelDisc };
+  return { paint, painters, notte, rng, blocks, shade, heroesRow, tree, willow, house, torch, sign, ground, hills, moon, setEclipse, getEclipse, setDepth, getDepth, pixelDisc };
 })();

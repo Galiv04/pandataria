@@ -225,7 +225,6 @@ Scendono. Ventidue gradini di tufo, umidi al quarto, freddi al decimo. A metà s
 Peppe accende la luce. La stanza si apre e Claudia dice "oh" senza volerlo.
 
 **(🫁 Fiato −0: si scende con le scale, non col fiato. Ma da qui in giù la temperatura è tredici gradi e nessuna delle due maniche lunghe ce l'avete.)**`,
-    silenzio: true,
     choices: [
       { text: '👁 Guardare la stanza. Guardarla bene, prima di ascoltare la guida', next: 'b2' },
       { text: '🗣 Chiedere a Peppe delle altre quattro cisterne', once: true, next: 'b1_peppe' },
@@ -518,7 +517,6 @@ Poi Claudia riprende fiato per dire qualcos'altro — e **prima che apra la bocc
 *"Ciao."*
 
 **(🎵 Il Coro non ha ripetuto. Ha ANTICIPATO. Il Quaderno vuole questo indizio, ed è il più difficile da mettere per iscritto senza sentirsi scemi.)**`,
-    silenzio: true,
     stinger: 'coro',
     sets: { eco_anticipata: true },
     choices: [
@@ -838,7 +836,6 @@ E in mezzo all'acqua, a galla, c'è una cosa gialla di plastica che a duemila an
     sets: { muro_aperto: true, sa_secchiello: true },
     attenzione: 1,
     stinger: 'sigillo',
-    silenzio: true,
     choices: [
       { text: '🪜 Scendere. Adesso, con la torcia e la corda', tag: 'Prova di DESTREZZA — CD 12 (si scende su una corda in un buco di quarantasei centimetri)', check: { stat: 'DES', dc: 12, success: 'b8', fail: 'b4_scivolata', failDamage: 3 } },
       { text: '🔧 Non così. Prima attrezzarsi come si deve', next: 'b4_prepararsi' },
@@ -1186,7 +1183,6 @@ E in mezzo ai nomi, a un certo punto, dice: *Iulia*. E dopo *Iulia* fa una pausa
     attenzione: 2,
     sets: { sa_appello: true, sa_giulia_prima: true },
     stinger: 'coro',
-    silenzio: true,
     choices: [
       { text: '📢 Rispondere all\'appello. Dire "presente" al posto di Giulia', once: true, next: 'b6_presente' },
       { text: '🔌 Tirare su l\'idrofono. Basta. Basta adesso', tag: 'Prova di FORZA — CD 11', check: { stat: 'FOR', dc: 11, success: 'b7', fail: 'b6_cavo', failDamage: 1 } },
@@ -1591,6 +1587,7 @@ Rosa non risponde. Ma non dice no.
 
   b12_thermos: {
     location: 'bnb',
+    notturno: true,
     caption: 'Il thermos di acciaio, sul tavolo',
     stinger: 'fail',
     text: `Gaetano la fa nel modo in cui fa le domande difficili: pulita, corta, coi dati dentro. E in cucina, alle undici di sera, a una donna di sessant'anni, quel modo è una scortesia che lui non sa di fare.
@@ -1638,7 +1635,7 @@ Roba da bambini. Tutta roba da bambini. Galleggia in cerchio, piano, come se gir
 
 E in mezzo al cerchio l'acqua è **più scura**: c'è un buco nel fondo, e il buco scende.
 
-**(🫁 Fiato −2: qui sotto l'aria è pesante e si respira male. Il buco nel fondo è il punto in cui questo gioco comincia a chiedere il fiato che avete accumulato mangiando e dormendo.)**`,
+**(🫁 Fiato −2: qui sotto l'aria è pesante e si respira male. Il buco nel fondo è il punto in cui questo gioco comincia a chiedere il fiato che avete accumulato mangiando e dormendo. 🔇 E qui il gioco ha spento la musica: non è un guasto. Accade **tre volte in tutta la storia** e questa è la prima. Se accade una quarta volta, quella è un guasto.)**`,
     goldLoss: 2,
     sets: { scesa_cisterna: true },
     silenzio: true,
@@ -1773,7 +1770,6 @@ Claudia si toglie le cuffie e le tiene in mano. Ha gli occhi asciutti e la facci
     sets: { i_ninna_sentita: true, sa_bambina_tiene_tempo: true },
     attenzione: 1,
     stinger: 'coro',
-    silenzio: true,
     choices: [
       { text: '🤿 Giù. Claudia scende', requiresGold: 7, tag: '(servono 7 di 🫁 fiato: sotto quella soglia non arrivate al fondo e lo sapete)', next: 'b8_apnea' },
       { text: '🎶 Cantare la ninnananna dentro il buco. Rispondere con la sua canzone', once: true, requires: { flag: 'i_ninna_sentita' }, next: 'b8_cantare' },
@@ -2118,6 +2114,7 @@ Claudia tira su la testa. Ha gli occhi lucidi di sale e di un'altra cosa.
 
   b10: {
     location: 'porto',
+    notturno: true,
     caption: 'Venerdì 28, ore 21:15 — di nuovo alla Terrazza di Mimì, il tavolo di fuori',
     text: `Alla Terrazza di Mimì li riconoscono. Il ragazzo dei tavoli dice "ah, i signori di ieri" e li mette allo stesso tavolo, quello contro la ringhiera, che di sera è il migliore che c'è: sotto, l'isola scende verso il porto tutta di luci gialle, e in mezzo alle luci gialle passa la sagoma nera di un gatto.
 
@@ -2130,7 +2127,6 @@ Gaetano non capisce per un secondo e mezzo. Poi capisce benissimo.
 "Ieri notte, sul terrazzo," dice lei. "Hai registrato una cosa. Poi ti sei toccato le orecchie tre volte in dieci minuti e non mi hai fatto sentire niente, e stamattina hai portato il telefono in bagno." Beve un sorso. "Gaetano. Io ti conosco da undici anni. **Cosa c'era nel mezzo secondo?**"
 
 **(⚠️ Il momento è arrivato e il gioco non ve lo fa saltare. Le cose non dette, in questa storia, hanno gli interessi — e questi sono di ventisei ore.)**`,
-    silenzio: true,
     choices: [
       { text: '📱 Dirglielo. Tirare fuori il telefono e fargliela sentire, adesso', next: 'b10_verita' },
       { text: '🤥 "Niente. Un rumore. Un motore lontano."', next: 'b10_bugia' },
@@ -2176,6 +2172,7 @@ E Gaetano — che è un uomo che di mestiere fa i conti, e che ha avuto ventisei
 
   b10_litigio: {
     location: 'porto',
+    notturno: true,
     caption: 'La Terrazza di Mimì, ore 22:05 — quattro minuti al tavolo di fuori',
     text: `Claudia parla per quattro minuti e non alza mai la voce, e sarebbe stato mille volte meglio se l'avesse alzata.
 
@@ -2204,6 +2201,7 @@ Claudia lo guarda e aspetta. Non e' una pausa: e' il suo turno.`,
      dopo: il palmo girato in su sul tavolo, e una regola nuova che vale fino al 30. */
   b10_trenta_secondi: {
     location: 'porto',
+    notturno: true,
     caption: 'La Terrazza di Mimi\', ore 22:12 — il palmo girato in su',
     text: `Silenzio. Sotto la ringhiera, il gatto attraversa la luce di un lampione.
 
@@ -2326,7 +2324,6 @@ Gaetano non la sveglia. Non si può: si sa che non si sveglia chi cammina nel so
     attenzione: 1,
     sets: { claudia_sonnambula: true },
     stinger: 'coro',
-    silenzio: true,
     choices: [
       { text: '📱 Svegliarla e dirglielo. Entro trenta secondi, come promesso', requires: { flag: 'patto_trenta_secondi' }, once: true, next: 'b11_trenta' },
       { text: '📝 Scrivere tutto sul Quaderno e dirglielo a colazione', next: 'b12' },
@@ -2440,6 +2437,7 @@ E così, alle sei e mezza del mattino, in una camera di B&B, Claudia canta cinqu
 
   b12: {
     location: 'bnb',
+    notturno: true,
     caption: 'Sabato 29 agosto, ore 07:50 — la terrazza delle Parracine',
     text: `Ada porta il caffè e mette sul tavolino, senza dire niente, **un thermos di acciaio** con il tappo che si svita male. Poi porta le fette biscottate, la marmellata di albicocche, quattro fichi aperti a croce.
 
