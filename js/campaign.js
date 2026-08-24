@@ -4530,6 +4530,22 @@ Silenzio. Una lucertola sul muretto, il mare che sotto fa il suo.
     stinger: 'pressione',
     text: `Sta fuori dal muro, a mezza costa, su un terrazzamento che guarda il mare aperto: un quadrato di terra secca dentro un muretto che arriva alla vita, con dentro le croci.
 
+Sta fuori dal muro, a mezza costa, su un terrazzamento che guarda il mare aperto — ed è fuori, questa è la prima cosa: chi ci è finito ha visto il mare per la prima volta da morto.
+
+Si entra da un varco nel muretto a secco. E nel muretto, murata a filo, all'altezza degli occhi, c'è una lapide di marmo bianco con le lettere incise e riempite di lichene nero. Si leggono benissimo.
+
+**SCVOLA DI ALTI PENSIERI**
+
+E sotto, in corpo più piccolo, tre pezzi di frase separati da due virgole:
+
+*Una vita di dolore, un pugno di polvere, un'anima immortale.*
+
+Claudia la legge ad alta voce, tutta, comprese le virgole. Poi non dice niente. Appoggia la mano aperta sulla pietra a secco del muretto e ce la lascia il tempo di due respiri.
+
+Non l'ha scritta un parente e non l'ha pagata una famiglia: l'ha fatta incidere lo stesso ufficio che teneva il registro, per il posto dove finiva chi non veniva reclamato da nessuno. Si entra qua dentro passando sotto una frase che promette un'anima immortale.
+
+Poi si contano le croci.
+
 Sono di ferro tondo, saldate a mano, alte un metro. Non hanno nomi: hanno **numeri**, dipinti in bianco su una piastra ovale. Chi finiva qui aveva già perso il nome all'ingresso e non lo riprendeva all'uscita.
 
 Le contano tutti e tre, separatamente, perché Gaetano vuole tre conti indipendenti.
@@ -4574,7 +4590,7 @@ Non corre. **Fa il giro.**
     goldLoss: 2,
     damage: 2,
     attenzione: 1,
-    sets: { i_osso: true },
+    sets: { i_osso: true, sa_lapide: true },
     combat: { enemies: ['guardia'], victory: 'c10_nastro', defeat: 'c6_ko' },
     choices: [],
   },
@@ -6537,6 +6553,8 @@ Il silenzio, quaggiù, è il modo che ha questa cosa per dirvi che ha smesso di 
 **(Oggetto: il CAVALLINO DI CELLULOIDE. 🫁 Fiato −4: quarantacinque metri si pagano. Il Quaderno registra il giocattolo dalla stiva, e il mistero della bambina della Santa Lucia ha il suo quarto indizio.)**`,
     sets: { i_giocattolo: true },
     choices: [
+      { text: '🤿 Quella muta in piedi sul fondo, trenta metri più in là. Guardarla per bene',
+        requires: { flag: 'visto_il_fondo' }, once: true, next: 'd13_marisa' },
       { text: '🐎 Risalire. Adesso. Senza guardare altro', next: 'd14_coro' },
       /* La prova di Costituzione, e il conto lo paga CHI TIRA. Prima erano quattro punti
          di danno spalmati sul gruppo — cioe niente, per un gesto che il briefing ha
@@ -6728,6 +6746,50 @@ La cima, sopra la testa, ha ripreso a vibrare.
     ],
   },
 
+  /* MARISA IN PIEDI SUL FONDO, e il numero che Gaetano dice sbagliato con la voce di
+     sempre. Due orfani trovano un consumatore: `visto_il_fondo`, che il minigioco
+     dell'apnea assegnava a chi spendeva tre metri di fiato per guardare e che nessuna
+     scena leggeva, diventa il cancello di questa scena; e `maschera_1997` — consegnata
+     nella cisterna e mai richiesta da nessuna scelta — diventa una cosa che si RESTITUISCE.
+     E la narcosi non fa vedere mostri: fa dire un numero sbagliato con la faccia di uno che
+     ha ragione. Tocca solo un numero narrativo, mai il Fiato e mai i metri raggiungibili:
+     il briefing continua a dire la verita, e la scena dopo dichiara qual era il numero
+     falso. Quaggiu i conti che vi tengono in vita non mentono mai. Mente il resto. */
+  d13_marisa: {
+    location: 'relitto',
+    caption: 'Risalendo — la cosa in piedi',
+    metri: 45,
+    stinger: 'pressione',
+    text: `Sta trenta metri più in là dello squarcio, sul fondo piatto di sedimento, ed è in piedi.
+
+Muta da cinque millimetri, azzurra e nera, di quelle a due pezzi che si vendevano negli anni Novanta. Le braccia lungo i fianchi. La testa alzata di dieci gradi, come si alza la testa per guardare una cosa che sale.
+
+Gaetano la inquadra col fascio e fa la cosa che fa lui: le dà un numero.
+
+> Gaetano: *(dentro l'erogatore, e la voce esce ferma e allegra, la voce di uno che ha risolto)* "Cinquantadue metri. Sta a **cinquantadue metri**, sono sicuro, l'ho contata sulla cima: cinquantadue."
+
+E lo dice bene. Lo dice con lo stesso tono con cui ha detto ottantadue, e trenta e mezzo, e ottomilaquarantuno, e in tre giorni quel tono non ha mai sbagliato una volta.
+
+Claudia gli mette la mano sul braccio e gli fa segno di guardare la cima. Poi gli fa il segno dei nodi, uno per uno, con l'indice, senza fretta, come si spiega una cosa a uno che sta bene.
+
+La cima è calata dalla barca e ha trentun nodi fino alla cengia. Da lì giù, quattordici metri fino alla stiva. Trentuno più quattordici fa quarantacinque, e sotto la stiva il fondo prosegue per un metro e finisce.
+
+Gaetano guarda i nodi. Guarda la cosa in piedi. Guarda i nodi.
+
+Poi lascia andare tutta l'aria che aveva in bocca per parlare, e non parla più fino alla sosta.
+
+**(⚠️ Uno dei due ha appena dato un numero sbagliato con la faccia di uno che ha ragione, e l'altra se n'è accorta prima di lui. Il Fiato e la TENUTA non si toccano: quaggiù i conti che vi tengono in vita non mentono mai. Mente il resto.)**`,
+    sets: { vista_marisa: true },
+    choices: [
+      { text: '🤿 Lasciarle la sua maschera. Appoggiarla sul sedimento a due metri, non in mano',
+        requires: { item: 'maschera_1997' }, once: true, removeItem: 'maschera_1997',
+        gold: 2, sets: { maschera_restituita: true }, next: 'd14_coro' },
+      { text: '📸 Fotografarla per intero, muta e faccia, e non risalire finché non è tutta nell\'inquadratura',
+        once: true, damage: 4, sets: { marisa_documentata: true }, next: 'd14_coro' },
+      { text: '⬆️ Non avvicinarsi di un metro. Su, alla sosta', next: 'd14_coro' },
+    ],
+  },
+
   d14_coro: {
     location: 'fossa',
     caption: 'La sosta a dieci metri — la risalita interrotta',
@@ -6787,7 +6849,11 @@ Sotto di loro, tutte le voci insieme dicono la stessa cosa nello stesso momento,
 
 > IL CORO: "Restate."
 
-**(⚠️ Il gioco lo dice una volta sola e non lo ripete: il Coro non vi vuole morti, vi vuole PRESENTI. Da qui si sale o si scende, e sono due fini diverse.)**`,
+**(⚠️ Il gioco lo dice una volta sola e non lo ripete: il Coro non vi vuole morti, vi vuole PRESENTI. Da qui si sale o si scende, e sono due fini diverse.)**
+
+> Claudia: *(se hanno guardato la cosa in piedi sul fondo — alla sosta, dove c'è aria in bocca per parlare, e lo dice piano perché non è un rimprovero)* "Cinquantadue non esiste. Lì sotto il fondo sta a quarantasei e la cima ne conta quarantacinque."
+
+> Gaetano: "Lo so. L'ho sentito uscire e l'ho sentito giusto." *(si guarda le mani)* "È questo il pezzo che non mi aspettavo: che uscisse giusto."`,
     sets: { d_capito_tutto: true },
     choices: [
       { text: '🎧 Ascoltare quella voce. Quella sola, in mezzo a tutte le altre',
@@ -6894,6 +6960,24 @@ Questa è una di quelle cose che si dicono una volta e restano dette.
 
 > "Allora restiamo tutti e due, e domani è oggi, e dopodomani è oggi, e fra quarant'anni è ancora oggi e siamo due vecchi che si tengono la mano sulla stessa banchina." *(pausa)* "Guardami. **Guardami.** Uno di noi due deve tornare a Scauri e raccontare che siamo esistiti."
 
+E mentre lo dicono, l'acqua ai piedi della rampa dice una frase.
+
+Non da sotto e non forte: da mezzo metro, all'altezza delle caviglie, con la calma di un impiegato che legge una pratica ad alta voce per controllare di averla scritta bene. Vocali larghe, l'italiano dei cinegiornali. Nessuna eco.
+
+> LA VOCE: "Si dà atto che la predetta è discesa di sua spontanea volontà."
+
+Poi va avanti, e va avanti in ordine, come si scorre un fascicolo con l'indice sulla riga.
+
+> LA VOCE: "Del diciotto ottobre risulta rifiuto di cibo. Del nove giugno risulta che si è tolta la vita da sé, e il Senato ne ha reso grazie agli dèi. Del ventitré settembre risulta immersione non autorizzata, condotta in solitaria, contro le norme." *(una pausa esatta, della lunghezza di una riga)* "Io non prendo nessuno, signora. Io **verbalizzo**."
+
+> Claudia: "E il verbale?"
+
+> LA VOCE: "Il verbale è l'unica cosa che resta. Le persone non le legge nessuno. La carta sì."
+
+Gaetano appoggia la sacca in terra per la seconda volta in dieci minuti.
+
+> Gaetano: *(e non lo dice all'acqua, lo dice a lei)* "Ha ragione su una cosa sola: che quello che resta è quello che sta scritto." *(la guarda)* "Allora scriviamolo noi."
+
 In mezzo alla rampa si fermano.
 
 Uno dei due si toglie una cosa dal collo e la mette in mano all'altro. E chi resta non lo fa per essere ricordato: lo fa perché ha fatto un conto, e il conto torna, e nel conto ci sono quarant'anni di una persona che vive contro un giorno che non finisce mai per due.
@@ -6908,6 +6992,13 @@ Uno dei due si toglie una cosa dal collo e la mette in mano all'altro. E chi res
 
 **(🕯 DECISIONE IRREVERSIBILE. Chi resta viene PRESO dal Coro: diventa una voce, e quella voce parlerà all'altro per il resto dei suoi giorni. Chi sale vive, e torna ogni trenta agosto. Scegliete chi, al tavolo, ad alta voce.)**`,
     choices: [
+      /* La prima volta che il premio di un mistero annulla una scelta irreversibile
+         invece di dare un bonus di combattimento: chi ha in tasca il nome della guardia
+         puo rispondere al verbale, e il tavolo torna alla scelta finale con tutti e due
+         vivi. Chi non ce l'ha, no. */
+      { text: '🕯 Rispondere al verbale con un nome: «Nicola Sperduto, quarantatré anni, rimasto in servizio. Questo non risulta a nessuno, e lo sappiamo noi.»',
+        requires: { flag: 'sa_nome_guardia' }, once: true, heal: 6, gold: 2,
+        sets: { verbale_rifiutato: true }, next: 'd15_uscite' },
       { text: '🕯 Scegliere chi resta. E salire, senza girarsi', sacrifice: true, sacrificeSets: 'chi_e_rimasto', sacrificeTitle: 'Chi resta sulla banchina?', sacrificeText: 'Decidetelo insieme, ad alta voce, guardandovi in faccia. Chi resta viene preso dal Coro e diventa una voce. Chi sale vive, e torna ogni trenta agosto per il resto della vita. Non si rifà.', next: 'e_scambio' },
       { text: '↩ No. Tornare indietro sulla rampa e riparlarne', heal: 2, next: 'd15_uscite' },
     ],
@@ -7414,6 +7505,20 @@ Perché la luce non sa.
 Ada tiene la stanza con la terrazza. Non la affitta a nessun altro per quella notte, sul conto scrive sempre una cifra sbagliata in difetto, e se glielo fai notare fa finta di non sentire. Il primo anno gli dice una cosa sola, in cucina, girata verso il lavello: "Io ci sono passata nel novantasette. Non passa. Si impara a portarlo."
 
 Il secondo anno porta un idrofono. Il quarto lo lascia a casa.
+
+Il quarto anno chiede alla Capitaneria l'elenco dei passeggeri della corsa delle diciassette e trenta del 30 agosto 2026. Non fa storie nessuno: glielo mandano per posta in tre giorni, due fogli e un timbro tondo.
+
+Alla riga del nome che cerca ci sono una sigla e due parole, battute con la stessa macchina di tutte le altre righe:
+
+**n.i. — rinuncia volontaria.**
+
+Non imbarcata. Rinuncia volontaria. Nessuno ha barato e nessuno ha mentito: la biglietteria stampa quello che le dicono, e quella sera qualcuno alla biglietteria ha detto quella cosa lì perché era la casella che c'era.
+
+E allora fa l'unica cosa che si può fare contro un verbale, e ci mette dieci secondi.
+
+Prende una penna. Sotto la riga stampata, nello spazio bianco del foglio, scrive il nome per intero, a mano, con le lettere grandi, e l'ultima schiacciata contro il bordo perché lo spazio era finito e lui non l'aveva calcolato.
+
+Esattamente come fece una madre su una lista d'imbarco, il ventiquattro luglio del millenovecentoquarantatré, per portarsi appresso sua figlia.
 
 L'ottavo anno smette di entrare in acqua: sta sul molo di Cala Rossano con le gambe a penzoloni e i piedi dentro fino alla caviglia, e gli basta.
 

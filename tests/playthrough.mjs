@@ -518,6 +518,10 @@ function runGame(scenario) {
   } catch (e) {
     return { ok: false, scenario, error: `Engine.newGame ha lanciato un'eccezione: ${(e.stack || String(e)).split('\n').slice(0,6).join(' | ')}`, log };
   }
+  if (scenario.items) {
+    const G0 = getG();
+    for (const it of scenario.items) if (!G0.inventory.includes(it)) G0.inventory.push(it);
+  }
 
   const STEP_LIMIT = 2500;
   let steps = 0;
@@ -818,6 +822,11 @@ function scenario(name, heroes, choices, opts = {}) {
     defaultCheckOutcome: opts.defaultCheckOutcome || null,
     minigames: opts.minigames || {},
     craft: opts.craft || null,
+    /* Oggetti consegnati all'inizio: e un attrezzo da banco di prova, e serve per i
+       finali che dipendono da un oggetto raro senza dover rigiocare la campagna per
+       arrivarci. Si usa con parsimonia: un finale provato con l'oggetto regalato
+       verifica il FINALE, non la strada che ci porta. */
+    items: opts.items || null,
     sacrificeHero: opts.sacrificeHero || null,
     forceLossAt: opts.forceLossAt || null,
     acceptReroll: !!opts.acceptReroll,
@@ -1265,6 +1274,42 @@ scenarios.push(scenario(
       expect(f.non_sono_scesa, 'la scelta di non scendere non ha lasciato traccia');
     },
   },
+));
+
+/* ---- I TRE FINALI CHE NESSUNO PROVAVA ----
+   Il banco di prova stampava «dieci finali distinti» e nessuno si era mai chiesto QUALI
+   mancassero. Aggiungendo scene ai draft il conto e scivolato a sette in silenzio, perche i
+   semi sono cambiati: tre finali avevano smesso di essere visitati e nessuno lo sapeva. Un
+   finale che nessuna partita raggiunge e un finale che nessuno sta piu provando — e in
+   questo gioco i finali sono dodici, cioe un terzo del lavoro di scrittura dell'atto E.
+   Questi tre scenari li tengono al caldo. In coda alla lista, come tutti i nuovi. */
+scenarios.push(scenario(
+  'Finale: la muta e le tre copie (e_muta_foto)',
+  ['gaetano', 'claudia'],
+  { d14_coro: 'Non rispondere',
+    d15_uscite: 'Salire e basta. Vivi, insieme',
+    e_vittoria_muta: 'Salvare tutto. Tre copie' },
+  { verify: (r, expect) => expect(/^e_muta_foto/.test(r.log.ending || ''),
+      `finale atteso e_muta_foto, trovato ${r.log.ending}`) },
+));
+
+scenarios.push(scenario(
+  "Finale: l'Ancora di Voce nell'epilogo (e_scambio_ancora)",
+  ['gaetano', 'claudia'],
+  { d15_uscite: 'Uno dei due non sale. E non sale perché salga l\'altro',
+    d15_scambio: 'Scegliere chi resta. E salire, senza girarsi',
+    e_scambio: 'ÀNCORA DI VOCE' },
+  { items: ['ancora_di_voce'],
+    verify: (r, expect) => expect(/^e_scambio_ancora/.test(r.log.ending || ''),
+      `finale atteso e_scambio_ancora, trovato ${r.log.ending}`) },
+));
+
+scenarios.push(scenario(
+  "Finale: l'inverno alle Parracine (e_resta_inverno)",
+  ['gaetano', 'claudia'],
+  { d15_uscite: 'restare', e_resta: "Non salire. Scendere all'ultimo secondo" },
+  { verify: (r, expect) => expect(/^e_resta_inverno/.test(r.log.ending || ''),
+      `finale atteso e_resta_inverno, trovato ${r.log.ending}`) },
 ));
 
 

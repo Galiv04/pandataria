@@ -727,6 +727,22 @@ Silenzio. Una lucertola sul muretto, il mare che sotto fa il suo.
     stinger: 'pressione',
     text: `Sta fuori dal muro, a mezza costa, su un terrazzamento che guarda il mare aperto: un quadrato di terra secca dentro un muretto che arriva alla vita, con dentro le croci.
 
+Sta fuori dal muro, a mezza costa, su un terrazzamento che guarda il mare aperto — ed è fuori, questa è la prima cosa: chi ci è finito ha visto il mare per la prima volta da morto.
+
+Si entra da un varco nel muretto a secco. E nel muretto, murata a filo, all'altezza degli occhi, c'è una lapide di marmo bianco con le lettere incise e riempite di lichene nero. Si leggono benissimo.
+
+**SCVOLA DI ALTI PENSIERI**
+
+E sotto, in corpo più piccolo, tre pezzi di frase separati da due virgole:
+
+*Una vita di dolore, un pugno di polvere, un'anima immortale.*
+
+Claudia la legge ad alta voce, tutta, comprese le virgole. Poi non dice niente. Appoggia la mano aperta sulla pietra a secco del muretto e ce la lascia il tempo di due respiri.
+
+Non l'ha scritta un parente e non l'ha pagata una famiglia: l'ha fatta incidere lo stesso ufficio che teneva il registro, per il posto dove finiva chi non veniva reclamato da nessuno. Si entra qua dentro passando sotto una frase che promette un'anima immortale.
+
+Poi si contano le croci.
+
 Sono di ferro tondo, saldate a mano, alte un metro. Non hanno nomi: hanno **numeri**, dipinti in bianco su una piastra ovale. Chi finiva qui aveva già perso il nome all'ingresso e non lo riprendeva all'uscita.
 
 Le contano tutti e tre, separatamente, perché Gaetano vuole tre conti indipendenti.
@@ -771,7 +787,7 @@ Non corre. **Fa il giro.**
     goldLoss: 2,
     damage: 2,
     attenzione: 1,
-    sets: { i_osso: true },
+    sets: { i_osso: true, sa_lapide: true },
     combat: { enemies: ['guardia'], victory: 'c10_nastro', defeat: 'c6_ko' },
     choices: [],
   },

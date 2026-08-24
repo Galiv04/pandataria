@@ -890,6 +890,18 @@ function testFlagRichiestiMaiImpostati() {
     try { src = readFileSync(new URL('../' + f, import.meta.url), 'utf8'); } catch { continue; }
     for (const m of src.matchAll(/G\.flags\[['"]([a-z0-9_]+)['"]\]\s*=/gi)) impostati.add(m[1]);
   }
+  /* I FLAG DEI MINIGIOCHI. La scansione qui sopra trova solo le chiavi LETTERALI, e
+     minigames.js scrive `G.flags[cfg.extraFlag || 'ha_visto_giu'] = true`: una chiave
+     calcolata, che nessuna espressione regolare puo vedere. Risultato: un flag assegnato
+     davvero dal minigioco veniva dichiarato «mai impostato», e la prima scelta che lo
+     usava passava per contenuto irraggiungibile. Falso positivo, ed e il tipo peggiore —
+     manda a cercare un difetto che non c'e e insegna a diffidare del rosso. */
+  for (const s2 of Object.values(CAMPAIGN)) {
+    const cfg = s2.minigame && s2.minigame.config;
+    if (cfg && cfg.extraFlag) impostati.add(cfg.extraFlag);
+    if (cfg && cfg.flag) impostati.add(cfg.flag);
+  }
+  impostati.add('ha_visto_giu');   // il predefinito di minigames.js quando extraFlag manca
   const morti = new Map(), inutili = new Map();
   for (const [id, s] of Object.entries(CAMPAIGN)) for (const c of (s.choices || [])) {
     const r = c.requires; if (!r) continue;

@@ -463,6 +463,20 @@ Ada tiene la stanza con la terrazza. Non la affitta a nessun altro per quella no
 
 Il secondo anno porta un idrofono. Il quarto lo lascia a casa.
 
+Il quarto anno chiede alla Capitaneria l'elenco dei passeggeri della corsa delle diciassette e trenta del 30 agosto 2026. Non fa storie nessuno: glielo mandano per posta in tre giorni, due fogli e un timbro tondo.
+
+Alla riga del nome che cerca ci sono una sigla e due parole, battute con la stessa macchina di tutte le altre righe:
+
+**n.i. — rinuncia volontaria.**
+
+Non imbarcata. Rinuncia volontaria. Nessuno ha barato e nessuno ha mentito: la biglietteria stampa quello che le dicono, e quella sera qualcuno alla biglietteria ha detto quella cosa lì perché era la casella che c'era.
+
+E allora fa l'unica cosa che si può fare contro un verbale, e ci mette dieci secondi.
+
+Prende una penna. Sotto la riga stampata, nello spazio bianco del foglio, scrive il nome per intero, a mano, con le lettere grandi, e l'ultima schiacciata contro il bordo perché lo spazio era finito e lui non l'aveva calcolato.
+
+Esattamente come fece una madre su una lista d'imbarco, il ventiquattro luglio del millenovecentoquarantatré, per portarsi appresso sua figlia.
+
 L'ottavo anno smette di entrare in acqua: sta sul molo di Cala Rossano con le gambe a penzoloni e i piedi dentro fino alla caviglia, e gli basta.
 
 Il quindicesimo anno il cameriere della Terrazza di Mimì — che intanto ha i capelli bianchi anche lui — porta due limoncelli e ne posa uno davanti alla sedia vuota, senza dire niente. Da quell'anno lo fa sempre.
