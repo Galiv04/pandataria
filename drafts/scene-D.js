@@ -1578,7 +1578,14 @@ Il silenzio, quaggiù, è il modo che ha questa cosa per dirvi che ha smesso di 
     sets: { i_giocattolo: true },
     choices: [
       { text: '🐎 Risalire. Adesso. Senza guardare altro', next: 'd14_coro' },
-      { text: '🧳 Cinque secondi in più: leggere il nome sull\'etichetta di una valigia', once: true, damage: 4, sets: { nome_valigia: true }, next: 'd13_murena' },
+      /* La prova di Costituzione, e il conto lo paga CHI TIRA. Prima erano quattro punti
+         di danno spalmati sul gruppo — cioe niente, per un gesto che il briefing ha
+         telegrafato. E `nome_valigia` stava nei `sets` della SCELTA, dove sarebbe scattato
+         anche col check fallito (regola del CLAUDE.md): l'ho spostato nella scena di
+         successo, perche il nome lo legge solo chi ce la fa. */
+      { text: '🧳 Cinque secondi in più: leggere il nome sull\'etichetta di una valigia', once: true,
+        tag: 'Prova di Costituzione — CD 14 · ⚠️ qui il conto lo paga chi tira',
+        check: { stat: 'COS', dc: 14, success: 'd13_murena', fail: 'd13_cinque_secondi' } },
       { text: '📿 Lasciare qui dentro qualcosa, al posto di quello che avete preso', requires: { item: 'medaglietta_giulia' }, once: true, removeItem: 'medaglietta_giulia', gold: 2, next: 'd14_coro' },
     ],
   },
@@ -1613,12 +1620,152 @@ E qui una cosa va detta adesso, perché dopo non ci sarà tempo: **quella donna 
 Quello che dovete rompere non è lei. È la presa.
 
 **(⚔️ Un metro e venti di murena, e una passeggera che non ha imparato a lasciare. Vincere qui vuol dire farsi lasciare andare: del male, a lei, l'hanno già fatto nel Quarantatré.)**`,
+    sets: { nome_valigia: true },
     combat: {
       enemies: ['murena', 'annegata'],
       victory: 'd14_coro',
       defeat: 'd9_ko',
       loot: { gold: 2 },
     },
+  },
+
+  /* PRESO DAL CORO. La cosa che il DESIGN promette da tutta la partita e che il codice non
+     poteva fare: `killRoller` (engine.js:364) marca `h.morto` su CHI HA TIRATO per ultimo,
+     e non tocca mai l'ultimo in piedi (`vivi > 1`). In atto D il gruppo e di due o tre,
+     quindi scatta sempre e resta comunque una coppia giocabile. Da qui in avanti quella
+     persona sta nella scheda come VOCE, e `requires: { spirit: true }` — implementato nel
+     motore e mai usato da nessuna scena — apre le cose che vede solo lei.
+     E l'ÀNCORA DI VOCE, una delle tre ricette obbligatorie per il finale migliore, era
+     spendibile in un punto solo di tutta la campagna: un epilogo. Adesso ha il suo posto,
+     e il suo posto e dentro l'acqua. */
+  d13_cinque_secondi: {
+    location: 'relitto',
+    caption: 'Cinque secondi in più — meno quarantacinque metri',
+    metri: 45,
+    stinger: 'voce_amata',
+    silenzio: true,
+    text: `L'etichetta dice **SPINELLI ASSUNTA — NAPOLI**, e leggerla costa cinque secondi. A quarantacinque metri cinque secondi non sono un tempo: sono una quantità, e si toglie da un posto che ne aveva già poca.
+
+Il diaframma si chiude da solo. Non è volontà: è un muscolo che ha finito la pazienza, e ogni contrazione è un promemoria scritto in prima persona.
+
+E in quei cinque secondi il sedimento si alza. Non da sotto la mano: da tutta la stiva insieme, come si alza la polvere in una stanza quando qualcuno si siede sul letto. Un metro di grigio che sale e non si riappoggia, e dentro il grigio il fascio della torcia non arriva più a un braccio.
+
+Uno dei due sente una cosa sulla nuca. Non una mano: **una temperatura**. Due gradi in meno alla base del cranio, larghi come un palmo.
+
+Poi la stiva si chiude sopra come si chiude un'anta.
+
+L'altro tira la cima. Con due mani, con la schiena, coi piedi puntati sulla lamiera, e la cima viene su. Viene su tutta, col nodo in fondo, e in fondo non c'è nessuno.
+
+A trentun metri, sulla cengia, l'acqua è di nuovo acqua. La torcia funziona. In barca lo scandaglio dice quarantasei metri e stavolta non cambia numero.
+
+E da quarantasei metri, chiarissima, come se parlasse da mezzo metro, arriva la voce che quella persona ha da quando la conoscete.
+
+> La voce: "Sono qui. Sto bene. Non è come pensavamo."
+
+**(🎵 PRESO DAL CORO. Non è un dado sfortunato: è il conto dei cinque secondi, e li ha spesi chi ha alzato la mano per leggere il nome di una morta. Da adesso resta come VOCE — sta nella scheda, sta nel registro degli scontri, e nelle scene che seguono ci sono cose che vede solo lei. L'unico oggetto che paga questo è l'ÀNCORA DI VOCE, e vale un uso solo. Se ce l'avete, è adesso.)**`,
+    killRoller: true,
+    damage: 3,
+    attenzione: 1,
+    sets: { uno_preso: true, prezzo_dei_cinque_secondi: true },
+    choices: [
+      { text: '⚓ L\'ÀNCORA DI VOCE. Adesso. Rimettersi la maschera e andare a riprenderlo',
+        requires: { item: 'ancora_di_voce' }, removeItem: 'ancora_di_voce',
+        sets: { ancora_usata: true }, next: 'd13_ancora' },
+      { text: '⬆️ Risalire. Alla sosta dei dieci metri, senza guardare in giù', goldLoss: 2, next: 'd14_coro' },
+    ],
+  },
+
+  /* L'ÀNCORA DI VOCE, spesa dove serve. `reviveAll` e una chiave vera del motore
+     (engine.js:410) e finora la usavano solo i finali. */
+  d13_ancora: {
+    location: 'relitto',
+    caption: 'L\'Àncora di Voce — meno quarantacinque metri',
+    metri: 45,
+    stinger: 'voce_amata',
+    text: `Non c'è niente da decidere e non c'è tempo per decidere: si rimette la maschera, si morde l'erogatore e si scende, e scendere adesso è la cosa più stupida che si possa fare in un'immersione.
+
+L'Àncora è tre cose messe insieme in un pomeriggio, sul tavolino di ferro delle Parracine: l'idrofono profondo, il nastro del 1965 con la voce di una guardia che chiede di restare, e la ninnananna cantata da chi non deve chiamare nessuno. Da sola non è niente. Insieme è l'unica frase che quaggiù non si può interrompere.
+
+Si accende a trentun metri e si sente subito, perché il rumore di fondo — ottocento voci che parlano insieme da tre giorni — **fa una pausa**.
+
+Nella pausa c'è spazio per una cosa sola, e quella cosa è un nome detto per intero, con il cognome, come si dice un nome quando si chiama qualcuno per riportarlo a casa e non per invitarlo.
+
+Il sedimento si riapre. La stiva restituisce quello che aveva chiuso dentro, e lo restituisce con la maschera ancora sulla faccia e l'erogatore in bocca, e con gli occhi di uno che era da un'altra parte e c'è tornato.
+
+Poi l'Àncora tace, perché era per un uso solo, ed è stato quello.
+
+**(⚓ L'ÀNCORA DI VOCE È STATA SPESA — e non ce n'è un'altra. Chi era stato preso è tornato, con quello che aveva addosso. 🫁 Fiato −3: la risalita adesso si fa in due, e in due si fa piano. Il Quaderno registra che l'Àncora ha funzionato, e registra anche che era una sola.)**`,
+    goldLoss: 3,
+    reviveAll: true,
+    sets: { ancora_ha_funzionato: true },
+    choices: [
+      { text: '⬆️ Su. Alla sosta dei dieci metri, insieme', next: 'd14_coro' },
+    ],
+  },
+
+  /* LA VOCE. Primo uso in assoluto di `requires: { spirit: true }`: la scelta che vedono
+     solo i gruppi in cui qualcuno e stato preso. Quello che chiede lo chiede una persona
+     che vi vuole bene, e resta la cosa piu pericolosa che vi abbiano detto in quattro
+     giorni. Nessuna scorciatoia: non da `sa_sesta_cisterna`, che resta premio del mistero,
+     e non abilita la scelta di sigillare. Apre solo strade laterali. */
+  d14_voce: {
+    location: 'fossa',
+    caption: 'La sosta dei dieci metri — la voce che sa i numeri',
+    metri: 10,
+    stinger: 'voce_amata',
+    text: `Alla sosta dei dieci metri si può parlare, perché c'è aria in bocca e le orecchie stanno sopra il fastidio.
+
+E alla sosta dei dieci metri, in mezzo a ottocento voci che parlano tutte insieme, ce n'è una che parla italiano corrente con l'accento di Scauri, e dice numeri.
+
+> La voce: "Quarantasei virgola due. Non ottantadue: ottantadue è il secondo gradino e sta dopo. Quarantasei virgola due fino alla cengia della stiva, poi la parete continua, e la sesta bocca sta a sinistra, a quarantuno, sotto una trave romana. Ce l'ho davanti adesso."
+
+È vero. È tutto vero, ed è detto nel modo in cui quella persona ha detto le cose vere per dieci anni: la cifra prima, la frase dopo, nessun aggettivo.
+
+> La voce: "E senti. Ti devo dire una cosa perché è quella che ti terrebbe sveglio, e non voglio che ti tenga sveglio per niente: **non fa male.** Non c'è freddo, non c'è acqua, non c'è il petto. C'è che si sente tutto." *(pausa, e la pausa è la sua)* "Sento pure te. Stai respirando male."
+
+> *(e chi è rimasto non risponde, perché Ada l'ha detto due volte)*
+
+> La voce: "Fai bene." *(e poi lo chiede, e non lo chiede come una trappola: lo chiede come si chiede una cosa a una persona con cui si dorme da dieci anni)* "Però scendi. Cinque metri. Non per prendermi: per **vedere** dove sto. Poi risali e fai quello che devi fare, e almeno uno di noi due sa dov'è l'altro."
+
+E la cosa insopportabile è che non è una bugia, non è un ricatto, e non ci sarebbe niente di male.
+
+**(🫁 Fiato −2: ascoltarla costa aria, ed è l'aria che vi serviva per risalire. Il Quaderno registra la posizione della sesta bocca detta da chi la sta guardando — quarantuno metri, a sinistra, sotto una trave — e registra che vi è stato chiesto di scendere. ⚠️ Quello che vi ha chiesto lo chiede una persona che vi vuole bene, e resta la cosa più pericolosa che vi abbiano detto in quattro giorni.)**`,
+    goldLoss: 2,
+    sets: { voce_ha_indicato: true, la_voce_ha_chiesto: true },
+    choices: [
+      { text: '🙅 Non scendere. Restare sui dieci metri e contare i sette minuti', heal: 3, sets: { non_sono_scesa: true }, next: 'd14_coro' },
+      { text: '⬇️ Cinque metri. Solo per vedere dove sta', next: 'd14_scesa' },
+    ],
+  },
+
+  /* CINQUE METRI. La scelta prometteva «per vedere dove sta», e una scelta che promette
+     mantiene: qui si vede. E l'attenzione sale QUI e non sulla scelta, perche il motore la
+     legge sulle scene — la seconda volta in un giorno che ci sbatto, e la seconda volta
+     che la correzione migliora la scena invece di peggiorarla. */
+  d14_scesa: {
+    location: 'fossa',
+    caption: 'Quindici metri — cinque piu del dovuto',
+    metri: 15,
+    stinger: 'pressione',
+    text: `Cinque metri non sono niente. Cinque metri sono due bracciate in giù e il petto che si stringe di un dito, e la sosta che ricomincia da zero.
+
+Da quindici metri non si vede il fondo: il fondo sta a trentuno metri più sotto. Si vede il **blu**, che a questa profondità non è un colore ma una direzione.
+
+E in mezzo al blu, a occhio, a una quarantina di metri, c'è una cosa più chiara. Non una sagoma: una macchia della grandezza di una mano tenuta a un braccio di distanza, e la macchia sta ferma.
+
+> La voce: *(e adesso è vicinissima, e non è cambiata di una virgola)* "Mi vedi?"
+
+E la cosa che gela non è la domanda. È che la risposta è sì, e che una persona a quaranta metri, senza bombole, senza luce, dopo venti minuti, non si vede perché non c'è niente da vedere.
+
+La cima, sopra la testa, ha ripreso a vibrare.
+
+**(🫁 Fiato −6: cinque metri di troppo si pagano tutti, e la sosta ricomincia da capo. 🎵 Attenzione del Coro +1: siete scesi perché ve l'ha chiesto, e questo lo sa. Il Quaderno registra che una cosa a quaranta metri di profondità era visibile a occhio nudo, e che vi ha chiesto se la vedevate.)**`,
+    goldLoss: 6,
+    attenzione: 1,
+    sets: { scesa_a_vedere: true },
+    choices: [
+      { text: '⬆️ Su. Adesso, e la sosta si rifa da capo', next: 'd14_coro' },
+    ],
   },
 
   d14_coro: {
@@ -1683,6 +1830,8 @@ Sotto di loro, tutte le voci insieme dicono la stessa cosa nello stesso momento,
 **(⚠️ Il gioco lo dice una volta sola e non lo ripete: il Coro non vi vuole morti, vi vuole PRESENTI. Da qui si sale o si scende, e sono due fini diverse.)**`,
     sets: { d_capito_tutto: true },
     choices: [
+      { text: '🎧 Ascoltare quella voce. Quella sola, in mezzo a tutte le altre',
+        requires: { spirit: true }, once: true, next: 'd14_voce' },
       { text: '⚔️ Rispondere di no. Con tutto quello che avete addosso', next: 'd14_boss' },
       { text: '🧂 Rispondere di no col sale della sua stessa acqua in mano', requires: { item: 'salamoia' }, sets: { sale_pronto: true }, next: 'd14_boss' },
       { text: '🧱 Sigillare la bocca: sapete dov\'è la sesta cisterna e avete lo stucco', requires: { item: 'stucco', flag: 'sa_sesta_cisterna' }, next: 'e_vittoria' },

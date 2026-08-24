@@ -1232,6 +1232,41 @@ scenarios.push(scenario(
   },
 ));
 
+/* ---- PRESO DAL CORO — la cosa che il DESIGN promette da tutta la partita ----
+   `killRoller`, `requires.spirit` e l'Ancora di Voce dentro l'acqua: tre pezzi di motore
+   che esistevano e che nessuna scena usava. Questo scenario fallisce la prova di
+   Costituzione di proposito (checkOutcomes), si fa portare via qualcuno, e poi ascolta la
+   voce alla sosta dei dieci metri — la scelta che vedono solo i gruppi con uno spirito.
+   In coda alla lista, perche i semi sono progressivi. */
+scenarios.push(scenario(
+  'Preso dal Coro (la prova fallita, e la voce che sa i numeri)',
+  ['gaetano', 'claudia'],
+  { d13_fossa: 'Scendere col bombolino riparato',
+    d13_stiva: 'Cinque secondi in più',
+    d13_cinque_secondi: 'Risalire',
+    d14_coro: 'Ascoltare quella voce',
+    d14_voce: 'Non scendere' },
+  {
+    checkOutcomes: { d13_stiva: 'fail' },
+    verify: (r, expect) => {
+      const f = r.log.flags || {};
+      expect(r.log.scenes.includes('d13_cinque_secondi'),
+        'la prova non e stata fallita: nessuno e stato preso');
+      expect(f.uno_preso, 'il flag uno_preso non e stato impostato');
+      /* `everMorto` viene convertito in ARRAY prima di essere restituito (riga 725):
+         `.size` su un array e undefined, quindi il controllo era sempre falso. Ed e la
+         seconda volta oggi che sbaglio il tipo di un campo del log — la prima era
+         `visited` invece di `scenes`. */
+      expect(r.log.everMorto.length > 0, 'nessuno risulta preso dal Coro (killRoller non ha agito)');
+      expect(r.log.scenes.includes('d14_voce'),
+        'la scelta che vedono solo gli spiriti non e comparsa alla sosta');
+      expect(f.voce_ha_indicato && f.la_voce_ha_chiesto,
+        'la voce non ha indicato la sesta bocca ne ha chiesto di scendere');
+      expect(f.non_sono_scesa, 'la scelta di non scendere non ha lasciato traccia');
+    },
+  },
+));
+
 
 
 
