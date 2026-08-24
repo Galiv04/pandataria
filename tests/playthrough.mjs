@@ -531,21 +531,100 @@ function runGame(scenario) {
       steps++;
       if (steps > STEP_LIMIT) throw new Error(`LOOP INFINITO sospetto nella navigazione (> ${STEP_LIMIT} passi totali)`);
 
-      /* Una modale aperta blocca tutto: va chiusa come farebbe una persona.
-         Il bottone giusto è quello che porta avanti (il primo con un onclick),
-         tranne quando lo scenario chiede espressamente l'uscita di emergenza. */
-      const modale = doc.getElementById('modal-generic');
-      if (!modale.classList.contains('hidden')) {
-        const box = doc.getElementById('modal-generic-content');
-        const btns = [...box.children, ...buttons(box)].filter(b => b.tagName === 'BUTTON' && typeof b.onclick === 'function');
-        const tutti = btns.length ? btns : buttons(box).filter(b => typeof b.onclick === 'function');
-        if (tutti.length) {
-          log.modali = (log.modali || 0) + 1;
-          game.act(() => tutti[0].onclick());
-          checkInvariants(getG(), 'dopo aver chiuso una modale');
+      /* ==== UNA modale aperta, UN posto che la gestisce ====
+         Fino al 24 agosto 2026 di blocchi che gestivano `modal-generic` ce n'erano DUE:
+         questo, che chiudeva qualunque modale col primo bottone che avesse un onclick, e
+         un secondo (piu' in basso, dopo il log della scena) che sapeva riconoscere il
+         rilancio dell'occhio lungo, il sacrificio e la PROVA con l'esito pilotato.
+         Vinceva sempre il primo, perche' e' prima nel ciclo: il secondo non e' mai stato
+         eseguito una volta. Conseguenza: `checkOutcomes`, `defaultCheckOutcome`,
+         `pickCheckHero` e `sacrificeHero` erano opzioni MORTE — ogni prova la tirava il
+         primo eroe della barra col dado naturale del seme, e gli scenari che credevano di
+         pilotare il dado camminavano a caso. Il rosso, quando arrivava, arrivava tre
+         sezioni piu' in basso su un flag mancante, e faceva sospettare il gioco.
+         Un banco che ignora l'opzione che gli hai dato e' peggio di un banco che non ce
+         l'ha: quello almeno non ti mente.
+
+         Ordine di riconoscimento (dal piu' specifico al piu' generico):
+         1) l'offerta di rifare la presa con l'occhio lungo — i suoi bottoni nascono
+            dentro un innerHTML, quindi non sono figli veri: si raggiungono per id, ed e'
+            per questo che va provata PRIMA di contare i bottoni;
+         2) la modale di SACRIFICIO (bottoni-eroe veri + "Riparliamone");
+         3) la modale della PROVA, riconosciuta dall'intestazione «🎲 Prova di …» che
+            scrive `pickHeroForCheck` (l'unico posto nel motore che la scrive: i `tag`
+            delle scelte dicono la stessa cosa ma finiscono nella colonna delle scelte,
+            non qui): l'eroe lo sceglie `pickCheckHero` e l'esito lo forza
+            `forcedOutcomeFor`, pilotando Math.random per la durata del click;
+         4) qualunque altra modale (ritorno dal checkpoint, Ciro che si unisce, avvisi):
+            avanti col primo bottone utile e col dado naturale. Forzare Math.random dove
+            non si tira niente non serve, e sposta il flusso random di tutto il resto. */
+      const modalGeneric = doc.getElementById('modal-generic');
+      if (!modalGeneric.classList.contains('hidden')) {
+        /* La scena che ha CHIESTO il tiro e' quella corrente: `resolveChoice` apre la
+           modale senza passare da `gotoScene`, quindi `G.sceneId` e' ancora la scena di
+           partenza — ed e' esattamente la chiave con cui gli scenari scrivono
+           `checkOutcomes`. Va letta qui, prima di cliccare: dopo il click e' cambiata. */
+        const sceneProva = (getG() || {}).sceneId;
+        const content = doc.getElementById('modal-generic-content');
+
+        if (/btn-reroll-yes/.test(content.innerHTML)) {
+          const yes = doc.getElementById('btn-reroll-yes');
+          const no = doc.getElementById('btn-reroll-no');
+          const btn = scenario.acceptReroll ? yes : no;
+          if (typeof btn.onclick !== 'function') throw new Error('modale del rilancio (occhio lungo) senza handler');
+          const fn = btn.onclick;
+          yes.onclick = null; no.onclick = null; // niente handler stantii al prossimo giro
+          game.act(() => fn());
+          checkInvariants(getG(), `dopo offerta di rifare la presa in "${sceneProva}"`);
           continue;
         }
-        modale.classList.add('hidden');   // modale senza bottoni: si chiude e si va avanti
+
+        const clickable = buttons(content).filter(b => typeof b.onclick === 'function');
+        if (!clickable.length) { modalGeneric.classList.add('hidden'); continue; }
+        log.modali = (log.modali || 0) + 1;
+
+        // NB: il bottone "Riparliamone" è creato con textContent, non innerHTML — vanno letti entrambi
+        const btnText = b => (b.innerHTML || '') + (b.textContent || '');
+        if (clickable.some(b => /Riparliamone/.test(btnText(b)))) {
+          // modale di sacrificio: il tavolo sceglie CHI resta
+          const heroBtns = clickable.filter(b => !/Riparliamone/.test(btnText(b)));
+          const chosen = (scenario.sacrificeHero && matchButton(heroBtns, scenario.sacrificeHero)) || heroBtns[0];
+          if (!chosen) throw new Error(`modale di sacrificio senza eroi selezionabili in "${sceneProva}"`);
+          game.act(() => chosen.onclick());
+          checkInvariants(getG(), `dopo sacrificio in "${sceneProva}"`);
+          continue;
+        }
+
+        if (!/🎲 Prova di /.test(content.innerHTML)) {
+          game.act(() => clickable[0].onclick());   // informativa o di sistema: si porta avanti
+          checkInvariants(getG(), `dopo aver chiuso una modale in "${sceneProva}"`);
+          continue;
+        }
+
+        const chiTira = pickCheckHero(clickable, scenario);
+        const outcome = forcedOutcomeFor(scenario, state, sceneProva);
+        if (outcome === 'success') game.withForcedRandom(0.999, () => game.act(() => chiTira.onclick()));
+        else if (outcome === 'fail') game.withForcedRandom(0, () => game.act(() => chiTira.onclick()));
+        else game.act(() => chiTira.onclick());
+        checkInvariants(getG(), `dopo scelta eroe per prova in "${sceneProva}"`);
+        continue;
+      }
+
+      /* L'overlay del dado si sbriga QUI, insieme alle modali, e non piu' dopo il log
+         della scena. Un tiro costa tre giri di ciclo — scelta, eroe, "Continua" — e nel
+         terzo la scena non e' ancora cambiata: finiva nel percorso una seconda volta, e il
+         dump stampava «b4_breccia > b4_breccia > b8». Sembrava che il gioco tornasse
+         indietro, ed e' la traccia falsa che ha fatto perdere tempo cercando il difetto
+         delle prove forzate nel posto sbagliato. Un percorso deve avere una riga per ogni
+         scena ATTRAVERSATA, altrimenti mente su cosa e' successo. */
+      const diceOverlay = doc.getElementById('dice-overlay');
+      if (!diceOverlay.classList.contains('hidden')) {
+        const btn = doc.getElementById('btn-dice-continue');
+        if (typeof btn.onclick !== 'function') throw new Error('overlay dado visibile ma bottone "Continua" senza onclick');
+        const _dove = (getG() || {}).sceneId;
+        game.act(() => btn.onclick());
+        checkInvariants(getG(), `dopo tiro di dado fuori combattimento (scena "${_dove}")`);
+        continue;
       }
 
       const G = getG();
@@ -575,53 +654,6 @@ function runGame(scenario) {
       for (const it of G.inventory) log.itemsEverOwned.add(it);
 
       if (scene.ending) { log.ending = sceneId; break; }
-
-      /* Modali generiche, in ordine di riconoscimento:
-         1) offerta di ritiro col d20 di Daniele (bottoni via innerHTML + getElementById);
-         2) modale di SACRIFICIO (bottoni-eroe reali + "Riparliamone");
-         3) selezione eroe per una prova (bottoni-eroe reali, con eventuale esito forzato);
-         4) modale solo informativa (nessun handler JS reale: si chiude, come farebbe
-            un browser che non esegue gli onclick scritti dentro l'HTML statico). */
-      const modalGeneric = doc.getElementById('modal-generic');
-      if (!modalGeneric.classList.contains('hidden')) {
-        const content = doc.getElementById('modal-generic-content');
-
-        if (/btn-reroll-yes/.test(content.innerHTML)) {
-          const yes = doc.getElementById('btn-reroll-yes');
-          const no = doc.getElementById('btn-reroll-no');
-          const btn = scenario.acceptReroll ? yes : no;
-          if (typeof btn.onclick !== 'function') throw new Error('modale del d20 di Daniele senza handler');
-          const fn = btn.onclick;
-          yes.onclick = null; no.onclick = null; // niente handler stantii al prossimo giro
-          game.act(() => fn());
-          checkInvariants(getG(), `dopo offerta di ritiro (d20) in "${sceneId}"`);
-          continue;
-        }
-
-        const btns = buttons(content);
-        const clickable = btns.filter(b => typeof b.onclick === 'function');
-        if (!clickable.length) { modalGeneric.classList.add('hidden'); continue; }
-
-        // NB: il bottone "Riparliamone" è creato con textContent, non innerHTML — vanno letti entrambi
-        const btnText = b => (b.innerHTML || '') + (b.textContent || '');
-        if (clickable.some(b => /Riparliamone/.test(btnText(b)))) {
-          // modale di sacrificio: il tavolo sceglie CHI resta
-          const heroBtns = clickable.filter(b => !/Riparliamone/.test(btnText(b)));
-          const chosen = (scenario.sacrificeHero && matchButton(heroBtns, scenario.sacrificeHero)) || heroBtns[0];
-          if (!chosen) throw new Error(`modale di sacrificio senza eroi selezionabili in "${sceneId}"`);
-          game.act(() => chosen.onclick());
-          checkInvariants(getG(), `dopo sacrificio in "${sceneId}"`);
-          continue;
-        }
-
-        const chosen = pickCheckHero(clickable, scenario);
-        const outcome = forcedOutcomeFor(scenario, state, sceneId);
-        if (outcome === 'success') game.withForcedRandom(0.999, () => game.act(() => chosen.onclick()));
-        else if (outcome === 'fail') game.withForcedRandom(0, () => game.act(() => chosen.onclick()));
-        else game.act(() => chosen.onclick());
-        checkInvariants(getG(), `dopo scelta eroe per prova in "${sceneId}"`);
-        continue;
-      }
 
       /* CRAFTING pilotato dallo scenario: `craft: { sceneId: [['a','b'], …] }`.
          Serve a portare in combattimento gli oggetti che pagano gli scontri, e a
@@ -661,15 +693,6 @@ function runGame(scenario) {
           }
           checkInvariants(getG(), `dopo crafting ${a}+${b} in "${sceneId}"`);
         }
-      }
-
-      const diceOverlay = doc.getElementById('dice-overlay');
-      if (!diceOverlay.classList.contains('hidden')) {
-        const btn = doc.getElementById('btn-dice-continue');
-        if (typeof btn.onclick !== 'function') throw new Error('overlay dado visibile ma bottone "Continua" senza onclick');
-        game.act(() => btn.onclick());
-        checkInvariants(getG(), `dopo tiro di dado fuori combattimento (scena "${sceneId}")`);
-        continue;
       }
 
       if (scene.minigame) {
@@ -757,15 +780,15 @@ const DEFAULT_SEQUENCES = {};
    importante. Ogni scenario ne eredita una copia e sovrascrive solo ciò che gli serve. */
 const BASE_CHOICES = {
   /* --- A: giovedì 27, l'arrivo --- */
-  a0: 'Restare sul ponte', a0_traghetto: 'Restare sul ponte', a0_ponte: 'Restare sul ponte', a0_carcere: 'Restare sul ponte',
+  a0: 'Restare sul ponte', a0_lista: 'Restare sul ponte', a0_traghetto: 'Restare sul ponte', a0_ponte: 'Restare sul ponte', a0_pandataria: 'Restare sul ponte', a0_carcere: 'Restare sul ponte',
   a0b: 'Il traghetto attracca',
   a1: 'Su, alle Parracine',
   a2: 'Arrivare alle Parracine',
-  a3: 'Al mare, subito', a3_terrazza: 'Al mare, subito',
-  a4: 'Entrare insieme',
+  a3: 'Al mare, subito', a3_vista: 'Al mare, subito', a3_terrazza: 'Al mare, subito',
+  a4: 'Entrare insieme', a4_entrare: 'Entrare insieme',
   a5: 'Bastare così',
   a6: 'taralli',
-  a7: 'Il microfono',
+  a7: 'Il microfono', a7_cani: 'Il microfono',
   a8: 'Portarla dentro',
   a9: 'le cisterne',
   /* --- B: venerdì 28, le cisterne --- */
@@ -799,14 +822,14 @@ const BASE_CHOICES = {
   b8_apnea_ko: 'Il caffè delle Parracine',
   b8_caffe: 'Su. Aria vera',
   b9: 'Il ragazzo con la maschera',
-  b9_ragazzo: 'Quanto costa noleggiare',
+  b9_ragazzo: 'Quanto costa noleggiare', b9_fossa: 'Quanto costa noleggiare',
   b9_noleggio: 'A cena',
   b10: 'Dirglielo',
   b10_verita: 'Lasciarla parlare',
-  b10_litigio: 'Alle Parracine',
+  b10_litigio: 'Alle Parracine', b10_trenta_secondi: 'Alle Parracine',
   b11: 'Svegliarla e dirglielo',
   b11_trenta: 'Il molo, alle nove',
-  b12: 'Il molo',
+  b12: 'Il molo', b12_tre_dita: 'Il molo',
   /* --- C: sabato 29, Santo Stefano --- */
   c15: 'terrazza', c15_notte: 'terrazza',
   /* Le scene nate dai tagli del 24 agosto 2026 vogliono un default esplicito: senza, il
@@ -816,14 +839,14 @@ const BASE_CHOICES = {
      finale atteso non era arrivato. Un banco che non ha un default e' un banco che tira a
      sorte, e un test che tira a sorte non prova niente. */
   c9_croci: 'quarantesimo',   // «Scavare» compare anche in «Non scavare»: chiave ambigua
-  c10_suonato: 'Lasciarlo andare',
+  c10_suonato: 'Lasciarlo andare', c10_pianto: 'Lasciarlo andare',
   c11_verita: 'Dirle il motivo',
   c14_marisqueria: 'Girare la tovaglietta',
   b7_calette: 'Insegnami',
   b6_quattro: 'Il pannello del Parco',
   a3_lilia: 'Chiederle dov\'è che si scende',
   /* --- D: domenica 30, il giorno che non finisce --- */
-  d0: 'Giù: la moka di Ada',
+  d0: 'Giù: la moka di Ada', d0_bottiglia: 'Giù: la moka di Ada',
   d13_fossa: 'Fammi il briefing',
   d14_coro: 'Non rispondere niente e risalire',
   d14_dieci: 'I sette minuti di sosta',
@@ -871,8 +894,8 @@ scenarios.push(scenario(
   {
     a1: 'C\'è un museo archeologico',
     a1_museo: 'Fotografare la carta delle sei cisterne',
-    a3: 'Disfare le valigie', a3_terrazza: 'Disfare le valigie',
-    a3_valigie: 'Prendere anche il resto',
+    a3: 'Disfare le valigie', a3_vista: 'Disfare le valigie', a3_terrazza: 'Disfare le valigie',
+    a3_valigie: 'Prendere anche il resto', a3_grazie: 'Prendere anche il resto',
     a3_valigie2: 'Prendere anche le fedi',
     b1: 'Guardare la stanza',
     b2: 'misurare l\'eco',
@@ -958,9 +981,9 @@ scenarios.push(scenario(
      prova il percorso cambiava a ogni scena nuova aggiunta a monte (due volte in un
      giorno, e le due volte ha detto un finale diverso). Un test che dipende dal caso
      non prova niente. */
-  { d2_paese: 'Rispondere. Mettere la faccia sotto',
-    d5_ada: 'Alla cisterna dei Detenuti',
-    d1_colazione_bis: 'Alla cisterna dei Detenuti',
+  { d2_paese: 'Rispondere. Mettere la faccia sotto', d2_cala: 'Rispondere. Mettere la faccia sotto',
+    d5_ada: 'Alla cisterna dei Detenuti', d5_lista: 'Alla cisterna dei Detenuti',
+    d1_colazione_bis: 'Alla cisterna dei Detenuti', d1_colazione_eco: 'Alla cisterna dei Detenuti',
     d13_fossa: 'Fammi il briefing', d13_briefing: 'Scendere col bombolino riparato',
     d14_coro: 'Rispondere di sì', d14_dieci: 'Rispondere di sì', d14_restate: 'Rispondere di sì' },
   {
@@ -994,11 +1017,11 @@ scenarios.push(scenario(
        immersioni. Senza questi passaggi le ricette non sono nemmeno possibili. */
     a1: 'Prima una tappa: il negozio',
     a1_negozio: 'Chiedere anche una tanica e del sale grosso',
-    a3: 'Disfare le valigie', a3_terrazza: 'Disfare le valigie',
-    a3_valigie: 'Prendere anche il resto',
+    a3: 'Disfare le valigie', a3_vista: 'Disfare le valigie', a3_terrazza: 'Disfare le valigie',
+    a3_valigie: 'Prendere anche il resto', a3_grazie: 'Prendere anche il resto',
     a3_valigie2: 'Prendere anche le fedi',
     a6: 'taralli',
-    a7: 'Il microfono',
+    a7: 'Il microfono', a7_cani: 'Il microfono',
     b1: 'Guardare la stanza',
     b2: 'Basta. Si sale',
     b4: 'Cercare un punto debole',
@@ -1067,7 +1090,7 @@ scenarios.push(scenario(
   'In due, in apnea (difficoltà massima)',
   ['gaetano', 'claudia'],
   { e_abbandono: 'Prendiamo il traghetto delle 17:30',
-    d11_vuoto: 'Al tavolino in fondo alla piazza',
+    d11_vuoto: 'Al tavolino in fondo alla piazza', d11_registro: 'Al tavolino in fondo alla piazza',
     d11_signora_no: 'Era l\'acqua, vero?',
     d11_signora_tardi: 'Al porto. Adesso' },
   {
@@ -1161,16 +1184,16 @@ scenarios.push(scenario(
     b8_apnea_ok: 'Ancora una',
     b8_seconda: 'Su. E domani',
     // mistero 2 — la cella 47: tutti e quattro gli indizi, in ordine
-    c3: 'la 47 sta al secondo ordine', c3_purgatorio: 'la 47 sta al secondo ordine',   // il testo della scelta e cambiato col PVRGATORIO
+    c3: 'la 47 sta al secondo ordine', c3_dentro: 'la 47 sta al secondo ordine', c3_purgatorio: 'la 47 sta al secondo ordine',   // il testo della scelta e cambiato col PVRGATORIO
     c5_cella: 'Gaetano conta un campione',
     c5_graffito: 'L\'archivio: se qualcuno ha contato',
     c5_graffito_ko: 'L\'archivio, e mai più questa stanza',
-    c7_archivio: 'le carte del \'43',
+    c7_archivio: 'le carte del \'43', c7_quarantasette: 'le carte del \'43',
     c7_lista: 'Fuori, al sole, con Ciro',
-    c8_ciro: 'Il cimitero: se non è scinnuto',
+    c8_ciro: 'Il cimitero: se non è scinnuto', c8_terza: 'Il cimitero: se non è scinnuto',
     c9_croci: 'quarantesimo',   // scavare: e' da la' che viene l'osso, quarto indizio della 47
     // l'indovinello della signora dei fagiolini, nella Ventotene vuota
-    d11_vuoto: 'Al tavolino in fondo alla piazza',
+    d11_vuoto: 'Al tavolino in fondo alla piazza', d11_registro: 'Al tavolino in fondo alla piazza',
     d11_signora_ok: 'Ringraziarla',
     d11_signora_nome: 'Al porto',
     // i due premi dei misteri: la promessa a Giulia e il nome della bambina
@@ -1204,7 +1227,7 @@ scenarios.push(scenario(
 scenarios.push(scenario(
   'la cappella al centro: quale porta ha fatto clac (minigioco della memoria)',
   ['gaetano', 'claudia'],
-  { c3: 'Scendere nella cappella', c3_purgatorio: 'Scendere nella cappella' },
+  { c3: 'Scendere nella cappella', c3_dentro: 'Scendere nella cappella', c3_purgatorio: 'Scendere nella cappella' },
   { seed: 606003 },
 ));
 /* ---- LILIA e il filo del nome dell'isola: il ritrovarsi alle Parracine, l'archivio
@@ -1214,9 +1237,9 @@ scenarios.push(scenario(
   'Lilia: il ritrovarsi, le calette e la foto di quattro anni fa',
   ['gaetano', 'claudia'],
   {
-    a3: 'Sulla scaletta del giardino sale qualcuno', a3_terrazza: 'Sulla scaletta del giardino sale qualcuno',
+    a3: 'Sulla scaletta del giardino sale qualcuno', a3_vista: 'Sulla scaletta del giardino sale qualcuno', a3_terrazza: 'Sulla scaletta del giardino sale qualcuno',
     a3_lilia: 'Chiederle di vedere le sue foto', a3_lilia_calette: 'Chiederle di vedere le sue foto',
-    a4: 'Con le pinne, fino allo scoglio della nave',
+    a4: 'Con le pinne, fino allo scoglio della nave', a4_entrare: 'Con le pinne, fino allo scoglio della nave',
     b7: 'Lilia aveva detto le calette',
     b7_calette: 'Prima chiederle di quella cartella', b7_lezione: 'Prima chiederle di quella cartella',
     b7_archivio: 'Prima scrivere sul Quaderno',
@@ -1248,10 +1271,10 @@ scenarios.push(scenario(
 scenarios.push(scenario(
   'Il debito della voce (si risponde, non si paga)',
   ['gaetano', 'claudia'],
-  { d2_paese: 'Rispondere. Mettere la faccia sotto',
-    d5_ada: 'La traccia di ieri pomeriggio alla boa',
-    d5_voce_registrata: 'Riascoltare il secondo',
-    d11_specchio: 'Far partire il file di ieri' },
+  { d2_paese: 'Rispondere. Mettere la faccia sotto', d2_cala: 'Rispondere. Mettere la faccia sotto',
+    d5_ada: 'La traccia di ieri pomeriggio alla boa', d5_lista: 'La traccia di ieri pomeriggio alla boa',
+    d5_voce_registrata: 'Riascoltare il secondo', d5_collana: 'Riascoltare il secondo',
+    d11_specchio: 'Far partire il file di ieri', d11_specchio_parla: 'Far partire il file di ieri' },
   {
     verify: (r, expect) => {
       const f = r.log.flags || {};
@@ -1279,10 +1302,18 @@ scenarios.push(scenario(
   ['gaetano', 'claudia'],
   { d13_fossa: 'Fammi il briefing', d13_briefing: 'Scendere col bombolino riparato',
     d13_stiva: 'Cinque secondi in più',
-    d13_cinque_secondi: 'Risalire',
+    d13_cinque_secondi: 'Risalire', d13_cima_vuota: 'Risalire',
     d14_coro: 'Ascoltare quella voce', d14_dieci: 'Ascoltare quella voce', d14_restate: 'Ascoltare quella voce',
     d14_voce: 'Non scendere' },
   {
+    /* Come per «La sconfitta in fondo»: la discesa nella fossa vuole il bombolino riparato
+       E dieci di fiato, e il fiato parte da sei. I venti minuti fermi al sole in barca ne
+       danno quattro, quindi prima si risale e poi si scende. Senza l'ordine il banco
+       trovava la discesa non disponibile, pigliava l'ultima uscita — «non oggi» — e sei
+       asserzioni su sei dicevano che il Coro non aveva preso nessuno. Non era il gioco:
+       era il banco che non arrivava sul posto. */
+    items: ['bombola_riparata'],
+    sequences: { d13_briefing: ['Risalire in barca', 'Scendere col bombolino riparato'] },
     checkOutcomes: { d13_stiva: 'fail' },
     verify: (r, expect) => {
       const f = r.log.flags || {};
@@ -1329,7 +1360,7 @@ scenarios.push(scenario(
      giusto del gioco, test sbagliato. */
   { d13_stiva: 'Risalire. Adesso',
     d15_uscite: 'Uno dei due non sale. E non sale perché salga l\'altro',
-    d15_scambio: 'Scegliere chi resta. E salire, senza girarsi',
+    d15_scambio: 'Scegliere chi resta. E salire, senza girarsi', d15_addio: 'Scegliere chi resta. E salire, senza girarsi',
     e_scambio: 'Rimettersi la maschera e andare a riprenderlo' },
   { items: ['ancora_di_voce'],
     verify: (r, expect) => (
@@ -1405,7 +1436,7 @@ scenarios.push(scenario(
      che si passa da c15 il nastro non si brucia. La mappa singola vale a ogni visita, che
      e' come si esprime «questo giocatore, ogni volta che gli capita, lo brucia». */
   {
-    c10_nastro: 'Togliere il pollice',
+    c10_nastro: 'Togliere il pollice', c10_ciro_dice: 'Togliere il pollice',
     c10_pulito: 'Mettere comunque la cassetta',
     c15: 'Il Geloso è nello zaino', c15_notte: 'Il Geloso è nello zaino',
     c15_nastro: 'La cucina di Ada', c15_dopo: 'La cucina di Ada',
@@ -1427,7 +1458,7 @@ scenarios.push(scenario(
   'I tempi sul Quaderno, e poi il fornello',
   ['gaetano', 'claudia'],
   {
-    c10_nastro: 'Togliere il pollice',
+    c10_nastro: 'Togliere il pollice', c10_ciro_dice: 'Togliere il pollice',
     c10_pulito: 'Mettere comunque la cassetta',
     c15: 'Il Geloso è nello zaino', c15_notte: 'Il Geloso è nello zaino',
     c15_nastro: 'Le cuffie', c15_dopo: 'Le cuffie',
@@ -1443,6 +1474,122 @@ scenarios.push(scenario(
   },
 ));
 
+
+
+/* LE DUE PARTITE SFORTUNATE. Il banco fa riuscire tutte le prove (`checkBias: 'best'`), che
+   e' giusto per gli scenari che devono ARRIVARE da qualche parte — ma vuol dire che il ramo
+   del fallimento non lo legge nessuno. Il 24 agosto 2026 sono nate nove scene di sconfitta
+   e tutte e nove sono finite nell'elenco delle mai visitate: contenuto scritto, collaudato
+   zero. Qui `defaultCheckOutcome: 'fail'` fa cadere OGNI prova, di proposito.
+
+   Perche' DUE partite e non una: le nove scene non stanno tutte sulla stessa strada.
+   - `b4_domani` si apre solo da b4_coraggio, e la scelta e' `once`: per prendere ANCHE il
+     muro duro serve tornare al muro una seconda volta, da b7, e tornarci si puo' solo se
+     il muro non e' ancora aperto. Quindi il muro va aperto DOPO Villa Giulia, non prima.
+   - `c11_caduta` sta dietro a `gaetano_ha_taciuto` e a NIENTE `verita_detta`, cioe' dietro
+     il mezzo secondo riascoltato di notte e la bugia detta a cena: l'esatto contrario del
+     percorso che serve alla prima partita, dove la verita' a cena apre il patto dei trenta
+     secondi. Sono due vacanze diverse, e vanno giocate due volte.
+   In CODA alla lista, come tutti gli scenari nuovi: i semi vengono da un contatore
+   progressivo e uno scenario infilato a metà rinumera tutti quelli dopo.
+
+   NOTA SU `c3_scalino`, che qui NON c'e' e non per pigrizia: la sua prova sta in
+   c3_purgatorio dietro `requires: { flag: 'sa_i_tre_piani' }`, e quel flag lo mette solo
+   c3_depliant — le cui tre uscite vanno a c5_cella, c4_conta e c7_archivio, nessuna torna
+   a c3_purgatorio. c3_purgatorio si entra una volta sola (solo da c3, che si entra solo da
+   c2, su una catena senza cicli) e il ritorno dal checkpoint rimette i flag di ALLORA,
+   quindi non aiuta. La scena e' scritta e irraggiungibile: e' un buco nei dati, non nel
+   banco, e va chiuso nei draft (una uscita da c3_depliant verso c3_purgatorio). */
+scenarios.push(scenario(
+  'La partita sfortunata I: il muro, il ninfeo e la signora Rosa',
+  ['gaetano', 'claudia'],
+  { /* le valigie disfatte fino in fondo: la GoPro apre l'angolo delle scritte, e
+       microfono + preservativo sono l'idrofono che serve al canale del ninfeo */
+    a3: 'Disfare le valigie', a3_vista: 'Disfare le valigie', a3_terrazza: 'Disfare le valigie',
+    a3_valigie: 'Prendere anche il resto', a3_grazie: 'Prendere anche il resto',
+    a3_valigie2: 'Prendere anche le fedi',
+    b0_zaino: 'Basta ingegneria',
+    /* Peppe che non parla, e l'angolo dove la GoPro ha visto l'italiano */
+    b1_gopro: 'se scendiamo, scendiamo attrezzati',
+    b1_peppe: 'Insistere',
+    b1_zitto: 'Lasciarlo alla sua squadra',
+    b1_insistere: 'Non uscire',
+    b2: 'angolo con la torcia',
+    b2_angolo: 'Salire di due metri',
+    b2_niente: 'Rifarlo con la macchina',
+    b3_prova: 'Fuori. Al sole',
+    /* la signora Rosa prima, il muro dopo: in quest'ordine e non nell'altro */
+    b4_coraggio: 'Se la ricorda, la cosa che cantava',
+    b4_domani: 'Bere il caffè fino in fondo',
+    b4_canzone: 'Villa Giulia, la pietra',
+    b6: 'leggere il pannello fino in fondo',
+    b6_quattro: 'Il pannello del Parco',
+    b6_donne: 'Scendere al ninfeo',
+    b6_ginocchio: 'Dentro il ninfeo',
+    b6_ninfeo: 'Calare l\'idrofono nel canale',
+    b6_idro_canale: 'Tirare su l\'idrofono',
+    b6_cavo: 'Arrotolare il cavo e tenerlo',
+    b7: 'C\'è un muro da aprire',
+    b4_orecchio: 'Aprire quel muro',
+    b4_muro_duro: 'Dentro',
+    b4_breccia: 'Scendere',
+    b4_scivolata: 'Gli ultimi tre metri',
+    b12: 'Sua sorella era un sub', b12_tre_dita: 'Sua sorella era un sub',
+    b12_thermos: 'A dormire' },
+  {
+    defaultCheckOutcome: 'fail',
+    /* b4 si attraversa DUE volte e le due volte vuole cose diverse: la prima i Coraggio
+       (scelta `once`), la seconda l'orecchio al muro. Una chiave fissa su una scena
+       rivisitabile prende sempre la stessa uscita e la seconda meta' non si vede. */
+    sequences: { b4: ['ai Coraggio', 'Appoggiare l\'orecchio'],
+                 b1: ['con la GoPro', 'a Peppe delle altre'] },
+    /* Crafting MIRATO e non 'tutto': `gopro + asta_selfie` fa l'occhio lungo consumando
+       la GoPro, e senza la GoPro la scelta che porta all'angolo delle scritte non compare
+       nemmeno. Qui si combina solo l'idrofono, nella scena in cui il gioco stesso insegna
+       a combinare. */
+    craft: { b0_zaino: [['microfono', 'preservativo']] },
+    verify: (r, expect) => {
+      const viste = r.log.scenes;
+      const attese = ['b1_zitto', 'b2_niente', 'b4_domani', 'b6_ginocchio', 'b6_cavo',
+                      'b4_muro_duro', 'b4_scivolata', 'b12_thermos'];
+      const mancano = attese.filter(x => !viste.includes(x));
+      expect(!mancano.length,
+        `scene di sconfitta non attraversate: ${mancano.join(', ')} (su ${attese.length}) — ultime ${viste.slice(-5).join(' > ')}`);
+      expect(r.log.ending, 'la prima partita sfortunata non e arrivata a un finale');
+    },
+  },
+));
+
+scenarios.push(scenario(
+  'La partita sfortunata II: il mezzo secondo taciuto e la corsa giù',
+  ['gaetano', 'claudia'],
+  { /* Il mezzo secondo riascoltato di notte mette `gaetano_ha_taciuto`, la bugia a cena
+       lascia `verita_detta` giu': sono le due condizioni della scelta muta a Santo
+       Stefano, l'unica che porta a c11_silenzio e alla corsa sulla mulattiera. */
+    a8: 'Riascoltare quel mezzo secondo',
+    b10: '"Niente. Un rumore',
+    b10_bugia: 'Dormire. Provare a dormire',
+    b11: 'Scrivere tutto sul Quaderno',
+    b12: 'Sua sorella era un sub', b12_tre_dita: 'Sua sorella era un sub',
+    b12_thermos: 'A dormire',
+    c10_nastro: 'Premere PLAY', c10_ciro_dice: 'Premere PLAY',
+    c10_suonato: 'Lasciarlo andare', c10_pianto: 'Lasciarlo andare',
+    c10_claudia: 'Non dire niente',
+    c11_silenzio: 'Correre giù',
+    c11_caduta: 'Alla barca' },
+  {
+    defaultCheckOutcome: 'fail',
+    verify: (r, expect) => {
+      const viste = r.log.scenes;
+      const attese = ['b12_thermos', 'c11_caduta'];
+      const mancano = attese.filter(x => !viste.includes(x));
+      expect(!mancano.length,
+        `scene di sconfitta non attraversate: ${mancano.join(', ')} — ultime ${viste.slice(-5).join(' > ')}`);
+      expect(!r.log.flags.verita_detta, 'la verita e stata detta: la scelta muta a Santo Stefano non poteva comparire');
+      expect(r.log.ending, 'la seconda partita sfortunata non e arrivata a un finale');
+    },
+  },
+));
 
 
 

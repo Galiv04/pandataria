@@ -29,7 +29,26 @@ Il mare qui lo conoscono a memoria: è quello di casa, quello di sempre, con la 
 
 E poi c'è la ragione per cui la macchina è aperta alle sette meno cinque di un giovedì di agosto. **Il primo settembre sono dieci anni.** Dieci anni esatti, e cade di martedì: il martedì della settimana in cui tornano a lavorare tutti e due. Quindi il regalo è anticipato — si parte oggi, si torna domenica trenta col traghetto delle 17:30, e martedì si festeggia lavorando. Quattro giorni su un'isola, prenotati a febbraio, pagati, e tenuti segreti per un mese e mezzo prima di dirglielo.
 
-> Claudia: *(che lo sa da giugno e fa finta di no da giugno)* "Comunque non mi hai ancora detto quanto è costato."
+Il borsone e' ancora in mezzo alla strada. Passa un Ape carico di angurie, rallenta, li guarda, riparte.
+
+Claudia chiude il portellone con l'anca e resta appoggiata al lunotto, con le braccia incrociate e la faccia di una che ha una domanda in canna da giugno.`,
+
+    choices: [
+      { text: '😏 Dirglielo che lo sa da giugno: la conferma della prenotazione l\'ha lasciata aperta sul tablet', once: true, gold: 2, next: 'a0_lista' },
+      { text: '🤐 Lasciarle recitare la sorpresa fino in fondo: la faccia che fara\' al porto vale il silenzio', once: true, gold: 1, next: 'a0_lista' },
+      { text: '🌅 Un ultimo minuto a guardare il mare di casa, prima di andarne a vedere un altro', next: 'a0_lista' },
+    ],
+  },
+
+  /* LA LISTA. Era la seconda meta' di a0, cioe' della prima cosa che uno legge di questo
+     gioco. La prima e' il perche' si parte — il primo settembre sono dieci anni — e questa
+     e' la lista: le chiavi, i documenti, il phon. E qui sta il briefing del Fiato, che e'
+     la prima regola e va letta da svegli, non dopo trecento parole di descrizione. */
+  a0_lista: {
+    location: 'scauri',
+    caption: 'Scauri, ore 07:02 — la lista',
+    stinger: 'gold',
+    text: `> Claudia: *(che lo sa da giugno e fa finta di no da giugno)* "Comunque non mi hai ancora detto quanto è costato."
 
 > Gaetano: "No."
 
@@ -117,7 +136,29 @@ Claudia sta appoggiata alla ringhiera con la faccia dentro il vento e gli occhi 
 
 > Claudia: "Lo sono tutti, per te." *(allunga una mano e gli trova il ginocchio senza guardare)* "Continua."
 
-Il mare, oggi, è di un blu che sembra photoshoppato. E davanti, all'orizzonte, cominciano a staccarsi due sagome: una lunga e bassa, che è Ventotene, e una tozza, scura, con sopra un affare enorme a forma di ferro di cavallo.
+Claudia tiene la faccia dentro il vento con gli occhi chiusi e non ha nessuna intenzione di aprirli.
+
+Gaetano invece li ha aperti da un pezzo, perche' davanti, in fondo, e' comparso qualcosa che alle otto e mezza non c'era: due sagome staccate dall'orizzonte, una lunga e bassa, una tozza, e sopra la tozza un affare enorme che da questa distanza non si capisce cosa sia.
+
+Ha gia' il telefono in mano. Non l'ha ancora sbloccato.`,
+
+    choices: [
+      { text: '📱 Sbloccarlo e cercare come si chiamava quest\'isola prima di chiamarsi Ventotene', next: 'a0_pandataria' },
+      { text: '🤍 Rimettere il telefono in tasca e stare cinque minuti fermi nel vento, come lei', once: true, heal: 3, gold: 1, next: 'a0_pandataria' },
+      { text: '☀️ Svegliarla con un gomito: "Amore. Guarda avanti."', once: true, heal: 2, next: 'a0_pandataria' },
+    ],
+  },
+
+  /* IL NOME. Era la seconda meta' di a0_ponte, e qui dentro sta il titolo del gioco:
+     Pandataria, dispensatrice di ogni bene. Non puo' stare in coda a una battuta sui
+     muretti a secco — si entra da una scelta, e la scelta e' se cercarlo sul telefono o
+     stare zitti nel vento, che sono i due Gaetano. */
+  a0_pandataria: {
+    location: 'traghetto',
+    caption: 'Le due sagome all\'orizzonte — Pandataria',
+    stinger: 'penna',
+    metri: 0,
+    text: `Il mare, oggi, è di un blu che sembra photoshoppato. E davanti, all'orizzonte, cominciano a staccarsi due sagome: una lunga e bassa, che è Ventotene, e una tozza, scura, con sopra un affare enorme a forma di ferro di cavallo.
 
 > Gaetano: *(col telefono in mano, che è il suo modo di guardare le cose)* "Sai come si chiamava, quella?"
 
@@ -456,7 +497,28 @@ I proprietari sono due: **la signora Ada** — sessant'anni, capelli raccolti co
 
 La stanza è semplice e perfetta: letto grande, un ventilatore a pale, il pavimento di graniglia freddo sotto i piedi, il frigo piccolo che ronza. E sopra, sul tetto, la **terrazza solarium**: un gazebo di canne, un tavolo apparecchiato per la colazione di domani, due sedie di plastica e una vista che ti spacca in due.
 
-Guardando a nord, di là dal braccio di mare, c'è tutta la costa napoletana messa in fila come una cosa fatta per essere guardata da qui: **Ischia** a sinistra, poi Procida, e in fondo — quando l'aria è pulita come stamattina — la gobba del **Vesuvio**. Sessanta chilometri di golfo, e li vedi da una sedia di plastica.
+> Ada: *(gia' sulla scaletta di ferro, con le chiavi in mano)* "Di sopra. Che il sole se ne va, e la vista a quest'ora e' la vista."
+
+La scaletta e' di ferro e scotta sotto i piedi nudi. Otto gradini.
+
+Da metà scaletta il vento si sente gia', e qui sopra non e' quello del paese: e' quello del mare aperto, e arriva da due direzioni diverse.`,
+
+    choices: [
+      { text: '🍋 Passare dal vaso e portare su due limoni, che Ada ha detto di servirsi', once: true, heal: 2, next: 'a3_vista' },
+      { text: '🚰 Riempire due bicchieri d\'acqua del rubinetto e portarli su', once: true, gold: 1, next: 'a3_vista' },
+      { text: '🧳 Su subito, coi borsoni ancora in mano: la roba si sistema dopo', next: 'a3_vista' },
+    ],
+  },
+
+  /* LA VISTA. Era la seconda meta' di a3, quattrocentoquarantasei parole con un fondale
+     solo. La prima sta in giardino e nella stanza; questa sta sul tetto, e dal tetto si
+     vedono due cose opposte: il golfo di Napoli a nord e Santo Stefano a tre chilometri a
+     est. Un fondale per luogo, e un luogo per scena. */
+  a3_vista: {
+    location: 'terrazza',
+    caption: 'La terrazza solarium — sessanta chilometri di golfo da una sedia di plastica',
+    stinger: 'campana',
+    text: `Guardando a nord, di là dal braccio di mare, c'è tutta la costa napoletana messa in fila come una cosa fatta per essere guardata da qui: **Ischia** a sinistra, poi Procida, e in fondo — quando l'aria è pulita come stamattina — la gobba del **Vesuvio**. Sessanta chilometri di golfo, e li vedi da una sedia di plastica.
 
 Poi si gira a destra, verso est, e a tre chilometri c'è il ferro di cavallo di **Santo Stefano**, appoggiato sull'acqua come un dente cariato.
 
@@ -643,7 +705,28 @@ Gaetano: due maschere identiche (**due**), due paia di **pinne**, due **boccagli
 
 Tre pezzi, e ognuno fa una cosa diversa. La **maschera** trasforma il fondo in una cosa che si vede: e il problema di Claudia non è mai stata l'acqua, è il non vedere. Il **boccaglio** toglie il gesto che rovina tutto — quello di alzare la testa per respirare, che è il gesto della paura travestito da gesto tecnico: col boccaglio puoi tenere la faccia dentro e continuare a guardare, e respiri come se fossi a letto. Le **pinne** non servono ad andare veloce: servono a poter tornare. Con le pinne la distanza smette di essere un muro e diventa un numero, e i numeri Claudia li sa gestire.
 
-> Claudia: *(tenendo su l'asta telescopica con due dita)* "Perché ho portato questa?"
+> Claudia: "Quindi tu a marzo stavi gia' pensando a questo."
+
+> Gaetano: *(che sta allineando i due boccagli sul comodino, perfettamente paralleli, perche' e' piu' forte di lui)* "Stavo pensando a un sacco di cose."
+
+Sul letto, in mezzo alla roba, restano fuori posto tre oggetti che col mare non c'entrano niente: un'asta telescopica, un ring light e un phon.`,
+
+    choices: [
+      { text: '🤿 Fargliela provare adesso, la maschera, davanti allo specchio del bagno', once: true, heal: 3, next: 'a3_grazie' },
+      { text: '📋 Contare tutto un\'altra volta, pezzo per pezzo: e\' il suo modo di stare tranquillo', once: true, gold: 1, next: 'a3_grazie' },
+      { text: '🎒 Buttare la roba in un angolo, che il sole scende e il mare sta la\' sotto', next: 'a3_grazie' },
+    ],
+  },
+
+  /* LO SCONTRINO DI MARZO. Era la coda di a3_valigie. La prima meta' e' la roba svuotata
+     sul letto e cosa fa ogni pezzo; questa e' l'altra faccia: due che ridono di un'asta
+     telescopica e poi leggono una data. Insieme facevano quattrocentoventicinque parole e
+     la seconda ci perdeva sempre. */
+  a3_grazie: {
+    location: 'bnb',
+    caption: 'Lo scontrino e\' di marzo',
+    stinger: 'heal',
+    text: `> Claudia: *(tenendo su l'asta telescopica con due dita)* "Perché ho portato questa?"
 
 > Gaetano: "Per i contenuti."
 
@@ -778,7 +861,28 @@ La sabbia è **scura**, di quelle vulcaniche, e mescolata a un'infinità di sass
 
 Il mare è calmo. Trasparente sui primi metri, coi sassi sul fondo che si vedono uno per uno, e poi — a una ventina di metri dalla riva — quella riga dove l'azzurro cambia colore e diventa **blu**. Non un blu più scuro: un altro blu. E dietro, all'orizzonte, la gobba di Santo Stefano che da qui sembra piccola.
 
-Claudia si spoglia, piega il vestito, mette il telo. Fa tutte queste cose con la calma di una che sta prendendo tempo, e Gaetano lo sa e non dice niente, perché non dire niente è l'unica cosa utile che sa fare in questi momenti.
+Claudia tiene la faccia dentro il vento del pomeriggio e non si e' ancora tolta il vestito.
+
+Gaetano molla il borsone sulla sabbia e si sfila la maglietta in due secondi, che e' il suo modo di dire *andiamo*. Poi si gira, e lei e' ancora tre metri dietro, con le infradito in mano, che guarda quella riga dove l'azzurro cambia colore.
+
+Non e' paura, non ancora. E' il conto che sta facendo.`,
+
+    choices: [
+      { text: '🤍 Stendere i due teli attaccati e non dire niente: se ci vuole un quarto d\'ora, ci vuole', once: true, heal: 3, next: 'a4_entrare' },
+      { text: '📏 Contare le bracciate del signore che nuota parallelo alla riva, e darle il numero', once: true, gold: 1, next: 'a4_entrare' },
+      { text: '🌊 Entrare per primo e provare l\'acqua lui, cosi\' lei ha qualcuno da guardare', next: 'a4_entrare' },
+    ],
+  },
+
+  /* ENTRARE IN ACQUA. Era la seconda meta' di a4. La prima e' una spiaggia d'agosto con
+     trenta persone dentro; questa e' due persone sole sul bagnasciuga. Il taglio sta qui
+     perche' qui il gioco decideva al posto del giocatore — «potrebbe dirle una bugia
+     gentile, e non lo fa» — e adesso quella riga la sceglie chi gioca. */
+  a4_entrare: {
+    location: 'cala',
+    caption: 'Cala Nave, ore 19:10 — dove tocca fino a dove',
+    stinger: 'heal',
+    text: `Claudia si spoglia, piega il vestito, mette il telo. Fa tutte queste cose con la calma di una che sta prendendo tempo, e Gaetano lo sa e non dice niente, perché non dire niente è l'unica cosa utile che sa fare in questi momenti.
 
 > Claudia: "Dove tocca fino a dove?"
 
@@ -834,7 +938,26 @@ Ottanta metri. Con le pinne sono venti secondi di andata e venti di ritorno, e C
 
 > Gaetano: "Sopra nove metri di ACQUA. Che poi è una cosa che regge: ti tiene su meglio un metro di mare che un metro di aria."
 
-Lo scoglio della nave, da vicino, non somiglia più a una nave: è tufo mangiato dal sale, con la cintura nera delle patelle e sopra due gabbiani che si spostano di mezzo metro per farvi capire che vi hanno visti e non gliene importa.
+Arrivano in ventidue secondi, non venti, e Claudia lo fa notare perche' e' fatta cosi'.
+
+Si tiene alla roccia con una mano, con le pinne che lavorano piano sotto, e per un momento nessuno dei due guarda in basso. Il fianco dello scoglio sopra il pelo dell'acqua e' la parte noiosa: quella che c'e' da vedere sta sotto, e per vederla bisogna metterci la faccia dentro.`,
+
+    choices: [
+      { text: '🤿 Faccia dentro tutti e due insieme, contando fino a tre come da bambini', next: 'a4_gradoni' },
+      { text: '🪨 Prima tirarsi su sullo scoglio e stare due minuti al sole, con le patelle sotto le mani', once: true, heal: 3, next: 'a4_gradoni' },
+      { text: '📏 Mano sulla roccia e contare i gradoni che si vedono, uno per uno, ad alta voce', once: true, gold: 1, next: 'a4_gradoni' },
+    ],
+  },
+
+  /* I GRADONI. Era la seconda meta' di a4_scoglio: la prima sta in superficie e conta i
+     secondi, questa sta sotto e non conta niente. E qui Claudia dice la frase che tiene su
+     il suo arco per tutto il gioco — «non e' profondo, e' alto» — che non puo' arrivare al
+     paragrafo dodici di una scena da trecentoquarantasette parole. */
+  a4_gradoni: {
+    location: 'cala',
+    caption: 'Sotto lo scoglio — i gradoni, ore 19:28',
+    stinger: 'heal',
+    text: `Lo scoglio della nave, da vicino, non somiglia più a una nave: è tufo mangiato dal sale, con la cintura nera delle patelle e sopra due gabbiani che si spostano di mezzo metro per farvi capire che vi hanno visti e non gliene importa.
 
 Ma la cosa vera è sotto. Il fianco scende a gradoni, e ogni gradone è un condominio: nuvole di castagnole nere, un branco di occhiate che gira tutto insieme come una cosa sola, i ricci nelle fessure, e nell'ombra sotto un tetto di roccia due saraghi grossi, fermi, con l'aria di chi paga l'affitto da anni.
 
@@ -863,7 +986,29 @@ Poi si mette il boccaglio, e succede la seconda cosa, che è più piccola e più
 
 Col boccaglio la faccia resta dentro. Il respiro va avanti da solo, come a letto. E Claudia scopre — in un metro e mezzo d'acqua, a Cala Nave, il primo pomeriggio di una vacanza di quattro giorni — che si può guardare una cosa **finché non si è finito di guardarla**.
 
-Sotto di loro c'è un mondo che fa il suo lavoro senza spettatori: una nuvola di castagnole nere che si apre e si richiude come una mano, due saraghi che stanno immobili sotto un tetto di roccia con l'aria di due che aspettano il proprio turno, un polpo — un polpo VERO — che li guarda da un buco con quell'occhio orizzontale, incredibilmente intelligente, e decide che non vale la pena spostarsi.
+E poi non tira su la testa.
+
+Passano venti secondi. Trenta. Gaetano la guarda dall'alto: la schiena al sole, i capelli aperti a ventaglio, il tubo del boccaglio che fa le sue bollicine regolari come un elettrocardiogramma tranquillo. Quaranta secondi.
+
+E' la prima volta in dieci anni che e' lui quello che aspetta a galla.`,
+
+    choices: [
+      { text: '🤿 Faccia dentro anche lui, e guardare dove sta guardando lei', next: 'a4_polpo' },
+      { text: '🤍 Restare a galla e lasciarla stare: se guarda, che guardi', once: true, heal: 3, next: 'a4_polpo' },
+      { text: '📷 A riva a prendere la GoPro, che questa cosa va documentata', requires: { item: 'gopro' }, once: true, gold: 1, next: 'a4_polpo' },
+    ],
+  },
+
+  /* IL POLPO. Era la seconda meta' di a4_maschere, che era anche l'unico corridoio di Cala
+     Nave: trecentoquarantotto parole e una sola uscita. La prima meta' spiega cosa fanno la
+     maschera e il boccaglio a chi ha paura di non vedere; questa e' la cosa che succede
+     quando funzionano, e non e' una spiegazione: e' un polpo. */
+  a4_polpo: {
+    location: 'cala',
+    npc: ['polpo'],
+    caption: 'Il polpo che l\'ha guardata — ore 19:20',
+    stinger: 'heal',
+    text: `Sotto di loro c'è un mondo che fa il suo lavoro senza spettatori: una nuvola di castagnole nere che si apre e si richiude come una mano, due saraghi che stanno immobili sotto un tetto di roccia con l'aria di due che aspettano il proprio turno, un polpo — un polpo VERO — che li guarda da un buco con quell'occhio orizzontale, incredibilmente intelligente, e decide che non vale la pena spostarsi.
 
 Claudia esce a galla, si tira su la maschera, e ha una faccia che Gaetano non le vede da anni.
 
@@ -1124,7 +1269,27 @@ Il vecchio non alza la testa.
 
 > Claudia: "Perché per l'una?"
 
-E qui Ciro alza la testa. Lo fa piano, e li guarda a lungo — prima lei, poi lui, poi ancora lei — e la sua faccia non ha niente di misterioso: ha la faccia di un vecchio che sta valutando quanto valga la pena parlare.
+Ciro non risponde. Fa un nodo, ne fa un altro, e la rete gli passa fra le dita alla stessa velocita' di prima.
+
+Sul pontile ci sono una cassetta di polistirolo vuota, un secchio con due centimetri d'acqua dentro e un gatto che non si e' spostato da quando siete arrivati.
+
+La domanda l'ha sentita benissimo. Sta solo decidendo se valete la risposta.`,
+
+    choices: [
+      { text: '🧶 Sedersi sulla cassetta accanto a lui e tenergli la rete tesa, senza dire altro', once: true, heal: 3, gold: 1, next: 'a6_non_domandate' },
+      { text: '💶 Mettergli i quaranta euro in mano adesso, senza contarli davanti a lui', once: true, next: 'a6_non_domandate' },
+      { text: '⏳ Aspettare in piedi, senza riempire il silenzio. Ci vuole quello che ci vuole', next: 'a6_non_domandate' },
+    ],
+  },
+
+  /* «NON DOMANDATE». Era la coda di a6_porto. La prima meta' e' una trattativa; questa e'
+     il momento in cui Ciro alza la testa, e Ciro che alza la testa e' la presentazione del
+     terzo eroe del gioco: non puo' stare nell'ultimo terzo di un'altra scena. */
+  a6_non_domandate: {
+    location: 'porto',
+    caption: 'Il terzo pontile — "non domandate"',
+    stinger: 'pressione',
+    text: `E qui Ciro alza la testa. Lo fa piano, e li guarda a lungo — prima lei, poi lui, poi ancora lei — e la sua faccia non ha niente di misterioso: ha la faccia di un vecchio che sta valutando quanto valga la pena parlare.
 
 > Ciro: "Perché io là non ci resto dopo le sei di sera. È una cosa mia. Non domandate."
 
@@ -1154,7 +1319,27 @@ Il paese sotto è quasi spento. Il mare è una lastra nera che si muove appena, 
 
 Sono sulle due sedie di plastica coi piedi sul muretto. Claudia ha addosso la felpa di Gaetano. C'è il sacchetto dei taralli, se lo hanno preso, e comunque c'è la parte migliore di tutte, che è il non dire niente.
 
-Poi, in paese, comincia un cane.
+Nessuno dei due parla per undici minuti, e non e' imbarazzo: e' la parte migliore della giornata, quella che non si racconta perche' non c'e' niente da raccontare.
+
+Poi Gaetano si accorge di una cosa che gli da' fastidio senza sapere perche'. Da quando sono saliti qui sopra, giu' in paese non ha abbaiato un cane.
+
+Su un'isola. Di notte. Ad agosto.`,
+
+    choices: [
+      { text: '🫂 Non dire niente. Restare cosi\', coi piedi sul muretto, fino a che uno dei due ha sonno', once: true, heal: 4, gold: 1, next: 'a7_cani' },
+      { text: '🥨 Aprire il sacchetto dei taralli e finirlo in due, che tanto sono freddi domani', requires: { item: 'taralli' }, once: true, heal: 3, next: 'a7_cani' },
+      { text: '📓 Il quaderno: scrivere in fila le tre cose strane di oggi, coi numeri e con l\'ora', next: 'a7_cani' },
+    ],
+  },
+
+  /* I CANI. Era la seconda meta' di a7, e la prima e' il contrario di questa: due sedie di
+     plastica, una felpa prestata e un sacchetto di taralli. `silenzio: true` e lo stinger
+     del Coro stavano addosso a tutte e due, cioe' il silenzio partiva mezzo minuto prima
+     che ci fosse qualcosa da zittire. Adesso comincia col primo cane. */
+  a7_cani: {
+    location: 'terrazza',
+    caption: 'I cani, e poi la nota — ore 00:52',
+    text: `Poi, in paese, comincia un cane.
 
 Uno solo, giù verso il porto: quattro abbai secchi. Pausa. E poi risponde un altro, più vicino. Poi tre insieme. Poi tutti — otto, dieci cani sparsi su tutta l'isola che abbaiano nello stesso momento, e non è il casino disordinato dei cani: **entrano uno alla volta, ognuno al suo turno, e si sovrappongono.**
 

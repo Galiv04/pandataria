@@ -394,7 +394,26 @@ Il mare qui lo conoscono a memoria: è quello di casa, quello di sempre, con la 
 
 E poi c'è la ragione per cui la macchina è aperta alle sette meno cinque di un giovedì di agosto. **Il primo settembre sono dieci anni.** Dieci anni esatti, e cade di martedì: il martedì della settimana in cui tornano a lavorare tutti e due. Quindi il regalo è anticipato — si parte oggi, si torna domenica trenta col traghetto delle 17:30, e martedì si festeggia lavorando. Quattro giorni su un'isola, prenotati a febbraio, pagati, e tenuti segreti per un mese e mezzo prima di dirglielo.
 
-> Claudia: *(che lo sa da giugno e fa finta di no da giugno)* "Comunque non mi hai ancora detto quanto è costato."
+Il borsone e' ancora in mezzo alla strada. Passa un Ape carico di angurie, rallenta, li guarda, riparte.
+
+Claudia chiude il portellone con l'anca e resta appoggiata al lunotto, con le braccia incrociate e la faccia di una che ha una domanda in canna da giugno.`,
+
+    choices: [
+      { text: '😏 Dirglielo che lo sa da giugno: la conferma della prenotazione l\'ha lasciata aperta sul tablet', once: true, gold: 2, next: 'a0_lista' },
+      { text: '🤐 Lasciarle recitare la sorpresa fino in fondo: la faccia che fara\' al porto vale il silenzio', once: true, gold: 1, next: 'a0_lista' },
+      { text: '🌅 Un ultimo minuto a guardare il mare di casa, prima di andarne a vedere un altro', next: 'a0_lista' },
+    ],
+  },
+
+  /* LA LISTA. Era la seconda meta' di a0, cioe' della prima cosa che uno legge di questo
+     gioco. La prima e' il perche' si parte — il primo settembre sono dieci anni — e questa
+     e' la lista: le chiavi, i documenti, il phon. E qui sta il briefing del Fiato, che e'
+     la prima regola e va letta da svegli, non dopo trecento parole di descrizione. */
+  a0_lista: {
+    location: 'scauri',
+    caption: 'Scauri, ore 07:02 — la lista',
+    stinger: 'gold',
+    text: `> Claudia: *(che lo sa da giugno e fa finta di no da giugno)* "Comunque non mi hai ancora detto quanto è costato."
 
 > Gaetano: "No."
 
@@ -482,7 +501,29 @@ Claudia sta appoggiata alla ringhiera con la faccia dentro il vento e gli occhi 
 
 > Claudia: "Lo sono tutti, per te." *(allunga una mano e gli trova il ginocchio senza guardare)* "Continua."
 
-Il mare, oggi, è di un blu che sembra photoshoppato. E davanti, all'orizzonte, cominciano a staccarsi due sagome: una lunga e bassa, che è Ventotene, e una tozza, scura, con sopra un affare enorme a forma di ferro di cavallo.
+Claudia tiene la faccia dentro il vento con gli occhi chiusi e non ha nessuna intenzione di aprirli.
+
+Gaetano invece li ha aperti da un pezzo, perche' davanti, in fondo, e' comparso qualcosa che alle otto e mezza non c'era: due sagome staccate dall'orizzonte, una lunga e bassa, una tozza, e sopra la tozza un affare enorme che da questa distanza non si capisce cosa sia.
+
+Ha gia' il telefono in mano. Non l'ha ancora sbloccato.`,
+
+    choices: [
+      { text: '📱 Sbloccarlo e cercare come si chiamava quest\'isola prima di chiamarsi Ventotene', next: 'a0_pandataria' },
+      { text: '🤍 Rimettere il telefono in tasca e stare cinque minuti fermi nel vento, come lei', once: true, heal: 3, gold: 1, next: 'a0_pandataria' },
+      { text: '☀️ Svegliarla con un gomito: "Amore. Guarda avanti."', once: true, heal: 2, next: 'a0_pandataria' },
+    ],
+  },
+
+  /* IL NOME. Era la seconda meta' di a0_ponte, e qui dentro sta il titolo del gioco:
+     Pandataria, dispensatrice di ogni bene. Non puo' stare in coda a una battuta sui
+     muretti a secco — si entra da una scelta, e la scelta e' se cercarlo sul telefono o
+     stare zitti nel vento, che sono i due Gaetano. */
+  a0_pandataria: {
+    location: 'traghetto',
+    caption: 'Le due sagome all\'orizzonte — Pandataria',
+    stinger: 'penna',
+    metri: 0,
+    text: `Il mare, oggi, è di un blu che sembra photoshoppato. E davanti, all'orizzonte, cominciano a staccarsi due sagome: una lunga e bassa, che è Ventotene, e una tozza, scura, con sopra un affare enorme a forma di ferro di cavallo.
 
 > Gaetano: *(col telefono in mano, che è il suo modo di guardare le cose)* "Sai come si chiamava, quella?"
 
@@ -821,7 +862,28 @@ I proprietari sono due: **la signora Ada** — sessant'anni, capelli raccolti co
 
 La stanza è semplice e perfetta: letto grande, un ventilatore a pale, il pavimento di graniglia freddo sotto i piedi, il frigo piccolo che ronza. E sopra, sul tetto, la **terrazza solarium**: un gazebo di canne, un tavolo apparecchiato per la colazione di domani, due sedie di plastica e una vista che ti spacca in due.
 
-Guardando a nord, di là dal braccio di mare, c'è tutta la costa napoletana messa in fila come una cosa fatta per essere guardata da qui: **Ischia** a sinistra, poi Procida, e in fondo — quando l'aria è pulita come stamattina — la gobba del **Vesuvio**. Sessanta chilometri di golfo, e li vedi da una sedia di plastica.
+> Ada: *(gia' sulla scaletta di ferro, con le chiavi in mano)* "Di sopra. Che il sole se ne va, e la vista a quest'ora e' la vista."
+
+La scaletta e' di ferro e scotta sotto i piedi nudi. Otto gradini.
+
+Da metà scaletta il vento si sente gia', e qui sopra non e' quello del paese: e' quello del mare aperto, e arriva da due direzioni diverse.`,
+
+    choices: [
+      { text: '🍋 Passare dal vaso e portare su due limoni, che Ada ha detto di servirsi', once: true, heal: 2, next: 'a3_vista' },
+      { text: '🚰 Riempire due bicchieri d\'acqua del rubinetto e portarli su', once: true, gold: 1, next: 'a3_vista' },
+      { text: '🧳 Su subito, coi borsoni ancora in mano: la roba si sistema dopo', next: 'a3_vista' },
+    ],
+  },
+
+  /* LA VISTA. Era la seconda meta' di a3, quattrocentoquarantasei parole con un fondale
+     solo. La prima sta in giardino e nella stanza; questa sta sul tetto, e dal tetto si
+     vedono due cose opposte: il golfo di Napoli a nord e Santo Stefano a tre chilometri a
+     est. Un fondale per luogo, e un luogo per scena. */
+  a3_vista: {
+    location: 'terrazza',
+    caption: 'La terrazza solarium — sessanta chilometri di golfo da una sedia di plastica',
+    stinger: 'campana',
+    text: `Guardando a nord, di là dal braccio di mare, c'è tutta la costa napoletana messa in fila come una cosa fatta per essere guardata da qui: **Ischia** a sinistra, poi Procida, e in fondo — quando l'aria è pulita come stamattina — la gobba del **Vesuvio**. Sessanta chilometri di golfo, e li vedi da una sedia di plastica.
 
 Poi si gira a destra, verso est, e a tre chilometri c'è il ferro di cavallo di **Santo Stefano**, appoggiato sull'acqua come un dente cariato.
 
@@ -1008,7 +1070,28 @@ Gaetano: due maschere identiche (**due**), due paia di **pinne**, due **boccagli
 
 Tre pezzi, e ognuno fa una cosa diversa. La **maschera** trasforma il fondo in una cosa che si vede: e il problema di Claudia non è mai stata l'acqua, è il non vedere. Il **boccaglio** toglie il gesto che rovina tutto — quello di alzare la testa per respirare, che è il gesto della paura travestito da gesto tecnico: col boccaglio puoi tenere la faccia dentro e continuare a guardare, e respiri come se fossi a letto. Le **pinne** non servono ad andare veloce: servono a poter tornare. Con le pinne la distanza smette di essere un muro e diventa un numero, e i numeri Claudia li sa gestire.
 
-> Claudia: *(tenendo su l'asta telescopica con due dita)* "Perché ho portato questa?"
+> Claudia: "Quindi tu a marzo stavi gia' pensando a questo."
+
+> Gaetano: *(che sta allineando i due boccagli sul comodino, perfettamente paralleli, perche' e' piu' forte di lui)* "Stavo pensando a un sacco di cose."
+
+Sul letto, in mezzo alla roba, restano fuori posto tre oggetti che col mare non c'entrano niente: un'asta telescopica, un ring light e un phon.`,
+
+    choices: [
+      { text: '🤿 Fargliela provare adesso, la maschera, davanti allo specchio del bagno', once: true, heal: 3, next: 'a3_grazie' },
+      { text: '📋 Contare tutto un\'altra volta, pezzo per pezzo: e\' il suo modo di stare tranquillo', once: true, gold: 1, next: 'a3_grazie' },
+      { text: '🎒 Buttare la roba in un angolo, che il sole scende e il mare sta la\' sotto', next: 'a3_grazie' },
+    ],
+  },
+
+  /* LO SCONTRINO DI MARZO. Era la coda di a3_valigie. La prima meta' e' la roba svuotata
+     sul letto e cosa fa ogni pezzo; questa e' l'altra faccia: due che ridono di un'asta
+     telescopica e poi leggono una data. Insieme facevano quattrocentoventicinque parole e
+     la seconda ci perdeva sempre. */
+  a3_grazie: {
+    location: 'bnb',
+    caption: 'Lo scontrino e\' di marzo',
+    stinger: 'heal',
+    text: `> Claudia: *(tenendo su l'asta telescopica con due dita)* "Perché ho portato questa?"
 
 > Gaetano: "Per i contenuti."
 
@@ -1143,7 +1226,28 @@ La sabbia è **scura**, di quelle vulcaniche, e mescolata a un'infinità di sass
 
 Il mare è calmo. Trasparente sui primi metri, coi sassi sul fondo che si vedono uno per uno, e poi — a una ventina di metri dalla riva — quella riga dove l'azzurro cambia colore e diventa **blu**. Non un blu più scuro: un altro blu. E dietro, all'orizzonte, la gobba di Santo Stefano che da qui sembra piccola.
 
-Claudia si spoglia, piega il vestito, mette il telo. Fa tutte queste cose con la calma di una che sta prendendo tempo, e Gaetano lo sa e non dice niente, perché non dire niente è l'unica cosa utile che sa fare in questi momenti.
+Claudia tiene la faccia dentro il vento del pomeriggio e non si e' ancora tolta il vestito.
+
+Gaetano molla il borsone sulla sabbia e si sfila la maglietta in due secondi, che e' il suo modo di dire *andiamo*. Poi si gira, e lei e' ancora tre metri dietro, con le infradito in mano, che guarda quella riga dove l'azzurro cambia colore.
+
+Non e' paura, non ancora. E' il conto che sta facendo.`,
+
+    choices: [
+      { text: '🤍 Stendere i due teli attaccati e non dire niente: se ci vuole un quarto d\'ora, ci vuole', once: true, heal: 3, next: 'a4_entrare' },
+      { text: '📏 Contare le bracciate del signore che nuota parallelo alla riva, e darle il numero', once: true, gold: 1, next: 'a4_entrare' },
+      { text: '🌊 Entrare per primo e provare l\'acqua lui, cosi\' lei ha qualcuno da guardare', next: 'a4_entrare' },
+    ],
+  },
+
+  /* ENTRARE IN ACQUA. Era la seconda meta' di a4. La prima e' una spiaggia d'agosto con
+     trenta persone dentro; questa e' due persone sole sul bagnasciuga. Il taglio sta qui
+     perche' qui il gioco decideva al posto del giocatore — «potrebbe dirle una bugia
+     gentile, e non lo fa» — e adesso quella riga la sceglie chi gioca. */
+  a4_entrare: {
+    location: 'cala',
+    caption: 'Cala Nave, ore 19:10 — dove tocca fino a dove',
+    stinger: 'heal',
+    text: `Claudia si spoglia, piega il vestito, mette il telo. Fa tutte queste cose con la calma di una che sta prendendo tempo, e Gaetano lo sa e non dice niente, perché non dire niente è l'unica cosa utile che sa fare in questi momenti.
 
 > Claudia: "Dove tocca fino a dove?"
 
@@ -1199,7 +1303,26 @@ Ottanta metri. Con le pinne sono venti secondi di andata e venti di ritorno, e C
 
 > Gaetano: "Sopra nove metri di ACQUA. Che poi è una cosa che regge: ti tiene su meglio un metro di mare che un metro di aria."
 
-Lo scoglio della nave, da vicino, non somiglia più a una nave: è tufo mangiato dal sale, con la cintura nera delle patelle e sopra due gabbiani che si spostano di mezzo metro per farvi capire che vi hanno visti e non gliene importa.
+Arrivano in ventidue secondi, non venti, e Claudia lo fa notare perche' e' fatta cosi'.
+
+Si tiene alla roccia con una mano, con le pinne che lavorano piano sotto, e per un momento nessuno dei due guarda in basso. Il fianco dello scoglio sopra il pelo dell'acqua e' la parte noiosa: quella che c'e' da vedere sta sotto, e per vederla bisogna metterci la faccia dentro.`,
+
+    choices: [
+      { text: '🤿 Faccia dentro tutti e due insieme, contando fino a tre come da bambini', next: 'a4_gradoni' },
+      { text: '🪨 Prima tirarsi su sullo scoglio e stare due minuti al sole, con le patelle sotto le mani', once: true, heal: 3, next: 'a4_gradoni' },
+      { text: '📏 Mano sulla roccia e contare i gradoni che si vedono, uno per uno, ad alta voce', once: true, gold: 1, next: 'a4_gradoni' },
+    ],
+  },
+
+  /* I GRADONI. Era la seconda meta' di a4_scoglio: la prima sta in superficie e conta i
+     secondi, questa sta sotto e non conta niente. E qui Claudia dice la frase che tiene su
+     il suo arco per tutto il gioco — «non e' profondo, e' alto» — che non puo' arrivare al
+     paragrafo dodici di una scena da trecentoquarantasette parole. */
+  a4_gradoni: {
+    location: 'cala',
+    caption: 'Sotto lo scoglio — i gradoni, ore 19:28',
+    stinger: 'heal',
+    text: `Lo scoglio della nave, da vicino, non somiglia più a una nave: è tufo mangiato dal sale, con la cintura nera delle patelle e sopra due gabbiani che si spostano di mezzo metro per farvi capire che vi hanno visti e non gliene importa.
 
 Ma la cosa vera è sotto. Il fianco scende a gradoni, e ogni gradone è un condominio: nuvole di castagnole nere, un branco di occhiate che gira tutto insieme come una cosa sola, i ricci nelle fessure, e nell'ombra sotto un tetto di roccia due saraghi grossi, fermi, con l'aria di chi paga l'affitto da anni.
 
@@ -1228,7 +1351,29 @@ Poi si mette il boccaglio, e succede la seconda cosa, che è più piccola e più
 
 Col boccaglio la faccia resta dentro. Il respiro va avanti da solo, come a letto. E Claudia scopre — in un metro e mezzo d'acqua, a Cala Nave, il primo pomeriggio di una vacanza di quattro giorni — che si può guardare una cosa **finché non si è finito di guardarla**.
 
-Sotto di loro c'è un mondo che fa il suo lavoro senza spettatori: una nuvola di castagnole nere che si apre e si richiude come una mano, due saraghi che stanno immobili sotto un tetto di roccia con l'aria di due che aspettano il proprio turno, un polpo — un polpo VERO — che li guarda da un buco con quell'occhio orizzontale, incredibilmente intelligente, e decide che non vale la pena spostarsi.
+E poi non tira su la testa.
+
+Passano venti secondi. Trenta. Gaetano la guarda dall'alto: la schiena al sole, i capelli aperti a ventaglio, il tubo del boccaglio che fa le sue bollicine regolari come un elettrocardiogramma tranquillo. Quaranta secondi.
+
+E' la prima volta in dieci anni che e' lui quello che aspetta a galla.`,
+
+    choices: [
+      { text: '🤿 Faccia dentro anche lui, e guardare dove sta guardando lei', next: 'a4_polpo' },
+      { text: '🤍 Restare a galla e lasciarla stare: se guarda, che guardi', once: true, heal: 3, next: 'a4_polpo' },
+      { text: '📷 A riva a prendere la GoPro, che questa cosa va documentata', requires: { item: 'gopro' }, once: true, gold: 1, next: 'a4_polpo' },
+    ],
+  },
+
+  /* IL POLPO. Era la seconda meta' di a4_maschere, che era anche l'unico corridoio di Cala
+     Nave: trecentoquarantotto parole e una sola uscita. La prima meta' spiega cosa fanno la
+     maschera e il boccaglio a chi ha paura di non vedere; questa e' la cosa che succede
+     quando funzionano, e non e' una spiegazione: e' un polpo. */
+  a4_polpo: {
+    location: 'cala',
+    npc: ['polpo'],
+    caption: 'Il polpo che l\'ha guardata — ore 19:20',
+    stinger: 'heal',
+    text: `Sotto di loro c'è un mondo che fa il suo lavoro senza spettatori: una nuvola di castagnole nere che si apre e si richiude come una mano, due saraghi che stanno immobili sotto un tetto di roccia con l'aria di due che aspettano il proprio turno, un polpo — un polpo VERO — che li guarda da un buco con quell'occhio orizzontale, incredibilmente intelligente, e decide che non vale la pena spostarsi.
 
 Claudia esce a galla, si tira su la maschera, e ha una faccia che Gaetano non le vede da anni.
 
@@ -1489,7 +1634,27 @@ Il vecchio non alza la testa.
 
 > Claudia: "Perché per l'una?"
 
-E qui Ciro alza la testa. Lo fa piano, e li guarda a lungo — prima lei, poi lui, poi ancora lei — e la sua faccia non ha niente di misterioso: ha la faccia di un vecchio che sta valutando quanto valga la pena parlare.
+Ciro non risponde. Fa un nodo, ne fa un altro, e la rete gli passa fra le dita alla stessa velocita' di prima.
+
+Sul pontile ci sono una cassetta di polistirolo vuota, un secchio con due centimetri d'acqua dentro e un gatto che non si e' spostato da quando siete arrivati.
+
+La domanda l'ha sentita benissimo. Sta solo decidendo se valete la risposta.`,
+
+    choices: [
+      { text: '🧶 Sedersi sulla cassetta accanto a lui e tenergli la rete tesa, senza dire altro', once: true, heal: 3, gold: 1, next: 'a6_non_domandate' },
+      { text: '💶 Mettergli i quaranta euro in mano adesso, senza contarli davanti a lui', once: true, next: 'a6_non_domandate' },
+      { text: '⏳ Aspettare in piedi, senza riempire il silenzio. Ci vuole quello che ci vuole', next: 'a6_non_domandate' },
+    ],
+  },
+
+  /* «NON DOMANDATE». Era la coda di a6_porto. La prima meta' e' una trattativa; questa e'
+     il momento in cui Ciro alza la testa, e Ciro che alza la testa e' la presentazione del
+     terzo eroe del gioco: non puo' stare nell'ultimo terzo di un'altra scena. */
+  a6_non_domandate: {
+    location: 'porto',
+    caption: 'Il terzo pontile — "non domandate"',
+    stinger: 'pressione',
+    text: `E qui Ciro alza la testa. Lo fa piano, e li guarda a lungo — prima lei, poi lui, poi ancora lei — e la sua faccia non ha niente di misterioso: ha la faccia di un vecchio che sta valutando quanto valga la pena parlare.
 
 > Ciro: "Perché io là non ci resto dopo le sei di sera. È una cosa mia. Non domandate."
 
@@ -1519,7 +1684,27 @@ Il paese sotto è quasi spento. Il mare è una lastra nera che si muove appena, 
 
 Sono sulle due sedie di plastica coi piedi sul muretto. Claudia ha addosso la felpa di Gaetano. C'è il sacchetto dei taralli, se lo hanno preso, e comunque c'è la parte migliore di tutte, che è il non dire niente.
 
-Poi, in paese, comincia un cane.
+Nessuno dei due parla per undici minuti, e non e' imbarazzo: e' la parte migliore della giornata, quella che non si racconta perche' non c'e' niente da raccontare.
+
+Poi Gaetano si accorge di una cosa che gli da' fastidio senza sapere perche'. Da quando sono saliti qui sopra, giu' in paese non ha abbaiato un cane.
+
+Su un'isola. Di notte. Ad agosto.`,
+
+    choices: [
+      { text: '🫂 Non dire niente. Restare cosi\', coi piedi sul muretto, fino a che uno dei due ha sonno', once: true, heal: 4, gold: 1, next: 'a7_cani' },
+      { text: '🥨 Aprire il sacchetto dei taralli e finirlo in due, che tanto sono freddi domani', requires: { item: 'taralli' }, once: true, heal: 3, next: 'a7_cani' },
+      { text: '📓 Il quaderno: scrivere in fila le tre cose strane di oggi, coi numeri e con l\'ora', next: 'a7_cani' },
+    ],
+  },
+
+  /* I CANI. Era la seconda meta' di a7, e la prima e' il contrario di questa: due sedie di
+     plastica, una felpa prestata e un sacchetto di taralli. `silenzio: true` e lo stinger
+     del Coro stavano addosso a tutte e due, cioe' il silenzio partiva mezzo minuto prima
+     che ci fosse qualcosa da zittire. Adesso comincia col primo cane. */
+  a7_cani: {
+    location: 'terrazza',
+    caption: 'I cani, e poi la nota — ore 00:52',
+    text: `Poi, in paese, comincia un cane.
 
 Uno solo, giù verso il porto: quattro abbai secchi. Pausa. E poi risponde un altro, più vicino. Poi tre insieme. Poi tutti — otto, dieci cani sparsi su tutta l'isola che abbaiano nello stesso momento, e non è il casino disordinato dei cani: **entrano uno alla volta, ognuno al suo turno, e si sovrappongono.**
 
@@ -1938,7 +2123,7 @@ Poi torna la voce da guida, tutta intera, come se qualcuno avesse premuto un tas
     sets: { sa_pietra_villa_giulia: true, peppe_guarda_terra: true },
     choices: [
       { text: '👁 Guardare la stanza. Bene', next: 'b2' },
-      { text: '🗣 Insistere: "Peppe, chiuse da chi?"', once: true, next: 'b1_insistere' },
+      { text: '🗣 Insistere: "Peppe, chiuse da chi?"', once: true, tag: 'Prova di CARISMA — CD 12 (si chiede a un ottantenne di dire una cosa che non dice da sessant\'anni)', check: { stat: 'CAR', dc: 12, success: 'b1_insistere', fail: 'b1_zitto' } },
     ],
   },
 
@@ -2141,7 +2326,7 @@ Ed è per questo che è la cosa più brutta che vedono oggi.
     sets: { sa_muro_scritte: true },
     choices: [
       { text: '✍️ Incidere una riga anche voi. Con il coltellino', once: true, requires: { item: 'coltello' }, next: 'b2_incidere' },
-      { text: '🎧 Salire di due metri e ascoltare in silenzio', next: 'b3' },
+      { text: '🎧 Salire di due metri e ascoltare in silenzio', tag: 'Prova di SAGGEZZA — CD 11 (sentire una cosa e sentirla GIUSTA sono due mestieri)', check: { stat: 'SAG', dc: 11, success: 'b3', fail: 'b2_niente' } },
       { text: '🚶 Uscire da questa stanza. Adesso', next: 'b4' },
     ],
   },
@@ -2383,7 +2568,7 @@ E dopo la undicesima, dall'altra parte del muro, a venti centimetri dal suo orec
     stinger: 'coro',
     sets: { sa_nuota_dietro: true },
     choices: [
-      { text: '🔨 Aprire quel muro. Adesso. Non domani', next: 'b4_breccia' },
+      { text: '🔨 Aprire quel muro. Adesso. Non domani', tag: 'Prova di FORZA — CD 12 (fallire vuol dire fare rumore)', check: { stat: 'FOR', dc: 12, success: 'b4_breccia', fail: 'b4_muro_duro', failDamage: 2 } },
       { text: '🎧 Mettere l\'idrofono nell\'acqua dell\'orto e sentire meglio', requires: { item: 'idrofono' }, once: true, next: 'b4_idrofono' },
       { text: '🚶 Andarsene. Villa Giulia, la pietra, il sole', next: 'b6' },
     ],
@@ -2414,8 +2599,8 @@ Il fico fa ombra. Bomber si gratta.
     gold: 1,
     sets: { sa_bambino_1956: true, i_ninna_sentita_possibile: true },
     choices: [
-      { text: '🎶 "Signora Rosa. Se la ricorda, la cosa che cantava?"', once: true, next: 'b4_canzone' },
-      { text: '🔨 Aprire il muro', next: 'b4_breccia' },
+      { text: '🎶 "Signora Rosa. Se la ricorda, la cosa che cantava?"', once: true, tag: 'Prova di SAGGEZZA — CD 11 (va chiesto nel modo in cui si chiede una cosa a una donna di ottantaquattro anni)', check: { stat: 'SAG', dc: 11, success: 'b4_canzone', fail: 'b4_domani', failDamage: 1 } },
+      { text: '🔨 Aprire il muro', tag: 'Prova di FORZA — CD 12', check: { stat: 'FOR', dc: 12, success: 'b4_breccia', fail: 'b4_muro_duro', failDamage: 2 } },
       { text: '🚶 Villa Giulia', next: 'b6' },
     ],
   },
@@ -2519,7 +2704,7 @@ E in mezzo all'acqua, a galla, c'è una cosa gialla di plastica che a duemila an
     stinger: 'sigillo',
     silenzio: true,
     choices: [
-      { text: '🪜 Scendere. Adesso, con la torcia e la corda', next: 'b8' },
+      { text: '🪜 Scendere. Adesso, con la torcia e la corda', tag: 'Prova di DESTREZZA — CD 12 (si scende su una corda in un buco di quarantasei centimetri)', check: { stat: 'DES', dc: 12, success: 'b8', fail: 'b4_scivolata', failDamage: 3 } },
       { text: '🔧 Non così. Prima attrezzarsi come si deve', next: 'b4_prepararsi' },
       { text: '🗿 Prima Villa Giulia: capire cosa c\'è sotto, prima di metterci la faccia', next: 'b6' },
     ],
@@ -2705,7 +2890,7 @@ E poi indica Santo Stefano, che sta là a due chilometri con l'aria di una cosa 
     sets: { visto_villa_giulia: true },
     choices: [
       { text: '🗿 Cercare la pietra con l\'iscrizione delle cisterne', next: 'b6_iscrizione' },
-      { text: '🏛 Scendere al ninfeo, dove c\'era l\'acqua', next: 'b6_ninfeo' },
+      { text: '🏛 Scendere al ninfeo, dove c\'era l\'acqua', tag: 'Prova di DESTREZZA — CD 10 (si scende dove non c\'è più una scala da duemila anni)', check: { stat: 'DES', dc: 10, success: 'b6_ninfeo', fail: 'b6_ginocchio', failDamage: 1 } },
       { text: '🚶 Basta sole. Tornare al muro dei Coraggio', requires: { flag: 'muro_aperto' }, next: 'b8' },
       { text: '🚶 Tornare in paese', next: 'b5' },
     ],
@@ -2868,7 +3053,7 @@ E in mezzo ai nomi, a un certo punto, dice: *Iulia*. E dopo *Iulia* fa una pausa
     silenzio: true,
     choices: [
       { text: '📢 Rispondere all\'appello. Dire "presente" al posto di Giulia', once: true, next: 'b6_presente' },
-      { text: '🔌 Tirare su l\'idrofono. Basta. Basta adesso', next: 'b7' },
+      { text: '🔌 Tirare su l\'idrofono. Basta. Basta adesso', tag: 'Prova di FORZA — CD 11', check: { stat: 'FOR', dc: 11, success: 'b7', fail: 'b6_cavo', failDamage: 1 } },
     ],
   },
 
@@ -3067,6 +3252,235 @@ Silenzio, e il rumore del gommone che batte piano contro la boa.
     choices: [
       { text: '🧱 Al muro dei Coraggio. Adesso c\'è più fretta di prima', next: 'b8' },
       { text: '📓 Prima scrivere sul Quaderno: data, ora, punto', next: 'b8', sets: { annotato_foto: true } },
+    ],
+  },
+
+  /* LE TRE PROVE DELL'ATTO B, e le loro tre sconfitte. Il gioco aveva SETTE prove di dado in
+     duecento scene: l'incertezza sta tutta nei minigiochi e nelle soglie di fiato, che va
+     bene, ma allora ogni azione fisica riusciva sempre — e un'azione che riesce sempre non
+     e' un'azione, e' una frase. Queste tre non bloccano niente: si arriva dove si doveva
+     arrivare comunque, e a costare e' il MODO. */
+  b4_muro_duro: {
+    location: 'cisterna',
+    caption: 'Il muro non cede al primo colpo',
+    stinger: 'fail',
+    text: `Il muro del 1957 è fatto con la malta di chi murava per sempre, e non si apre con la prima spallata.
+
+Ci vogliono quattro colpi di mazzetta sul cuneo, e ogni colpo, dentro un vano di pietra, fa un rumore che esce dal buco, sale per il pozzo, e va a finire da qualche parte.
+
+Al terzo colpo, nella cisterna, il rumore torna indietro. Non l'eco: il **quarto** colpo, prima che Gaetano lo dia.
+
+> Gaetano: *(con la mazzetta a mezz'aria)* "L'ho sentito prima di farlo."
+
+> Claudia: "Fallo."
+
+Lo fa. Il blocco cede e cade dentro, e sotto non fa il rumore di una pietra su una pietra: fa il rumore di una pietra sull'acqua.
+
+**(💪 TENUTA −2 per le mani. 🎵 Attenzione del Coro +1: quattro colpi in un pozzo di pietra si sentono, e stavolta li ha contati anche qualcun altro.)**`,
+    damage: 2,
+    attenzione: 1,
+    choices: [
+      { text: '🕳 Dentro. Il buco è aperto e non si richiude', next: 'b4_breccia' },
+    ],
+  },
+
+  b4_scivolata: {
+    location: 'cisterna',
+    caption: 'Quaranta centimetri di scivolata',
+    stinger: 'fail',
+    text: `La corda tiene. È la scarpa che non tiene: appoggio bagnato, quaranta centimetri di scivolata contro la pietra viva, e la spalla che prende tutto.
+
+Non è grave. È solo che per due secondi il peso sta tutto sulle mani, e in quei due secondi la **torcia** esce dalla tasca laterale, batte una volta sul muro e cade.
+
+Si sente arrivare in fondo. Si sente che non si spegne. E si sente che arriva in acqua, perché il fascio, da sotto, continua ad accendere il vano di una luce verde che viene dal basso.
+
+> Claudia: *(dieci metri sopra, con la corda in mano)* "Gaetano?"
+
+> Gaetano: "Sono a posto. La torcia è giù."
+
+> Claudia: "È accesa."
+
+> Gaetano: "Sì."
+
+> Claudia: "Da sotto."
+
+**(💪 TENUTA −3, 🫁 Fiato −1. La torcia non è persa: sta in fondo, accesa, e ci si arriva. Ma per gli ultimi tre metri si scende con la luce che viene da SOTTO invece che davanti, e le ombre vanno all'insù.)**`,
+    damage: 3,
+    goldLoss: 1,
+    sets: { luce_da_sotto: true },
+    choices: [
+      { text: '🔻 Gli ultimi tre metri, con le ombre all\'insù', next: 'b8' },
+    ],
+  },
+
+  b6_cavo: {
+    location: 'mare',
+    caption: 'Il cavo viene su leggero',
+    stinger: 'fail',
+    text: `Il cavo viene su, e viene su troppo facile.
+
+Gaetano lo tira a bracciate regolari, come si tira una cima, e a metà capisce dal peso che sotto non c'è più niente attaccato. Gli ultimi dodici metri arrivano da soli.
+
+L'estremità è netta. Non sfilacciata, non strappata: **tagliata**, di sbieco, come si taglia un cavo con una tronchese buona. E l'idrofono da centoventi euro, quello comprato su internet e calato a ottantadue metri sopra il canale, non c'è.
+
+> Claudia: "Un'elica."
+
+> Gaetano: *(che guarda il taglio contro il sole e non alza la voce)* "Un'elica strappa. Questo è tagliato in un colpo, a novanta gradi." *(arrotola il cavo)* "E a ottantadue metri non passa nessuno."
+
+**(💪 TENUTA −1. Oggetto perso: L'IDROFONO. Si può rifare — le parti ci sono, se le avete — ma quello che c'era attaccato a quel cavo lo ha tagliato una cosa che sa cos'è un cavo.)**`,
+    damage: 1,
+    sets: { cavo_tagliato: true },
+    /* `removeItem` il motore lo legge sulle SCELTE, non sulle scene: messo sulla scena era
+       un dato morto e l'idrofono restava in tasca dopo che il testo dice che non c'e' piu'.
+       Sta su tutte e due le uscite, perche' da qui si esce solo da una delle due. */
+    choices: [
+      { text: '🧵 Arrotolare il cavo e tenerlo. Il taglio è una prova', once: true, gold: 1, removeItem: 'idrofono', next: 'b7' },
+      { text: '🚤 A terra. Basta per oggi', removeItem: 'idrofono', next: 'b7' },
+    ],
+  },
+
+  /* LE CINQUE SCONFITTE DELL'ATTO B. Prima di oggi in questo gioco si tirava il dado sette
+     volte in duecento scene: l'incertezza stava tutta nei minigiochi e nelle soglie di
+     fiato — che va bene, e' il progetto — ma allora ogni azione fisica e ogni domanda
+     riuscivano SEMPRE, e una cosa che riesce sempre non e' un'azione: e' una frase.
+     Nessuna di queste cinque chiude un contenuto. Si arriva dove si doveva arrivare, e a
+     costare e' il MODO: due palmi sbucciati, mezz'ora, una torcia in fondo al pozzo, o una
+     domanda fatta in piazza a un'isola dove le cose non si chiedono in piazza. */
+  b2_niente: {
+    location: 'cisterna',
+    caption: 'Due metri più su, e niente',
+    stinger: 'fail',
+    text: `Due metri più su, appoggiato al muro con la testa girata, Gaetano sta fermo quaranta secondi e non sente niente.
+
+Niente di niente: l'aria della cisterna, il proprio sangue nelle orecchie, e da fuori una vespa.
+
+E la cosa che gli fa più male non è non aver sentito: è che si accorge di **volere** sentire. Che stava aspettando una cosa, e che uno che aspetta una cosa la trova sempre.
+
+> Gaetano: *(scendendo)* "Niente."
+
+> Claudia: "Sicuro?"
+
+> Gaetano: "No. E questo è il problema." *(si mette il telefono in tasca)* "Se ci metto quaranta secondi ad aspettare una cosa, alla fine me la sento da solo. Non è una misura, è una speranza al contrario."
+
+> Claudia: *(che lo guarda, e capisce che è la frase più onesta che gli abbia sentito dire in tre giorni)* "Allora la misuriamo con la macchina, non con le orecchie."
+
+**(🫁 Fiato +1: dubitare di sé, per uno come lui, è riposare. Nessun indizio da qui — ma da adesso il Quaderno registra solo quello che sta su una traccia registrata, e questa regola durerà tutta la vacanza. Meno di così non si può misurare.)**`,
+    gold: 1,
+    sets: { misura_solo_registrata: true },
+    choices: [
+      { text: '🎙 Rifarlo con la macchina. Registrando, e senza aspettare niente', next: 'b3' },
+    ],
+  },
+
+  b6_ginocchio: {
+    location: 'rovine',
+    caption: 'Dentro il ninfeo, per la via sbagliata',
+    stinger: 'fail',
+    text: `Al ninfeo si scende dove duemila anni fa c'era una scala e adesso c'è un salto di un metro e mezzo su tufo sbriciolato.
+
+Claudia lo fa bene. Gaetano lo fa con la sacca in mano invece che in spalla, appoggia su una lastra che sembra pietra e non è, e finisce dentro la vasca del ninfeo con un ginocchio e un palmo.
+
+Sul fondo della vasca — asciutta da secoli, con dentro un fico selvatico — c'è dieci centimetri di terra fine. E sulla terra fine il suo palmo lascia un'impronta perfetta.
+
+Accanto alla sua, a trenta centimetri, ce n'è un'altra. Più piccola. Più profonda al centro, come lascia una mano che si appoggia e poi **preme**.
+
+> Gaetano: "Claudia."
+
+> Claudia: *(che è già in ginocchio accanto, con la macchina in mano, e sta facendo la cosa che sa fare)* "Non la toccare. La fotografo prima."
+
+**(💪 TENUTA −1. 📸 Il Quaderno ha una fotografia in più: l'impronta di una mano nella terra della vasca, e non è di nessuno dei due. La terra fine, in una vasca coperta da un fico, non la muove il vento.)**`,
+    damage: 1,
+    gold: 1,
+    sets: { i_impronta_vasca: true },
+    choices: [
+      { text: '🏛 Dentro il ninfeo, dove c\'era l\'acqua', next: 'b6_ninfeo' },
+    ],
+  },
+
+  b1_zitto: {
+    location: 'paese',
+    caption: 'Peppe guarda il muretto',
+    stinger: 'fail',
+    text: `Peppe non si offende. È peggio: diventa gentile.
+
+> Peppe: "Signò, io ho ottant'anni e faccio il fabbro da quando ne avevo undici. Chiuse da chi... e chi lo sa. Il Comune, la Provincia, quelli dell'acqua." *(muove la mano come si scaccia una mosca lenta)* "Carte. Sempre carte."
+
+E poi si gira verso il muretto e comincia a raccontare della squadra di calcio dell'isola nel Settantasei, coi nomi, con le date, con la partita a Ponza, e non c'è modo umano di riportarlo indietro — perché non è scappato: è **entrato in un'altra stanza** e ha chiuso la porta con la spalla.
+
+Claudia coglie il momento in cui la mano di lui si ferma sul muretto. Un fotogramma solo, prima della squadra di calcio.
+
+> Claudia: *(dopo, per strada)* "Non è che non lo sa."
+
+> Gaetano: "No."
+
+> Claudia: "È che gliel'abbiamo chiesto in piazza." *(pausa)* "Certe cose si chiedono dentro."
+
+**(🫁 Fiato −1: mezz'ora e niente in mano. Il nome di chi ha murato le cisterne dovrà venire da un'altra parte — e la lezione, che vale per tutto il resto della vacanza, è che a quest'isola le cose non si chiedono in piazza.)**`,
+    goldLoss: 1,
+    sets: { non_in_piazza: true },
+    choices: [
+      { text: '🚶 Lasciarlo alla sua squadra del Settantasei, e ringraziare', next: 'b1_insistere' },
+    ],
+  },
+
+  b4_domani: {
+    location: 'paese',
+    caption: 'La signora Rosa mette su il caffè',
+    stinger: 'fail',
+    text: `La domanda esce male. Non sbagliata: **frontale**. E a una donna di ottantaquattro anni una domanda frontale è una porta aperta di colpo in una stanza dove si stava al buio da comodi.
+
+> Rosa: "Che cosa cantava chi?"
+
+> Gaetano: "La bambina. Quella che—"
+
+> Rosa: *(che si alza e va al fornello, dando le spalle, e mette su un caffè che nessuno ha chiesto)* "Qua non c'è nessuna bambina. Ci sta il muro dell'orto, e dietro il muro ci sta la terra di mio marito, buonanima."
+
+Il caffè ci mette sette minuti. Se li fanno tutti e sette, seduti, perché alzarsi adesso sarebbe la cosa peggiore.
+
+E al sesto minuto, con la moka che comincia a fare rumore, Rosa dice una frase alla finestra e non a loro:
+
+> Rosa: "Mia madre me la cantava. Ma non me la ricordo tutta, e quello che non mi ricordo non lo dico: che se lo dici sbagliato è peggio di niente."
+
+> Claudia: *(pianissimo)* "E se la sentisse?"
+
+Rosa non risponde. Ma non dice no.
+
+**(💪 TENUTA −1 e mezz'ora persa. La strofa non arriva adesso: arriva quando avrete una registrazione da farle sentire, perché lei quello che non ricorda non lo dice. È una regola sua, ed è più solida della vostra.)**`,
+    damage: 1,
+    sets: { rosa_la_sente: true },
+    choices: [
+      { text: '☕ Bere il caffè fino in fondo, e tornare con una registrazione', next: 'b4_canzone' },
+    ],
+  },
+
+  b12_thermos: {
+    location: 'bnb',
+    caption: 'Il thermos di acciaio, sul tavolo',
+    stinger: 'fail',
+    text: `Gaetano la fa nel modo in cui fa le domande difficili: pulita, corta, coi dati dentro. E in cucina, alle undici di sera, a una donna di sessant'anni, quel modo è una scortesia che lui non sa di fare.
+
+> Gaetano: "Ada, sua sorella era un sub?"
+
+Ada non si gira. Continua ad asciugare il bicchiere che ha in mano, e lo asciuga per undici secondi, che per un bicchiere è tantissimo.
+
+> Ada: "Mia sorella si chiamava Marisa."
+
+Poi appoggia il bicchiere, si asciuga le mani nel canovaccio e prende dal ripiano il thermos di acciaio — quello grande, quello del molo. Lo mette sul tavolo davanti a loro senza versare niente.
+
+> Ada: "Domani mattina alle sette è già pieno. Se scendete, portatevelo." *(e adesso li guarda, con la faccia di una che ha deciso una cosa che le costa)* "Quello che volete sapere non ve lo dico stasera, perché stasera dovete dormire e io devo dormire. Ve lo dico domani, con la luce."
+
+> Claudia: "Ada—"
+
+> Ada: "**Domani, con la luce.**"
+
+E spegne la luce della cucina, che è il modo in cui si chiude una conversazione in una casa dove non si alza la voce.
+
+**(💪 TENUTA −2 per come è uscita la domanda. Ma sul tavolo c'è il thermos, e domani alle sette è pieno: quello che Ada sa arriva comunque, e arriva di giorno. Il Quaderno registra il nome: MARISA.)**`,
+    damage: 2,
+    gold: 1,
+    sets: { ada_domani: true, sa_nome_marisa: true },
+    choices: [
+      { text: '🛏 A dormire. Domani, con la luce', next: 'b12_sorella' },
     ],
   },
 
@@ -3470,7 +3884,26 @@ Simone si siede sulla ghiaia. Ha l'entusiasmo di uno a cui nessuno chiede mai ni
 
 "Un botto. Tutta l'isola è tufo, il tufo fa cavità, e qui il mare ha lavorato ottantamila anni." Prende un sasso e disegna sulla ghiaia. "Ma la cosa strana di Ventotene la sanno tutti quelli del diving e nessuno la dice ai turisti."
 
-"Quale?"
+Simone smette di disegnare sulla ghiaia e si volta verso il braccio di mare che va a Santo Stefano, e per un secondo ha la faccia di uno piu' vecchio di ventidue anni.
+
+Il sasso gli resta in mano. Non sta facendo scena: sta decidendo se una cosa che si racconta la sera fra istruttori si racconta anche a due che hanno le maschere comprate in saldo.`,
+
+    choices: [
+      { text: '🗣 "Quale?" Subito, prima che gli passi la voglia di raccontarlo', next: 'b9_fossa' },
+      { text: '🥤 Offrirgli una granita al chiosco e farsi raccontare tutto con calma', once: true, heal: 2, gold: 1, next: 'b9_fossa' },
+      { text: '📓 Aprire il quaderno, mettergli davanti una penna: "Disegnamela."', once: true, gold: 1, next: 'b9_fossa' },
+    ],
+  },
+
+  /* LA FOSSA. Era la seconda meta' di b9_ragazzo, e qui dentro sta il dato su cui gira
+     tutto il gioco: i muri romani a quarantacinque metri, la fossa che nessuno ha misurato
+     perche' lassu' il computer da immersione da' numeri falsi, e i due sub del Novantasette.
+     Prima arrivava dopo un «Quale?» che il gioco si faceva da solo. */
+  b9_fossa: {
+    location: 'mare',
+    caption: 'Cala Rossano — i muri a quarantacinque metri, e la fossa',
+    stinger: 'pressione',
+    text: `"Quale?"
 
 "Che a nord, tra qua e Santo Stefano, sul fondo, a quarantacinque metri, ci stanno **dei muri**." Batte il sasso due volte. "Muri. Romani, dicono. Un porto sommerso, magari una peschiera. Ci si va con l'autorizzazione e ci vanno gli archeologi." Fa una faccia. "E c'è pure una cosa che sui forum si racconta e che al diving nessuno ti conferma, cioè che laggiù, oltre i muri, ci sta **una fossa**. Tipo un pozzo verticale che scende dal fondo del mare, dentro la roccia, e non si sa quanto va giù perché nessuno l'ha misurata."
 
@@ -3616,7 +4049,27 @@ Poi si ferma. Beve un po' d'acqua. E dice l'ultima, che non è per lui:
 
 "E la parte che mi fa incazzare di più è che **ha detto il mio nome e non il tuo**. Ha scelto me. E tu mi hai tolto ventisei ore in cui potevo prepararmi."
 
-Silenzio. Sotto la ringhiera, il gatto attraversa la luce di un lampione.
+Poi non dice piu' niente.
+
+Sul tavolo ci sono due bicchieri, mezzo litro di bianco che si e' scaldato e un piatto di lenticchie che nessuno dei due ha finito. Al tavolo accanto quattro romani discutono ancora dell'orario del traghetto.
+
+Claudia lo guarda e aspetta. Non e' una pausa: e' il suo turno.`,
+
+    choices: [
+      { text: '🫂 "Hai ragione su tutto." E non aggiungere niente, che stasera e\' l\'unica cosa intelligente', once: true, heal: 4, next: 'b10_trenta_secondi' },
+      { text: '🎧 Mettere il telefono sul tavolo, in mezzo alle lenticchie, e fargliela sentire adesso', once: true, gold: 2, next: 'b10_trenta_secondi' },
+      { text: '💬 Chiederle di Sperlonga. Di quella cosa a sei anni che non ha mai raccontato a nessuno', next: 'b10_trenta_secondi' },
+    ],
+  },
+
+  /* IL PATTO DEI TRENTA SECONDI. Era la coda di b10_litigio, che era anche un corridoio da
+     trecentosedici parole: quattro minuti di lei, e poi il gioco rispondeva per Gaetano.
+     Adesso quella risposta la sceglie chi gioca, e questa e' quello che succede comunque
+     dopo: il palmo girato in su sul tavolo, e una regola nuova che vale fino al 30. */
+  b10_trenta_secondi: {
+    location: 'porto',
+    caption: 'La Terrazza di Mimi\', ore 22:12 — il palmo girato in su',
+    text: `Silenzio. Sotto la ringhiera, il gatto attraversa la luce di un lampione.
 
 Gaetano dice: "Hai ragione su tutto." Non aggiunge niente, che è l'unica cosa intelligente che gli riesce stasera.
 
@@ -3864,7 +4317,27 @@ Non è una domanda. Claudia mette giù la tazza.
 
 "Perché il pavimento di sopra è di cotto e si sente tutto." Ada si sistema una ciocca. "E perché camminavi verso il mare, non verso il bagno."
 
-Si siede. Ada delle Parracine, che ha una struttura da gestire e le lenzuola da cambiare in tre camere, alle otto meno dieci di un sabato di agosto si siede al tavolo dei clienti, e questo su un'isola vuol dire una cosa sola.
+Claudia mette il pollice e l'indice sul bordo della tazza e non la solleva.
+
+Non si ricorda niente. Si ricorda di essersi svegliata alle sei coi piedi sporchi e di aver pensato *ho i piedi sporchi*, e nient'altro: finche' Ada non ha parlato, quel dettaglio non voleva dire niente.
+
+Ada resta in piedi col vassoio vuoto sotto il braccio. Aspetta una risposta, e le sta lasciando scegliere quale.`,
+
+    choices: [
+      { text: '🦶 La verita\': mi sono svegliata coi piedi sporchi e non me lo ricordo', once: true, heal: 3, next: 'b12_tre_dita' },
+      { text: '🗣 Chiederle cosa ha sentito esattamente, e a che ora', once: true, gold: 1, next: 'b12_tre_dita' },
+      { text: '☕ Non dire niente e versarle una tazza: quella terza sedia e\' libera', next: 'b12_tre_dita' },
+    ],
+  },
+
+  /* LE TRE DITA. Era la seconda meta' di b12. La prima e' Ada che dice a Claudia una cosa
+     che Claudia non sa di aver fatto; questa e' Ada che si siede al tavolo dei clienti —
+     che su un'isola vuol dire una cosa sola — e conta tre cose sulle dita. E questa meta'
+     sta sulla terrazza per davvero, quindi si prende il fondale della terrazza. */
+  b12_tre_dita: {
+    location: 'terrazza',
+    caption: 'La terrazza delle Parracine, ore 07:58 — tre cose contate sulle dita',
+    text: `Si siede. Ada delle Parracine, che ha una struttura da gestire e le lenzuola da cambiare in tre camere, alle otto meno dieci di un sabato di agosto si siede al tavolo dei clienti, e questo su un'isola vuol dire una cosa sola.
 
 "Adesso mi ascoltate," dice. "Poi fate quello che volete, che siete grandi e non siete figli miei." Conta sulle dita, come Gaetano. "Uno: quest'anno l'acqua è alta. Nel pozzo della chiesa, a giugno, stava tre metri sotto; adesso sta uno e mezzo. Questo succede tre-quattro volte in un secolo e in paese quelli vecchi lo chiamano **la corda**."
 
@@ -3886,7 +4359,7 @@ Ada guarda il thermos.
     sets: { sa_corda_spiegata: true, sa_sorella_ada: true, giorno_28_chiuso: true },
     stinger: 'heal',
     choices: [
-      { text: '🗣 "Ada. Sua sorella era un sub?"', once: true, next: 'b12_sorella' },
+      { text: '🗣 "Ada. Sua sorella era un sub?"', once: true, tag: 'Prova di CARISMA — CD 13 (è la domanda più difficile della vacanza, e si fa in cucina, in piedi)', check: { stat: 'CAR', dc: 13, success: 'b12_sorella', fail: 'b12_thermos', failDamage: 2 } },
       { text: '⛵ Il molo. Ciro aspetta alle nove', next: 'c0' },
     ],
   },
@@ -3904,7 +4377,28 @@ Nella foto ci sono due ragazze sul molo di Cala Rossano, con la maglietta della 
 
 "Lei ce li ha portati." Ada raccoglie una briciola dal tavolo con l'unghia. "Sono scesi in tre. Sono tornati in due. Marisa e uno dei francesi." Alza gli occhi. "E il francese, quando è tornato, ha detto che erano scesi in tre e risaliti in due, e Marisa ha detto che erano scesi in **due** e risaliti in due, e che il terzo non è mai esistito, e che il francese era in narcosi."
 
-Silenzio. La caffettiera fa il suo rumore.
+Ada non aggiunge niente. Tiene la cornice appoggiata contro la caffettiera, in piedi, e guarda le due ragazze sul molo come si guarda un orario dei treni.
+
+Fuori, sulla terrazza, il vento gira il tovagliolo di carta sul tavolo e non lo butta giu'.
+
+Tre meno due fa uno, e in questa cucina non c'e' nessuno che abbia voglia di dirlo ad alta voce.`,
+
+    choices: [
+      { text: '🧮 Dirlo ad alta voce, il conto: tre meno due. Le cose misurate fanno meno paura', once: true, gold: 1, next: 'b12_settimo_giorno' },
+      { text: '🤍 Non chiedere niente. Riempirle la tazza e aspettare che continui lei', once: true, heal: 4, next: 'b12_settimo_giorno' },
+      { text: '🗣 "Ada. E chi aveva ragione?"', next: 'b12_settimo_giorno' },
+    ],
+  },
+
+  /* IL SETTIMO GIORNO. Era la coda di b12_sorella, trecentottantasei parole di fila in
+     cucina. La prima meta' e' la fotografia di due sorelle sul molo nel Novantasette;
+     questa e' quello che e' successo dopo, e la regola che ne e' venuta fuori — quella che
+     il gioco vi chiedera' di tenere per tre giorni. La pieta' si guarda da sola. */
+  b12_settimo_giorno: {
+    location: 'bnb',
+    caption: 'Le Parracine, ore 08:12 — il settimo giorno',
+    stinger: 'coro',
+    text: `Silenzio. La caffettiera fa il suo rumore.
 
 "E chi aveva ragione?"
 
@@ -4037,7 +4531,28 @@ Le mette in barca una per una e le nomina, come si nomina l'attrezzatura prima d
 
 > Ciro: *(prima cosa che assomiglia a un sorriso da quando lo conoscete)* "Su un'isola nun se butta niente, dottò. Voi a Formia buttate. Qua no."
 
-Poi si mette al motore e non parte subito. Resta con la mano sullo starter e dice l'ultima cosa, quella che voleva dire da giovedì.
+L'ultima cosa che tira fuori dalla busta non la nomina: due mele e mezzo pacchetto di gallette, e le posa sotto il banco di prua, perché quelle non sono attrezzatura.
+
+Poi si asciuga le mani sui pantaloni e guarda la bitta invece di guardare voi — che è quello che fa uno che deve dire una cosa che si è preparato.`,
+
+    choices: [
+      { text: '👂 "Dica."', next: 'c1_regole' },
+      { text: '🤝 Dargli una mano a caricare: la tanica pesa cinque chili e lui ha settantadue anni e non lo chiede', once: true, gold: 1, heal: 3, next: 'c1_regole' },
+      { text: '🎒 Nominare ad alta voce anche la roba vostra, pezzo per pezzo, accanto alla sua', once: true, next: 'c1_regole' },
+    ],
+  },
+
+  /* LE TRE REGOLE. In c1 stavano insieme l'inventario della barca e il patto di Ciro, e in
+     mezzo scattava il CHECKPOINT: `unlockHero`, `fullHeal`, `recharge`, `ciro_in_squadra`.
+     La regola tre — «se una cosa vi chiama per nome, nun rispunnite» — e' l'aggancio che
+     c10_claudia riscuote quattro ore dopo, e il giocatore deve uscire dalla schermata con
+     quella in mano, non con un sacchetto di calce. Il patto ha la sua scena, e il gruppo
+     diventa di tre dove Ciro dice le sue condizioni. */
+  c1_regole: {
+    location: 'porto',
+    caption: 'Le tre regole — ore 09:20',
+    stinger: 'pressione',
+    text: `Poi si mette al motore e non parte subito. Resta con la mano sullo starter e dice l'ultima cosa, quella che voleva dire da giovedì.
 
 > Ciro: "Regola una: quando dico *si torna*, si torna. Non si discute, non si finisce la frase, non se piglia l'ultima foto." *(li guarda)* "Regola due: alle sei io sto in barca. Alle sei meno un quarto stiamo tutti e tre in barca."
 
@@ -4114,7 +4629,29 @@ L'ecoscandaglio è un affare degli anni Novanta con lo schermo verde. Il numero 
 
 Quarantacinque era il porto romano sommerso, quello di cui aveva parlato Simone del diving: banchine e bitte a quarantacinque metri, tra le due isole, di quando l'isola era più alta. E dopo il porto, aveva detto, c'è una fossa che nessuno ha misurato.
 
-> Gaetano: *(e lo dice ad alta voce perché è il suo modo di tenersi in piedi, e perché ai numeri detti forte quella cosa là sotto fa male)* "Ottantadue metri. Nessuno l'ha misurata. Adesso è misurata: **ottantadue metri**."
+Il numero resta lì e non oscilla di un decimo, e un ecoscandaglio che non oscilla vuol dire fondo duro e piatto: **82,0**.
+
+Ciro non ha rimesso la mano sullo starter. La barca deriva. Da quando lo schermo si è fermato, nessuno dei tre ha detto una parola.
+
+**(🕯 Il Quaderno registra un numero che ieri non esisteva: ottantadue metri, misurati alle nove e cinquanta del ventinove agosto.)**`,
+    sets: { fossa_misurata: true },
+    choices: [
+      { text: '🗣 Dirlo ad alta voce. Il numero intero, sopra l\'acqua che lo tiene', next: 'c2_gola' },
+      { text: '📷 Fotografare lo schermo verde con l\'ora e la data: una misura senza ora non è una misura', once: true, next: 'c2_gola' },
+      { text: '🤲 Claudia mette la mano sul ginocchio di Ciro, che ha spento il motore e non l\'ha più riacceso', once: true, gold: 1, heal: 3, next: 'c2_gola' },
+    ],
+  },
+
+  /* LA GOLA. La prima meta' di c2 era la traversata; la seconda era la barca ferma che
+     deriva sopra ottantadue metri mentre l'acqua ronza — e in mezzo il gioco faceva la sola
+     cosa che in questa storia si paga davanti a tutti: diceva il numero ad alta voce e si
+     prendeva l'attenzione +1 al posto del giocatore. La misura sta di qua, il pronunciarla
+     sta di la'. Il numero e' il primo che quella cosa si sia mai trovata addosso. */
+  c2_gola: {
+    location: 'barca',
+    caption: 'Fermi sopra la gola — ore 09:52',
+    stinger: 'coro',
+    text: `> Gaetano: *(e lo dice ad alta voce perché è il suo modo di tenersi in piedi, e perché ai numeri detti forte quella cosa là sotto fa male)* "Ottantadue metri. Nessuno l'ha misurata. Adesso è misurata: **ottantadue metri**."
 
 > Ciro: "E ottantasette in un punto solo, che sta a mano destra tua. Là ci si perdono le reti. Mio padre ci ha lasciato due palamiti nuovi e non ci ha mai più calato niente."
 
@@ -4148,7 +4685,32 @@ Poi la mulattiera. Duecento metri di salita a serpentina in mezzo ai fichi d'Ind
 
 E dentro il portone c'è la cosa.
 
-**Il ferro di cavallo.** Novantanove celle su tre piani, disposte a semicerchio intorno a un pozzo vuoto, e in mezzo al pozzo una cappella tonda col tetto crollato. Le porte delle celle non guardano il corridoio: guardano **il centro**. Tutte. Tutte alla stessa distanza dal centro, tutte inclinate dello stesso angolo, tutte con lo spioncino alla stessa altezza da terra.
+Il vano dell'arco è alto quattro metri e dentro non c'è niente: né porta, né cancello, né catena. Non serve. Una porta serve a chi vuole uscire.
+
+Da sotto l'arco esce aria fredda. Fuori sono trentuno gradi e il tufo scotta a toccarlo.
+
+Ciro appoggia la mano allo stipite e non passa.
+
+> Ciro: "Trasite voi. Io mo' vengo."`,
+
+    choices: [
+      { text: '🚪 Passare sotto l\'arco. È per questo che siete venuti', next: 'c3_dentro' },
+      { text: '🌵 Tre minuti all\'ombra dei fichi d\'India e mezza bottiglia d\'acqua: duecento metri di salita al sole delle dieci si sono fatti sentire', once: true, gold: 1, heal: 3, next: 'c3_dentro' },
+      { text: '📷 Claudia inquadra il portone dal basso, dalla mulattiera, prima di entrarci. La foto del prima', once: true, next: 'c3_dentro' },
+    ],
+  },
+
+  /* DENTRO IL PORTONE. La prima meta' di c3 stava fuori — lo scivolo di cemento, la
+     mulattiera nei fichi d'India, il sole delle dieci sul tufo — e la seconda dentro il
+     ferro di cavallo, con `location: 'santo_stefano'` per tutte e due: per meta' della sua
+     durata il fondale era la costa mentre il testo contava novantanove celle. Il painter di
+     dentro c'era gia'. E «E dentro il portone c'e' la cosa» adesso e' una chiusa, non una
+     riga a meta' schermata. */
+  c3_dentro: {
+    location: 'panopticon',
+    caption: 'Il ferro di cavallo — ore 10:12',
+    stinger: 'pressione',
+    text: `**Il ferro di cavallo.** Novantanove celle su tre piani, disposte a semicerchio intorno a un pozzo vuoto, e in mezzo al pozzo una cappella tonda col tetto crollato. Le porte delle celle non guardano il corridoio: guardano **il centro**. Tutte. Tutte alla stessa distanza dal centro, tutte inclinate dello stesso angolo, tutte con lo spioncino alla stessa altezza da terra.
 
 Cominciato nel 1795 per volere di Ferdinando IV, finito nel 1797, tirato su da cento deportati in due anni. Chiuso il **2 settembre 1965**, "perché inutilmente duro".
 
@@ -4215,7 +4777,7 @@ Ciro non entra. Resta sotto l'arco, con una mano sul muro.
     choices: [
       { text: '📋 Alla portineria c\'è il pannello del Comune, plastificato, con la pianta e i nomi dei piani', once: true, next: 'c3_depliant' },
       { text: '🚪 Su, al purgatorio: la 47 sta al secondo ordine', next: 'c5_cella' },
-      { text: '🕯 Scendere all\'inferno: è il nome del piano terra, non una metafora, e la cappella sta là', requires: { flag: 'sa_i_tre_piani' }, next: 'c4_conta' },
+      { text: '🕯 Scendere all\'inferno: è il nome del piano terra, non una metafora, e la cappella sta là', requires: { flag: 'sa_i_tre_piani' }, tag: 'Prova di DESTREZZA — CD 12 (la scala del ferro di cavallo è pietra levigata e senza corrimano)', check: { stat: 'DES', dc: 12, success: 'c4_conta', fail: 'c3_scalino', failDamage: 2 } },
       { text: '🕯 Scendere nella cappella al centro, dove stava la guardia', requires: { notFlag: 'sa_i_tre_piani' }, next: 'c4_conta' },
       { text: '📚 Dietro la portineria c\'è una stanza con gli scaffali: i registri', next: 'c7_archivio' },
       { text: '⛏ Il cimitero dei detenuti sta a mezza costa, fuori dal muro', next: 'c9_cimitero' },
@@ -4258,9 +4820,43 @@ Ciro non si è avvicinato al pannello. Sta sotto l'arco, gira la faccia verso il
     attenzione: 1,
     sets: { sa_i_tre_piani: true },
     choices: [
+      /* IL RITORNO AL POZZO, e serve per una ragione precisa. La scelta di c3_purgatorio che
+         porta all'inferno e la scena di sconfitta della scala — c3_scalino, il quinto
+         scalino dall'ultimo e i tre ritorni di cui il terzo viene da un piano vuoto — stanno
+         dietro `requires: { flag: 'sa_i_tre_piani' }`, e quel flag lo mette SOLO questa
+         scena. Ma da qui non si tornava piu' al pozzo: tre uscite, e nessuna verso
+         c3_purgatorio. Quindi il contenuto esisteva e non era leggibile da nessuno, mai —
+         e nemmeno il ritorno da checkpoint aiutava, perche' rimette i flag di allora.
+         Trovato il 24 agosto 2026 collaudando i rami di fallimento. */
+      { text: '🔙 Tornare sotto l\'arco col pannello in testa, e guardare il pozzo sapendo i nomi dei piani', once: true, gold: 1, next: 'c3_purgatorio' },
       { text: '🚪 Su, al purgatorio: la 47 sta al secondo ordine', next: 'c5_cella' },
       { text: '🕯 Giù all\'inferno, dove stava la guardia in mezzo al pozzo', next: 'c4_conta' },
       { text: '📚 Dietro la portineria: la stanza degli scaffali', next: 'c7_archivio' },
+    ],
+  },
+
+  c3_scalino: {
+    location: 'panopticon',
+    caption: 'Il quinto scalino dall\'ultimo',
+    stinger: 'fail',
+    text: `Il quinto scalino dall'ultimo non c'è più da un pezzo: c'è la sua forma, in negativo, e sotto la forma il vuoto di quattro dita.
+
+Gaetano ci mette il piede dentro con tutto il peso e va giù di ginocchio sul travertino, con la torcia che scappa e fa un giro completo sul pavimento del pozzo illuminando novantanove porte una dopo l'altra, in sequenza, come un faro.
+
+Le porte, tutte insieme, non fanno niente.
+
+Il rumore del ginocchio, invece, torna indietro tre volte: una dal piano terra, una dal secondo ordine, e una da sopra — dal terzo, quello che dovrebbe essere vuoto, quello che quando è stato chiuso avevano già portato via tutti.
+
+> Ciro: *(da sotto l'arco, senza entrare)* "Signò. Quella terza non è eco."
+
+> Gaetano: *(che si rialza e non si tocca il ginocchio, che è il suo modo di dire che gli fa male)* "No."
+
+**(💪 TENUTA −2. 🎵 Attenzione del Coro +1. E il Quaderno registra una cosa che non si può misurare due volte: tre ritorni, e il terzo viene da un piano dove non c'è nessuno.)**`,
+    damage: 2,
+    attenzione: 1,
+    sets: { i_terzo_ritorno: true },
+    choices: [
+      { text: '🕯 Giù comunque. Al piano terra, che si chiama inferno', next: 'c4_conta' },
     ],
   },
 
@@ -4446,7 +5042,30 @@ Claudia si ferma davanti alla **44** e mette una mano indietro, sul petto di Gae
 
 > Claudia: "C'è qualcuno dentro."
 
-> Gaetano: *(e parte, in buona fede, con la voce gentile di uno che vuole toglierle un peso)* "Amore, no. È il posto. Questa curva è una galleria a sussurro: il suono rimbalza sulla parete concava e ti torna dall'altro lato con un ritardo di — aspetta." *(guarda il cronometro del telefono, batte due volte le mani, conta)* "Zero virgola quarantasei. Ottantacinque metri di percorso, la velocità del suono è trecentoquaranta metri al secondo, torna. Si chiama eco a flutter e ti fa sentire i tuoi passi come se fossero i passi di un altro." *(e poi dice la cosa peggiore che potesse dire, e la dice perché è vera)* "E non l'ho scoperto io, Claudia. **Sta nel progetto.** Una guardia sola, in mezzo, doveva sentire novantanove celle: l'hanno costruito così, e c'è scritto sul pannello all'ingresso. Io ho solo verificato che funziona ancora."
+Lo dice piano, senza staccare la mano dal suo petto. Non indica la porta, non alza il dito: sta ferma e aspetta.
+
+La 44 è una porta come le altre novantotto: legno gonfio, il numero a stampino, lo spioncino a un metro e dieci da terra.
+
+E Gaetano sente il bisogno di dirle una cosa gentile.`,
+
+    choices: [
+      { text: '🗣 Lasciarlo parlare: ha una spiegazione, ce l\'ha sempre, e stavolta è anche vera', next: 'c6_del_suono' },
+      { text: '🔦 Puntare la torcia nella fessura sotto la 44, dieci centimetri di luce, mentre lui fa il conto', once: true, damage: 2, next: 'c6_del_suono' },
+      { text: '🤚 Non togliere la mano dal suo petto e contare i respiri fino a dieci prima di aprire bocca', once: true, heal: 3, next: 'c6_del_suono' },
+    ],
+  },
+
+  /* LA RISPOSTA SUL SUONO. In c6 stavano nello stesso clic la frase piu' importante che
+     Claudia dice nell'atto — «C'e' qualcuno dentro» — e centottanta parole in cui Gaetano
+     le spiega l'eco a flutter coi decimali per rassicurarla. La spiegazione resta, perche'
+     c6_polvere e c6_dopo si appoggiano tutte e due su di lei: e' l'errore da cui nasce la
+     cosa piu' bella dell'atto. Ma la sua frase non sta piu' dentro il muro di misure, e
+     mentre lui conta si decide cosa fa lei. */
+  c6_del_suono: {
+    location: 'panopticon',
+    caption: 'Davanti alla 44 — la risposta sul suono',
+    stinger: 'coro',
+    text: `> Gaetano: *(e parte, in buona fede, con la voce gentile di uno che vuole toglierle un peso)* "Amore, no. È il posto. Questa curva è una galleria a sussurro: il suono rimbalza sulla parete concava e ti torna dall'altro lato con un ritardo di — aspetta." *(guarda il cronometro del telefono, batte due volte le mani, conta)* "Zero virgola quarantasei. Ottantacinque metri di percorso, la velocità del suono è trecentoquaranta metri al secondo, torna. Si chiama eco a flutter e ti fa sentire i tuoi passi come se fossero i passi di un altro." *(e poi dice la cosa peggiore che potesse dire, e la dice perché è vera)* "E non l'ho scoperto io, Claudia. **Sta nel progetto.** Una guardia sola, in mezzo, doveva sentire novantanove celle: l'hanno costruito così, e c'è scritto sul pannello all'ingresso. Io ho solo verificato che funziona ancora."
 
 E funziona ancora. Ha ragione su tutto, ha fatto il conto in nove secondi, la sua voce è dolce — e ha appena spiegato a sua moglie, coi decimali, il motivo per cui questo posto è stato tirato su. Per rassicurarla.
 
@@ -4598,7 +5217,29 @@ Sopra, però, si apre.
 
 Registri di magazzino. Fatture di calce e di farina. Un quaderno di infermeria con una grafia bellissima. E, sullo scaffale in mezzo, due libroni con la costa scritta a pennello: **MATRICOLA** e **PRESENZE — CAMERATE E CELLE**.
 
-Gaetano cerca la 47 in tutti e due.
+Sono due libroni da quattro chili, la costa scritta a pennello, le pagine gonfie d'umido che si voltano a due a due.
+
+Gaetano se li mette davanti tutti e due, aperti, uno a destra e uno a sinistra, e appoggia l'indice sul bordo della pagina senza scegliere.
+
+Sullo scaffale basso, intanto, restano un quaderno d'infermeria con una grafia bellissima e una mazzetta di fatture legate con lo spago.`,
+
+    choices: [
+      { text: '📕 La 47. Su tutti e due i registri, alla stessa riga e alla stessa data', next: 'c7_quarantasette' },
+      { text: '🕯 Prima il quaderno d\'infermeria: chi scrive così, in un posto così, va letto', once: true, heal: 3, next: 'c7_quarantasette' },
+      { text: '🧱 Le fatture della calce: sacchi e sacchi, e l\'ordine più grosso è del novembre del quarantatré', once: true, next: 'c7_quarantasette' },
+    ],
+  },
+
+  /* LA RIGA DELLA 47. La stanza dei registri e' l'unico posto dell'atto in cui si cerca
+     invece di subire, e c'era una riga in cui il gioco cercava al posto del giocatore:
+     «Gaetano cerca la 47 in tutti e due». Su quello scaffale ci sono quattro cose da
+     aprire. Adesso la stanza si guarda, si decide da dove partire, e questa scena si apre
+     con la risposta: le due grafie, i due inchiostri, ventidue anni di colonna di 1. */
+  c7_quarantasette: {
+    location: 'panopticon',
+    caption: 'La riga della 47, su due registri diversi',
+    stinger: 'penna',
+    text: `Gaetano cerca la 47 in tutti e due.
 
 Sul **MATRICOLA**, alla riga della cella 47, c'è una parola scritta con inchiostro nero, in una grafia da impiegato che ha fatto la stessa parola diecimila volte: **"vuota"**. E accanto: *dal 3.XI.1943*.
 
@@ -4674,7 +5315,31 @@ Ciro sta con i gomiti sulle ginocchia e guarda l'isola sua.
 
 > Ciro: "Portarono via novanta uomini con tre motobarche. Ce mettettero quattro ore." *(si gratta il ginocchio)* "Aggio raccontato tre cose per sessant'anni e sono sempre queste tre. Uno: quelli uomini non parlavano. Novanta uomini che scendono da una barca e non uno che dice una parola, manco 'permesso'. Due: mio padre quella notte legò le barche e disse a tutti di non uscire fino all'alba, e mio padre era uno che uscìva con la burrasca."
 
-> Claudia: "E tre?"
+Si ferma. Non per effetto: si ferma perché è arrivato al punto dove si ferma da sessant'anni.
+
+Guarda il muro alle sue spalle, poi Ventotene, poi le sue mani.
+
+> Ciro: "Le prime due le racconto pure al bar. La terza l'ho detta a mio padre e basta, e mio padre è morto nel settantasette."
+
+**(💪 TENUTA +5: mezz'ora all'ombra sul muretto di levante, fuori dal muro, con l'isola davanti che da qui sembra una cosa a due chilometri.)**`,
+    heal: 5,
+    choices: [
+      { text: '💬 "E tre, Ciro?"', next: 'c8_terza' },
+      { text: '🤲 Non incalzarlo. Sedersi sul muretto accanto a lui e aspettare che ci arrivi da solo', once: true, gold: 1, heal: 3, next: 'c8_terza' },
+      { text: '💧 Passargli la bottiglia d\'acqua dello zaino, ancora fredda, prima che dica la terza', once: true, heal: 2, next: 'c8_terza' },
+    ],
+  },
+
+  /* LA TERZA COSA. Quattrocentocinquantadue parole in cui un vecchio si svuotava da solo:
+     le tre cose che racconta da sessant'anni E il nome che non ha mai detto, tutto nello
+     stesso clic. Il nome della guardia e' l'indizio piu' difficile del gioco e apre il
+     finale del NOME: non puo' arrivare in coda a un monologo che nessuno ha chiesto.
+     Adesso la terza cosa si chiede — o si sta zitti e si aspetta che ci arrivi lui. */
+  c8_terza: {
+    location: 'santo_stefano',
+    caption: 'E tre — sul muretto di levante, ore 13:55',
+    stinger: 'campana',
+    text: `> Claudia: "E tre?"
 
 > Ciro: "E tre, che una guardia piangeva." *(pausa lunga)* "Non era vecchio. Quarantatré, quarantaquattro anni. Stava in piedi sulla banchina con la divisa addosso e il berretto in mano, e piangeva come piange un uomo grande, senza fare rumore, con la bocca chiusa. E mentre piangeva teneva in mano una cassetta di plastica marrone."
 
@@ -4783,7 +5448,35 @@ Venti centimetri di terra secca. Poi trenta di uno strato bianco, compatto, che 
 
 E sotto la calce, alla profondità di un braccio, la punta della gaffa incontra una cosa che non è pietra e non è legno, e fa un rumore che nessuno dei tre dimenticherà: un rumore **asciutto**.
 
-Ciro tira via la calce con le mani.
+Il rumore lo fanno tutti e tre insieme, con la bocca chiusa.
+
+Ciro appoggia la gaffa per terra, si asciuga le mani sui pantaloni e non le muove.
+
+> Ciro: "Signò. Da mo' in poi non si torna indietro. Se lo scopriamo, l'abbiamo scoperto."
+
+La calce spaccata a lastre fa un chiaro che si vede da cinquanta metri, e il sole delle tre sta ancora alto sul terrazzamento.
+
+**(🫁 Fiato −1: mezz'ora di gaffa, terra secca e polvere di calce, e qui l'aria si prende a piccoli sorsi.)**`,
+    goldLoss: 1,
+    choices: [
+      { text: '🤲 Le mani. Piano: sotto c\'è una cosa che non è pietra e non è legno', next: 'c9_bottoni' },
+      { text: '🧤 Prima asciugarsi le mani e fasciarle nella maglietta di ricambio, che la calce viva sul sudore brucia — e Ciro lo dice una volta sola', once: true, heal: 3, next: 'c9_bottoni' },
+      { text: '📷 Fotografare la lastra di calce spaccata così com\'è, con la gaffa accanto per la scala', once: true, next: 'c9_bottoni' },
+    ],
+  },
+
+  /* QUELLO CHE LA CALCE LASCIA. Era la coda di c9_scavo, e c9_scavo faceva tre cose in una
+     schermata sola: scavava, scopriva un uomo con la divisa nel cimitero dei detenuti, e
+     faceva partire un combattimento — tutto con `choices: []`, cioe' senza che il giocatore
+     potesse decidere niente, nemmeno se le mani dentro quella calce ce le mette lui o Ciro.
+     Adesso il rumore asciutto chiude una scena e la decisione e' dove va: le mani, o le
+     precauzioni, o l'obiettivo. La guardia arriva comunque: il turno di notte non lo decide
+     chi scava. */
+  c9_bottoni: {
+    location: 'cimitero',
+    caption: 'Quello che la calce lascia — ore 15:20',
+    stinger: 'pressione',
+    text: `Ciro tira via la calce con le mani.
 
 Non è un corpo. È **quello che la calce lascia**: la calce viva prende l'acqua e la carne e le porta via in un anno, e quello che resta è pulito, leggero, poroso, di un bianco gessoso, e sta nella posizione esatta in cui è stato messo. Un braccio piegato sul petto. La mano sotto il mento. Come uno che si è sistemato da solo per dormire, o come uno che l'hanno sistemato con cura.
 
@@ -4859,7 +5552,30 @@ Il gioco adesso vi dice una cosa in chiaro, senza trucchi, perché è così che 
 
 **E svegliare quel nastro in questo posto vi farà notare.** Non "potrebbe": vi farà notare, adesso, di sicuro, e questo carcere è una macchina costruita per sentire. E non è un modo di dire preso in prestito da voi: sta scritto sul pannello all'ingresso, l'ha messo per iscritto un ufficio, e l'acustica della torretta era una delle cose che facevano funzionare il posto.
 
-Ciro guarda il registratore come si guarda un cane che è stato buono per sessant'anni.
+Il Geloso sta sulla pietra col vano aperto e la cassetta dentro. Il tasto PLAY è alzato di due millimetri, e si vede.
+
+Nessuno dei tre lo tocca. Per un minuto intero l'unico rumore nel pozzo è un fringuello sul tetto crollato della cappella.
+
+Poi Ciro tira su la testa, perché una cosa la vuole dire prima.`,
+
+    choices: [
+      { text: '👂 "Ciro. Dica quello che deve dire."', next: 'c10_ciro_dice' },
+      { text: '🕯 Chiudere il vano del Geloso mentre si parla, così nessuno lo preme per sbaglio', once: true, next: 'c10_ciro_dice' },
+      { text: '🤲 Sedersi accanto a lui sul gradino, spalla a spalla, e stare zitti un minuto prima di parlare del nastro', once: true, gold: 1, heal: 3, next: 'c10_ciro_dice' },
+    ],
+  },
+
+  /* QUELLO CHE DICE CIRO. c10_nastro faceva due cose in una schermata: il gioco parlava in
+     chiaro al giocatore — cosa c'e' sul nastro, e che suonarlo LO FARA' notare, non
+     «potrebbe» — e poi Ciro argomentava dentro la finzione. Quell'avvertimento e' l'unica
+     cosa che rende onesta la scelta piu' grossa dell'atto, e stava a meta' di
+     trecentocinquanta parole, dove chi legge di fretta lo salta: se lo salta, la crudelta'
+     diventa un tranello. Adesso ha la sua schermata, e qui si decide. */
+  c10_ciro_dice: {
+    location: 'panopticon',
+    caption: 'Quello che dice Ciro — ore 15:15',
+    stinger: 'pressione',
+    text: `Ciro guarda il registratore come si guarda un cane che è stato buono per sessant'anni.
 
 > Ciro: "Io v'ho portato la cassetta e v'ho portato la macchina. Sono state per sessant'anni in due cassetti diversi apposta." *(si mette le mani sulle ginocchia)* "Adesso decidete voi, ca è giusto accussì. Ma sappiate una cosa: quella non è una registrazione. Quella è **un uomo che ha lasciato la voce sua a un guaglione** perché qualcuno la sentisse. Sessantun anni che aspetta."
 
@@ -4896,7 +5612,30 @@ Pausa. Nel nastro si sente che l'uomo si è girato.
 
 > *«...cella quarantasette, controllata, VUOTA. Come tutte le altre notti. Come da ventidue anni. Sta scritto sul registro e adesso sta pure sulla voce mia.»*
 
-E poi l'uomo di quarantatré anni con la divisa addosso, solo dentro un carcere vuoto su un'isola di trentasei ettari, smette di essere una voce d'ufficio e si mette a piangere davanti a un microfono. Non urla. Non dice niente di comprensibile per undici secondi. Fa il rumore che fa un uomo grande quando non c'è nessuno. E sotto, come una traccia in un altro strato, c'è una bambina che canta la strofa che Claudia sa a memoria da ieri.
+Il contagiri del Geloso continua a scattare e nessuno dei tre allunga la mano.
+
+Sul nastro, dopo la parola VUOTA, c'è una pausa di quattro secondi in cui non si sente niente: né la sedia, né il respiro, né il vento nel cortile.
+
+Poi il respiro torna. E non è più quello di uno che detta un verbale.`,
+
+    choices: [
+      { text: '🎧 Lasciarlo girare. Uno ha lasciato la voce sua a un ragazzo di undici anni: la si sente fino a dove arriva', next: 'c10_pianto' },
+      { text: '🤲 Claudia mette la mano sul ginocchio di Ciro, che quella cassetta se la tiene da sessant\'anni, e non la toglie', once: true, gold: 1, heal: 3, next: 'c10_pianto' },
+      { text: '📓 Trascrivere le parole esatte mentre girano: ora, minuto, grado — "guardia scelta", "controllata", "VUOTA"', once: true, next: 'c10_pianto' },
+    ],
+  },
+
+  /* IL PIANTO. c10_suonato era gia' stata spezzata una volta e restava di trecentocinquanta
+     parole, perche' teneva insieme un documento e una decisione. Il verbale della ronda
+     finisce dove deve finire — «sta scritto sul registro e adesso sta pure sulla voce mia» —
+     e il pianto di un uomo di quarantatre' anni, solo dentro un carcere vuoto su un'isola di
+     trentasei ettari, apre la sua schermata invece di arrivare a meta' della precedente.
+     Si guarda con pieta', non e' uno spettacolo. */
+  c10_pianto: {
+    location: 'panopticon',
+    caption: 'Un uomo che piange in un carcere vuoto — ore 15:25',
+    stinger: 'coro',
+    text: `E poi l'uomo di quarantatré anni con la divisa addosso, solo dentro un carcere vuoto su un'isola di trentasei ettari, smette di essere una voce d'ufficio e si mette a piangere davanti a un microfono. Non urla. Non dice niente di comprensibile per undici secondi. Fa il rumore che fa un uomo grande quando non c'è nessuno. E sotto, come una traccia in un altro strato, c'è una bambina che canta la strofa che Claudia sa a memoria da ieri.
 
 Ciro guarda il pavimento. Claudia ha la mano sulla bocca. Gaetano ha il pollice a due centimetri dal tasto STOP e non lo appoggia.
 
@@ -5120,7 +5859,29 @@ Silenzio.
 
 > Gaetano: "Ci hai messo dieci anni. Ci sei arrivata giovedì alle sette e dieci di sera, hai bestemmiato due volte, mi hai abbracciato attaccata a una boa di plastica, e mi hai detto *un secondo così*." *(la voce gli va)* "E io alle due di notte avevo in mano una cosa che te lo portava via. E ho pensato: gliela dico domani. E ieri ho pensato: gliela dico dopo le cisterne, che oggi ha già avuto la sua parte. E oggi me l'ha detto quel coso al posto mio, con la voce di un morto, davanti a un vecchio." *(si passa la mano sulla faccia)* "Ho fatto una cosa di merda per un motivo tenero, che è il modo peggiore di fare le cose di merda, perché mentre la fai ti sembra di volere bene."
 
-Claudia sta ferma ancora due secondi. Poi gli mette una mano dietro il collo e gli tira la testa sulla propria spalla, in piedi, sul terrazzamento di un carcere borbonico, alle quattro del pomeriggio.
+Poi non dice più niente. Resta lì con le mani lungo i fianchi, nella posizione in cui uno si mette quando ha finito le spiegazioni e non ne ha un'altra.
+
+Cinquanta metri più sotto Ciro guarda il mare, e non loro.
+
+E adesso sono due secondi, e in due secondi ci sta tutto.`,
+
+    choices: [
+      { text: '🫂 Un passo avanti, senza parlare', next: 'c11_maipiu' },
+      { text: '🗣 "Prima me lo dici tutto. Poi ti tocco." E fargli finire la frase, in piedi, al sole', once: true, next: 'c11_maipiu' },
+      { text: '🤲 Prendergli la faccia con le due mani e tenerla ferma finché non alza gli occhi', once: true, heal: 4, next: 'c11_maipiu' },
+    ],
+  },
+
+  /* MAI PIU'. c11_perche teneva insieme la confessione e la riparazione: prima le mani
+     lungo i fianchi e la boa toccata dopo dieci anni, poi quattro battute in cui e' LEI a
+     dettare le condizioni. In mezzo c'era una riga in cui il gioco decideva al posto del
+     tavolo dentro la scena che e' di Claudia. Il gesto resta suo: quello che si scegle e'
+     da dove comincia. */
+  c11_maipiu: {
+    location: 'santo_stefano',
+    caption: 'Mai più — sul terrazzamento, ore 16:10',
+    stinger: 'heal',
+    text: `Claudia sta ferma ancora due secondi. Poi gli mette una mano dietro il collo e gli tira la testa sulla propria spalla, in piedi, sul terrazzamento di un carcere borbonico, alle quattro del pomeriggio.
 
 > Claudia: "Mai più. Dillo."
 
@@ -5171,7 +5932,29 @@ Silenzio. Un gabbiano, sotto, sul terrazzamento.
 
 > Claudia: "Lo so perché mi dai i numeri. Perché i numeri li controlli tu." *(pausa)* "Io i numeri me li sono sposati e me li tengo. Ma non stavolta. Stavolta mi dici la cosa."
 
-E allora la dice, e gli esce mezza, e mezza è quello che c'è.
+Silenzio. Gaetano ha ancora il telefono in mano, con la traccia aperta e la forma d'onda sullo schermo, e il pollice fermo sopra la barra.
+
+Lo schermo si spegne da solo dopo trenta secondi, e lui non lo riaccende.
+
+> Claudia: "Sto aspettando."`,
+
+    choices: [
+      { text: '📵 Mettere il telefono in tasca e parlare senza niente in mano', next: 'c11_mezza' },
+      { text: '📐 Provarci un\'ultima volta con un numero, e sentirselo togliere di bocca a metà', once: true, damage: 2, next: 'c11_mezza' },
+      { text: '🤲 Prenderle la mano prima di parlare, che è l\'unica cosa che gli viene senza contarla', once: true, heal: 3, next: 'c11_mezza' },
+    ],
+  },
+
+  /* E GLI ESCE MEZZA. La seconda meta' di c11_numeri: la cosa detta a meta' e i tre secondi
+     in piu' che ci saranno per sempre. Il taglio sta sulla riga «E allora la dice», dove il
+     gioco lo faceva cedere da se'. La verita' esce comunque — quello e' il patto della
+     scena — ma a mollare i numeri e' il giocatore, e chi ci riprova con un'altra misura se
+     la sente togliere di bocca. */
+  c11_mezza: {
+    location: 'santo_stefano',
+    caption: 'E gli esce mezza — ore 16:10',
+    stinger: 'heal',
+    text: `E allora la dice, e gli esce mezza, e mezza è quello che c'è.
 
 > Gaetano: "Perché avevi appena toccato la boa." *(la voce gli si rompe sulla seconda parola)* "Ci hai messo dieci anni e ci sei arrivata giovedì alle sette e dieci di sera, e io alle due di notte avevo in mano una cosa che te lo portava via."
 
@@ -5217,12 +6000,34 @@ Perché una cosa detta a metà, per il Coro, non è un silenzio: è un **buco**.
     attenzione: 1,
     sets: { silenzio_scelto: true },
     choices: [
-      { text: '🏃 Correre giù: la luce sta cambiando', next: 'c12_corsa' },
+      { text: '🏃 Correre giù: la luce sta cambiando', tag: 'Prova di DESTREZZA — CD 11 (duecento metri di mulattiera a serpentina, e la luce va)', check: { stat: 'DES', dc: 11, success: 'c12_corsa', fail: 'c11_caduta', failDamage: 2 } },
       { text: '🚤 Alla barca, in fila indiana, senza dire niente', next: 'c14_cena' },
     ],
   },
 
   /* ==================== LA FUGA ==================== */
+
+  c11_caduta: {
+    location: 'santo_stefano',
+    caption: 'A metà mulattiera, con le mani per terra',
+    stinger: 'fail',
+    text: `La mulattiera di Santo Stefano è pietra levigata da duecento anni di scarpe, e in discesa, di corsa, con la luce che cala, non perdona.
+
+Claudia va giù sulle mani a metà del secondo tornante. Non si rompe niente: due palmi sbucciati, il ginocchio che sanguina poco e brucia molto, e trenta secondi persi a rialzarsi.
+
+I trenta secondi sono la cosa che conta, e lo sanno tutti e due senza dirlo.
+
+> Ciro: *(da sotto, che ha visto tutto e non urla, che urlare non serve)* "Piano, signò. La barca sta qua."
+
+> Claudia: *(rialzandosi, con la voce di una incazzata con la pietra)* "Lo so che sta qua."
+
+**(💪 TENUTA −2. 🫁 Fiato −1. Si arriva alla barca comunque, e Ciro non commenta i trenta secondi. Ma la luce, quando si molla, è già quella di dopo.)**`,
+    damage: 2,
+    goldLoss: 1,
+    choices: [
+      { text: '🚤 Alla barca. Ciro ha il motore in mano', next: 'c12_corsa' },
+    ],
+  },
 
   c12_corsa: {
     location: 'panopticon',
@@ -5507,7 +6312,31 @@ A metà, quando dentro non ci sta più niente di registrabile, il ronzio del ven
 
 Nessuno dei tre dice niente. Ada guarda il ventilatore, guarda il fornello, e poi fa l'unica cosa da fare: apre la finestra della cucina, che è agosto.
 
-> Ada: "Mia sorella cantava a bocca chiusa. Come lei." *(indica Claudia col mento, senza guardarla)* "L'ho sentita, la prima notte, dal corridoio. E non v'ho detto niente perché non si dice."
+La finestra aperta non cambia niente: l'aria di agosto entra e sta ferma anche lei.
+
+In mano a Gaetano ci sono ancora sei o sette metri di nastro arricciato, e il fornello grande è acceso.
+
+Ada non guarda il fornello. Guarda Claudia, e non è la prima volta stasera.
+
+**(💪 TENUTA −1: due dita bruciate, quelle con cui si tiene il nastro sopra la fiamma.)**`,
+    damage: 1,
+    choices: [
+      { text: '🔥 Andare avanti. Il resto del nastro, un palmo per volta, finché non finisce', next: 'c15_ada' },
+      { text: '🌬 Spegnere il fornello e guardare le pale ferme, tutti e tre, senza dire niente', once: true, next: 'c15_ada' },
+      { text: '🤲 Mettere una mano sul braccio di Ada, che sta allo stipite con le braccia incrociate e non ha fatto una domanda', once: true, heal: 3, next: 'c15_ada' },
+    ],
+  },
+
+  /* ADA. La seconda meta' di c15_bruciato. Il fatto fisico — quindici metri di banda
+     marrone, le fiammate verdi, il ventilatore che si ferma a meta' giro con l'interruttore
+     su ON — sta di la'; qui c'e' la persona: una donna che dice la cosa che si tiene da
+     ventinove anni e poi dice l'ora della colazione, che e' il suo modo di tenere in piedi
+     due persone. Ada e' un'alleata senza doppi fondi e non parla in coda a un falo'. */
+  c15_ada: {
+    location: 'bnb',
+    caption: 'Ada, in cucina, col ventilatore fermo — ore 01:05',
+    stinger: 'campana',
+    text: `> Ada: "Mia sorella cantava a bocca chiusa. Come lei." *(indica Claudia col mento, senza guardarla)* "L'ho sentita, la prima notte, dal corridoio. E non v'ho detto niente perché non si dice."
 
 > Claudia: "Ada—"
 
@@ -5605,7 +6434,34 @@ Il costume di Claudia, steso sul davanzale, è **asciutto**.
 
 Claudia si mette a sedere e guarda la stanza: la sacca aperta, il phon che non serviva, il sacchetto dei taralli di ieri appallottolato sul tavolino.
 
-E sul tavolino c'è anche la bottiglia dell'acqua. Un litro e mezzo. Ieri notte alle due ne hanno bevuto mezzo — lei direttamente dal collo, lamentandosi che era calda.
+> Claudia: "Gaetà. Il costume è asciutto."
+
+> Gaetano: "Lo so."
+
+> Claudia: "Ieri sera l'ho steso che gocciolava, e stamattina sul marmo non c'è nemmeno il cerchio." *(e non alza la voce, che con lei è il segnale)* "Guarda in giro. Guarda bene, adesso, prima di scendere: dimmi la prima cosa che non torna."
+
+**(💪 TENUTA piena, mosse ricaricate: dentro Le Parracine si dorme. 🫁 Fiato +2.)**`,
+    gold: 2,
+    fullHeal: true,
+    recharge: true,
+    sets: { d_ultimo_giorno: true, ciclo: 1 },
+    choices: [
+      { text: '🍶 La bottiglia dell\'acqua sul tavolino: ieri notte alle due se ne era bevuto mezzo litro', next: 'd0_bottiglia' },
+      { text: '👕 I vestiti piegati sulla sedia, con la piega delle maniche in dentro: li piega lei, e non li ha piegati', once: true, sets: { d_vestiti: true }, next: 'd0_bottiglia' },
+      { text: '🫂 Niente. Dieci minuti così, senza alzarsi e senza cercare niente', once: true, gold: 2, next: 'd0_bottiglia' },
+    ],
+  },
+
+  /* LA BOTTIGLIA. Stava in fondo a d0, dentro il risveglio: trecentonovantuno parole in cui
+     il gioco trovava il primo indizio del loop, lo spiegava e lo liquidava («l'ha cambiata
+     Ada») senza che il tavolo potesse toccarlo. Adesso l'indizio è una scelta, e la stanza
+     alle 07:14 ha la sua didascalia invece di essere ancora l'alba. */
+  d0_bottiglia: {
+    location: 'bnb',
+    caption: 'La stanza — ore 07:14, la bottiglia sul tavolino',
+    stinger: 'click',
+    metri: 0,
+    text: `E sul tavolino c'è anche la bottiglia dell'acqua. Un litro e mezzo. Ieri notte alle due ne hanno bevuto mezzo — lei direttamente dal collo, lamentandosi che era calda.
 
 È piena. E l'anello di plastica sotto il tappo è **integro**.
 
@@ -5732,7 +6588,30 @@ Piazza Castello alle dieci: i vecchi schierati sulle panchine, il tabaccaio che 
 
 Pranzo alla **Marisqueria**: gamberi crudi, un litro di bianco freddo, due ore buttate via nel modo migliore possibile. Claudia racconta al cameriere la storia della boa gialla e il cameriere gliela fa raccontare due volte.
 
-Pomeriggio a **Cala Nave**. Arrivano fino alla boa e restano attaccati alla plastica gialla, calda di sole, a non dire niente per due minuti.
+Alle due e mezza il conto è pagato, il bianco è finito, e la giornata ha ancora quattro ore dentro.
+
+> Claudia: "E adesso?"
+
+> Gaetano: *(che ha già il telo sotto il braccio, perché la risposta la sapeva da stamattina)* "Adesso quello che si fa l'ultimo giorno."`,
+
+    choices: [
+      { text: '🏖 Pomeriggio a Cala Nave: telo, pinne, e la boa gialla', next: 'd2_cala' },
+      { text: '🍤 Restare alla Marisqueria per il secondo giro: un altro litro di bianco e i gamberi', once: true, heal: 4, gold: 2, next: 'd2_cala' },
+      { text: '🍦 Mezz\'ora sulla panchina dei vecchi in piazza, un gelato, e non dire niente', once: true, heal: 3, gold: 2, next: 'd2_cala' },
+    ],
+  },
+
+  /* IL POMERIGGIO A CALA NAVE. d2_paese teneva dentro sei ore e mezza e tre posti — piazza,
+     marisqueria, la boa, e poi l'orologio della piazza — con il fondale del paese anche
+     sopra il pezzo in acqua, che è quello dove una voce chiama Claudia per nome da ventidue
+     metri. Adesso il pomeriggio ha il suo mare, e la mattina è una scelta invece di un
+     riassunto. */
+  d2_cala: {
+    location: 'cala',
+    caption: 'Cala Nave — dalle 15:00, e la piazza alle 16:30',
+    stinger: 'coro',
+    metri: 0,
+    text: `Pomeriggio a **Cala Nave**. Arrivano fino alla boa e restano attaccati alla plastica gialla, calda di sole, a non dire niente per due minuti.
 
 Ed è lì, con l'orecchio a dieci centimetri dall'acqua, che Claudia sente il proprio nome.
 
@@ -5875,7 +6754,29 @@ Si gira. E li **guarda**: uno sguardo che dura mezzo secondo di troppo — quel 
 
 > Ada: "Lo so."
 
-Poi tira fuori dal cassetto della credenza una fotocopia piegata in quattro: l'elenco d'imbarco del piroscafo **Santa Lucia**, 24 ottobre 1943, molo di Napoli. Centoquarantasei nomi a macchina. E in fondo, uno aggiunto **a penna**, di fretta, con la biro che ha bucato la carta: *Assuntina, a. 6, c/o madre.*
+Ada non aggiunge niente. Gira lo zucchero nella tazzina e non la beve.
+
+Fuori dalla finestra il mare è alto di uno scalino, e sul tavolo ci sono tre tazzine e nessuno le ha detto che scendevano in due.
+
+**(🫁 Il Quaderno registra: si chiama LA CORDA. L'acqua sale per una settimana o dieci giorni, e mentre è aperta quelli di sotto chiamano per nome chi ha paura dell'acqua. Ada ve l'ha detto una volta, e ve lo ridirà.)**`,
+    sets: { sa_la_corda: true, d_acqua_alta: true },
+    choices: [
+      { text: '☕ Sedersi e bere il caffè con lei, senza chiedere niente, per due minuti', heal: 4, gold: 2, next: 'd5_lista' },
+      { text: '🌊 "Di quanto è salito, signora? Esatto: me lo dica in centimetri"', once: true, sets: { scalino_misurato: true }, next: 'd5_lista' },
+      { text: '🤲 Prendere la caffettiera e versare la terza tazzina, quella che nessuno ha chiesto', once: true, heal: 3, gold: 1, next: 'd5_lista' },
+    ],
+  },
+
+  /* LA LISTA D'IMBARCO. Stava in fondo a d5_ada, dove la spiegazione della corda e la
+     fotocopia col nome aggiunto a penna si mangiavano quattrocento parole insieme. Qui
+     cambia registro: dalla regola detta a voce a una carta con centoquarantasei nomi a
+     macchina e uno scritto di fretta, e la biro che ha bucato il foglio. */
+  d5_lista: {
+    location: 'bnb',
+    caption: 'La cucina — la fotocopia piegata in quattro',
+    stinger: 'penna',
+    metri: 0,
+    text: `Poi tira fuori dal cassetto della credenza una fotocopia piegata in quattro: l'elenco d'imbarco del piroscafo **Santa Lucia**, 24 ottobre 1943, molo di Napoli. Centoquarantasei nomi a macchina. E in fondo, uno aggiunto **a penna**, di fretta, con la biro che ha bucato la carta: *Assuntina, a. 6, c/o madre.*
 
 > Ada: "Ve l'ho chiesta ieri al Comune, che ho una cugina all'anagrafe. Ve l'ho chiesta perché ieri mi avete fatto una domanda e stanotte non ho dormito." *(e adesso ha le mani ferme sul tavolo)* "E allora mo' ve la dico, la regola, per la seconda volta, e poi non ve la dico più: **non si risponde**. Non importa chi vi chiama, non importa con che voce. Non si risponde e non si scende."
 
@@ -5938,7 +6839,32 @@ Lui non fa il numero, non fa la spiegazione, non prova a girarla. Mette il telef
 
 > Gaetano: "La seconda non l'hai detta tu. La seconda ce l'hanno loro, e adesso sanno come suona la tua voce quando dice sì."
 
-Claudia si porta la mano alla medaglietta di bronzo che ha al collo. È fredda, esattamente della temperatura dell'aria, come è stata sempre.
+Claudia guarda il telefono a faccia in giù sul comodino come si guarda una cosa che è meglio non toccare.
+
+> Claudia: "E quindi adesso ce l'hanno."
+
+> Gaetano: "Adesso ce l'hanno."
+
+> Claudia: "E io che ho addosso, contro una cosa così?"`,
+
+    choices: [
+      { text: '🗑 Cancellare il file. Adesso, tenendo premuto, guardando la barretta', once: true, damage: 2, sets: { file_cancellato: true }, next: 'd5_collana' },
+      { text: '🎧 Riascoltare il secondo «sono qui» dieci volte e imparare in cosa è diverso', once: true, gold: 1, sets: { sa_dove_sbaglia: true }, next: 'd5_collana' },
+      { text: '🫂 Dirlo ad alta voce tutti e due: "ho risposto io, e non lo rifaccio"', once: true, heal: 4, sets: { risposta_ammessa: true }, next: 'd5_collana' },
+      { text: '📿 "E questa che ho al collo, esattamente cosa mi fa?"', next: 'd5_collana' },
+    ],
+  },
+
+  /* LA COLLANA, E IL BUCO. La seconda metà del debito della voce: la medaglietta fredda
+     esattamente come l'aria, una voce risparmiata una volta, e la cosa che nessuna
+     protezione copre — la tua. Stava attaccata al nastro, e il nastro è un fatto mentre
+     questa è la regola che il giocatore si porta dietro fino alla fossa. */
+  d5_collana: {
+    location: 'bnb',
+    caption: 'La medaglietta di bronzo — cosa copre e cosa no',
+    stinger: 'sigillo',
+    metri: 0,
+    text: `Claudia si porta la mano alla medaglietta di bronzo che ha al collo. È fredda, esattamente della temperatura dell'aria, come è stata sempre.
 
 > Claudia: "E questa?"
 
@@ -5996,7 +6922,29 @@ Riprende la scaletta. Il catino cigola. Gaetano ha la tazzina a mezz'aria.
 
 > Gaetano: "Ha detto c'è. Ha l'accento chiuso, mangia le vocali—"
 
-E si ferma. Non perché lei lo guardi: lei non lo sta guardando. Si ferma perché ha sentito la propria voce fare una cosa che la propria voce ha già fatto.
+E resta lì, con la parola a metà e la tazzina a mezz'aria, perché c'è una cosa che gli sta arrivando addosso e non è la frase della signora.
+
+Ada, in cucina, sposta la caffettiera sul marmo. Il catino cigola sulla scaletta e si allontana.
+
+Nessuno dei due ha ancora detto la parola «ieri».`,
+
+    choices: [
+      { text: '🫂 Sotto il tavolo, una mano sul ginocchio dell\'altro, e tenerla lì', heal: 3, gold: 1, next: 'd1_colazione_eco' },
+      { text: '🥨 Farsi mettere in tasca il sacchetto di taralli, come ieri, con le stesse parole', once: true, item: 'taralli', gold: 1, next: 'd1_colazione_eco' },
+      { text: '🫘 Contarli. I fagiolini nel catino, uno per uno, prima che risalga la scaletta: ventidue, come giovedì', once: true, sets: { d_fagiolini_visti: true }, next: 'd1_colazione_eco' },
+    ],
+  },
+
+  /* L'ECO DELLA PROPRIA VOCE. La ripetizione del secondo giro resta INTERA nella scena
+     prima, parola per parola come nel primo giro: è lo strumento di misura di tutto l'atto
+     e non si spezza a metà. Questa comincia dove la ripetizione finisce, cioè nel punto in
+     cui Gaetano sente la propria voce fare una cosa che la propria voce ha già fatto. */
+  d1_colazione_eco: {
+    location: 'terrazza',
+    caption: 'La terrazza — ore 08:24, la seconda volta che lo dice',
+    stinger: 'nastro',
+    metri: 0,
+    text: `E si ferma. Non perché lei lo guardi: lei non lo sta guardando. Si ferma perché ha sentito la propria voce fare una cosa che la propria voce ha già fatto.
 
 > Gaetano: "L'ho già detto."
 
@@ -6615,7 +7563,34 @@ E c'è una porta aperta che nei giorni scorsi era chiusa: il **diving** del port
 
 Nella foto una donna di quarant'anni in muta, capelli tagliati corti, che ride, con il pollice in su. Dietro di lei due ragazzi biondi che ridono pure. Sotto, a pennarello, sul cartoncino: **"Marisa — corso avanzato, settembre '97"**.
 
-Sul bancone c'è un registro delle immersioni. Ultima riga, scritta con una biro che scriveva male:
+Claudia si avvicina alla cornice e non la tocca. Legge il pennarello due volte.
+
+> Claudia: "Marisa. Come la sorella di Ada."
+
+> Gaetano: "Come la sorella di Ada."
+
+Sul bancone, sotto la fotografia, c'è un registro aperto a metà, con la biro appoggiata sulla pagina.
+
+**(Oggetto: un sacco di CALCE, dal cantiere della strada per Punta Eolo. 🎵 Attenzione del Coro +1: un'isola vuota vi sta guardando girare.)**`,
+    item: 'calce',
+    choices: [
+      { text: '📖 Il registro sul bancone. Aprirlo all\'ultima pagina scritta', next: 'd11_registro' },
+      { text: '🍽 Entrare nella cucina della Marisqueria e mangiare come si deve, l\'ultima volta', once: true, gold: 3, heal: 8, next: 'd11_registro' },
+      { text: '🤿 Staccare la muta dal gancio e guardarci dentro: taglia, cuciture, il nome scritto col pennarello', once: true, sets: { muta_guardata: true }, next: 'd11_registro' },
+      { text: '🕳 Dietro l\'orto dei Coraggio: il muro del \'57 è aperto e la scala continua sotto', requires: { flag: 'sa_scala_continua' }, once: true, sets: { via_di_terra: true }, gold: 1, next: 'd11_registro' },
+    ],
+  },
+
+  /* IL REGISTRO E IL TRAGHETTO. Stavano in fondo a d11_vuoto, dopo un «---» messo a mano:
+     quattrocentotrentacinque parole con un cambio di posto in mezzo e il fondale del paese
+     sopra una scena che si svolge sul bancone del diving e poi in banchina. Quel «---» era
+     il taglio che la scena chiedeva da sé. */
+  d11_registro: {
+    location: 'porto',
+    caption: 'Il diving del porto, poi la banchina — ore 09:00',
+    stinger: 'pressione',
+    metri: 0,
+    text: `Sul bancone c'è un registro delle immersioni. Ultima riga, scritta con una biro che scriveva male:
 
 > *17.9.97 — muri sommersi −45. Scesi in TRE. Risaliti in due. J. dice che eravamo quattro.*
 
@@ -6842,7 +7817,31 @@ Claudia — quella vera, quella in piedi, quella con la mano di Gaetano che le s
 
 Poi si gira. Ha la faccia di Claudia: non "una faccia simile", la faccia di Claudia, con la cicatrice piccola sopra il sopracciglio del 2011, la bici a Serapo. E la faccia di Claudia si accorge in questo momento che quella cicatrice è **al lato sbagliato**.
 
-> L'altra: "Lo so cosa stai pensando. Lo penserei anch'io." *(beve un sorso, appoggia la tazzina, e lo fa nel modo in cui lo fa lei)* "Ma senti: tu hai promesso una cosa. Hai promesso di **insegnarle a nuotare**. L'hai detto tu, nessuno te l'ha chiesto, e adesso ci sono una decina di creature là sotto che ti stanno aspettando alle cinque, come si aspetta la maestra."
+E il corpo fa la cosa che fa il corpo quando l'occhio trova l'errore: si ferma, si raddrizza, e comincia a funzionare meglio di un minuto prima.
+
+> Gaetano: *(senza staccarle la mano dal gomito)* "È al lato sbagliato."
+
+> Claudia: "È al lato sbagliato."
+
+**(💪 TENUTA +10 e mosse ricaricate: quella cosa ha copiato tutto, e ha copiato anche allo specchio — trovare l'errore rimette in piedi. Ciò che viene GUARDATO per intero perde il diritto di cambiare forma.)**`,
+
+    choices: [
+      { text: '📸 Inquadrarla adesso, prima che parli: treppiede, luce, e tutta dentro il fotogramma', once: true, sets: { specchio_documentato: true }, next: 'd11_specchio_parla' },
+      { text: '🫂 Voltarle la schiena e guardare solo lui, tenendogli la faccia con due mani', heal: 4, gold: 2, next: 'd11_specchio_parla' },
+      { text: '👂 Lasciarla parlare. Tutto quello che ha da dire, fino in fondo', next: 'd11_specchio_parla' },
+    ],
+  },
+
+  /* QUELLO CHE DICE È TUTTO VERO. La seconda metà di d11_specchio: la promessa di insegnare
+     a nuotare, Marisa, «se non scendi tu ci va lui». Stava attaccata all'inquadratura — il
+     vestito, l'elastico, la cicatrice al lato sbagliato — e le due cose sono due mestieri
+     diversi: una si guarda, l'altra ti apre. */
+  d11_specchio_parla: {
+    location: 'paese',
+    caption: 'Il tavolino sotto il fico — e quello che dice è tutto vero',
+    stinger: 'voce_amata',
+    metri: 0,
+    text: `> L'altra: "Lo so cosa stai pensando. Lo penserei anch'io." *(beve un sorso, appoggia la tazzina, e lo fa nel modo in cui lo fa lei)* "Ma senti: tu hai promesso una cosa. Hai promesso di **insegnarle a nuotare**. L'hai detto tu, nessuno te l'ha chiesto, e adesso ci sono una decina di creature là sotto che ti stanno aspettando alle cinque, come si aspetta la maestra."
 
 > Claudia: "Non è la stessa cosa."
 
@@ -7011,7 +8010,27 @@ La mano alzata resta alzata per tre secondi. Poi Claudia allunga la sua e la pre
 
 > Claudia: *(e le si spezza la voce a metà della parola e la finisce comunque)* "No, cocca. Sei in orario."
 
-E poi la bambina fa la cosa più semplice del mondo, quella che aspettava di poter fare da ottantadue anni: chiude gli occhi.
+E per tre secondi non succede niente di niente. C'è una mano piccola dentro una mano grande, sul bordo di una barca di legno, in mezzo a un canale che duecento metri più in là è profondo quarantasei metri.
+
+Gaetano ha il telefono in mano e non sa se accenderlo.`,
+
+    choices: [
+      { text: '🤲 Non lasciarle la mano. Tenerla, e aspettare quanto ci vuole', heal: 4, gold: 2, next: 'd12_occhi' },
+      { text: '🎥 Riprendere tenendo la macchina bassa, sull\'acqua: di lei resta il cappottino, e la faccia no', once: true, sets: { assuntina_ripresa: true }, next: 'd12_occhi' },
+      { text: '🫂 Girarsi verso l\'altro un secondo, e farsi vedere piangere', once: true, heal: 3, gold: 2, next: 'd12_occhi' },
+    ],
+  },
+
+  /* SI ADDORMENTA. Stava in coda a d12_dorme, quattrocentoventinove parole, e in coda a
+     un'altra scena stava il pagamento del terzo mistero: la bambina che chiude gli occhi e
+     il Coro che perde il tempo. Adesso ha il suo posto, e prima c'è una decisione su cosa
+     si fa mentre chiude gli occhi. */
+  d12_occhi: {
+    location: 'barca',
+    caption: 'Chiude gli occhi — ore 11:56',
+    stinger: 'coro',
+    metri: 0,
+    text: `E poi la bambina fa la cosa più semplice del mondo, quella che aspettava di poter fare da ottantadue anni: chiude gli occhi.
 
 Non sparisce. Non si dissolve, non fa luce, non c'è nessun effetto. **Si addormenta**, e scende piano nel nero come scende una cosa che ha finito, col cappottino buono che le fa la campana.
 
@@ -7244,7 +8263,29 @@ Uno dei due sente una cosa sulla nuca. Non una mano: **una temperatura**. Due gr
 
 Poi la stiva si chiude sopra come si chiude un'anta.
 
-L'altro tira la cima. Con due mani, con la schiena, coi piedi puntati sulla lamiera, e la cima viene su. Viene su tutta, col nodo in fondo, e in fondo non c'è nessuno.
+Il fascio della torcia illumina grigio e non arriva a un braccio.
+
+La cima, sotto il guanto, c'è ancora: è l'unica cosa in tutta la fossa che sta dove l'avete lasciata.
+
+Uno dei due la sente in mano. L'altro no.`,
+
+    choices: [
+      { text: '🪢 Tirare la cima. Con due mani, con la schiena, coi piedi puntati sulla lamiera', next: 'd13_cima_vuota' },
+      { text: '🔦 Spazzare il grigio col fascio prima di tirare: tre secondi, non uno di più', once: true, goldLoss: 1, next: 'd13_cima_vuota' },
+      { text: '✋ Battere due colpetti sulla lamiera col manico del coltello: il segnale che usate da dieci anni', once: true, sets: { colpetti_dati: true }, next: 'd13_cima_vuota' },
+    ],
+  },
+
+  /* LA CIMA VUOTA. Stava attaccata alla presa dentro la stiva, e sono due posti diversi a
+     quindici metri di distanza: là sotto c'è chi viene preso, qui in cima alla corda c'è
+     l'altro che tira e la tira su col nodo in fondo e niente attaccato. Il paragrafo dopo,
+     la voce parla da quarantasei metri come se stesse a mezzo metro. */
+  d13_cima_vuota: {
+    location: 'fossa',
+    caption: 'La cima viene su tutta — e in fondo non c\'è nessuno',
+    stinger: 'voce_amata',
+    metri: 45,
+    text: `L'altro tira la cima. Con due mani, con la schiena, coi piedi puntati sulla lamiera, e la cima viene su. Viene su tutta, col nodo in fondo, e in fondo non c'è nessuno.
 
 A trentun metri, sulla cengia, l'acqua è di nuovo acqua. La torcia funziona. In barca lo scandaglio dice quarantasei metri e stavolta non cambia numero.
 
@@ -7782,7 +8823,33 @@ Poi va avanti, e va avanti in ordine, come si scorre un fascicolo con l'indice s
 
 > LA VOCE: "Il verbale è l'unica cosa che resta. Le persone non le legge nessuno. La carta sì."
 
-Gaetano appoggia la sacca in terra per la seconda volta in dieci minuti.
+E poi non dice più niente, e il non dire niente è la parte che pesa: l'acqua alle caviglie resta ferma, calda di sole, alta un dito sulla lamiera della rampa, e aspetta come aspetta uno che ha già scritto la riga e deve solo metterci il nome.
+
+Trenta metri di lamiera davanti. Dietro, la scaletta delle Parracine e il limone in vaso di Ada.
+
+E la domanda è una sola: chi lo scrive, questo verbale.`,
+
+    choices: [
+      { text: '🕯 Rispondere al verbale con un nome: «Nicola Sperduto, quarantatré anni, rimasto in servizio. Questo non risulta a nessuno, e lo sappiamo noi.»',
+        requires: { flag: 'sa_nome_guardia' }, once: true, heal: 6, gold: 2,
+        sets: { verbale_rifiutato: true }, next: 'd15_uscite' },
+      { text: '🤲 Non rispondere all\'acqua. Prendergli la faccia con due mani e guardarlo, dieci secondi', heal: 4, gold: 1, next: 'd15_addio' },
+      { text: '🕯 Salire in mezzo alla rampa e dirla, la frase: «Allora scriviamolo noi»', next: 'd15_addio' },
+      { text: '↩ Riprendere le sacche e tornare sulla banchina: di questo si riparla', heal: 2, next: 'd15_uscite' },
+    ],
+  },
+
+  /* IL CONGEDO. Stava in fondo a d15_scambio, e in fondo a d15_scambio era la decisione
+     presa al posto del giocatore: il testo raccontava lo scambio dell'oggetto al collo e i
+     quattro «ogni trenta agosto io torno» PRIMA che il tavolo scegliesse chi resta, e le due
+     vie d'uscita — il nome della guardia, il passo indietro — si premevano quando l'addio
+     era già stato letto. Adesso chi non vuole questa fine non ci entra nemmeno. */
+  d15_addio: {
+    location: 'porto',
+    caption: 'In mezzo alla rampa — trenta metri di lamiera',
+    stinger: 'sigillo',
+    metri: 0,
+    text: `Gaetano appoggia la sacca in terra per la seconda volta in dieci minuti.
 
 > Gaetano: *(e non lo dice all'acqua, lo dice a lei)* "Ha ragione su una cosa sola: che quello che resta è quello che sta scritto." *(la guarda)* "Allora scriviamolo noi."
 
@@ -8811,6 +9878,20 @@ const DIARY_FLAGS = [
   ['torcia_spenta',       'Sosta a dieci metri, minuto quarto: torce spente venti secondi, come si fa quando si vuole vedere il buio invece di guardarlo. A dieci metri, alle sei del mattino, il buio non e\' buio: e\' verde. E in quei venti secondi, in basso, a una profondita\' che non ho misurato perche\' non avevo la torcia, c\'era una cosa piu\' chiara del verde.'],
   ['d_valigie',           'Sacca fatta alle 07:40 di domenica 30, con calma, che c\'era tutto il tempo del mondo. Undici cose dentro, contate. Al giro dopo la sacca era di nuovo aperta sul letto con dentro nove cose, e le due che mancavano erano quelle che avevo messo per ultime. Non ho la spiegazione. Ho il numero.'],
 
+  ['i_terzo_ritorno',     'Il rumore di un ginocchio sul travertino, nel pozzo del panopticon, e\' tornato indietro TRE volte: una dal piano terra, una dal secondo ordine, e una dal terzo — che e\' il piano che quando hanno chiuso il carcere era gia\' vuoto da ventidue anni. Ciro, da sotto l\'arco: «quella terza non e\' eco».'],
+  ['i_impronta_vasca',    'Nella vasca asciutta del ninfeo di Villa Giulia, sotto un fico selvatico, dieci centimetri di terra fine: e sulla terra, accanto all\'impronta del palmo di Gaetano, un\'altra. Piu\' piccola, e piu\' profonda al centro — come lascia una mano che si appoggia e poi PREME. La terra fine, sotto un fico, non la muove il vento.'],
+  ['misura_solo_registrata', 'La regola che Gaetano si e\' dato dopo aver aspettato quaranta secondi una cosa e non averla sentita: «se ci metto quaranta secondi ad aspettare una cosa, alla fine me la sento da solo. Non e\' una misura, e\' una speranza al contrario.» Da allora sul Quaderno finisce solo quello che sta su una traccia registrata.'],
+  /* ---- SEI MISURE DEL 30 AGOSTO, dai tagli del 24 agosto 2026. Sei scelte nuove il cui
+     unico effetto era un flag: adesso stanno sul Quaderno, che e' il posto in cui questo
+     personaggio mette le cose che ha contato. ---- */
+  ['d_fagiolini_visti',   'I fagiolini nel catino della signora, contati uno per uno prima che risalga la scaletta: VENTIDUE. Giovedi\' erano ventidue. Non ventuno e non ventitre\': lo stesso numero, nello stesso catino, alla stessa ora, e la signora che non si accorge di niente.'],
+  ['d_vestiti',           'I vestiti piegati sulla sedia, con la piega delle maniche in DENTRO. Li piega cosi\' solo lei, ed e\' un modo che non insegna nessuno. E lei stanotte non li ha piegati: se n\'e\' accorta lei, guardandoli, e non ha detto niente per quattro secondi.'],
+  ['scalino_misurato',    'La misura chiesta alla signora dei fagiolini e ottenuta in centimetri, che e\' l\'unico modo per farsi dare una misura vera: «quaranta, quarantacinque». Quarantacinque centimetri di acqua in piu\' sullo scalino del molo, in una giornata senza vento e senza luna piena.'],
+  ['muta_guardata',       'La muta staccata dal gancio e guardata dentro: taglia, cuciture, e il nome scritto col pennarello indelebile sul collo. Il nome c\'e\'. La taglia e\' quella. Le cuciture sono quelle. Ed e\' appesa a un gancio in una stanza in cui nessuno e\' entrato stanotte.'],
+  ['colpetti_dati',       'Due colpetti sulla lamiera col manico del coltello: il segnale che usiamo da dieci anni, e vuol dire «ci sono». Dall\'altra parte della cima, a quaranta metri, ne sono tornati DUE. Il ritmo giusto, la pausa giusta. E la cima, sotto, era vuota.'],
+  ['assuntina_ripresa',   'Ripreso tenendo la macchina bassa, sull\'acqua: di lei resta il cappottino e la faccia no. Fatto di proposito, e la ragione e\' la sola che conta: una bambina di sei anni non si mette in un video, nemmeno se e\' morta nel 1943, nemmeno se e\' l\'unica prova che si ha.'],
+  ['cavo_tagliato',       'Il cavo dell\'idrofono, calato a ottantadue metri sopra il canale, e\' tornato su tagliato di sbieco a novanta gradi — non sfilacciato, non strappato: TAGLIATO, come con una tronchese buona. Un\'elica strappa. E a ottantadue metri non passa nessuno.'],
+  ['luce_da_sotto',       'La torcia e\' caduta in fondo alla cisterna murata e non si e\' spenta: gli ultimi tre metri si sono scesi con la luce che veniva DA SOTTO invece che davanti. Le ombre, cosi\', vanno all\'insu\'. Nessuno dei due l\'aveva mai visto, e nessuno dei due lo dice.'],
   ['i_coro_tre_piani',    'Il Coro, a dieci metri, ha detto una cosa che si puo\' controllare: «Quelli di paradiso non li sentite, quelli erano gia\' zitti. Purgatorio parla la notte. Inferno non ha mai smesso: non aveva finestre, e non ha imparato a stare fermo.» Non sono metafore. Sono i nomi dei tre piani, e li ha battuti a macchina un ufficio.'],
   ['sa_cengia',           'Trentuno nodi e la cima trova: a trentun metri c\'e\' una cengia, ed e\' il fianco di poppa di una nave appoggiata sul fianco. Lo scandaglio, sopra la fossa, da\' quarantasei, poi trentotto, poi cinquantadue: non sbaglia lo strumento, e\' che sotto la cengia non c\'e\' un fondo da misurare.'],
   ['lilia_ha_chiesto',    'Lilia, sul gommone, a Claudia, in faccia e senza pieta\': «Hai paura del profondo?» Nessuno gliel\'aveva mai chiesto cosi\'. E la risposta giusta, ha detto, e\' si\': il profondo E\' profondo. Quello che serve non e\' il coraggio — e\' ANNOIARSI.'],

@@ -259,7 +259,7 @@ Poi torna la voce da guida, tutta intera, come se qualcuno avesse premuto un tas
     sets: { sa_pietra_villa_giulia: true, peppe_guarda_terra: true },
     choices: [
       { text: '👁 Guardare la stanza. Bene', next: 'b2' },
-      { text: '🗣 Insistere: "Peppe, chiuse da chi?"', once: true, next: 'b1_insistere' },
+      { text: '🗣 Insistere: "Peppe, chiuse da chi?"', once: true, tag: 'Prova di CARISMA — CD 12 (si chiede a un ottantenne di dire una cosa che non dice da sessant\'anni)', check: { stat: 'CAR', dc: 12, success: 'b1_insistere', fail: 'b1_zitto' } },
     ],
   },
 
@@ -462,7 +462,7 @@ Ed è per questo che è la cosa più brutta che vedono oggi.
     sets: { sa_muro_scritte: true },
     choices: [
       { text: '✍️ Incidere una riga anche voi. Con il coltellino', once: true, requires: { item: 'coltello' }, next: 'b2_incidere' },
-      { text: '🎧 Salire di due metri e ascoltare in silenzio', next: 'b3' },
+      { text: '🎧 Salire di due metri e ascoltare in silenzio', tag: 'Prova di SAGGEZZA — CD 11 (sentire una cosa e sentirla GIUSTA sono due mestieri)', check: { stat: 'SAG', dc: 11, success: 'b3', fail: 'b2_niente' } },
       { text: '🚶 Uscire da questa stanza. Adesso', next: 'b4' },
     ],
   },
@@ -704,7 +704,7 @@ E dopo la undicesima, dall'altra parte del muro, a venti centimetri dal suo orec
     stinger: 'coro',
     sets: { sa_nuota_dietro: true },
     choices: [
-      { text: '🔨 Aprire quel muro. Adesso. Non domani', next: 'b4_breccia' },
+      { text: '🔨 Aprire quel muro. Adesso. Non domani', tag: 'Prova di FORZA — CD 12 (fallire vuol dire fare rumore)', check: { stat: 'FOR', dc: 12, success: 'b4_breccia', fail: 'b4_muro_duro', failDamage: 2 } },
       { text: '🎧 Mettere l\'idrofono nell\'acqua dell\'orto e sentire meglio', requires: { item: 'idrofono' }, once: true, next: 'b4_idrofono' },
       { text: '🚶 Andarsene. Villa Giulia, la pietra, il sole', next: 'b6' },
     ],
@@ -735,8 +735,8 @@ Il fico fa ombra. Bomber si gratta.
     gold: 1,
     sets: { sa_bambino_1956: true, i_ninna_sentita_possibile: true },
     choices: [
-      { text: '🎶 "Signora Rosa. Se la ricorda, la cosa che cantava?"', once: true, next: 'b4_canzone' },
-      { text: '🔨 Aprire il muro', next: 'b4_breccia' },
+      { text: '🎶 "Signora Rosa. Se la ricorda, la cosa che cantava?"', once: true, tag: 'Prova di SAGGEZZA — CD 11 (va chiesto nel modo in cui si chiede una cosa a una donna di ottantaquattro anni)', check: { stat: 'SAG', dc: 11, success: 'b4_canzone', fail: 'b4_domani', failDamage: 1 } },
+      { text: '🔨 Aprire il muro', tag: 'Prova di FORZA — CD 12', check: { stat: 'FOR', dc: 12, success: 'b4_breccia', fail: 'b4_muro_duro', failDamage: 2 } },
       { text: '🚶 Villa Giulia', next: 'b6' },
     ],
   },
@@ -840,7 +840,7 @@ E in mezzo all'acqua, a galla, c'è una cosa gialla di plastica che a duemila an
     stinger: 'sigillo',
     silenzio: true,
     choices: [
-      { text: '🪜 Scendere. Adesso, con la torcia e la corda', next: 'b8' },
+      { text: '🪜 Scendere. Adesso, con la torcia e la corda', tag: 'Prova di DESTREZZA — CD 12 (si scende su una corda in un buco di quarantasei centimetri)', check: { stat: 'DES', dc: 12, success: 'b8', fail: 'b4_scivolata', failDamage: 3 } },
       { text: '🔧 Non così. Prima attrezzarsi come si deve', next: 'b4_prepararsi' },
       { text: '🗿 Prima Villa Giulia: capire cosa c\'è sotto, prima di metterci la faccia', next: 'b6' },
     ],
@@ -1026,7 +1026,7 @@ E poi indica Santo Stefano, che sta là a due chilometri con l'aria di una cosa 
     sets: { visto_villa_giulia: true },
     choices: [
       { text: '🗿 Cercare la pietra con l\'iscrizione delle cisterne', next: 'b6_iscrizione' },
-      { text: '🏛 Scendere al ninfeo, dove c\'era l\'acqua', next: 'b6_ninfeo' },
+      { text: '🏛 Scendere al ninfeo, dove c\'era l\'acqua', tag: 'Prova di DESTREZZA — CD 10 (si scende dove non c\'è più una scala da duemila anni)', check: { stat: 'DES', dc: 10, success: 'b6_ninfeo', fail: 'b6_ginocchio', failDamage: 1 } },
       { text: '🚶 Basta sole. Tornare al muro dei Coraggio', requires: { flag: 'muro_aperto' }, next: 'b8' },
       { text: '🚶 Tornare in paese', next: 'b5' },
     ],
@@ -1189,7 +1189,7 @@ E in mezzo ai nomi, a un certo punto, dice: *Iulia*. E dopo *Iulia* fa una pausa
     silenzio: true,
     choices: [
       { text: '📢 Rispondere all\'appello. Dire "presente" al posto di Giulia', once: true, next: 'b6_presente' },
-      { text: '🔌 Tirare su l\'idrofono. Basta. Basta adesso', next: 'b7' },
+      { text: '🔌 Tirare su l\'idrofono. Basta. Basta adesso', tag: 'Prova di FORZA — CD 11', check: { stat: 'FOR', dc: 11, success: 'b7', fail: 'b6_cavo', failDamage: 1 } },
     ],
   },
 
@@ -1388,6 +1388,235 @@ Silenzio, e il rumore del gommone che batte piano contro la boa.
     choices: [
       { text: '🧱 Al muro dei Coraggio. Adesso c\'è più fretta di prima', next: 'b8' },
       { text: '📓 Prima scrivere sul Quaderno: data, ora, punto', next: 'b8', sets: { annotato_foto: true } },
+    ],
+  },
+
+  /* LE TRE PROVE DELL'ATTO B, e le loro tre sconfitte. Il gioco aveva SETTE prove di dado in
+     duecento scene: l'incertezza sta tutta nei minigiochi e nelle soglie di fiato, che va
+     bene, ma allora ogni azione fisica riusciva sempre — e un'azione che riesce sempre non
+     e' un'azione, e' una frase. Queste tre non bloccano niente: si arriva dove si doveva
+     arrivare comunque, e a costare e' il MODO. */
+  b4_muro_duro: {
+    location: 'cisterna',
+    caption: 'Il muro non cede al primo colpo',
+    stinger: 'fail',
+    text: `Il muro del 1957 è fatto con la malta di chi murava per sempre, e non si apre con la prima spallata.
+
+Ci vogliono quattro colpi di mazzetta sul cuneo, e ogni colpo, dentro un vano di pietra, fa un rumore che esce dal buco, sale per il pozzo, e va a finire da qualche parte.
+
+Al terzo colpo, nella cisterna, il rumore torna indietro. Non l'eco: il **quarto** colpo, prima che Gaetano lo dia.
+
+> Gaetano: *(con la mazzetta a mezz'aria)* "L'ho sentito prima di farlo."
+
+> Claudia: "Fallo."
+
+Lo fa. Il blocco cede e cade dentro, e sotto non fa il rumore di una pietra su una pietra: fa il rumore di una pietra sull'acqua.
+
+**(💪 TENUTA −2 per le mani. 🎵 Attenzione del Coro +1: quattro colpi in un pozzo di pietra si sentono, e stavolta li ha contati anche qualcun altro.)**`,
+    damage: 2,
+    attenzione: 1,
+    choices: [
+      { text: '🕳 Dentro. Il buco è aperto e non si richiude', next: 'b4_breccia' },
+    ],
+  },
+
+  b4_scivolata: {
+    location: 'cisterna',
+    caption: 'Quaranta centimetri di scivolata',
+    stinger: 'fail',
+    text: `La corda tiene. È la scarpa che non tiene: appoggio bagnato, quaranta centimetri di scivolata contro la pietra viva, e la spalla che prende tutto.
+
+Non è grave. È solo che per due secondi il peso sta tutto sulle mani, e in quei due secondi la **torcia** esce dalla tasca laterale, batte una volta sul muro e cade.
+
+Si sente arrivare in fondo. Si sente che non si spegne. E si sente che arriva in acqua, perché il fascio, da sotto, continua ad accendere il vano di una luce verde che viene dal basso.
+
+> Claudia: *(dieci metri sopra, con la corda in mano)* "Gaetano?"
+
+> Gaetano: "Sono a posto. La torcia è giù."
+
+> Claudia: "È accesa."
+
+> Gaetano: "Sì."
+
+> Claudia: "Da sotto."
+
+**(💪 TENUTA −3, 🫁 Fiato −1. La torcia non è persa: sta in fondo, accesa, e ci si arriva. Ma per gli ultimi tre metri si scende con la luce che viene da SOTTO invece che davanti, e le ombre vanno all'insù.)**`,
+    damage: 3,
+    goldLoss: 1,
+    sets: { luce_da_sotto: true },
+    choices: [
+      { text: '🔻 Gli ultimi tre metri, con le ombre all\'insù', next: 'b8' },
+    ],
+  },
+
+  b6_cavo: {
+    location: 'mare',
+    caption: 'Il cavo viene su leggero',
+    stinger: 'fail',
+    text: `Il cavo viene su, e viene su troppo facile.
+
+Gaetano lo tira a bracciate regolari, come si tira una cima, e a metà capisce dal peso che sotto non c'è più niente attaccato. Gli ultimi dodici metri arrivano da soli.
+
+L'estremità è netta. Non sfilacciata, non strappata: **tagliata**, di sbieco, come si taglia un cavo con una tronchese buona. E l'idrofono da centoventi euro, quello comprato su internet e calato a ottantadue metri sopra il canale, non c'è.
+
+> Claudia: "Un'elica."
+
+> Gaetano: *(che guarda il taglio contro il sole e non alza la voce)* "Un'elica strappa. Questo è tagliato in un colpo, a novanta gradi." *(arrotola il cavo)* "E a ottantadue metri non passa nessuno."
+
+**(💪 TENUTA −1. Oggetto perso: L'IDROFONO. Si può rifare — le parti ci sono, se le avete — ma quello che c'era attaccato a quel cavo lo ha tagliato una cosa che sa cos'è un cavo.)**`,
+    damage: 1,
+    sets: { cavo_tagliato: true },
+    /* `removeItem` il motore lo legge sulle SCELTE, non sulle scene: messo sulla scena era
+       un dato morto e l'idrofono restava in tasca dopo che il testo dice che non c'e' piu'.
+       Sta su tutte e due le uscite, perche' da qui si esce solo da una delle due. */
+    choices: [
+      { text: '🧵 Arrotolare il cavo e tenerlo. Il taglio è una prova', once: true, gold: 1, removeItem: 'idrofono', next: 'b7' },
+      { text: '🚤 A terra. Basta per oggi', removeItem: 'idrofono', next: 'b7' },
+    ],
+  },
+
+  /* LE CINQUE SCONFITTE DELL'ATTO B. Prima di oggi in questo gioco si tirava il dado sette
+     volte in duecento scene: l'incertezza stava tutta nei minigiochi e nelle soglie di
+     fiato — che va bene, e' il progetto — ma allora ogni azione fisica e ogni domanda
+     riuscivano SEMPRE, e una cosa che riesce sempre non e' un'azione: e' una frase.
+     Nessuna di queste cinque chiude un contenuto. Si arriva dove si doveva arrivare, e a
+     costare e' il MODO: due palmi sbucciati, mezz'ora, una torcia in fondo al pozzo, o una
+     domanda fatta in piazza a un'isola dove le cose non si chiedono in piazza. */
+  b2_niente: {
+    location: 'cisterna',
+    caption: 'Due metri più su, e niente',
+    stinger: 'fail',
+    text: `Due metri più su, appoggiato al muro con la testa girata, Gaetano sta fermo quaranta secondi e non sente niente.
+
+Niente di niente: l'aria della cisterna, il proprio sangue nelle orecchie, e da fuori una vespa.
+
+E la cosa che gli fa più male non è non aver sentito: è che si accorge di **volere** sentire. Che stava aspettando una cosa, e che uno che aspetta una cosa la trova sempre.
+
+> Gaetano: *(scendendo)* "Niente."
+
+> Claudia: "Sicuro?"
+
+> Gaetano: "No. E questo è il problema." *(si mette il telefono in tasca)* "Se ci metto quaranta secondi ad aspettare una cosa, alla fine me la sento da solo. Non è una misura, è una speranza al contrario."
+
+> Claudia: *(che lo guarda, e capisce che è la frase più onesta che gli abbia sentito dire in tre giorni)* "Allora la misuriamo con la macchina, non con le orecchie."
+
+**(🫁 Fiato +1: dubitare di sé, per uno come lui, è riposare. Nessun indizio da qui — ma da adesso il Quaderno registra solo quello che sta su una traccia registrata, e questa regola durerà tutta la vacanza. Meno di così non si può misurare.)**`,
+    gold: 1,
+    sets: { misura_solo_registrata: true },
+    choices: [
+      { text: '🎙 Rifarlo con la macchina. Registrando, e senza aspettare niente', next: 'b3' },
+    ],
+  },
+
+  b6_ginocchio: {
+    location: 'rovine',
+    caption: 'Dentro il ninfeo, per la via sbagliata',
+    stinger: 'fail',
+    text: `Al ninfeo si scende dove duemila anni fa c'era una scala e adesso c'è un salto di un metro e mezzo su tufo sbriciolato.
+
+Claudia lo fa bene. Gaetano lo fa con la sacca in mano invece che in spalla, appoggia su una lastra che sembra pietra e non è, e finisce dentro la vasca del ninfeo con un ginocchio e un palmo.
+
+Sul fondo della vasca — asciutta da secoli, con dentro un fico selvatico — c'è dieci centimetri di terra fine. E sulla terra fine il suo palmo lascia un'impronta perfetta.
+
+Accanto alla sua, a trenta centimetri, ce n'è un'altra. Più piccola. Più profonda al centro, come lascia una mano che si appoggia e poi **preme**.
+
+> Gaetano: "Claudia."
+
+> Claudia: *(che è già in ginocchio accanto, con la macchina in mano, e sta facendo la cosa che sa fare)* "Non la toccare. La fotografo prima."
+
+**(💪 TENUTA −1. 📸 Il Quaderno ha una fotografia in più: l'impronta di una mano nella terra della vasca, e non è di nessuno dei due. La terra fine, in una vasca coperta da un fico, non la muove il vento.)**`,
+    damage: 1,
+    gold: 1,
+    sets: { i_impronta_vasca: true },
+    choices: [
+      { text: '🏛 Dentro il ninfeo, dove c\'era l\'acqua', next: 'b6_ninfeo' },
+    ],
+  },
+
+  b1_zitto: {
+    location: 'paese',
+    caption: 'Peppe guarda il muretto',
+    stinger: 'fail',
+    text: `Peppe non si offende. È peggio: diventa gentile.
+
+> Peppe: "Signò, io ho ottant'anni e faccio il fabbro da quando ne avevo undici. Chiuse da chi... e chi lo sa. Il Comune, la Provincia, quelli dell'acqua." *(muove la mano come si scaccia una mosca lenta)* "Carte. Sempre carte."
+
+E poi si gira verso il muretto e comincia a raccontare della squadra di calcio dell'isola nel Settantasei, coi nomi, con le date, con la partita a Ponza, e non c'è modo umano di riportarlo indietro — perché non è scappato: è **entrato in un'altra stanza** e ha chiuso la porta con la spalla.
+
+Claudia coglie il momento in cui la mano di lui si ferma sul muretto. Un fotogramma solo, prima della squadra di calcio.
+
+> Claudia: *(dopo, per strada)* "Non è che non lo sa."
+
+> Gaetano: "No."
+
+> Claudia: "È che gliel'abbiamo chiesto in piazza." *(pausa)* "Certe cose si chiedono dentro."
+
+**(🫁 Fiato −1: mezz'ora e niente in mano. Il nome di chi ha murato le cisterne dovrà venire da un'altra parte — e la lezione, che vale per tutto il resto della vacanza, è che a quest'isola le cose non si chiedono in piazza.)**`,
+    goldLoss: 1,
+    sets: { non_in_piazza: true },
+    choices: [
+      { text: '🚶 Lasciarlo alla sua squadra del Settantasei, e ringraziare', next: 'b1_insistere' },
+    ],
+  },
+
+  b4_domani: {
+    location: 'paese',
+    caption: 'La signora Rosa mette su il caffè',
+    stinger: 'fail',
+    text: `La domanda esce male. Non sbagliata: **frontale**. E a una donna di ottantaquattro anni una domanda frontale è una porta aperta di colpo in una stanza dove si stava al buio da comodi.
+
+> Rosa: "Che cosa cantava chi?"
+
+> Gaetano: "La bambina. Quella che—"
+
+> Rosa: *(che si alza e va al fornello, dando le spalle, e mette su un caffè che nessuno ha chiesto)* "Qua non c'è nessuna bambina. Ci sta il muro dell'orto, e dietro il muro ci sta la terra di mio marito, buonanima."
+
+Il caffè ci mette sette minuti. Se li fanno tutti e sette, seduti, perché alzarsi adesso sarebbe la cosa peggiore.
+
+E al sesto minuto, con la moka che comincia a fare rumore, Rosa dice una frase alla finestra e non a loro:
+
+> Rosa: "Mia madre me la cantava. Ma non me la ricordo tutta, e quello che non mi ricordo non lo dico: che se lo dici sbagliato è peggio di niente."
+
+> Claudia: *(pianissimo)* "E se la sentisse?"
+
+Rosa non risponde. Ma non dice no.
+
+**(💪 TENUTA −1 e mezz'ora persa. La strofa non arriva adesso: arriva quando avrete una registrazione da farle sentire, perché lei quello che non ricorda non lo dice. È una regola sua, ed è più solida della vostra.)**`,
+    damage: 1,
+    sets: { rosa_la_sente: true },
+    choices: [
+      { text: '☕ Bere il caffè fino in fondo, e tornare con una registrazione', next: 'b4_canzone' },
+    ],
+  },
+
+  b12_thermos: {
+    location: 'bnb',
+    caption: 'Il thermos di acciaio, sul tavolo',
+    stinger: 'fail',
+    text: `Gaetano la fa nel modo in cui fa le domande difficili: pulita, corta, coi dati dentro. E in cucina, alle undici di sera, a una donna di sessant'anni, quel modo è una scortesia che lui non sa di fare.
+
+> Gaetano: "Ada, sua sorella era un sub?"
+
+Ada non si gira. Continua ad asciugare il bicchiere che ha in mano, e lo asciuga per undici secondi, che per un bicchiere è tantissimo.
+
+> Ada: "Mia sorella si chiamava Marisa."
+
+Poi appoggia il bicchiere, si asciuga le mani nel canovaccio e prende dal ripiano il thermos di acciaio — quello grande, quello del molo. Lo mette sul tavolo davanti a loro senza versare niente.
+
+> Ada: "Domani mattina alle sette è già pieno. Se scendete, portatevelo." *(e adesso li guarda, con la faccia di una che ha deciso una cosa che le costa)* "Quello che volete sapere non ve lo dico stasera, perché stasera dovete dormire e io devo dormire. Ve lo dico domani, con la luce."
+
+> Claudia: "Ada—"
+
+> Ada: "**Domani, con la luce.**"
+
+E spegne la luce della cucina, che è il modo in cui si chiude una conversazione in una casa dove non si alza la voce.
+
+**(💪 TENUTA −2 per come è uscita la domanda. Ma sul tavolo c'è il thermos, e domani alle sette è pieno: quello che Ada sa arriva comunque, e arriva di giorno. Il Quaderno registra il nome: MARISA.)**`,
+    damage: 2,
+    gold: 1,
+    sets: { ada_domani: true, sa_nome_marisa: true },
+    choices: [
+      { text: '🛏 A dormire. Domani, con la luce', next: 'b12_sorella' },
     ],
   },
 
@@ -1791,7 +2020,26 @@ Simone si siede sulla ghiaia. Ha l'entusiasmo di uno a cui nessuno chiede mai ni
 
 "Un botto. Tutta l'isola è tufo, il tufo fa cavità, e qui il mare ha lavorato ottantamila anni." Prende un sasso e disegna sulla ghiaia. "Ma la cosa strana di Ventotene la sanno tutti quelli del diving e nessuno la dice ai turisti."
 
-"Quale?"
+Simone smette di disegnare sulla ghiaia e si volta verso il braccio di mare che va a Santo Stefano, e per un secondo ha la faccia di uno piu' vecchio di ventidue anni.
+
+Il sasso gli resta in mano. Non sta facendo scena: sta decidendo se una cosa che si racconta la sera fra istruttori si racconta anche a due che hanno le maschere comprate in saldo.`,
+
+    choices: [
+      { text: '🗣 "Quale?" Subito, prima che gli passi la voglia di raccontarlo', next: 'b9_fossa' },
+      { text: '🥤 Offrirgli una granita al chiosco e farsi raccontare tutto con calma', once: true, heal: 2, gold: 1, next: 'b9_fossa' },
+      { text: '📓 Aprire il quaderno, mettergli davanti una penna: "Disegnamela."', once: true, gold: 1, next: 'b9_fossa' },
+    ],
+  },
+
+  /* LA FOSSA. Era la seconda meta' di b9_ragazzo, e qui dentro sta il dato su cui gira
+     tutto il gioco: i muri romani a quarantacinque metri, la fossa che nessuno ha misurato
+     perche' lassu' il computer da immersione da' numeri falsi, e i due sub del Novantasette.
+     Prima arrivava dopo un «Quale?» che il gioco si faceva da solo. */
+  b9_fossa: {
+    location: 'mare',
+    caption: 'Cala Rossano — i muri a quarantacinque metri, e la fossa',
+    stinger: 'pressione',
+    text: `"Quale?"
 
 "Che a nord, tra qua e Santo Stefano, sul fondo, a quarantacinque metri, ci stanno **dei muri**." Batte il sasso due volte. "Muri. Romani, dicono. Un porto sommerso, magari una peschiera. Ci si va con l'autorizzazione e ci vanno gli archeologi." Fa una faccia. "E c'è pure una cosa che sui forum si racconta e che al diving nessuno ti conferma, cioè che laggiù, oltre i muri, ci sta **una fossa**. Tipo un pozzo verticale che scende dal fondo del mare, dentro la roccia, e non si sa quanto va giù perché nessuno l'ha misurata."
 
@@ -1937,7 +2185,27 @@ Poi si ferma. Beve un po' d'acqua. E dice l'ultima, che non è per lui:
 
 "E la parte che mi fa incazzare di più è che **ha detto il mio nome e non il tuo**. Ha scelto me. E tu mi hai tolto ventisei ore in cui potevo prepararmi."
 
-Silenzio. Sotto la ringhiera, il gatto attraversa la luce di un lampione.
+Poi non dice piu' niente.
+
+Sul tavolo ci sono due bicchieri, mezzo litro di bianco che si e' scaldato e un piatto di lenticchie che nessuno dei due ha finito. Al tavolo accanto quattro romani discutono ancora dell'orario del traghetto.
+
+Claudia lo guarda e aspetta. Non e' una pausa: e' il suo turno.`,
+
+    choices: [
+      { text: '🫂 "Hai ragione su tutto." E non aggiungere niente, che stasera e\' l\'unica cosa intelligente', once: true, heal: 4, next: 'b10_trenta_secondi' },
+      { text: '🎧 Mettere il telefono sul tavolo, in mezzo alle lenticchie, e fargliela sentire adesso', once: true, gold: 2, next: 'b10_trenta_secondi' },
+      { text: '💬 Chiederle di Sperlonga. Di quella cosa a sei anni che non ha mai raccontato a nessuno', next: 'b10_trenta_secondi' },
+    ],
+  },
+
+  /* IL PATTO DEI TRENTA SECONDI. Era la coda di b10_litigio, che era anche un corridoio da
+     trecentosedici parole: quattro minuti di lei, e poi il gioco rispondeva per Gaetano.
+     Adesso quella risposta la sceglie chi gioca, e questa e' quello che succede comunque
+     dopo: il palmo girato in su sul tavolo, e una regola nuova che vale fino al 30. */
+  b10_trenta_secondi: {
+    location: 'porto',
+    caption: 'La Terrazza di Mimi\', ore 22:12 — il palmo girato in su',
+    text: `Silenzio. Sotto la ringhiera, il gatto attraversa la luce di un lampione.
 
 Gaetano dice: "Hai ragione su tutto." Non aggiunge niente, che è l'unica cosa intelligente che gli riesce stasera.
 
@@ -2185,7 +2453,27 @@ Non è una domanda. Claudia mette giù la tazza.
 
 "Perché il pavimento di sopra è di cotto e si sente tutto." Ada si sistema una ciocca. "E perché camminavi verso il mare, non verso il bagno."
 
-Si siede. Ada delle Parracine, che ha una struttura da gestire e le lenzuola da cambiare in tre camere, alle otto meno dieci di un sabato di agosto si siede al tavolo dei clienti, e questo su un'isola vuol dire una cosa sola.
+Claudia mette il pollice e l'indice sul bordo della tazza e non la solleva.
+
+Non si ricorda niente. Si ricorda di essersi svegliata alle sei coi piedi sporchi e di aver pensato *ho i piedi sporchi*, e nient'altro: finche' Ada non ha parlato, quel dettaglio non voleva dire niente.
+
+Ada resta in piedi col vassoio vuoto sotto il braccio. Aspetta una risposta, e le sta lasciando scegliere quale.`,
+
+    choices: [
+      { text: '🦶 La verita\': mi sono svegliata coi piedi sporchi e non me lo ricordo', once: true, heal: 3, next: 'b12_tre_dita' },
+      { text: '🗣 Chiederle cosa ha sentito esattamente, e a che ora', once: true, gold: 1, next: 'b12_tre_dita' },
+      { text: '☕ Non dire niente e versarle una tazza: quella terza sedia e\' libera', next: 'b12_tre_dita' },
+    ],
+  },
+
+  /* LE TRE DITA. Era la seconda meta' di b12. La prima e' Ada che dice a Claudia una cosa
+     che Claudia non sa di aver fatto; questa e' Ada che si siede al tavolo dei clienti —
+     che su un'isola vuol dire una cosa sola — e conta tre cose sulle dita. E questa meta'
+     sta sulla terrazza per davvero, quindi si prende il fondale della terrazza. */
+  b12_tre_dita: {
+    location: 'terrazza',
+    caption: 'La terrazza delle Parracine, ore 07:58 — tre cose contate sulle dita',
+    text: `Si siede. Ada delle Parracine, che ha una struttura da gestire e le lenzuola da cambiare in tre camere, alle otto meno dieci di un sabato di agosto si siede al tavolo dei clienti, e questo su un'isola vuol dire una cosa sola.
 
 "Adesso mi ascoltate," dice. "Poi fate quello che volete, che siete grandi e non siete figli miei." Conta sulle dita, come Gaetano. "Uno: quest'anno l'acqua è alta. Nel pozzo della chiesa, a giugno, stava tre metri sotto; adesso sta uno e mezzo. Questo succede tre-quattro volte in un secolo e in paese quelli vecchi lo chiamano **la corda**."
 
@@ -2207,7 +2495,7 @@ Ada guarda il thermos.
     sets: { sa_corda_spiegata: true, sa_sorella_ada: true, giorno_28_chiuso: true },
     stinger: 'heal',
     choices: [
-      { text: '🗣 "Ada. Sua sorella era un sub?"', once: true, next: 'b12_sorella' },
+      { text: '🗣 "Ada. Sua sorella era un sub?"', once: true, tag: 'Prova di CARISMA — CD 13 (è la domanda più difficile della vacanza, e si fa in cucina, in piedi)', check: { stat: 'CAR', dc: 13, success: 'b12_sorella', fail: 'b12_thermos', failDamage: 2 } },
       { text: '⛵ Il molo. Ciro aspetta alle nove', next: 'c0' },
     ],
   },
@@ -2225,7 +2513,28 @@ Nella foto ci sono due ragazze sul molo di Cala Rossano, con la maglietta della 
 
 "Lei ce li ha portati." Ada raccoglie una briciola dal tavolo con l'unghia. "Sono scesi in tre. Sono tornati in due. Marisa e uno dei francesi." Alza gli occhi. "E il francese, quando è tornato, ha detto che erano scesi in tre e risaliti in due, e Marisa ha detto che erano scesi in **due** e risaliti in due, e che il terzo non è mai esistito, e che il francese era in narcosi."
 
-Silenzio. La caffettiera fa il suo rumore.
+Ada non aggiunge niente. Tiene la cornice appoggiata contro la caffettiera, in piedi, e guarda le due ragazze sul molo come si guarda un orario dei treni.
+
+Fuori, sulla terrazza, il vento gira il tovagliolo di carta sul tavolo e non lo butta giu'.
+
+Tre meno due fa uno, e in questa cucina non c'e' nessuno che abbia voglia di dirlo ad alta voce.`,
+
+    choices: [
+      { text: '🧮 Dirlo ad alta voce, il conto: tre meno due. Le cose misurate fanno meno paura', once: true, gold: 1, next: 'b12_settimo_giorno' },
+      { text: '🤍 Non chiedere niente. Riempirle la tazza e aspettare che continui lei', once: true, heal: 4, next: 'b12_settimo_giorno' },
+      { text: '🗣 "Ada. E chi aveva ragione?"', next: 'b12_settimo_giorno' },
+    ],
+  },
+
+  /* IL SETTIMO GIORNO. Era la coda di b12_sorella, trecentottantasei parole di fila in
+     cucina. La prima meta' e' la fotografia di due sorelle sul molo nel Novantasette;
+     questa e' quello che e' successo dopo, e la regola che ne e' venuta fuori — quella che
+     il gioco vi chiedera' di tenere per tre giorni. La pieta' si guarda da sola. */
+  b12_settimo_giorno: {
+    location: 'bnb',
+    caption: 'Le Parracine, ore 08:12 — il settimo giorno',
+    stinger: 'coro',
+    text: `Silenzio. La caffettiera fa il suo rumore.
 
 "E chi aveva ragione?"
 
