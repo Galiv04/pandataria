@@ -1368,6 +1368,56 @@ scenarios.push(scenario(
 ));
 
 
+/* I DUE SCENARI DEL NASTRO. Vanno in coda e non in mezzo: i seed vengono da un contatore
+   progressivo, quindi uno scenario infilato a metà rinumera tutti quelli dopo e sposta le
+   partite altrui su altri percorsi. È già costato un finale, una volta. */
+scenarios.push(scenario(
+  'Il nastro bruciato: il premio che il motore aspettava da sempre',
+  ['gaetano', 'claudia'],
+  /* Con la mappa singola e non con `sequences`: le sequenze si consumano in ordine e
+     dopo un ritorno da checkpoint non c'e' piu' niente in coda, quindi la seconda volta
+     che si passa da c15 il nastro non si brucia. La mappa singola vale a ogni visita, che
+     e' come si esprime «questo giocatore, ogni volta che gli capita, lo brucia». */
+  {
+    c10_nastro: 'Togliere il pollice',
+    c10_pulito: 'Mettere comunque la cassetta',
+    c15: 'Il Geloso è nello zaino',
+    c15_nastro: 'La cucina di Ada',
+  },
+  {
+    verify: (r, expect) => {
+      const viste = r.log.scenes;
+      expect(viste.includes('c15_nastro'),
+        `la scena del nastro alle Parracine non e stata raggiunta: ultime ${viste.slice(-5).join(' > ')}`);
+      expect(viste.includes('c15_bruciato'), 'il nastro non e stato bruciato in cucina');
+      expect(r.log.flags.nastro_bruciato,
+        'nastro_bruciato non risulta impostato: e il flag che js/combat.js legge per togliere 6 PV al boss');
+      expect(r.log.ending, 'la partita non e arrivata a un finale');
+    },
+  },
+));
+
+scenarios.push(scenario(
+  'I tempi sul Quaderno, e poi il fornello',
+  ['gaetano', 'claudia'],
+  {
+    c10_nastro: 'Togliere il pollice',
+    c10_pulito: 'Mettere comunque la cassetta',
+    c15: 'Il Geloso è nello zaino',
+    c15_nastro: 'Le cuffie',
+    c15_tempi: 'Adesso bruciarlo',
+  },
+  {
+    verify: (r, expect) => {
+      expect(r.log.scenes.includes('c15_tempi'), 'la misura dell\'anticipo non e stata fatta');
+      expect(r.log.flags.i_nastro_stanza, 'la nota del Quaderno sull\'anticipo non risulta scritta');
+      expect(r.log.flags.nastro_bruciato, 'il nastro non risulta bruciato passando dai tempi');
+      expect(r.log.ending, 'la partita non e arrivata a un finale');
+    },
+  },
+));
+
+
 
 
 /* ==================== ESECUZIONE ==================== */

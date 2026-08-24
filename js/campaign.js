@@ -4743,7 +4743,7 @@ Il sole delle tre e mezza entra nel pozzo di sbieco e ci mette dentro una barra 
     gold: 1,
     sets: { nastro_risparmiato: true },
     choices: [
-      { text: '🎒 Mettere comunque la cassetta dentro il registratore. Senza premere niente', once: true, sets: { nastro_dentro: true } },
+      { text: '🎒 Mettere comunque la cassetta dentro il registratore. Senza premere niente, e portarselo su stasera', once: true, gold: 1, sets: { nastro_dentro: true } },
       { text: '🏃 Fuori dal muro prima delle cinque e un quarto', next: 'c12_corsa' },
       { text: '🚤 Alla barca. Basta. Oggi è stato abbastanza', next: 'c14_cena' },
     ],
@@ -4968,8 +4968,146 @@ Ed è, di gran lunga, la cosa più preoccupante che abbia fatto finora.
     recharge: true,
     sets: { giorno_29_chiuso: true },
     choices: [
+      { text: '📻 Il Geloso è nello zaino con la cassetta dentro. E qui la luce è accesa e c\'è gente in strada, come aveva detto lei', requires: { flag: 'nastro_dentro' }, once: true, next: 'c15_nastro' },
       { text: '🫂 Restare un minuto sulla terrazza prima di dormire, senza dire niente', once: true, gold: 1, heal: 4, next: 'd0' },
       { text: '☀️ Domenica 30 agosto: l\'ultimo giorno', next: 'd0' },
+    ],
+  },
+
+  /* IL NASTRO, ALLE PARRACINE — dove Claudia aveva detto che si potesse.
+     Nasce da due difetti veri, trovati il 24 agosto 2026 dallo strumento dei flag orfani.
+     Il primo: `nastro_dentro` era l'unico effetto di una scelta senza `next`, cioe' il
+     giocatore metteva la cassetta nel registratore e non succedeva niente, mai.
+     Il secondo e' peggio, ed e' nel motore: js/combat.js ha da sempre un effetto scritto
+     per `nastro_bruciato` — il boss parte con sei punti vita in meno, «quella voce non ha
+     piu' un posto dove tornare» — e NESSUNA SCENA DEL GIOCO impostava quel flag. Un premio
+     scritto, collaudato, e irraggiungibile: il motore prometteva una cosa che la storia
+     non concedeva. Adesso si arriva, e si arriva solo passando da qui.
+     La paura sta nel dato, non nell'aggettivo: un nastro del 1965 che contiene il rumore
+     della stanza in cui lo si sta ascoltando adesso. Le cicale di stanotte, il ventilatore
+     di Ada, il piatto coperto dall'altro piatto. Gaetano non lo commenta: lo cronometra. */
+  c15_nastro: {
+    location: 'bnb',
+    caption: 'Le Parracine, sotto la pergola — ore 00:41',
+    stinger: 'voce_amata',
+    attenzione: 1,
+    text: `Lo fanno sul tavolo di fuori, sotto la lampadina, col piatto coperto dall'altro piatto spostato di venti centimetri per fare posto.
+
+Claudia dice di sì col mento. Aveva ragione lei stamattina e ha ragione adesso: qui c'è la luce accesa, giù in strada c'è gente che ride davanti al bar, e dietro il muro Ada guarda la televisione col volume basso. Se c'è un posto sulla terra dove si può premere quel tasto, è questo.
+
+> Gaetano: "Trentasette secondi. Poi lo stacco."
+
+> Claudia: "Trentasette."
+
+Il Geloso fa il rumore che fa una macchina del 1962 quando il nastro parte: un tonfo, un fruscio, e dopo un secondo e mezzo la banda magnetica trova la testina.
+
+**00:04** — Una sedia su un pavimento di cemento. Un uomo che si schiarisce la gola.
+
+**00:09** — La voce. Napoletano di terraferma, cinquant'anni, la cadenza di uno abituato a dettare: *"...adesso è aperto e resta aperto. Io il turno l'ho finito alle sei."*
+
+**00:14** — Un rumore lungo, di ferro su ferro, e sotto — piano, come un motore in un'altra stanza — un ronzio.
+
+E qui Gaetano mette il dito sul cronometro e non lo toglie più.
+
+Perché quel ronzio è **un ventilatore a pale**. Ed è il ventilatore di Ada, quello dietro il muro, che gira a due metri e mezzo da questo tavolo, adesso.
+
+**00:19** — Le cicale. Non delle cicale: **queste** cicale, quelle che stanno cantando addosso alle loro spalle in questo momento, con lo stesso strappo ogni sette secondi che a Gaetano è entrato in testa da tre giorni e che ha smesso di sentire.
+
+**00:26** — Un piatto di ceramica appoggiato sopra un altro piatto di ceramica.
+
+**00:31** — Una voce di donna, vicinissima al microfono, che dice due parole con la cadenza esatta di Claudia:
+
+> *«Trentasette secondi.»*
+
+Gaetano stacca a **00:33**. Quattro secondi prima del previsto, e questa è l'unica bugia che dice in tutta la vacanza.
+
+Restano fermi. Il piatto sta dove lo hanno spostato. Il ventilatore di Ada gira. Le cicale fanno lo strappo ogni sette secondi. La lampadina sotto la pergola ha una falena.
+
+> Claudia: *(e non ha la voce che dovrebbe avere: ha una voce ferma, e fa più paura così)* "Gaetà. Quella roba non ha registrato il sessantacinque."
+
+> Gaetano: "No."
+
+> Claudia: "Ha registrato **stasera**."
+
+> Gaetano: *(e per una volta il numero non lo tranquillizza)* "Il nastro è del sessantadue, la cassetta è chiusa dal sessantacinque e la scatola stava in un cassetto a Ventotene. Non c'è nessun modo." *(mette il registratore giù, piano, e si pulisce la mano sui pantaloni come se l'avesse toccata)* "E l'ho sentito."
+
+**(⚠️ 🎵 Attenzione del Coro +1: gli avete dato ascolto in un posto dove si sente. 💪 TENUTA −2. Ma adesso sapete una cosa che nessun archivio poteva dirvi — quel nastro non è una registrazione del passato, è **un posto dove una voce sta**. E una voce che sta in un posto si può sfrattare.)**`,
+    damage: 2,
+    sets: { nastro_ascoltato_su: true },
+    choices: [
+      /* IL PREMIO CHE IL MOTORE ASPETTAVA DA SEMPRE: js/combat.js legge nastro_bruciato e
+         toglie sei punti vita al boss. Non era raggiungibile da nessuna parte. */
+      { text: '🔥 La cucina di Ada. La fiamma del fornello, il nastro tirato fuori dalla cassetta a mano, e restare a guardare finché non è tutto', once: true, damage: 1, sets: { nastro_bruciato: true }, next: 'c15_bruciato' },
+      { text: '🎧 Le cuffie, e riascoltare gli ultimi trenta secondi tre volte scrivendo i tempi esatti', once: true, gold: 2, sets: { i_nastro_stanza: true }, next: 'c15_tempi' },
+      { text: '📦 Rimetterlo nella scatola, la scatola nello zaino, e non parlarne fino a domani', once: true, heal: 2, next: 'd0' },
+    ],
+  },
+
+  c15_bruciato: {
+    location: 'bnb',
+    caption: 'La cucina di Ada — ore 00:58',
+    stinger: 'sigillo',
+    text: `Ada non fa domande. Questa è la cosa che di lei non si dimenticherà.
+
+Si alza dalla poltrona, va in cucina, accende il fornello grande e mette da parte la caffettiera per fare posto. Poi si appoggia allo stipite con le braccia incrociate e resta lì a guardare, perché è la sua cucina.
+
+Il nastro esce dalla cassetta a mano, girando il perno col mignolo, e viene fuori lungo — dieci, quindici metri di banda marrone che si arriccia sul pavimento come una cosa che non vuole. Gaetano lo dà alla fiamma a pezzi di un palmo per volta, e ogni pezzo fa una fiammata verde di due secondi e un odore che resterà nella cucina per tre giorni.
+
+A metà, quando dentro non ci sta più niente di registrabile, il ronzio del ventilatore di Ada — quello dietro il muro, quello che c'era anche sul nastro — **si ferma a metà giro**. L'interruttore è su ON. Le pale sono ferme.
+
+Nessuno dei tre dice niente. Ada guarda il ventilatore, guarda il fornello, e poi fa l'unica cosa da fare: apre la finestra della cucina, che è agosto.
+
+> Ada: "Mia sorella cantava a bocca chiusa. Come lei." *(indica Claudia col mento, senza guardarla)* "L'ho sentita, la prima notte, dal corridoio. E non v'ho detto niente perché non si dice."
+
+> Claudia: "Ada—"
+
+> Ada: "Il fornello lo spengo io." *(pausa)* "Voi domani mattina fate colazione alle otto e venti come sempre, e vi mangiate tutto."
+
+Quando il nastro è finito, il ventilatore riparte da solo, dalla metà di giro dove si era fermato.
+
+**(🔥 IL NASTRO NON ESISTE PIÙ. Quella voce non ha più un posto dove tornare: allo scontro finale la cosa che vi aspetta parte con **sei punti vita in meno**. 💪 TENUTA −1 per la mano, che si è bruciata due dita. 🫁 Fiato +3: Ada vi ha fatto sedere e vi ha dato l'acqua col limone. Il Quaderno registra l'unica prova distrutta di proposito in tutta la storia, e la ragione: non serviva sapere. Serviva togliergli la stanza.)**`,
+    damage: 1,
+    heal: 3,
+    gold: 2,
+    sets: { nastro_bruciato: true, ada_ha_visto: true },
+    choices: [
+      { text: '🫂 Restare in cucina con Ada finché non spegne lei', once: true, heal: 3, gold: 1, next: 'd0' },
+      { text: '☀️ Su, a dormire. Domenica 30 agosto è l\'ultimo giorno', next: 'd0' },
+    ],
+  },
+
+  c15_tempi: {
+    location: 'bnb',
+    caption: 'Sotto la pergola, con le cuffie — ore 01:20',
+    stinger: 'penna',
+    text: `Tre passaggi, cuffie chiuse, il cronometro del telefono in mano e il Quaderno aperto sul tavolo.
+
+Alla terza volta il numero c'è, e non è quello che si aspettava.
+
+Le cicale sul nastro fanno lo strappo ogni **sette secondi e due decimi**. Le cicale addosso alle loro spalle, contate a mano su due minuti, lo fanno ogni **sette secondi e due decimi**.
+
+Ma non sono in fase. Il nastro è **avanti di un secondo e quattro decimi**.
+
+> Gaetano: "Non è una copia di stasera."
+
+> Claudia: "E cos'è?"
+
+> Gaetano: *(e lo dice con la calma sbagliata, quella di uno che ha trovato la risposta e preferiva non trovarla)* "È stasera registrata un secondo e quattro decimi prima che succeda."
+
+Si toglie le cuffie e le appoggia sul tavolo, e per la prima volta in tre giorni non ha un'altra misura da fare.
+
+> Claudia: "Quindi lì dentro c'è una cosa che sente prima."
+
+> Gaetano: "Sì."
+
+> Claudia: *(e non è una battuta, e lui non ride)* "Benvenuta al club."
+
+**(📓 Il Quaderno ha il numero: un secondo e quattro decimi di anticipo, misurato tre volte. È la stessa misura dell'eco nella seconda cisterna, ed è la stessa cosa. 🫁 Fiato +1: avere un numero, per lui, è riposare.)**`,
+    gold: 1,
+    sets: { i_nastro_stanza: true, sa_anticipo: true },
+    choices: [
+      { text: '📻 Adesso bruciarlo. La cucina di Ada, il fornello grande', once: true, damage: 1, sets: { nastro_bruciato: true }, next: 'c15_bruciato' },
+      { text: '📦 Nella scatola, nello zaino, e domani si parte comunque', once: true, heal: 2, next: 'd0' },
     ],
   },
 };
@@ -8154,6 +8292,20 @@ const DIARY_FLAGS = [
   ['sosta_finita',        'La sosta di decompressione: sette minuti a dieci metri, con la superficie che si vede e la carena della barca la sopra, e non si puo salire. A tre minuti dalla fine la cima ha smesso di essere tesa — non si e allentata piano: ha smesso, come quando qualcuno dall\'altra parte lascia la presa. Sono rimasti appesi altri quarantun secondi a guardare in giu una corda che non faceva piu niente.'],
   ['mano_nella_stiva',     'A quarantacinque metri, nella stiva, qualcuno le ha preso la mano. Non stringeva: TENEVA, col pollice sopra le nocche. Cinque secondi, e poi due colpetti col pollice — il segnale che quei due usano da dieci anni sotto la doccia, in aereo, nelle sale d\'attesa: tutto bene, andiamo.'],
   ['mano_sbagliata',      'Il girato della stiva, guardato sulla banchina alle 17:22, alla luce e in due, come dice la regola dell\'occhio lungo. Al minuto 02:14 una mano entra nell\'inquadratura e le prende la mano. Due secondi prima, in alto a sinistra, c\'e l\'alone della torcia da casco: mille lumen, e l\'illuminamento cade col quadrato della distanza. Undici metri sopra di lei. Rifatto due volte: undici metri.'],
+  /* ---- LE MISURE CHE PRIMA NON ANDAVANO DA NESSUNA PARTE ----
+     Sette note scritte il 24 agosto 2026. Erano sette scelte che facevano una cosa sola:
+     impostare un flag che non leggeva nessuno. Cioe' il giocatore misurava, fotografava,
+     contava — e la misura non compariva in nessun posto. Il Quaderno e' il posto: e' una
+     schermata che il giocatore apre, ed e' anche il modo in cui questo personaggio pensa.
+     La regola della voce: Gaetano non spiega. Scrive il numero e tira le conseguenze. */
+  ['annotato_foto',       'La foto di Lilia, agosto di quattro anni fa, cartella «buone», la settantunesima: ora 15:40 nei metadati, punto a duecento metri a levante della boa gialla. Scritto PRIMA di guardarla, perche\' uno che guarda prima e scrive dopo si convince sempre di aver visto quello che cercava.'],
+  ['muro_misurato',       'Il muro della quarta cisterna: undici blocchi in altezza, sette in larghezza, quaranta centimetri di spessore, malta a calce e cocciopesto. Chi mura per tenere fuori l\'acqua fa venti centimetri. Quaranta li fa chi mura per tenere dentro qualcosa.'],
+  ['specchio_documentato','Ventidue foto al tavolino sotto il fico: treppiede, 1/60 a f4, luce delle 09:15. In tutte e ventidue il vestito a fiori piccoli e\' addosso a lei. Alle 09:15 quel vestito era piegato nella sacca — l\'ho tirato fuori io e l\'ho fotografato accanto al passaporto, per avere il riscontro. Due vestiti. Uno.'],
+  ['d_biglietto_intero',  'Il biglietto del 30 agosto, corsa 17:30, sta nella sacca INTERO: matrice e tagliando attaccati, la perforazione mai strappata. Alle 17:30 di ieri siamo saliti su quel traghetto. Un biglietto usato non torna intero. Non esiste nessun modo in cui un biglietto usato torna intero.'],
+  ['bnb_perquisito',      'Terzo giro, 07:10. Sei stanze alle Parracine, aperte tutte e sei. Nessuno. I letti fatti in tre, disfatti in due, e nel bagno della quattro l\'acqua del bicchiere e\' ancora in movimento. Il ventilatore ha le pale ferme a mezzo giro con l\'interruttore su ON: non e\' spento, e\' FERMO. Sono due cose diverse, e la seconda non e\' possibile.'],
+  ['torcia_spenta',       'Sosta a dieci metri, minuto quarto: torce spente venti secondi, come si fa quando si vuole vedere il buio invece di guardarlo. A dieci metri, alle sei del mattino, il buio non e\' buio: e\' verde. E in quei venti secondi, in basso, a una profondita\' che non ho misurato perche\' non avevo la torcia, c\'era una cosa piu\' chiara del verde.'],
+  ['d_valigie',           'Sacca fatta alle 07:40 di domenica 30, con calma, che c\'era tutto il tempo del mondo. Undici cose dentro, contate. Al giro dopo la sacca era di nuovo aperta sul letto con dentro nove cose, e le due che mancavano erano quelle che avevo messo per ultime. Non ho la spiegazione. Ho il numero.'],
+
   ['i_osso',              'Nel cimitero dei detenuti le fosse contate sono novantatré e i nomi novantadue. In quella in più non c\'è una divisa da carcerato: ci sono bottoni di ottone.'],
 
   /* --- la bambina che canta --- */

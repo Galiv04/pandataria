@@ -320,6 +320,15 @@ const Engine = (() => {
             G.lastCheckpoint = { sceneId: G.sceneId, flag: nuovo, snapshot: JSON.stringify({
               party: G.party, uses: G.uses, gold: G.gold, inventory: G.inventory,
               flags: G.flags, recipesDone: G.recipesDone, checkpointsDone: G.checkpointsDone,
+              /* SI RIAVVOLGE ANCHE QUELLO CHE E' STATO GIA' SCELTO. Senza queste due
+                 righe — che gli altri quattro giochi della serie hanno e questo no — il
+                 ripristino riporta indietro flag, oggetti e squadra ma NON le scelte
+                 `once: true` gia' premute: chi muore rigioca il pezzo senza le scelte che
+                 gli avevano dato le cose che ha appena perso, e certi contenuti spariscono
+                 per sempre senza dirlo. Trovato il 24 agosto 2026 collaudando il nastro
+                 bruciato: la scelta che toglie sei PV al boss veniva cancellata proprio
+                 dalla sconfitta che rendeva quei sei PV necessari. */
+              enteredScenes: G.enteredScenes, usedChoices: G.usedChoices,
             }) };
           } catch (e) {}
           for (const h of G.party) {
@@ -887,6 +896,8 @@ const Engine = (() => {
     G.party = s.party; G.uses = s.uses; G.gold = s.gold;
     G.inventory = s.inventory; G.flags = s.flags;
     G.recipesDone = s.recipesDone; G.checkpointsDone = s.checkpointsDone;
+    if (s.enteredScenes) G.enteredScenes = s.enteredScenes;
+    if (s.usedChoices) G.usedChoices = s.usedChoices;
     G.party.forEach(h => { h.hp = h.maxHp; h.down = false; h.preso = false; h.morto = false; h.veleno = false; });
     G.stats = G.stats || {}; G.stats.checkpointRitorni = (G.stats.checkpointRitorni || 0) + 1;
     G.flags.tornati_dal_checkpoint = true;   // le imprese leggono i flag, non le stats

@@ -221,6 +221,19 @@ const Combat = (() => {
       const boss = battle.enemies.find(e => e.boss && !e.dead);
       if (boss) { boss.hp = Math.max(1, boss.hp - 6); log(`🔥 Il nastro non esiste più. Quella voce non ha più un posto dove tornare: <b>-6 PV</b>.`, 'log-crit'); }
     }
+    /* IL SALE DELLA SUA STESSA ACQUA. `sale_pronto` lo imposta la scelta di d14_coro —
+       «rispondere di no col sale della sua stessa acqua in mano», che richiede la salamoia
+       — e fino al 24 agosto 2026 non lo leggeva nessuno: il giocatore rispondeva di no
+       tenendo in mano l'unica arma che a quella cosa fa male, e non cambiava niente.
+       E `acqua_raccolta` e' il barattolo riempito nella cisterna prima di uscire: senza
+       quello la salamoia e' sale di mare e acqua del rubinetto. */
+    if (G.flags.sale_pronto) {
+      G.party.forEach(h => { if (!h.morto) h._salePronto = true; });
+      log(`🧂 Avete detto no con il sale della sua stessa acqua in mano. Non e' una minaccia: e' un <b>promemoria</b>. La prima volta che questo turno vi colpisce, il colpo passa e non fa danno.`, 'log-heal');
+    }
+    if (G.flags.acqua_raccolta && G.inventory.includes('salamoia')) {
+      log(`🫙 La salamoia e' fatta con l'acqua di quella cisterna, raccolta col barattolo prima di uscire: e' la loro stessa acqua, concentrata. <b>+1d8</b> ogni volta che la usate.`, 'log-heal');
+    }
     // CIRO IN SQUADRA
     if (G.flags.ciro_in_squadra && !G.party.some(h => h.id === 'ciro' && !h.morto)) {
       log(`🛥 Da sopra, il motore della barca di Ciro gira al minimo. Non è qui, ma non se ne va: <b>+1 ai vostri tiri</b>, perché sapete che qualcuno vi aspetta.`, 'log-heal');
@@ -703,6 +716,7 @@ const Combat = (() => {
       for (const en of battle.enemies) {
         if (en.dead) continue;
         let d = Dice.rollDice(item.combat.dice[0], item.combat.dice[1]).total;
+        if (G.flags.acqua_raccolta && itemId === 'salamoia') d += Dice.rollDice(1, 8).total;
         if (item.combat.holy && en.undead) d *= 2;
         en.hp -= d;
         if (item.combat.distract && en.hp > 0) en.distracted = true;
@@ -716,6 +730,7 @@ const Combat = (() => {
     }
     const e = battle.enemies[tIdx];
     let dmg = Dice.rollDice(item.combat.dice[0], item.combat.dice[1]).total;
+    if (G.flags.acqua_raccolta && itemId === 'salamoia') dmg += Dice.rollDice(1, 8).total;
     const doubled = item.combat.holy && e.undead;
     if (doubled) dmg *= 2;
     e.hp -= dmg;
@@ -797,7 +812,6 @@ const Combat = (() => {
 
     let atkBonus = e.attack.bonus;
     if (G.inventory.includes('ombrellone_gaeta')) atkBonus -= 1;
-    if (battle.isBoss && G.flags.eleinad_vacilla && battle.round <= 2) atkBonus -= 1;
     if (G.difficulty !== 'facile' && e.special === 'mirror') atkBonus = Math.max(atkBonus, (h.attack.bonus || 0) + 2);
     const desperate = G.difficulty === 'incubo' && e.hp <= Math.floor(e.maxHp * 0.25);
     if (desperate) atkBonus += 3;
@@ -819,6 +833,15 @@ const Combat = (() => {
       // riduzioni
       if (h.rageRounds > 0) dmg = Math.max(1, dmg - 2);
       if (battle.tauntHeroIdx === tIdx) dmg = Math.max(1, Math.floor(dmg / 2));
+      /* IL SALE DELLA SUA STESSA ACQUA: il primo colpo su ognuno passa e non fa danno.
+         La riga di log all'inizio dello scontro lo promette, e una promessa nel log che il
+         codice non mantiene e' la bugia peggiore che questo progetto possa dire. */
+      if (h._salePronto) {
+        h._salePronto = false;
+        log(`🧂 ${e.name} colpisce ${h.name} — e si tira indietro a mezzo colpo, come chi tocca il sale. <b>Nessun danno</b>.`, 'log-heal');
+        if (h._x != null) floatText(h._x + h._size / 2, h._y, 'SALE', 'float-heal');
+        render(); setTimeout(nextTurn, 850); return;
+      }
       h.hp -= dmg;
       log(`${crit ? '💥 <b>CRITICO!</b> ' : ''}${desperate ? '🔥 ' : ''}🗡 ${e.name} colpisce ${h.name} con ${e.attack.name}: <b>${dmg} danni</b>${desperate ? ' (FURIA DISPERATA!)' : ''}.`, crit ? 'log-crit' : 'log-hit');
       if (typeof Sound !== 'undefined') Sound.play('hit');

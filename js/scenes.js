@@ -3606,8 +3606,14 @@ const Scenes = (() => {
       const r = rng(seedOf('scauri'));
       const horiz = Math.round(H * 0.30);        // l'orizzonte, alto: il mare fa da fondo
       const riva = Math.round(H * 0.50);         // la battigia
-      const muro = Math.round(H * 0.62);         // il muretto del lungomare
-      const asfalto = Math.round(H * 0.70);      // e la strada, dove sta la macchina
+      /* Le quote di sotto non sono scelte a occhio: sono le distanze. Con l'occhio a
+         1,86 m e la focale a 2560 px, y = orizzonte + focale × altezza / distanza. Il
+         cordolo del marciapiede sta a 22 metri (y=307), il piede del muretto a 26
+         (y=276): e' per questo che le ruote davanti della macchina, che sono a 23,7
+         metri, possono STARE sul marciapiede. Con le fasce messe a occhio stavano a una
+         distanza dove il marciapiede non c'era ancora, e la macchina galleggiava. */
+      const muro = Math.round(H * 0.695);        // il muretto del lungomare
+      const asfalto = Math.round(H * 0.766);     // il suo piede, a ventisei metri
 
       /* IL CIELO dell'alba: il sole è sorto da venti minuti ma sta dietro le case,
          quindi il cielo è già chiaro e la luce viene da dietro l'osservatore. */
@@ -3673,7 +3679,7 @@ const Scenes = (() => {
          una riga vera (due pixel, non uno) e la sabbia bagnata parte da un marrone
          chiaro: fra acqua e sabbia c'e' un passaggio, non un taglio. */
       const rivaA = dx => riva + 4 - Math.round((dx / W) * 6);
-      ctx.fillStyle = '#6b6055'; ctx.fillRect(0, riva - 3, W, muro - riva + 5);
+      ctx.fillStyle = '#3e352d'; ctx.fillRect(0, riva - 3, W, muro - riva + 5);
       for (let dx = 0; dx < W; dx += 2) {
         const y0 = rivaA(dx) + Math.round(Math.sin(dx * 0.035) * 1.4);
         for (let y = riva - 3; y < y0; y++) {          // l'acqua bassa, che si schiarisce
@@ -3684,7 +3690,7 @@ const Scenes = (() => {
         ctx.fillStyle = 'rgba(248,252,255,.42)'; ctx.fillRect(dx, y0, 2, 2);
         const alt = muro - y0;
         for (let y = 2; y < alt; y++) {
-          ctx.fillStyle = mix('#8a7b66', '#b5a488', Math.pow((y - 2) / (alt - 2), 0.85));
+          ctx.fillStyle = mix('#463c33', '#6f5f4d', Math.pow((y - 2) / (alt - 2), 0.85));
           ctx.fillRect(dx, y0 + y, 2, 1);
         }
         if (r() > 0.78) {
@@ -3705,10 +3711,26 @@ const Scenes = (() => {
          dalla strada. Basso, in ombra — a quest'ora il sole non lo prende. */
       muretto(ctx, 0, muro, W, asfalto - muro, '#8f8672', r);
       ctx.fillStyle = 'rgba(255,232,190,.12)'; ctx.fillRect(0, muro, W, 2);
-      ctx.fillStyle = '#4e4a46'; ctx.fillRect(0, asfalto, W, H - asfalto);
+      /* IL MARCIAPIEDE, e il CORDOLO. Non e' decorazione: il testo dice «due ruote sul
+         marciapiede», e finche' il marciapiede non c'era quel dettaglio non si poteva
+         disegnare. Lastre di cemento coi giunti, il cordolo di pietra piu' chiaro col
+         filo di sopra in luce, e sotto l'asfalto. Tre fasce orizzontali di valore
+         diverso: e' quello che fa leggere il gradino. */
+      const marcio = Math.round(H * 0.853), cordolo = Math.round(H * 0.878);
+      ctx.fillStyle = '#6d6a63'; ctx.fillRect(0, asfalto, W, marcio - asfalto);
+      for (let y = asfalto; y < marcio; y++) {
+        ctx.fillStyle = mix('#605d57', '#7b7871', (y - asfalto) / (marcio - asfalto));
+        ctx.fillRect(0, y, W, 1);
+      }
+      ctx.fillStyle = 'rgba(40,38,34,.28)';
+      for (let x = 12; x < W; x += 96) ctx.fillRect(x, asfalto, 2, marcio - asfalto);
+      ctx.fillStyle = '#8b8779'; ctx.fillRect(0, marcio, W, cordolo - marcio);
+      ctx.fillStyle = 'rgba(255,240,206,.26)'; ctx.fillRect(0, marcio, W, 2);
+      ctx.fillStyle = '#2f2c29'; ctx.fillRect(0, cordolo - 2, W, 3);
+      ctx.fillStyle = '#4e4a46'; ctx.fillRect(0, cordolo, W, H - cordolo);
       for (let i = 0; i < 260; i++) {
         ctx.fillStyle = `rgba(${88 + r() * 30 | 0},${84 + r() * 26 | 0},${80 + r() * 24 | 0},.30)`;
-        ctx.fillRect(Math.round(r() * W), asfalto + 2 + Math.round(r() * (H - asfalto - 4)), 2, 2);
+        ctx.fillRect(Math.round(r() * W), cordolo + 2 + Math.round(r() * (H - cordolo - 4)), 2, 2);
       }
       ctx.fillStyle = 'rgba(255,248,224,.16)';
       for (let x = 0; x < W; x += 78) ctx.fillRect(x, H - 9, 40, 3);   // la riga tratteggiata
@@ -3725,253 +3747,442 @@ const Scenes = (() => {
          perché a quest'ora i lampioni del lungomare non li ha spenti nessuno. */
       {
         const lx = Math.round(W * 0.905);
-        ctx.fillStyle = 'rgba(20,18,16,.30)'; pixelEllipse(ctx, lx + 4, asfalto + 8, 16, 4, 3);
-        ctx.fillStyle = '#5e6266'; ctx.fillRect(lx, 0, 9, asfalto + 6);
-        ctx.fillStyle = '#767b80'; ctx.fillRect(lx, 0, 3, asfalto + 6);
-        ctx.fillStyle = '#4a4e52'; ctx.fillRect(lx - 5, asfalto - 2, 19, 8);   // il plinto
+        ctx.fillStyle = 'rgba(20,18,16,.30)'; pixelEllipse(ctx, lx + 4, marcio - 3, 17, 4, 3);
+        ctx.fillStyle = '#5e6266'; ctx.fillRect(lx, 0, 9, marcio - 4);
+        ctx.fillStyle = '#767b80'; ctx.fillRect(lx, 0, 3, marcio - 4);
+        ctx.fillStyle = '#4a4e52'; ctx.fillRect(lx - 5, marcio - 12, 19, 9);   // il plinto, sul marciapiede
         ctx.fillStyle = '#5e6266'; ctx.fillRect(lx - 26, 22, 30, 7);           // il braccio
         ctx.fillStyle = '#3a3e42'; ctx.fillRect(lx - 40, 26, 20, 9);           // l'armatura
         ctx.fillStyle = '#ffe9a8'; ctx.fillRect(lx - 38, 35, 16, 4);           // la luce
         glow(ctx, lx - 30, 39, 13, 9, '255,226,150');
       }
 
-      /* LA MACCHINA, il soggetto. Di PROFILO, che in pixel art è la vista che si
-         riconosce sempre — un tre quarti a questa dimensione diventa una macchia — con
-         il muso a sinistra e il PORTELLONE ALZATO a destra, che è la sagoma che dice
-         «si sta caricando» senza bisogno di spiegarlo. Station wagon, 420 px per 4,2
-         metri veri: cento pixel il metro, ed è la misura con cui è disegnato tutto il
-         resto del quadro. */
+      /* LA MACCHINA, il soggetto — QUINTA STESURA, e la prima in TRE QUARTI DA DIETRO.
+         La quarta era di profilo. Di profilo era giusta come automobile e sbagliata come
+         scena: «il bagaglio della macchina, il baule aperto, non si capisce bene». Non
+         era un difetto di rifinitura, era la GEOMETRIA — e le rifiniture su una geometria
+         sbagliata sono soldi buttati. Di fianco, il vano di carico e' una fessura di
+         74×31 px e quello che ci sta dentro sono oggetti da 12 a 17 px, cioe' sotto la
+         soglia che questo progetto si e' dato da se': sotto i sessanta pixel un oggetto
+         non dice cosa e', dice solo che c'e'. E un portellone alzato, di fianco, lo si
+         vede DI TAGLIO: quello che contiene sta dietro la lamiera per definizione.
+         Girata di tre quarti il retro guarda l'obiettivo, e i numeri cambiano di categoria:
+         il vano diventa 142×94, il borsone dentro 54, le pinne in piedi 64, il portellone
+         alzato 228 di larghezza. La prospettiva e' calcolata e non stimata — orizzonte a
+         y=108, il retro a dieci metri, il muso a quattordici — e viene tutta da una
+         costante sola: le rette del 3D restano rette sullo schermo, quindi tetto e suolo
+         si interpolano lineari fra il piano vicino e quello lontano, e la macchina
+         rimpicciolisce E SALE verso l'orizzonte andando avanti. E' la cosa che nessuna
+         stima a occhio azzecca, ed e' la ragione per cui i tre quarti a mano vengono male.
+         Le due ruote davanti stanno sul marciapiede, come dice il testo: il muso e'
+         alzato di tredici pixel e la macchina beccheggia attorno all'asse posteriore. */
       {
-        const cx = Math.round(W * 0.235), lung = 420, terra = H - 16;
-        const x0 = cx - (lung >> 1);
-        const tetto = terra - 118, cofano = terra - 74, sotto = terra - 26;
-
-        ctx.fillStyle = 'rgba(10,10,14,.40)';
-        pixelEllipse(ctx, cx + 6, terra + 4, (lung >> 1) - 6, 9, 4);
-
-        /* IL PORTELLONE ALZATO. Prima era un pannello rettangolare in alto a destra,
-           staccato dal tetto: sullo schermo un cartello stradale appoggiato sulla
-           macchina. Un portellone e' INCERNIERATO al bordo del tetto e sta INCLINATO
-           indietro, e la cerniera si deve vedere: e' quella che dice che appartiene
-           alla macchina. Disegnato a colonne, ognuna un pixel piu' su della
-           precedente, cosi' l'inclinazione c'e' per davvero. */
-        {
-          const cerX = x0 + lung - 82, larg = 80, altP = 46, alza = 22;
-          for (let k = 0; k < larg; k++) {
-            const t = k / (larg - 1);
-            const cima = tetto - Math.round(t * alza) - altP + 34;
-            ctx.fillStyle = '#22303c';
-            ctx.fillRect(cerX + k, cima, 1, altP);
-            if (k > 9 && k < larg - 11) {
-              ctx.fillStyle = '#5b7488';                      // il lunotto, scuro: e' controluce
-              ctx.fillRect(cerX + k, cima + 8, 1, altP - 24);
-            }
-            ctx.fillStyle = '#33465a';                        // il bordo superiore, in luce
-            ctx.fillRect(cerX + k, cima, 1, 4);
-          }
-          ctx.fillStyle = '#1a242e';                          // la cerniera, sul tetto
-          ctx.fillRect(cerX - 2, tetto - 2, 16, 7);
-        }
-
-        /* LA SAGOMA, per colonne. Prima era fatta di rettangoli sovrapposti e il muso
-           era una parete verticale: sullo schermo un furgone. Un'automobile la si
-           riconosce da tre curve — il cofano che scende davanti, il parabrezza
-           inclinato, e il montante di coda — e da due passaruota. Per colonne, con il
-           profilo calcolato x per x, si ottengono tutte e cinque senza trigonometria. */
-        const cofX = x0 + 96, parX = x0 + 150, codaX = x0 + lung - 78;
-        const cima = x => {
-          if (x < cofX) {                                  // il cofano, che scende avanti
-            const t = (cofX - x) / (cofX - x0);
-            return cofano + Math.round(Math.pow(t, 1.5) * 16);
-          }
-          if (x < parX) {                                  // il parabrezza, inclinato
-            const t = (x - cofX) / (parX - cofX);
-            return cofano - Math.round(Math.pow(t, 0.85) * (cofano - tetto));
-          }
-          if (x < codaX) return tetto;                     // il tetto, piatto
-          const t = (x - codaX) / (x0 + lung - codaX);      // il montante di coda
-          return tetto + Math.round(Math.pow(t, 2.2) * 10);
+        /* LA PROSPETTIVA VIENE DA TRE NUMERI, E DA NIENT'ALTRO: focale, altezza
+           dell'occhio, azimut. Tutte le altre misure di questa macchina si ricavano, e
+           per questo tornano fra loro. Le due stesure prima non lo facevano, e ognuna
+           aveva un errore che sembrava di disegno e invece era di aritmetica:
+             la prima aveva il retro a larghezza piena (1,80 m × 100 px/m = 180 px, cioe'
+             il retro PARALLELO al piano dell'immagine) e insieme una fiancata lunga 270
+             px. Se il retro ci guarda in pieno la fiancata non si vede; se la fiancata si
+             vede il retro e' scorciato. Due misure che si contraddicono: sullo schermo
+             viene un furgone, e nessun ritocco lo raddrizza.
+             la seconda teneva 100 px/m con la macchina appoggiata a y=346. Ma la riga di
+             terra dice da sola dove sta l'occhio: y_terra − orizzonte = (px/m) × altezza
+             dell'occhio. Con 238 px e 100 px/m l'occhio stava a DUE METRI E QUARANTA, e
+             una macchina guardata da due metri e quaranta e' una macchina piatta.
+           Qui l'altezza dell'occhio e' 1,86 m — uno in piedi sul marciapiede, che sta
+           quindici centimetri sopra l'asfalto — e la scala esce da lei: 128 px/m sul piano
+           vicino. La macchina viene 454 px per 192, cioe' quasi metа' inquadratura, ed e'
+           giusto che sia cosi': un fondale ha UN soggetto e lo deve avere grande. */
+        const OCC = 1.86;                                    // l'occhio, sul marciapiede
+        const FOC = 2560;                                    // la focale, in pixel
+        const AZ = 32 * Math.PI / 180;                       // l'azimut: da dietro, a sbieco
+        const COS = Math.cos(AZ), SEN = Math.sin(AZ);
+        const dR = 20.0;                                     // il retro, a venti metri
+        const dRR = dR + 1.80 * SEN;                         // il suo spigolo lontano
+        const dF = dR + 4.40 * COS;                          // il muso
+        const suoloD = d => Math.round(horiz + FOC * OCC / d);
+        const pxm = d => FOC / d;
+        const gN = suoloD(dR), gR = suoloD(dRR), gF = suoloD(dF);
+        const tN = gN - Math.round(1.50 * pxm(dR));
+        const tR = gR - Math.round(1.50 * pxm(dRR));
+        const tF = gF - Math.round(1.50 * pxm(dF));
+        const xrR = Math.round(W * 0.729);
+        const xrL = xrR - Math.round(1.80 * COS * FOC / ((dR + dRR) / 2));
+        const xsF = xrL - Math.round(4.40 * SEN * FOC / ((dR + dF) / 2));
+        /* Le quote di un'automobile, in frazione dell'altezza totale. Sono misure vere e
+           non stime, ed e' l'unico modo perche' restino giuste su tutti e tre i piani:
+             brancardo 0,32 m  → 0,213     mozzo      0,33 m → 0,220
+             cintura   0,98 m  → 0,653     cofano     0,92 m → 0,613
+           La cintura al 65% vuol dire vetro per il 35% dell'altezza: la lamiera e' la
+           parte grossa. Alla prima prova l'avevo messa al 42%, cioe' vetro per il 58%, e
+           sullo schermo era un pullmino di linea. */
+        /* IL BECCHEGGIO: ventisei pixel di muso alzato, che sono i quindici centimetri
+           di cordolo visti a ventiquattro metri. La macchina non e' parallela al
+           marciapiede — «parcheggiata male come si parcheggia quando si parte per
+           quattro giorni: due ruote sul marciapiede» — e questo risolve anche la
+           geometria del fondo: il cordolo corre parallelo al piano dell'immagine, la
+           macchina sta di sbieco a trentadue gradi, e il muso e' sopra il cordolo. */
+        const bec = t => Math.round(Math.max(0, (0.78 - t) / 0.78) * 26);
+        const suoloL = t => Math.round(gF + t * (gN - gF)) - bec(t);
+        const tettoL = t => Math.round(tF + t * (tN - tF)) - bec(t);
+        const altL = t => suoloL(t) - tettoL(t);
+        const cimaL = t => {
+          const su = suoloL(t), te = tettoL(t), cof = su - Math.round(altL(t) * 0.613);
+          if (t >= 0.36) return te;                                          // il tetto
+          if (t >= 0.22) { const u = (t - 0.22) / 0.14; return Math.round(cof - Math.pow(u, 0.8) * (cof - te)); }
+          return cof + Math.round((0.22 - t) / 0.22 * altL(t) * 0.07);       // il cofano
         };
-        /* LA LAMIERA IN TRE FASCE. Prima era un blu piatto con un filo chiaro sopra, e
-           una lamiera piatta non legge come metallo: legge come cartone. La convenzione
-           dei veicoli in pixel art (verificata sui tutorial, non inventata) è sempre la
-           stessa e sono quattro righe di codice — fascia alta più chiara (il cielo ci si
-           riflette), fascia media il colore base, fascia bassa più scura (ci si riflette
-           l'asfalto), e sopra tutto il FILO DI CINTURA: un pixel chiaro dove la portiera
-           incontra il vetro. È quel pixel che fa la macchina. */
-        for (let x = 0; x < lung; x++) {
-          const xx = x0 + x, cy = cima(xx);
-          const cint = Math.max(cy, cofano);            // la linea di cintura
-          for (let y = cy; y < sotto; y++) {
-            const alto = y < cint;
-            const t = (y - cy) / Math.max(1, sotto - cy);
-            ctx.fillStyle = alto ? '#33424f'
-                          : t > 0.78 ? '#1e2831'
-                          : mix('#2f3d49', '#25313b', (t - 0.4) / 0.5);
-            ctx.fillRect(xx, y, 1, 1);
-          }
-          ctx.fillStyle = '#43566a'; ctx.fillRect(xx, cy, 1, 2);          // il bordo alto in luce
-          ctx.fillStyle = '#5d7488'; ctx.fillRect(xx, cint - 1, 1, 1);    // IL FILO DI CINTURA
-          ctx.fillStyle = '#141b22'; ctx.fillRect(xx, sotto - 5, 1, 5);   // il brancardo, in ombra
-        }
-        /* I VETRI, quattro luci separate come su una station wagon vera: parabrezza,
-           porta davanti, porta dietro, e il quarto di coda. Prima erano una banda unica
-           con due montanti sottili, e una banda unica di vetro e' un monovolume. */
+        const sottoL = t => suoloL(t) - Math.round(altL(t) * 0.213);
+        const cintL = t => suoloL(t) - Math.round(altL(t) * 0.653);
+        const suoloR = x => Math.round(gN + (x - xrL) / (xrR - xrL) * (gR - gN));
+        const tettoR = x => Math.round(tN + (x - xrL) / (xrR - xrL) * (tR - tN));
+        const altR = x => suoloR(x) - tettoR(x);
+
+        /* DUE OMBRE. Una larga e morbida sotto tutta la macchina, e una nera e stretta
+           attaccata alle gomme: senza la seconda una macchina galleggia sempre. */
+        ctx.fillStyle = 'rgba(10,12,18,.26)';
+        pixelEllipse(ctx, Math.round((xsF + xrR) / 2), gN - 6, Math.round((xrR - xsF) / 2) + 14, 17, 4);
+        ctx.fillStyle = 'rgba(6,8,12,.42)';
+        pixelEllipse(ctx, Math.round((xrL + xrR) / 2), gN + 2, Math.round((xrR - xrL) / 2), 8, 4);
+        /* La gomma dell'altro fianco: se ne vede uno spicchio sotto il paraurti, e basta.
+           E' un'ellisse come le altre, e il suo centro sta un raggio SOPRA il suo
+           appoggio: alla prima prova stava otto pixel sotto, e sullo schermo era una
+           ruota di scorta appesa al paraurti. */
         {
-          /* Le tre luci laterali si spartiscono lo spazio che c'è: prima le avevo messe
-             a misura fissa e la quarta veniva larga OTTO pixel, quindi la coda restava
-             un blocco cieco. Si calcolano. */
-          const daX = parX + 12, aX = codaX - 6, mont = 8;
-          const larg = Math.max(18, Math.round((aX - daX - mont * 2) / 3));
-          const luci = [[cofX + 4, parX - 2],
-                        [daX, daX + larg],
-                        [daX + larg + mont, daX + larg * 2 + mont],
-                        [daX + larg * 2 + mont * 2, aX]];
-          for (const [a, b] of luci) {
-            for (let x = a; x < b; x++) {
-              const su = cima(x) + 6, giu = cofano - 7;
-              if (giu <= su) continue;
-              for (let y = su; y < giu; y++) {
-                const t = (y - su) / (giu - su);
-                ctx.fillStyle = mix('#9fb8c8', '#5f7d92', Math.pow(t, 0.8));
-                ctx.fillRect(x, y, 1, 1);
-              }
-              ctx.fillStyle = 'rgba(255,248,224,.26)'; ctx.fillRect(x, su, 1, 2);
+          const ry = Math.round(0.33 * pxm(dRR));
+          ctx.fillStyle = '#0d1218';
+          pixelEllipse(ctx, xrR - Math.round((xrR - xrL) * 0.22), gR - ry, Math.round(ry * SEN) + 3, ry, 3);
+        }
+
+        /* LA FIANCATA. Lamiera in tre fasce — alta piu' chiara che ci si riflette il
+           cielo, media il colore base, bassa piu' scura che ci si riflette l'asfalto — e
+           sopra tutto il filo di cintura, il pixel chiaro dove la portiera incontra il
+           vetro. E' quel pixel che fa la macchina.
+           E il MUSO SI ARROTONDA negli ultimi quattordici pixel: senza, la fiancata
+           finiva in una parete verticale di ottantacinque pixel, e da dietro, di sbieco,
+           di un'automobile si vede lo SPIGOLO anteriore — e uno spigolo e' una curva. */
+        for (let x = xsF; x < xrL; x++) {
+          const t = (x - xsF) / (xrL - xsF);
+          const rd = Math.round(Math.pow(1 - Math.min(1, (x - xsF) / 14), 1.6) * 12);
+          const su = sottoL(t) - Math.round(rd * 0.55), cy = cimaL(t) + rd;
+          const cint = Math.max(cy + 2, cintL(t));
+          for (let y = cy; y < su; y++) {
+            const t2 = (y - cy) / Math.max(1, su - cy);
+            ctx.fillStyle = y < cint ? '#2b3846'
+                          : t2 > 0.80 ? '#181f27'
+                          : mix('#26313c', '#1e2832', (t2 - 0.42) / 0.5);
+            ctx.fillRect(x, y, 1, 1);
+          }
+          ctx.fillStyle = '#38495a'; ctx.fillRect(x, cy, 1, 2);
+          ctx.fillStyle = '#4f657a'; ctx.fillRect(x, cint - 1, 1, 1);
+          ctx.fillStyle = '#10161c'; ctx.fillRect(x, su - 5, 1, 6);
+          /* IL SOTTOSCOCCA. Il brancardo sta a trentadue centimetri da terra e la strada
+             sta a zero: in mezzo c'e' il buio sotto la macchina, e se non lo si disegna
+             si vede il MARCIAPIEDE fra le ruote — cioe' una macchina su due trampoli.
+             Buio pieno fino a nove centimetri da terra, che e' l'ombra vera. */
+          ctx.fillStyle = '#0a0e12';
+          ctx.fillRect(x, su + 1, 1, suoloL(t) - Math.round(altL(t) * 0.06) - su);
+        }
+        /* I VETRI: il parabrezza, e tre luci laterali separate da due montanti. Una banda
+           unica di vetro non e' una station wagon, e' un monovolume. */
+        for (let x = xsF; x < xrL; x++) {
+          const t = (x - xsF) / (xrL - xsF);
+          if (!((t >= 0.245 && t <= 0.345) || (t >= 0.395 && t <= 0.955))) continue;
+          if ((t > 0.595 && t < 0.625) || (t > 0.795 && t < 0.825)) continue;   // i montanti
+          const cy = cimaL(t), cint = cintL(t);
+          const a = cy + 5, b = cint - 3;
+          if (b <= a) continue;
+          for (let y = a; y < b; y++) {
+            ctx.fillStyle = mix('#93aec0', '#547187', Math.pow((y - a) / (b - a), 0.8));
+            ctx.fillRect(x, y, 1, 1);
+          }
+          ctx.fillStyle = 'rgba(255,248,224,.22)'; ctx.fillRect(x, a, 1, 2);
+        }
+        // le maniglie sul filo di cintura, e lo specchietto sul montante del parabrezza
+        for (const t of [0.50, 0.72]) {
+          ctx.fillStyle = '#8f9aa2';
+          ctx.fillRect(Math.round(xsF + t * (xrL - xsF)) - 9, cintL(t) + Math.round(altL(t) * 0.08), 19, 4);
+        }
+        {
+          const t = 0.355;
+          ctx.fillStyle = '#22303c';
+          ctx.fillRect(Math.round(xsF + t * (xrL - xsF)) - 5, cintL(t) - 3, 14, 9);
+        }
+
+        /* LE RUOTE SONO ELLISSI, ed e' questo il difetto che faceva sembrare finta la
+           prima prova in tre quarti. Vista di sbieco una ruota e' scorciata lungo l'asse
+           della macchina come tutto il resto: il diametro pieno in ALTEZZA, e diametro ×
+           sen(32°) in LARGHEZZA. Disegnate tonde erano piu' larghe del passo — due ruote
+           da 66 px su un passo di 125 non ci stanno nemmeno dentro — e l'occhio se ne
+           accorge prima del cervello: legge «giocattolo».
+           E il passaruota sta ADDOSSO alla gomma, tre pixel: un arco piu' largo lascia
+           vedere la carrozzeria dentro l'arco, cioe' un buco nero nella fiancata. */
+        const ruota = t => {
+          /* Una gomma di sbieco non e' un'ellisse sottile: e' il FIANCO ellittico piu' il
+             BATTISTRADA, che e' una fascia larga 20 cm × cos(32°) e sta dalla parte di
+             dietro. Col solo fianco — 35 px di larghezza su 84 di altezza — sullo schermo
+             sono dischi da carrello, ed e' quello che si vedeva. E il passaruota sta
+             addosso alla gomma UN pixel: a tre, intorno alla gomma restava un alone
+             scuro, e un alone intorno a una ruota legge «ruota staccata». */
+          const ry = Math.round(altL(t) * 0.220);
+          const rx = Math.max(5, Math.round(ry * SEN));
+          const bat = Math.max(4, Math.round(0.20 * COS * (altL(t) / 1.50)));   // il battistrada
+          const wx = Math.round(xsF + t * (xrL - xsF)), cy = suoloL(t) - ry;
+          for (let dx = -rx - 1; dx <= rx + bat + 1; dx++) {
+            const d2 = Math.min(Math.abs(dx), Math.abs(dx - bat));
+            const h = Math.round(Math.sqrt(Math.max(0, 1 - Math.pow(d2 / (rx + 1), 2))) * (ry + 2) * 0.86);
+            if (h < 1) continue;
+            const top = cy - h + Math.round(ry * 0.10);
+            ctx.fillStyle = '#141b22'; ctx.fillRect(wx + dx, top, 1, h + 8);
+            ctx.fillStyle = 'rgba(140,158,176,.20)'; ctx.fillRect(wx + dx, top, 1, 1);
+          }
+          /* La sagoma e' una CAPSULA: le due ellissi dei fianchi raccordate dal
+             battistrada. Al primo colpo avevo raccordato con un fillRect alto tutta la
+             ruota, cioe' col rettangolo che CONTIENE l'ellisse invece dell'ellisse: due
+             quadrati neri al posto delle gomme. Si raccorda riga per riga. */
+          for (let dy = -ry; dy <= ry; dy++) {
+            const hw = Math.round(rx * Math.sqrt(Math.max(0, 1 - Math.pow(dy / ry, 2))));
+            if (hw < 1) continue;
+            ctx.fillStyle = '#0f141a'; ctx.fillRect(wx - hw, cy + dy, hw * 2 + bat, 1);
+            ctx.fillStyle = '#181f27'; ctx.fillRect(wx + hw, cy + dy, bat, 1);   // il battistrada
+          }
+          ctx.fillStyle = '#0f141a'; pixelEllipse(ctx, wx, cy, rx, ry, 3);        // il fianco
+          ctx.fillStyle = '#232c34'; pixelEllipse(ctx, wx, cy, Math.max(2, rx - 4), ry - Math.round(ry * 0.24), 3);
+          ctx.fillStyle = '#4e5860'; pixelEllipse(ctx, wx, cy, Math.max(2, rx - 8), Math.max(3, ry - Math.round(ry * 0.48)), 3);
+          ctx.fillStyle = '#6d777f'; pixelEllipse(ctx, wx, cy, Math.max(2, rx - 13), Math.max(2, ry - Math.round(ry * 0.68)), 3);
+          ctx.fillStyle = '#8a949c'; pixelEllipse(ctx, wx, cy, 3, Math.max(2, Math.round(ry * 0.15)), 3);
+          ctx.fillStyle = 'rgba(6,8,12,.55)';
+          pixelEllipse(ctx, wx + Math.round(bat / 2), cy + ry, Math.round((rx + bat) * 0.9), 3, 3);
+        };
+        ruota(0.78); ruota(0.20);
+
+        /* IL RETRO, il piano che ci guarda. In un tre quarti quello che fa capire il
+           volume sono i DUE PIANI DI VALORE DIVERSO: il fianco in ombra, il retro che
+           prende la luce di dietro l'osservatore (il sole e' sorto da venti minuti e sta
+           dietro le case). Se i due piani hanno lo stesso colore il tre quarti torna a
+           essere una macchia — ed e' per questo che di solito viene male. */
+        for (let x = xrL; x <= xrR; x++) {
+          const su = suoloR(x), te = tettoR(x), fondo = su - Math.round(altR(x) * 0.213);
+          for (let y = te; y < fondo; y++) {
+            const t2 = (y - te) / (su - te);
+            ctx.fillStyle = t2 < 0.06 ? '#4d6274' : t2 > 0.90 ? '#28343f' : mix('#40525f', '#33424e', t2);
+            ctx.fillRect(x, y, 1, 1);
+          }
+          ctx.fillStyle = '#5b7285'; ctx.fillRect(x, te, 1, 3);
+          ctx.fillStyle = '#0a0e12';                              // il sottoscocca, anche qui
+          ctx.fillRect(x, fondo, 1, su - Math.round(altR(x) * 0.06) - fondo);
+        }
+
+        /* IL VANO: il soggetto dentro il soggetto. Centoquarantadue per novantaquattro, ed
+           e' per avere questi due numeri che la macchina e' stata girata. Si legge da
+           quattro piani, e vanno tutti e quattro o non se ne legge nessuno:
+             il BUIO in fondo, che e' profondita' e non un colore;
+             lo SCHIENALE dei sedili in alto, con le cuciture verticali;
+             il PIANO DI CARICO in basso, che RIENTRA — piu' su e piu' stretto, cosi' il
+               pavimento e' un piano orizzontale e non una riga;
+             la LUCETTA in alto a destra, con la fetta di luce che cade sul piano: e' la
+               fetta, non il quadratino giallo, a dire che la luce sta DENTRO.
+           E dentro tre oggetti soli e grandi — le pinne in piedi, il borsone, il telo
+           piegato — invece dei sei da dodici pixel della stesura di fianco. */
+        const apL = xrL + 22, apR = xrR - 20;
+        const apT = x => tettoR(x) + Math.round(altR(x) * 0.05);
+        const apB = x => suoloR(x) - Math.round(altR(x) * 0.470);
+        for (let x = apL; x <= apR; x++) {
+          const a = apT(x), b = apB(x);
+          for (let y = a; y < b; y++) {
+            ctx.fillStyle = mix('#070b0f', '#131c24', Math.pow((y - a) / (b - a), 0.5));
+            ctx.fillRect(x, y, 1, 1);
+          }
+        }
+        // lo schienale dei sedili, in fondo in alto, con le cuciture
+        {
+          const a = apT(apL) + 10, h = 40;
+          for (let x = apL + 7; x <= apR - 7; x++) {
+            for (let y = a; y < a + h; y++) {
+              ctx.fillStyle = mix('#2f2a22', '#4a4234', Math.pow((y - a) / h, 0.7));
+              ctx.fillRect(x, y, 1, 1);
             }
           }
-          // i montanti: A dietro il parabrezza, B e C fra le porte, D sulla coda
-          ctx.fillStyle = '#2a3742';
-          for (const [mx, mw] of [[parX - 2, 14], [daX + larg, mont], [daX + larg * 2 + mont, mont], [aX, 10]]) {
-            ctx.fillRect(mx, tetto + 2, mw, cofano - tetto - 6);
+          ctx.fillStyle = 'rgba(20,16,12,.55)';
+          for (let k = 1; k < 5; k++) ctx.fillRect(apL + 7 + k * Math.round((apR - apL - 14) / 5), a, 2, h);
+          ctx.fillStyle = 'rgba(120,108,86,.30)'; ctx.fillRect(apL + 7, a, apR - apL - 14, 2);
+        }
+        // IL PIANO DI CARICO: rientra andando in dentro, ed e' quel rientro che lo fa piano
+        {
+          const b = apB(Math.round((apL + apR) / 2)), prof = 30;
+          for (let k = 0; k < prof; k++) {
+            const ins = Math.round((k / prof) * 19), y = b - k;
+            ctx.fillStyle = mix('#39424a', '#1c2329', k / prof);
+            ctx.fillRect(apL + ins, y, apR - apL - ins * 2, 1);
+          }
+          ctx.fillStyle = '#5a6670'; ctx.fillRect(apL, b, apR - apL, 2);       // lo spigolo, in luce
+          ctx.fillStyle = '#12181e'; ctx.fillRect(apL, b + 2, apR - apL, 2);
+        }
+        // LE PINNE, in piedi contro la parete: due lame lunghe, e il calzante scuro sotto
+        {
+          const px2 = apL + 9, base = apB(px2) - 5, alt = 64;
+          for (const dx of [0, 19]) {
+            ctx.fillStyle = 'rgba(4,6,9,.66)'; ctx.fillRect(px2 + dx - 1, base - 1, 17, 4);
+            for (let y = 0; y < alt; y++) {
+              const t2 = y / alt, restr = Math.round(Math.pow(t2, 2.4) * 3);
+              ctx.fillStyle = y > alt - 17 ? '#16242b' : mix('#2f5d6b', '#244854', t2);
+              ctx.fillRect(px2 + dx + restr, base - alt + y, 15 - restr * 2, 1);
+            }
+            ctx.fillStyle = 'rgba(120,180,198,.34)'; ctx.fillRect(px2 + dx + 2, base - alt + 2, 2, alt - 20);
           }
         }
-        // le portiere, le maniglie, gli specchietti e i fanali
-        ctx.fillStyle = 'rgba(12,18,24,.42)';
-        ctx.fillRect(parX + 6, cofano + 4, 3, sotto - cofano - 14);
-        ctx.fillRect(codaX - 42, cofano + 4, 3, sotto - cofano - 14);
-        ctx.fillStyle = '#8f9aa2';
-        ctx.fillRect(parX + 46, cofano + 20, 20, 5);
-        ctx.fillRect(codaX - 74, cofano + 20, 20, 5);
-        ctx.fillStyle = '#22303c'; ctx.fillRect(parX - 4, cofano - 6, 15, 9);   // lo specchietto
-        ctx.fillStyle = '#f4e6bc'; ctx.fillRect(x0 + 1, cofano + 20, 11, 10);   // il fanale davanti
-        ctx.fillStyle = '#c02a24'; ctx.fillRect(x0 + lung - 13, cofano + 10, 11, 20);
-        ctx.fillStyle = '#e8564c'; ctx.fillRect(x0 + lung - 13, cofano + 10, 11, 5);
-        ctx.fillStyle = '#3c464e'; ctx.fillRect(x0 + lung - 26, sotto - 14, 24, 6);  // il paraurti
-        /* IL BAULE APERTO, terza stesura. Le prime due erano un rettangolo nero con
-           dentro dei rettangoli colorati appiccicati sopra: a cinque volte il vero si
-           vedeva che erano ADESIVI, non oggetti dentro uno spazio. Un bagagliaio aperto
-           visto di fianco non è un buco con delle macchie: è una stanzetta, e una
-           stanzetta si legge da quattro cose —
-             il PIANO DI CARICO, che è un piano orizzontale e prende la luce di sopra;
-             la PARETE INTERNA dietro, più scura e con le sue nervature;
-             gli OGGETTI appoggiati sul piano, ognuno con la sua ombra sotto e il suo
-               bordo in luce sopra (senza ombra un oggetto galleggia);
-             e la LUCE che viene da un punto e cade in basso, non un quadratino giallo.
-           Dentro ci sono le tre cose che il testo della scena nomina e che il giocatore
-           avrà nell'inventario dieci minuti dopo: il telo da mare, il borsone dei
-           documenti e le pinne. Il baule è il primo inventario del gioco, e si vede. */
-        const vanoX = codaX - 6, vanoW = 74, vanoY = cofano + 1, vanoH = 31;
-        const piano = vanoY + vanoH - 7;
-        // la parete interna, in fondo: più scura in alto, con le nervature verticali
-        for (let y = vanoY; y < piano; y++) {
-          const t = (y - vanoY) / (piano - vanoY);
-          ctx.fillStyle = mix('#0c1218', '#1b2a36', Math.pow(t, 0.6));
-          ctx.fillRect(vanoX, y, vanoW, 1);
-        }
-        ctx.fillStyle = 'rgba(70,92,110,.18)';
-        for (let k = 0; k < 5; k++) ctx.fillRect(vanoX + 8 + k * 14, vanoY + 3, 1, piano - vanoY - 6);
-        // IL PIANO DI CARICO: la moquette grigia, e il suo spigolo che prende luce
-        ctx.fillStyle = '#2a3a46'; ctx.fillRect(vanoX, piano, vanoW, 7);
-        ctx.fillStyle = '#3d5262'; ctx.fillRect(vanoX, piano, vanoW, 1);
-        ctx.fillStyle = '#16202a'; ctx.fillRect(vanoX, piano + 6, vanoW, 2);
-        /* LA LUCE del baule: sta in alto a destra e cade sul piano. Prima era un
-           quadratino giallo appeso al nulla; adesso ha il suo alone e la sua chiazza
-           per terra, ed è quella chiazza che dice che la luce è dentro. */
-        const luX = vanoX + vanoW - 12, luY = vanoY + 4;
-        ctx.fillStyle = '#3a4550'; ctx.fillRect(luX - 2, luY - 2, 11, 7);
-        ctx.fillStyle = '#fff2c4'; ctx.fillRect(luX, luY, 7, 3);
-        glow(ctx, luX + 3, luY + 2, 9, 6, '255,238,180');
-        for (let k = 0; k < 5; k++) {
-          ctx.fillStyle = `rgba(255,238,180,${0.16 - k * 0.03})`;
-          ctx.fillRect(vanoX + vanoW - 30 - k * 5, piano, 26 + k * 8, 1);
-        }
-        /* GLI OGGETTI. Ognuno: ombra sotto, corpo, bordo in luce sopra. Tre pezzi e non
-           sei, perché in trenta pixel d'altezza sei oggetti tornano a essere macchie. */
-        // il telo da mare piegato in tre: si legge dalle PIEGHE, non dal colore
+        // IL BORSONE, quello che invece e' stato caricato: manici, cerniera, un fianco in luce
         {
-          const tx = vanoX + 6, ty = piano - 13, tw = 30;
-          ctx.fillStyle = 'rgba(6,10,14,.60)'; ctx.fillRect(tx - 1, piano - 1, tw + 3, 2);
+          const bx = apL + 48, bh = 44, by = apB(bx) - 4 - bh, bw = 54;
+          ctx.fillStyle = 'rgba(4,6,9,.66)'; ctx.fillRect(bx - 2, by + bh - 1, bw + 5, 4);
+          for (let y = 0; y < bh; y++) {
+            ctx.fillStyle = mix('#4e5742', '#333a2c', Math.pow(y / bh, 0.8));
+            ctx.fillRect(bx, by + y, bw, 1);
+          }
+          ctx.fillStyle = '#66705334'.slice(0, 7); ctx.fillRect(bx, by, bw, 2);
+          ctx.fillStyle = 'rgba(200,208,170,.22)'; ctx.fillRect(bx, by, bw, 2);
+          ctx.fillStyle = '#22271c'; ctx.fillRect(bx, by + 15, bw, 3);            // la cerniera
+          ctx.fillStyle = 'rgba(210,216,180,.30)'; ctx.fillRect(bx, by + 15, bw, 1);
+          ctx.fillStyle = '#2b3124';                                              // i due manici
+          ctx.fillRect(bx + 13, by - 9, 28, 4);
+          ctx.fillRect(bx + 13, by - 9, 4, 11); ctx.fillRect(bx + 37, by - 9, 4, 11);
+          ctx.fillStyle = 'rgba(200,208,170,.16)'; ctx.fillRect(bx + 13, by - 9, 28, 1);
+        }
+        // IL TELO piegato in tre: si legge dalle pieghe, non dal colore
+        {
+          const tx = apL + 106, tw = 30, base = apB(tx) - 4;
+          ctx.fillStyle = 'rgba(4,6,9,.66)'; ctx.fillRect(tx - 1, base - 1, tw + 3, 3);
           for (let k = 0; k < 3; k++) {
-            ctx.fillStyle = k % 2 ? '#b8a382' : '#cdb994';
-            ctx.fillRect(tx + k, ty + k * 4, tw - k * 2, 4);
-            ctx.fillStyle = 'rgba(255,244,214,.24)';
-            ctx.fillRect(tx + k, ty + k * 4, tw - k * 2, 1);
+            ctx.fillStyle = k % 2 ? '#9e8b6e' : '#b8a382';
+            ctx.fillRect(tx + k, base - 8 - k * 8, tw - k * 2, 8);
+            ctx.fillStyle = 'rgba(255,244,214,.22)'; ctx.fillRect(tx + k, base - 8 - k * 8, tw - k * 2, 2);
           }
-          ctx.fillStyle = 'rgba(120,96,62,.50)'; ctx.fillRect(tx + tw - 5, ty, 2, 12);
+          ctx.fillStyle = 'rgba(90,72,46,.46)'; ctx.fillRect(tx + tw - 6, base - 24, 2, 24);
         }
-        // il borsone dei documenti, in piedi contro la parete: manico e cerniera
+        // LA LUCETTA e la sua fetta di luce sul piano
         {
-          const bx = vanoX + 40, by = piano - 17, bw = 20, bh = 17;
-          ctx.fillStyle = 'rgba(6,10,14,.60)'; ctx.fillRect(bx - 1, piano - 1, bw + 3, 2);
-          ctx.fillStyle = '#4a5a68'; ctx.fillRect(bx, by, bw, bh);
-          ctx.fillStyle = '#5e7180'; ctx.fillRect(bx, by, bw, 2);
-          ctx.fillStyle = '#2c3a46'; ctx.fillRect(bx, by + 7, bw, 2);          // la cerniera
-          ctx.fillStyle = '#8f9aa2'; ctx.fillRect(bx + 6, by - 4, 9, 3);       // il manico
-          ctx.fillStyle = '#4a5a68'; ctx.fillRect(bx + 6, by - 4, 2, 5); ctx.fillRect(bx + 13, by - 4, 2, 5);
+          const luX = apR - 20, luY = apT(apR) + 5;
+          ctx.fillStyle = '#39434c'; ctx.fillRect(luX - 2, luY - 2, 14, 8);
+          ctx.fillStyle = '#fff4cc'; ctx.fillRect(luX, luY, 10, 4);
+          glow(ctx, luX + 5, luY + 2, 7, 5, '255,238,180');
+          for (let k = 0; k < 7; k++) {
+            ctx.fillStyle = `rgba(255,238,180,${0.15 - k * 0.02})`;
+            ctx.fillRect(apR - 34 - k * 7, apB(apR) - 3 - k, 30 + k * 9, 1);
+          }
         }
-        // e le PINNE, appoggiate di piatto: due lame lunghe col calzante scuro
+        // il telaio del vano: due pixel scuri intorno, e il filo di luce sul bordo di sopra
+        for (let x = apL - 2; x <= apR + 2; x++) {
+          ctx.fillStyle = '#0c1116'; ctx.fillRect(x, apT(x) - 2, 1, 3);
+          ctx.fillStyle = 'rgba(150,172,190,.26)'; ctx.fillRect(x, apT(x) - 3, 1, 1);
+        }
+        ctx.fillStyle = '#0c1116';
+        ctx.fillRect(apL - 3, apT(apL), 3, apB(apL) - apT(apL));
+        ctx.fillRect(apR + 1, apT(apR), 3, apB(apR) - apT(apR));
+
+        /* I FANALI, il PARAURTI e LA TARGA. La targa e' il segnale piu' economico che
+           esista per dire «questo e' il dietro di un'automobile»: cinquantadue pixel di
+           rettangolo pallido, e non serve che ci sia scritto niente. */
+        /* I FANALI. Ventisei pixel, che sono i venticinque centimetri veri di un gruppo
+           ottico: al primo colpo erano quarantasei, e due barre rosse alte mezzo metro
+           tiravano l'occhio via dal vano, che e' il soggetto. */
+        for (const [fx, fw] of [[xrL + 5, 16], [apR + 5, 16]]) {
+          const te = apT(fx) + Math.round(altR(fx) * 0.06);
+          ctx.fillStyle = '#8e1f1a'; ctx.fillRect(fx, te, fw, 30);
+          ctx.fillStyle = '#c9302a'; ctx.fillRect(fx, te, fw, 17);
+          ctx.fillStyle = '#e8564c'; ctx.fillRect(fx, te, fw, 4);
+          ctx.fillStyle = '#e6e2d4'; ctx.fillRect(fx, te + 31, fw, 8);          // la retromarcia
+          ctx.fillStyle = 'rgba(255,120,110,.18)'; ctx.fillRect(fx - 2, te, fw + 4, 2);
+        }
+        for (let x = xrL; x <= xrR; x++) {
+          const su = suoloR(x), a = su - Math.round(altR(x) * 0.470), b = su - Math.round(altR(x) * 0.245);
+          ctx.fillStyle = '#2b3540'; ctx.fillRect(x, a, 1, b - a);
+          ctx.fillStyle = '#3d4b58'; ctx.fillRect(x, a, 1, 2);
+          ctx.fillStyle = '#141a20'; ctx.fillRect(x, b - 2, 1, 3);
+        }
         {
-          const px2 = vanoX + 10, py2 = piano - 3;
-          for (const dy of [0, -3]) {
-            ctx.fillStyle = '#1d5a6a'; ctx.fillRect(px2 + 4, py2 + dy, 30, 2);
-            ctx.fillStyle = '#2d7f92'; ctx.fillRect(px2 + 4, py2 + dy, 30, 1);
-            ctx.fillStyle = '#12333c'; ctx.fillRect(px2, py2 + dy - 1, 6, 4);
-          }
+          const cxT = Math.round((xrL + xrR) / 2), su = suoloR(cxT), h = altR(cxT);
+          const py = su - Math.round(h * 0.44);
+          ctx.fillStyle = '#15191d'; ctx.fillRect(cxT - 32, py, 64, 19);
+          ctx.fillStyle = '#d9d5c6'; ctx.fillRect(cxT - 30, py + 2, 60, 15);
+          ctx.fillStyle = '#2a3d7a'; ctx.fillRect(cxT - 30, py + 2, 9, 15);    // la banda blu
+          ctx.fillStyle = 'rgba(60,60,60,.55)'; ctx.fillRect(cxT - 16, py + 6, 38, 6);
         }
-        // IL BORDO TAGLIATO della lamiera: è quello che dice «qui è aperto», non «qui è nero»
-        ctx.fillStyle = '#7d99ab'; ctx.fillRect(vanoX, cofano - 1, vanoW, 2);
-        ctx.fillStyle = '#4e6272'; ctx.fillRect(vanoX, cofano + 1, 2, vanoH - 2);
-        ctx.fillStyle = 'rgba(125,153,171,.55)'; ctx.fillRect(vanoX, piano + 7, vanoW, 1);
-        // LE RUOTE: gomma, cerchio, e il passaruota che le contiene
-        for (const wx of [x0 + 86, x0 + lung - 96]) {
-          /* IL PASSARUOTA: l'arco scavato nella fiancata sopra la ruota. È il dettaglio
-             che distingue un'automobile da una scatola coi cerchi sotto, e prima non
-             c'era. Si disegna come un arco d'ombra dentro la lamiera. */
-          /* Il passaruota deve stare ADDOSSO alla gomma: prima l'arco era largo
-             quaranta e la ruota ventinove, e fra i due si vedeva la carrozzeria — sullo
-             schermo un buco nero nella fiancata. Un passaruota vero segue il
-             pneumatico a quattro pixel di distanza. */
-          const rg = 36;
-          for (let dx = -rg - 4; dx <= rg + 4; dx++) {
-            const h = Math.round(Math.sqrt(Math.max(0, (rg + 4) * (rg + 4) - dx * dx)) * 0.62);
-            if (h < 1) continue;
-            ctx.fillStyle = '#141b22';
-            ctx.fillRect(wx + dx, sotto - h, 1, h + 4);
-            ctx.fillStyle = 'rgba(140,158,176,.22)';
-            ctx.fillRect(wx + dx, sotto - h, 1, 1);
+
+        /* IL PORTELLONE ALZATO. Tre cose lo fanno leggere, e sono tre e non una:
+             il VETRO CHIARO — il lunotto alzato ha dietro il cielo dell'alba, quindi da
+               qui e' pallido, e il contrasto col vano buio di sotto racconta tutto;
+             lo SBALZO — il pannello e' piu' vicino all'obiettivo della carrozzeria e
+               quindi sporge dai due lati: e' il sormonto che dice «alzato» e non «chiuso»;
+             le CERNIERE agli spigoli di sotto, che sono quelle che lo attaccano alla
+               macchina. La quarta stesura era un parallelogramma appoggiato sopra il
+               tetto, senza sormonto e senza cerniere: sullo schermo un cartello stradale.
+           Le molle a gas invece NON ci sono, e non e' una dimenticanza: da dietro, con il
+           pannello inclinato verso l'obiettivo, stanno dentro la sua sagoma. Si vedono di
+           fianco. Disegnarle qui sarebbe stato disegnare una cosa che non si vede. */
+        {
+          const pL = xrL - 11, pR = xrR + 6;
+          const giu = x => Math.round(tN + (x - xrL) / (xrR - xrL) * (tR - tN));
+          const su = x => giu(x) - (Math.round(altR(xrL) * 0.53) - Math.round((x - pL) / (pR - pL) * 5));
+          for (let x = pL; x <= pR; x++) {
+            const a = su(x), b = giu(x);
+            for (let y = a; y < b; y++) {
+              ctx.fillStyle = mix('#33414f', '#232e39', (y - a) / (b - a));
+              ctx.fillRect(x, y, 1, 1);
+            }
+            ctx.fillStyle = '#5f7789'; ctx.fillRect(x, a, 1, 4);              // il bordo libero
+            ctx.fillStyle = '#7c93a6'; ctx.fillRect(x, a, 1, 2);
+            ctx.fillStyle = '#67788a'; ctx.fillRect(x, b - 4, 1, 3);          // il labbro di sotto
+            ctx.fillStyle = '#131a21'; ctx.fillRect(x, b - 1, 1, 2);
           }
-          ctx.fillStyle = '#0f141a'; pixelDisc(ctx, wx, sotto + 1, rg, 3);      // il pneumatico
-          ctx.fillStyle = '#232c34'; pixelDisc(ctx, wx, sotto + 1, rg - 9, 3);
-          ctx.fillStyle = '#4e5860'; pixelDisc(ctx, wx, sotto + 1, rg - 17, 3); // il cerchio
-          ctx.fillStyle = '#7d878f'; pixelDisc(ctx, wx, sotto + 1, 6, 3);       // il mozzo
-          ctx.fillStyle = '#0f141a'; ctx.fillRect(wx - 2, sotto - rg + 2, 4, 5); // il battistrada in luce
-          ctx.fillStyle = 'rgba(150,166,182,.18)'; ctx.fillRect(wx - rg + 3, sotto - 6, 8, 3);
+          // il lunotto: il cielo dell'alba visto da sotto, attraverso il vetro
+          for (let x = pL + 26; x <= pR - 26; x++) {
+            const arco = Math.round(Math.pow(Math.abs((x - (pL + pR) / 2) / ((pR - pL) / 2 - 26)), 2.6) * 7);
+            const a = su(x) + 17 + arco, b = giu(x) - 17;
+            for (let y = a; y < b; y++) {
+              const t2 = (y - a) / (b - a);
+              ctx.fillStyle = mix('#a9bccb', '#6b849a', Math.pow(t2, 0.7));
+              ctx.fillRect(x, y, 1, 1);
+            }
+            ctx.fillStyle = 'rgba(255,246,224,.30)'; ctx.fillRect(x, a, 1, 2);
+          }
+          // il tergilunotto, e la terza luce di stop sul bordo
+          {
+            const x1 = pL + 32, x2 = pR - 40, n = x2 - x1;
+            for (let k = 0; k <= n; k++) {
+              const x = x1 + k, y = su(x) + 22 + Math.round(Math.pow(k / n, 1.5) * 26);
+              ctx.fillStyle = '#1a222a'; ctx.fillRect(x, y, 1, 3);
+            }
+            ctx.fillStyle = '#c9302a'; ctx.fillRect(Math.round((pL + pR) / 2) - 15, su(Math.round((pL + pR) / 2)) + 4, 30, 5);
+          }
+          // le due cerniere, sullo spigolo del tetto: sono loro che dicono di chi e'
+          ctx.fillStyle = '#151d24';
+          ctx.fillRect(xrL + 6, giu(xrL + 6) - 3, 18, 9);
+          ctx.fillRect(xrR - 25, giu(xrR - 25) - 3, 18, 9);
         }
       }
 
-      /* IL BORSONE in mezzo alla strada, quello che nessuno dei due ha deciso di
-         caricare per primo. Vicino al portellone aperto, e abbastanza grande da
-         leggersi: manici, cerniera, e la tracolla per terra. */
+      /* IL BORSONE IN MEZZO ALLA STRADA, quello che nessuno dei due ha deciso di caricare
+         per primo: il testo lo dice, ed e' il dettaglio che fa capire che sono in due e
+         che stanno litigando per niente alle sette meno cinque. Grande, sull'asfalto, con
+         la sua ombra: e' il secondo oggetto leggibile del quadro dopo il vano. */
       {
-        const bx = Math.round(W * 0.545), by = H - 30;
-        ctx.fillStyle = 'rgba(10,10,14,.34)'; pixelEllipse(ctx, bx + 32, by + 24, 40, 6, 3);
-        ctx.fillStyle = '#5a4636'; ctx.fillRect(bx, by, 66, 26);
-        ctx.fillStyle = '#6e5644'; ctx.fillRect(bx, by, 66, 5);
-        ctx.fillStyle = '#41332a'; ctx.fillRect(bx, by + 12, 66, 3);          // la cerniera
-        ctx.fillStyle = '#3a2e24'; ctx.fillRect(bx + 18, by - 9, 30, 5);      // i manici
-        ctx.fillStyle = '#5a4636'; ctx.fillRect(bx + 18, by - 9, 4, 10); ctx.fillRect(bx + 44, by - 9, 4, 10);
-        ctx.fillStyle = '#4a3a2c'; ctx.fillRect(bx + 62, by + 20, 34, 4);     // la tracolla per terra
-        ctx.fillRect(bx + 92, by + 16, 4, 8);
+        const bx = Math.round(W * 0.775), by = H - 58, bw = 104, bh = 46;
+        ctx.fillStyle = 'rgba(10,10,14,.36)'; pixelEllipse(ctx, bx + 52, by + bh + 3, 60, 8, 3);
+        for (let y = 0; y < bh; y++) {
+          ctx.fillStyle = mix('#6b5340', '#41332a', Math.pow(y / bh, 0.8));
+          ctx.fillRect(bx, by + y, bw, 1);
+        }
+        ctx.fillStyle = 'rgba(240,220,186,.20)'; ctx.fillRect(bx, by, bw, 3);
+        ctx.fillStyle = '#2f251e'; ctx.fillRect(bx, by + 17, bw, 4);              // la cerniera
+        ctx.fillStyle = 'rgba(240,220,186,.24)'; ctx.fillRect(bx, by + 17, bw, 1);
+        ctx.fillStyle = '#3a2e24';                                                // i manici
+        ctx.fillRect(bx + 30, by - 14, 44, 5);
+        ctx.fillRect(bx + 30, by - 14, 5, 16); ctx.fillRect(bx + 69, by - 14, 5, 16);
+        ctx.fillStyle = 'rgba(240,220,186,.14)'; ctx.fillRect(bx + 30, by - 14, 44, 1);
+        ctx.fillStyle = '#4a3a2c';                                                // la tracolla
+        ctx.fillRect(bx + bw - 4, by + 32, 44, 5); ctx.fillRect(bx + bw + 36, by + 26, 5, 11);
+        ctx.fillStyle = '#8f9aa2'; ctx.fillRect(bx + bw + 34, by + 24, 9, 5);     // il gancio
       }
 
       // il velo del bordo, come in tutte le altre
