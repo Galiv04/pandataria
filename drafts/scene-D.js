@@ -1585,6 +1585,7 @@ Il silenzio, quaggiù, è il modo che ha questa cosa per dirvi che ha smesso di 
 **(Oggetto: il CAVALLINO DI CELLULOIDE. 🫁 Fiato −4: quarantacinque metri si pagano. Il Quaderno registra il giocattolo dalla stiva, e il mistero della bambina della Santa Lucia ha il suo quarto indizio.)**`,
     sets: { i_giocattolo: true },
     choices: [
+      { text: '🤝 Prenderle la mano. Cinque secondi, senza nessun motivo tecnico', once: true, next: 'd13_mano' },
       { text: '🤿 Quella muta in piedi sul fondo, trenta metri più in là. Guardarla per bene',
         requires: { flag: 'visto_il_fondo' }, once: true, next: 'd13_marisa' },
       { text: '🐎 Risalire. Adesso. Senza guardare altro', next: 'd14_coro' },
@@ -1822,6 +1823,89 @@ Poi lascia andare tutta l'aria che aveva in bocca per parlare, e non parla più 
     ],
   },
 
+  /* LA MANO NELLA STIVA. In tutto il gioco la tenerezza non viene mai messa in dubbio
+     nemmeno una volta, e a quarantacinque metri il gioco spende il suo silenzio e poi non
+     succede niente. Qui il conforto arriva, e VERO, ed e pagato per intero con testo tenero
+     e fiato guadagnato. Poi, tre scene dopo, e la macchina di Claudia a smentire il
+     ricordo — non il Coro a vantarsi, che sarebbe stato un dispetto invece di un colpo.
+     Una volta sola in tutta la partita. */
+  d13_mano: {
+    location: 'relitto',
+    caption: 'Cinque secondi, senza nessun motivo tecnico',
+    metri: 45,
+    stinger: 'voce_amata',
+    silenzio: true,
+    text: `Non c'è un motivo tecnico. È l'unica cosa di tutta la giornata che non ha un motivo tecnico.
+
+Claudia è in ginocchio sul sedimento con il cavallino chiuso in pugno, il fascio della torcia da casco dentro una valigia di cartone pressato, e a quarantacinque metri il corpo fa una cosa che non aveva mai fatto: comincia a contare da solo. Il battito rallenta. Le dita si aprono e si chiudono senza ordine.
+
+E qualcuno le prende la mano.
+
+Non stringe: **tiene**, col pollice sopra le nocche, come si tiene una mano quando si vuole dire *ci sono* e non si può parlare. Cinque secondi. Li conta, perché quaggiù si contano tutte le cose.
+
+Poi il pollice fa due colpetti — il segnale che loro due usano da dieci anni sotto la doccia, in aereo, nelle sale d'attesa: *tutto bene, andiamo* — e la mano se ne va, e la stiva torna a essere una stanza di lamiera piena di bagagli.
+
+Claudia butta fuori l'aria piano, dal naso, come le ha insegnato Lilia. Sale.
+
+> Claudia: *(in superficie, appena si strappa il boccaglio, e ride male)* "Grazie."
+
+> Gaetano: "Di che?"
+
+> Claudia: "Della mano. Mi stavo perdendo e mi hai preso la mano."
+
+> Gaetano: *(e a quarantacinque metri di distanza da qualunque discussione utile, sceglie la cosa gentile)* "Prego."
+
+**(💪 TENUTA +6, 🫁 Fiato +2: cinque secondi fermi con l'altro. In questo gioco il fiato si guadagna solo con le cose umane, e questa è la più umana di tutte.)**`,
+    heal: 6,
+    gold: 2,
+    sets: { mano_nella_stiva: true },
+    choices: [
+      { text: '⬆️ Su. Alla sosta dei dieci metri', next: 'd14_coro' },
+    ],
+  },
+
+  /* IL GIRATO. La smentita la porta uno STRUMENTO di Claudia, non il Coro: e la differenza
+     fra un colpo e un dispetto. E il conforto resta vero — la mano c'era, i due colpetti col
+     pollice li conoscono solo loro due — quindi qui non si toglie niente a nessuno: si
+     aggiunge una domanda che non si chiude. */
+  d15_video: {
+    location: 'porto',
+    caption: 'La banchina, ore 17:22 — quattro minuti e nove',
+    metri: 0,
+    stinger: 'voce_amata',
+    text: `Sulla banchina, alle diciassette e ventidue, con le sacche in terra e il sole basso, aprono lo schermino. Alla luce. In due. È la regola che si sono dati la prima volta e non l'hanno mai rotta.
+
+Il file dura quattro minuti e nove. Al minuto 02:11 c'è Claudia di tre quarti, in ginocchio sul sedimento, il cavallino in pugno.
+
+Al minuto 02:14, dentro l'inquadratura, entra una mano e le prende la mano.
+
+> Claudia: "Ecco. Sei tu."
+
+> Gaetano: "Torna indietro di due secondi."
+
+Torna indietro. E in alto a sinistra, sopra il bordo dello squarcio, nell'angolo del fotogramma, c'è un alone giallo: la torcia da casco, mille lumen, quella che punta dove punta la faccia.
+
+Gaetano lo guarda per undici secondi. Poi apre la calcolatrice e fa il suo mestiere, che è misurare cose lontanissime: l'illuminamento cade col quadrato della distanza, la torcia è di mille lumen dichiarati, l'esposizione è bloccata perché gliel'ha bloccata lei.
+
+> Gaetano: "Undici metri. A quel timecode sto undici metri sopra di te, e sto salendo."
+
+> Claudia: "Rifallo."
+
+Lo rifà due volte. Undici metri. Undici metri.
+
+Nessuno dei due dice la frase che segue, perché la frase che segue non serve.
+
+**(⚠️ 💪 TENUTA −4 a tutti e due, 🫁 Fiato −2, 🎵 Attenzione del Coro +1. Il conforto è stato vero e resta vero: la mano c'era, e i due colpetti col pollice li conoscete solo voi. Il Quaderno registra il timecode e la distanza. Adesso, prima di salire, decidete cosa fare di questo file.)**`,
+    damage: 4,
+    goldLoss: 2,
+    attenzione: 1,
+    sets: { mano_sbagliata: true },
+    choices: [
+      { text: '📼 Il file sale con noi. Tre copie, come sempre', once: true, sets: { file_stiva_tenuto: true }, next: 'd15_uscite' },
+      { text: '🗑 Cancellarlo qui, sulla banchina, prima di salire', once: true, heal: 3, sets: { file_stiva_cancellato: true }, next: 'd15_uscite' },
+    ],
+  },
+
   d14_coro: {
     location: 'fossa',
     /* La didascalia diceva «la sosta a dieci metri» mentre la scena sta a QUARANTA
@@ -2028,6 +2112,13 @@ Dietro di loro l'isola: le case gialle, la scaletta delle parracine, il limone i
 **(⚠️ ULTIMA SCELTA. Non c'è un dado, non c'è una prova, non c'è modo di ritirare. Quello che avete capito in questi quattro giorni sta nel Quaderno, e adesso conta tutto.)**`,
     sets: { d_banchina_finale: true },
     choices: [
+      /* La scheda dell'occhio lungo dice da sempre che «il video si guarda DOPO, alla luce,
+         in due», e nessuna scena la usava: una promessa dichiarata da un oggetto e mai
+         mantenuta. Qui si mantiene, e il girato piu importante della partita si guarda. */
+      { text: '📼 Sulla banchina, prima di salire: guardare il girato della stiva. Alla luce, in due',
+        requires: { flag: 'mano_nella_stiva', item: 'occhio_lungo' }, once: true, next: 'd15_video' },
+      { text: '📼 Sulla banchina, prima di salire: guardare il girato della stiva sulla GoPro',
+        requires: { flag: 'mano_nella_stiva', item: 'gopro' }, once: true, next: 'd15_video' },
       { text: '🎵 Salire, e portarsi dietro il nome di Assuntina e la sua seconda strofa', requires: { flag: 'sa_ninnananna' }, next: 'e_vittoria' },
       { text: '🕯 Salire, e dire ad alta voce, sulla rampa, "Nicola Sperduto"', requires: { flag: 'sa_nome_guardia' }, next: 'e_vittoria' },
       { text: '🧱 Salire, sapendo dov\'è la sesta cisterna e che una bocca si può richiudere', requires: { flag: 'sa_sesta_cisterna' }, next: 'e_vittoria' },

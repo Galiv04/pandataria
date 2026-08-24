@@ -563,6 +563,14 @@ function runGame(scenario) {
       const scene = api.CAMPAIGN[sceneId];
       if (!scene) throw new Error(`Scena non trovata: "${sceneId}" (riferita da qualche parte ma assente in CAMPAIGN)`);
       log.scenes.push(sceneId);
+      /* Gli oggetti dell'opzione `items` si ri-mettono a OGNI scena, non solo all'inizio:
+         il rientro da un checkpoint rimpiazza l'inventario con la lista del capitolo, e un
+         oggetto consegnato al primo passo poteva sparire a metà partita senza che nessuno
+         lo sapesse. E un attrezzo da banco di prova: deve fare quello che dice. */
+      if (scenario.items) {
+        const Gi = getG();
+        if (Gi && Gi.inventory) for (const it of scenario.items) if (!Gi.inventory.includes(it)) Gi.inventory.push(it);
+      }
       for (const h of G.party) if (h.morto) log.everMorto.add(h.id);
       for (const it of G.inventory) log.itemsEverOwned.add(it);
 
@@ -1296,12 +1304,21 @@ scenarios.push(scenario(
 scenarios.push(scenario(
   "Finale: l'Ancora di Voce nell'epilogo (e_scambio_ancora)",
   ['gaetano', 'claudia'],
-  { d15_uscite: 'Uno dei due non sale. E non sale perché salga l\'altro',
+  /* d13_stiva va pinnata: senza chiave il banco prende la prima scelta, che e la prova dei
+     cinque secondi, e se la prova va male la scena del preso offre come prima uscita
+     l'ÀNCORA DI VOCE — che viene spesa li e non arriva piu all'epilogo. Comportamento
+     giusto del gioco, test sbagliato. */
+  { d13_stiva: 'Risalire. Adesso',
+    d15_uscite: 'Uno dei due non sale. E non sale perché salga l\'altro',
     d15_scambio: 'Scegliere chi resta. E salire, senza girarsi',
-    e_scambio: 'ÀNCORA DI VOCE' },
+    e_scambio: 'Rimettersi la maschera e andare a riprenderlo' },
   { items: ['ancora_di_voce'],
-    verify: (r, expect) => expect(/^e_scambio_ancora/.test(r.log.ending || ''),
-      `finale atteso e_scambio_ancora, trovato ${r.log.ending}`) },
+    verify: (r, expect) => (
+      expect([...(r.log.itemsEverOwned || [])].includes('ancora_di_voce'),
+        `l'Ancora non e mai risultata in inventario: ${[...(r.log.itemsEverOwned || [])].slice(0,6).join(', ')}`),
+      expect(r.log.scenes.includes('e_scambio'), `e_scambio non raggiunta: ultime ${r.log.scenes.slice(-3).join(' > ')}`),
+      expect(/^e_scambio_ancora/.test(r.log.ending || ''),
+      `finale atteso e_scambio_ancora, trovato ${r.log.ending}`)) },
 ));
 
 scenarios.push(scenario(
