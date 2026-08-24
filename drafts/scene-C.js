@@ -188,7 +188,7 @@ Ciro non ha rimesso la mano sullo starter. La barca deriva. Da quando lo schermo
     sets: { fossa_misurata: true },
     choices: [
       { text: '🗣 Dirlo ad alta voce. Il numero intero, sopra l\'acqua che lo tiene', next: 'c2_gola' },
-      { text: '📷 Fotografare lo schermo verde con l\'ora e la data: una misura senza ora non è una misura', once: true, next: 'c2_gola' },
+      { text: '📷 Fotografare lo schermo verde con l\'ora e la data: una misura senza ora non è una misura', once: true, tag: 'Prova di DESTREZZA — CD 11 (uno schermo verde su una barca che si muove)', check: { stat: 'DES', dc: 11, success: 'c2_gola', fail: 'c2_ora_sbagliata' } },
       { text: '🤲 Claudia mette la mano sul ginocchio di Ciro, che ha spento il motore e non l\'ha più riacceso', once: true, gold: 1, heal: 3, next: 'c2_gola' },
     ],
   },
@@ -288,7 +288,7 @@ Claudia si gira verso la cappella tonda in mezzo al pozzo. Poi verso le celle. P
 **(🫁 Fiato −1: qui l'aria è ferma e si respira a metà.)**`,
     goldLoss: 1,
     choices: [
-      { text: '🔎 Contare le celle. Tre file, e Gaetano vuole tre conti indipendenti', once: true, gold: 1, next: 'c3_purgatorio' },
+      { text: '🔎 Contare le celle. Tre file, e Gaetano vuole tre conti indipendenti', once: true, gold: 1, tag: 'Prova di INTELLIGENZA — CD 11 (tre conti indipendenti, e devono coincidere)', check: { stat: 'INT', dc: 11, success: 'c3_purgatorio', fail: 'c3_tre_conti' } },
       { text: '🚪 Salire verso il secondo ordine, dove la scala fa la curva', next: 'c3_purgatorio' },
     ],
   },
@@ -602,7 +602,7 @@ E Gaetano sente il bisogno di dirle una cosa gentile.`,
 
     choices: [
       { text: '🗣 Lasciarlo parlare: ha una spiegazione, ce l\'ha sempre, e stavolta è anche vera', next: 'c6_del_suono' },
-      { text: '🔦 Puntare la torcia nella fessura sotto la 44, dieci centimetri di luce, mentre lui fa il conto', once: true, damage: 2, next: 'c6_del_suono' },
+      { text: '🔦 Puntare la torcia nella fessura sotto la 44, dieci centimetri di luce, mentre lui fa il conto', once: true, damage: 2, tag: 'Prova di DESTREZZA — CD 12 (la luce va nelle due direzioni)', check: { stat: 'DES', dc: 12, success: 'c6_del_suono', fail: 'c6_vista' } },
       { text: '🤚 Non togliere la mano dal suo petto e contare i respiri fino a dieci prima di aprire bocca', once: true, heal: 3, next: 'c6_del_suono' },
     ],
   },
@@ -1539,7 +1539,7 @@ Ciro fa tre passi indietro sul suo ginocchio malandato, verso l'arco, perché ci
     choices: [
       { text: '🗣 "Sì. Lo sapevo, e non te l\'ho detto. Te lo dico adesso, e ti dico tutto."', requires: { flag: 'gaetano_ha_taciuto', notFlag: 'verita_detta' }, next: 'c11_verita' },
       { text: '🤐 Non dire niente. Spegnere il registratore e camminare verso l\'uscita', requires: { flag: 'gaetano_ha_taciuto', notFlag: 'verita_detta' }, next: 'c11_silenzio' },
-      { text: '🎵 Claudia apre la bocca per rispondere — e Ciro le mette la mano sulla bocca', requires: { flag: 'claudia_ha_promesso' }, once: true, damage: 4, sets: { quasi_risposto: true } },
+      { text: '🎵 Claudia apre la bocca per rispondere — e Ciro le mette la mano sulla bocca', requires: { flag: 'claudia_ha_promesso' }, once: true, damage: 4, sets: { quasi_risposto: true }, next: 'c12_corsa' },
       { text: '🥃 Tre bicchierini di plastica sul gradino della cappella, e nessuno parla per un minuto', requires: { item: 'rum_di_ciro' }, once: true, gold: 1, heal: 4 },
       { text: '🏃 Ciro dall\'arco: "Fuori. Mo\'."', next: 'c12_corsa' },
     ],
@@ -2172,4 +2172,94 @@ Si toglie le cuffie e le appoggia sul tavolo, e per la prima volta in tre giorni
       { text: '📦 Nella scatola, nello zaino, e domani si parte comunque', heal: 2, next: 'c15_notte' },
     ],
   },
+
+  /* LE SCONFITTE DELL'ATTO C. Ogni azione fisica e ogni domanda riuscivano sempre, e una cosa
+     che riesce sempre non e' un'azione: e' una frase. Nessuna di queste chiude un contenuto —
+     si arriva dove si doveva arrivare — e a costare e' il MODO. */
+  c6_vista: {
+    location: 'panopticon',
+    caption: 'Dieci secondi di torcia nella fessura',
+    stinger: 'fail',
+    text: `La fessura sotto la 44 è alta due dita e il fascio ci entra di sbieco. Dieci secondi, come detto.
+
+Al settimo la luce trova qualcosa e torna indietro cambiata: non riflessa da una parete, riflessa da una superficie **bagnata**, a un metro e mezzo dalla porta, all'altezza di un torace.
+
+All'ottavo la fessura si chiude. Non con un colpo: qualcosa si appoggia da dentro, dalla parte del pavimento, e il fascio muore contro una cosa morbida.
+
+> Claudia: *(che ha la mano di Gaetano nel gomito e lo tira indietro di quaranta centimetri)* "Spegnila."
+
+> Gaetano: "L'ho vista."
+
+> Claudia: "**Spegnila.**"
+
+La spegne. Dall'altra parte, dopo tre secondi, la cosa appoggiata si sposta — e la fessura torna a essere una fessura, con dentro il buio di prima.
+
+**(💪 TENUTA −3. 🎵 Attenzione del Coro +1: la luce va nelle due direzioni, e per dieci secondi qualcuno vi ha visti meglio di come l'avete visto voi. Il Quaderno registra la distanza: un metro e mezzo dalla porta, e ad altezza di torace.)**`,
+    damage: 3,
+    attenzione: 1,
+    sets: { visto_dalla_44: true },
+    choices: [
+      { text: '🚪 Via dalla 44. Adesso, e camminando all\'indietro', next: 'c6_del_suono' },
+    ],
+  },
+
+  c3_tre_conti: {
+    location: 'panopticon',
+    caption: 'Tre conti, tre numeri',
+    stinger: 'fail',
+    text: `Il metodo è il suo e non si discute: tre persone contano separatamente, senza parlarsi, e poi si confrontano i numeri. Se coincidono, il numero è quello.
+
+> Gaetano: "Novantanove."
+
+> Claudia: "Novantanove."
+
+> Ciro: "Cento."
+
+Rifanno. Gaetano novantanove, Claudia cento, Ciro novantanove.
+
+Rifanno una terza volta, piano, indicando col dito, e stavolta escono tre numeri diversi: novantanove, cento, novantotto.
+
+> Gaetano: *(e mette giù la mano, e non riprova)* "Non è che contiamo male."
+
+> Claudia: "No."
+
+> Gaetano: "È che le celle sono novantanove e ne stiamo vedendo una in più. A turno. Uno per volta."
+
+Nessuno chiede quale.
+
+**(🫁 Fiato −1, 💪 TENUTA −2. Il Quaderno registra i tre conti e la loro differenza, che è l'unico dato che serve: non il numero, la DIFFERENZA. E il metodo dei tre conti indipendenti, da qui in avanti, in questo posto non funziona più.)**`,
+    goldLoss: 1,
+    damage: 2,
+    sets: { i_conto_rotto: true },
+    choices: [
+      { text: '🚪 Salire al secondo ordine. Senza contare più niente', next: 'c3_purgatorio' },
+    ],
+  },
+
+  c2_ora_sbagliata: {
+    location: 'barca',
+    caption: 'L\'ora sullo schermo, e l\'ora sulla foto',
+    stinger: 'fail',
+    text: `La foto dello schermo dell'ecoscandaglio esce mossa la prima volta e buona la seconda. Il verde è leggibile, il numero della profondità è leggibile, e in basso a destra c'è l'ora dello strumento.
+
+Gaetano guarda la foto sul telefono e poi guarda l'orologio del telefono, e i due numeri non sono lo stesso numero.
+
+Lo strumento dice **09:14**. Il telefono dice 09:14. La foto — la foto scattata dal telefono, allo schermo dello strumento, adesso — dice **09:26**.
+
+> Gaetano: "Rifacciamola."
+
+La rifà. La seconda foto dice 09:26. La terza dice 09:26. Lo schermo, davanti agli occhi, dice 09:14, e continua a scorrere normale.
+
+> Claudia: "Dodici minuti."
+
+> Gaetano: *(che sta già facendo il conto e vorrebbe non averlo fatto)* "Dodici minuti avanti. Non indietro."
+
+**(💪 TENUTA −2. Il Quaderno registra i dodici minuti di scarto fra l'ora dello schermo e l'ora della fotografia dello schermo, e registra la direzione — AVANTI — che è l'unica cosa che nessuna spiegazione tecnica copre.)**`,
+    damage: 2,
+    sets: { i_dodici_minuti: true },
+    choices: [
+      { text: '🚤 Basta foto. A Santo Stefano', next: 'c2_gola' },
+    ],
+  },
+
 };

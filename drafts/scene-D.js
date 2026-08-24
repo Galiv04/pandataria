@@ -202,6 +202,7 @@ Alle due e mezza il conto è pagato, il bianco è finito, e la giornata ha ancor
 > Gaetano: *(che ha già il telo sotto il braccio, perché la risposta la sapeva da stamattina)* "Adesso quello che si fa l'ultimo giorno."`,
 
     choices: [
+      { text: '📰 Sul muro della chiesa, dove stanno i manifesti, ce n\'è uno con la carta ancora bianca', once: true, next: 'd2_manifesto' },
       { text: '🏖 Pomeriggio a Cala Nave: telo, pinne, e la boa gialla', next: 'd2_cala' },
       { text: '🍤 Restare alla Marisqueria per il secondo giro: un altro litro di bianco e i gamberi', once: true, heal: 4, gold: 2, next: 'd2_cala' },
       { text: '🍦 Mezz\'ora sulla panchina dei vecchi in piazza, un gelato, e non dire niente', once: true, heal: 3, gold: 2, next: 'd2_cala' },
@@ -250,6 +251,54 @@ Gira davvero: fa il suo giro, torna, e sono ancora le sedici e ventisette. Poi l
       { text: '🗣 Rispondere. Mettere la faccia sotto e dire "sono qui"', once: true, damage: 4, sets: { ha_risposto: true }, tag: '⚠️ Ada ve l\'ha detto due volte: non si risponde', next: 'd3_traghetto' },
       { text: '⏱ Cronometrare la campana contro l\'orologio del telefono, fino in fondo', once: true, sets: { d_ora_misurata: true }, gold: 1, next: 'd3_traghetto' },
       { text: '⚓ Alla banchina. Sono le cinque meno un quarto', next: 'd3_traghetto' },
+    ],
+  },
+
+  /* IL MURO DEI MANIFESTI. d2_paese erano sei ore di giornata riassunte in quattro paragrafi
+     di montaggio con due soli oggetti duri dentro, ed e' la scena piu' tiepida dell'atto: ma
+     il ciclo 1 deve essere la vacanza VERA, o il riavvolgimento non costa niente. Il muro
+     della chiesa e' l'unico posto di un paese in cui la burocrazia sta all'aperto, e un
+     manifesto funebre e' un MODULO: lo stampatore tiene la lastra e riempie i buchi. Qui
+     manca il nome, e manca perche' quella cosa il nome non ce l'ha ancora. Non ancora. */
+  d2_manifesto: {
+    location: 'paese',
+    caption: 'Il muro della chiesa, ore 11:40 — la carta ancora bianca',
+    stinger: 'penna',
+    metri: 0,
+    text: `Il muro di fianco alla chiesa di Santa Candida è quello dei manifesti, e su un'isola da ottocento abitanti è anche il telegiornale: i vecchi ci passano davanti andando al bar e leggono tutto, compresi quelli vecchi di mesi che nessuno ha staccato.
+
+Ce ne sono cinque. Quattro sono grigi di sole, con la colla che ha ceduto agli angoli e la fotografia scolorita in rosa.
+
+Il quinto è bianco. Carta fresca, colla ancora umida in mezzo, e l'inchiostro di quelli stampati stanotte.
+
+È il modulo di sempre, quello che lo stampatore tiene in lastra e riempie nei buchi: la croce in alto, la cornice nera larga due dita, i corpi tipografici stabiliti da cent'anni. E i buchi sono riempiti tutti tranne uno.
+
+> *È mancato all'affetto dei suoi cari*
+
+> **_______________**
+
+> *di anni ____*
+
+> *I funerali avranno luogo domenica 30 agosto alle ore 17:30, con partenza dalla banchina.*
+
+> *Non fiori. La famiglia, riconoscente, ringrazia.*
+
+Due righe vuote su sei. Il nome e l'età.
+
+L'ora, invece, c'è. E la banchina è una: quella dove alle diciassette e trenta attracca il traghetto per Formia.
+
+> Gaetano: *(che ha già alzato il telefono e sta fotografando, e la mano è ferma perché la tiene ferma)* "È un errore di stampa. Hanno mandato in tipografia la lastra senza compilarla."
+
+> Claudia: "Amore." *(e non alza la voce, e gli mette un dito sul manifesto senza toccarlo)* "Sulle isole i funerali non partono dalla banchina. Partono dalla chiesa."
+
+**(🎵 Attenzione del Coro +1: siete stati fermi davanti a quel muro due minuti e mezzo, e li ha contati qualcuno. 💪 TENUTA −3. Il Quaderno registra il manifesto: la carta di stanotte, due righe vuote su sei, l'ora del traghetto e la partenza dalla banchina.)**`,
+    attenzione: 1,
+    damage: 3,
+    sets: { manifesto_bianco: true },
+    choices: [
+      { text: '✋ Staccarlo. Con le due mani, dal basso, e portarselo via piegato', once: true, gold: 1, sets: { manifesto_staccato: true }, next: 'd3_traghetto' },
+      { text: '📸 Fotografarlo per intero e lasciarlo dov\'è: se domani non c\'è più, il confronto è la prova', once: true, gold: 2, next: 'd3_traghetto' },
+      { text: '🏖 Andare a Cala Nave e fare finta di niente per quattro ore. Ci riescono, e questa è la parte da tenersi', heal: 4, gold: 1, next: 'd3_traghetto' },
     ],
   },
 
@@ -934,7 +983,7 @@ Un rumore lungo dietro il muro: qualcosa che si sposta di lato. Non si apre nien
 
 **(🫁 Fiato +2, 💪 TENUTA +4. Giulia vi risparmia perché le avete dato una data invece di una speranza. E vi ha detto il nome di Marisa, 1997.)**`,
     choices: [
-      { text: '🧱 Misurare il muro: quanti blocchi, quanto spesso', next: 'd9_traghetto', sets: { muro_misurato: true } },
+      { text: '🧱 Misurare il muro: quanti blocchi, quanto spesso', tag: 'Prova di INTELLIGENZA — CD 11 (due misure devono coincidere)', check: { stat: 'INT', dc: 11, success: 'd9_traghetto', fail: 'd8_due_misure' }, sets: { muro_misurato: true } },
       { text: '⚓ Fuori. Sono le dodici e mezza e il traghetto parte domenica', next: 'd9_traghetto' },
     ],
   },
@@ -1150,7 +1199,7 @@ La sua voce, in quella cucina, fa una cosa che non ha mai fatto: **non rimbomba 
     sets: { ciclo2_fatto: true, ciclo: 3, d_acqua_in_casa: true },
     choices: [
       { text: '☕ Bere il caffè che qualcuno ha fatto per voi. Tutto. In piedi', once: true, gold: 2, heal: 4, next: 'd11_vuoto' },
-      { text: '🚪 Aprire tutte le porte del B&B e guardare in tutte le stanze', once: true, sets: { bnb_perquisito: true }, next: 'd11_vuoto' },
+      { text: '🚪 Aprire tutte le porte del B&B e guardare in tutte le stanze', once: true, sets: { bnb_perquisito: true }, tag: 'Prova di SAGGEZZA — CD 11 (aprire sei porte e sapere di averne aperte sei)', check: { stat: 'SAG', dc: 11, success: 'd11_vuoto', fail: 'd10_stanza_saltata' } },
       { text: '🎒 Preparare lo zaino come si prepara per l\'ultima volta: torcia, coltello, tutto', sets: { pronti_per_la_fossa: true }, next: 'd11_vuoto' },
     ],
   },
@@ -1186,7 +1235,7 @@ Sul bancone, sotto la fotografia, c'è un registro aperto a metà, con la biro a
       { text: '📋 Sul bancone, sotto il registro, c\'è una cartella a molla con dei moduli prestampati', requires: { flag: 'sa_di_marisa' }, once: true, next: 'd11_moduli' },
       { text: '📖 Il registro sul bancone. Aprirlo all\'ultima pagina scritta', next: 'd11_registro' },
       { text: '🍽 Entrare nella cucina della Marisqueria e mangiare come si deve, l\'ultima volta', once: true, gold: 3, heal: 8, next: 'd11_registro' },
-      { text: '🤿 Staccare la muta dal gancio e guardarci dentro: taglia, cuciture, il nome scritto col pennarello', once: true, sets: { muta_guardata: true }, next: 'd11_registro' },
+      { text: '🤿 Staccare la muta dal gancio e guardarci dentro: taglia, cuciture, il nome scritto col pennarello', once: true, sets: { muta_guardata: true }, tag: 'Prova di SAGGEZZA — CD 11 (guardare una cosa senza volerci trovare niente)', check: { stat: 'SAG', dc: 11, success: 'd11_registro', fail: 'd11_niente_nella_muta' } },
       { text: '🕳 Dietro l\'orto dei Coraggio: il muro del \'57 è aperto e la scala continua sotto', requires: { flag: 'sa_scala_continua' }, once: true, sets: { via_di_terra: true }, gold: 1, next: 'd11_registro' },
     ],
   },
@@ -1928,6 +1977,8 @@ Il silenzio, quaggiù, è il modo che ha questa cosa per dirvi che ha smesso di 
 **(Oggetto: il CAVALLINO DI CELLULOIDE. 🫁 Fiato −4: quarantacinque metri si pagano. Il Quaderno registra il giocattolo dalla stiva, e il mistero della bambina della Santa Lucia ha il suo quarto indizio. 🔇 Terza e ultima volta che il gioco spegne la musica. Da qui in avanti, se il suono manca, è perché manca.)**`,
     sets: { i_giocattolo: true },
     choices: [
+      { text: '🧱 Fuori dallo squarcio, a sinistra: il muro romano continua, e a quarantuno metri c\'è la trave', requires: { flag: 'sa_sesta_cisterna' }, once: true, next: 'd13_sextvm' },
+      { text: '🔎 Sulla paratia di prua, sopra i bagagli, c\'è una targa di ottone rivettata. Pulirla col guanto', requires: { flag: 'i_nome_lista' }, once: true, next: 'd13_targa' },
       { text: '🤝 Prenderle la mano. Cinque secondi, senza nessun motivo tecnico', once: true, next: 'd13_mano' },
       { text: '🤿 Quella muta in piedi sul fondo, trenta metri più in là. Guardarla per bene',
         requires: { flag: 'visto_il_fondo' }, once: true, next: 'd13_marisa' },
@@ -1963,7 +2014,9 @@ E in cinque secondi il relitto capisce che siete fermi.
 
 Dal passo d'uomo alla vostra sinistra — quello che prima era vuoto — esce **una murena**. Non a scatti: continua, come si sfila una corda da un buco, un metro e venti di muscolo grigioverde che non ha nessuna intenzione di spaventarvi. Le murene non spaventano: chiudono la bocca e non la riaprono.
 
-E dalla paratia in fondo, dove l'acqua è più scura, si stacca **una forma che ha la misura di una donna**. Cappottino. Le braccia lungo i fianchi. Viene verso di voi con la stessa calma con cui è stata ferma per ottantadue anni, e la calma è la cosa peggiore, perché vuol dire che non ha fretta e voi sì.
+E dalla paratia in fondo, dove l'acqua è più scura, si stacca **una forma che ha la misura di una donna**. Le braccia lungo i fianchi, ferme.
+
+Ha addosso un cappotto, e il cappotto è la cosa che non torna: le maniche finiscono dieci centimetri prima dei polsi e il collo di velluto le sta strizzato sulla gola. È un cappotto da bambina di sei anni, buono, di quelli che si mettono per il viaggio, addosso a una donna adulta — e in questa stiva ce n'è uno solo di quella taglia, e sappiamo di chi era, e sappiamo che stanotte quella bambina non l'ha addosso. Viene verso di voi con la stessa calma con cui è stata ferma per ottantadue anni, e la calma è la cosa peggiore, perché vuol dire che non ha fretta e voi sì.
 
 > Gaetano: *(dentro l'erogatore, che trasforma tutto in un ringhio)* "RISALIRE."
 
@@ -2269,6 +2322,88 @@ Nessuno dei due dice la frase che segue, perché la frase che segue non serve.
     ],
   },
 
+  /* LA TARGA. Il gioco ripete quattro volte che il nome di Assuntina e' stato aggiunto a
+     penna in fondo a una lista GIA' CHIUSA, e non dice mai perche' una madre avesse bisogno
+     di aggiungerlo a mano. Il perche' e' una formula di regolamento su una targa di ottone —
+     e l'ottone e' l'unica cosa che a quarantacinque metri non si consuma. Nessun corpo: la
+     carta che li riguarda, che in questa storia e' sempre piu' cattiva del corpo. */
+  /* SEXTVM NON PROBATVM. Il premio del mistero piu' difficile del gioco erano numeri: +1 ai
+     tiri e una scelta nel finale. Chi ha capito perche' sono sei cisterne merita di LEGGERE
+     il documento, e il documento e' un COLLAUDO — un'opera pubblica romana veniva locata,
+     eseguita e approvata, e la formula si incideva sull'opera. La sesta non e' mai stata
+     approvata: e' l'ufficio piu' vecchio di questa storia che si rifiuta di firmare, e si
+     rifiuta da duemila anni. */
+  d13_sextvm: {
+    location: 'relitto',
+    caption: 'Quarantuno metri — sotto la trave',
+    stinger: 'sigillo',
+    metri: 41,
+    text: `Fuori dallo squarcio, a sinistra, la lamiera finisce e comincia una cosa che non è nave: **blocchi**. Tufo squadrato, corsi regolari, e sopra i corsi la fila degli alloggiamenti quadrati per le travi — gli stessi che stanno a quaranta metri più in alto, sul porto romano dove si prende il traghetto, tagliati dalla stessa mano con lo stesso scalpello.
+
+Dentro il terzo alloggiamento la trave c'è ancora. Nera, dura, mineralizzata, con il chiodo di bronzo al suo posto.
+
+E sotto la trave, sul blocco, c'è un'iscrizione, e non è consumata: il tufo qua sotto non lo mangia niente.
+
+> **CVBICVLVM VI · LOCATVM · PERFECTVM**
+
+> **NON PROBATVM**
+
+Quattro parole d'ufficio e una negazione, e Gaetano le ha già viste in latino sull'architrave di Villa Giulia perché sono le stesse di qualunque lavoro pubblico: appaltato, eseguito, **collaudato**. Le prime tre ci sono. La quarta è negata.
+
+La stanza numero sei è stata appaltata e costruita, e nessun ufficio l'ha mai accettata in consegna.
+
+Sotto la negazione c'è una riga in più, incisa dopo — lettere più piccole, mano diversa, e la parola finale ripassata due volte perché non venisse via:
+
+> **NE APERIAT · NEC CLAVDAT**
+
+Non si apra. **E non si chiuda.**
+
+A sette metri sulla destra il muro fa un angolo, e nell'angolo non c'è tufo: c'è un buco, alto come una porta, con i bordi lisci.
+
+**(🫁 Fiato −3: quarantuno metri sono a un metro e mezzo dal fondo dell'aria. 🕯 Il Quaderno registra il collaudo: la sesta stanza è stata appaltata, eseguita, e MAI approvata — e chi ha inciso la seconda riga ha proibito due cose, non una. Voi ne sapevate una sola.)**`,
+    goldLoss: 3,
+    sets: { sextvm_non_probatvm: true },
+    choices: [
+      { text: '🔦 Puntare la torcia dentro il buco. Cinque secondi, senza entrare', once: true, damage: 3, gold: 1, sets: { guardato_la_sesta: true }, next: 'd14_coro' },
+      { text: '📸 Fotografare l\'iscrizione, tutte e due le righe, e non guardare l\'angolo', once: true, gold: 2, next: 'd14_coro' },
+      { text: '⬆️ Su. Adesso, e la seconda riga la si pensa in barca', next: 'd14_coro' },
+    ],
+  },
+
+  d13_targa: {
+    location: 'relitto',
+    caption: 'La paratia di prua — ottone rivettato',
+    stinger: 'penna',
+    metri: 45,
+    text: `Il guanto passa due volte e l'ottone viene fuori giallo, pulito, con le lettere ancora nere di smalto dentro l'incisione. È l'unica cosa in questa stanza che non è cambiata di un grammo: il legno si è aperto, il cartone si è gonfiato, la celluloide ha perso una zampa, e l'ottone è di ieri.
+
+Quattro righe incise, e sotto un numero di omologazione.
+
+> **DOTAZIONI DI SALVATAGGIO — SETTORE POPPA**
+
+> *Posti in zattera n. 40 · Cinture di salvataggio n. 180*
+
+> *I fanciulli al di sotto degli anni dodici computano per mezzo posto.*
+
+> *I lattanti non computano.*
+
+Gaetano legge le quattro righe due volte. Non ha il fiato per dire niente e non c'è nessuno con cui parlare, perché a quarantacinque metri non ci si parla.
+
+Allora fa la cosa che gli resta: alza due dita davanti alla maschera di Claudia e le mostra il numero. **Due**. Poi indica la targa, poi indica lei, e poi fa il segno del mezzo — l'indice che taglia il palmo a metà.
+
+Claudia annuisce una volta.
+
+Perché è tutto lì, ed è per questo che una madre, sul molo di Napoli, il 24 ottobre del 1943, ha dovuto chiedere una penna e scrivere il nome di sua figlia in fondo a una lista già chiusa, tenendo il foglio in mano perché non c'era un tavolo. La bambina non c'era sulla lista. **Non perché l'avessero dimenticata: perché non computava.**
+
+**(🫁 Fiato −2: pulire una targa con il guanto costa aria e non serve a niente. Il Quaderno registra le quattro righe e il numero di omologazione. E registra la ragione per cui l'ultimo nome della lista d'imbarco è a penna — che non era la fretta di una madre: era un regolamento, con l'omologazione in fondo.)**`,
+    goldLoss: 2,
+    sets: { mezzo_posto: true },
+    choices: [
+      { text: '📸 Fotografare la targa. Fascio radente, due scatti, e l\'omologazione dentro l\'inquadratura', once: true, gold: 1, next: 'd14_coro' },
+      { text: '⬆️ Su. Adesso, e non guardare più niente', next: 'd14_coro' },
+    ],
+  },
+
   d14_coro: {
     location: 'fossa',
     /* La didascalia diceva «la sosta a dieci metri» mentre la scena sta a QUARANTA
@@ -2297,6 +2432,7 @@ E aspetta. Non insiste, non stringe: **aspetta**, come aspetta uno che sa di ave
 **(💪 Cure complete e abilità ricaricate: quello che avete adesso è tutto quello che avrete. 🫁 Siete a quaranta metri e l'aria è quella che è.)**`,
     sets: { d_capito_tutto: true },
     choices: [
+      { text: '🎧 Sotto la voce di Marisa, prima di Marisa, c\'è un suono che non è una parola. Riconoscerlo', requires: { flag: 'quasi_risposto' }, once: true, next: 'd14_sillaba' },
       { text: '🎧 Ascoltare quella voce. Quella sola, in mezzo a tutte le altre',
         requires: { spirit: true }, once: true, next: 'd14_voce' },
       { text: '⚔️ Rispondere di no. Con tutto quello che avete addosso', next: 'd14_boss' },
@@ -2386,6 +2522,47 @@ Sotto di loro, tutte le voci insieme dicono la stessa cosa nello stesso momento,
       { text: '⏱ I sette minuti di sosta. Non si può fare altro, e sette minuti sono lunghi', next: 'd14_sosta1' },
       { text: '⚔️ Giù di nuovo. Adesso, prima di pensarci: rispondere di no con tutto quello che avete', next: 'd14_boss' },
       { text: '🧂 Giù col sale della sua stessa acqua in mano', requires: { item: 'salamoia' }, sets: { sale_pronto: true }, next: 'd14_boss' },
+    ],
+  },
+
+  /* LA MEZZA SILLABA. `quasi_risposto` era l'unico effetto di una scelta che non aveva
+     nemmeno un `next`: Ciro salvava Claudia mettendole la mano sulla bocca — il momento piu'
+     teso dell'atto C — e il gioco non se ne accorgeva. Il giocatore premeva, prendeva quattro
+     punti di danno, e restava nella stessa scena.
+     Adesso quella mezza vocale torna a quaranta metri, e torna nel modo che questa cosa usa
+     sempre: non chiama, RISPONDE, e quello che le hanno dato era incompleto. E `debito_di_voce`
+     — il meccanismo che js/combat.js ha pronto e collaudato, +6 PV al Coro e l'acqua nei
+     polmoni a uno dei due — diventa raggiungibile anche da qui, ma solo se il giocatore
+     decide di finirla lui. */
+  d14_sillaba: {
+    location: 'fossa',
+    caption: 'Quaranta metri — il suono che non è una parola',
+    stinger: 'voce_amata',
+    metri: 40,
+    text: `Prima di Marisa, mezzo secondo prima, dentro il volume, c'è un suono che non è una parola.
+
+È un attacco di vocale. Una **a** che comincia e non arriva in fondo, tagliata di netto sul secondo centesimo, con dentro il rumore di una mano.
+
+È la sua voce. È la sua voce di sabato pomeriggio, alle tre e venti, nel pozzo delle novantanove porte, quando ha aperto la bocca per rispondere a un registratore e un vecchio di settantadue anni le ha messo la mano sulla faccia senza chiedere permesso.
+
+Quella cosa lì la tiene da ventisei ore. La rimette da capo. E ogni volta si ferma nello stesso punto, perché è lì che il nastro finisce.
+
+> IL CORO: *(e non è una minaccia: è una richiesta di completamento, nella lingua paziente di chi ha un modulo con un buco)* "Manca poco."
+
+Un'altra volta. Un'altra volta. Sempre lo stesso taglio, sempre la mano dentro.
+
+Una cosa fatta di ottocento voci sa fare qualunque suono le sia stato dato. Quello no: quello gliel'hanno dato a metà, e a metà lei non lo sa finire. Le serve la seconda metà, e la seconda metà sta in un petto che a quaranta metri ha ancora centodieci bar.
+
+**(⚠️ Il Coro ha in mano mezzo sì e non riesce a chiudere una vocale. 🫁 Fiato −1. Da qui si può finirla — e finirla vuol dire dargli quello che aspetta da ventisei ore — oppure lasciare che l'ultima parola su quel suono resti la mano di Ciro.)**`,
+    goldLoss: 1,
+    sets: { mezza_sillaba: true },
+    choices: [
+      { text: '🎵 Finirla. Aprire la bocca dentro l\'erogatore e chiudere quella vocale, per sapere cosa succede',
+        once: true, damage: 4, tag: '⚠️ Il Coro aspetta questo da ventisei ore, e il registro di combattimento lo scriverà',
+        sets: { debito_di_voce: true }, next: 'd14_boss' },
+      { text: '🤚 Lasciarla a metà. L\'ultima cosa su quel suono l\'ha detta la mano di un vecchio, e resta la sua',
+        once: true, heal: 5, gold: 2, sets: { sillaba_lasciata: true }, next: 'd14_boss' },
+      { text: '⬆️ Su, alla sosta. Con quel suono nelle orecchie e senza rispondergli', goldLoss: 2, next: 'd14_dieci' },
     ],
   },
 
@@ -2565,6 +2742,14 @@ Poi va avanti, e va avanti in ordine, come si scorre un fascicolo con l'indice s
 
 > LA VOCE: "Il verbale è l'unica cosa che resta. Le persone non le legge nessuno. La carta sì."
 
+Poi va avanti. E la riga dopo non è del passato.
+
+> LA VOCE: "Del trenta agosto risulta che i predetti, presenti sull'isola dal ventisette, venuti di propria iniziativa, muniti di regolare titolo di viaggio, alle ore diciassette e trenta —"
+
+E si ferma. Non si interrompe: si ferma come si ferma un impiegato che ha finito la parte compilata e ha davanti il resto della riga bianco.
+
+> LA VOCE: *(e per la prima volta non ha il tono del fascicolo: ha quello di uno che aspetta un dato)* "Questa la chiudo io, appena mi dite come. Non ho fretta: la pratica non scade.\"
+
 E poi non dice più niente, e il non dire niente è la parte che pesa: l'acqua alle caviglie resta ferma, calda di sole, alta un dito sulla lamiera della rampa, e aspetta come aspetta uno che ha già scritto la riga e deve solo metterci il nome.
 
 Trenta metri di lamiera davanti. Dietro, la scaletta delle Parracine e il limone in vaso di Ada.
@@ -2575,7 +2760,7 @@ E la domanda è una sola: chi lo scrive, questo verbale.`,
       { text: '📄 "Il verbale ce l\'abbiamo letto ieri. Ci hai messi NON RECLAMATI." — e appoggiare la pagina strappata sulla banchina bagnata, davanti all\'acqua', requires: { flag: 'non_reclamati' }, once: true, heal: 4, gold: 2, sets: { reclamati: true }, next: 'd15_uscite' },
       { text: '🕯 Rispondere al verbale con un nome: «Nicola Sperduto, quarantatré anni, rimasto in servizio. Questo non risulta a nessuno, e lo sappiamo noi.»',
         requires: { flag: 'sa_nome_guardia' }, once: true, heal: 6, gold: 2,
-        sets: { verbale_rifiutato: true }, next: 'd15_uscite' },
+        sets: { verbale_rifiutato: true, pratica_aperta: true }, next: 'd15_uscite' },
       { text: '🤲 Non rispondere all\'acqua. Prendergli la faccia con due mani e guardarlo, dieci secondi', heal: 4, gold: 1, next: 'd15_addio' },
       { text: '🕯 Salire in mezzo alla rampa e dirla, la frase: «Allora scriviamolo noi»', next: 'd15_addio' },
       { text: '↩ Riprendere le sacche e tornare sulla banchina: di questo si riparla', heal: 2, next: 'd15_uscite' },
@@ -2654,6 +2839,96 @@ E allora chi parte sale, e chi resta si siede sul bordo della banchina, coi pied
          il finale e_resta seppellirebbe una persona viva. */
       { text: '🏠 Scegliere chi resta sull\'isola, di sua volontà', sacrifice: true, resta: true, sacrificeSets: 'chi_ha_scelto_di_restare', sacrificeTitle: 'Chi resta sull\'isola?', sacrificeText: 'Non è un sacrificio per l\'altro: è una scelta propria, presa a mente lucida, per mettersi in mezzo fra quella cosa e i prossimi che arriveranno. Decidetelo insieme, ad alta voce.', next: 'e_resta' },
       { text: '↩ Sedersi in due sul bordo della banchina e ripensarci', heal: 2, gold: 1, next: 'd15_uscite' },
+    ],
+  },
+
+  /* LE SCONFITTE DELL'ATTO D. Come nell'atto C: non chiudono contenuti, cambiano il MODO. */
+  d10_stanza_saltata: {
+    location: 'bnb',
+    caption: 'Cinque porte su sei',
+    stinger: 'fail',
+    text: `Le aprono tutte. Una, due, tre, quattro, cinque.
+
+E alla fine, sulla terrazza, Gaetano si ferma con la mano sul muretto e fa la faccia di uno che ha perso il conto di una cosa che non si perde.
+
+> Gaetano: "Quante ne abbiamo aperte?"
+
+> Claudia: "Tutte."
+
+> Gaetano: "Quante."
+
+> Claudia: *(e comincia a contarle sulle dita, e si ferma al quinto dito)* "...cinque."
+
+Il corridoio delle Parracine ha sei porte. Le contano da fuori, dal fondo, tutte e due insieme, e sono sei. Le aprono di nuovo una per una, e stavolta sono cinque: c'è una porta che quando ci arrivi davanti è già aperta, e una porta già aperta non la conti, perché non la apri.
+
+> Claudia: "Qual è?"
+
+> Gaetano: "Non lo so. E questo è il punto."
+
+**(💪 TENUTA −3, 🫁 Fiato −1. Il Quaderno registra il conto: sei porte contate da fuori, cinque aperte, e nessuno dei due sa dire quale sia quella che era già aperta. Da adesso, alle Parracine, non si conta più niente ad alta voce.)**`,
+    damage: 3,
+    goldLoss: 1,
+    sets: { i_porta_aperta: true },
+    choices: [
+      { text: '🏠 Giù in paese. Fuori da questa casa, adesso', next: 'd11_vuoto' },
+    ],
+  },
+
+  d8_due_misure: {
+    location: 'cisterna_sigillata',
+    caption: 'Due misure che non stanno insieme',
+    stinger: 'fail',
+    text: `Il muro si misura in due modi, e Gaetano li fa tutti e due perché è così che si misura una cosa che conta.
+
+Col metro a nastro, dal filo del pavimento al filo del soffitto: **duecentodieci** centimetri.
+
+Contando i blocchi e moltiplicando per l'altezza di un blocco, che è nove centimetri più due di malta: ventuno blocchi, **duecentotrentuno** centimetri.
+
+Ventun centimetri di differenza, in un muro dove la prima misura e la seconda dovrebbero coincidere entro due.
+
+Rifà tutto e mezzo. Il nastro dice duecentodieci. I blocchi sono ventuno, e li conta tre volte, e la terza volta li conta Claudia.
+
+> Claudia: "Allora è il blocco che non è di nove."
+
+> Gaetano: *(che ne ha già misurato quattro col calibro del coltellino)* "Sono di nove. Tutti e quattro."
+
+> Claudia: "E quindi?"
+
+> Gaetano: "E quindi il muro è alto duecentodieci e i blocchi che ci stanno dentro sono duecentotrentuno." *(chiude il metro con lo scatto)* "Uno dei due numeri è una bugia, e nessuno dei due strumenti è mio nemico."
+
+**(💪 TENUTA −2. Il Quaderno registra le DUE misure, entrambe, senza scegliere: duecentodieci col nastro, duecentotrentuno coi blocchi. Quando due misure non stanno insieme non si sceglie la più comoda — si scrivono tutte e due e si va avanti.)**`,
+    damage: 2,
+    sets: { i_due_misure: true },
+    choices: [
+      { text: '🚢 Al porto. Il traghetto è alle cinque e mezza e non aspetta i muri', next: 'd9_traghetto' },
+    ],
+  },
+
+  d11_niente_nella_muta: {
+    location: 'paese',
+    caption: 'La muta, e dentro niente',
+    stinger: 'fail',
+    text: `La muta viene giù dal gancio col peso di una muta asciutta, e dentro non c'è niente da vedere: taglia, cuciture, il nome col pennarello sul collo. Tutto in ordine, tutto normale, tutto come deve essere.
+
+E per un secondo e mezzo Gaetano ci resta male, e se ne accorge.
+
+> Gaetano: "Non c'è niente."
+
+> Claudia: "E ti dispiace."
+
+> Gaetano: *(la rimette al gancio, dal verso giusto)* "Mi dispiace. Sì." *(pausa)* "Da tre giorni ogni cosa che guardo mi dà una risposta, e questa non me l'ha data, e la prima cosa che ho pensato è stata *ho guardato male*."
+
+> Claudia: "Non hai guardato male."
+
+> Gaetano: "No. Ma volevo."
+
+Restano fermi in mezzo al diving vuoto, con una muta appesa a un gancio, e per la prima volta da giovedì la cosa più inquietante della stanza sono loro due.
+
+**(🫁 Fiato +1: accorgersi di volere una risposta, per uno come lui, è riposare. Nessun indizio da qui — e da adesso sul Quaderno finisce solo quello che regge una seconda misura fatta da lei.)**`,
+    gold: 1,
+    sets: { misura_solo_confermata: true },
+    choices: [
+      { text: '📋 Sul bancone c\'è dell\'altro. Le carte', next: 'd11_registro' },
     ],
   },
 

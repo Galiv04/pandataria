@@ -1056,7 +1056,11 @@ scenarios.push(scenario(
   ['gaetano', 'claudia'],
   {},
   {
-    forceLossAt: 'c9_scavo',
+    forceLossAt: 'c9_bottoni',
+    /* Il combattimento con la guardia si e' spostato due volte in un giorno: da c9_cimitero a
+       c9_scavo quando il cimitero e' stato spezzato, e da c9_scavo a c9_bottoni quando lo
+       scavo e' stato spezzato. Ogni volta il forceLossAt puntava a una scena senza scontro, e
+       forzare la sconfitta dove non c'e' uno scontro non forza niente (lezione 80). */
     /* il combattimento e' passato a c9_scavo quando il cimitero e' stato spezzato in due:
        forzare la sconfitta dove non c'e' piu' uno scontro non forza niente. */
     craft: 'tutto',
