@@ -779,6 +779,32 @@ const DEFAULT_SEQUENCES = {};
 /* Scelte "di percorso" di default: portano avanti la vacanza senza saltare nulla di
    importante. Ogni scenario ne eredita una copia e sovrascrive solo ciò che gli serve. */
 const BASE_CHOICES = {
+  /* --- LE SCENE DI FALLIMENTO CHE RECUPERANO UN INDIZIO ---
+     Alcune prove nuove stanno davanti a un indizio dei misteri, e un indizio non
+     si puo' perdere su un tiro (o il Quaderno diventa una lotteria): la scena di
+     fallimento ha sempre una strada lunga che ci riporta. Ma la strada lunga va
+     PRESA, e senza una chiave il banco di prova sceglie a caso — cosi' il
+     Quaderno pieno restava senza il graffito una volta su tre. Qui la strada
+     lunga e' la scelta di default. */
+  c5_campione: 'Ricontarle',
+  c8_due_e_mezzo: 'In barca, allora',
+  c7_righe: 'quaderno d',
+  b1_di_fretta: 'Ascoltare, allora',
+  /* e la chiave di default deve rimettere la partita SULLA LINEA PRINCIPALE:
+     'rispondere' portava a b3_rispondere → b3_prova → b3_quaderno → b6, cioe'
+     saltava tutto l'orto dei Coraggio (b4) e quindi il flag `muro_aperto`, e
+     quindi la cisterna murata (b8) e il suo minigioco. Una chiave di steering
+     sbagliata non fa fallire la scena che nomina: fa fallire quella dopo. */
+  b3_cronometro: 'Uscire. Al sole',
+  b3_ventidue: 'Fuori. Sedersi sul muretto',
+  b6_terra_dura: 'Al ninfeo',
+  b6_ciglio: 'Sentire cosa dice',
+  b6_nodo: 'Il ninfeo',
+  b8_braccia: 'Su alle Parracine',
+  b9_prezzo_isola: 'Un ultimo bagno', b9_prezzo_pieno: 'Un ultimo bagno',
+  c3_rampa: 'Su. Piano', c5_pietra: 'Contare le tacche', c5_unghia: 'Contare le tacche',
+  c10_soglia: 'Fuori. Al sole', c11_dati: 'I numeri, adesso', c15_tasto: 'Andare a dormire',
+  c1_tanica: 'Dica',
   /* --- A: giovedì 27, l'arrivo --- */
   a0: 'Restare sul ponte', a0_lista: 'Restare sul ponte', a0_traghetto: 'Restare sul ponte', a0_ponte: 'Restare sul ponte', a0_pandataria: 'Restare sul ponte', a0_carcere: 'Restare sul ponte',
   a0b: 'Il traghetto attracca',
@@ -987,6 +1013,14 @@ scenarios.push(scenario(
     d13_fossa: 'Fammi il briefing', d13_briefing: 'Scendere col bombolino riparato',
     d14_coro: 'Rispondere di sì', d14_dieci: 'Rispondere di sì', d14_restate: 'Rispondere di sì' },
   {
+    /* E GLI ESITI DELLE PROVE NUOVE. Aggiungendo una prova a monte, il percorso di
+       questo scenario e' cambiato: la prova di DESTREZZA sul nodo della collana e'
+       caduta, il ramo di fallimento ha portato altrove, e undici scene dopo la
+       partita non aveva piu' il fiato per l'ultima immersione e finiva nel loop.
+       Non e' un difetto del ramo — e' che uno scenario che verifica UN FINALE non
+       deve dipendere dai dadi lungo la strada. I rami di fallimento li provano gli
+       scenari sfortunati, che li fanno cadere tutti di proposito. */
+    checkOutcomes: { b6_scavo: 'success' },
     verify: (r, expect) => {
       expect(/^e_coro/.test(r.log.ending || ''), `finale atteso e_coro*, trovato ${r.log.ending}`);
     },
@@ -1094,7 +1128,14 @@ scenarios.push(scenario(
   'In due, in apnea (difficoltà massima)',
   ['gaetano', 'claudia'],
   { e_abbandono: 'Prendiamo il traghetto delle 17:30',
-    d11_vuoto: 'Al tavolino in fondo alla piazza', d11_registro: 'Al tavolino in fondo alla piazza',
+    /* «Al tavolino in fondo alla piazza» sta in d11_registro, NON in d11_vuoto:
+       la chiave su d11_vuoto non ha mai potuto attaccare, e finche' il caso ci
+       portava comunque al registro il test passava lo stesso. Le prove nuove a
+       monte hanno cambiato il flusso dei dadi, il bot ha preso i moduli, e la
+       signora non e' stata incontrata. Adesso la strada e' scritta tutta. */
+    d11_vuoto: 'Il registro sul bancone', d11_moduli: 'Rimettere tutto nella cartella',
+    d11_specchio: 'Al tavolino in fondo alla piazza',
+    d11_registro: 'Al tavolino in fondo alla piazza',
     d11_signora_no: 'Era l\'acqua, vero?',
     d11_signora_tardi: 'Al porto. Adesso' },
   {
@@ -1401,8 +1442,16 @@ scenarios.push(scenario(
 scenarios.push(scenario(
   'Le sconfitte dei minigiochi (b8_apnea_ko e c5_graffito_ko)',
   ['gaetano', 'claudia'],
-  { b8: 'Recuperare il secchiello', c5_cella: 'Gaetano conta un campione' },
+  { b8: 'Recuperare il secchiello', c5_cella: 'Gaetano conta un campione',
+    b8_roba: 'Giù. Claudia in apnea', b8_lettera: 'Giù',
+    /* e il FIATO per scendere: la soglia e' sette, e questo scenario ci arrivava
+       con meno perche' le prove nuove hanno spostato il percorso. Le scelte
+       affettive del gioco danno fiato — mangiare, ridere, stare fermi con
+       l'altro — e sono la strada che il gioco stesso indica per averne. */
+    a0_ponte: 'Rimettere il telefono in tasca', a4_scoglio: 'Prima tirarsi su sullo scoglio',
+    b7_calette: 'Restare un momento', b0: 'Chiedere ad Ada' },
   {
+    sequences: { b8: ['Recuperare il secchiello', 'Scendere nel buco'] },   // b8 offre 'Scendere nel buco', b8_roba/b8_lettera offrono 'Giù'
     minigames: { b8_apnea: 'fail', c5_tacche: 'fail' },
     verify: (r, expect) => {
       const viste = r.log.scenes;

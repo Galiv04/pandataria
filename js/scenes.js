@@ -2157,7 +2157,7 @@ const Scenes = (() => {
       ctx.fillStyle = '#3a2e1c'; ctx.fillRect(lx - 1, 0, 3, ly);
       // una lampadina in gabbia illumina molto, ma 170×130 vuol dire 680×520 finito:
       // più del canvas, cioè cisterna in pieno giorno
-      glow(ctx, lx, ly + 10, 100, 50, '255,214,140');
+      glow(ctx, lx, ly + 10, 54, 28, '255,214,140');   // 100 = 400 px di alone per una lampadina
       glow(ctx, lx, ly + 10, 50, 28, '255,232,180');
       glow(ctx, lx, ly + 10, 22, 14, '255,244,214');
       ctx.fillStyle = '#4a4030'; ctx.fillRect(lx - 11, ly, 23, 6);

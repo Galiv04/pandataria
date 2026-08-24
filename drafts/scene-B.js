@@ -226,7 +226,7 @@ Peppe accende la luce. La stanza si apre e Claudia dice "oh" senza volerlo.
 
 **(🫁 Fiato −0: si scende con le scale, non col fiato. Ma da qui in giù la temperatura è tredici gradi e nessuna delle due maniche lunghe ce l'avete.)**`,
     choices: [
-      { text: '👁 Guardare la stanza. Guardarla bene, prima di ascoltare la guida', next: 'b2' },
+      { text: '👁 Guardare la stanza. Guardarla bene, prima di ascoltare la guida', tag: 'Prova di INTELLIGENZA — CD 11 (guardare e VEDERE sono due mestieri, e uno dei due si paga)', check: { stat: 'INT', dc: 11, success: 'b2', fail: 'b1_di_fretta' } },
       { text: '🗣 Chiedere a Peppe delle altre quattro cisterne', once: true, next: 'b1_peppe' },
       { text: '📷 Riprendere tutto con la GoPro sull\'asta: quello che l\'occhio perde', once: true, requires: { item: 'gopro' }, sets: { girato_cisterna: true }, next: 'b1_gopro' },
     ],
@@ -488,7 +488,7 @@ Poi ci ripensa e aggiunge una cosa che non c'entra niente, che è ridicola, che 
     sets: { promessa_incisa: true },
     stinger: 'heal',
     choices: [
-      { text: '🎧 Ascoltare, adesso', next: 'b3' },
+      { text: '🎧 Ascoltare, adesso', tag: 'Prova di SAGGEZZA — CD 12 (dentro un vano di tufo il proprio respiro copre tutto il resto)', check: { stat: 'SAG', dc: 12, success: 'b3', fail: 'b2_niente' } },
       { text: '🚶 Uscire', next: 'b4' },
     ],
   },
@@ -520,9 +520,9 @@ Poi Claudia riprende fiato per dire qualcos'altro — e **prima che apra la bocc
     stinger: 'coro',
     sets: { eco_anticipata: true },
     choices: [
-      { text: '🎤 Rifarlo. Registrando col telefono, e stavolta con un cronometro', next: 'b3_prova' },
+      { text: '🎤 Rifarlo. Registrando col telefono, e stavolta con un cronometro', tag: 'Prova di INTELLIGENZA — CD 12 (un esperimento si progetta prima, non mentre lo fai)', check: { stat: 'INT', dc: 12, success: 'b3_prova', fail: 'b3_cronometro' } },
       { text: '🎧 Claudia: rispondere. Dire un\'altra parola e vedere cosa fa', next: 'b3_rispondere' },
-      { text: '🏃 Uscire. Subito. Prendere Peppe e uscire', next: 'b3_fuga' },
+      { text: '🏃 Uscire. Subito. Prendere Peppe e uscire', tag: 'Prova di DESTREZZA — CD 11 (ventidue gradini di tufo bagnato, in salita, di corsa, al buio)', check: { stat: 'DES', dc: 11, success: 'b3_fuga', fail: 'b3_ventidue', failDamage: 3 } },
     ],
   },
 
@@ -1061,7 +1061,7 @@ Il vento di Punta Eolo fa il rumore che fa sempre. La lattina di Peroni rotola d
     stinger: 'sigillo',
     choices: [
       { text: '📓 Il Quaderno. Vedere se il mistero si chiude', next: 'b3_quaderno' },
-      { text: '⛏ Grattare via la terra sotto la pietra: le iscrizioni non stanno mai sole', once: true, next: 'b6_scavo' },
+      { text: '⛏ Grattare via la terra sotto la pietra: le iscrizioni non stanno mai sole', once: true, tag: 'Prova di FORZA — CD 11 (venti centimetri di terra di Punta Eolo, ad agosto, con una gaffa)', check: { stat: 'FOR', dc: 11, success: 'b6_scavo', fail: 'b6_terra_dura' } },
       { text: '🏛 Il ninfeo, dove c\'era l\'acqua della villa', next: 'b6_ninfeo' },
     ],
   },
@@ -1096,7 +1096,7 @@ Claudia non la tocca. Sta un passo indietro, con le braccia conserte, e dice una
     sets: { sa_medaglietta: true },
     attenzione: 1,
     choices: [
-      { text: '🔧 Infilarla nel filo di nylon. Adesso, qui, con lei che guarda', once: true, next: 'b6_collana' },
+      { text: '🔧 Infilarla nel filo di nylon. Adesso, qui, con lei che guarda', once: true, tag: 'Prova di DESTREZZA — CD 10 (un nodo da tre millimetri, con le mani sporche di terra e una che guarda)', check: { stat: 'DES', dc: 10, success: 'b6_collana', fail: 'b6_nodo' } },
       { text: '🏛 Il ninfeo', next: 'b6_ninfeo' },
       { text: '📓 Il Quaderno', next: 'b3_quaderno' },
     ],
@@ -1154,7 +1154,7 @@ Gaetano infila il braccio nel canale fino alla spalla e tira fuori la mano bagna
     item: 'tappo_sughero',
     sets: { sa_acqua_salata: true },
     choices: [
-      { text: '🎧 Calare l\'idrofono nel canale', requires: { item: 'idrofono' }, once: true, next: 'b6_idro_canale' },
+      { text: '🎧 Calare l\'idrofono nel canale', requires: { item: 'idrofono' }, once: true, tag: 'Prova di DESTREZZA — CD 12 (il canale sta sul filo del precipizio, e per arrivarci ci si sporge)', check: { stat: 'DES', dc: 12, success: 'b6_idro_canale', fail: 'b6_ciglio', failDamage: 2 } },
       { text: '🚶 In paese. Si mangia', next: 'b7' },
       { text: '🧱 Al muro. Si scende', requires: { flag: 'muro_aperto' }, next: 'b8' },
     ],
@@ -1938,7 +1938,7 @@ Poi dice: "Là sotto c'è un corridoio, va verso il mare, e qualcuno negli anni 
     stinger: 'apnea',
     choices: [
       { text: '☕ Il caffè di Ada. Ha la faccia di una che ne ha bisogno', requires: { item: 'caffe_parracine' }, once: true, removeItem: 'caffe_parracine', next: 'b8_caffe' },
-      { text: '🪜 Su. E domani si va a Santo Stefano', next: 'b9' },
+      { text: '🪜 Su. E domani si va a Santo Stefano', tag: 'Prova di COSTITUZIONE — CD 11 (ventidue metri di corda in verticale, dopo due immersioni e senza aver mangiato)', check: { stat: 'COS', dc: 11, success: 'b9', fail: 'b8_braccia', failDamage: 2 } },
     ],
   },
 
@@ -2073,6 +2073,12 @@ Simone li guarda, non capisce, e fa l'unica cosa sensata: torna in acqua.
     gold: 1,
     sets: { sa_serve_ciro: true },
     choices: [
+      /* IL PREZZO. «Cala Rossano — il prezzo delle cose» si chiamava così e non
+         c'era nessun prezzo da trattare: Simone dice una cifra e la si paga. Una
+         valuta che non si contratta mai non è una valuta (lezione sulle risorse
+         non decorative), e Gaetano è quello che chiede — non per risparmiare, per
+         il gusto di chiedere. */
+      { text: '💶 "Simone. Due giorni. Fammi un prezzo da isola, non da noleggio"', once: true, tag: 'Prova di CARISMA — CD 12 (a un ragazzo di ventidue anni che il conto lo deve al padre)', check: { stat: 'CAR', dc: 12, success: 'b9_prezzo_isola', fail: 'b9_prezzo_pieno' } },
       { text: '🏊 Un ultimo bagno con lei, prima che faccia buio', once: true, heal: 4, gold: 1, next: 'b9_insieme' },
       { text: '🌅 A cena. E domani si va da Ciro', next: 'b10' },
     ],
@@ -2579,4 +2585,247 @@ Poi escono nel sole, e sono le otto e venti di sabato ventinove agosto, e al mol
       { text: '🔧 Un ultimo controllo allo zaino: combinare quello che si può', next: 'b4_prepararsi' },
     ],
   },
+/* ============================================================================
+   LE OTTO SCENE DI FALLIMENTO dell'atto B, e la ragione per cui esistono.
+   `metriche.mjs` diceva che Pandataria ha un momento d'incertezza ogni 5,5
+   scene, contro l'uno ogni quattro della soglia — e non era un numero da
+   aggiustare: gli altri quattro giochi stanno a 1,9, 1,9, 3,5 e 4,0, quindi il
+   fuori scala era questo, che è anche il gioco più grande dei cinque.
+   Ma una prova in più non è un tiro in più: è un RAMO in più, e un ramo senza
+   la sua scena è un check che non può dire no (la lezione più costosa del lotto
+   precedente). Quindi ogni prova aggiunta qui si porta la sua scena di
+   fallimento, con un esito diverso e non solo un danno.
+   ========================================================================== */
+
+  b1_di_fretta: {
+    location: 'cisterna',
+    caption: 'La prima cisterna, ore 09:44 — guardata, non vista',
+    stinger: 'fail',
+    text: `Claudia fa il giro della stanza col telefono in mano e la torcia accesa, e lo fa nel modo in cui lo fa uno che sta girando un video: dal centro, in tondo, tenendo l'orizzonte.
+
+È il modo giusto per riprendere una stanza. È il modo sbagliato per guardarla.
+
+> Peppe: *(che non ha detto niente per tutto il tempo)* "Signorina. Voi guardate come guarda uno che poi rivede."
+
+> Claudia: "...è il mio mestiere."
+
+> Peppe: "Eh. E qua il mestiere serve a niente. Qua si guarda come guarda uno che poi *non torna.*"
+
+Ha ragione, e lo capirete stasera, guardando il girato: nell'inquadratura c'è una cosa che nella stanza non avete visto, e adesso è un file da quaranta secondi invece di un muro che potevate toccare.
+
+**(💪 Nessun danno: si perde solo la cosa che c'era da vedere, e la si ritrova più tardi e più cara. Il Quaderno segna che la prima cisterna è stata ripresa e non letta.)**`,
+    sets: { b_stanza_ripresa: true },
+    choices: [
+      { text: '🎧 Ascoltare, allora. Se non si vede, si sente', next: 'b2' },
+      { text: '🚶 Fuori. Al sole. E stasera si riguarda il girato', next: 'b4' },
+    ],
+  },
+
+  b3_cronometro: {
+    location: 'cisterna',
+    caption: 'La seconda cisterna, ore 10:18 — il cronometro parte dopo',
+    stinger: 'fail',
+    text: `Il metodo è questo: uno batte, l'altro cronometra il ritorno, e con la velocità del suono nel tufo si ricava la distanza della parete che rimanda.
+
+Il metodo è giusto. L'esecuzione no: Gaetano batte prima di avviare il cronometro, si accorge, ride, rifà — e alla terza volta la cosa che rimandava ha smesso di rimandare.
+
+> Gaetano: *(guardando lo schermo, con l'aria di uno che ha rovinato un esperimento e lo sa)* "Ho tre numeri e sono tutti e tre inutili. Il primo l'ho preso tardi, il secondo l'ho preso presto, e il terzo non c'era più niente da prendere."
+
+> Claudia: "Perché ha capito che la stavamo misurando?"
+
+> Gaetano: "...o perché la seconda volta l'abbiamo annoiata. Non so quale delle due mi piace meno."
+
+Il file resta: tre colpi, tre silenzi, e in mezzo la voce di un uomo di quarantadue anni che dice *"vaffanculo"* con una tenerezza che non si può spiegare a chi non c'era.
+
+**(🎵 Attenzione del Coro +1: tre colpi in un vano di pietra si sentono comunque. La misura no.)**`,
+    attenzione: 1,
+    choices: [
+      { text: '🎧 Claudia: rispondere. Dire una parola e vedere cosa fa', next: 'b3_rispondere' },
+      { text: '🚶 Uscire. Al sole. La misura la si rifà domani, con la testa', next: 'b4' },
+    ],
+  },
+
+  b3_ventidue: {
+    location: 'cisterna',
+    caption: 'I ventidue gradini, in salita — al sesto',
+    stinger: 'fail',
+    text: `Il tufo bagnato, in salita, di corsa, al buio, con una torcia in una mano e la mano dell'altra nell'altra.
+
+Al sesto gradino il piede di Gaetano trova l'acqua che cola dal quarto e va via di lato, e la cosa che salva tutti e due è che si stavano tenendo: cade in ginocchio sul gradino, non indietro nel buio.
+
+Il ginocchio prende lo spigolo. La torcia no — la torcia arriva su, e sono i cinque secondi in cui è girata verso il basso a essere il problema.
+
+Perché per cinque secondi il fascio illumina il fondo della scala. E sul fondo della scala, dove trenta secondi prima non c'era niente, c'è l'acqua ferma della cisterna e sopra l'acqua, a mezz'aria, **due dita** di qualcosa di più chiaro. Il fascio le prende, loro non si spostano, e il fascio se ne va perché la mano che lo tiene sta finendo di salire.
+
+> Claudia: *(fuori, in ginocchio sul basolato, senza girarsi)* "Non me lo dire. Se me lo dici io ci torno."
+
+> Gaetano: "Non ti dico niente."
+
+**(💪 TENUTA −3 per il ginocchio. 🎵 Attenzione del Coro +1: siete usciti facendo il rumore di due che scappano — che è il rumore che il Coro conosce meglio.)**`,
+    attenzione: 1,
+    sets: { b_vista_la_mano: true },
+    choices: [
+      { text: '☀️ Fuori. Sedersi sul muretto e non parlarne per cinque minuti', next: 'b3_quaderno' },
+      { text: '🚶 In paese, dall\'orto dei Coraggio. Camminando, non correndo', next: 'b4' },
+    ],
+  },
+
+  b6_terra_dura: {
+    location: 'rovine',
+    caption: 'Villa Giulia — la terra di Punta Eolo, ad agosto',
+    stinger: 'fail',
+    text: `La terra di Punta Eolo, ad agosto, non è terra: è una crosta di argilla cotta con dentro le radici delle sterpaglie, e sotto due millenni di scaglie di tufo compattate dal peso della villa.
+
+La gaffa di Ciro entra per quattro centimetri, incontra qualcosa, e si piega.
+
+> Gaetano: *(guardando la gaffa storta con l'espressione di chi deve una spiegazione a un pescatore)* "...gliela raddrizzo io. Con il martello. Prima che se ne accorga."
+
+> Claudia: "Gaetano, quello si accorge di una scaglia sul motore da sei metri."
+
+Sotto la pietra non si arriva. Quello che si vede è solo il bordo di sotto dell'iscrizione, dove le lettere continuano e si fermano: la riga sotto esiste, e non la leggerete oggi.
+
+**(🎵 Nessun danno, ma la gaffa di Ciro è storta: si paga in un'altra moneta. La riga sotto l'iscrizione resta là, e chi torna con l'attrezzo giusto la legge.)**`,
+    sets: { gaffa_storta: true },
+    choices: [
+      { text: '🏛 Al ninfeo, dove c\'era l\'acqua della villa', next: 'b6_ninfeo' },
+      { text: '📓 Il Quaderno. Segnare che sotto la pietra c\'è un\'altra riga', next: 'b3_quaderno' },
+    ],
+  },
+
+  b6_ciglio: {
+    location: 'rovine',
+    caption: 'Il ninfeo — quaranta centimetri dal ciglio',
+    stinger: 'fail',
+    text: `Il canale del ninfeo passa a un metro e venti dal bordo del precipizio, e per calarci l'idrofono ci si mette in ginocchio con la faccia in fuori.
+
+Gaetano ci si mette. Cala il cavo, il cavo si impunta su un dente di cocciopesto, lui tira, il dente cede tutto insieme — e la mano che tirava va indietro, e il ginocchio che teneva scivola avanti di quaranta centimetri.
+
+Quaranta centimetri, con davanti novanta metri di aria e sotto il mare che non fa rumore da quassù.
+
+Lo tiene Claudia. Lo tiene per la cinghia dello zaino, con due mani, sedendosi sui talloni e usando tutto il suo peso, e per un secondo e mezzo sono due persone in equilibrio su una cosa che non è né terra né aria.
+
+Poi sono due persone sedute a un metro e mezzo dal bordo, che si guardano.
+
+> Claudia: *(la voce che non trema, e questo è il pezzo peggiore)* "Mai più. Detto adesso, da sobria, alla luce: mai più tu da solo sul filo di una cosa."
+
+> Gaetano: "...mai più."
+
+> Claudia: "E non è la paura che parla. È il contratto."
+
+L'idrofono è giù nel canale e funziona. Nessuno ha più voglia di sentire cosa dice.
+
+**(💪 TENUTA −2 per il ginocchio e per le mani sul cocciopesto. Il Quaderno registra la promessa: *mai più tu da solo sul filo di una cosa.* Il gioco la ricorderà.)**`,
+    sets: { promessa_mai_soli: true },
+    choices: [
+      { text: '🎧 Sentire cosa dice, adesso che c\'è. Insieme, seduti indietro', next: 'b6_idro_canale' },
+      { text: '🚶 In paese. Si mangia, e di questo non si parla a tavola', next: 'b7' },
+    ],
+  },
+
+  b6_nodo: {
+    location: 'rovine',
+    caption: 'Punta Eolo — il nodo che non tiene',
+    stinger: 'fail',
+    text: `Il filo di nylon è da tre decimi e la collana è un cerchio di bronzo grosso come un'unghia, e per farci passare l'uno dentro l'altro servono due dita asciutte.
+
+Le dita di Gaetano hanno la terra di Punta Eolo sotto le unghie e il sudore di mezzogiorno sui polpastrelli. Il nodo lo fa tre volte. La terza volta tiene, lui alza la collana per farla vedere, il nodo si scioglie da solo e il bronzo cade nell'erba secca.
+
+Nell'erba secca, a Punta Eolo, che è un tappeto di stoppie color bronzo.
+
+Si mettono in ginocchio tutti e due e cercano per undici minuti, in silenzio, con le dita, come si cerca una lente a contatto. La trova Claudia, sotto una foglia di fico secca, a un metro da dove è caduta.
+
+> Claudia: *(tenendola nel palmo, senza darla)* "La tengo io. Non perché tu sia un cane a fare i nodi — lo sei — ma perché a questa qua qualcuno l'ha già perduta una volta, ed è bastato."
+
+> Gaetano: "...tienila tu."
+
+Undici minuti in ginocchio nell'erba, all'una del pomeriggio, sono undici minuti che non fate altro. E non è un male: è la prima volta oggi che state fermi.
+
+**(🫁 Fiato +2: undici minuti in ginocchio nell'erba, vicini, senza parlare, fanno più bene di un caffè. La collana ce l'ha lei — e il gioco lo sa.)**`,
+    gold: 2,
+    sets: { collana_a_claudia: true },
+    choices: [
+      { text: '🏛 Il ninfeo. Con la collana al collo di lei', next: 'b6_ninfeo' },
+      { text: '📓 Il Quaderno, seduti nell\'erba', next: 'b3_quaderno' },
+    ],
+  },
+
+  b8_braccia: {
+    location: 'cisterna_sigillata',
+    caption: 'La cisterna murata, ore 17:34 — ventidue metri di corda',
+    stinger: 'fail',
+    text: `Ventidue metri di corda in verticale, con la muta addosso, dopo due immersioni e con dentro solo un caffè di Ada e due taralli.
+
+Al quattordicesimo metro le braccia di Gaetano fanno la cosa che fanno le braccia: smettono di essere braccia e diventano due pesi attaccati alle spalle. Lui si ferma, si appende all'imbrago, e resta lì — a otto metri dal bordo, a quattordici dall'acqua, a fare il respiro che si fa quando si è finito tutto.
+
+> Claudia: *(dall'alto, la torcia puntata non su di lui ma sulla corda sopra di lui, perché è quello che serve)* "Non parlare. Respira e conta. Io conto con te."
+
+Conta. Quaranta secondi. Poi otto metri, uno alla volta, con lei che dice il numero a ogni metro come si dice a un bambino che sale le scale.
+
+Fuori, seduto sul basolato con la muta a mezzo busto, Gaetano guarda le proprie mani come si guarda un attrezzo che ha ceduto.
+
+> Gaetano: "Ho quarantadue anni."
+
+> Claudia: "Hai quarantadue anni e sei salito. Sono due fatti diversi e ne conta uno."
+
+**(💪 TENUTA −2. 🫁 Fiato −3: quarantacinque secondi appesi a otto metri si pagano. Ma il Quaderno registra la cosa giusta: *lei ha contato con lui.*)**`,
+    gold: -3,
+    sets: { ha_contato_con_lui: true },
+    choices: [
+      { text: '🍝 A cena. E stasera si mangia come si deve', next: 'b10' },
+      { text: '🌅 Su alle Parracine. Domani si va a Santo Stefano', next: 'b9' },
+    ],
+  },
+
+  b9_prezzo_isola: {
+    location: 'mare',
+    caption: 'Cala Rossano — il prezzo da isola',
+    stinger: 'success',
+    text: `Simone ha ventidue anni, una barca del padre e un listino che il padre gli ha scritto su un foglio a quadretti.
+
+Gaetano non chiede lo sconto. Chiede un'altra cosa, e la chiede seduto sul tubolare, con la calma di uno che non ha fretta:
+
+> Gaetano: "Senti. Due giorni, non due ore. Io ti riporto l'ARA piena, non mezza vuota come te la riportano tutti, e ti lascio il gommone più pulito di come l'ho preso. Tu fammi un prezzo da isola, non da noleggio."
+
+Simone guarda il foglio a quadretti, poi guarda l'ARA, poi guarda Claudia — che non dice niente e sorride guardando altrove, che è la cosa più utile che potesse fare.
+
+> Simone: "...mio padre mi ammazza. Sessanta per due giorni e mi riporti tutto asciutto."
+
+> Gaetano: "Asciutto."
+
+> Simone: *(già staccando la cima)* "E se trovate qualcosa giù nella fossa, non me lo dite. Che io qua ci devo lavorare."
+
+**(🫁 Fiato +3: una cosa è andata liscia, e ne servivano poche come questa oggi. Il Quaderno segna che a Simone si può chiedere — e che a Simone si deve tornare.)**`,
+    gold: 3,
+    sets: { simone_amico: true },
+    choices: [
+      { text: '🏊 Un ultimo bagno con lei, prima che faccia buio', once: true, heal: 4, gold: 1, next: 'b9_insieme' },
+      { text: '🌅 A cena. E domani si va da Ciro', next: 'b10' },
+    ],
+  },
+
+  b9_prezzo_pieno: {
+    location: 'mare',
+    caption: 'Cala Rossano — il listino sul foglio a quadretti',
+    stinger: 'fail',
+    text: `Gaetano chiede il prezzo da isola. Lo chiede bene. Lo chiede alle sette meno un quarto di un venerdì di fine agosto, che è l'ora e il giorno in cui un ragazzo di ventidue anni ha già fatto i conti di quanto gli manca alla fine della stagione.
+
+> Simone: *(gentile, e per questo peggio)* "Guardi, io glielo farei. Ma il foglio l'ha scritto mio padre e il numero lo controlla lui. Se le faccio il prezzo da isola, i quaranta euro li metto io — e io a settembre ci devo pagare l'università."
+
+Non c'è niente da rispondere a questo. Gaetano tira fuori il portafogli e paga il listino, e mentre paga fa la cosa che fa sempre: chiede a Simone cosa studia.
+
+> Simone: "Ingegneria navale. A Napoli."
+
+> Gaetano: *(passandogli i soldi)* "Allora ti conviene che ti dica una cosa sulla fossa che sta qua sotto. Perché è un'anomalia batimetrica, e a te fra due anni la chiederanno all'esame."
+
+Parlano venti minuti. Il prezzo resta pieno e Simone, quando slegano, dice *"a domani, dottore"* — e non lo diceva a nessuno prima.
+
+**(🫁 Fiato +2: venti minuti a spiegare una fossa a un ragazzo di ventidue anni sono venti minuti in cui non hai pensato al Coro. E Simone, adesso, ti conosce per nome.)**`,
+    gold: 2,
+    sets: { simone_conosce: true },
+    choices: [
+      { text: '🏊 Un ultimo bagno con lei, prima che faccia buio', once: true, heal: 4, gold: 1, next: 'b9_insieme' },
+      { text: '🌅 A cena. E domani si va da Ciro', next: 'b10' },
+    ],
+  },
+
 };
