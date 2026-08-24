@@ -422,13 +422,18 @@ const Scenes = (() => {
     const rad = Math.round(len * 0.056);                 // il raggio del tubolare
     const x0 = Math.round(cx - len / 2);
     const lift = u => Math.pow(Math.max(0, u - 0.44) / 0.56, 2.1) * len * 0.075;
-    // il cono di prua si assottiglia ma non finisce a punta: un tubolare è un TUBO,
-    // e la sua estremità è una calotta tonda — a punta veniva una canoa
-    /* il rastremo del cono: 0,72·sqrt + 0,28 vale ESATTAMENTE 1 all'inizio del cono,
-       e prima non era così — 0,62+0,40 fa 1,02, e quel due per cento era un gradino
-       visibile sul colmo del tubolare, in mezzo alla barca. */
-    const raggio = u => rad * (u < 0.74 ? 1
-      : Math.sqrt(Math.max(0, 1 - Math.pow((u - 0.74) / 0.28, 2))) * 0.72 + 0.28);
+    /* IL RASTREMO DEL CONO, seconda stesura. Prima il tubolare cominciava ad
+       assottigliarsi al 74% della lunghezza e ci metteva tutto il quarto restante:
+       la sagoma perdeva altezza mentre la prua si alzava, e quello che restava era
+       il profilo di una CANOA. Su un battello pneumatico vero il tubolare è grosso
+       uguale fin quasi in punta e il cono è corto: si stringe negli ultimi venti
+       centesimi e ci arriva con un arco di cerchio, non con una rampa. Con
+       `u < 0.80 ? 1 : sqrt(1-((u-0.80)/0.20)²)·0,66 + 0,34` al 90% della barca il
+       tubolare è ancora al 91% del suo diametro — è quella grossezza tenuta fino in
+       fondo che si legge come gomma gonfia — e il naso chiude a un terzo di raggio.
+       Vale esattamente 1 all'inizio del cono, quindi sul colmo non c'è gradino. */
+    const raggio = u => rad * (u < 0.80 ? 1
+      : Math.sqrt(Math.max(0, 1 - Math.pow((u - 0.80) / 0.20, 2))) * 0.66 + 0.34);
     const asse = u => wl - rad * 0.46 - lift(u);
     const at = u => Math.round(x0 + (dir > 0 ? u : 1 - u) * (len - 1));
     // LO SPECCHIO DI POPPA, prima del tubolare perché ci sta DIETRO
@@ -461,6 +466,36 @@ const Scenes = (() => {
       ctx.fillStyle = 'rgba(255,255,255,.78)'; ctx.fillRect(x0 + i, top, 1, 1);          // il colmo
       // il bordo di rinforzo, la striscia di gomma nera che gira tutto il tubolare
       ctx.fillStyle = 'rgba(26,32,40,.78)'; ctx.fillRect(x0 + i, Math.round(ax + rr * 0.26), 1, 3);
+    }
+    /* LE DUE COSE CHE DICONO «GOMMONE» E NON «BARCA GRIGIA». La prima sono le
+       PARATIE: un tubolare è diviso in camere d'aria stagne, e ogni saldatura fa una
+       riga verticale sulla gomma ogni quaranta centimetri circa. La seconda, che è
+       quella che si riconosce da lontano, è la CIMA DI SICUREZZA: una corda che gira
+       fuori dal tubolare passando per gli anelli e che fra un anello e l'altro fa la
+       sua pancia. Una fila di festoncini appesi lungo il fianco non ce l'ha nessun'altra
+       barca al mondo, e costa dieci righe di codice. */
+    for (let k = 1; k <= 5; k++) {
+      const u = 0.13 + k * 0.135, rr = raggio(u), ax = asse(u), sxx = at(u);
+      ctx.fillStyle = 'rgba(70,78,86,.50)';
+      ctx.fillRect(sxx, Math.round(ax - rr + 2), 1, Math.round(rr * 1.5));
+      ctx.fillStyle = 'rgba(226,232,238,.26)';
+      ctx.fillRect(sxx + 1, Math.round(ax - rr + 2), 1, Math.round(rr * 1.5));
+    }
+    for (let k = 0; k < 6; k++) {
+      const ua = 0.10 + k * 0.135, ub = ua + 0.135;
+      if (ub > 0.94) break;
+      const xa = at(ua), xb = at(ub);
+      const ya = Math.round(asse(ua) - raggio(ua) * 0.06), yb = Math.round(asse(ub) - raggio(ub) * 0.06);
+      const passi = Math.abs(xb - xa);
+      for (let s = 0; s <= passi; s++) {
+        const t = s / Math.max(1, passi);
+        const y = ya + (yb - ya) * t + Math.sin(t * Math.PI) * rad * 0.34;
+        ctx.fillStyle = 'rgba(236,232,214,.86)';
+        ctx.fillRect(Math.round(xa + (xb - xa) * t), Math.round(y), 1, 2);
+      }
+      ctx.fillStyle = '#5a6068';                                  // l'anello a cui è legata
+      ctx.fillRect(xa - 1, ya - 1, 3, 4);
+      if (k === 5) ctx.fillRect(xb - 1, yb - 1, 3, 4);
     }
     const mx = sx - dir * (fw + 4);
     ctx.fillStyle = '#3c4148'; ctx.fillRect(mx, stTop - fh, fw, fh);                     // la calandra
@@ -876,8 +911,51 @@ const Scenes = (() => {
       const bx = 22 + 4 * (cliffW - 44) / 11;
       ctx.fillStyle = '#2a1e10'; ctx.fillRect(bx - 6, waterY - 48, 30, 24);
       ctx.fillStyle = '#05070a'; ctx.fillRect(bx - 2, waterY - 44, 22, 17);
-      // la spalla di tufo a destra, che chiude la cava
-      blocks(ctx, W * 0.88, H * 0.16, W * 0.12, waterY - H * 0.16, '#c8a058', 12, r, 0.12);
+      /* LA SPALLA DI TUFO a destra, che chiude la cava. Era un rettangolo pieno con lo
+         spigolo di sinistra a piombo e il piede su una riga: nel PNG leggeva come una
+         lastra giallo canarino appoggiata sul mare, non come la roccia che chiude il
+         porto. Le tre cose che la rimettono in piedi sono le stesse della parete
+         grande: il bordo ROTTO (una falesia non ha lo spigolo di un mobile), le facce
+         verticali della cava, e il piede in ombra dove il tufo entra in acqua. */
+      {
+        const spx = Math.round(W * 0.885), spTop = Math.round(H * 0.16);
+        // il bordo a GRADINI, non a onda: una prima stesura con due seni sovrapposti
+        // veniva una S morbida che sembrava un drappo di stoffa appeso. Il tufo si
+        // rompe per scaglie, quindi il profilo salta di sette pixel ogni quattordici.
+        const prof = [];
+        let cur = 0;
+        for (let y = spTop - 6; y < waterY; y++) {
+          if ((y - spTop) % 14 === 0) cur = Math.round((r() - 0.5) * 13);
+          prof[y] = spx + cur;
+        }
+        for (let y = spTop; y < waterY; y++) {
+          const bs = prof[y];
+          // il tono scende SCENDENDO, di seguito. Prima variava con un resto su y
+          // (`(y*7)%11`), che è una riga chiara ogni undici pixel: righe orizzontali
+          // regolari su una colonna stretta = tavole, di nuovo.
+          ctx.fillStyle = shade('#c8a058', 1.03 - 0.20 * (y - spTop) / (waterY - spTop));
+          ctx.fillRect(bs, y, W - bs, 1);
+          // un pixel di luce sul filo e l'ombra subito dentro. Con tre pixel di luce
+          // ogni gradino aveva la sua testa chiara e la spalla leggeva come una pila
+          // di TAVOLE di legno: su una colonna larga cento pixel la regolarità si
+          // vede tutta, mentre sulla parete grande la stessa mano fa strati.
+          ctx.fillStyle = 'rgba(255,240,198,.24)'; ctx.fillRect(bs, y, 1, 1);
+          ctx.fillStyle = 'rgba(96,68,30,.26)'; ctx.fillRect(bs + 1, y, 2, 1);
+        }
+        for (const ff of [0.34, 0.70]) {                       // le facce verticali della cava
+          const fxx = Math.round(spx + (W - spx) * ff);
+          ctx.fillStyle = 'rgba(96,68,30,.24)'; ctx.fillRect(fxx, spTop, 2, waterY - spTop);
+          ctx.fillStyle = 'rgba(255,240,198,.14)'; ctx.fillRect(fxx + 2, spTop, 1, waterY - spTop);
+        }
+        for (let y = spTop + 9; y < waterY - 6; y += 17) {      // gli stessi segni di scalpello
+          ctx.fillStyle = 'rgba(104,72,28,.20)'; ctx.fillRect(prof[y] + 4, y, W, 2);
+        }
+        ctx.fillStyle = 'rgba(70,48,20,.34)';                  // il piede, dove entra in acqua
+        ctx.fillRect(prof[waterY - 14] + 5, waterY - 24, W, 24);
+        ctx.fillStyle = '#e0bc78'; ctx.fillRect(prof[spTop], spTop - 5, W, 7);
+        ctx.fillStyle = 'rgba(255,246,214,.30)'; ctx.fillRect(prof[spTop], spTop - 5, W, 2);
+        sterpaglie(ctx, prof[spTop] + 6, spTop - 4, W - prof[spTop] - 10, '#8a8a52', r, 7);
+      }
       // L'ACQUA DENTRO LA CAVA: verde bottiglia, ferma, con il riflesso del tufo
       sea(ctx, W, waterY, quayY, '#0e3038', '#134048', r, 7, 0.3);
       ctx.fillStyle = 'rgba(200,160,88,.13)';
@@ -1990,11 +2068,34 @@ const Scenes = (() => {
       ctx.fillStyle = 'rgba(255,255,255,.22)'; ctx.fillRect(0, horiz, W, 2);
       // SANTO STEFANO intero, con il carcere in cima come un anello di pietra
       santoStefanoLontano(ctx, W * 0.82, horiz + 2, W * 0.19, H * 0.13, '#5a6a64', '#c8c0a8');
-      // IL PRECIPIZIO: il taglio del tufo, quaranta metri di niente sotto il ciglio
-      blocks(ctx, 0, edgeY, W, H - edgeY, '#cfc0a0', 14, r, 0.12);
-      ctx.fillStyle = 'rgba(255,255,240,.22)'; ctx.fillRect(0, edgeY, W, 6);
-      // LA TERRA BIANCA: secca, calcinata, con le sterpaglie
-      ctx.fillStyle = 'rgba(255,252,230,.20)'; ctx.fillRect(0, edgeY, W, H - edgeY);
+      /* LA TERRA BIANCA, secca e calcinata: metà bassa dell'inquadratura, cioè la
+         superficie più grande del quadro. Era `blocks()` con passo quattordici, e
+         blocks() disegna una riga più chiara in cima a ogni blocco: il risultato erano
+         corsi orizzontali regolari su tutta la larghezza, cioè un MURO DI CONCI messo
+         in piano — e un muro in piano fa sembrare di cartone anche il precipizio che
+         gli sta sopra. Un piano di terra si dice al contrario di un muro: fondo pieno
+         (che è anche l'unico modo di essere sicuri che non resti scoperto niente),
+         chiazze larghe e schiacciate perché la terra non ha corsi, e le crepe, che
+         vengono verso di noi e si allargano avvicinandosi. */
+      ctx.fillStyle = '#d3c4a4'; ctx.fillRect(0, edgeY, W, H - edgeY);
+      for (let i = 0; i < 170; i++) {
+        const cx2 = r() * W, cy2 = edgeY + 16 + r() * (H - edgeY - 16), cs = 16 + r() * 54;
+        ctx.fillStyle = ['#cdbd98', '#dccfae', '#c6b78e', '#d9ccaa', '#c9b992'][Math.floor(r() * 5)];
+        pixelEllipse(ctx, cx2, cy2, cs, cs * 0.30, 4);
+      }
+      for (let k = 0; k < 8; k++) {                       // le crepe di agosto
+        let cx3 = 40 + r() * (W - 80), cy3 = edgeY + 10 + r() * 30;
+        const fine = H - r() * 40;
+        while (cy3 < fine) {
+          const sp = 1 + Math.round((cy3 - edgeY) / 90);
+          ctx.fillStyle = 'rgba(120,104,66,.26)';
+          ctx.fillRect(cx3 | 0, cy3 | 0, sp, 4);
+          ctx.fillStyle = 'rgba(255,252,226,.20)';
+          ctx.fillRect((cx3 + sp) | 0, cy3 | 0, 1, 4);
+          cx3 += (r() - 0.5) * 9; cy3 += 4;
+        }
+      }
+      ctx.fillStyle = 'rgba(255,252,230,.16)'; ctx.fillRect(0, edgeY, W, 10);
       /* IL PRECIPIZIO. Qui c'era un cuneo beige di due toni piatti col bordo superiore
          rettilineo, in basso a destra: l'oggetto più grande della metà bassa
          dell'inquadratura, e nessuno capiva cosa fosse. Tolto — e il precipizio,
@@ -2010,45 +2111,93 @@ const Scenes = (() => {
          RIM al sole sul filo dove finisce, poi la PARETE in ombra — che nel quadro sta
          SOPRA il ciglio, perché quello che è più lontano sta più in alto, e la parete
          precipita allontanandosi da noi — e in cima alla parete la SCHIUMA, che è
-         l'acqua alla base: quaranta metri sotto i piedi. La parete si vede tanto più
-         profonda quanto più la costa gira verso di noi, e a destra, dove la punta
-         volta, arriva a settanta pixel: è lì che il salto si sente. */
-      const parete = x => 26 + Math.round(Math.sin(x * 0.037) * 7 + Math.sin(x * 0.113) * 4)
-                        + (x > W * 0.58 ? Math.pow((x - W * 0.58) / (W * 0.42), 0.75) * 56 : 0);
+         l'acqua alla base: quaranta metri sotto i piedi.
+         SECONDA STESURA, e le tre cose che ho dovuto cambiare perché il vuoto si
+         leggesse invece di sembrare una collina marrone dietro il piano:
+         (1) IL TONO ERA AL ROVESCIO. La parete si schiariva verso il ciglio, quindi
+             fra la terra bianca e la roccia c'era una rampa continua di grigi e il
+             salto non aveva un BORDO: sembrava un pendio. Su una falesia a
+             mezzogiorno il contrasto massimo sta proprio sul filo — la tavola di terra
+             è accecante, la parete verticale sotto è nell'ombra sua — e più giù, dove
+             l'acqua rimanda luce, la roccia si SCHIARISCE. Adesso è così: scurissima
+             sotto il ciglio, più chiara al piede.
+         (2) IL FIANCO STAVA DAVANTI AL NINFEO. Cresceva da x=0,58·W, cioè esattamente
+             dietro i tre archi, e attraverso le aperture il giocatore vedeva la roccia
+             invece del mare che il testo di b6_ninfeo gli promette. La costa gira
+             DOPO il ninfeo: il fianco profondo comincia a 0,84·W, di là dall'edificio,
+             e dietro gli archi resta il mare.
+         (3) MANCAVA IL METRO. Quaranta metri, dall'alto, in scorcio, non si possono
+             disegnare: si possono solo far misurare. Al piede della parete c'è una
+             barca da pesca di sedici pixel con la sua scia — piccola perché è lontana
+             e in basso, ed è lei che dice quanto è alta la roccia. */
+      /* La profondità della parete è una TRATTATIVA fra due cose che si mordono la
+         coda: più è alta, più il salto si sente, e più mangia il mare che si deve
+         vedere attraverso gli archi del ninfeo. A ventidue pixel il fianco spariva e
+         la terra bianca sembrava toccare l'acqua — una spiaggia, cioè il contrario.
+         Trentotto è la misura che tiene le due cose: metà dell'apertura degli archi
+         resta mare e cielo, l'altra metà è la roccia che scende, e dove la punta gira
+         (da 0,84·W) arriva a sessanta e più. */
+      const parete = x => 38 + Math.round(Math.sin(x * 0.037) * 6 + Math.sin(x * 0.113) * 3)
+                        + (x > W * 0.84 ? Math.pow((x - W * 0.84) / (W * 0.16), 0.80) * 26 : 0);
       const eY = Math.round(edgeY);
+      const tonoParete = (y, t0, d) =>
+        mix('#71624a', '#26200f', Math.pow(Math.min(1, Math.max(0, (y - t0) / Math.max(6, d))), 0.62));
       for (let x = 0; x < W; x += 2) {
         const d = Math.round(parete(x)), t0 = eY - d;
-        // la parete si schiarisce SCENDENDO nel quadro, cioè salendo verso il ciglio:
-        // in fondo, sull'acqua, ci arriva solo il riflesso; in cima ci arriva il sole
-        for (let y = t0 + 2; y < eY - 8; y += 2) {
-          ctx.fillStyle = mix('#2c2820', '#6e6046', Math.min(1, (y - t0) / Math.max(6, d - 10)));
-          ctx.fillRect(x, y, 2, 2);
+        for (let y = t0 + 3; y < eY; y++) {
+          ctx.fillStyle = tonoParete(y, t0, d);
+          ctx.fillRect(x, y, 2, 1);
         }
-        blocks(ctx, x, eY - 8, 2, 8, '#8a7654', 6, r, 0.16);                   // sotto il rim, di rimbalzo
-        ctx.fillStyle = 'rgba(232,246,252,.62)'; ctx.fillRect(x, t0, 2, 3);    // la schiuma alla base
+        ctx.fillStyle = '#cfe6ee'; ctx.fillRect(x, t0, 2, 3);                  // la schiuma alla base
         ctx.fillStyle = 'rgba(255,250,214,.80)'; ctx.fillRect(x, eY - 1, 2, 2); // il rim al sole
       }
-      // due grotte al piede della parete: dove l'acqua ha mangiato dentro il tufo
-      for (const gf of [0.70, 0.90]) {
-        const gx = W * gf, gd = Math.round(parete(gx)), gy = eY - gd + 2;
-        ctx.fillStyle = '#131108'; pixelEllipse(ctx, gx, gy + 9, 13, 9, 3);
-        ctx.fillStyle = 'rgba(232,246,252,.40)'; ctx.fillRect(gx - 15, gy - 1, 30, 3);
+      /* LO SPIGOLO dove la costa volta. Una parete che gira si riconosce dal filo
+         verticale: la faccia di qua prende il sole di sbieco, quella di là è al buio.
+         Senza questa riga il fianco profondo sembra solo una macchia più scura. */
+      for (let y = eY - Math.round(parete(W * 0.845)); y < eY; y++) {
+        ctx.fillStyle = 'rgba(255,244,198,.30)'; ctx.fillRect(Math.round(W * 0.845) - 2, y, 2, 1);
+        ctx.fillStyle = 'rgba(12,10,4,.34)'; ctx.fillRect(Math.round(W * 0.845), y, 3, 1);
       }
+      /* LE DUE GROTTE al piede della parete SONO STATE TOLTE, ed è la terza volta che
+         le disegno. Prima erano due riquadri di nero pieno alti quanto larghi a mezza
+         parete: due buchi nell'immagine. Poi, sapendo che un'onda scava in orizzontale
+         e che una grotta marina sta attaccata all'acqua, le ho rifatte basse, larghe e
+         subito sotto la schiuma — e con quattro righe di altezza sono venute due
+         tettoie scure appiccicate al muro, peggio di prima. Su una parete che nel
+         quadro è alta cinquanta pixel una grotta non ci sta: non c'è spazio per farla
+         leggere, e una macchia scura che nessuno riconosce ruba il salto a tutta la
+         scena. La roccia se la raccontano da sole i canaloni e lo strato. */
       /* I canaloni verticali del tufo e i due strati orizzontali. La spaziatura è
          irregolare di proposito: a passo fisso ogni quindici pixel la parete leggeva
          come una PALIZZATA di pali di legno, che è il contrario di una falesia. */
       for (let x = 0; x < W; x += 9) {
         if ((x * 13) % 29 < 15) continue;
         const d = Math.round(parete(x)), t0 = Math.round(edgeY) - d;
-        if (d < 22) continue;
-        ctx.fillStyle = 'rgba(14,10,4,.30)'; ctx.fillRect(x, t0 + 4, 2, d - 12);
-        ctx.fillStyle = 'rgba(212,192,134,.10)'; ctx.fillRect(x + 2, t0 + 5, 1, d - 14);
+        if (d < 17) continue;
+        ctx.fillStyle = 'rgba(10,8,2,.34)'; ctx.fillRect(x, t0 + 4, 2, d - 10);
+        ctx.fillStyle = 'rgba(226,206,150,.14)'; ctx.fillRect(x + 2, t0 + 5, 1, d - 12);
       }
       for (let x = 0; x < W; x += 4) {          // un solo strato orizzontale: due facevano un tessuto
         const d = Math.round(parete(x)), t0 = Math.round(edgeY) - d;
-        if (d < 30) continue;
-        ctx.fillStyle = 'rgba(198,176,120,.13)';
-        ctx.fillRect(x, Math.round(t0 + 4 + (d - 14) * 0.52), 4, 2);
+        if (d < 26) continue;
+        ctx.fillStyle = 'rgba(214,192,132,.15)';
+        ctx.fillRect(x, Math.round(t0 + 4 + (d - 12) * 0.52), 4, 2);
+      }
+      /* LA BARCA AL PIEDE DELLA PARETE: il metro. Sedici pixel di scafo bianco con la
+         scia, sull'acqua che sta alla base del fianco che gira — e siccome si legge
+         subito che è una barca, dice per confronto quanto è alta la roccia sopra di
+         lei. È l'unica cosa piccola che questa inquadratura si tiene: le altre sono
+         state tolte perché a sessanta pixel non dicevano cosa erano, mentre una barca
+         lontana e in basso è piccola PER IL MOTIVO GIUSTO. */
+      {
+        // in acqua per davvero: dodici pixel sopra la schiuma, non appoggiata sul filo
+        // della roccia — a quattro pixel sembrava un paletto piantato sulla cresta
+        const bx2 = Math.round(W * 0.93), bd = Math.round(parete(bx2)), by2 = eY - bd - 13;
+        ctx.fillStyle = 'rgba(226,242,248,.30)'; ctx.fillRect(bx2 - 27, by2 + 3, 24, 2);
+        ctx.fillStyle = 'rgba(226,242,248,.20)'; ctx.fillRect(bx2 - 47, by2 + 5, 22, 2);
+        ctx.fillStyle = '#eef0ea'; ctx.fillRect(bx2 - 8, by2, 16, 3);
+        ctx.fillStyle = '#8d9aa2'; ctx.fillRect(bx2 - 6, by2 + 3, 12, 2);
+        ctx.fillStyle = '#e8eae4'; ctx.fillRect(bx2 - 1, by2 - 4, 3, 4);
       }
       sterpaglie(ctx, 0, H - 6, W * 0.46, '#b0a460', r, 26);
       sterpaglie(ctx, 0, edgeY + 28, W * 0.52, '#a89858', r, 20);
@@ -2070,13 +2219,22 @@ const Scenes = (() => {
         if (fx === 0.42) ctx.fillRect(sx + 30, edgeY + 22, 26, 7);   // questa va a DESTRA
         else ctx.fillRect(sx - 22, edgeY + 22, 24, 7);
       }
-      // IL TAGLIO DELLE VASCHE nella roccia, a sinistra: rettangoli scavati, vuoti
+      /* IL TAGLIO DELLE VASCHE nella roccia, a sinistra. Erano tre riquadri di tre
+         toni sempre più scuri, l'ultimo quasi nero: da lontano tre finestre nere in
+         mezzo alla terra bianca, cioè tre buchi nell'immagine (la lezione del nero che
+         sembra sempre contenuto). Una vasca vuota, guardata da qui, non si riconosce
+         dal buio: si riconosce dal FONDO. Sotto il bordo c'è la fascia buia che il
+         bordo stesso fa d'ombra, e più sotto il fondo di tufo che prende luce piena —
+         e fra i due si legge la profondità. Il buio da solo non dice niente. */
       for (let i = 0; i < 3; i++) {
-        const vx = W * 0.03 + i * W * 0.045, vy = H * 0.78;
-        ctx.fillStyle = '#9a8a66'; ctx.fillRect(vx, vy, W * 0.040, 34);
-        ctx.fillStyle = '#4a4232'; ctx.fillRect(vx + 3, vy + 3, W * 0.040 - 6, 28);
-        ctx.fillStyle = '#2a2620'; ctx.fillRect(vx + 6, vy + 8, W * 0.040 - 12, 20);
-        ctx.fillStyle = 'rgba(255,252,230,.20)'; ctx.fillRect(vx, vy, W * 0.040, 3);
+        const vx = W * 0.03 + i * W * 0.045, vy = H * 0.78, vw = W * 0.040;
+        ctx.fillStyle = '#b8a882'; ctx.fillRect(vx - 3, vy - 3, vw + 6, 40);        // il bordo scavato
+        ctx.fillStyle = 'rgba(255,252,230,.30)'; ctx.fillRect(vx - 3, vy - 3, vw + 6, 3);
+        ctx.fillStyle = '#5e5442'; ctx.fillRect(vx, vy, vw, 34);                    // la parete di fondo
+        ctx.fillStyle = '#433b2c'; ctx.fillRect(vx, vy, vw, 13);                    // l'ombra del bordo
+        ctx.fillStyle = '#83795d'; ctx.fillRect(vx + 4, vy + 23, vw - 8, 11);       // IL FONDO, al sole
+        ctx.fillStyle = 'rgba(255,250,222,.20)'; ctx.fillRect(vx + 4, vy + 23, vw - 8, 2);
+        ctx.fillStyle = 'rgba(28,24,16,.40)'; ctx.fillRect(vx, vy, 4, 34);          // lo spigolo interno
       }
       // IL NINFEO sul filo del precipizio: un cubo di roccia aperto sul mare da
       // tre archi che non ci sono più, e venti gradi invece di trentaquattro.
@@ -2100,8 +2258,8 @@ const Scenes = (() => {
          spessore del muro: senza quelli il taglio resta un adesivo. */
       const dietro = (x, y) => {
         const dd = Math.round(parete(x)), tt = eY - dd;
-        if (y >= eY - 8) return '#8a7654';
-        if (y >= tt) return mix('#2c2820', '#6e6046', Math.min(1, (y - tt) / Math.max(6, dd - 10)));
+        if (y >= tt + 3) return tonoParete(y, tt, dd);
+        if (y >= tt) return '#cfe6ee';                 // la schiuma, quaranta metri sotto la soglia
         return mix('#2470a0', '#1c5c84', Math.max(0, Math.min(1, (y - horiz) / (edgeY - horiz))));
       };
       for (let k = 0; k < 3; k++) {
@@ -2144,8 +2302,11 @@ const Scenes = (() => {
       ctx.fillRect(cax + 26, cay + 2, 34, 30); ctx.fillRect(cax + 84, cay + 2, 26, 30);  // rimaste in mezzo
       ctx.fillStyle = 'rgba(255,252,230,.26)';
       ctx.fillRect(cax + 26, cay + 2, 34, 2); ctx.fillRect(cax + 84, cay + 2, 26, 2);
-      // LA PIETRA DELL'ISCRIZIONE, appoggiata a un muretto, mezza nelle sterpaglie
+      // LA PIETRA DELL'ISCRIZIONE, appoggiata a un muretto, mezza nelle sterpaglie.
+      // Il muretto a secco c'è perché b6_iscrizione dice che la pietra «sta appoggiata
+      // a un muretto a secco a venti metri dal sentiero»: se il testo lo nomina, c'è.
       const ix = W * 0.44, iy = H - 46;
+      muretto(ctx, ix - 14, iy - 8, 104, 20, '#c6b48e', r);
       ctx.fillStyle = '#d8cdae'; ctx.fillRect(ix, iy, 70, 40);
       ctx.fillStyle = 'rgba(255,255,240,.26)'; ctx.fillRect(ix, iy, 70, 3);
       ctx.fillStyle = '#6a6048';
