@@ -1870,8 +1870,21 @@ const Scenes = (() => {
       skyGradient(ctx, W, H * 0.46, '#050a14', '#152238', 12);
       stars(ctx, W, H * 0.44, r, 110);
       const horiz = H * 0.46, murettoY = H * 0.74;
-      // L'ISOLA CHE SCENDE VERSO IL PORTO, tutta di luci gialle
-      blocks(ctx, 0, H * 0.36, W * 0.62, murettoY - H * 0.36, '#0c1218', 14, r, 0.10);
+      /* L'ISOLA CHE SCENDE VERSO IL PORTO, tutta di luci gialle. Era un
+         rettangolo che finiva di taglio a W*0.62: una costa non si chiude con
+         un taglio verticale, e quello era il bordo più netto del quadro. Ora è
+         un profilo — il crinale che scende da destra verso il porto e poi
+         l'ultimo promontorio che entra in acqua. */
+      const cresta = x => {
+        const u = x / (W * 0.66);
+        return H * 0.335 + Math.sin(u * 2.6) * H * 0.020 + u * u * H * 0.075;
+      };
+      for (let x = 0; x < W * 0.66; x += 3) {
+        const cy0 = cresta(x) + (r() - 0.5) * 4;
+        if (cy0 > murettoY - 4) break;
+        blocks(ctx, x, cy0, 3, murettoY - cy0, '#0c1218', 14, r, 0.10);
+        ctx.fillStyle = 'rgba(28,38,50,.30)'; ctx.fillRect(x, cy0, 3, 2);   // il filo del crinale
+      }
       for (let i = 0; i < 90; i++) {
         const t = r();
         const lx = r() * W * 0.60;
@@ -1952,6 +1965,49 @@ const Scenes = (() => {
          capisce dove finisce il piano su cui si sta e dove comincia quello che ti tiene. */
       ctx.fillStyle = 'rgba(168,150,112,.22)'; ctx.fillRect(0, murettoY, W, 2);
       ctx.fillStyle = 'rgba(10,8,6,.50)'; ctx.fillRect(0, pavY - 2, W, 2);
+
+      /* LA LAMPADA SOPRA LA PORTA DELLE PARRACINE, che sta DIETRO la macchina.
+         Questo quadro aveva il 99% dei pixel sotto la luminanza 42: su un
+         telefono in mano, di sera, era un rettangolo nero con qualche puntino.
+         E la cura non è schiarire tutto — il mare deve restare una lastra
+         nera, il buio è il soggetto — ma mettere l'unica luce che a mezzanotte
+         e quaranta su quella terrazza c'è davvero: la lampadina sopra la porta
+         del B&B, alle spalle di chi guarda. Illumina il pavimento, il tavolino
+         e la faccia del parapetto, e non arriva a un metro d'acqua.
+         Costa poco e vale doppio: il chiaro davanti fa il nero più nero, e le
+         ombre del tavolo e delle sedie vengono verso il mare — cioè dicono che
+         la luce è dietro di te, che è una cosa che non si guarda. */
+      const luceX = W * 0.34;
+      for (let y = pavY; y < H; y += 2) {
+        const t = (y - pavY) / (H - pavY);
+        for (let x = 0; x < W; x += 8) {
+          const d = Math.abs(x - luceX) / W;
+          const a = (0.05 + t * 0.26) * Math.max(0, 1 - d * 1.6);
+          if (a <= 0.004) continue;
+          ctx.fillStyle = `rgba(252,214,148,${a.toFixed(3)})`;
+          ctx.fillRect(x, y, 8, 2);
+        }
+      }
+      // la faccia del parapetto la prende di rimbalzo, e sempre meno salendo
+      for (let y = murettoY + 2; y < pavY; y += 2) {
+        const t = 1 - (y - murettoY) / (pavY - murettoY);
+        const a = (0.02 + (1 - t) * 0.10) * 1;
+        ctx.fillStyle = `rgba(246,206,142,${a.toFixed(3)})`;
+        ctx.fillRect(0, y, W, 2);
+      }
+      ctx.fillStyle = 'rgba(255,226,168,.20)'; ctx.fillRect(0, murettoY, W, 2);   // il coronamento
+      /* LE OMBRE dei mobili: la luce è dietro e in alto, quindi vanno verso il
+         mare (su nel quadro) e si allargano allontanandosi. Tre ombre lunghe
+         che arrivano al muretto: è la cosa che rende un pavimento un posto. */
+      for (const ox of [W * 0.165, W * 0.30, W * 0.435]) {   // sotto le due sedie e il tavolo
+        for (let y = H - 6; y > murettoY + 4; y -= 2) {
+          const t = (H - 6 - y) / (H - 6 - murettoY);
+          const larg = 12 + t * 34;
+          const dx = (ox - luceX) * t * 0.55;
+          ctx.fillStyle = `rgba(8,6,4,${(0.44 * (1 - t * 0.75)).toFixed(3)})`;
+          ctx.fillRect((ox + dx - larg / 2) | 0, y, larg | 0, 2);
+        }
+      }
       /* IL GAZEBO DI CANNE: sulla terrazza solarium la colazione si fa qui sotto, e di
          notte le canne tagliano il cielo in strisce sopra la testa. Dà il soffitto a
          un'inquadratura che prima era tutta cielo aperto. */
@@ -1966,24 +2022,52 @@ const Scenes = (() => {
       }
       ctx.fillStyle = 'rgba(58,46,30,.42)'; ctx.fillRect(0, 24, W, 2);
 
-      // IL TAVOLINO e LE DUE SEDIE DI PLASTICA, in controluce
-      const tx = W * 0.30, ty = H - 20;      // i piedi sul PAVIMENTO, non sul filo del parapetto
-      ctx.fillStyle = '#1a1d22'; ctx.fillRect(tx - 30, ty - 44, 60, 6);
-      ctx.fillRect(tx - 3, ty - 38, 7, 38);
-      ctx.fillRect(tx - 16, ty - 4, 34, 4);
-      ctx.fillStyle = '#2a2e34'; ctx.fillRect(tx - 22, ty - 52, 8, 8);       // due bicchieri
-      ctx.fillRect(tx + 10, ty - 51, 7, 7);
-      ctx.fillStyle = '#3a3e44'; ctx.fillRect(tx - 8, ty - 50, 14, 7);       // il sacchetto dei taralli
-      for (const sfx of [-0.10, 0.10]) {
-        const sx = tx + W * sfx;
-        ctx.fillStyle = '#23272c';
-        ctx.fillRect(sx - 16, ty - 34, 32, 6);
-        ctx.fillRect(sx + (sfx < 0 ? -16 : 10), ty - 68, 6, 36);
-        ctx.fillRect(sx - 16 + (sfx < 0 ? 0 : 4), ty - 68, 28, 6);
-        ctx.fillRect(sx - 13, ty - 28, 5, 28); ctx.fillRect(sx + 8, ty - 28, 5, 28);
+      /* IL TAVOLINO e LE DUE SEDIE DI PLASTICA. Prima erano «in controluce»:
+         tre grigi bluastri fra 26 e 44 di luminanza, cioè invisibili. Ma la
+         luce sta dietro la macchina, quindi le facce rivolte a noi la prendono
+         e i PIANI DI SOPRA la prendono in pieno: è il tavolino l'oggetto che
+         dice cos'è questo posto. */
+      /* E le quote vengono da UNA scala sola. Il misuratore dei soggetti diceva
+         che in questo quadro nessun oggetto arrivava a cento pixel di lato: un
+         tavolino da 60 px e due sedie da 68 in PRIMO PIANO, a un metro e mezzo
+         dall'occhio, mentre il parapetto dietro ne faceva 34 per un metro e
+         cinque. Alla distanza del tavolino un metro fa 122 pixel, e allora un
+         tavolo di plastica (72 cm d'altezza, 80 di lato) è 88x98, e una sedia
+         (85 cm) è alta 104. Le spalliere passano sopra il filo del parapetto e
+         si stagliano sul mare nero: è così che si vede che sono sedie. */
+      const M = 122;                          // pixel per metro, alla distanza del tavolino
+      const tx = W * 0.30, ty = H - 16;       // i piedi sul PAVIMENTO, non sul filo del parapetto
+      // le due sedie prima del tavolo: il tavolo è più vicino e le copre
+      for (const sfx of [-0.135, 0.135]) {
+        const sx = tx + W * sfx, sedu = ty - Math.round(0.36 * M), spal = ty - Math.round(0.85 * M);
+        ctx.fillStyle = '#413a30';
+        ctx.fillRect(sx - 24, sedu, 48, 7);                                 // la seduta
+        ctx.fillRect(sx - 22, spal, 44, 8);                                 // il tratto alto della spalliera
+        ctx.fillRect(sx + (sfx < 0 ? -22 : 16), spal, 7, sedu - spal);      // il montante in luce
+        ctx.fillStyle = '#312b23';
+        ctx.fillRect(sx + (sfx < 0 ? 16 : -22), spal + 4, 6, sedu - spal);  // e quello in ombra
+        ctx.fillRect(sx - 20, ty - 8, 7, 8); ctx.fillRect(sx + 13, ty - 8, 7, 8);
+        ctx.fillStyle = '#665c4a';                                          // i bordi di sopra
+        ctx.fillRect(sx - 24, sedu, 48, 2); ctx.fillRect(sx - 22, spal, 44, 2);
+        ctx.fillStyle = '#2a251e';                                          // le gambe
+        ctx.fillRect(sx - 20, sedu + 7, 7, ty - sedu - 7);
+        ctx.fillRect(sx + 13, sedu + 7, 7, ty - sedu - 7);
       }
+      const tTop = ty - Math.round(0.72 * M), tSemi = Math.round(0.40 * M);
+      ctx.fillStyle = '#4a4034'; ctx.fillRect(tx - tSemi, tTop, tSemi * 2, 9);   // il piano
+      ctx.fillStyle = '#6e5f48'; ctx.fillRect(tx - tSemi, tTop, tSemi * 2, 3);   // la luce sopra il piano
+      ctx.fillStyle = '#332c24'; ctx.fillRect(tx - tSemi, tTop + 9, tSemi * 2, 4);
+      ctx.fillRect(tx - 6, tTop + 13, 13, ty - tTop - 13);                       // il fusto centrale
+      ctx.fillRect(tx - 26, ty - 6, 55, 6);                                      // e la base a croce
+      ctx.fillStyle = '#8e8878'; ctx.fillRect(tx - 30, tTop - 15, 10, 15);       // due bicchieri, 12 cm
+      ctx.fillRect(tx + 14, tTop - 14, 9, 14);
+      ctx.fillStyle = '#d8cfb4';                                                // il filo di luce sull'orlo
+      ctx.fillRect(tx - 30, tTop - 15, 10, 3); ctx.fillRect(tx + 14, tTop - 14, 9, 3);
+      ctx.fillStyle = '#6a6252'; ctx.fillRect(tx - 12, tTop - 17, 24, 17);      // il sacchetto dei taralli
+      ctx.fillStyle = '#8a8070'; ctx.fillRect(tx - 12, tTop - 17, 24, 3);
       // il vaso dei limoni, a destra: mezzo metro d'acqua quaranta metri sopra il mare
-      ctx.fillStyle = '#3a2a20'; ctx.fillRect(W * 0.80, H - 34, 40, 30);
+      ctx.fillStyle = '#5a4230'; ctx.fillRect(W * 0.80, H - 34, 40, 30);
+      ctx.fillStyle = '#6e523c'; ctx.fillRect(W * 0.80, H - 34, 40, 2);
       ctx.fillStyle = '#0e1418'; ctx.fillRect(W * 0.803, H - 32, 34, 6);
       ctx.fillStyle = 'rgba(150,196,214,.14)'; ctx.fillRect(W * 0.803, H - 32, 34, 3);
       ctx.fillStyle = '#1a2a1e';
@@ -2056,8 +2140,10 @@ const Scenes = (() => {
       // L'ACQUA: due dita sul fondo, che nessuno ha messo lì. Riflette la volta.
       blocks(ctx, 0, floorY, W, H - floorY, '#5e4c32', 12, r, 0.10);
       ctx.fillStyle = 'rgba(24,34,42,.44)'; ctx.fillRect(0, floorY, W, H - floorY);
+      // le onde del riflesso si allargano venendo avanti: a passo fisso una
+      // superficie d'acqua legge come una tapparella sdraiata
       ctx.fillStyle = 'rgba(190,160,120,.20)';
-      for (let y = floorY + 3; y < H; y += 6) ctx.fillRect(0, y, W, 3);
+      for (let y = floorY + 3, p = 3; y < H; p *= 1.42, y += p) ctx.fillRect(0, y, W, Math.max(2, p * 0.5 | 0));
       ctx.fillStyle = 'rgba(232,244,250,.16)';
       for (let i = 0; i < 30; i++) ctx.fillRect(r() * W | 0, floorY + r() * (H - floorY) | 0, 10 + r() * 18 | 0, 2);
       // le OMBRE DEI PILASTRI sull'acqua: partono dalla lampada e sono lunghe
@@ -2955,16 +3041,55 @@ const Scenes = (() => {
          lenzuolo e finisce col piede sul telaio. E' la cosa che il testo nomina ogni volta
          che si entra in questa stanza — «dorme con una gamba fuori dal lenzuolo» — e per
          dieci notti era una barretta orizzontale in mezzo al materasso. */
-      for (let k = 0; k < 88; k++) {
-        const t = k / 87;
-        const gx = dxh + 62 - k, gy = by - 46 + Math.round(t * 16);   // esce verso i PIEDI, a sinistra
-        const sp = Math.round(20 - t * 7);
-        ctx.fillStyle = mix('#c8a888', '#b08c6c', t);
-        ctx.fillRect(gx, gy, 1, sp);
-        ctx.fillStyle = 'rgba(255,232,200,.16)'; ctx.fillRect(gx, gy, 1, 2);
+      /* E la gamba va OMBREGGIATA ATTRAVERSO, perché un arto è un cilindro: con
+         un tono unico e un filo di luce in cima restava un trapezio marrone
+         in mezzo a un quadro azzurro, e il misuratore dei soggetti l'ha
+         inquadrata come un oggetto a sé — a occhio leggeva come una TAVOLA DI
+         LEGNO appoggiata sul letto. Tre toni sullo spessore (la luce in alto,
+         il mezzo, l'ombra di sotto), il polpaccio più grosso del malleolo, e
+         in fondo IL PIEDE: è il piede che fa capire che è una gamba. Il colore
+         è desaturato, perché una pelle sotto la luna non è color legno. */
+      /* E questa è la TERZA posa, perché le prime due non si riconoscevano e la
+         regola dice che allora si cambia — non si ritocca ancora. La prima era
+         una barretta orizzontale in mezzo al materasso; la seconda una gamba
+         intera di ottantotto pixel, obliqua, uscita sopra il telaio: con o
+         senza ombreggiatura leggeva come una TAVOLA DI LEGNO appoggiata sul
+         letto, perché una gamba distesa in profilo, a questa risoluzione, è un
+         trapezio lungo — e un trapezio lungo è una tavola.
+         Quello che si riconosce senza esitare, invece, è la gamba che PENDE
+         GIÙ dal bordo del letto: ginocchio alzato sotto il lenzuolo, tibia
+         corta e quasi verticale, e il piede in fondo, di taglio, con le dita
+         di fuori. È corta perché viene verso di noi, ed è per questo che si
+         legge: nessuna tavola sta appesa così. */
+      const gnx = dxh + 34;                                     // dove il lenzuolo si alza
+      ctx.fillStyle = '#c8d2dc';                                 // il ginocchio sotto il lenzuolo
+      for (let x = -20; x <= 20; x++) {
+        const hh = Math.round(15 * Math.exp(-Math.pow(x / 13, 2)));
+        ctx.fillRect(gnx + x, by - 52 - hh, 1, hh + 6);
       }
-      ctx.fillStyle = '#b89878'; ctx.fillRect(dxh - 40, by - 30, 17, 12);            // il piede sul telaio
-      ctx.fillStyle = 'rgba(30,36,44,.34)'; ctx.fillRect(dxh - 40, by - 26, 106, 4);  // l'ombra sotto
+      ctx.fillStyle = 'rgba(255,255,255,.20)'; ctx.fillRect(gnx - 9, by - 66, 19, 3);
+      for (let k = 0; k < 34; k++) {                             // la tibia, giù dal bordo
+        const t = k / 33;
+        const sp = Math.round(17 - t * 6);
+        const gx = gnx + 4 + Math.round(t * 5);                  // appena obliqua, verso di noi
+        ctx.fillStyle = mix('#a89a8c', '#8e8074', t);
+        ctx.fillRect(gx, by - 34 + k, sp, 1);
+        ctx.fillStyle = mix('#cfc2b2', '#b4a698', t); ctx.fillRect(gx, by - 34 + k, 3, 1);
+        ctx.fillStyle = 'rgba(38,44,54,.34)'; ctx.fillRect(gx + sp - 3, by - 34 + k, 3, 1);
+      }
+      {                                                          // IL PIEDE, di taglio
+        const fxp = gnx + 9, fyp = by;
+        ctx.fillStyle = '#9c8e80'; ctx.fillRect(fxp - 19, fyp - 2, 24, 9);      // la pianta
+        ctx.fillStyle = '#b4a698'; ctx.fillRect(fxp - 19, fyp - 2, 24, 3);      // il dorso in luce
+        ctx.fillStyle = '#8a7c70'; ctx.fillRect(fxp + 1, fyp - 6, 8, 10);       // il tallone
+        ctx.fillStyle = '#a89a8c';                                              // e le dita
+        for (let d = 0; d < 4; d++) ctx.fillRect(fxp - 23 - d, fyp - 1 + d, 5, 4);
+        ctx.fillStyle = 'rgba(30,36,46,.44)'; ctx.fillRect(fxp - 23, fyp + 7, 32, 3);
+      }
+      /* Qui c'erano un SECONDO PIEDE (17×12 a dxh-40) e l'ombra lunga 106 px
+         della gamba distesa: i resti della posa precedente, rimasti in scena
+         quando la gamba è stata rifatta. Due piedi per una gamba sola, e
+         un'ombra sotto il niente. Il piede nuovo si porta la sua ombra. */
       // LA SEDIA coi vestiti piegati come li piega lei, maniche in dentro
       ctx.fillStyle = '#3a3a34'; ctx.fillRect(W * 0.855, floorY - 42, 52, 7);
       ctx.fillRect(W * 0.855, floorY - 88, 7, 50);
@@ -3523,7 +3648,16 @@ const Scenes = (() => {
       blocks(ctx, 0, floorY, W, H - floorY, '#7e7664', 12, r, 0.11);
       ctx.fillStyle = 'rgba(24,20,14,.44)'; ctx.fillRect(0, floorY, W, 6);
       ctx.fillStyle = 'rgba(255,246,220,.10)'; ctx.fillRect(0, floorY + 6, W, 3);
-      for (let y = floorY + 12; y < H; y += 14) { ctx.fillStyle = 'rgba(30,26,18,.20)'; ctx.fillRect(0, y, W, 2); }
+      // i corsi del pavimento si allargano venendo avanti (a passo fisso è un
+      // muro messo giù), e i giunti dritti convergono al centro del quadro
+      ctx.fillStyle = 'rgba(30,26,18,.20)';
+      for (let y = floorY + 10, p = 8; y < H; p *= 1.5, y += p) ctx.fillRect(0, y, W, 2);
+      for (let k = -6; k <= 6; k++) {
+        for (let yy = floorY + 6; yy < H; yy++) {
+          const t = (yy - floorY) / (H - floorY);
+          ctx.fillRect(Math.round(W / 2 + k * 46 * (1 + t * 1.6)), yy, 2, 1);
+        }
+      }
       ctx.fillStyle = '#4a4238'; pixelEllipse(ctx, W * 0.90, H - 26, 40, 18, 4);
       ctx.fillStyle = '#2a241c'; pixelEllipse(ctx, W * 0.90, H - 26, 32, 13, 4);
       ctx.fillStyle = '#04050a'; pixelEllipse(ctx, W * 0.90, H - 25, 24, 9, 4);
@@ -3558,22 +3692,48 @@ const Scenes = (() => {
       ctx.fillStyle = 'rgba(214,204,182,.24)'; ctx.fillRect(cornerX, H * 0.46, W - cornerX, 6);
       // LE TACCHE: ottomilaquarantuno, in fasce, in gruppi di cinque. La torcia
       // tenuta di taglio, radente al muro, le fa venire fuori una per una.
-      const tx0 = cornerX + 14, tw = W - tx0 - 40, ty0 = H * 0.17, rows = 13;
-      for (let row = 0; row < rows; row++) {
-        const y = ty0 + row * 30;
-        if (y > floorY - 16) break;
+      const tx0 = cornerX + 14, tw = W - tx0 - 40, ty0 = H * 0.17;
+      /* Tredici righe alte trenta, tutte da tx0 a tx0+tw: la mano era regolare
+         nel piccolo (la quinta di traverso, il dy di un pixel) e una STAMPANTE
+         nel grande. Tredici bande identiche che coprono tutta la parete
+         leggono come carta da parati anche se ogni singola tacca è storta,
+         perché l'occhio vede prima il reticolo e poi il tratto.
+         Un muro contato per ventidue anni non è un reticolo: si comincia
+         all'altezza della mano da seduti sul tavolato (H*0.46, dove il
+         tavolato è), si va avanti finché la fascia arriva alla porta, poi si
+         scende, poi quando sotto è pieno si sale — e le ultime, quelle degli
+         ultimi anni, sono corte e più leggere, perché contare stanca. La
+         fascia di ogni anno parte da dove finiva quella prima, non dal
+         margine: `da` non è mai tx0 due volte di seguito.
+         Le fasce stanno a ventisette pixel: sotto i ventisei le tacche alte
+         quattordici si toccano fra una fascia e l'altra e tornano a fare una
+         massa tratteggiata, che è lo stesso difetto con un altro passo. */
+      const fasce = [
+        // y,            da,               a,                 forza
+        [H * 0.470, tx0, tx0 + tw, 1.00],
+        [H * 0.545, tx0 + 6, tx0 + tw - 12, 0.96],
+        [H * 0.395, tx0 + 22, tx0 + tw, 0.92],
+        [H * 0.620, tx0, tx0 + tw * 0.84, 0.88],
+        [H * 0.320, tx0 + 40, tx0 + tw - 30, 0.82],
+        [H * 0.695, tx0 + 18, tx0 + tw * 0.62, 0.74],
+        [H * 0.245, tx0 + 30, tx0 + tw - 70, 0.64],
+        [H * 0.170, tx0 + 120, tx0 + tw - 30, 0.48],  // l'ultimo anno: corta e stanca
+      ];
+      for (const [fy, fda, fa, forza] of fasce) {
+        const y = fy;
+        if (y > floorY - 16) continue;
         /* I gruppi di cinque non si leggevano: quattro tacche più una, staccate di
            sei pixel invece di cinque, facevano una tessitura regolare — sullo schermo
            veniva carta da parati a righe, non un uomo che conta. Un gruppo di cinque
            si riconosce da una cosa sola: la QUINTA È DI TRAVERSO, tirata sopra le
            altre quattro. E la mano non è una stampante: ogni gruppo scende o sale di
            un pixel, e le tacche non sono mai alte uguali. */
-        let x = tx0, g = 0, dy = 0;
-        while (x < tx0 + tw - 6) {
-          const hh = 14 + (r() * 6 | 0);
-          const luce = 1 - Math.abs(x - W * 0.5) / W;          // il fascio sta al centro
-          const scuro = `rgba(36,30,20,${0.44 + luce * 0.34})`;
-          const chiaro = `rgba(236,226,200,${0.16 + luce * 0.34})`;
+        let x = fda, g = 0, dy = 0;
+        while (x < fa - 6) {
+          const hh = 11 + (r() * 4 | 0);      // tre centimetri di unghia, non venti
+          const luce = (1 - Math.abs(x - W * 0.5) / W) * forza;  // il fascio sta al centro
+          const scuro = `rgba(36,30,20,${(0.44 + luce * 0.34) * forza})`;
+          const chiaro = `rgba(236,226,200,${(0.16 + luce * 0.34) * forza})`;
           if (g % 5 === 4) {                                    // la quinta, di traverso
             for (let s = 0; s < 22; s++) {
               const sx = x - 20 + s, sy = y + dy + hh - 2 - (s * hh) / 24;

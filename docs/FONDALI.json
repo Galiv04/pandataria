@@ -1,0 +1,16 @@
+{
+  "_perche": "Le deroghe ai numeri di ../dnd-motore/tools/soggetto.mjs, ognuna con la sua ragione scritta. Una deroga senza ragione non viene accettata dallo strumento.",
+
+  "titolo": {
+    "nero": "e' la schermata del titolo: l'isola di notte vista dal mare, e il nome del gioco. Il soggetto e' il buio, e l'unica cosa che si deve leggere e' il titolo, che lo scrive il DOM sopra la tela, non il painter.",
+    "soggetto": "il soggetto e' la riga di luci del paese: 318x63 di larghezza su 960, cioe' un terzo del lato, ma sottile — l'area non lo puo' misurare.",
+    "oggetti": "un titolo con due oggetti sopra i cento pixel sarebbe una scena, non un titolo."
+  },
+  "terrazza": {
+    "nero": "mezzanotte e quaranta. Il mare DEVE restare una lastra nera: e' il soggetto, ed e' quello che rende il primo piano illuminato dalla lampada del B&B l'unico posto dove si sta. Il primo piano — pavimento, parapetto, tavolino, sedie, le tre ombre lunghe — sta fra 45 e 110 di luminanza, quindi il quadro si legge; sono il cielo, il golfo e il mare a stare sotto 42, e stanno sotto 42 perche' e' notte.",
+    "soggetto": "qui il soggetto e' un INSIEME, non un oggetto: il tavolino e le due sedie, 470 px di primo piano illuminato, che il misuratore conta come tre macchie separate perche' fra una sedia e il tavolo c'e' il mare nero. Le tre macchie stanno tutte sopra i cento pixel di lato ed e' quello il numero che conta in questo quadro."
+  },
+  "fossa": {
+    "oggetti": "quarantacinque metri sotto il mare con una torcia in mano: la torcia illumina un cono e il resto e' acqua nera. Due oggetti sopra i cento pixel qui vorrebbero dire due cose illuminate da niente."
+  }
+}
