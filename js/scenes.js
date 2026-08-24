@@ -1701,17 +1701,57 @@ const Scenes = (() => {
          baia. Prua bassa, fianco lungo, la cintura nera delle patelle sul pelo
          dell'acqua e due gabbiani sopra. Nel quadro non c'era, e senza di lui questa
          non era Cala Nave: era una cala qualunque. */
+      /* E VA MODELLATO. Al primo tentativo era un profilo pieno di un solo beige
+         (#a9997a, lo stesso valore della sabbia) con un filo di luce in cima e
+         una fila di puntini scuri ogni nove pixel sul pelo dell'acqua: sullo
+         schermo veniva una PAGNOTTA con i merli, appoggiata sull'erba. Tre cose
+         gli mancavano, e sono le tre che fanno una roccia:
+         · IL LATO IN OMBRA. Il sole sta a W*0.80, cioè a destra: il fianco
+           sinistro — la prua — è in controluce, e senza quella differenza uno
+           scoglio è una sagoma ritagliata.
+         · LA CINTURA DELLE PATELLE come una FASCIA continua e irregolare, non
+           come denti a passo fisso. A passo fisso sono merli di un castello.
+         · LA BASE NELL'ACQUA: la schiuma che gira intorno alla roccia e il
+           riflesso che trema sotto. Senza, lo scoglio è appoggiato sul mare
+           invece che dentro. */
       const scX = W * 0.175, scY = rigaY + 4;
-      ctx.fillStyle = 'rgba(10,28,38,.45)'; pixelEllipse(ctx, scX, scY + 9, 50, 8, 3);
-      for (let dx = -48; dx < 50; dx += 3) {
-        const t = dx / 48;
-        // profilo asimmetrico: la prua a sinistra è più bassa, la poppa più alta
-        const hh = 26 * Math.pow(Math.max(0, 1 - t * t), 0.46) * (t < 0 ? 0.70 : 1.0) + Math.sin(dx * 0.09) * 2;
-        ctx.fillStyle = '#a9997a';
-        ctx.fillRect(scX + dx, scY - hh, 3, hh + 6);
-        ctx.fillStyle = 'rgba(255,206,150,.30)';                      // il sole basso sul fianco
-        ctx.fillRect(scX + dx, scY - hh, 3, 2);
-        if (dx % 9 === 0) { ctx.fillStyle = 'rgba(46,36,26,.55)'; ctx.fillRect(scX + dx, scY + 2, 3, 4); }  // patelle
+      ctx.fillStyle = 'rgba(10,28,38,.40)'; pixelEllipse(ctx, scX, scY + 10, 52, 7, 3);
+      const scH = dx => 26 * Math.pow(Math.max(0, 1 - (dx / 48) * (dx / 48)), 0.46) * (dx < 0 ? 0.70 : 1.0)
+                        + Math.sin(dx * 0.09) * 2 + Math.sin(dx * 0.31) * 1.4;
+      for (let dx = -48; dx < 50; dx++) {
+        const hh = scH(dx);
+        const u = (dx + 48) / 98;                                     // 0 a sinistra (ombra), 1 a destra (sole)
+        for (let y = 0; y < hh + 6; y++) {
+          const v = y / (hh + 6);                                     // 0 in cima, 1 alla base
+          // ...ma il lato in ombra non e' un buco: a #5e5646 con la base scurita
+          // del 55% lo scoglio diventava una massa quasi nera, cioe' un ritaglio
+          // vuoto nel mare. Una roccia in controluce resta una roccia: si vede
+          // la grana, si vede il colore, e' solo piu' scura di quella al sole.
+          ctx.fillStyle = mix(mix('#74695a', '#c8b48e', Math.pow(u, 0.7)), '#4a4438', v * 0.34);
+          ctx.fillRect(scX + dx, scY - hh + y, 1, 1);
+        }
+        // il sole basso di taglio sul ciglio, e solo dalla parte da cui viene
+        if (u > 0.34) {
+          ctx.fillStyle = `rgba(255,206,150,${(0.16 + u * 0.42).toFixed(3)})`;
+          ctx.fillRect(scX + dx, scY - hh, 1, 2 + (u > 0.7 ? 1 : 0));
+        }
+        // LA CINTURA DELLE PATELLE: fascia continua, con l'orlo che ondeggia
+        const orlo = 2 + Math.round(Math.sin(dx * 0.42) * 1.6 + Math.sin(dx * 0.17) * 1.2);
+        ctx.fillStyle = 'rgba(38,30,22,.48)';
+        ctx.fillRect(scX + dx, scY - orlo, 1, orlo + 5);
+        ctx.fillStyle = 'rgba(96,84,64,.34)';
+        ctx.fillRect(scX + dx, scY - orlo, 1, 1);
+      }
+      // la schiuma che gira intorno alla base, e il riflesso che trema sotto
+      ctx.fillStyle = 'rgba(232,244,248,.34)';
+      for (let dx = -52; dx < 54; dx += 3) {
+        if (r() < 0.35) continue;
+        ctx.fillRect(scX + dx, scY + 4 + Math.round(Math.sin(dx * 0.5) * 2), 3 + (r() * 4 | 0), 2);
+      }
+      for (let k = 0; k < 9; k++) {
+        const t2 = k / 8;
+        ctx.fillStyle = `rgba(96,88,70,${(0.24 * (1 - t2)).toFixed(3)})`;
+        ctx.fillRect(scX - 44 + t2 * 10 + (r() - 0.5) * 8, scY + 10 + k * 3, 88 - t2 * 20, 2);
       }
       ctx.fillStyle = '#e8e4dc'; ctx.fillRect(scX - 10, scY - 29, 3, 2); ctx.fillRect(scX + 13, scY - 25, 3, 2);   // due gabbiani
 
@@ -1828,8 +1868,26 @@ const Scenes = (() => {
           }
           ctx.fillStyle = '#8a7a5a'; ctx.fillRect(ux - 3, cy - Hd - 8, 7, 14 * sc);
         } else {
-          ctx.fillStyle = '#3a8a9a'; ctx.fillRect(ux - 7, uy - 163 * sc, 15, 22 * sc);
-          ctx.fillStyle = '#f0ece0'; ctx.fillRect(ux - 4, uy - 167 * sc, 9, 8 * sc);
+          /* L'OMBRELLONE CHIUSO era un blocchetto di 15x22 in cima al palo: sullo
+             schermo un palo nudo con una bandierina, e in una cala alle sette di
+             sera un palo nudo legge come un paletto di divieto. Un ombrellone
+             chiuso e' un CONO ROVESCIATO — largo in cima, che si stringe
+             scendendo — con la legatura a meta' e le punte delle stecche che
+             sporgono in fondo. */
+          const cl = 78 * sc, cy2 = uy - 150 * sc;
+          for (let k = 0; k < cl; k++) {
+            const t2 = k / cl;
+            const sp = Math.max(3, Math.round((15 - t2 * 9) * sc * 1.5));
+            ctx.fillStyle = (k % 9 < 5) ? '#e8e4d6' : '#3a8a9a';
+            ctx.fillRect(ux - sp / 2, cy2 + k, sp, 1);
+            ctx.fillStyle = 'rgba(40,30,20,.20)';
+            ctx.fillRect(ux + sp / 2 - 2, cy2 + k, 2, 1);           // il lato in ombra del cono
+          }
+          ctx.fillStyle = '#6a5a3a';                                 // la legatura
+          ctx.fillRect(ux - 8 * sc, cy2 + cl * 0.42, 16 * sc, Math.max(2, 4 * sc));
+          ctx.fillStyle = '#8a7a5a';                                 // le punte delle stecche
+          for (let q = -1; q <= 1; q++) ctx.fillRect(ux + q * 3 * sc, cy2 + cl, 2, Math.max(2, 6 * sc));
+          ctx.fillStyle = '#8a7a5a'; ctx.fillRect(ux - 2, cy2 - 5 * sc, 5, 6 * sc);   // il pomello in cima
         }
       }
       // le tracce di piedi che vanno verso l'acqua, e i castelli mezzi crollati
