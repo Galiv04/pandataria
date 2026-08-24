@@ -2455,14 +2455,21 @@ const Scenes = (() => {
           ctx.fillStyle = 'rgba(255,238,190,.24)'; ctx.fillRect(larg - 3, y, 3, 1);
           ctx.fillStyle = 'rgba(60,40,16,.34)'; ctx.fillRect(larg - 1, y, 2, 1);
         }
-        // IL TAGLIO DEGLI SCALPELLI: righe verticali regolari, un uomo con un martello
-        for (let k = 0; k < 22; k++) {
-          const x = 6 + k * 11 + (r() * 3 | 0);
-          const da = cima + 8 + (r() * 30 | 0), a = Math.min(shoreY - 4, da + 60 + r() * 140);
-          if (x > bordoA(a)) continue;
-          ctx.fillStyle = `rgba(92,66,28,${0.10 + r() * 0.12})`;
+        /* IL TAGLIO DEGLI SCALPELLI. Alla prima stesura erano ventidue colpi a distanza
+           FISSA di undici pixel, per quasi tutta l'altezza: sullo schermo una griglia, e
+           una griglia legge come muratura di conci — lo stesso difetto che il collaudo ha
+           trovato sulla spalla del porto. La regolarita di questi segni sta nella
+           DIREZIONE, non nel passo: sono cinquanta colpi corti, a caso, di lunghezza
+           diversa e mai allineati. */
+        for (let k = 0; k < 50; k++) {
+          const da = cima + 6 + (r() * (shoreY - cima - 40) | 0);
+          const lung = 12 + (r() * 52 | 0);
+          const a = Math.min(shoreY - 4, da + lung);
+          const x = 4 + (r() * (bordoA(a) - 8) | 0);
+          if (x < 2 || x > bordoA(a)) continue;
+          ctx.fillStyle = `rgba(92,66,28,${0.09 + r() * 0.12})`;
           ctx.fillRect(x, da, 2, a - da);
-          ctx.fillStyle = 'rgba(255,240,200,.10)';
+          ctx.fillStyle = 'rgba(255,240,200,.09)';
           ctx.fillRect(x + 2, da, 1, a - da);
         }
         // LE FESSURE coi capperi: l'unico verde della parete
@@ -2494,11 +2501,30 @@ const Scenes = (() => {
         ctx.fillStyle = 'rgba(255,255,250,.34)'; ctx.fillRect(x, shoreY + off - 3, 12, 3);
       }
       blocks(ctx, 0, shoreY + 10, W, H - shoreY - 10, '#a8a496', 10, r, 0.10);
-      for (let i = 0; i < 190; i++) {
-        const gx = r() * W, gy = shoreY + 12 + r() * (H - shoreY - 14);
-        const gs = 4 + r() * 7;
+      /* I SASSI, con la GRANA che cresce venendo avanti. Prima erano centonovanta ciottoli
+         della stessa taglia sparsi su tutta la fascia: una ghiaia con i sassi grandi uguali
+         vicino e lontano non e un piano che si allontana, e un tappeto a pallini — ed e per
+         questo che il terzo basso dell'inquadratura leggeva vuoto pur essendo pieno di
+         roba. E la grana, non il colore, che dice a un occhio quanto e lontana una cosa
+         (lezione 59). Quindi: sassi da due pixel sul bagnasciuga, sassi da dodici sotto i
+         piedi, e i piu vicini con l'ombra sotto, perche un sasso che ha l'ombra sta appoggiato
+         su qualcosa e un sasso senza ombra galleggia. */
+      for (let i = 0; i < 300; i++) {
+        const t = Math.pow(r(), 0.55);                       // piu sassi davanti che in fondo
+        const gy = shoreY + 12 + t * (H - shoreY - 16);
+        const gx = r() * W;
+        const gs = 1.6 + t * t * 10;
         ctx.fillStyle = ['#8a8880', '#b0aca0', '#9a9488', '#c0bcae', '#78746c'][Math.floor(r() * 5)];
-        pixelEllipse(ctx, gx, gy, gs, gs * 0.62, 3);
+        if (gs > 5) { ctx.fillStyle = 'rgba(48,50,46,.30)'; pixelEllipse(ctx, gx + 1, gy + gs * 0.45, gs, gs * 0.34, 2); }
+        ctx.fillStyle = ['#8a8880', '#b0aca0', '#9a9488', '#c0bcae', '#78746c'][Math.floor(r() * 5)];
+        pixelEllipse(ctx, gx, gy, gs, gs * 0.64, gs > 6 ? 3 : 2);
+        if (gs > 6) { ctx.fillStyle = 'rgba(255,255,248,.22)'; pixelEllipse(ctx, gx - gs * 0.2, gy - gs * 0.28, gs * 0.4, gs * 0.22, 2); }
+      }
+      // i sassi bagnati del bagnasciuga: piu scuri e lucidi, e stanno solo li
+      for (let i = 0; i < 40; i++) {
+        const gx = r() * W, gy = shoreY + 10 + r() * 14;
+        ctx.fillStyle = `rgba(58,66,64,${0.30 + r() * 0.24})`;
+        pixelEllipse(ctx, gx, gy, 2 + r() * 3, 1.6 + r() * 2, 2);
       }
       ctx.fillStyle = 'rgba(255,214,150,.14)'; ctx.fillRect(0, shoreY + 10, W, H - shoreY - 10);
       /* IL GOMMONE DI LILIA, il soggetto. Questa inquadratura era una spiaggia di
@@ -2538,19 +2564,39 @@ const Scenes = (() => {
          bande alta sedici pixel — un nastro da cantiere su un palo. Un ombrellone è un
          CONO SCHIACCIATO: il colmo in mezzo, il bordo che scende di trentaquattro
          pixel ai lati, e sotto il bordo la balza di tela che pende in ombra. */
-      const uap = uby - uh - 6;
+      /* Terza stesura della cupola. La seconda era un cono giusto in tutto tranne che in
+         una misura: centocinquanta pixel di larghezza e QUINDICI di spessore, cioe dieci a
+         uno — e a dieci a uno un cono non e un cono, e una fascia curva, e sullo schermo
+         leggeva come un arco rosso e bianco su un palo.
+         E c'e una seconda cosa, che e quella che lo fa diventare un ombrellone: un
+         ombrellone alto un metro e novanta lo si guarda DA SOTTO. Non si vede il telo al
+         sole: si vede il ROVESCIO, in ombra, con le stecche che partono dal centro come i
+         raggi di una ruota, e del telo illuminato resta solo un filo sul bordo. */
+      const uap = uby - uh - 6, uspess = 30;
       for (let dxu = -ucw / 2; dxu < ucw / 2; dxu++) {
         const t = Math.abs(dxu) / (ucw / 2);
-        const top = Math.round(uap + Math.pow(t, 1.7) * 34);
+        const top = Math.round(uap + Math.pow(t, 1.8) * 30);
         const spicchio = Math.floor((dxu + ucw / 2) / (ucw / 6)) % 2;
-        ctx.fillStyle = spicchio ? '#e6e2d2' : '#c85a3a';
-        ctx.fillRect(ux + dxu, top, 1, 15);
-        ctx.fillStyle = spicchio ? '#f8f4e6' : '#e07a52';                 // la tela che prende il sole
-        ctx.fillRect(ux + dxu, top, 1, 4);
-        ctx.fillStyle = 'rgba(74,60,42,.34)';                             // la balza, in ombra
-        ctx.fillRect(ux + dxu, top + 15, 1, 6);
-        if (Math.abs(Math.abs(dxu) % (ucw / 6)) < 1) {                    // le stecche
-          ctx.fillStyle = 'rgba(120,98,70,.34)'; ctx.fillRect(ux + dxu, top, 1, 15);
+        // il rovescio: gli stessi spicchi, ma in ombra, perche il sole sta di la
+        ctx.fillStyle = spicchio ? '#a8a294' : '#8e4632';
+        ctx.fillRect(ux + dxu, top, 1, uspess);
+        ctx.fillStyle = spicchio ? '#c2bcab' : '#a4553c';                 // e il rovescio schiarisce sul bordo
+        ctx.fillRect(ux + dxu, top + uspess - 8, 1, 8);
+        ctx.fillStyle = spicchio ? '#f4f0e2' : '#d86d48';                 // il filo di telo al sole, sul colmo
+        ctx.fillRect(ux + dxu, top, 1, 2);
+        ctx.fillStyle = 'rgba(58,46,32,.42)';                             // la balza che pende
+        ctx.fillRect(ux + dxu, top + uspess, 1, 5 + (Math.abs(dxu) % 7 < 3 ? 2 : 0));
+      }
+      // LE STECCHE, che partono dal centro: sono la firma del rovescio di un ombrellone
+      for (let k = -3; k <= 3; k++) {
+        const fine = k * (ucw / 7);
+        for (let q = 0; q <= 26; q++) {
+          const tq = q / 26;
+          const xq = Math.round(ux + fine * tq);
+          const t2 = Math.abs(fine * tq) / (ucw / 2);
+          const yq = Math.round(uap + Math.pow(t2, 1.8) * 30 + 4 + tq * 20);
+          ctx.fillStyle = 'rgba(96,78,54,.40)';
+          ctx.fillRect(xq, yq, 1, 2);
         }
       }
       ctx.fillStyle = '#7e6f52'; ctx.fillRect(ux - 5, uby - uh - 12, 10, 9);   // il pomolo in cima
