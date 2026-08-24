@@ -1499,7 +1499,15 @@ Poi fa il briefing come lo farebbe per un satellite, con le dita.
 
 > Gaetano: "Uno: fino alla cengia si scende sulla cima, mano dopo mano, e la cima non si lascia mai. Due: da trentuno a quarantacinque **la barra del fiato conta quelli**, i quattordici metri, e non c'è aria in più che ce la metta qualcuno. Tre: prendere e risalire. Se ti fermi a guardare cos'era quella cosa bianca, la barra ti dice esattamente quanto ti costa guardare." *(la guarda)* "Non è coraggio, è aritmetica. Quaggiù il coraggio senza aritmetica ti annega."
 
-**(⚠️ ULTIMA IMMERSIONE. Serve il bombolino riparato e il fiato accumulato: senza, i quattordici metri sotto la cengia non li fate, e il gioco ve lo scrive PRIMA di farvi scendere. Se non siete pronti si risale, si mangia, si respira, e si torna: nessuno vi obbliga a scendere adesso.)**`,
+> Claudia: "E quattro?"
+
+> Gaetano: "Quattro è la risalita, e questa non è una raccomandazione: è aritmetica pure lei. Col bombolino a quarantacinque metri ti carichi azoto per quattro minuti. Se vieni su diretta quell'azoto ti si apre dentro — nei gomiti, nelle ginocchia, nel midollo." *(pausa)* "Quindi a dieci metri **ci si ferma**. E ci si sta **sette minuti**, contati."
+
+> Claudia: "E se li conti male?"
+
+> Gaetano: "Non li conto male." *(le mette il cronometro nel palmo e le chiude le dita sopra)* "E comunque li conti anche tu. Due cronometri, sette minuti, dieci metri. Se uno dei due sale prima, l'altro lo tira giù per la cintura."
+
+**(⚠️ ULTIMA IMMERSIONE. Serve il bombolino riparato e il fiato accumulato: senza, i quattordici metri sotto la cengia non li fate, e il gioco ve lo scrive PRIMA di farvi scendere. E LA RISALITA HA UN PREZZO FISSO: a dieci metri si sta sette minuti, e sono sette minuti giocati — la superficie si vede, la carena della barca è là sopra, e non si può salire. Salire prima uccide, e ve lo stiamo dicendo adesso, non dopo. Se non siete pronti si risale, si mangia, si respira, e si torna: nessuno vi obbliga a scendere adesso.)**`,
     sets: { sa_porto_sommerso: true },
     choices: [
       { text: '🫧 Scendere col bombolino riparato: tre litri, duecento bar, quattro minuti', requires: { item: 'bombola_riparata' }, requiresGold: 10, tag: '(serve il bombolino riparato e 10 di 🫁 fiato)', next: 'd13_apnea' },
@@ -1816,7 +1824,11 @@ Poi lascia andare tutta l'aria che aveva in bocca per parlare, e non parla più 
 
   d14_coro: {
     location: 'fossa',
-    caption: 'La sosta a dieci metri — la risalita interrotta',
+    /* La didascalia diceva «la sosta a dieci metri» mentre la scena sta a QUARANTA
+       (`metri: 40`): la sosta era una parola in una didascalia, non una cosa che accade.
+       Adesso la sosta esiste per davvero e sta dopo, dove deve stare — hai appena visto
+       la cosa, e non puoi uscire per sette minuti. */
+    caption: 'Sulla verticale della cima — la risalita interrotta',
     heal: 12,
     recharge: true,
     stinger: 'coro',
@@ -1886,7 +1898,7 @@ Sotto di loro, tutte le voci insieme dicono la stessa cosa nello stesso momento,
       { text: '🧂 Rispondere di no col sale della sua stessa acqua in mano', requires: { item: 'salamoia' }, sets: { sale_pronto: true }, next: 'd14_boss' },
       { text: '🧱 Sigillare la bocca: sapete dov\'è la sesta cisterna e avete lo stucco', requires: { item: 'stucco', flag: 'sa_sesta_cisterna' }, next: 'e_vittoria' },
       { text: '🎵 Rispondere di sì. Aprire la bocca e cantare con loro', tag: '⚠️ Questa è una fine, e per chi vi vuole bene non ne esiste una peggiore', next: 'e_coro' },
-      { text: '⬆️ Non rispondere niente e risalire: dieci metri, cinque, tre, superficie', goldLoss: 2, next: 'd15_uscite' },
+      { text: '⬆️ Non rispondere niente e risalire. Fino a dieci metri, e lì fermarsi', goldLoss: 2, next: 'd14_sosta1' },
     ],
   },
 
@@ -1921,6 +1933,68 @@ E il Coro perde una nota, perché una cosa impossibile ha appena ricevuto un num
       loot: { gold: 3 },
     },
     choices: [],
+  },
+
+  /* LA SOSTA. Il momento in cui la fuga e fisicamente VIETATA — la superficie si vede, la
+     carena della barca e la sopra, e non si puo salire — era scritto come una parola in una
+     didascalia. Adesso sono due minuti giocati, il briefing dichiara il conto PRIMA di far
+     scendere (quindi la morte non e mai nascosta e il patto del Fiato resta intero), e
+     dentro l'attesa ci sono azioni diverse a ogni minuto. */
+  d14_sosta1: {
+    location: 'fossa',
+    caption: 'La sosta — sette minuti a dieci metri',
+    metri: 10,
+    stinger: 'apnea',
+    text: `Dieci metri. Da qui la superficie è una cosa che **si vede**: un disco di luce mosso, e sopra il disco la carena della barca di Ciro, nera e piccola come una scarpa.
+
+Il cronometro dice 00:07:00 e comincia a scendere.
+
+E la cima, sotto i piedi, è ancora tesa in giù. Quaranta metri di corda con un piombo in fondo, tirati verso il basso da qualcosa che non si vede: vibra come una corda di basso, e la vibrazione arriva ai denti passando per il guanto.
+
+Gaetano non può parlare con l'erogatore in bocca. Allora conta con le dita, girato verso di lei: sei, cinque, quattro.
+
+Claudia guarda in su. Poi guarda giù. Poi guarda in su un'altra volta, e la seconda volta ci mette meno.
+
+Sette minuti sono quattrocentoventi secondi: il tempo di una canzone e mezza. Sono anche il tempo che serve a una cosa che non ha nessuna fretta per farsi i quaranta metri che la separano dalle vostre pinne.
+
+**(🫁 Fiato −1: la sosta si paga in aria. Non si può salire e la superficie si vede — fate qualcosa con le mani, perché l'alternativa è contare.)**`,
+    goldLoss: 1,
+    sets: { sosta_iniziata: true },
+    choices: [
+      { text: '🧮 [Gaetano] Cronometrare la vibrazione della cima e dirne la frequenza a gesti',
+        requires: { hero: 'gaetano' }, once: true, sets: { sosta_misurata: true }, gold: 1, next: 'd14_sosta2' },
+      { text: '🫂 Maschera contro maschera, faccia a faccia, e respirare insieme', once: true, heal: 4, next: 'd14_sosta2' },
+      { text: '🔦 Spegnere le torce. Tutte e due. Venti secondi', once: true, sets: { torcia_spenta: true }, next: 'd14_sosta2' },
+      { text: '⏱ Contare. Solo contare, fino alla fine', next: 'd14_sosta2' },
+    ],
+  },
+
+  d14_sosta2: {
+    location: 'fossa',
+    caption: 'La sosta — gli ultimi tre minuti',
+    metri: 10,
+    stinger: 'apnea',
+    silenzio: true,
+    text: `Tre minuti. A dieci metri, con l'aria che basta, tre minuti sono una cosa lunghissima e non c'è niente da fare che li accorci.
+
+La superficie continua a essere là. Il disco di luce si muove piano, e ogni tanto una piccola onda lo taglia in due e poi lo rimette insieme.
+
+E a un certo punto la cima **smette di essere tesa**.
+
+Non si allenta piano: smette. Come quando qualcuno dall'altra parte lascia la presa e la corda torna a fare quello che fa una corda con un piombo in fondo — cade dritta, e basta.
+
+Sotto non c'è più niente che tiri.
+
+Il cronometro dice 00:00:41. Nessuno dei due sale. Restano appesi a dieci metri per quarantun secondi, a guardare in giù una corda che non fa più niente, e sono i quarantun secondi peggiori dei quattro giorni.
+
+Poi il cronometro fa zero, e la mano di Gaetano si apre e si chiude due volte: *tutto bene, andiamo*.
+
+**(🫁 Fiato −1. La sosta è stata fatta per intero, e nessuno dei due è salito prima. Il Quaderno registra l'ora esatta in cui la cima ha smesso di tirare — e registra che avete finito di contare comunque.)**`,
+    goldLoss: 1,
+    sets: { sosta_finita: true },
+    choices: [
+      { text: '⬆️ Superficie. Tre metri, e fuori', next: 'd15_uscite' },
+    ],
   },
 
   d15_uscite: {
