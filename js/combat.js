@@ -166,6 +166,27 @@ const Combat = (() => {
       battle.enemies.forEach(e => { if (!e.dead) e.distracted = true; });
     }
 
+    /* IL DEBITO DELLA VOCE. Chi ha risposto alla voce nel paese, il primo giorno — la
+       scelta col tag «⚠️ Ada ve l'ha detto due volte: non si risponde» — ha lasciato un
+       sì in acqua. Se non l'ha ritirato cantando la seconda strofa ad Assuntina, il
+       Coro non deve chiamare nessuno: ha già una voce che ha detto sì, ed è quella.
+       Il testo di d14_boss lo dichiara prima dello scontro, e qui succede per davvero:
+       un effetto raccontato e non implementato è una bugia, ed è la regola numero uno
+       di questo progetto. */
+    if (battle.isBoss && G.flags.debito_di_voce && !G.flags.debito_pagato) {
+      battle.enemies.forEach(e => { if (!e.dead) { e.hp += 6; e.maxHp += 6; } });
+      /* `h.veleno` e' un booleano, non un oggetto: e' la convenzione vera del motore
+         (combat.js:20 fa `if (hero.veleno) m -= 2`, e :839 lo imposta con poisonOnHit).
+         Scritto come `status.veleno = {...}` sarebbe stato dato morto — il difetto che
+         questo progetto ha pagato piu volte. */
+      const vittima = G.party.find(h => !h.dead && h.id === 'claudia') || G.party.find(h => !h.dead);
+      if (vittima) vittima.veleno = true;
+      log(`🗣 <b>Il vostro sì è ancora in acqua.</b> Nessuno ha ritirato quel «sono qui»: `
+        + `il Coro non ha dovuto chiamare nessuno, ha già una voce che ha detto sì. `
+        + `<b>+6 PV</b> a tutti loro, e ${vittima ? vittima.name.split(' ')[0] : 'uno di voi'} `
+        + `comincia con l'<b>acqua nei polmoni</b> (−2 a tutto: passa col caffè di Ada, o col proprio nome detto dall'altro).`, 'log-hit');
+    }
+
     // COLLANA DI GIULIA: le sue cose, riportate a lei
     if (battle.isBoss && G.inventory.includes('collana_di_giulia')) {
       const boss = battle.enemies.find(e => e.boss && !e.dead);

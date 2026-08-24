@@ -326,7 +326,69 @@ Poi tira fuori dal cassetto della credenza una fotocopia piegata in quattro: l'e
     choices: [
       { text: '🧂 "Signora, ci regala un chilo di sale grosso e un barattolo vuoto?"', once: true, item: 'sale_grosso', gold: 1, next: 'd6_cisterna' },
       { text: '🗒 [Ciro] Portare la lista a Ciro: i nomi di quest\'isola li sa leggere lui', requires: { hero: 'ciro' }, once: true, sets: { nome_letto_da_ciro: true }, gold: 1, next: 'd6_cisterna' },
+      { text: '📱 [Gaetano] La traccia di ieri pomeriggio alla boa. Registra sempre, e ieri registrava', requires: { flag: 'ha_risposto' }, once: true, next: 'd5_voce_registrata' },
       { text: '🕳 Alla cisterna dei Detenuti: oggi la porta dietro la chiesa è aperta', next: 'd6_cisterna' },
+    ],
+  },
+
+  /* IL DEBITO DELLA VOCE. `ha_risposto` era il flag piu disobbediente del gioco — lo
+     imposta la scelta «Rispondere. Mettere la faccia sotto e dire sono qui», con il tag
+     che avverte «Ada ve l'ha detto due volte» — e nessuna scena lo leggeva mai. Zero
+     occorrenze in tutti i draft. Cioe: la regola che questo gioco ripete piu di ogni
+     altra (Ada due volte, Ciro come regola tre, la signora dei fagiolini con «nun e
+     isso ca te chiamma», la ninnananna che e letteralmente l'istruzione per l'uso) era
+     l'unica che si potesse infrangere GRATIS.
+     E la collana di Giulia promette «una voce ti risparmia» senza dire mai quale voce
+     lascia fuori: una protezione senza buco dichiarato non fa paura, fa comodo. Qui il
+     buco viene detto in faccia, e il debito ha un modo di essere pagato — cantare la
+     seconda strofa ad Assuntina, perche chi la canta smette di essere uno che e stato
+     chiamato e diventa uno che e venuto. */
+  d5_voce_registrata: {
+    location: 'bnb',
+    caption: 'La stanza — ore 08:05, la traccia di ieri',
+    stinger: 'voce_amata',
+    metri: 0,
+    /* Niente `requires` sulla scena: il motore lo legge sulle SCELTE, non sulle scene, e
+       il validatore lo segnala come dato morto (giustamente). Il cancello sta dove deve
+       stare: sulla scelta in d5_ada, che chiede `ha_risposto`. Chi non ha risposto non
+       vede la strada e non sa che questa scena esiste. */
+    text: `È Gaetano che ci arriva, e ci arriva per il motivo peggiore: perché registra sempre, e perché ieri pomeriggio a Cala Nave aveva il telefono nella custodia stagna dentro il costume.
+
+Un file di quattro minuti e dodici, con l'ora nel nome: 15:12 di un pomeriggio che oggi non esiste più.
+
+Si sente il mare contro la plastica della boa. Si sente lei che respira col naso. Si sente la sua voce, sotto il pelo dell'acqua, che dice due parole.
+
+> *«Sono qui.»*
+
+Poi, a quattro decimi di secondo — non uno: quattro decimi, e li misura tre volte perché tre volte è un dato — la stessa frase, la stessa voce, la stessa cadenza, la stessa erre di Claudia:
+
+> *«Sono qui.»*
+
+> Claudia: "L'ho detto una volta."
+
+> Gaetano: "Lo so."
+
+> Claudia: "Gaetano. Io l'ho detto **una volta**."
+
+Lui non fa il numero, non fa la spiegazione, non prova a girarla. Mette il telefono a faccia in giù sul comodino e le dice l'unica cosa vera che ha.
+
+> Gaetano: "La seconda non l'hai detta tu. La seconda ce l'hanno loro, e adesso sanno come suona la tua voce quando dice sì."
+
+Claudia si porta la mano alla medaglietta di bronzo che ha al collo. È fredda, esattamente della temperatura dell'aria, come è stata sempre.
+
+> Claudia: "E questa?"
+
+> Gaetano: "Questa ti fa risparmiare da una voce del Coro. Giulia riconosce il suo nome e ti lascia passare, e lo fa una volta." *(e sceglie la verità, perché con lei ha smesso di fare altrimenti)* "Ma quella che ti viene a prendere non è una voce del Coro, Claudia. È la tua. E la collana non c'entra niente con la tua voce."
+
+**(⚠️ IL DEBITO DELLA VOCE. Il vostro sì è registrato su un nastro che non è il vostro. La collana di Giulia continua a fare esattamente quello che ha promesso — una voce, una volta — e adesso sapete anche cosa NON copre. 💪 TENUTA −3, 🎵 Attenzione del Coro +1. Si paga una volta, e c'è un modo.)**`,
+    damage: 3,
+    attenzione: 1,
+    sets: { debito_di_voce: true },
+    choices: [
+      { text: '🗑 Cancellare il file. Adesso, tenendo premuto, guardando la barretta', once: true, damage: 2, sets: { file_cancellato: true }, next: 'd6_cisterna' },
+      { text: '🎧 Riascoltare il secondo «sono qui» dieci volte e imparare in cosa è diverso', once: true, gold: 1, sets: { sa_dove_sbaglia: true }, next: 'd6_cisterna' },
+      { text: '🫂 Dirlo ad alta voce tutti e due: "ho risposto io, e non lo rifaccio"', once: true, heal: 4, sets: { risposta_ammessa: true }, next: 'd6_cisterna' },
+      { text: '🕳 Alla cisterna dei Detenuti. Adesso, prima di pensarci', next: 'd6_cisterna' },
     ],
   },
 
@@ -1130,6 +1192,8 @@ Claudia non risponde.
 
 **(⚠️ Non è una bugia: è la cosa più vera che vi abbiano detto in tre giorni, detta da una cosa che la usa come un coltello. Ciò che viene GUARDATO per intero perde il diritto di cambiare forma.)**`,
     choices: [
+      { text: '📱 Far partire il file di ieri. Le due «sono qui», una dietro l\'altra, ad alta voce davanti al vetro',
+        requires: { flag: 'debito_di_voce' }, once: true, damage: 5, sets: { specchio_smascherato: true } },
       { text: '🤐 Non risponderle. Non una parola. Il silenzio è l\'unica cosa che non sa fare', gold: 1, next: 'd11_boss' },
       { text: '📸 Inquadrarla. Treppiede, luce, e fotografarla per intero, faccia compresa', once: true, sets: { specchio_documentato: true }, next: 'd11_boss' },
       { text: '💍 Mostrarle le due fedi e chiederle dove sono le sue', requires: { item: 'le_due_fedi' }, once: true, sets: { specchio_smascherato: true }, heal: 4, next: 'd11_boss' },
@@ -1270,6 +1334,15 @@ Non canta bene. Non ha mai cantato bene, e a nessuno è mai importato meno di ad
 
 Perché è questo, il rovescio. La bambina non deve più chiamare nessuno: è venuta qualcuno a prenderla, e chi viene se la porta appresso lui.
 
+E c'è una seconda cosa che quella strofa fa, e la fa a chi la canta.
+
+> Claudia: *(che se n'è accorta mentre la stava cantando)* "Gaetà. Io ieri le ho risposto."
+
+> Gaetano: "Lo so."
+
+> Claudia: "Uno che risponde è uno che è stato chiamato." *(guarda la mano piccola che tiene nella sua)* "Uno che canta questa è uno che è **venuto**. Non è la stessa cosa, e non lo è per loro."
+
+
 La mano alzata resta alzata per tre secondi. Poi Claudia allunga la sua e la prende — e non c'è freddo, non c'è viscido, non c'è niente di quello che ci si aspetta: c'è il peso preciso di una mano di bambina di sei anni.
 
 > La bambina: "Aggio fatto tarde?"
@@ -1293,7 +1366,7 @@ E sotto la barca, in tutta la fossa, cento voci che rispondevano a una chiamata 
 **(🫁 Fiato +3, 💪 TENUTA +6. Assuntina dorme, e senza il suo richiamo il Coro ha perso metà della voce: in fondo alla fossa sanno che state arrivando e non hanno più nessuno che tenga il tempo.)**`,
     gold: 3,
     heal: 6,
-    sets: { assuntina_dorme: true },
+    sets: { assuntina_dorme: true, debito_pagato: true },
     choices: [
       { text: '🌊 Vestirsi. Bombolino, torcia, coltello, cima. Si scende', next: 'd13_fossa' },
       { text: '🫂 Restare seduti sul pagliolo, tutti e due, per il tempo che serve', once: true, heal: 6, gold: 2, next: 'd13_fossa' },
@@ -1484,6 +1557,12 @@ E qui il Coro fa la sua unica mossa elegante di tutta la notte. Tutte le voci, i
 
 > IL CORO: "**Pandataria.** Dispensatrice di ogni bene."
 
+> IL CORO: *(e per la prima volta dice una cosa che si può controllare)* "Quelli di paradiso non li sentite. Quelli erano già zitti." *(pausa)* "Purgatorio parla la notte. Inferno non ha mai smesso: non aveva finestre, e non ha imparato a stare fermo."
+
+> Claudia: *(dentro l'erogatore, e non si capisce, e la dice comunque)* "Quelli sono i nomi dei piani."
+
+> IL CORO: "Sono i nomi che avevano. Io uso quelli che mi hanno dato."
+
 Lo dice come si dice un titolo. Come chi presenta la casa.
 
 > Gaetano: *(e per la prima volta stanotte gli trema la voce, e non è paura, è rabbia)* "Dà tutto e non restituisce niente. Non è generosità, quella." *(e lo dice all'acqua, non a Claudia)* "È un **fondale di tenuta**. Ce l'hai scritto in tutti i nomi che ti hanno dato: quello che ti butti sotto, sotto rimane."
@@ -1535,7 +1614,9 @@ E il Coro perde una nota, perché una cosa impossibile ha appena ricevuto un num
 
 > Claudia: *(la ring light in mano, quattromila lumen puntati nel nero, il pollice sul pulsante)* "Guardaci."
 
-**(⚔️ BOSS FINALE: IL CORO. Sessantasei di TENUTA, ruba vita, colpisce tutti insieme. Quello che avete capito conta: i misteri risolti, gli oggetti craftati, e quanto vi hanno notato — l'attenzione del Coro si paga adesso, davanti a tutti.)**`,
+**(⚔️ BOSS FINALE: IL CORO. Sessantasei di TENUTA, ruba vita, colpisce tutti insieme. Quello che avete capito conta: i misteri risolti, gli oggetti craftati, e quanto vi hanno notato — l'attenzione del Coro si paga adesso, davanti a tutti.)**
+
+*(Se il vostro sì è ancora in acqua — se nessuno ha cantato la seconda strofa ad Assuntina — il Coro non deve chiamare nessuno: ha già una voce che ha detto sì, e la usa. Parte con sei punti di vita in più e uno dei due comincia con l'**acqua nei polmoni**: −2 a tutto, e passa solo col caffè di Ada o col proprio nome detto dall'altro. Il registro di combattimento lo scrive per esteso, perché una cosa che vi fa male dovete poterla leggere.)*`,
     combat: {
       enemies: ['coro_vero'],
       victory: 'd15_uscite',

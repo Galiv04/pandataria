@@ -217,7 +217,15 @@ Claudia si gira verso la cappella tonda in mezzo al pozzo. Poi verso le celle. P
 
 > Claudia: *(e lo dice con la calma di una che di mestiere decide come si guardano le cose)* "E lo spettacolo chi lo faceva, Gaetà?" 
 
-> Gaetano: *(e parla come parla quando ha bisogno di trasformare una cosa in un dato)* "Panopticon. Bentham. L'idea è che una guardia sola, dalla cappella, veda dentro tutte le celle contemporaneamente — e che i detenuti non vedano lei. Il punto non è la sorveglianza: è che tu non sai *quando*. Quindi ti comporti come se fosse sempre."
+Gaetano non risponde. Perché sopra la scala che sale al secondo ordine c'è una parola, dipinta a stampino, nera, alta una spanna, mangiata dal salino per un terzo.
+
+**PVRGATORIO**
+
+Claudia la legge ad alta voce. Una volta. E non aggiunge niente.
+
+Nemmeno lui. Alzano gli occhi insieme e contano le file di finestre, e le file sono tre.
+
+> Ciro: *(da sotto l'arco, la mano aperta sul muro, e dice cinque parole)* "Chella cappella 'n miezo sente. È fatta accussì."
 
 > Claudia: *(che si è girata su se stessa una volta, piano, guardando la curva)* "Non è una prigione."
 
@@ -235,10 +243,54 @@ Ciro non entra. Resta sotto l'arco, con una mano sul muro.
     goldLoss: 2,
     sets: { panopticon_visto: true },
     choices: [
-      { text: '🚪 Al secondo anello: cercare la 47', next: 'c5_cella' },
-      { text: '🕯 Scendere nella cappella al centro, dove stava la guardia', next: 'c4_conta' },
+      { text: '📋 Alla portineria c\'è il pannello del Comune, plastificato, con la pianta e i nomi dei piani', once: true, next: 'c3_depliant' },
+      { text: '🚪 Su, al purgatorio: la 47 sta al secondo ordine', next: 'c5_cella' },
+      { text: '🕯 Scendere all\'inferno: è il nome del piano terra, non una metafora, e la cappella sta là', requires: { flag: 'sa_i_tre_piani' }, next: 'c4_conta' },
+      { text: '🕯 Scendere nella cappella al centro, dove stava la guardia', requires: { notFlag: 'sa_i_tre_piani' }, next: 'c4_conta' },
       { text: '📚 Dietro la portineria c\'è una stanza con gli scaffali: i registri', next: 'c7_archivio' },
       { text: '⛏ Il cimitero dei detenuti sta a mezza costa, fuori dal muro', next: 'c9_cimitero' },
+    ],
+  },
+
+  /* IL PANNELLO DEL COMUNE. Qui c'era una lezione: dieci righe in cui Gaetano spiegava
+     Bentham e il Teatro San Carlo, cioè il nerd in cattedra che il canone di questo
+     progetto vieta. Lo scambio sul teatro l'ho tenuto — è dialogo, ed è Claudia che
+     conta i palchi e fa la domanda che uccide — mentre la spiegazione di Bentham è
+     sparita. I fatti dell'istituzione stanno qui, e li dice l'ISTITUZIONE: un pannello
+     plastificato avvitato al muro, letto ad alta voce. Nessun personaggio spiega
+     niente, e i nomi dei tre piani non li ha inventati un fantasma stanotte: li ha
+     battuti a macchina un ufficio, a tavolino, con l'inchiostro e la riga.
+     E leggere ad alta voce dentro una macchina costruita per sentire si paga. */
+  c3_depliant: {
+    location: 'panopticon',
+    caption: 'La portineria — il pannello del Comune, ore 10:20',
+    text: `Alla portineria, avvitato al muro accanto alla guardiola vuota, c'è un pannello plastificato: la pianta del carcere, quattro paragrafi in corpo otto, e in basso il logo del Commissario di Governo con la scritta *visita guidata su prenotazione*. La plastica è calda di sole, e sotto la plastica c'è una bolla d'aria grande come una moneta.
+
+Il corpo otto è piccolo e Gaetano sta dietro di lei, quindi legge lei. Ad alta voce, come si legge un cartello: piano, senza intonazione.
+
+> Claudia: "«Novantanove celle di circa sedici metri quadri, distribuite su tre piani, o sezioni, identificate come **inferno**, **purgatorio** e **paradiso**.»"
+
+Si ferma un secondo. Non commenta. Va avanti.
+
+> Claudia: "«Al piano terra i detenuti più pericolosi, e due celle senza finestre destinate alle punizioni. Al terzo piano una piccola apertura consentiva di vedere un tratto di cielo.»" *(pausa)* "«La torre di guardia al centro del cortile possedeva un'acustica tale che una sola guardia poteva ascoltare i discorsi dei detenuti.»"
+
+Non è una metafora e non l'ha inventata nessuno stanotte: è la nomenclatura di servizio. Sta sul depliant, e prima stava sul registro. Qualcuno, a tavolino, con l'inchiostro e la riga, ha deciso che un uomo può salire di un piano ed essere meno dannato, e l'ha messo per iscritto.
+
+> Gaetano: *(che di tutto il pannello ha preso solo il numero, perché il numero è l'unica maniglia che ha)* "Sedici metri quadri. Poi le hanno divise in due."
+
+> Claudia: "Otto."
+
+> Gaetano: "Otto."
+
+Ciro non si è avvicinato al pannello. Sta sotto l'arco, gira la faccia verso il mare e aspetta.
+
+**(🎵 Attenzione del Coro +1: ha letto ad alta voce, in mezzo al cortile, dentro un edificio costruito per sentire — e la cosa al centro non ha dovuto fare nessuno sforzo. Il Quaderno registra i nomi dei tre piani: la 47 è una cella di purgatorio, e sotto il purgatorio c'è l'inferno.)**`,
+    attenzione: 1,
+    sets: { sa_i_tre_piani: true },
+    choices: [
+      { text: '🚪 Su, al purgatorio: la 47 sta al secondo ordine', next: 'c5_cella' },
+      { text: '🕯 Giù all\'inferno, dove stava la guardia in mezzo al pozzo', next: 'c4_conta' },
+      { text: '📚 Dietro la portineria: la stanza degli scaffali', next: 'c7_archivio' },
     ],
   },
 
@@ -424,7 +476,9 @@ Claudia si ferma davanti alla **44** e mette una mano indietro, sul petto di Gae
 
 > Claudia: "C'è qualcuno dentro."
 
-> Gaetano: *(e parte, in buona fede, con la voce gentile di uno che vuole toglierle un peso)* "Amore, no. È il posto. Questa curva è una galleria a sussurro: il suono rimbalza sulla parete concava e ti torna dall'altro lato con un ritardo di — aspetta." *(guarda il cronometro del telefono, batte due volte le mani, conta)* "Zero virgola quarantasei. Quarantasei centesimi. Ottantacinque metri di percorso, la velocità del suono è trecentoquaranta metri al secondo, torna. Si chiama eco a flutter e ti fa sentire i tuoi passi come se fossero i passi di un altro. È **misurabile**, Claudia. L'ho appena misurato."
+> Gaetano: *(e parte, in buona fede, con la voce gentile di uno che vuole toglierle un peso)* "Amore, no. È il posto. Questa curva è una galleria a sussurro: il suono rimbalza sulla parete concava e ti torna dall'altro lato con un ritardo di — aspetta." *(guarda il cronometro del telefono, batte due volte le mani, conta)* "Zero virgola quarantasei. Ottantacinque metri di percorso, la velocità del suono è trecentoquaranta metri al secondo, torna. Si chiama eco a flutter e ti fa sentire i tuoi passi come se fossero i passi di un altro." *(e poi dice la cosa peggiore che potesse dire, e la dice perché è vera)* "E non l'ho scoperto io, Claudia. **Sta nel progetto.** Una guardia sola, in mezzo, doveva sentire novantanove celle: l'hanno costruito così, e c'è scritto sul pannello all'ingresso. Io ho solo verificato che funziona ancora."
+
+E funziona ancora. Ha ragione su tutto, ha fatto il conto in nove secondi, la sua voce è dolce — e ha appena spiegato a sua moglie, coi decimali, il motivo per cui questo posto è stato tirato su. Per rassicurarla."
 
 E lo ha appena misurato. Ha ragione su tutto, ha fatto il conto in nove secondi, e la sua voce è dolce.
 
@@ -736,7 +790,7 @@ Il gioco adesso vi dice una cosa in chiaro, senza trucchi, perché è così che 
 
 **Su quel nastro c'è la voce di Nicola Sperduto, la notte del due settembre 1965.** È l'ultima cosa registrata in questo posto e contiene informazione che non troverete in nessun registro, in nessun archivio e in nessuna testimonianza.
 
-**E svegliare quel nastro in questo posto vi farà notare.** Non "potrebbe": vi farà notare, adesso, di sicuro, e questo carcere è una macchina costruita per sentire.
+**E svegliare quel nastro in questo posto vi farà notare.** Non "potrebbe": vi farà notare, adesso, di sicuro, e questo carcere è una macchina costruita per sentire. E non è un modo di dire preso in prestito da voi: sta scritto sul pannello all'ingresso, l'ha messo per iscritto un ufficio, e l'acustica della torretta era una delle cose che facevano funzionare il posto.
 
 Ciro guarda il registratore come si guarda un cane che è stato buono per sessant'anni.
 

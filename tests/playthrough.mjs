@@ -191,7 +191,7 @@ const scriptCache = SOURCES.map(s => ({ name: s.name, script: new vm.Script(s.co
 const scriptGetG = new vm.Script('(typeof G !== "undefined" ? G : null)');
 let itemsRef = null;   // popolato da buildGame: serve a checkInvariants
 const itemiIgnotiVisti = new Set();   // un oggetto sconosciuto si segnala UNA volta, non a ogni passo
-const scriptGetApi = new vm.Script('({Engine, Combat, Dice, HEROES, BESTIARY, ITEMS, CAMPAIGN, CAMPAIGN_START, CHAPTERS, WORLD_MAP, Crafting, Misteri, RECIPES, MISTERI, CHECKPOINT_FLAGS, Luoghi})');
+const scriptGetApi = new vm.Script('({Engine, Combat, Dice, HEROES, BESTIARY, ITEMS, CAMPAIGN, CAMPAIGN_START, CHAPTERS, WORLD_MAP, Crafting, Misteri, RECIPES, MISTERI, CHECKPOINT_FLAGS, Luoghi, Dialoghi})');
 
 function makeTimers() {
   let seq = 0;
@@ -919,7 +919,9 @@ scenarios.push(scenario(
 scenarios.push(scenario(
   'Il Coro vince (e_coro, hanno risposto)',
   ['gaetano', 'claudia'],
-  { d2_paese: 'Rispondere. Mettere la faccia sotto', d14_coro: 'Rispondere di sì' },
+  { d2_paese: 'Rispondere. Mettere la faccia sotto', d14_coro: 'Rispondere di sì',
+    // il percorso resta quello di prima: qui si prova il FINALE, non il debito della voce
+    d5_ada: 'Alla cisterna dei Detenuti' },
   {
     verify: (r, expect) => {
       expect(/^e_coro/.test(r.log.ending || ''), `finale atteso e_coro*, trovato ${r.log.ending}`);
@@ -1116,7 +1118,7 @@ scenarios.push(scenario(
     b8_apnea_ok: 'Ancora una',
     b8_seconda: 'Su. E domani',
     // mistero 2 — la cella 47: tutti e quattro gli indizi, in ordine
-    c3: 'Al secondo anello',
+    c3: 'la 47 sta al secondo ordine',   // il testo della scelta e cambiato col PVRGATORIO
     c5_cella: 'Gaetano conta un campione',
     c5_graffito: 'L\'archivio: se qualcuno ha contato',
     c5_graffito_ko: 'L\'archivio, e mai più questa stanza',
@@ -1187,6 +1189,42 @@ scenarios.push(scenario(
     },
   },
 ));
+
+/* NOTA: questo scenario sta IN CODA, e ci sta per un motivo. I semi vengono da un
+   contatore progressivo, quindi inserire uno scenario in mezzo alla lista RINUMERA i
+   semi di tutti quelli dopo e ne fa fallire due o tre che erano sani. E la lezione 47 di
+   questo progetto, e me la sono rifatta oggi: la prima stesura di questo blocco stava
+   fra il quinto e il sesto scenario e ha spostato il finale di «Il loop per sempre» da
+   e_loop a e_coro_insieme. Gli scenari nuovi vanno in coda. Sempre. */
+/* ---- 5-bis. IL DEBITO DELLA VOCE — rispondere si paga, e il conto arriva in fondo ----
+   `ha_risposto` era un flag impostato una volta e mai letto: la regola che il gioco
+   ripete piu di tutte era l'unica infrangibile gratis. Adesso ha tre conseguenze, e
+   questo scenario le attraversa tutte e tre senza pagare il debito: la traccia di ieri
+   con le due «sono qui», la scelta che smaschera lo specchio, e il Coro che parte con
+   sei punti in piu perche ha gia una voce che ha detto si. */
+scenarios.push(scenario(
+  'Il debito della voce (si risponde, non si paga)',
+  ['gaetano', 'claudia'],
+  { d2_paese: 'Rispondere. Mettere la faccia sotto',
+    d5_ada: 'La traccia di ieri pomeriggio alla boa',
+    d5_voce_registrata: 'Riascoltare il secondo',
+    d11_specchio: 'Far partire il file di ieri' },
+  {
+    verify: (r, expect) => {
+      const f = r.log.flags || {};
+      expect(f.ha_risposto, 'la scelta disobbediente non ha impostato ha_risposto');
+      expect(f.debito_di_voce, 'la traccia di ieri non ha aperto il debito della voce');
+      expect(f.sa_dove_sbaglia, 'riascoltare dieci volte non ha insegnato niente');
+      expect(!f.debito_pagato, 'il debito risulta pagato: questo scenario non doveva pagarlo');
+      /* Il campo si chiama `scenes`, non `visited`: scritto sbagliato, `(undefined || [])`
+         rendeva il controllo sempre falso — un test che non puo passare e peggio di un
+         test che manca, perche insegna a ignorare il rosso. */
+      expect(r.log.scenes.includes('d5_voce_registrata'),
+        'la scena della traccia registrata non e stata visitata');
+    },
+  },
+));
+
 
 
 
@@ -1419,7 +1457,7 @@ section('Copertura totale della campagna');
 (function testFinestreDiConferma() {
   section('Le finestre di conferma si aprono e rispondono');
   const game = buildGame(515151);
-  const D = game.context.Dialoghi;
+  const D = game.api.Dialoghi;
   if (!D) { fail('Dialoghi non è caricato nel banco di prova'); return; }
   let aperte = 0;
   const prove = [

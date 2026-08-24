@@ -4020,7 +4020,15 @@ Claudia si gira verso la cappella tonda in mezzo al pozzo. Poi verso le celle. P
 
 > Claudia: *(e lo dice con la calma di una che di mestiere decide come si guardano le cose)* "E lo spettacolo chi lo faceva, Gaetà?" 
 
-> Gaetano: *(e parla come parla quando ha bisogno di trasformare una cosa in un dato)* "Panopticon. Bentham. L'idea è che una guardia sola, dalla cappella, veda dentro tutte le celle contemporaneamente — e che i detenuti non vedano lei. Il punto non è la sorveglianza: è che tu non sai *quando*. Quindi ti comporti come se fosse sempre."
+Gaetano non risponde. Perché sopra la scala che sale al secondo ordine c'è una parola, dipinta a stampino, nera, alta una spanna, mangiata dal salino per un terzo.
+
+**PVRGATORIO**
+
+Claudia la legge ad alta voce. Una volta. E non aggiunge niente.
+
+Nemmeno lui. Alzano gli occhi insieme e contano le file di finestre, e le file sono tre.
+
+> Ciro: *(da sotto l'arco, la mano aperta sul muro, e dice cinque parole)* "Chella cappella 'n miezo sente. È fatta accussì."
 
 > Claudia: *(che si è girata su se stessa una volta, piano, guardando la curva)* "Non è una prigione."
 
@@ -4038,10 +4046,54 @@ Ciro non entra. Resta sotto l'arco, con una mano sul muro.
     goldLoss: 2,
     sets: { panopticon_visto: true },
     choices: [
-      { text: '🚪 Al secondo anello: cercare la 47', next: 'c5_cella' },
-      { text: '🕯 Scendere nella cappella al centro, dove stava la guardia', next: 'c4_conta' },
+      { text: '📋 Alla portineria c\'è il pannello del Comune, plastificato, con la pianta e i nomi dei piani', once: true, next: 'c3_depliant' },
+      { text: '🚪 Su, al purgatorio: la 47 sta al secondo ordine', next: 'c5_cella' },
+      { text: '🕯 Scendere all\'inferno: è il nome del piano terra, non una metafora, e la cappella sta là', requires: { flag: 'sa_i_tre_piani' }, next: 'c4_conta' },
+      { text: '🕯 Scendere nella cappella al centro, dove stava la guardia', requires: { notFlag: 'sa_i_tre_piani' }, next: 'c4_conta' },
       { text: '📚 Dietro la portineria c\'è una stanza con gli scaffali: i registri', next: 'c7_archivio' },
       { text: '⛏ Il cimitero dei detenuti sta a mezza costa, fuori dal muro', next: 'c9_cimitero' },
+    ],
+  },
+
+  /* IL PANNELLO DEL COMUNE. Qui c'era una lezione: dieci righe in cui Gaetano spiegava
+     Bentham e il Teatro San Carlo, cioè il nerd in cattedra che il canone di questo
+     progetto vieta. Lo scambio sul teatro l'ho tenuto — è dialogo, ed è Claudia che
+     conta i palchi e fa la domanda che uccide — mentre la spiegazione di Bentham è
+     sparita. I fatti dell'istituzione stanno qui, e li dice l'ISTITUZIONE: un pannello
+     plastificato avvitato al muro, letto ad alta voce. Nessun personaggio spiega
+     niente, e i nomi dei tre piani non li ha inventati un fantasma stanotte: li ha
+     battuti a macchina un ufficio, a tavolino, con l'inchiostro e la riga.
+     E leggere ad alta voce dentro una macchina costruita per sentire si paga. */
+  c3_depliant: {
+    location: 'panopticon',
+    caption: 'La portineria — il pannello del Comune, ore 10:20',
+    text: `Alla portineria, avvitato al muro accanto alla guardiola vuota, c'è un pannello plastificato: la pianta del carcere, quattro paragrafi in corpo otto, e in basso il logo del Commissario di Governo con la scritta *visita guidata su prenotazione*. La plastica è calda di sole, e sotto la plastica c'è una bolla d'aria grande come una moneta.
+
+Il corpo otto è piccolo e Gaetano sta dietro di lei, quindi legge lei. Ad alta voce, come si legge un cartello: piano, senza intonazione.
+
+> Claudia: "«Novantanove celle di circa sedici metri quadri, distribuite su tre piani, o sezioni, identificate come **inferno**, **purgatorio** e **paradiso**.»"
+
+Si ferma un secondo. Non commenta. Va avanti.
+
+> Claudia: "«Al piano terra i detenuti più pericolosi, e due celle senza finestre destinate alle punizioni. Al terzo piano una piccola apertura consentiva di vedere un tratto di cielo.»" *(pausa)* "«La torre di guardia al centro del cortile possedeva un'acustica tale che una sola guardia poteva ascoltare i discorsi dei detenuti.»"
+
+Non è una metafora e non l'ha inventata nessuno stanotte: è la nomenclatura di servizio. Sta sul depliant, e prima stava sul registro. Qualcuno, a tavolino, con l'inchiostro e la riga, ha deciso che un uomo può salire di un piano ed essere meno dannato, e l'ha messo per iscritto.
+
+> Gaetano: *(che di tutto il pannello ha preso solo il numero, perché il numero è l'unica maniglia che ha)* "Sedici metri quadri. Poi le hanno divise in due."
+
+> Claudia: "Otto."
+
+> Gaetano: "Otto."
+
+Ciro non si è avvicinato al pannello. Sta sotto l'arco, gira la faccia verso il mare e aspetta.
+
+**(🎵 Attenzione del Coro +1: ha letto ad alta voce, in mezzo al cortile, dentro un edificio costruito per sentire — e la cosa al centro non ha dovuto fare nessuno sforzo. Il Quaderno registra i nomi dei tre piani: la 47 è una cella di purgatorio, e sotto il purgatorio c'è l'inferno.)**`,
+    attenzione: 1,
+    sets: { sa_i_tre_piani: true },
+    choices: [
+      { text: '🚪 Su, al purgatorio: la 47 sta al secondo ordine', next: 'c5_cella' },
+      { text: '🕯 Giù all\'inferno, dove stava la guardia in mezzo al pozzo', next: 'c4_conta' },
+      { text: '📚 Dietro la portineria: la stanza degli scaffali', next: 'c7_archivio' },
     ],
   },
 
@@ -4227,7 +4279,9 @@ Claudia si ferma davanti alla **44** e mette una mano indietro, sul petto di Gae
 
 > Claudia: "C'è qualcuno dentro."
 
-> Gaetano: *(e parte, in buona fede, con la voce gentile di uno che vuole toglierle un peso)* "Amore, no. È il posto. Questa curva è una galleria a sussurro: il suono rimbalza sulla parete concava e ti torna dall'altro lato con un ritardo di — aspetta." *(guarda il cronometro del telefono, batte due volte le mani, conta)* "Zero virgola quarantasei. Quarantasei centesimi. Ottantacinque metri di percorso, la velocità del suono è trecentoquaranta metri al secondo, torna. Si chiama eco a flutter e ti fa sentire i tuoi passi come se fossero i passi di un altro. È **misurabile**, Claudia. L'ho appena misurato."
+> Gaetano: *(e parte, in buona fede, con la voce gentile di uno che vuole toglierle un peso)* "Amore, no. È il posto. Questa curva è una galleria a sussurro: il suono rimbalza sulla parete concava e ti torna dall'altro lato con un ritardo di — aspetta." *(guarda il cronometro del telefono, batte due volte le mani, conta)* "Zero virgola quarantasei. Ottantacinque metri di percorso, la velocità del suono è trecentoquaranta metri al secondo, torna. Si chiama eco a flutter e ti fa sentire i tuoi passi come se fossero i passi di un altro." *(e poi dice la cosa peggiore che potesse dire, e la dice perché è vera)* "E non l'ho scoperto io, Claudia. **Sta nel progetto.** Una guardia sola, in mezzo, doveva sentire novantanove celle: l'hanno costruito così, e c'è scritto sul pannello all'ingresso. Io ho solo verificato che funziona ancora."
+
+E funziona ancora. Ha ragione su tutto, ha fatto il conto in nove secondi, la sua voce è dolce — e ha appena spiegato a sua moglie, coi decimali, il motivo per cui questo posto è stato tirato su. Per rassicurarla."
 
 E lo ha appena misurato. Ha ragione su tutto, ha fatto il conto in nove secondi, e la sua voce è dolce.
 
@@ -4539,7 +4593,7 @@ Il gioco adesso vi dice una cosa in chiaro, senza trucchi, perché è così che 
 
 **Su quel nastro c'è la voce di Nicola Sperduto, la notte del due settembre 1965.** È l'ultima cosa registrata in questo posto e contiene informazione che non troverete in nessun registro, in nessun archivio e in nessuna testimonianza.
 
-**E svegliare quel nastro in questo posto vi farà notare.** Non "potrebbe": vi farà notare, adesso, di sicuro, e questo carcere è una macchina costruita per sentire.
+**E svegliare quel nastro in questo posto vi farà notare.** Non "potrebbe": vi farà notare, adesso, di sicuro, e questo carcere è una macchina costruita per sentire. E non è un modo di dire preso in prestito da voi: sta scritto sul pannello all'ingresso, l'ha messo per iscritto un ufficio, e l'acustica della torretta era una delle cose che facevano funzionare il posto.
 
 Ciro guarda il registratore come si guarda un cane che è stato buono per sessant'anni.
 
@@ -5232,7 +5286,69 @@ Poi tira fuori dal cassetto della credenza una fotocopia piegata in quattro: l'e
     choices: [
       { text: '🧂 "Signora, ci regala un chilo di sale grosso e un barattolo vuoto?"', once: true, item: 'sale_grosso', gold: 1, next: 'd6_cisterna' },
       { text: '🗒 [Ciro] Portare la lista a Ciro: i nomi di quest\'isola li sa leggere lui', requires: { hero: 'ciro' }, once: true, sets: { nome_letto_da_ciro: true }, gold: 1, next: 'd6_cisterna' },
+      { text: '📱 [Gaetano] La traccia di ieri pomeriggio alla boa. Registra sempre, e ieri registrava', requires: { flag: 'ha_risposto' }, once: true, next: 'd5_voce_registrata' },
       { text: '🕳 Alla cisterna dei Detenuti: oggi la porta dietro la chiesa è aperta', next: 'd6_cisterna' },
+    ],
+  },
+
+  /* IL DEBITO DELLA VOCE. `ha_risposto` era il flag piu disobbediente del gioco — lo
+     imposta la scelta «Rispondere. Mettere la faccia sotto e dire sono qui», con il tag
+     che avverte «Ada ve l'ha detto due volte» — e nessuna scena lo leggeva mai. Zero
+     occorrenze in tutti i draft. Cioe: la regola che questo gioco ripete piu di ogni
+     altra (Ada due volte, Ciro come regola tre, la signora dei fagiolini con «nun e
+     isso ca te chiamma», la ninnananna che e letteralmente l'istruzione per l'uso) era
+     l'unica che si potesse infrangere GRATIS.
+     E la collana di Giulia promette «una voce ti risparmia» senza dire mai quale voce
+     lascia fuori: una protezione senza buco dichiarato non fa paura, fa comodo. Qui il
+     buco viene detto in faccia, e il debito ha un modo di essere pagato — cantare la
+     seconda strofa ad Assuntina, perche chi la canta smette di essere uno che e stato
+     chiamato e diventa uno che e venuto. */
+  d5_voce_registrata: {
+    location: 'bnb',
+    caption: 'La stanza — ore 08:05, la traccia di ieri',
+    stinger: 'voce_amata',
+    metri: 0,
+    /* Niente `requires` sulla scena: il motore lo legge sulle SCELTE, non sulle scene, e
+       il validatore lo segnala come dato morto (giustamente). Il cancello sta dove deve
+       stare: sulla scelta in d5_ada, che chiede `ha_risposto`. Chi non ha risposto non
+       vede la strada e non sa che questa scena esiste. */
+    text: `È Gaetano che ci arriva, e ci arriva per il motivo peggiore: perché registra sempre, e perché ieri pomeriggio a Cala Nave aveva il telefono nella custodia stagna dentro il costume.
+
+Un file di quattro minuti e dodici, con l'ora nel nome: 15:12 di un pomeriggio che oggi non esiste più.
+
+Si sente il mare contro la plastica della boa. Si sente lei che respira col naso. Si sente la sua voce, sotto il pelo dell'acqua, che dice due parole.
+
+> *«Sono qui.»*
+
+Poi, a quattro decimi di secondo — non uno: quattro decimi, e li misura tre volte perché tre volte è un dato — la stessa frase, la stessa voce, la stessa cadenza, la stessa erre di Claudia:
+
+> *«Sono qui.»*
+
+> Claudia: "L'ho detto una volta."
+
+> Gaetano: "Lo so."
+
+> Claudia: "Gaetano. Io l'ho detto **una volta**."
+
+Lui non fa il numero, non fa la spiegazione, non prova a girarla. Mette il telefono a faccia in giù sul comodino e le dice l'unica cosa vera che ha.
+
+> Gaetano: "La seconda non l'hai detta tu. La seconda ce l'hanno loro, e adesso sanno come suona la tua voce quando dice sì."
+
+Claudia si porta la mano alla medaglietta di bronzo che ha al collo. È fredda, esattamente della temperatura dell'aria, come è stata sempre.
+
+> Claudia: "E questa?"
+
+> Gaetano: "Questa ti fa risparmiare da una voce del Coro. Giulia riconosce il suo nome e ti lascia passare, e lo fa una volta." *(e sceglie la verità, perché con lei ha smesso di fare altrimenti)* "Ma quella che ti viene a prendere non è una voce del Coro, Claudia. È la tua. E la collana non c'entra niente con la tua voce."
+
+**(⚠️ IL DEBITO DELLA VOCE. Il vostro sì è registrato su un nastro che non è il vostro. La collana di Giulia continua a fare esattamente quello che ha promesso — una voce, una volta — e adesso sapete anche cosa NON copre. 💪 TENUTA −3, 🎵 Attenzione del Coro +1. Si paga una volta, e c'è un modo.)**`,
+    damage: 3,
+    attenzione: 1,
+    sets: { debito_di_voce: true },
+    choices: [
+      { text: '🗑 Cancellare il file. Adesso, tenendo premuto, guardando la barretta', once: true, damage: 2, sets: { file_cancellato: true }, next: 'd6_cisterna' },
+      { text: '🎧 Riascoltare il secondo «sono qui» dieci volte e imparare in cosa è diverso', once: true, gold: 1, sets: { sa_dove_sbaglia: true }, next: 'd6_cisterna' },
+      { text: '🫂 Dirlo ad alta voce tutti e due: "ho risposto io, e non lo rifaccio"', once: true, heal: 4, sets: { risposta_ammessa: true }, next: 'd6_cisterna' },
+      { text: '🕳 Alla cisterna dei Detenuti. Adesso, prima di pensarci', next: 'd6_cisterna' },
     ],
   },
 
@@ -6036,6 +6152,8 @@ Claudia non risponde.
 
 **(⚠️ Non è una bugia: è la cosa più vera che vi abbiano detto in tre giorni, detta da una cosa che la usa come un coltello. Ciò che viene GUARDATO per intero perde il diritto di cambiare forma.)**`,
     choices: [
+      { text: '📱 Far partire il file di ieri. Le due «sono qui», una dietro l\'altra, ad alta voce davanti al vetro',
+        requires: { flag: 'debito_di_voce' }, once: true, damage: 5, sets: { specchio_smascherato: true } },
       { text: '🤐 Non risponderle. Non una parola. Il silenzio è l\'unica cosa che non sa fare', gold: 1, next: 'd11_boss' },
       { text: '📸 Inquadrarla. Treppiede, luce, e fotografarla per intero, faccia compresa', once: true, sets: { specchio_documentato: true }, next: 'd11_boss' },
       { text: '💍 Mostrarle le due fedi e chiederle dove sono le sue', requires: { item: 'le_due_fedi' }, once: true, sets: { specchio_smascherato: true }, heal: 4, next: 'd11_boss' },
@@ -6176,6 +6294,15 @@ Non canta bene. Non ha mai cantato bene, e a nessuno è mai importato meno di ad
 
 Perché è questo, il rovescio. La bambina non deve più chiamare nessuno: è venuta qualcuno a prenderla, e chi viene se la porta appresso lui.
 
+E c'è una seconda cosa che quella strofa fa, e la fa a chi la canta.
+
+> Claudia: *(che se n'è accorta mentre la stava cantando)* "Gaetà. Io ieri le ho risposto."
+
+> Gaetano: "Lo so."
+
+> Claudia: "Uno che risponde è uno che è stato chiamato." *(guarda la mano piccola che tiene nella sua)* "Uno che canta questa è uno che è **venuto**. Non è la stessa cosa, e non lo è per loro."
+
+
 La mano alzata resta alzata per tre secondi. Poi Claudia allunga la sua e la prende — e non c'è freddo, non c'è viscido, non c'è niente di quello che ci si aspetta: c'è il peso preciso di una mano di bambina di sei anni.
 
 > La bambina: "Aggio fatto tarde?"
@@ -6199,7 +6326,7 @@ E sotto la barca, in tutta la fossa, cento voci che rispondevano a una chiamata 
 **(🫁 Fiato +3, 💪 TENUTA +6. Assuntina dorme, e senza il suo richiamo il Coro ha perso metà della voce: in fondo alla fossa sanno che state arrivando e non hanno più nessuno che tenga il tempo.)**`,
     gold: 3,
     heal: 6,
-    sets: { assuntina_dorme: true },
+    sets: { assuntina_dorme: true, debito_pagato: true },
     choices: [
       { text: '🌊 Vestirsi. Bombolino, torcia, coltello, cima. Si scende', next: 'd13_fossa' },
       { text: '🫂 Restare seduti sul pagliolo, tutti e due, per il tempo che serve', once: true, heal: 6, gold: 2, next: 'd13_fossa' },
@@ -6390,6 +6517,12 @@ E qui il Coro fa la sua unica mossa elegante di tutta la notte. Tutte le voci, i
 
 > IL CORO: "**Pandataria.** Dispensatrice di ogni bene."
 
+> IL CORO: *(e per la prima volta dice una cosa che si può controllare)* "Quelli di paradiso non li sentite. Quelli erano già zitti." *(pausa)* "Purgatorio parla la notte. Inferno non ha mai smesso: non aveva finestre, e non ha imparato a stare fermo."
+
+> Claudia: *(dentro l'erogatore, e non si capisce, e la dice comunque)* "Quelli sono i nomi dei piani."
+
+> IL CORO: "Sono i nomi che avevano. Io uso quelli che mi hanno dato."
+
 Lo dice come si dice un titolo. Come chi presenta la casa.
 
 > Gaetano: *(e per la prima volta stanotte gli trema la voce, e non è paura, è rabbia)* "Dà tutto e non restituisce niente. Non è generosità, quella." *(e lo dice all'acqua, non a Claudia)* "È un **fondale di tenuta**. Ce l'hai scritto in tutti i nomi che ti hanno dato: quello che ti butti sotto, sotto rimane."
@@ -6441,7 +6574,9 @@ E il Coro perde una nota, perché una cosa impossibile ha appena ricevuto un num
 
 > Claudia: *(la ring light in mano, quattromila lumen puntati nel nero, il pollice sul pulsante)* "Guardaci."
 
-**(⚔️ BOSS FINALE: IL CORO. Sessantasei di TENUTA, ruba vita, colpisce tutti insieme. Quello che avete capito conta: i misteri risolti, gli oggetti craftati, e quanto vi hanno notato — l'attenzione del Coro si paga adesso, davanti a tutti.)**`,
+**(⚔️ BOSS FINALE: IL CORO. Sessantasei di TENUTA, ruba vita, colpisce tutti insieme. Quello che avete capito conta: i misteri risolti, gli oggetti craftati, e quanto vi hanno notato — l'attenzione del Coro si paga adesso, davanti a tutti.)**
+
+*(Se il vostro sì è ancora in acqua — se nessuno ha cantato la seconda strofa ad Assuntina — il Coro non deve chiamare nessuno: ha già una voce che ha detto sì, e la usa. Parte con sei punti di vita in più e uno dei due comincia con l'**acqua nei polmoni**: −2 a tutto, e passa solo col caffè di Ada o col proprio nome detto dall'altro. Il registro di combattimento lo scrive per esteso, perché una cosa che vi fa male dovete poterla leggere.)*`,
     combat: {
       enemies: ['coro_vero'],
       victory: 'd15_uscite',
@@ -6687,6 +6822,8 @@ Alle **19:47** il sole tocca l'acqua e ci mette novanta secondi a entrarci tutto
     choices: [
       { text: '🕯 Dirlo al vento, dal ponte: "Si chiamava NICOLA SPERDUTO. Quarantatré anni. Ha finito il turno."',
         requires: { flag: 'sa_nome_guardia' }, once: true, sets: { detto_sperduto: true } },
+      { text: '📋 Dirlo al vento: che i tre piani si chiamavano inferno, purgatorio e paradiso, e che quei nomi non li ha inventati un fantasma — li ha battuti a macchina un ufficio',
+        requires: { flag: 'sa_i_tre_piani' }, once: true, sets: { detto_i_piani: true } },
       { text: '🎵 Cantarla piano, la prima strofa: «chi sta sott\' nun torna sola / si porta appriess\' a chi la chiamma». Era un avvertimento, e ASSUNTINA lo cantava da ottantadue anni',
         requires: { flag: 'sa_ninnananna' }, once: true, sets: { detta_ninnananna: true } },
       { text: '🧱 Guardare l\'isola che si allontana e sapere che la sesta sta sotto le altre cinque, ed è chiusa',
@@ -7490,6 +7627,7 @@ const DIARY_FLAGS = [
   ['i_graffito',          'Nella cella 47, sul muro a destra della finestrella: 8.041 tacche fatte con un chiodo. L\'ultima non ha la polvere delle altre. L\'ultima è fresca.'],
   ['i_registro_detenuti', 'Il registro dei trasferimenti del 1965: la cella 47 risulta VUOTA dal 1943 e OCCUPATA dal 1943, sulla stessa pagina, con due grafie diverse.'],
   ['i_ciro_racconta',     'Ciro, undici anni, sul molo il 2 settembre 1965: una guardia che piangeva mentre gli altri caricavano le brande. Non piangeva per i detenuti. Chiedeva di restare.'],
+  ['sa_i_tre_piani',      'I tre piani del panopticon si chiamavano inferno, purgatorio e paradiso. Non è una metafora di nessuno: è la nomenclatura di servizio, sta sul pannello del Comune all\'ingresso e prima stava sul registro. Qualcuno, a tavolino, ha deciso che un uomo può salire di un piano ed essere meno dannato.'],
   ['i_osso',              'Nel cimitero dei detenuti le fosse contate sono novantatré e i nomi novantadue. In quella in più non c\'è una divisa da carcerato: ci sono bottoni di ottone.'],
 
   /* --- la bambina che canta --- */

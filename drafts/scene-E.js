@@ -117,6 +117,8 @@ Alle **19:47** il sole tocca l'acqua e ci mette novanta secondi a entrarci tutto
     choices: [
       { text: '🕯 Dirlo al vento, dal ponte: "Si chiamava NICOLA SPERDUTO. Quarantatré anni. Ha finito il turno."',
         requires: { flag: 'sa_nome_guardia' }, once: true, sets: { detto_sperduto: true } },
+      { text: '📋 Dirlo al vento: che i tre piani si chiamavano inferno, purgatorio e paradiso, e che quei nomi non li ha inventati un fantasma — li ha battuti a macchina un ufficio',
+        requires: { flag: 'sa_i_tre_piani' }, once: true, sets: { detto_i_piani: true } },
       { text: '🎵 Cantarla piano, la prima strofa: «chi sta sott\' nun torna sola / si porta appriess\' a chi la chiamma». Era un avvertimento, e ASSUNTINA lo cantava da ottantadue anni',
         requires: { flag: 'sa_ninnananna' }, once: true, sets: { detta_ninnananna: true } },
       { text: '🧱 Guardare l\'isola che si allontana e sapere che la sesta sta sotto le altre cinque, ed è chiusa',
