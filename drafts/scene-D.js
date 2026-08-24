@@ -1495,7 +1495,22 @@ Trentuno nodi e la cima trova.
 
 > Gaetano: *(e non addolcisce, perché con lei ha smesso)* "I bagagli. E quello che i bagagli avevano dentro."
 
-Poi fa il briefing come lo farebbe per un satellite, con le dita.
+**(⚠️ Trentuno metri e c'è una cengia. Sotto la cengia, lo scandaglio non sa dire niente.)**`,
+    sets: { sa_cengia: true },
+    choices: [
+      { text: '🧮 "Fammi il briefing. Tutto, coi numeri, come lo fai per un satellite."', next: 'd13_briefing' },
+      { text: '🤲 Prima tenersi la mano trenta secondi, in barca, senza dire niente', once: true, heal: 4, gold: 2, next: 'd13_briefing' },
+    ],
+  },
+
+  /* IL BRIEFING. Quattro punti contati sulle dita, e il quarto è aritmetica e non una
+     raccomandazione. Sta in una scena sua perché è l'ultima volta che qualcuno spiega le
+     regole prima che il gioco smetta di avere regole. */
+  d13_briefing: {
+    location: 'barca',
+    caption: 'Il briefing, con le dita',
+    stinger: 'pressione',
+    text: `Poi fa il briefing come lo farebbe per un satellite, con le dita.
 
 > Gaetano: "Uno: fino alla cengia si scende sulla cima, mano dopo mano, e la cima non si lascia mai. Due: da trentuno a quarantacinque **la barra del fiato conta quelli**, i quattordici metri, e non c'è aria in più che ce la metta qualcuno. Tre: prendere e risalire. Se ti fermi a guardare cos'era quella cosa bianca, la barra ti dice esattamente quanto ti costa guardare." *(la guarda)* "Non è coraggio, è aritmetica. Quaggiù il coraggio senza aritmetica ti annega."
 
@@ -1902,7 +1917,7 @@ Nessuno dei due dice la frase che segue, perché la frase che segue non serve.
     sets: { mano_sbagliata: true },
     choices: [
       { text: '📼 Il file sale con noi. Tre copie, come sempre', once: true, sets: { file_stiva_tenuto: true }, next: 'd15_uscite' },
-      { text: '🗑 Cancellarlo qui, sulla banchina, prima di salire', once: true, heal: 3, sets: { file_stiva_cancellato: true }, next: 'd15_uscite' },
+      { text: '🗑 Cancellarlo qui, sulla banchina, prima di salire', heal: 3, sets: { file_stiva_cancellato: true }, next: 'd15_uscite' },
     ],
   },
 
@@ -1929,7 +1944,33 @@ E una viene avanti, e questa è italiano di trent'anni fa, con l'accento di qui,
 
 > "Claudia. Ciao. Sono Marisa." *(pausa, e la pausa è quella giusta)* "Stai respirando male: stai buttando fuori troppo presto. Te lo insegno io. Ci metto dieci minuti e non ti fa più paura niente."
 
-Risalgono alla sosta dei dieci metri, dove c'è aria in bocca per parlare. Claudia si strappa l'erogatore e la prima cosa che dice non è una domanda.
+E aspetta. Non insiste, non stringe: **aspetta**, come aspetta uno che sa di avere tutto il tempo e sa che voi no. Il manometro dice centodieci bar in due. La cima è ancora tesa in giù.
+
+**(💪 Cure complete e abilità ricaricate: quello che avete adesso è tutto quello che avrete. 🫁 Siete a quaranta metri e l'aria è quella che è.)**`,
+    sets: { d_capito_tutto: true },
+    choices: [
+      { text: '🎧 Ascoltare quella voce. Quella sola, in mezzo a tutte le altre',
+        requires: { spirit: true }, once: true, next: 'd14_voce' },
+      { text: '⚔️ Rispondere di no. Con tutto quello che avete addosso', next: 'd14_boss' },
+      { text: '🧂 Rispondere di no col sale della sua stessa acqua in mano', requires: { item: 'salamoia' }, sets: { sale_pronto: true }, next: 'd14_boss' },
+      { text: '🧱 Sigillare la bocca: sapete dov\'è la sesta cisterna e avete lo stucco', requires: { item: 'stucco', flag: 'sa_sesta_cisterna' }, next: 'e_vittoria' },
+      { text: '🎵 Rispondere di sì. Aprire la bocca e cantare con loro', tag: '⚠️ Questa è una fine, e per chi vi vuole bene non ne esiste una peggiore', next: 'e_coro' },
+      { text: '⬆️ Non rispondere niente e risalire. Fino a dieci metri, e lì fermarsi', goldLoss: 2, next: 'd14_dieci' },
+    ],
+  },
+
+  /* LA SOSTA DEI DIECI METRI. Stava DENTRO d14_coro, e dentro d14_coro era un'incoerenza di
+     tempo: la scena raccontava la risalita a dieci metri e la conversazione intera, e POI
+     offriva fra le scelte «risalire fino a dieci metri e lì fermarsi». Cioè il giocatore
+     leggeva una cosa già avvenuta e poi decideva se farla, e chi rispondeva di no a quaranta
+     metri si era già letto un dialogo che nella sua partita non era mai capitato.
+     Ottocentoventinove parole in una scena sola, e in mezzo un salto di trenta metri. */
+  d14_dieci: {
+    location: 'fossa',
+    caption: 'La sosta dei dieci metri — dove c\'è aria in bocca per parlare',
+    stinger: 'apnea',
+    metri: 10,
+    text: `Risalgono alla sosta dei dieci metri, dove c'è aria in bocca per parlare. Claudia si strappa l'erogatore e la prima cosa che dice non è una domanda.
 
 > Claudia: "Non le rispondo. Non le rispondo, Gaetano, mi ha chiamata per nome e non le rispondo."
 *(e poi, se c'è stato un venerdì pomeriggio su un gommone)*
@@ -1952,7 +1993,24 @@ E qui il Coro fa la sua unica mossa elegante di tutta la notte. Tutte le voci, i
 
 Lo dice come si dice un titolo. Come chi presenta la casa.
 
-> Gaetano: *(e per la prima volta stanotte gli trema la voce, e non è paura, è rabbia)* "Dà tutto e non restituisce niente. Non è generosità, quella." *(e lo dice all'acqua, non a Claudia)* "È un **fondale di tenuta**. Ce l'hai scritto in tutti i nomi che ti hanno dato: quello che ti butti sotto, sotto rimane."
+**(🎵 Il Coro ha detto una cosa che si può CONTROLLARE, e questa è la prima volta: inferno, purgatorio, paradiso non sono metafore, sono i nomi dei tre piani. Il Quaderno lo registra.)**`,
+    gold: 1,
+    sets: { i_coro_tre_piani: true },
+    choices: [
+      { text: '📓 Segnarlo. Adesso, sulla lavagnetta subacquea, prima che il freddo se lo porti', once: true, gold: 1, next: 'd14_restate' },
+      { text: '👂 Non scrivere niente e stare a sentire dove va', next: 'd14_restate' },
+    ],
+  },
+
+  /* RESTATE. Era la coda di d14_dieci, che era la coda di d14_coro: seicentoquarantatré
+     parole a dieci metri con la sosta che scorre. Qui il Coro dice la cosa che lo definisce
+     — non vi vuole morti, vi vuole PRESENTI — e non può stare in fondo a un blocco. */
+  d14_restate: {
+    location: 'fossa',
+    caption: 'Sono i nomi che avevano',
+    stinger: 'coro',
+    metri: 10,
+    text: `> Gaetano: *(e per la prima volta stanotte gli trema la voce, e non è paura, è rabbia)* "Dà tutto e non restituisce niente. Non è generosità, quella." *(e lo dice all'acqua, non a Claudia)* "È un **fondale di tenuta**. Ce l'hai scritto in tutti i nomi che ti hanno dato: quello che ti butti sotto, sotto rimane."
 
 
 > Gaetano: "Brava. **Brava.**" *(e poi si ferma, perché ha appena finito un conto lunghissimo)* "Claudia. Giulia l'hanno **portata**. I detenuti li hanno **portati**. I bambini del quarantatré li hanno **imbarcati**. Marisa è scesa perché una voce l'ha chiamata e lei ha risposto." *(la guarda)* "Nessuno di quelli là sotto è venuto qui volendo. In duemila anni, **nessuno**."
@@ -1974,15 +2032,12 @@ Sotto di loro, tutte le voci insieme dicono la stessa cosa nello stesso momento,
 > Claudia: *(se hanno guardato la cosa in piedi sul fondo — alla sosta, dove c'è aria in bocca per parlare, e lo dice piano perché non è un rimprovero)* "Cinquantadue non esiste. Lì sotto il fondo sta a quarantasei e la cima ne conta quarantacinque."
 
 > Gaetano: "Lo so. L'ho sentito uscire e l'ho sentito giusto." *(si guarda le mani)* "È questo il pezzo che non mi aspettavo: che uscisse giusto."`,
-    sets: { d_capito_tutto: true },
+    gold: 1,
+    sets: { d14_parlato: true },
     choices: [
-      { text: '🎧 Ascoltare quella voce. Quella sola, in mezzo a tutte le altre',
-        requires: { spirit: true }, once: true, next: 'd14_voce' },
-      { text: '⚔️ Rispondere di no. Con tutto quello che avete addosso', next: 'd14_boss' },
-      { text: '🧂 Rispondere di no col sale della sua stessa acqua in mano', requires: { item: 'salamoia' }, sets: { sale_pronto: true }, next: 'd14_boss' },
-      { text: '🧱 Sigillare la bocca: sapete dov\'è la sesta cisterna e avete lo stucco', requires: { item: 'stucco', flag: 'sa_sesta_cisterna' }, next: 'e_vittoria' },
-      { text: '🎵 Rispondere di sì. Aprire la bocca e cantare con loro', tag: '⚠️ Questa è una fine, e per chi vi vuole bene non ne esiste una peggiore', next: 'e_coro' },
-      { text: '⬆️ Non rispondere niente e risalire. Fino a dieci metri, e lì fermarsi', goldLoss: 2, next: 'd14_sosta1' },
+      { text: '⏱ I sette minuti di sosta. Non si può fare altro, e sette minuti sono lunghi', next: 'd14_sosta1' },
+      { text: '⚔️ Giù di nuovo. Adesso, prima di pensarci: rispondere di no con tutto quello che avete', next: 'd14_boss' },
+      { text: '🧂 Giù col sale della sua stessa acqua in mano', requires: { item: 'salamoia' }, sets: { sale_pronto: true }, next: 'd14_boss' },
     ],
   },
 

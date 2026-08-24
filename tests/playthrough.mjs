@@ -757,11 +757,11 @@ const DEFAULT_SEQUENCES = {};
    importante. Ogni scenario ne eredita una copia e sovrascrive solo ciò che gli serve. */
 const BASE_CHOICES = {
   /* --- A: giovedì 27, l'arrivo --- */
-  a0: 'Restare sul ponte',
+  a0: 'Restare sul ponte', a0_traghetto: 'Restare sul ponte', a0_ponte: 'Restare sul ponte', a0_carcere: 'Restare sul ponte',
   a0b: 'Il traghetto attracca',
   a1: 'Su, alle Parracine',
   a2: 'Arrivare alle Parracine',
-  a3: 'Al mare, subito',
+  a3: 'Al mare, subito', a3_terrazza: 'Al mare, subito',
   a4: 'Entrare insieme',
   a5: 'Bastare così',
   a6: 'taralli',
@@ -784,7 +784,7 @@ const BASE_CHOICES = {
   b4_breccia: 'Non così. Prima attrezzarsi',
   b4_prepararsi: 'Prima Villa Giulia',
   b5: 'Villa Giulia',
-  b6: 'Cercare la pietra',
+  b6: 'Cercare la pietra', b6_quattro: 'Cercare la pietra', b6_donne: 'Cercare la pietra',
   b6_iscrizione: 'Grattare via la terra',
   b6_scavo: 'Infilarla nel filo di nylon',
   b6_collana: 'Il ninfeo',
@@ -808,9 +808,26 @@ const BASE_CHOICES = {
   b11_trenta: 'Il molo, alle nove',
   b12: 'Il molo',
   /* --- C: sabato 29, Santo Stefano --- */
-  c15: 'terrazza',
+  c15: 'terrazza', c15_notte: 'terrazza',
+  /* Le scene nate dai tagli del 24 agosto 2026 vogliono un default esplicito: senza, il
+     banco prende la prima uscita disponibile, e in due posti la prima uscita e' la piu'
+     drammatica del gioco. A d14_coro la prima disponibile portava a «rispondere di si'» —
+     cioe' quattro scenari finivano dentro il Coro senza averlo chiesto, e dicevano che il
+     finale atteso non era arrivato. Un banco che non ha un default e' un banco che tira a
+     sorte, e un test che tira a sorte non prova niente. */
+  c9_croci: 'quarantesimo',   // «Scavare» compare anche in «Non scavare»: chiave ambigua
+  c10_suonato: 'Lasciarlo andare',
+  c11_verita: 'Dirle il motivo',
+  c14_marisqueria: 'Girare la tovaglietta',
+  b7_calette: 'Insegnami',
+  b6_quattro: 'Il pannello del Parco',
+  a3_lilia: 'Chiederle dov\'è che si scende',
   /* --- D: domenica 30, il giorno che non finisce --- */
   d0: 'Giù: la moka di Ada',
+  d13_fossa: 'Fammi il briefing',
+  d14_coro: 'Non rispondere niente e risalire',
+  d14_dieci: 'I sette minuti di sosta',
+  d14_restate: 'Non scrivere niente',
   /* --- generici --- */
   d9_ko: 'Al porto',
 };
@@ -854,7 +871,7 @@ scenarios.push(scenario(
   {
     a1: 'C\'è un museo archeologico',
     a1_museo: 'Fotografare la carta delle sei cisterne',
-    a3: 'Disfare le valigie',
+    a3: 'Disfare le valigie', a3_terrazza: 'Disfare le valigie',
     a3_valigie: 'Prendere anche il resto',
     a3_valigie2: 'Prendere anche le fedi',
     b1: 'Guardare la stanza',
@@ -863,7 +880,7 @@ scenarios.push(scenario(
     b3: 'Rifarlo. Registrando',
     b3_prova: 'Fuori. Al sole',
     b4: 'Cercare un punto debole',
-    b6: 'Cercare la pietra con l\'iscrizione',
+    b6: 'Cercare la pietra con l\'iscrizione', b6_quattro: 'Cercare la pietra con l\'iscrizione', b6_donne: 'Cercare la pietra con l\'iscrizione',
     b6_iscrizione: 'Grattare via la terra',
     b10: 'Dirglielo',
     b11: 'Svegliarla e dirglielo',
@@ -944,8 +961,8 @@ scenarios.push(scenario(
   { d2_paese: 'Rispondere. Mettere la faccia sotto',
     d5_ada: 'Alla cisterna dei Detenuti',
     d1_colazione_bis: 'Alla cisterna dei Detenuti',
-    d13_fossa: 'Scendere col bombolino riparato',
-    d14_coro: 'Rispondere di sì' },
+    d13_fossa: 'Fammi il briefing', d13_briefing: 'Scendere col bombolino riparato',
+    d14_coro: 'Rispondere di sì', d14_dieci: 'Rispondere di sì', d14_restate: 'Rispondere di sì' },
   {
     verify: (r, expect) => {
       expect(/^e_coro/.test(r.log.ending || ''), `finale atteso e_coro*, trovato ${r.log.ending}`);
@@ -977,7 +994,7 @@ scenarios.push(scenario(
        immersioni. Senza questi passaggi le ricette non sono nemmeno possibili. */
     a1: 'Prima una tappa: il negozio',
     a1_negozio: 'Chiedere anche una tanica e del sale grosso',
-    a3: 'Disfare le valigie',
+    a3: 'Disfare le valigie', a3_terrazza: 'Disfare le valigie',
     a3_valigie: 'Prendere anche il resto',
     a3_valigie2: 'Prendere anche le fedi',
     a6: 'taralli',
@@ -987,7 +1004,7 @@ scenarios.push(scenario(
     b4: 'Cercare un punto debole',
     b4_breccia: 'Non così. Prima attrezzarsi',
     b4_prepararsi: 'Prima Villa Giulia',
-    b6: 'Cercare la pietra con l\'iscrizione',
+    b6: 'Cercare la pietra con l\'iscrizione', b6_quattro: 'Cercare la pietra con l\'iscrizione', b6_donne: 'Cercare la pietra con l\'iscrizione',
     b6_iscrizione: 'Grattare via la terra',
     b6_scavo: 'Il ninfeo',
     b6_ninfeo: 'In paese. Si mangia',
@@ -1016,7 +1033,9 @@ scenarios.push(scenario(
   ['gaetano', 'claudia'],
   {},
   {
-    forceLossAt: 'c9_cimitero',
+    forceLossAt: 'c9_scavo',
+    /* il combattimento e' passato a c9_scavo quando il cimitero e' stato spezzato in due:
+       forzare la sconfitta dove non c'e' piu' uno scontro non forza niente. */
     craft: 'tutto',
     verify: (r, expect) => {
       expect(r.log.ending, 'la partita non è arrivata a un finale dopo la sconfitta totale');
@@ -1130,7 +1149,7 @@ scenarios.push(scenario(
     b2_misura_ok: 'stiamo zitti e ascoltiamo',
     b3: 'Rifarlo. Registrando',
     b3_prova: 'Fuori. Al sole',
-    b6: 'Cercare la pietra con l\'iscrizione',
+    b6: 'Cercare la pietra con l\'iscrizione', b6_quattro: 'Cercare la pietra con l\'iscrizione', b6_donne: 'Cercare la pietra con l\'iscrizione',
     b6_iscrizione: 'Grattare via la terra',
     b6_scavo: 'Infilarla nel filo di nylon',
     // mistero 3 — la bambina che canta
@@ -1142,14 +1161,14 @@ scenarios.push(scenario(
     b8_apnea_ok: 'Ancora una',
     b8_seconda: 'Su. E domani',
     // mistero 2 — la cella 47: tutti e quattro gli indizi, in ordine
-    c3: 'la 47 sta al secondo ordine',   // il testo della scelta e cambiato col PVRGATORIO
+    c3: 'la 47 sta al secondo ordine', c3_purgatorio: 'la 47 sta al secondo ordine',   // il testo della scelta e cambiato col PVRGATORIO
     c5_cella: 'Gaetano conta un campione',
     c5_graffito: 'L\'archivio: se qualcuno ha contato',
     c5_graffito_ko: 'L\'archivio, e mai più questa stanza',
     c7_archivio: 'le carte del \'43',
     c7_lista: 'Fuori, al sole, con Ciro',
     c8_ciro: 'Il cimitero: se non è scinnuto',
-    c9_cimitero: 'nastro',
+    c9_croci: 'quarantesimo',   // scavare: e' da la' che viene l'osso, quarto indizio della 47
     // l'indovinello della signora dei fagiolini, nella Ventotene vuota
     d11_vuoto: 'Al tavolino in fondo alla piazza',
     d11_signora_ok: 'Ringraziarla',
@@ -1158,7 +1177,7 @@ scenarios.push(scenario(
     d8_giulia: 'Dirle dov\'è la sesta cisterna',
     d12_bambina: 'Chiamarla per nome',
     // mistero 3 — il cavallino nella stiva a quarantacinque metri
-    d13_fossa: 'Scendere col bombolino riparato',
+    d13_fossa: 'Fammi il briefing', d13_briefing: 'Scendere col bombolino riparato',
     d13_stiva: 'Cinque secondi in più',
   },
   {
@@ -1185,7 +1204,7 @@ scenarios.push(scenario(
 scenarios.push(scenario(
   'la cappella al centro: quale porta ha fatto clac (minigioco della memoria)',
   ['gaetano', 'claudia'],
-  { c3: 'Scendere nella cappella' },
+  { c3: 'Scendere nella cappella', c3_purgatorio: 'Scendere nella cappella' },
   { seed: 606003 },
 ));
 /* ---- LILIA e il filo del nome dell'isola: il ritrovarsi alle Parracine, l'archivio
@@ -1195,11 +1214,11 @@ scenarios.push(scenario(
   'Lilia: il ritrovarsi, le calette e la foto di quattro anni fa',
   ['gaetano', 'claudia'],
   {
-    a3: 'Sulla scaletta del giardino sale qualcuno',
-    a3_lilia: 'Chiederle di vedere le sue foto',
+    a3: 'Sulla scaletta del giardino sale qualcuno', a3_terrazza: 'Sulla scaletta del giardino sale qualcuno',
+    a3_lilia: 'Chiederle di vedere le sue foto', a3_lilia_calette: 'Chiederle di vedere le sue foto',
     a4: 'Con le pinne, fino allo scoglio della nave',
     b7: 'Lilia aveva detto le calette',
-    b7_calette: 'Prima chiederle di quella cartella',
+    b7_calette: 'Prima chiederle di quella cartella', b7_lezione: 'Prima chiederle di quella cartella',
     b7_archivio: 'Prima scrivere sul Quaderno',
   },
   {
@@ -1258,10 +1277,10 @@ scenarios.push(scenario(
 scenarios.push(scenario(
   'Preso dal Coro (la prova fallita, e la voce che sa i numeri)',
   ['gaetano', 'claudia'],
-  { d13_fossa: 'Scendere col bombolino riparato',
+  { d13_fossa: 'Fammi il briefing', d13_briefing: 'Scendere col bombolino riparato',
     d13_stiva: 'Cinque secondi in più',
     d13_cinque_secondi: 'Risalire',
-    d14_coro: 'Ascoltare quella voce',
+    d14_coro: 'Ascoltare quella voce', d14_dieci: 'Ascoltare quella voce', d14_restate: 'Ascoltare quella voce',
     d14_voce: 'Non scendere' },
   {
     checkOutcomes: { d13_stiva: 'fail' },
@@ -1294,7 +1313,7 @@ scenarios.push(scenario(
 scenarios.push(scenario(
   'Finale: la muta e le tre copie (e_muta_foto)',
   ['gaetano', 'claudia'],
-  { d14_coro: 'Non rispondere',
+  { d14_coro: 'Non rispondere', d14_dieci: 'Non rispondere', d14_restate: 'Non rispondere',
     d15_uscite: 'Salire e basta. Vivi, insieme',
     e_vittoria_muta: 'Salvare tutto. Tre copie' },
   { verify: (r, expect) => expect(/^e_muta_foto/.test(r.log.ending || ''),
@@ -1356,8 +1375,15 @@ scenarios.push(scenario(
 scenarios.push(scenario(
   'La sconfitta in fondo (d9_ko, e la risalita dopo)',
   ['gaetano', 'claudia'],
-  { d13_fossa: 'Scendere col bombolino riparato' },
+  { d13_fossa: 'Fammi il briefing' },
   {
+    /* La discesa vuole il bombolino riparato E dieci di fiato: il fiato parte da sei, e
+       i venti minuti fermi al sole in barca ne danno quattro. Quindi prima si risale, poi
+       si scende — in questo ordine, che e' esattamente quello che farebbe un giocatore che
+       legge il tag. Senza l'ordine il banco trovava la discesa non disponibile e pigliava
+       l'ultima uscita, «non oggi», che porta a un altro finale. */
+    items: ['bombola_riparata'],
+    sequences: { d13_briefing: ['Risalire in barca', 'Scendere col bombolino riparato'] },
     minigames: { d13_apnea: 'fail' },
     verify: (r, expect) => {
       expect(r.log.scenes.includes('d9_ko'),
@@ -1381,8 +1407,8 @@ scenarios.push(scenario(
   {
     c10_nastro: 'Togliere il pollice',
     c10_pulito: 'Mettere comunque la cassetta',
-    c15: 'Il Geloso è nello zaino',
-    c15_nastro: 'La cucina di Ada',
+    c15: 'Il Geloso è nello zaino', c15_notte: 'Il Geloso è nello zaino',
+    c15_nastro: 'La cucina di Ada', c15_dopo: 'La cucina di Ada',
   },
   {
     verify: (r, expect) => {
@@ -1403,8 +1429,8 @@ scenarios.push(scenario(
   {
     c10_nastro: 'Togliere il pollice',
     c10_pulito: 'Mettere comunque la cassetta',
-    c15: 'Il Geloso è nello zaino',
-    c15_nastro: 'Le cuffie',
+    c15: 'Il Geloso è nello zaino', c15_notte: 'Il Geloso è nello zaino',
+    c15_nastro: 'Le cuffie', c15_dopo: 'Le cuffie',
     c15_tempi: 'Adesso bruciarlo',
   },
   {

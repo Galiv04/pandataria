@@ -51,7 +51,28 @@ E poi c'è la ragione per cui la macchina è aperta alle sette meno cinque di un
 
 > Claudia: "Perché tu dici sempre 'ce l'hanno' e poi non ce l'hanno mai."
 
-Ventidue chilometri di Domiziana fino a **Formia**, che a quest'ora vuol dire venti minuti: la strada di agosto alle sette è una strada di novembre, con i furgoni della frutta e nessun altro.
+> Claudia: *(chiudendo il portellone con l'anca)* "Andiamo, che quello alle otto e mezza non aspetta."
+
+**(🫁 Fiato 6 su 20: è l'aria che avete adesso, e sotto conta solo quella. Si guadagna con le cose umane — mangiare vero, dormire, il caffè, ridere, stare fermi un momento in due — e si spende scendendo.)**`,
+    gold: 0,
+    choices: [
+      { text: '🧳 Caricare il borsone. Per primo, senza dire niente, e metterci le pinne sopra', once: true, gold: 1, sets: { borsone_caricato: true }, next: 'a0_traghetto' },
+      { text: '☕ Due caffè al bar del lungomare, in piedi, prima di partire', once: true, heal: 2, gold: 2, next: 'a0_traghetto' },
+      { text: '🚗 Ventidue chilometri di Domiziana. Adesso', next: 'a0_traghetto' },
+    ],
+  },
+
+  /* IL TRAGHETTO. Era la seconda metà di a0, ed era un difetto doppio: ottocentonovantasette
+     parole prima della prima decisione del gioco — cioe' la prima cosa che il giocatore
+     legge e' un capitolo, non una partita — e mezza scena che parla di Formia, del molo
+     Azzurra e di due ore di mare aperto mentre sullo schermo c'e' il fondale di SCAURI, che
+     e' il lungomare di casa. Un fondale per luogo, e un luogo per scena. */
+  a0_traghetto: {
+    location: 'traghetto',
+    caption: 'Il traghetto per Ventotene — giovedì 27 agosto, dalle 08:30',
+    stinger: 'gold',
+    metri: 0,
+    text: `Ventidue chilometri di Domiziana fino a **Formia**, che a quest'ora vuol dire venti minuti: la strada di agosto alle sette è una strada di novembre, con i furgoni della frutta e nessun altro.
 
 Il molo Azzurra alle otto è già una battaglia, ma una battaglia sveglia: valigie, gente che urla il numero del biglietto, un tizio che vende ghiaccio da un carrellino, e il traghetto per Ponza e Ventotene attaccato alla banchina che sembra troppo piccolo per tutta quella coda. **Partenza alle otto e mezza.**
 
@@ -63,7 +84,26 @@ Il molo Azzurra alle otto è già una battaglia, ma una battaglia sveglia: valig
 
 > Gaetano: "Ho promesso."
 
----
+Il molo si stacca. Non è il traghetto che parte: è la banchina che va indietro, e quel secondo in cui il cervello si sbaglia è il secondo in cui una vacanza comincia per davvero.
+
+**(🫁 Fiato +1: siete partiti, e partire da soli in due vale aria.)**`,
+    gold: 1,
+    choices: [
+      { text: '☕ Il bar di bordo: due caffè e un cornetto industriale, in piedi, col bicchiere di plastica', once: true, heal: 3, gold: 1, next: 'a0_ponte' },
+      { text: '🌊 Il ponte di poppa, subito. Il vento e la scia', next: 'a0_ponte' },
+    ],
+  },
+
+  /* IL PONTE DI POPPA. Era la seconda metà di a0_traghetto, e prima ancora la terza parte
+     della scena iniziale da ottocentonovantasette parole. Qui dentro sta il nome del gioco
+     — Pandataria, dispensatrice di ogni bene — e sta il carcere che entra
+     nell'inquadratura: due cose che meritano una scena loro e non la coda di un'altra. */
+  a0_ponte: {
+    location: 'traghetto',
+    caption: 'Il ponte di poppa — due ore e un quarto di mare aperto',
+    stinger: 'gold',
+    metri: 0,
+    text: `---
 
 **Due ore e un quarto di mare aperto. Il ponte di poppa, il sole ancora basso, e quel vento che ti asciuga il sudore prima che ti arrivi in fondo alla schiena.**
 
@@ -95,7 +135,24 @@ Claudia guarda l'isola bassa che cresce, e poi quella tozza col ferro di cavallo
 
 > Gaetano: "Quella che dà tutto."
 
-> Claudia: *(e non lo dice per fare la spiritosa, lo dice perché lo pensa)* "E poi ci hanno messo un carcere."
+**(🫁 Fiato +1: due ore e un quarto di mare aperto, con un caffè del bar di bordo e nessuno che vi chiede niente. Il Quaderno registra il nome vero dell'isola.)**`,
+    gold: 1,
+    sets: { sa_pandataria: true },
+    choices: [
+      { text: '🪨 Guardare quella tozza, quella col ferro di cavallo sopra, e chiedere cos\'è', next: 'a0_carcere' },
+      { text: '☀️ Non chiedere niente. Restare due minuti a guardare l\'isola bassa che cresce', once: true, heal: 3, gold: 1, next: 'a0_carcere' },
+    ],
+  },
+
+  /* IL CARCERE CHE ENTRA NELL'INQUADRATURA. Merita di essere una scena: è la prima volta
+     che il giocatore vede Santo Stefano, ed è l'immagine su cui gira tutto il resto. Prima
+     stava in fondo a un blocco di cinquecento parole, dopo due minuti di etimologia. */
+  a0_carcere: {
+    location: 'traghetto',
+    caption: 'E poi ci hanno messo un carcere',
+    stinger: 'campana',
+    metri: 0,
+    text: `> Claudia: *(e non lo dice per fare la spiritosa, lo dice perché lo pensa)* "E poi ci hanno messo un carcere."
 
 > Gaetano: "E poi ci hanno messo un carcere.
 
@@ -270,6 +327,7 @@ Fuori, in mezzo al sole delle sei di sera, la frase resta lì tra loro due per u
     choices: [
       { text: '🪜 Su, alle Parracine', next: 'a2' },
       { text: '🧂 Chiedere anche una tanica e del sale grosso "per il pesce"', once: true, item: 'sale_grosso', next: 'a2' },
+      { text: '⛱ E l\'ombrellone grande, quello a spicchi bianchi e blu. "Ci vuole"', once: true, item: 'ombrellone_gaeta', goldLoss: 2, tag: '(pesa: −2 di 🫁 fiato per portarlo su per i muretti a secco — ma nei primi due round di ogni scontro i nemici hanno −1 ai colpi)', next: 'a2' },
     ],
   },
 
@@ -408,7 +466,23 @@ Poi si gira a destra, verso est, e a tre chilometri c'è il ferro di cavallo di 
 
 > Ada: *(dalla porta, e lo dice senza pensarci, come si dice il tempo che fa)* "Eh. Comincia uno e poi rispondono tutti. Come al coro." *(esce)* "A dopo!"
 
-Restano soli, sulla terrazza, con i borsoni in mezzo alla stanza e quattro giorni davanti.
+**(🫁 Fiato +2: Le Parracine è un RIFUGIO, e si sente appena si posano i borsoni.)**`,
+    gold: 2,
+    sets: { arrivati_parracine: true },
+    choices: [
+      { text: '🧳 Posare i borsoni e uscire subito sulla terrazza. I vestiti dopo', next: 'a3_terrazza' },
+      { text: '🚿 Prima la doccia e i capelli bagnati, che dopo il traghetto ci vuole', once: true, heal: 4, gold: 1, next: 'a3_terrazza' },
+    ],
+  },
+
+  /* LA TERRAZZA. La stanza e la terrazza erano cinquecentotrentuno parole insieme, e la
+     terrazza è il posto che questo gioco usa come casa: ci si torna sei volte e una di
+     quelle sei è il 30 agosto che si ripete. Casa merita una porta. */
+  a3_terrazza: {
+    location: 'terrazza',
+    caption: 'La terrazza, soli, quattro giorni davanti',
+    stinger: 'heal',
+    text: `Restano soli, sulla terrazza, con i borsoni in mezzo alla stanza e quattro giorni davanti.
 
 > Gaetano: "Come al coro."
 
@@ -441,7 +515,7 @@ Il sole scende. Il muretto a secco, sotto i piedi di Claudia, tiene su la terra 
     npc: ['lilia'],
     caption: 'Il giardino delle Parracine — ore 12:20',
     stinger: 'voce_amata',
-    gold: 2, heal: 2,
+    gold: 3, heal: 2,
     sets: { conosciuta_lilia: true },
     text: `Dalla scaletta che scende in spiaggia sale una ragazza a piedi nudi, con un paio di pinne in una mano, la maschera sulla fronte e i capelli — castano dorato, di quel biondo che fa il sole e non il parrucchiere — legati in un nodo che si sta già disfacendo. Ha ancora il sale addosso, e non le pesa: cammina sul tufo caldo come se avesse la pianta dei piedi di cuoio.
 
@@ -472,6 +546,22 @@ Claudia le stringe la mano e vede due cose nello stesso momento: gli occhi, che 
 > Lilia: "Perché ti costringe ad avvicinarti."
 
 E in tre battute si sono riconosciute: due persone che di mestiere decidono come si guardano le cose.
+
+**(🫁 Fiato +1.)**`,
+    choices: [
+      { text: '📷 Chiederle di vedere gli ultimi scatti sul display, adesso, in piedi sul gradino', once: true, heal: 2, gold: 1, next: 'a3_lilia_calette' },
+      { text: '🤿 Chiederle dov\'è che si scende, su quest\'isola', next: 'a3_lilia_calette' },
+    ],
+  },
+
+  /* LE CALETTE. Era la seconda metà di a3_lilia. La prima metà è l'incontro — due che si
+     riconoscono in tre battute — e la seconda è l'invito e la frase che tiene su mezzo
+     gioco: «fondali di TENUTA». Cinquecentonovanta parole di fila su un gradino. */
+  a3_lilia_calette: {
+    location: 'bnb',
+    caption: 'Sul gradino, con le pinne sul muretto',
+    stinger: 'heal',
+    text: `E in tre battute si sono riconosciute: due persone che di mestiere decidono come si guardano le cose.
 
 Lilia posa le pinne sul muretto, si siede sul gradino e fa la domanda che fanno tutti quelli che vivono qui.
 

@@ -61,6 +61,21 @@ const ITEMS = {
      di essere un muro e diventa un numero. */
   pinne: { name: 'Due paia di pinne', desc: 'Comprate a marzo in saldo, taglia sua e taglia tua. Non servono ad andare veloce: servono a poter tornare, e questo cambia tutto quello che sei disposto a raggiungere.', usable: false,
     lore: `Pinne da snorkeling, gomma nera, il tallone aperto col cinturino. Sulla suola c'è ancora l'adesivo del prezzo, e sotto il prezzo un altro prezzo, più basso.\n\nGaetano le ha comprate a marzo, con i boccagli, cinque mesi prima di dire a Claudia dove andavano. Le ha tenute in garage in una busta, e ogni tanto la busta la spostava per fare spazio a qualcos'altro e ci pensava.\n\nNon servono ad andare veloce. Servono a poter tornare: con le pinne ottanta metri sono venti secondi, e venti secondi sono una cosa che si può decidere. È la differenza fra una distanza e un muro, ed è tutta lì.` },
+  /* L'OMBRELLONE. js/combat.js toglieva un punto ai colpi dei nemici a chi aveva
+     `ombrellone_gaeta` in tasca — effetto scritto, collaudato, e con l'oggetto che NON
+     ESISTEVA in ITEMS: nessuno l'ha mai avuto. E' lo stesso difetto del nastro bruciato,
+     dall'altro verso: il motore prometteva, la storia non concedeva. Adesso si compra al
+     negozio del molo, costa due di fiato perche' pesa e la salita alle Parracine e'
+     duecento metri di muretti a secco, e l'effetto e' onesto: vale i primi DUE round. Poi
+     la cosa gira intorno, che e' quello che fanno tutte le cose quando trovano un muro. */
+  ombrellone_gaeta: { name: 'Ombrellone di Gaeta', desc: 'Due metri e dieci di palo d\'alluminio e una cupola a spicchi bianchi e blu. Chiuso è un\'asta, aperto è un muro: nei primi DUE round di ogni scontro i nemici hanno −1 ai colpi, perché una cosa che non ha mai visto un ombrellone si ferma a guardarlo.', usable: false, icon: '⛱',
+    lore: `Lo vendono in tutti i negozi da Gaeta a Sperlonga e sono tutti lo stesso ombrellone: spicchi bianchi e blu, il palo in due pezzi che si avvita, e la punta che dopo due estati non entra più nella sabbia senza il martelletto.
+
+Gaetano l'ha comprato senza discutere il prezzo, che non gli somiglia. Sul molo, mentre lo portava sotto il braccio come si porta una lancia, Claudia gli ha chiesto perché e lui ha risposto «ci vuole», che è la risposta che dà quando la ragione è vera e non la sa dire.
+
+La ragione è questa, ed è vecchia di dieci anni: la prima volta che sono andati al mare insieme, a Sperlonga, ha piantato l'ombrellone fra lei e la gente. Non fra lei e il sole — fra lei e la gente. Lo ha fatto senza pensarci e non se ne ricorda.
+
+Le cose che vengono su da sotto non sanno che cos'è. Non è benedetto, non è antico, non è niente: è un oggetto di plastica e alluminio comprato a ventidue euro da un ragazzo di vent'anni, ed è la cosa più viva che ci sia in tutta l'isola. Per due secondi si fermano a guardarlo. Due secondi bastano.` },
   boccaglio: { name: 'Due boccagli', desc: 'Ancora nella busta del negozio, con lo scontrino dentro. Col boccaglio non devi alzare la testa per respirare: puoi tenere la faccia dentro e continuare a guardare.', usable: false,
     lore: `Due boccagli di plastica trasparente col boccheruolo di silicone, ancora attaccati al cartoncino, e nella busta lo scontrino: marzo.\n\nIl boccaglio è il pezzo che nessuno pensa sia importante e che invece decide tutto. Senza, per respirare devi alzare la testa: e alzare la testa vuol dire perdere di vista il fondo per un secondo, e in quel secondo la testa ricomincia da zero a immaginare. È il gesto della paura travestito da gesto tecnico.\n\nCol boccaglio la faccia resta dentro e il respiro va avanti da solo, come a letto. Puoi guardare una cosa finché non hai finito di guardarla — e una cosa guardata per intero, come dice Claudia di mestiere, perde il diritto di cambiare forma.` },
   /* La maschera trovata nella cisterna murata NON è «la maschera buona» di Gaetano:

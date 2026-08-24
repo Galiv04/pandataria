@@ -956,7 +956,24 @@ Qui, nel **2 avanti Cristo**, Augusto ha relegato **sua figlia**. Giulia maggior
 
 Claudia non dice niente per un po'. Poi si sposta di due metri e fa la prima foto della giornata: non le rovine, non il panorama. La terra.
 
-Della villa restano: una piattaforma di opus reticolatum sul precipizio, i resti di un ninfeo, il taglio delle vasche nella roccia, e un panorama che ti spacca in due. Trecento metri per cento, tutta girata a est — perché il sole di qui, quello che conta, è quello del mattino.
+Sono le dodici e mezza, su una punta bianca senza un metro d'ombra, e il pannello del Parco — quello che nessuno legge fino in fondo — sta a dieci passi, al sole pieno.
+
+**(🫁 Fiato −1: duecento metri di sentiero bianco a mezzogiorno si pagano.)**`,
+    goldLoss: 1,
+    sets: { visto_villa_giulia: true },
+    choices: [
+      { text: '☀️ Restare qui e leggere il pannello fino in fondo. Tutto, comprese le note in corpo otto', once: true, goldLoss: 1, damage: 2, next: 'b6_quattro' },
+      { text: '🌡 Prima l\'ombra sotto la piattaforma, cinque minuti e l\'acqua della borraccia', heal: 4, gold: 1, next: 'b6_quattro' },
+    ],
+  },
+
+  /* LE QUATTRO DONNE. Era la seconda metà di b6 — settecentocinquanta parole di fila a
+     mezzogiorno su una punta senza ombra — e la seconda metà e' quella che conta: quattro
+     donne della stessa famiglia sullo stesso scoglio, e in mezzo duemila anni. */
+  b6_quattro: {
+    location: 'rovine',
+    caption: 'Punta Eolo — il pannello del Parco, ore 12:45',
+    text: `Della villa restano: una piattaforma di opus reticolatum sul precipizio, i resti di un ninfeo, il taglio delle vasche nella roccia, e un panorama che ti spacca in due. Trecento metri per cento, tutta girata a est — perché il sole di qui, quello che conta, è quello del mattino.
 
 E poi c'è la peschiera, che è la cosa che Gaetano ha letto tre volte prima di crederci. Non una vasca: un impianto. Scavata nella roccia, collegata al mare da canali, con un bacino grande diviso in due da un muretto che una volta aveva le **paratoie** — si apriva e si chiudeva — e dentro gli scomparti per tenere i pesci divisi per taglia. E ai lati due vasche **coperte**, dentro due stanze a volta, che guardano il bacino grande da dietro.
 
@@ -974,7 +991,23 @@ Claudia si guarda intorno: la piattaforma, le vasche tagliate nel tufo, la pesch
 
 > Gaetano: "Adesso è tutta ferma. Da qui si vede Santo Stefano intero, con il carcere in cima come un anello di pietra.
 
-È rimasta su questo scoglio **cinque anni**, con la madre che l'aveva seguita per non lasciarla sola, senza vino, senza visite e senza uno specchio, sorvegliata da uomini che suo padre pagava. Poi l'hanno spostata in Calabria, dove è morta di fame in una stanza, e Augusto ha messo per iscritto una cosa sola: che le sue ossa **non entrassero nel Mausoleo di famiglia**.
+**(🫁 Fiato −1: mezzogiorno su una punta bianca, e le vasche tagliate nel tufo sono ferme da duemila anni.)**`,
+    goldLoss: 1,
+    sets: { vista_peschiera: true },
+    choices: [
+      { text: '📄 Il pannello del Parco. Fino in fondo, che nessuno lo fa mai', next: 'b6_donne' },
+      { text: '🐟 Restare due minuti sopra la peschiera, a guardare l\'acqua ferma', once: true, heal: 2, gold: 1, next: 'b6_donne' },
+    ],
+  },
+
+  /* LE QUATTRO DONNE. Giulia, Scribonia che l'ha seguita per scelta, Agrippina maggiore,
+     Ottavia. Duecento metri di costa e duemila anni. La pietà si guarda da sola, non in
+     coda a una spiegazione su come si ossigenava una peschiera romana. */
+  b6_donne: {
+    location: 'rovine',
+    caption: 'Quattro donne, lo stesso scoglio',
+    stinger: 'campana',
+    text: `È rimasta su questo scoglio **cinque anni**, con la madre che l'aveva seguita per non lasciarla sola, senza vino, senza visite e senza uno specchio, sorvegliata da uomini che suo padre pagava. Poi l'hanno spostata in Calabria, dove è morta di fame in una stanza, e Augusto ha messo per iscritto una cosa sola: che le sue ossa **non entrassero nel Mausoleo di famiglia**.
 
 E trent'anni dopo, su questo stesso scoglio, hanno portato **Agrippina maggiore**, che era sua figlia. E Agrippina qui è morta di fame per davvero, nel trentatré, dopo che le avevano rotto un occhio a bastonate. E dopo di lei Ottavia, la moglie di Nerone, ventidue anni, uccisa in una stanza calda.
 
@@ -1247,8 +1280,8 @@ Poi il conto: sessantadue euro. Gaetano lascia settanta. Il cameriere dice "graz
     npc: ['lilia'],
     caption: 'Le calette con Lilia — ore 14:50',
     stinger: 'apnea',
-    gold: 3, heal: 4,
-    sets: { lezione_lilia: true },
+    gold: 4, heal: 4,
+    sets: { lezione_lilia: true, lilia_ha_chiesto: true },
     text: `Lilia arriva con un gommone di quattro metri che è più vecchio di lei, un motore che parte al secondo strappo e zero borse: ha un telo, una bottiglia d'acqua e la reflex in un sacco stagno.
 
 Le calette sotto Punta Eolo non hanno un nome sulle mappe e ne hanno tre in paese. Ci si arriva in dieci minuti stando larghi dagli scogli, e quando spegne il motore l'acqua sotto il gommone è così ferma che si vedono le ancore di sabbia disegnate sul fondo a sette metri.
@@ -1269,7 +1302,21 @@ Claudia la guarda.
 
 > Lilia: "La paura è una cosa che tiene la testa occupata. Se stai sotto trenta secondi, la paura vince, perché in trenta secondi la testa ha il tempo di raccontarti tutto. Se stai sotto **cinque minuti**, a un certo punto la testa si stanca di raccontare, e comincia a **guardare**." *(si mette la maschera sulla fronte)* "L'unica cosa che devi fare è restare abbastanza per annoiarti. Il resto viene da solo."
 
-Poi le insegna le tre cose che nessuno le ha mai spiegate perché tutti danno per scontato che si sappiano:
+**(🫁 Fiato +1: qualcuno le ha fatto la domanda giusta senza pietà, e non è poco.)**`,
+    choices: [
+      { text: '🤿 "Insegnami." Detto da Claudia, in faccia, senza fare la spiritosa', next: 'b7_lezione' },
+      { text: '🕶 Restare un momento a guardare i sette metri prima di mettersi la maschera', once: true, heal: 3, gold: 1, next: 'b7_lezione' },
+    ],
+  },
+
+  /* LA LEZIONE DI LILIA. Le tre cose — butta fuori piano, non guardare giù ma avanti, col
+     boccaglio non alzare mai la testa — sono il pezzo di gioco che il giocatore userà per
+     tutte le immersioni. Stavano in mezzo a cinquecentocinquanta parole. */
+  b7_lezione: {
+    location: 'mare',
+    caption: 'Le tre cose che nessuno le ha mai spiegate',
+    stinger: 'apnea',
+    text: `Poi le insegna le tre cose che nessuno le ha mai spiegate perché tutti danno per scontato che si sappiano:
 
 **Uno.** Butta fuori l'aria piano, non tutta insieme: se svuoti i polmoni di colpo il corpo si spaventa da solo e ti fa risalire lui, senza chiedertelo.
 

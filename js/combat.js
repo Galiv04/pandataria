@@ -234,6 +234,9 @@ const Combat = (() => {
     if (G.flags.acqua_raccolta && G.inventory.includes('salamoia')) {
       log(`🫙 La salamoia e' fatta con l'acqua di quella cisterna, raccolta col barattolo prima di uscire: e' la loro stessa acqua, concentrata. <b>+1d8</b> ogni volta che la usate.`, 'log-heal');
     }
+    if (G.inventory.includes('ombrellone_gaeta')) {
+      log(`⛱ Gaetano apre l'ombrellone di Gaeta e lo mette in mezzo. Spicchi bianchi e blu, ventidue euro, comprato stamattina: una cosa che queste non hanno mai visto. <b>−1 ai loro colpi per due round</b>, e poi girano intorno.`, 'log-heal');
+    }
     // CIRO IN SQUADRA
     if (G.flags.ciro_in_squadra && !G.party.some(h => h.id === 'ciro' && !h.morto)) {
       log(`🛥 Da sopra, il motore della barca di Ciro gira al minimo. Non è qui, ma non se ne va: <b>+1 ai vostri tiri</b>, perché sapete che qualcuno vi aspetta.`, 'log-heal');
@@ -811,7 +814,7 @@ const Combat = (() => {
     const h = G.party[tIdx];
 
     let atkBonus = e.attack.bonus;
-    if (G.inventory.includes('ombrellone_gaeta')) atkBonus -= 1;
+    if (G.inventory.includes('ombrellone_gaeta') && battle.round <= 2) atkBonus -= 1;
     if (G.difficulty !== 'facile' && e.special === 'mirror') atkBonus = Math.max(atkBonus, (h.attack.bonus || 0) + 2);
     const desperate = G.difficulty === 'incubo' && e.hp <= Math.floor(e.maxHp * 0.25);
     if (desperate) atkBonus += 3;

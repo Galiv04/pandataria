@@ -215,9 +215,24 @@ Claudia si gira verso la cappella tonda in mezzo al pozzo. Poi verso le celle. P
 
 > Gaetano: "Uno."
 
-> Claudia: *(e lo dice con la calma di una che di mestiere decide come si guardano le cose)* "E lo spettacolo chi lo faceva, Gaetà?" 
+> Claudia: *(e lo dice con la calma di una che di mestiere decide come si guardano le cose)* "E lo spettacolo chi lo faceva, Gaetà?"
 
-Gaetano non risponde. Perché sopra la scala che sale al secondo ordine c'è una parola, dipinta a stampino, nera, alta una spanna, mangiata dal salino per un terzo.
+**(🫁 Fiato −1: qui l'aria è ferma e si respira a metà.)**`,
+    goldLoss: 1,
+    choices: [
+      { text: '🔎 Contare le celle. Tre file, e Gaetano vuole tre conti indipendenti', once: true, gold: 1, next: 'c3_purgatorio' },
+      { text: '🚪 Salire verso il secondo ordine, dove la scala fa la curva', next: 'c3_purgatorio' },
+    ],
+  },
+
+  /* PVRGATORIO. La scritta a stampino sopra la scala del secondo ordine è la cosa più
+     spaventosa dell'atto e stava a metà di cinquecentosettanta parole, subito dopo una
+     spiegazione di architettura teatrale. Merita di essere il primo pixel di una scena. */
+  c3_purgatorio: {
+    location: 'santo_stefano',
+    caption: 'PVRGATORIO — la scritta sopra la scala',
+    stinger: 'sigillo',
+    text: `Gaetano non risponde. Perché sopra la scala che sale al secondo ordine c'è una parola, dipinta a stampino, nera, alta una spanna, mangiata dal salino per un terzo.
 
 **PVRGATORIO**
 
@@ -478,9 +493,7 @@ Claudia si ferma davanti alla **44** e mette una mano indietro, sul petto di Gae
 
 > Gaetano: *(e parte, in buona fede, con la voce gentile di uno che vuole toglierle un peso)* "Amore, no. È il posto. Questa curva è una galleria a sussurro: il suono rimbalza sulla parete concava e ti torna dall'altro lato con un ritardo di — aspetta." *(guarda il cronometro del telefono, batte due volte le mani, conta)* "Zero virgola quarantasei. Ottantacinque metri di percorso, la velocità del suono è trecentoquaranta metri al secondo, torna. Si chiama eco a flutter e ti fa sentire i tuoi passi come se fossero i passi di un altro." *(e poi dice la cosa peggiore che potesse dire, e la dice perché è vera)* "E non l'ho scoperto io, Claudia. **Sta nel progetto.** Una guardia sola, in mezzo, doveva sentire novantanove celle: l'hanno costruito così, e c'è scritto sul pannello all'ingresso. Io ho solo verificato che funziona ancora."
 
-E funziona ancora. Ha ragione su tutto, ha fatto il conto in nove secondi, la sua voce è dolce — e ha appena spiegato a sua moglie, coi decimali, il motivo per cui questo posto è stato tirato su. Per rassicurarla."
-
-E lo ha appena misurato. Ha ragione su tutto, ha fatto il conto in nove secondi, e la sua voce è dolce.
+E funziona ancora. Ha ragione su tutto, ha fatto il conto in nove secondi, la sua voce è dolce — e ha appena spiegato a sua moglie, coi decimali, il motivo per cui questo posto è stato tirato su. Per rassicurarla.
 
 > Claudia: *(senza toglierle la mano dal petto, e senza alzare la voce di un decibel)* "Io non ti ho parlato del suono."
 
@@ -488,7 +501,22 @@ E lo ha appena misurato. Ha ragione su tutto, ha fatto il conto in nove secondi,
 
 > Claudia: *(indica il pavimento davanti alla 44)* "Sessant'anni di polvere in tutto il corridoio. Uno strato uniforme, grigio, come una moquette. Davanti a tutte le porte. Guarda davanti a questa."
 
-Davanti alla 44 la polvere è **spostata**. Due mezzelune, a settanta centimetri l'una dall'altra, con il bordo pulito rivolto verso l'interno della cella.
+**(💪 TENUTA −2: aveva ragione su tutto, e avere ragione qui dentro non serve a niente.)**`,
+    damage: 2,
+    choices: [
+      { text: '👁 "Guarda il pavimento." Detto da Claudia, che di mestiere guarda i pavimenti', next: 'c6_polvere' },
+      { text: '🚶 Non guardare niente e andare avanti lungo la curva', once: true, damage: 2, next: 'c6_polvere' },
+    ],
+  },
+
+  /* LA POLVERE. Due mezzelune a settanta centimetri dalla porta, i segni che fa una porta
+     aperta e richiusa molte volte. È il momento in cui il mestiere di Claudia batte i
+     decimali di Gaetano, e merita di stare da solo in un'inquadratura. */
+  c6_polvere: {
+    location: 'panopticon',
+    caption: 'Davanti alla 44, la polvere',
+    stinger: 'pressione',
+    text: `Davanti alla 44 la polvere è **spostata**. Due mezzelune, a settanta centimetri l'una dall'altra, con il bordo pulito rivolto verso l'interno della cella.
 
 Sono i segni che fa una porta quando viene aperta e richiusa. Molte volte.
 
@@ -725,9 +753,7 @@ Silenzio. Una lucertola sul muretto, il mare che sotto fa il suo.
     location: 'cimitero',
     caption: 'Il cimitero dei detenuti — ore 14:20',
     stinger: 'pressione',
-    text: `Sta fuori dal muro, a mezza costa, su un terrazzamento che guarda il mare aperto: un quadrato di terra secca dentro un muretto che arriva alla vita, con dentro le croci.
-
-Sta fuori dal muro, a mezza costa, su un terrazzamento che guarda il mare aperto — ed è fuori, questa è la prima cosa: chi ci è finito ha visto il mare per la prima volta da morto.
+    text: `Sta fuori dal muro, a mezza costa, su un terrazzamento che guarda il mare aperto — ed è fuori, questa è la prima cosa: chi ci è finito ha visto il mare per la prima volta da morto.
 
 Si entra da un varco nel muretto a secco. E nel muretto, murata a filo, all'altezza degli occhi, c'è una lapide di marmo bianco con le lettere incise e riempite di lichene nero. Si leggono benissimo.
 
@@ -743,7 +769,22 @@ Non l'ha scritta un parente e non l'ha pagata una famiglia: l'ha fatta incidere 
 
 Poi si contano le croci.
 
-Sono di ferro tondo, saldate a mano, alte un metro. Non hanno nomi: hanno **numeri**, dipinti in bianco su una piastra ovale. Chi finiva qui aveva già perso il nome all'ingresso e non lo riprendeva all'uscita.
+**(🫁 Fiato −1. Si entra qua dentro passando sotto una frase che promette un'anima immortale.)**`,
+    goldLoss: 1,
+    sets: { sa_lapide: true },
+    choices: [
+      { text: '🔢 Contarle. Tutti e tre separatamente, che Gaetano vuole tre conti indipendenti', next: 'c9_croci' },
+      { text: '🤲 Prima appoggiare la mano aperta sulla pietra del muretto, il tempo di due respiri', once: true, heal: 2, gold: 1, next: 'c9_croci' },
+    ],
+  },
+
+  /* LE CROCI. La lapide dello Stato e il conto sono due momenti diversi: uno si legge in
+     piedi all'ingresso, l'altro si fa in ginocchio in mezzo alla terra secca. */
+  c9_croci: {
+    location: 'cimitero',
+    caption: 'Trentanove croci — ore 14:50',
+    stinger: 'penna',
+    text: `Sono di ferro tondo, saldate a mano, alte un metro. Non hanno nomi: hanno **numeri**, dipinti in bianco su una piastra ovale. Chi finiva qui aveva già perso il nome all'ingresso e non lo riprendeva all'uscita.
 
 Le contano tutti e tre, separatamente, perché Gaetano vuole tre conti indipendenti.
 
@@ -759,7 +800,29 @@ Poi Claudia si mette in ginocchio e conta un'altra cosa: le **depressioni**. Per
 
 Il quarantesimo sta nell'angolo di nord-est, attaccato al muretto, ed è l'unico su cui l'erba cresce diversa: non secca come il resto, non gialla. Verde. Grassa. Il verde che fa l'erba dove sotto c'è **calce**.
 
-Ciro non discute e non chiede il permesso. Prende la gaffa, la gira dalla parte del legno, e comincia a scavare come si scava con quello che si ha.
+Il quarantesimo avvallamento sta lì e nessuno dei tre parla per un po'. Ciro ha già la gaffa in mano, girata dalla parte del legno, e non la alza: aspetta. In sessantun anni su quest'isola ha imparato che certe cose si fanno in tre o non si fanno.
+
+> Ciro: "Signò. Decidete voi. Io la mano ce la metto o la tengo in tasca, ma la decisione non e' mia."
+
+**(🫁 Fiato −1. Il Quaderno registra il conto: **trentanove croci, quaranta avvallamenti**. Questo dato ce l'avete comunque, e da solo vale un pezzo di verità. Quello che sta sotto il quarantesimo, invece, si vede solo scavando — e scavare in una fossa è una cosa che si fa una volta e non si disfa.)**`,
+    goldLoss: 1,
+    attenzione: 1,
+    sets: { i_conto_fosse: true, sa_lapide: true },
+    choices: [
+      { text: '⛏ Scavare. Il quarantesimo, quello con l\'erba grassa. Adesso, che c\'è luce', once: true, next: 'c9_scavo' },
+      { text: '🤚 Non scavare. Rimettere la gaffa in barca e portarsi via il numero', heal: 3, next: 'c9_rispetto' },
+    ],
+  },
+
+  /* LO SCAVO. Era la seconda metà di c9_cimitero, e la seconda metà cominciava con «Ciro
+     non discute e non chiede il permesso»: cioe' il gioco scavava in una fossa AL POSTO
+     del giocatore, in una storia il cui unico tema e' cosa si fa con i morti degli altri.
+     Seicentonovantuno parole senza una decisione, e la decisione era lì dentro. */
+  c9_scavo: {
+    location: 'cimitero',
+    caption: 'Il quarantesimo avvallamento — ore 15:05',
+    stinger: 'sigillo',
+    text: `Ciro non discute e non chiede il permesso. Prende la gaffa, la gira dalla parte del legno, e comincia a scavare come si scava con quello che si ha.
 
 Venti centimetri di terra secca. Poi trenta di uno strato bianco, compatto, che si spacca a lastre e sotto le lastre è ancora bianco. Calce. Tanta. Chi ha chiuso questa fossa ha voluto essere sicuro.
 
@@ -784,10 +847,43 @@ Dietro di loro, sul sentiero che sale dal carcere — quel sentiero che hanno fa
 Non corre. **Fa il giro.**
 
 **(🫁 Fiato −2, TENUTA −2. Il Quaderno registra: trentanove croci e quaranta fosse, e nella quarantesima c'è uno con la divisa. Quarto indizio — e adesso il turno di notte è arrivato dove state voi.)**`,
-    goldLoss: 2,
+    goldLoss: 1,
     damage: 2,
-    attenzione: 1,
-    sets: { i_osso: true, sa_lapide: true },
+    sets: { i_osso: true },
+    combat: { enemies: ['guardia'], victory: 'c10_nastro', defeat: 'c6_ko' },
+    choices: [],
+  },
+
+  /* E LA STRADA DI CHI NON SCAVA. Non e' la scelta prudente e non e' la scelta debole: e'
+     l'altra. Il numero — quaranta fosse, trentanove croci — se lo portano via uguale, e
+     quello che perdono e' l'osso, cioe' il quarto indizio di un mistero su quattro. La
+     guardia arriva comunque, perche' il turno di notte non lo decide chi scava. */
+  c9_rispetto: {
+    location: 'cimitero',
+    caption: 'La gaffa torna in barca — ore 15:05',
+    stinger: 'campana',
+    text: `Ciro rimette la gaffa sulla spalla senza commentare, e nel modo in cui non commenta c'è tutto.
+
+Claudia si alza dalle ginocchia, si pulisce le mani sui pantaloni e resta un momento in piedi davanti al quarantesimo avvallamento, quello con l'erba grassa e verde. Non dice niente di solenne. Dice la cosa pratica, che è l'unica che non suona finta.
+
+> Claudia: "Se lo scaviamo, domani lo sa un archeologo e dopodomani sta in una scatola con un numero nuovo." *(pausa)* "Ne ha già avuto uno, di numero."
+
+> Gaetano: *(e non tira fuori il telefono, che per lui è una cosa enorme)* "Il conto ce l'abbiamo. Quaranta e trentanove. Il conto è la prova."
+
+> Claudia: "Il conto è la prova."
+
+Ciro si toglie il cappello — quel gesto che i vecchi delle isole fanno senza pensarci e che non si insegna — e lo rimette dopo tre secondi.
+
+> Ciro: "Mio padre, quando tiravamo su una cosa che non era pesce, la ributtava e diceva una parola sola: *statte.*" *(guarda l'erba grassa)* "Statte, guagliò."
+
+E il sentiero che sale dal carcere — quello che hanno fatto un'ora fa, che era vuoto — fa un passo. Poi un altro. Il ritmo regolare, calmo, di uno che percorre un tragitto che percorre da tanto tempo e che finisce sempre nello stesso punto.
+
+Non corre. **Fa il giro.** E arriva uguale, perché il turno di notte non lo decide chi scava.
+
+**(🫁 Fiato +2, 💪 TENUTA +3: avete lasciato in pace una cosa che potevate prendere, e in questo posto è l'unica azione che vi restituisce qualcosa. Il Quaderno tiene il conto delle fosse ma NON l'osso: al mistero della cella 47 vi manca un indizio, e ve lo dovete trovare da un'altra parte. 🎵 L'attenzione del Coro non sale.)**`,
+    gold: 2,
+    heal: 3,
+    sets: { fossa_rispettata: true },
     combat: { enemies: ['guardia'], victory: 'c10_nastro', defeat: 'c6_ko' },
     choices: [],
   },
@@ -847,7 +943,37 @@ Pausa. Nel nastro si sente che l'uomo si è girato.
 
 E poi l'uomo di quarantatré anni con la divisa addosso, solo dentro un carcere vuoto su un'isola di trentasei ettari, smette di essere una voce d'ufficio e si mette a piangere davanti a un microfono. Non urla. Non dice niente di comprensibile per undici secondi. Fa il rumore che fa un uomo grande quando non c'è nessuno. E sotto, come una traccia in un altro strato, c'è una bambina che canta la strofa che Claudia sa a memoria da ieri.
 
-Poi il nastro fa **clunk**. Uno stacco netto, di quelli che fa la registrazione quando qualcuno ha premuto REC sopra a una cosa già registrata.
+Ciro guarda il pavimento. Claudia ha la mano sulla bocca. Gaetano ha il pollice a due centimetri dal tasto STOP e non lo appoggia.
+
+Il contagiri del Geloso continua a scattare. La bobina di destra è ancora mezza piena: sotto il pianto di quest'uomo c'è **altro nastro**, e il nastro non finisce qui.
+
+> Ciro: *(pianissimo)* "Signò. Quella è una voce di un morto che chiede di restare. Basta. Ce l'avete."
+
+> Claudia: "Gaetà."
+
+> Gaetano: "C'è dell'altro sotto."
+
+> Claudia: "Lo so che c'è dell'altro sotto. Ti sto chiedendo se lo vogliamo."
+
+**(🫁 Fiato −1, 🎵 Attenzione del Coro +1: una voce l'avete già ascoltata fino in fondo, e questo posto sente. Il Quaderno ha il nome: **NICOLA SPERDUTO, guardia scelta, 2 settembre 1965, ore 23:10** — e la cella 47 controllata VUOTA come da ventidue anni, scritto sul registro e adesso pure sulla voce sua.)**`,
+    goldLoss: 1,
+    attenzione: 1,
+    sets: { i_voce_guardia: true },
+    choices: [
+      { text: '▶️ Lasciarlo andare. Se c\'è dell\'altro sotto, si sente adesso o mai più', once: true, next: 'c10_marisa' },
+      { text: '⏹ Il pollice sul tasto. Adesso. Ce l\'abbiamo, e basta', heal: 4, next: 'c10_mezzo' },
+    ],
+  },
+
+  /* LA SECONDA VOCE. Era la seconda metà di c10_suonato — quattrocentonovantasei parole
+     senza una decisione — e la decisione stava scritta dentro la scena: il pollice a due
+     centimetri dal tasto. Un nastro che si ascolta fino in fondo e un nastro che si ferma a
+     metà sono due partite diverse, e prima non lo erano. */
+  c10_marisa: {
+    location: 'panopticon',
+    caption: 'clunk',
+    stinger: 'nastro',
+    text: `Poi il nastro fa **clunk**. Uno stacco netto, di quelli che fa la registrazione quando qualcuno ha premuto REC sopra a una cosa già registrata.
 
 E parte un'altra voce. Non è del 1965. Il fruscio è diverso, il fondo è diverso, e la voce è di donna, adulta, vicinissima al microfono, con l'accento di qui:
 
@@ -866,11 +992,51 @@ Ciro si è alzato in piedi. Ha la faccia di un uomo che ha appena visto una cosa
 Il nastro va avanti da solo. Fuori dal pozzo, in tutto il ferro di cavallo, novantanove porte cominciano a fare **clac** insieme.
 
 **(🎵 Attenzione del Coro +2: l'avete svegliato, adesso sa che siete voi, e il gioco vi aveva avvertiti due volte. 🫁 Fiato −2. Il Quaderno registra MARISA CORAGGIO, 23 settembre 1997 — *non chiamano, rispondono* — e registra, sotto due voci adulte, la strofa della bambina.)**`,
-    goldLoss: 2,
-    attenzione: 2,
+    goldLoss: 1,
+    attenzione: 1,
     sets: { sa_di_marisa: true, nastro_suonato: true, i_ninna_sentita: true },
     combat: { enemies: ['sciame_voci', 'eco'], victory: 'c10_claudia', defeat: 'c6_ko', loot: { gold: 1 } },
     choices: [],
+  },
+
+  /* E CHI SI FERMA A META'. Non e' gratis e non e' vigliacco: si portano via il nome della
+     guardia, che e' l'indizio piu' difficile del gioco, e lasciano sotto la cassetta la
+     donna del 1997 — cioe' la sorella di Ada, cioe' la cosa che serve a capire perche' Ada
+     dice «finche' e' aperta non si risponde». Il Coro li ha sentiti una volta e non due. */
+  c10_mezzo: {
+    location: 'panopticon',
+    caption: 'Il pollice sul tasto — ore 15:40',
+    stinger: 'sigillo',
+    text: `Il tasto sale. La bobina si ferma con la banda tesa a metà, e nel pozzo delle novantanove porte torna il rumore che c'era prima, che è nessun rumore.
+
+Ciro butta fuori l'aria dal naso e si siede sul gradino. Non dice grazie e non dice bravo: si toglie il cappello, se lo rigira in mano due volte, e lo rimette.
+
+> Ciro: "Aveva quarantatré anni."
+
+> Gaetano: "Quarantatré. E ha finito il turno alle sei."
+
+> Claudia: *(che ha già il Quaderno aperto e scrive senza guardare la pagina)* "Nicola Sperduto. Guardia scelta. Due settembre sessantacinque, ventitré e dieci." *(alza gli occhi)* "Adesso ce l'ha qualcuno, il nome. Prima ce l'aveva solo un nastro dentro un cassetto."
+
+Gaetano chiude il vano del Geloso e si mette la macchina sotto il braccio. E poi dice la cosa vera, che gli costa, perché è uno che di solito vuole sapere tutto:
+
+> Gaetano: "Sotto c'era dell'altro."
+
+> Claudia: "Sì."
+
+> Gaetano: "E non lo sapremo."
+
+> Claudia: "No." *(gli prende il braccio libero)* "E va bene uguale. Non è che tutto quello che si può sapere si deve sapere: certe cose te le devono dire loro, non te le devi prendere."
+
+Una porta, in alto, al terzo anello, si chiude piano. Non sbatte. Si accosta, come si accosta la porta della stanza di uno che dorme.
+
+**(💪 TENUTA +4, 🫁 Fiato +2: vi siete fermati, e in questo posto fermarsi è una risorsa. Il Quaderno ha **il nome della guardia** — l'indizio più difficile del gioco, e ce l'avete per intero. Quello che c'era sotto, sulla cassetta, resta sulla cassetta: 🎵 il Coro vi ha sentiti una volta e non due.)**`,
+    gold: 2,
+    heal: 4,
+    sets: { nastro_a_meta: true, i_voce_guardia: true },
+    choices: [
+      { text: '🚪 Fuori da questo pozzo. Adesso', next: 'c10_pulito' },
+      { text: '🕯 Prima rimettere la cassetta nella custodia e la custodia in mano a Ciro', once: true, gold: 1, sets: { cassetta_a_ciro: true }, next: 'c10_pulito' },
+    ],
   },
 
   c10_claudia: {
@@ -972,7 +1138,26 @@ Claudia lo ascolta in piedi, con le braccia conserte, e quando finisce non piang
 
 > Claudia: "PERCHÉ?"
 
-E qui Gaetano non fa il conto, non fa il numero, non fa la spiegazione. Sta fermo con le mani lungo i fianchi come un ragazzo di ventidue anni.
+E adesso tocca a lui, e ci sono due modi.
+
+**(💪 TENUTA −4: questa parte fa male e deve fare male. 🫁 Fiato −1.)**`,
+    damage: 4,
+    goldLoss: 1,
+    choices: [
+      { text: '🫂 Dirle il motivo. Tutto, compresa la parte che lo rende peggiore', once: true, next: 'c11_perche' },
+      { text: '📐 Darle i numeri: undici minuti, quattordici ascolti, mezzo secondo esatto', next: 'c11_numeri' },
+    ],
+  },
+
+  /* IL MOTIVO. Era la seconda metà di c11_verita, e stava dopo la domanda «PERCHÉ?» —
+     cioe' il gioco rispondeva al posto di Gaetano nel momento in cui rispondere E' il
+     personaggio. Adesso ci sono due modi, e sono i suoi due modi: quello che dice la cosa
+     tenera e sbagliata, e quello che si mette dietro i numeri. */
+  c11_perche: {
+    location: 'santo_stefano',
+    caption: 'Perché avevi appena toccato la boa',
+    stinger: 'heal',
+    text: `E qui Gaetano non fa il conto, non fa il numero, non fa la spiegazione. Sta fermo con le mani lungo i fianchi come un ragazzo di ventidue anni.
 
 > Gaetano: "Perché avevi appena toccato la boa."
 
@@ -998,6 +1183,55 @@ Dall'arco, cinquanta metri sotto, Ciro fischia una volta e indica l'orologio.
     gold: 2,
     heal: 12,
     sets: { verita_detta: true },
+    choices: [
+      { text: '🏃 Giù di corsa: Ciro ha già il motore in mano', next: 'c12_corsa' },
+      { text: '🚤 Scendere piano, tenendosi, fino alla barca', next: 'c14_cena' },
+    ],
+  },
+
+  /* E L'ALTRO MODO. Il committente, sui giochi precedenti: «il mio personaggio e' un po'
+     troppo da ingegnere nerd, analitico, sociopatico, che non e' esattamente come sono io».
+     E' vero, ed e' meta' del personaggio: l'altra meta' e' quello che trascina fuori. Qui il
+     gioco la fa scegliere, e sceglierlo analitico COSTA — perche' i numeri, in mezzo a un
+     litigio vero, non sono una spiegazione: sono un posto dove nascondersi. */
+  c11_numeri: {
+    location: 'santo_stefano',
+    caption: 'Undici. Quattordici. Mezzo secondo.',
+    stinger: 'penna',
+    text: `Gaetano fa la cosa che gli riesce meglio, e per la prima volta in tre giorni gli riesce male.
+
+> Gaetano: "Allora. Il file dura quattro minuti e dodici. La nota sta a due minuti e sette. Il ritardo è di cinquecentodieci millisecondi, misurato tre volte sulla stessa traccia. L'ho rallentato al venticinque per cento, che è la soglia sotto la quale il cervello smette di riempire i buchi—"
+
+> Claudia: "Gaetano."
+
+> Gaetano: "—e l'ho risentito quattordici volte perché quattordici è dove la curva si appiattisce, dopo non aggiungi informazione, aggiungi solo—"
+
+> Claudia: "**Gaetano.**"
+
+Si ferma.
+
+> Claudia: *(e non urla, e questo è peggio)* "Undici minuti a guardarmi dormire. Non ti ho chiesto la latenza. Ti ho chiesto perché."
+
+Silenzio. Un gabbiano, sotto, sul terrazzamento.
+
+> Claudia: "Lo so perché mi dai i numeri. Perché i numeri li controlli tu." *(pausa)* "Io i numeri me li sono sposati e me li tengo. Ma non stavolta. Stavolta mi dici la cosa."
+
+E allora la dice, e gli esce mezza, e mezza è quello che c'è.
+
+> Gaetano: "Perché avevi appena toccato la boa." *(la voce gli si rompe sulla seconda parola)* "Ci hai messo dieci anni e ci sei arrivata giovedì alle sette e dieci di sera, e io alle due di notte avevo in mano una cosa che te lo portava via."
+
+Claudia sta ferma. Poi gli mette la mano dietro il collo — la stessa mano, lo stesso gesto — ma ci mette tre secondi in più, e quei tre secondi ci saranno per sempre.
+
+> Claudia: "Mai più."
+
+> Gaetano: "Mai più."
+
+> Claudia: "E la prossima volta me lo dici prima dei numeri. I numeri dopo. Sempre dopo."
+
+**(🫁 Fiato +1, 💪 TENUTA +7. La verità è stata detta, e questo conta: da adesso non c'è più niente che uno sappia e l'altro no. Ma è uscita in seconda battuta, dietro tre misure e un grafico — e la differenza fra le due strade non è nei punti: è che uno dei due ha dovuto chiederlo tre volte. Il Quaderno registra anche questo, che è l'unica pagina in cui Gaetano scrive di sé.)**`,
+    gold: 1,
+    heal: 7,
+    sets: { verita_detta: true, verita_coi_numeri: true },
     choices: [
       { text: '🏃 Giù di corsa: Ciro ha già il motore in mano', next: 'c12_corsa' },
       { text: '🚤 Scendere piano, tenendosi, fino alla barca', next: 'c14_cena' },
@@ -1076,7 +1310,25 @@ La traversata di ritorno è la cosa più bella della giornata: il sole basso da 
 
 Alle sei meno cinque la Santa Candida è ormeggiata al terzo pontile. Ciro guarda l'orologio, poi il cielo, e slega la cima con una faccia da uno che ha rispettato un patto con se stesso per la sessantunesima estate di fila.
 
----
+Alle sei e dieci sono sul molo con le bombole vuote, la muta addosso e la faccia di tre persone che hanno passato un pomeriggio dentro un carcere e non l'hanno ancora detto a nessuno.
+
+**(🫁 Fiato +1: la traversata di ritorno, col sole basso da sinistra, è l'unica mezz'ora della giornata in cui non è successo niente.)**`,
+    gold: 1,
+    choices: [
+      { text: '🍽 Alla Marisqueria. Fame vera, e Ciro non si fa pregare', next: 'c14_marisqueria' },
+      { text: '🚿 Prima su alle Parracine a levarsi il sale, e poi giù di nuovo a piedi', once: true, heal: 4, gold: 1, next: 'c14_marisqueria' },
+    ],
+  },
+
+  /* LA MARISQUERIA. La prima metà di c14_cena stava in BARCA e la seconda a tavola in
+     paese, con `location: 'paese'` per tutte e due: cioè mezza scena raccontava la
+     traversata di ritorno mentre sullo schermo c'erano le case del paese. Un luogo per
+     scena, sempre — e cinquecentonovantaquattro parole erano due scene travestite da una. */
+  c14_marisqueria: {
+    location: 'paese',
+    caption: 'La Marisqueria — ore 21:10',
+    stinger: 'heal',
+    text: `---
 
 **Alla Marisqueria, alle nove e dieci di sera, sono tre persone che hanno fame.**
 
@@ -1094,7 +1346,23 @@ Ciro racconta di quando nel millenovecentonovantuno portò a Santo Stefano un tr
 
 > Ciro: *(riempie i tre bicchieri, compreso il suo, e lo fa con l'attenzione di uno che sta dicendo una cosa importante con le mani)* "Allora domani alle otto sto al molo. Non me lo dovete chiedere. E vi porto due cose che stasera vado a prendere in cantina."
 
-Poi Gaetano fa la cosa da Gaetano. Prende la tovaglietta di carta, la gira, e con la biro del conto ci scrive quello che hanno addosso, in colonna, come una lista della spesa.
+**(🫁 Fiato +2 e 💪 TENUTA piena: questo è il modo in cui si recupera in questo gioco, e non ce n'è un altro. Si mangia, si ride, e qualcuno riempie il bicchiere anche a se stesso.)**`,
+    gold: 2,
+    heal: 8,
+    choices: [
+      { text: '🖊 Girare la tovaglietta e mettere in fila tutto quello che sapete. Adesso, prima di dormirci sopra', next: 'c14_tovaglietta' },
+      { text: '🍋 Ancora un quarto d\'ora così, senza parlare di niente', once: true, heal: 4, gold: 1, next: 'c14_tovaglietta' },
+    ],
+  },
+
+  /* LA TOVAGLIETTA. È la scena in cui il gioco mette in fila le prove, e stava in coda a
+     una cena: quattrocentottantatré parole in cui si passa dal ridere alla ricetta con cui
+     hanno chiuso cinque cisterne. Sono due cose diverse e vanno guardate separate. */
+  c14_tovaglietta: {
+    location: 'paese',
+    caption: 'La tovaglietta di carta, girata',
+    stinger: 'penna',
+    text: `Poi Gaetano fa la cosa da Gaetano. Prende la tovaglietta di carta, la gira, e con la biro del conto ci scrive quello che hanno addosso, in colonna, come una lista della spesa.
 
 E accanto ad alcune coppie di righe mette una freccia.
 
@@ -1142,7 +1410,24 @@ E accanto, aggiunto stasera con la biro del conto della Marisqueria, con la graf
 
 **"Ciro alle 8. Portare tutto."**
 
-Claudia si addormenta in quattro minuti, come sempre, con una gamba fuori dal lenzuolo e la fede al collo.
+**(Oggetto: RESINA EPOSSIDICA. 🫁 Fiato +2: Ada ha lasciato un piatto coperto da un altro piatto, e quel gesto vale aria.)**`,
+    gold: 2,
+    item: 'resina',
+    choices: [
+      { text: '📻 Il Geloso è nello zaino con la cassetta dentro. E qui la luce è accesa e c\'è gente in strada, come aveva detto lei', requires: { flag: 'nastro_dentro' }, once: true, next: 'c15_nastro' },
+      { text: '🖊 Aggiungere il rigo di domani sul foglietto dello specchio, con la biro del conto', once: true, gold: 1, next: 'c15_notte' },
+      { text: '🛏 Basta. A letto, e domani è l\'ultimo giorno', next: 'c15_notte' },
+    ],
+  },
+
+  /* LA NOTTE. Era la coda di c15, e la coda di c15 è la cosa più spaventosa dell'atto:
+     l'isola, per la prima volta in tre notti, non fa NIENTE. Una scena che dura una notte
+     intera non può stare in fondo a una salita di muretti a secco. */
+  c15_notte: {
+    location: 'bnb',
+    caption: 'La notte in cui l\'isola non fa niente',
+    stinger: 'voce_amata',
+    text: `Claudia si addormenta in quattro minuti, come sempre, con una gamba fuori dal lenzuolo e la fede al collo.
 
 E dopo venti minuti, come ieri notte, comincia a **cantare nel sonno**. Piano, con la bocca quasi chiusa, intonatissima. Cinque strofe, nell'ordine giusto, e poi da capo.
 
@@ -1160,12 +1445,10 @@ Ed è, di gran lunga, la cosa più preoccupante che abbia fatto finora.
 
 **(Oggetto: RESINA EPOSSIDICA. 🫁🫁 IL TERZO GIORNO È CHIUSO. ⛑ CHECKPOINT: dentro le parracine si dorme — TENUTA piena, mosse ricaricate, e da qui si riparte se domani va male. Domani è domenica 30 agosto: valigie, ultimo bagno, e il traghetto per Formia alle 17:30.)**`,
     gold: 1,
-    item: 'resina',
     fullHeal: true,
     recharge: true,
     sets: { giorno_29_chiuso: true },
     choices: [
-      { text: '📻 Il Geloso è nello zaino con la cassetta dentro. E qui la luce è accesa e c\'è gente in strada, come aveva detto lei', requires: { flag: 'nastro_dentro' }, once: true, next: 'c15_nastro' },
       { text: '🫂 Restare un minuto sulla terrazza prima di dormire, senza dire niente', once: true, gold: 1, heal: 4, next: 'd0' },
       { text: '☀️ Domenica 30 agosto: l\'ultimo giorno', next: 'd0' },
     ],
@@ -1187,7 +1470,6 @@ Ed è, di gran lunga, la cosa più preoccupante che abbia fatto finora.
     location: 'bnb',
     caption: 'Le Parracine, sotto la pergola — ore 00:41',
     stinger: 'voce_amata',
-    attenzione: 1,
     text: `Lo fanno sul tavolo di fuori, sotto la lampadina, col piatto coperto dall'altro piatto spostato di venti centimetri per fare posto.
 
 Claudia dice di sì col mento. Aveva ragione lei stamattina e ha ragione adesso: qui c'è la luce accesa, giù in strada c'è gente che ride davanti al bar, e dietro il muro Ada guarda la televisione col volume basso. Se c'è un posto sulla terra dove si può premere quel tasto, è questo.
@@ -1216,7 +1498,23 @@ Perché quel ronzio è **un ventilatore a pale**. Ed è il ventilatore di Ada, q
 
 > *«Trentasette secondi.»*
 
-Gaetano stacca a **00:33**. Quattro secondi prima del previsto, e questa è l'unica bugia che dice in tutta la vacanza.
+**(🎵 Attenzione del Coro +1: gli avete dato ascolto in un posto dove si sente.)**`,
+    attenzione: 1,
+    sets: { nastro_ascoltato_su: true },
+    choices: [
+      { text: '⏹ Staccare adesso. Ventitré secondi, non trentasette: quattro secondi rubati', once: true, next: 'c15_dopo' },
+      { text: '⏱ I trentasette fino in fondo, come detto. Perché è stato detto', damage: 2, gold: 1, next: 'c15_dopo' },
+    ],
+  },
+
+  /* DOPO. La seconda metà di c15_nastro: il piatto che sta dove lo hanno spostato, il
+     ventilatore che gira, e due persone che si dicono la cosa. Va guardata da sola, dopo
+     che il nastro ha smesso, perché è tutta nel silenzio che viene dopo. */
+  c15_dopo: {
+    location: 'bnb',
+    caption: 'Il piatto sta dove lo hanno spostato',
+    stinger: 'voce_amata',
+    text: `Gaetano stacca a **00:33**. Quattro secondi prima del previsto, e questa è l'unica bugia che dice in tutta la vacanza.
 
 Restano fermi. Il piatto sta dove lo hanno spostato. Il ventilatore di Ada gira. Le cicale fanno lo strappo ogni sette secondi. La lampadina sotto la pergola ha una falena.
 
@@ -1236,7 +1534,7 @@ Restano fermi. Il piatto sta dove lo hanno spostato. Il ventilatore di Ada gira.
          toglie sei punti vita al boss. Non era raggiungibile da nessuna parte. */
       { text: '🔥 La cucina di Ada. La fiamma del fornello, il nastro tirato fuori dalla cassetta a mano, e restare a guardare finché non è tutto', once: true, damage: 1, sets: { nastro_bruciato: true }, next: 'c15_bruciato' },
       { text: '🎧 Le cuffie, e riascoltare gli ultimi trenta secondi tre volte scrivendo i tempi esatti', once: true, gold: 2, sets: { i_nastro_stanza: true }, next: 'c15_tempi' },
-      { text: '📦 Rimetterlo nella scatola, la scatola nello zaino, e non parlarne fino a domani', once: true, heal: 2, next: 'd0' },
+      { text: '📦 Rimetterlo nella scatola, la scatola nello zaino, e non parlarne fino a domani', heal: 2, next: 'd0' },
     ],
   },
 
@@ -1268,8 +1566,8 @@ Quando il nastro è finito, il ventilatore riparte da solo, dalla metà di giro 
     gold: 2,
     sets: { nastro_bruciato: true, ada_ha_visto: true },
     choices: [
-      { text: '🫂 Restare in cucina con Ada finché non spegne lei', once: true, heal: 3, gold: 1, next: 'd0' },
-      { text: '☀️ Su, a dormire. Domenica 30 agosto è l\'ultimo giorno', next: 'd0' },
+      { text: '🫂 Restare in cucina con Ada finché non spegne lei', once: true, heal: 3, gold: 1, next: 'c15_notte' },
+      { text: '☀️ Su, a dormire. Domenica 30 agosto è l\'ultimo giorno', next: 'c15_notte' },
     ],
   },
 
@@ -1304,7 +1602,7 @@ Si toglie le cuffie e le appoggia sul tavolo, e per la prima volta in tre giorni
     sets: { i_nastro_stanza: true, sa_anticipo: true },
     choices: [
       { text: '📻 Adesso bruciarlo. La cucina di Ada, il fornello grande', once: true, damage: 1, sets: { nastro_bruciato: true }, next: 'c15_bruciato' },
-      { text: '📦 Nella scatola, nello zaino, e domani si parte comunque', once: true, heal: 2, next: 'd0' },
+      { text: '📦 Nella scatola, nello zaino, e domani si parte comunque', heal: 2, next: 'c15_notte' },
     ],
   },
 };
