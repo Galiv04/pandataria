@@ -2021,7 +2021,7 @@ Ada guarda Claudia. E qui fa la cosa peggiore che potesse fare: **non lo dice a 
 
 "Diceva: *'stateve accort' a chella ca nun sape natà.'*" Poi, a bassa voce, come una traduzione che si vergogna: "State attenti a quella che non sa nuotare."
 
-Claudia impara a nuotare a ventinove anni, in una piscina di Latina, con un istruttore che si chiamava Fabio e che le teneva la mano sotto la pancia. Non lo sa nessuno. Non sta scritto da nessuna parte. Non l'ha mai detto a nessuno su quest'isola.
+Claudia impara a nuotare a ventiquattro anni, in una piscina di Latina, con un istruttore che si chiamava Fabio e che le teneva la mano sotto la pancia. Non lo sa nessuno. Non sta scritto da nessuna parte. Non l'ha mai detto a nessuno su quest'isola.
 
 **(⚠️ 🎵 L'attenzione del Coro sale. Qualcosa laggiù sa una cosa di Claudia che non ha mai raccontato a nessuno — e adesso lo sapete anche voi, e non vi togliete più il pensiero.)**`,
     attenzione: 1,
@@ -2817,13 +2817,13 @@ Claudia beve mezza aranciata in un sorso e appoggia il bicchiere. Ha ancora la p
 
 Gaetano guarda i due vecchi che giocano a carte.
 
-"Quando quella cosa ha parlato con la mia voce," dice Claudia, "io ho avuto paura per **mezzo secondo**. Poi ho avuto una cosa che non è paura e non so come si chiama, e che era: *finalmente*." Gira il bicchiere sul tavolino. "Perché io ho paura dell'acqua da quando ho sei anni, e nessuno mi ha mai creduto che ci fosse un motivo, e me lo dicevano tutti che era una fissazione mia. E adesso c'è una cosa dentro l'acqua che parla con la mia voce e sa che ho imparato a nuotare a ventinove anni." Alza gli occhi. "Gaetano, io ho ragione **da ventotto anni**."
+"Quando quella cosa ha parlato con la mia voce," dice Claudia, "io ho avuto paura per **mezzo secondo**. Poi ho avuto una cosa che non è paura e non so come si chiama, e che era: *finalmente*." Gira il bicchiere sul tavolino. "Perché io ho paura dell'acqua da quando ho sei anni, e nessuno mi ha mai creduto che ci fosse un motivo, e me lo dicevano tutti che era una fissazione mia. E adesso c'è una cosa dentro l'acqua che parla con la mia voce e sa che ho imparato a nuotare a ventiquattro anni." Alza gli occhi. "Gaetano, io ho ragione **da ventun anni**."
 
 I vecchi calano una carta. Uno dice "e mo' vedi".
 
-"Sì," dice Gaetano. "Hai ragione da ventotto anni."
+"Sì," dice Gaetano. "Hai ragione da ventun anni."
 
-**(💪 TENUTA +6, 🫁 Fiato +2. Non è un potenziamento simbolico: aver ragione, dopo ventotto anni, in una piazza, con un'aranciata, è la cosa che tiene in piedi Claudia da qui alla fine del gioco.)**`,
+**(💪 TENUTA +6, 🫁 Fiato +2. Non è un potenziamento simbolico: aver ragione, dopo ventun anni, in una piazza, con un'aranciata, è la cosa che tiene in piedi Claudia da qui alla fine del gioco.)**`,
     heal: 6,
     gold: 2,
     stinger: 'heal',
@@ -4121,7 +4121,7 @@ E Gaetano — che è un uomo che di mestiere fa i conti, e che ha avuto ventisei
     caption: 'La Terrazza di Mimì, ore 22:05 — quattro minuti al tavolo di fuori',
     text: `Claudia parla per quattro minuti e non alza mai la voce, e sarebbe stato mille volte meglio se l'avesse alzata.
 
-Dice che è stanca di essere protetta. Dice che essere protetti e non essere creduti sono la stessa cosa vista da due lati. Dice che a sei anni, in un mare a Sperlonga, le è successa una cosa che non ha mai raccontato a nessuno e che se qualcuno le avesse creduto allora, forse, non avrebbe passato ventotto anni a spiegare a tutti che l'acqua le fa paura per un motivo. Dice che quando lui ha detto *lo so* in cucina, quel *lo so* era una bugia con dentro una cosa vera, e che questa è la cosa peggiore che le abbia mai fatto.
+Dice che è stanca di essere protetta. Dice che essere protetti e non essere creduti sono la stessa cosa vista da due lati. Dice che a sei anni, in un mare a Sperlonga, le è successa una cosa che non ha mai raccontato a nessuno e che se qualcuno le avesse creduto allora, forse, non avrebbe passato ventun anni a spiegare a tutti che l'acqua le fa paura per un motivo. Dice che quando lui ha detto *lo so* in cucina, quel *lo so* era una bugia con dentro una cosa vera, e che questa è la cosa peggiore che le abbia mai fatto.
 
 Poi si ferma. Beve un po' d'acqua. E dice l'ultima, che non è per lui:
 
@@ -4574,7 +4574,7 @@ Il metodo è giusto. L'esecuzione no: Gaetano batte prima di avviare il cronomet
 
 > Gaetano: "...o perché la seconda volta l'abbiamo annoiata. Non so quale delle due mi piace meno."
 
-Il file resta: tre colpi, tre silenzi, e in mezzo la voce di un uomo di quarantadue anni che dice *"vaffanculo"* con una tenerezza che non si può spiegare a chi non c'era.
+Il file resta: tre colpi, tre silenzi, e in mezzo la voce di un uomo di trent'anni che dice *"vaffanculo"* con una tenerezza che non si può spiegare a chi non c'era.
 
 **(🫁 Fiato −2: mezz'ora di esperimento sbagliato, in un vano di pietra, con la sensazione di essere ascoltati mentre lo si sbaglia. La misura non c'è.)**`,
     gold: -2,
@@ -4702,9 +4702,9 @@ Conta. Quaranta secondi. Poi otto metri, uno alla volta, con lei che dice il num
 
 Fuori, seduto sul basolato con la muta a mezzo busto, Gaetano guarda le proprie mani come si guarda un attrezzo che ha ceduto.
 
-> Gaetano: "Ho quarantadue anni."
+> Gaetano: "Non ce la faccio."
 
-> Claudia: "Hai quarantadue anni e sei salito. Sono due fatti diversi e ne conta uno."
+> Claudia: "Non ce la fai e sei salito. Sono due fatti diversi e ne conta uno."
 
 **(💪 TENUTA −2. 🫁 Fiato −3: quarantacinque secondi appesi a otto metri si pagano. Ma il Quaderno registra la cosa giusta: *lei ha contato con lui.*)**`,
     gold: -3,
@@ -7347,7 +7347,7 @@ Claudia dorme con una gamba fuori dal lenzuolo. E canta.
 
 Piano, con la bocca chiusa, sul filo del respiro: tre note e una pausa, tre note e una pausa. Le stesse di stanotte. Le stesse di ieri notte.
 
-Gaetano è sveglio da ventidue minuti e non si è mosso di un centimetro, perché sta facendo una cosa che non ha mai fatto in quarantadue anni: sta controllando se il proprio corpo ha ancora ieri addosso.
+Gaetano è sveglio da ventidue minuti e non si è mosso di un centimetro, perché sta facendo una cosa che non ha mai fatto in trent'anni: sta controllando se il proprio corpo ha ancora ieri addosso.
 
 Non ce l'ha. Niente sale nelle orecchie, niente bruciore agli occhi, le ginocchia intatte. I vestiti sono piegati sulla sedia come li piega lei, con la piega delle maniche in dentro.
 
@@ -7435,7 +7435,7 @@ Claudia resta con la maglietta a mezz'aria, perché quella frase, in questa came
 
 Claudia prende il telefono. Non dice bravo e non dice grazie: fa una cosa più piccola e più grossa, cioè preme play senza chiedere il permesso, che è quello che si fa con le cose che sono di tutti e due.
 
-Ventidue secondi di telefono appoggiato sul comodino. C'è il ventilatore, c'è una cicala, e c'è una donna di quarant'anni che dorme e canta in napoletano, con la voce che le viene fuori un tono sotto il suo, la stessa strofa in circolo.
+Ventidue secondi di telefono appoggiato sul comodino. C'è il ventilatore, c'è una cicala, e c'è una donna di ventisette anni che dorme e canta in napoletano, con la voce che le viene fuori un tono sotto il suo, la stessa strofa in circolo.
 
 Claudia ascolta tutto. Poi si siede sul bordo del letto con il telefono in mano.
 
@@ -11513,12 +11513,12 @@ const DIARY_FLAGS = [
   ['avviso_peppe',           'Il secondo avvertimento esplicito, detto da un uomo che sta perdendo la voglia di essere educato: da questa storia si esce, se si esce adesso.'],
   ['claudia_sonnambula',     'Claudia canta nel sonno cinque strofe di una ninnananna che non ha mai imparato, in una lingua che non parla. Al mattino non se ne ricorda, e questo è il pezzo peggiore.'],
   ['claudia_nominata',       'Il Coro ha detto il nome di Claudia prima che Claudia lo dicesse a qualcuno. Non l\'ha letto da nessuna parte: lo sa.'],
-  ['gaetano_ha_capito',      'Alle otto e mezza del mattino, su una terrazza, un uomo di quarantadue anni ha capito una cosa che stava evitando da due giorni — e non c\'è nessun oggetto, nessun flag e nessuna ricompensa: solo lui che l\'ha capita.'],
+  ['gaetano_ha_capito',      'Alle otto e mezza del mattino, su una terrazza, un uomo di trent\'anni ha capito una cosa che stava evitando da due giorni — e non c\'è nessun oggetto, nessun flag e nessuna ricompensa: solo lui che l\'ha capita.'],
   ['idrofono_provato',       'L\'idrofono costruito col nastro isolante regge la pressione e restituisce il segnale. Da adesso, quando questa storia dice che laggiù c\'è qualcosa, avete un modo di dimostrarlo.'],
   ['ninna_imparata',         'La ninnananna è stata imparata dalla fonte, non da un libro. Chi l\'ha imparata così la sa cantare — e in questo gioco cantarla è una cosa che si può fare.'],
   ['claudia_sa_la_ninna',    'La prima strofa, due versi, e il secondo l\'ha finito Claudia senza saperlo. Nessuno gliel\'aveva insegnata.'],
   ['cinque_strofe_scritte',  'Cinque strofe trascritte alle tre di notte da una che dormiva, da uno che non dormiva. Il patto dei trenta secondi ha funzionato la prima volta che serviva.'],
-  ['claudia_creduta',        'In una piazza, alla luce, davanti a gente, a Claudia è stato dato ragione dopo ventotto anni. Non è un potenziamento simbolico: si vede nella scheda.'],
+  ['claudia_creduta',        'In una piazza, alla luce, davanti a gente, a Claudia è stato dato ragione dopo ventun anni. Non è un potenziamento simbolico: si vede nella scheda.'],
   ['promessa_non_rispondere','La regola è stata ripetuta a voce, due volte, da due persone diverse, e il gioco la registra: non si risponde.'],
   ['ada_racconta',           'Il muro del 1957 sta dietro l\'orto dei Coraggio. Lo ha detto Ada, in cucina, alle otto e quaranta, e ha aggiunto una frase che tornerà.'],
 
