@@ -4643,17 +4643,41 @@ const Scenes = (() => {
           ctx.fillStyle = '#5a6670'; ctx.fillRect(apL, b, apR - apL, 2);       // lo spigolo, in luce
           ctx.fillStyle = '#12181e'; ctx.fillRect(apL, b + 2, apR - apL, 2);
         }
-        // LE PINNE, in piedi contro la parete: due lame lunghe, e il calzante scuro sotto
+        /* LE DUE MASCHERE IDENTICHE, al posto delle pinne. Le pinne le ho provate
+           due volte — lame da 15 px col calzante scuro sotto (leggevano come due
+           STIVALI) e poi lame da 26 con i longheroni (leggevano come due TENDE) —
+           e la regola dice che alla terza non si ritocca: si cambia oggetto.
+           Una maschera, a questa scala, e' inconfondibile: un ovale di vetro
+           chiaro dentro un bordo scuro, con la fascia che pende. E soprattutto
+           SONO LORO l'oggetto di questa storia — «due maschere identiche,
+           comprate a marzo», che e' il regalo anticipato e il motivo del viaggio,
+           e che a fine gioco tornano in due finali diversi. Vederle nel
+           portellone il primo giorno, prima che il giocatore sappia cosa sono,
+           e' la cosa migliore che quel vano possa contenere. */
         {
-          const px2 = apL + 9, base = apB(px2) - 5, alt = 64;
-          for (const dx of [0, 19]) {
-            ctx.fillStyle = 'rgba(4,6,9,.66)'; ctx.fillRect(px2 + dx - 1, base - 1, 17, 4);
-            for (let y = 0; y < alt; y++) {
-              const t2 = y / alt, restr = Math.round(Math.pow(t2, 2.4) * 3);
-              ctx.fillStyle = y > alt - 17 ? '#16242b' : mix('#2f5d6b', '#244854', t2);
-              ctx.fillRect(px2 + dx + restr, base - alt + y, 15 - restr * 2, 1);
-            }
-            ctx.fillStyle = 'rgba(120,180,198,.34)'; ctx.fillRect(px2 + dx + 2, base - alt + 2, 2, alt - 20);
+          const base = apB(apL + 30) - 6;
+          for (const [dx, dy, sc] of [[6, 0, 1.0], [34, -3, 0.92]]) {
+            const cx2 = apL + 14 + dx, cy2 = base - Math.round(16 * sc) + dy;
+            ctx.fillStyle = 'rgba(4,6,9,.62)';
+            ctx.fillRect(cx2 - Math.round(15 * sc), base - 2, Math.round(30 * sc), 4);
+            // il facciale di silicone
+            ctx.fillStyle = '#141b22';
+            pixelEllipse(ctx, cx2, cy2, Math.round(15 * sc), Math.round(11 * sc), 2);
+            ctx.fillStyle = '#232d36';
+            pixelEllipse(ctx, cx2, cy2 - 1, Math.round(13 * sc), Math.round(9 * sc), 2);
+            // il vetro, chiaro, che e' la cosa che la fa riconoscere
+            ctx.fillStyle = '#7f9db0';
+            pixelEllipse(ctx, cx2, cy2 - 1, Math.round(10 * sc), Math.round(6 * sc), 2);
+            ctx.fillStyle = '#b6cfdd';
+            ctx.fillRect(cx2 - Math.round(8 * sc), cy2 - Math.round(5 * sc), Math.round(6 * sc), 2);
+            // il setto nasale in mezzo, e la conca del naso sotto
+            ctx.fillStyle = '#141b22'; ctx.fillRect(cx2 - 1, cy2 - Math.round(6 * sc), 3, Math.round(12 * sc));
+            ctx.fillStyle = '#1a232b';
+            ctx.fillRect(cx2 - Math.round(6 * sc), cy2 + Math.round(5 * sc), Math.round(12 * sc), Math.round(5 * sc));
+            // la fascia, che pende dietro
+            ctx.fillStyle = '#0f161c';
+            ctx.fillRect(cx2 + Math.round(13 * sc), cy2 - Math.round(4 * sc), Math.round(5 * sc), Math.round(16 * sc));
+            ctx.fillRect(cx2 - Math.round(18 * sc), cy2 - Math.round(2 * sc), Math.round(5 * sc), Math.round(13 * sc));
           }
         }
         // IL BORSONE, quello che invece e' stato caricato: manici, cerniera, un fianco in luce
