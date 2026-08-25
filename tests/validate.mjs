@@ -637,6 +637,24 @@ if (!stingerMorti) { ok(); console.log(`  ✔ ${conStinger} scene con stinger, t
 section('Flag di imprese, cronache e diario (nessun flag morto)');
 
 const epiSrc = readFileSync(join(root, 'js/epilogues.js'), 'utf8');
+
+/* OGNI FILE js/ DEVE ANCHE PARSARE. Il validatore leggeva epilogues.js come TESTO
+   — regex sui flag, regex sulle icone — e dava verde su un file che il browser non
+   riesce a caricare: un apostrofo non sfuggito dentro una stringa fra apici
+   singoli (`trent'anni`) l'aveva rotto, e i 55 controlli erano tutti verdi mentre
+   il gioco, aperto, non partiva. Un controllo che legge un sorgente come testo non
+   sta controllando un programma: sta controllando un documento. */
+section('Ogni file js/ si carica davvero (non solo "sembra giusto")');
+{
+  const daCaricare = readdirSync(join(root, 'js')).filter(f => f.endsWith('.js'));
+  let rotti = 0;
+  for (const f of daCaricare) {
+    const src = readFileSync(join(root, 'js', f), 'utf8');
+    try { new vm.Script(src, { filename: f }); }
+    catch (e) { fail(`js/${f} NON si carica: ${e.message.split('\n')[0]}`); rotti++; }
+  }
+  if (!rotti) ok(`${daCaricare.length} file js/ compilano senza errori di sintassi`);
+}
 const campSrc = readFileSync(join(root, 'js/campaign.js'), 'utf8');
 const setsBlocks = [...campSrc.matchAll(/sets:\s*{([^}]*)}/g)].map(m => m[1]).join(' ');
 const settableFlags = new Set([...setsBlocks.matchAll(/([a-z_0-9]+)\s*:/g)].map(m => m[1]));
