@@ -25,7 +25,7 @@ Claudia dorme con una gamba fuori dal lenzuolo. E canta.
 
 Piano, con la bocca chiusa, sul filo del respiro: tre note e una pausa, tre note e una pausa. Le stesse di stanotte. Le stesse di ieri notte.
 
-Gaetano è sveglio da ventidue minuti e non si è mosso di un centimetro, perché sta facendo una cosa che non ha mai fatto in quarantun anni: sta controllando se il proprio corpo ha ancora ieri addosso.
+Gaetano è sveglio da ventidue minuti e non si è mosso di un centimetro, perché sta facendo una cosa che non ha mai fatto in quarantadue anni: sta controllando se il proprio corpo ha ancora ieri addosso.
 
 Non ce l'ha. Niente sale nelle orecchie, niente bruciore agli occhi, le ginocchia intatte. I vestiti sono piegati sulla sedia come li piega lei, con la piega delle maniche in dentro.
 
@@ -101,23 +101,17 @@ E per un'ora e mezza è vero, e per un'ora e mezza è la vacanza più bella che 
     metri: 0,
     text: `Fare la sacca l'ultimo giorno è la cosa più triste che sa fare una vacanza: si piega la stessa maglietta che tre giorni fa era una promessa.
 
-Claudia infila il phon in fondo. Gaetano arrotola i cavi come li arrotola lui, in otto, con l'elastico. E mentre arrotola, senza guardarla, le fa la domanda che si è preparato mentre lei dormiva.
+Claudia infila il phon in fondo. Gaetano arrotola i cavi come li arrotola lui, in otto, con l'elastico. Poi smette a metà giro, perché la cosa che si è preparato mentre lei dormiva ha una scadenza, e la scadenza è di trenta secondi.
 
-> Gaetano: "Sai che canti?"
+> Gaetano: "Trenta secondi."
 
-> Claudia: "Come."
+Claudia resta con la maglietta a mezz'aria, perché quella frase, in questa camera, vuol dire una cosa sola.
 
-> Gaetano: "Nel sonno. Da due notti." *(un giro di cavo)* "Sempre la stessa. Sempre le stesse tre note e la pausa."
+> Claudia: "Dimmi."
 
-Claudia resta con la maglietta a mezz'aria.
+> Gaetano: "Canti nel sonno. Da due notti. Sempre la stessa, sempre le stesse tre note e la pausa." *(e appoggia il telefono sul letto accanto a lei, sbloccato, col file già aperto)* "L'ho registrata stanotte alle quattro e dieci. Ho pensato di svegliarti e non l'ho fatto, e ti dico pure questo perché sta dentro i trenta secondi."
 
-> Claudia: "Fammela sentire."
-
-> Gaetano: "Non l'ho registrata."
-
-> Claudia: *(e lo guarda, e lo conosce da dieci anni)* "Gaetano."
-
-> Gaetano: *(e cede subito, perché con lei ha smesso di provarci)* "L'ho registrata."
+Claudia prende il telefono. Non dice bravo e non dice grazie: fa una cosa più piccola e più grossa, cioè preme play senza chiedere il permesso, che è quello che si fa con le cose che sono di tutti e due.
 
 Ventidue secondi di telefono appoggiato sul comodino. C'è il ventilatore, c'è una cicala, e c'è una donna di quarant'anni che dorme e canta in napoletano, con la voce che le viene fuori un tono sotto il suo, la stessa strofa in circolo.
 
@@ -129,8 +123,8 @@ Claudia ascolta tutto. Poi si siede sul bordo del letto con il telefono in mano.
 
 > Claudia: "Da lei. Me l'ha insegnata lei." *(e la voce non trema, e questa è la parte che fa più paura)* "Cinque strofe, Gaetà. Me ne ricordo cinque, e non le ho mai imparate da sveglia."
 
-**(Il Quaderno registra: Claudia canta nel sonno da due notti, e sa cinque strofe di una ninnananna che nessuno le ha insegnato. 🫁 Fiato +1: dirsi le cose, in questa storia, tiene in piedi la baracca.)**`,
-    gold: 1,
+**(Il Quaderno registra: Claudia canta nel sonno da due notti, e sa cinque strofe di una ninnananna che nessuno le ha insegnato. 🫁 Fiato +3: il patto dei trenta secondi ha retto anche quando era scomodo, ed è la prima volta che lui non ci ha nemmeno provato a girarci intorno.)**`,
+    gold: 3,
     sets: { d_canta_nel_sonno: true },
     choices: [
       { text: '🎧 Riascoltarla insieme, tutta, e provare a scrivere le parole', once: true, sets: { d_strofe_scritte: true }, gold: 1, next: 'd1_colazione' },
@@ -928,7 +922,7 @@ Claudia si è fermata a quattro metri dal muro. Gaetano un passo davanti a lei.
 
 La faccia no. La faccia è l'unica cosa che non ha finito di comporre, e non la finirà.
 
-> Giulia: "Ventidue anni avevo. Cinque su questa roccia. Poi Reggio, e la fame, e mio padre che dallo scoglio più bello dell'impero mi ha spostata in una stanza." *(e non urla mai)* "E voi siete venuti in **vacanza**."
+> Giulia: "Trentasette anni avevo, e cinque figli che non ho più visto. Cinque su questa roccia. Poi Reggio, e la fame, e mio padre che dallo scoglio più bello dell'impero mi ha spostata in una stanza." *(e non urla mai)* "E voi siete venuti in **vacanza**."
 
 > Claudia: "Sì."
 

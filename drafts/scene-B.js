@@ -115,7 +115,7 @@ Claudia ha la mano fredda ad agosto, alle nove del mattino, in cucina.
 
 "Lo so, amore. Ieri sei arrivata alla boa."
 
-E lei fa quella cosa che fa quando decide di non avere paura: tira su col naso una volta, forte, e alza il mento di due centimetri. Un movimento minuscolo. Gaetano lo conosce da undici anni e ogni volta che lo vede pensa la stessa cosa, cioè che con una così si andrebbe anche in guerra.
+E lei fa quella cosa che fa quando decide di non avere paura: tira su col naso una volta, forte, e alza il mento di due centimetri. Un movimento minuscolo. Gaetano lo conosce da dieci anni e ogni volta che lo vede pensa la stessa cosa, cioè che con una così si andrebbe anche in guerra.
 
 "Andiamo a vedere queste cisterne."
 
@@ -896,7 +896,7 @@ I vecchi calano una carta. Uno dice "e mo' vedi".
     stinger: 'heal',
     sets: { claudia_creduta: true },
     choices: [
-      { text: '🫂 "E scusa se ci ho messo undici anni a crederci."', once: true, heal: 3, next: 'b5_scusa' },
+      { text: '🫂 "E scusa se ci ho messo dieci anni a crederci."', once: true, heal: 3, next: 'b5_scusa' },
       { text: '🗿 Villa Giulia. C\'è una pietra da leggere', next: 'b6' },
       { text: '🧱 Il muro dietro l\'orto dei Coraggio', requires: { flag: 'sa_muro_1957' }, next: 'b4' },
     ],
@@ -904,12 +904,16 @@ I vecchi calano una carta. Uno dice "e mo' vedi".
 
   b5_scusa: {
     location: 'porto',
-    caption: 'Piazza Castello — undici anni in una frase',
-    text: `"E scusa," dice Gaetano, "se ci ho messo undici anni a crederci."
+    caption: 'Piazza Castello — dieci anni in una frase',
+    text: `"E scusa," dice Gaetano, "se ci ho messo dieci anni a crederci."
 
-Claudia non fa la scena. Fa una cosa peggiore: **ci pensa**. Per tre secondi pensa a tutte le volte, nelle piscine, sulle barche, a Ponza, sul pedalò a Sperlonga, in cui lei aveva detto *non mi va* e lui aveva risposto *ma dai*.
+Claudia non fa la scena. Fa una cosa peggiore: **ci pensa**. Per tre secondi pensa a tutte le volte — le piscine, le barche, Ponza, il pedalò a Sperlonga — in cui lui l'ha tirata fuori di casa e lei si è fatta tirare; e a tutte le volte in cui lei ha detto *basta* e lui ha girato la barca subito, senza discutere, senza farle mai pesare niente.
 
-Poi dice: "Ci hai messo undici anni ma ci sei arrivato prima di mia madre, quindi vinci tu."
+E poi pensa alla cosa vera, che è un'altra e sta due centimetri più sotto: che in macchina, tornando, lui diceva sempre *secondo me è una cosa che passa*.
+
+> Claudia: "Non è che non mi hai mai ascoltata, Gaetà. Tu mi hai sempre riportata a riva." *(gira il bicchiere)* "È che pensavi che passasse. E una cosa che deve passare è una cosa che non ha un motivo."
+
+Poi dice: "Ci hai messo dieci anni ma ci sei arrivato prima di mia madre, quindi vinci tu."
 
 E ride. Ride male, con l'aranciata in bocca, e le va per il naso, e tossisce, e i due vecchi si girano, e uno dei due dice "signora, piano!", e Claudia con gli occhi che lacrimano e la voce da tosse dice "scusate", e Gaetano le batte la mano sulla schiena e ride anche lui.
 
@@ -976,17 +980,19 @@ E poi c'è la peschiera, che è la cosa che Gaetano ha letto tre volte prima di 
 
 > Claudia: "Coperte perché?"
 
-> Gaetano: "Perché al buio i pesci stanno più tranquilli e crescono meglio." *(pausa)* "E c'è un'altra cosa. Nella cisterna della villa avevano messo un dispositivo per **muovere** l'acqua."
+> Gaetano: *(che si è già tolto le scarpe ed è sceso nel bacino grande, dove l'acqua è alta un palmo)* "Al buio i pesci stanno più tranquilli. Vieni, che da sotto si capisce."
 
-> Claudia: "Muoverla."
+> Claudia: "Gaetano. Quello è un sito archeologico."
 
-> Gaetano: "Per ossigenarla. Acqua ferma va a male: si scalda, si chiude, muore. Loro l'hanno capito duemila anni prima di noi e hanno costruito un aggeggio perché in quella cisterna l'acqua non stesse mai ferma."
+> Gaetano: "È una vasca. Sono duemila anni che è una vasca." *(le tende la mano dal basso, e non la ritira)*
 
-Claudia si guarda intorno: la piattaforma, le vasche tagliate nel tufo, la peschiera con i canali murati dal tempo.
+Claudia scende. L'acqua le arriva alle caviglie ed è calda come una pozza dimenticata.
+
+> Gaetano: *(battendo il piede sul muretto sommerso in mezzo al bacino)* "Qua ci stavano le paratoie. Si apriva e si chiudeva." *(passa la mano dentro il canale, dove la roccia è liscia in un modo che la roccia non è)* "E qua l'acqua non stava mai ferma. Ci avevano messo un aggeggio per muoverla, perché l'acqua ferma si scalda, si chiude e muore. L'hanno capito duemila anni prima di noi."
 
 > Claudia: "E adesso?"
 
-> Gaetano: "Adesso è tutta ferma. Da qui si vede Santo Stefano intero, con il carcere in cima come un anello di pietra.
+> Gaetano: *(e si guarda la mano bagnata)* "Adesso è ferma. Da qui si vede Santo Stefano intero, con il carcere in cima come un anello di pietra.
 
 **(🫁 Fiato −1: mezzogiorno su una punta bianca, e le vasche tagliate nel tufo sono ferme da duemila anni.)**`,
     goldLoss: 1,
@@ -1132,7 +1138,7 @@ Poi guarda verso Santo Stefano, che da qui si vede tutto, con l'anello di pietra
   b6_ninfeo: {
     location: 'rovine',
     caption: 'Villa Giulia — il ninfeo, sul filo del precipizio',
-    text: `Il ninfeo della villa è una stanza scavata nella roccia sul bordo del salto, aperta sul mare da tre archi che non ci sono più. Duemila anni fa qui c'era acqua che cadeva da una parete, in ombra, con il fresco, e Giulia Minore ci passava le sere che le restavano.
+    text: `Il ninfeo della villa è una stanza scavata nella roccia sul bordo del salto, aperta sul mare da tre archi che non ci sono più. Duemila anni fa qui c'era acqua che cadeva da una parete, in ombra, con il fresco, e Giulia ci passava le sere che le restavano.
 
 Adesso è un cubo di roccia con l'*opus reticolatum* mangiato dal salino e con quaranta metri di niente sotto. Ci arrivi su un sentiero che negli ultimi tre metri richiede di mettere una mano.
 
@@ -2130,7 +2136,7 @@ Poi Claudia mette la forchetta giù e dice: "Amore. Il mezzo secondo."
 
 Gaetano non capisce per un secondo e mezzo. Poi capisce benissimo.
 
-"Ieri notte, sul terrazzo," dice lei. "Hai registrato una cosa. Poi ti sei toccato le orecchie tre volte in dieci minuti e non mi hai fatto sentire niente, e stamattina hai portato il telefono in bagno." Beve un sorso. "Gaetano. Io ti conosco da undici anni. **Cosa c'era nel mezzo secondo?**"
+"Ieri notte, sul terrazzo," dice lei. "Hai registrato una cosa. Poi ti sei toccato le orecchie tre volte in dieci minuti e non mi hai fatto sentire niente, e stamattina hai portato il telefono in bagno." Beve un sorso. "Gaetano. Io ti conosco da dieci anni. **Cosa c'era nel mezzo secondo?**"
 
 **(⚠️ Il momento è arrivato e il gioco non ve lo fa saltare. Le cose non dette, in questa storia, hanno gli interessi — e questi sono di ventisei ore.)**`,
     choices: [

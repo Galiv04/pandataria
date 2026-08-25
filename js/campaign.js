@@ -491,9 +491,19 @@ Il molo si stacca. Non è il traghetto che parte: è la banchina che va indietro
 
 **Due ore e un quarto di mare aperto. Il ponte di poppa, il sole ancora basso, e quel vento che ti asciuga il sudore prima che ti arrivi in fondo alla schiena.**
 
-Claudia sta appoggiata alla ringhiera con la faccia dentro il vento e gli occhi chiusi, e Gaetano la guarda fare questa cosa da dieci anni senza essersene ancora stancato. Quattro giorni. Ventotene. Un B&B con la terrazza che si chiama **Le Parracine** — che in dialetto, ha letto Gaetano su un forum, vuol dire i muretti a secco, quelli che sull'isola tengono su la terra e tengono fuori il vento.
+Claudia si è messa a sedere sulla panca all'ombra della cabina e ha chiuso gli occhi due minuti dopo l'ormeggio, come fa sempre. Gaetano torna dal bar del ponte con due birre alle nove e mezza del mattino, che è una cosa che si fa solo il primo giorno.
 
-> Gaetano: "Sai che le parracine le costruivano senza malta? Solo pietre incastrate. Reggono da secoli perché lasciano passare l'aria: se le fai piene, il vento le butta giù."
+> Gaetano: "Non addormentarti. Dietro c'è la scia e non la guarda nessuno."
+
+> Claudia: *(senza aprire gli occhi)* "Sto benissimo qui."
+
+> Gaetano: "Lo so. Alzati lo stesso."
+
+E si alza, perché con lui finisce sempre così: si alza, e poi è contenta di essersi alzata, e questo va avanti da dieci anni senza che nessuno dei due lo abbia mai messo a verbale.
+
+Adesso sta appoggiata alla ringhiera con la faccia dentro il vento e gli occhi chiusi lo stesso, e Gaetano la guarda fare questa cosa da dieci anni senza essersene ancora stancato. Quattro giorni. Ventotene. Un B&B con la terrazza che si chiama **Le Parracine** — che in dialetto, ha letto Gaetano su un forum, vuol dire i muretti a secco, quelli che sull'isola tengono su la terra e tengono fuori il vento.
+
+> Gaetano: "Comunque. Sai che le parracine le costruivano senza malta? Solo pietre incastrate. Reggono da secoli perché lasciano passare l'aria: se le fai piene, il vento le butta giù."
 
 > Claudia: *(senza aprire gli occhi)* "Amore. Sono in vacanza da due ore e mi hai già spiegato un muro."
 
@@ -925,6 +935,16 @@ Il sole scende. Il muretto a secco, sotto i piedi di Claudia, tiene su la terra 
     sets: { arrivati_parracine: true },
     choices: [
       { text: '🧳 Disfare le valigie (e vedere cosa c\'è, davvero, in questi borsoni)', once: true, next: 'a3_valigie' },
+      /* LA SCELTA CHE MANCAVA, ed e' quella che dice chi e' Gaetano. In 318 scene
+         non ce n'era UNA in cui proponesse un'escursione, un'immersione o uno
+         snorkeling per il gusto di farlo: tutte le sue iniziative erano al
+         servizio di un'indagine — costruire l'idrofono, aprire il muro, calare
+         il microfono. Il gioco lo sfiorava tre volte e ogni volta si tirava
+         indietro: le due maschere comprate a marzo stanno FUORI SCENA, dentro
+         uno scontrino; «quello che si fa l'ultimo giorno» e' una riga sola; e a
+         Cala Rossano lui la SEGUE, perche' la proposta e' di lei.
+         Cosi' il giocatore non vede mai Gaetano fare la cosa che gli piace. */
+      { text: '🥾 "Alzati che ti porto in un posto." (Gaetano ha aperto la mappa e non sta piu\' cercando la farmacia)', once: true, next: 'a3_costone' },
       { text: '🏖 Al mare, subito: c\'è ancora un\'ora di sole a Cala Nave', next: 'a4' },
       { text: '☕ Chiedere ad Ada un caffè, tanto per parlare un po\'', once: true, next: 'a3_ada' },
       { text: '📷 Sulla scaletta del giardino sale qualcuno con le pinne in mano', once: true, next: 'a3_lilia' },
@@ -1862,6 +1882,53 @@ E sotto, con un'altra penna, aggiunto stasera:
       { text: '☀️ Venerdì 28 agosto: le cisterne', next: 'b0' },
     ],
   },
+  /* ==========================================================================
+     A3_COSTONE — la scena in cui non si trova NIENTE, e serve proprio per quello.
+     Il valore di questa scena e' che non frutta: nessun indizio, nessun oggetto,
+     nessun flag di mistero. Dimostra chi e' Gaetano — quello che ti tira fuori —
+     e il gioco non gliela concedeva mai, perche' ogni sua iniziativa doveva
+     rendere qualcosa. Un uomo che ti trascina fuori solo quando c'e' da scoprire
+     una cosa non e' avventuroso: e' un investigatore.
+     ========================================================================== */
+  a3_costone: {
+    location: 'cala',
+    caption: 'Il costone, ore 18:05 — venticinque minuti a piedi, dice lui',
+    text: `Gaetano ha aperto la mappa del telefono per cercare la farmacia e non sta più cercando la farmacia.
+
+> Gaetano: "Alzati che ti porto in un posto."
+
+> Claudia: "Quale posto."
+
+> Gaetano: "Non lo so. Sta sulla mappa e non ha il nome." *(ha già le pinne nella sacca e le scarpe ai piedi, e le scarpe ai piedi vogliono dire che ha deciso venti minuti fa)* "Venticinque minuti a piedi lungo il costone. Se fa schifo torniamo."
+
+E quello è tutto il piano, ed è sempre stato tutto il piano, da dieci anni.
+
+Il sentiero è mezzo metro di terra battuta fra i capperi, con gli agavi che ti prendono la spalla se non stai attento e una rete arancione che non chiude niente. Ci mettono trentacinque minuti, non venticinque, e Claudia glielo fa notare due volte.
+
+In fondo c'è una caletta di ghiaia grossa larga sei metri, senza un ombrellone, senza una cartaccia, senza una persona. L'acqua è alta un metro e mezzo e si vede il fondo con i sassi uno per uno.
+
+Non c'è niente da scoprire. Ci stanno due bavose che si contendono un buco, una bottiglia di plastica incastrata fra gli scogli che Gaetano tira fuori e si mette nella sacca, e il sole che se ne va alle sette e venti.
+
+> Claudia: *(con l'acqua alle ginocchia, e non ha ancora messo la maschera)* "Come lo sapevi che c'era?"
+
+> Gaetano: "Non lo sapevo."
+
+> Claudia: "E se non c'era niente?"
+
+> Gaetano: *(che si sta sputando nel vetro della maschera)* "E infatti non c'è niente."
+
+**(💪 TENUTA +4, 🫁 Fiato +2. Nessun indizio, nessun oggetto, nessuna nota: un'ora e mezza buttata via a piedi per una caletta senza nome. È l'unica cosa che avete fatto oggi per il solo motivo di farla, e il gioco la conta, perché è così che si guadagna l'aria.)**`,
+    fullHeal: true,
+    gold: 2,
+    stinger: 'heal',
+    sets: { caletta_senza_nome: true },
+    choices: [
+      { text: '🤿 Restare finché il sole non se ne va. Le bavose non si spostano', once: true, gold: 2, next: 'a4' },
+      { text: '🏖 Tornare e andare a Cala Nave, che è un\'altra cosa e va vista', next: 'a4' },
+      { text: '🏠 Su alle Parracine. Doccia, e stasera si mangia in paese', next: 'a6' },
+    ],
+  },
+
 };
 
 /* ============ ATTO B — venerdì 28 agosto: LE CISTERNE ============
@@ -1981,7 +2048,7 @@ Claudia ha la mano fredda ad agosto, alle nove del mattino, in cucina.
 
 "Lo so, amore. Ieri sei arrivata alla boa."
 
-E lei fa quella cosa che fa quando decide di non avere paura: tira su col naso una volta, forte, e alza il mento di due centimetri. Un movimento minuscolo. Gaetano lo conosce da undici anni e ogni volta che lo vede pensa la stessa cosa, cioè che con una così si andrebbe anche in guerra.
+E lei fa quella cosa che fa quando decide di non avere paura: tira su col naso una volta, forte, e alza il mento di due centimetri. Un movimento minuscolo. Gaetano lo conosce da dieci anni e ogni volta che lo vede pensa la stessa cosa, cioè che con una così si andrebbe anche in guerra.
 
 "Andiamo a vedere queste cisterne."
 
@@ -2762,7 +2829,7 @@ I vecchi calano una carta. Uno dice "e mo' vedi".
     stinger: 'heal',
     sets: { claudia_creduta: true },
     choices: [
-      { text: '🫂 "E scusa se ci ho messo undici anni a crederci."', once: true, heal: 3, next: 'b5_scusa' },
+      { text: '🫂 "E scusa se ci ho messo dieci anni a crederci."', once: true, heal: 3, next: 'b5_scusa' },
       { text: '🗿 Villa Giulia. C\'è una pietra da leggere', next: 'b6' },
       { text: '🧱 Il muro dietro l\'orto dei Coraggio', requires: { flag: 'sa_muro_1957' }, next: 'b4' },
     ],
@@ -2770,12 +2837,16 @@ I vecchi calano una carta. Uno dice "e mo' vedi".
 
   b5_scusa: {
     location: 'porto',
-    caption: 'Piazza Castello — undici anni in una frase',
-    text: `"E scusa," dice Gaetano, "se ci ho messo undici anni a crederci."
+    caption: 'Piazza Castello — dieci anni in una frase',
+    text: `"E scusa," dice Gaetano, "se ci ho messo dieci anni a crederci."
 
-Claudia non fa la scena. Fa una cosa peggiore: **ci pensa**. Per tre secondi pensa a tutte le volte, nelle piscine, sulle barche, a Ponza, sul pedalò a Sperlonga, in cui lei aveva detto *non mi va* e lui aveva risposto *ma dai*.
+Claudia non fa la scena. Fa una cosa peggiore: **ci pensa**. Per tre secondi pensa a tutte le volte — le piscine, le barche, Ponza, il pedalò a Sperlonga — in cui lui l'ha tirata fuori di casa e lei si è fatta tirare; e a tutte le volte in cui lei ha detto *basta* e lui ha girato la barca subito, senza discutere, senza farle mai pesare niente.
 
-Poi dice: "Ci hai messo undici anni ma ci sei arrivato prima di mia madre, quindi vinci tu."
+E poi pensa alla cosa vera, che è un'altra e sta due centimetri più sotto: che in macchina, tornando, lui diceva sempre *secondo me è una cosa che passa*.
+
+> Claudia: "Non è che non mi hai mai ascoltata, Gaetà. Tu mi hai sempre riportata a riva." *(gira il bicchiere)* "È che pensavi che passasse. E una cosa che deve passare è una cosa che non ha un motivo."
+
+Poi dice: "Ci hai messo dieci anni ma ci sei arrivato prima di mia madre, quindi vinci tu."
 
 E ride. Ride male, con l'aranciata in bocca, e le va per il naso, e tossisce, e i due vecchi si girano, e uno dei due dice "signora, piano!", e Claudia con gli occhi che lacrimano e la voce da tosse dice "scusate", e Gaetano le batte la mano sulla schiena e ride anche lui.
 
@@ -2842,17 +2913,19 @@ E poi c'è la peschiera, che è la cosa che Gaetano ha letto tre volte prima di 
 
 > Claudia: "Coperte perché?"
 
-> Gaetano: "Perché al buio i pesci stanno più tranquilli e crescono meglio." *(pausa)* "E c'è un'altra cosa. Nella cisterna della villa avevano messo un dispositivo per **muovere** l'acqua."
+> Gaetano: *(che si è già tolto le scarpe ed è sceso nel bacino grande, dove l'acqua è alta un palmo)* "Al buio i pesci stanno più tranquilli. Vieni, che da sotto si capisce."
 
-> Claudia: "Muoverla."
+> Claudia: "Gaetano. Quello è un sito archeologico."
 
-> Gaetano: "Per ossigenarla. Acqua ferma va a male: si scalda, si chiude, muore. Loro l'hanno capito duemila anni prima di noi e hanno costruito un aggeggio perché in quella cisterna l'acqua non stesse mai ferma."
+> Gaetano: "È una vasca. Sono duemila anni che è una vasca." *(le tende la mano dal basso, e non la ritira)*
 
-Claudia si guarda intorno: la piattaforma, le vasche tagliate nel tufo, la peschiera con i canali murati dal tempo.
+Claudia scende. L'acqua le arriva alle caviglie ed è calda come una pozza dimenticata.
+
+> Gaetano: *(battendo il piede sul muretto sommerso in mezzo al bacino)* "Qua ci stavano le paratoie. Si apriva e si chiudeva." *(passa la mano dentro il canale, dove la roccia è liscia in un modo che la roccia non è)* "E qua l'acqua non stava mai ferma. Ci avevano messo un aggeggio per muoverla, perché l'acqua ferma si scalda, si chiude e muore. L'hanno capito duemila anni prima di noi."
 
 > Claudia: "E adesso?"
 
-> Gaetano: "Adesso è tutta ferma. Da qui si vede Santo Stefano intero, con il carcere in cima come un anello di pietra.
+> Gaetano: *(e si guarda la mano bagnata)* "Adesso è ferma. Da qui si vede Santo Stefano intero, con il carcere in cima come un anello di pietra.
 
 **(🫁 Fiato −1: mezzogiorno su una punta bianca, e le vasche tagliate nel tufo sono ferme da duemila anni.)**`,
     goldLoss: 1,
@@ -2998,7 +3071,7 @@ Poi guarda verso Santo Stefano, che da qui si vede tutto, con l'anello di pietra
   b6_ninfeo: {
     location: 'rovine',
     caption: 'Villa Giulia — il ninfeo, sul filo del precipizio',
-    text: `Il ninfeo della villa è una stanza scavata nella roccia sul bordo del salto, aperta sul mare da tre archi che non ci sono più. Duemila anni fa qui c'era acqua che cadeva da una parete, in ombra, con il fresco, e Giulia Minore ci passava le sere che le restavano.
+    text: `Il ninfeo della villa è una stanza scavata nella roccia sul bordo del salto, aperta sul mare da tre archi che non ci sono più. Duemila anni fa qui c'era acqua che cadeva da una parete, in ombra, con il fresco, e Giulia ci passava le sere che le restavano.
 
 Adesso è un cubo di roccia con l'*opus reticolatum* mangiato dal salino e con quaranta metri di niente sotto. Ci arrivi su un sentiero che negli ultimi tre metri richiede di mettere una mano.
 
@@ -3996,7 +4069,7 @@ Poi Claudia mette la forchetta giù e dice: "Amore. Il mezzo secondo."
 
 Gaetano non capisce per un secondo e mezzo. Poi capisce benissimo.
 
-"Ieri notte, sul terrazzo," dice lei. "Hai registrato una cosa. Poi ti sei toccato le orecchie tre volte in dieci minuti e non mi hai fatto sentire niente, e stamattina hai portato il telefono in bagno." Beve un sorso. "Gaetano. Io ti conosco da undici anni. **Cosa c'era nel mezzo secondo?**"
+"Ieri notte, sul terrazzo," dice lei. "Hai registrato una cosa. Poi ti sei toccato le orecchie tre volte in dieci minuti e non mi hai fatto sentire niente, e stamattina hai portato il telefono in bagno." Beve un sorso. "Gaetano. Io ti conosco da dieci anni. **Cosa c'era nel mezzo secondo?**"
 
 **(⚠️ Il momento è arrivato e il gioco non ve lo fa saltare. Le cose non dette, in questa storia, hanno gli interessi — e questi sono di ventisei ore.)**`,
     choices: [
@@ -7274,7 +7347,7 @@ Claudia dorme con una gamba fuori dal lenzuolo. E canta.
 
 Piano, con la bocca chiusa, sul filo del respiro: tre note e una pausa, tre note e una pausa. Le stesse di stanotte. Le stesse di ieri notte.
 
-Gaetano è sveglio da ventidue minuti e non si è mosso di un centimetro, perché sta facendo una cosa che non ha mai fatto in quarantun anni: sta controllando se il proprio corpo ha ancora ieri addosso.
+Gaetano è sveglio da ventidue minuti e non si è mosso di un centimetro, perché sta facendo una cosa che non ha mai fatto in quarantadue anni: sta controllando se il proprio corpo ha ancora ieri addosso.
 
 Non ce l'ha. Niente sale nelle orecchie, niente bruciore agli occhi, le ginocchia intatte. I vestiti sono piegati sulla sedia come li piega lei, con la piega delle maniche in dentro.
 
@@ -7350,23 +7423,17 @@ E per un'ora e mezza è vero, e per un'ora e mezza è la vacanza più bella che 
     metri: 0,
     text: `Fare la sacca l'ultimo giorno è la cosa più triste che sa fare una vacanza: si piega la stessa maglietta che tre giorni fa era una promessa.
 
-Claudia infila il phon in fondo. Gaetano arrotola i cavi come li arrotola lui, in otto, con l'elastico. E mentre arrotola, senza guardarla, le fa la domanda che si è preparato mentre lei dormiva.
+Claudia infila il phon in fondo. Gaetano arrotola i cavi come li arrotola lui, in otto, con l'elastico. Poi smette a metà giro, perché la cosa che si è preparato mentre lei dormiva ha una scadenza, e la scadenza è di trenta secondi.
 
-> Gaetano: "Sai che canti?"
+> Gaetano: "Trenta secondi."
 
-> Claudia: "Come."
+Claudia resta con la maglietta a mezz'aria, perché quella frase, in questa camera, vuol dire una cosa sola.
 
-> Gaetano: "Nel sonno. Da due notti." *(un giro di cavo)* "Sempre la stessa. Sempre le stesse tre note e la pausa."
+> Claudia: "Dimmi."
 
-Claudia resta con la maglietta a mezz'aria.
+> Gaetano: "Canti nel sonno. Da due notti. Sempre la stessa, sempre le stesse tre note e la pausa." *(e appoggia il telefono sul letto accanto a lei, sbloccato, col file già aperto)* "L'ho registrata stanotte alle quattro e dieci. Ho pensato di svegliarti e non l'ho fatto, e ti dico pure questo perché sta dentro i trenta secondi."
 
-> Claudia: "Fammela sentire."
-
-> Gaetano: "Non l'ho registrata."
-
-> Claudia: *(e lo guarda, e lo conosce da dieci anni)* "Gaetano."
-
-> Gaetano: *(e cede subito, perché con lei ha smesso di provarci)* "L'ho registrata."
+Claudia prende il telefono. Non dice bravo e non dice grazie: fa una cosa più piccola e più grossa, cioè preme play senza chiedere il permesso, che è quello che si fa con le cose che sono di tutti e due.
 
 Ventidue secondi di telefono appoggiato sul comodino. C'è il ventilatore, c'è una cicala, e c'è una donna di quarant'anni che dorme e canta in napoletano, con la voce che le viene fuori un tono sotto il suo, la stessa strofa in circolo.
 
@@ -7378,8 +7445,8 @@ Claudia ascolta tutto. Poi si siede sul bordo del letto con il telefono in mano.
 
 > Claudia: "Da lei. Me l'ha insegnata lei." *(e la voce non trema, e questa è la parte che fa più paura)* "Cinque strofe, Gaetà. Me ne ricordo cinque, e non le ho mai imparate da sveglia."
 
-**(Il Quaderno registra: Claudia canta nel sonno da due notti, e sa cinque strofe di una ninnananna che nessuno le ha insegnato. 🫁 Fiato +1: dirsi le cose, in questa storia, tiene in piedi la baracca.)**`,
-    gold: 1,
+**(Il Quaderno registra: Claudia canta nel sonno da due notti, e sa cinque strofe di una ninnananna che nessuno le ha insegnato. 🫁 Fiato +3: il patto dei trenta secondi ha retto anche quando era scomodo, ed è la prima volta che lui non ci ha nemmeno provato a girarci intorno.)**`,
+    gold: 3,
     sets: { d_canta_nel_sonno: true },
     choices: [
       { text: '🎧 Riascoltarla insieme, tutta, e provare a scrivere le parole', once: true, sets: { d_strofe_scritte: true }, gold: 1, next: 'd1_colazione' },
@@ -8177,7 +8244,7 @@ Claudia si è fermata a quattro metri dal muro. Gaetano un passo davanti a lei.
 
 La faccia no. La faccia è l'unica cosa che non ha finito di comporre, e non la finirà.
 
-> Giulia: "Ventidue anni avevo. Cinque su questa roccia. Poi Reggio, e la fame, e mio padre che dallo scoglio più bello dell'impero mi ha spostata in una stanza." *(e non urla mai)* "E voi siete venuti in **vacanza**."
+> Giulia: "Trentasette anni avevo, e cinque figli che non ho più visto. Cinque su questa roccia. Poi Reggio, e la fame, e mio padre che dallo scoglio più bello dell'impero mi ha spostata in una stanza." *(e non urla mai)* "E voi siete venuti in **vacanza**."
 
 > Claudia: "Sì."
 
@@ -10987,7 +11054,7 @@ Chi resta sta in piedi sul molo con le mani lungo i fianchi e non fa il saluto c
 
 Dura sette minuti. Poi la nave è un rettangolo bianco. Poi un punto. Poi il punto è il posto dove ti ricordi che era.
 
-Quando è finita non torna al paese: sale a **Punta Eolo**, venti minuti di strada coi capperi nei muretti e le cicale che a quest'ora vanno giù di colpi. Si siede sui mattoni romani di Villa Giulia, dove una ragazza di ventidue anni ha guardato questo stesso pezzo di mare per venti anni, dopo che le avevano ammazzato il figlio appena nato.
+Quando è finita non torna al paese: sale a **Punta Eolo**, venti minuti di strada coi capperi nei muretti e le cicale che a quest'ora vanno giù di colpi. Si siede sui mattoni romani di Villa Giulia, dove una donna di trentasette anni ha guardato questo stesso pezzo di mare per cinque anni, con sua madre accanto, dopo che le avevano portato via cinque figli.
 
 Alle **19:47** il sole tocca l'acqua. Da terra è un'altra cosa: il tramonto non ti scappa, ti sta davanti fermo, e il colore arriva addosso all'isola invece che alle facce sul ponte. Il tufo diventa arancione, Santo Stefano diventa **rosa** per due minuti — rosa, quella cosa lì — e poi grigia, e poi buia.
 
@@ -11362,6 +11429,39 @@ const CHAPTERS = [
    (MISTERI, RECIPES, CHECKPOINT_FLAGS) e delle scene degli atti A-E.          */
 
 const DIARY_FLAGS = [
+
+  /* ---- IL 30 AGOSTO CHE NON FINISCE, e le altre promesse dell'atto B e C ----
+     Venticinque scene in piu' dicevano «il Quaderno registra X» e X non stava da
+     nessuna parte. Quasi tutte sono dell'atto D, cioe' del giorno che ricomincia:
+     ed e' proprio li' che il Diario conta di piu', perche' e' l'unica cosa che
+     non si riavvolge insieme al giorno. */
+
+  ['visto_muro',           'Dietro l\'orto dei Coraggio c\'è un muro del 1957, e nella malta c\'è una firma. Non e\' un muro di contenimento: e\' un tappo, e chi l\'ha fatto ha voluto lasciare il proprio nome sopra una cosa che stava chiudendo.'],
+  ['visto_stanza',         'La prima cisterna e\' una stanza di trenta metri per otto, volta a botte, col cocciopesto ancora integro dopo duemila anni. E\' piu\' grande della chiesa che ci sta sopra.'],
+  ['firmato_il_registro',  'Sul registro delle visite di Santo Stefano l\'ora d\'uscita e\' scritta IN ANTICIPO — 18:40 — e i conti tornano. Qualcuno sa a che ora ve ne andate prima che ve ne andiate.'],
+  ['silenzio_scelto',      'Nel fascicolo manca una pagina, strappata di netto. Non e\' andata persa: e\' stata tolta, e chi la toglie sa che qualcuno la cerchera\'.'],
+  ['ancora_usata',         'L\'Ancora di Voce e\' stata spesa, ha funzionato, ed era una sola. Da qui in avanti, se cadete, cadete.'],
+  ['ciclo1_fatto',         'Il 30 agosto e\' ricominciato da capo — e voi ve lo ricordate tutto. Questa e\' l\'unica cosa che il giorno non riesce a portarsi via.'],
+  ['ciro_racconta_marisa', 'Com\'e\' finita Marisa, raccontato da Ciro con due dita di rum in mano, sopra la fossa, il giorno stesso. Non e\' un racconto che si chiede: si aspetta.'],
+  ['d_acqua_alta',         'Si chiama LA CORDA, e non e\' una metafora: l\'acqua sale per una settimana o dieci giorni, e poi succede quello che succede. Ada lo sa perche\' l\'ha gia\' visto.'],
+  ['d_acqua_in_casa',      'La moka e\' ancora calda alle sette e dieci, e nessuno l\'ha messa su. Il giorno ricomincia, ma qualcosa dentro il giorno continua a fare le cose.'],
+  ['d_bottiglia',          'La bottiglia dell\'acqua sul tavolino e\' al livello di ieri notte alle due. Non e\' stata riempita: e\' TORNATA a quel livello, ed e\' la prima prova materiale che avete.'],
+  ['d_canta_nel_sonno',    'Claudia canta nel sonno da due notti, sempre la stessa strofa, tre note e la pausa. E ne sa cinque, e non le ha mai imparate da sveglia.'],
+  ['d_strofe_scritte',     'Le cinque strofe sono trascritte sul Quaderno, in italiano e in napoletano, con la data e l\'ora di ogni volta che sono state cantate.'],
+  ['d_chiamata_per_nome',  'Un minuto durato dodici minuti, a Cala Nave, e in quei dodici minuti una voce che non era di nessuno dei due ha chiamato Claudia per nome.'],
+  ['d_ora_ferma',          'Il tempo, su quest\'isola, non passa allo stesso modo dappertutto: c\'e\' un posto dove un minuto ne dura dodici, e quel posto e\' sopra l\'acqua.'],
+  ['d_chiesto_giorno',     'Alla domanda «signora, che giorno e\' oggi?» Ada risponde «domenica trenta» con la faccia di chi risponde a una cosa ovvia — e la risponde uguale ogni volta.'],
+  ['d_fagiolini',          'I fagiolini nel catino della signora sono sempre quelli, e sono sempre allo stesso punto: quelli fatti stanno da una parte, quelli da fare dall\'altra, nella stessa proporzione di tre giorni fa.'],
+  ['d_fagiolini_contati',  'Ventidue fagiolini giovedi\' e ventidue stamattina. Contati due volte, da due persone diverse, con lo stesso risultato.'],
+  ['d_esperimento_fatto',  'Non e\' il traghetto a riavvolgere il giorno: il giorno si riavvolge alle 18:40 comunque, che siate a bordo o no. Il confine non e\' un mezzo: e\' un\'ora.'],
+  ['d_traghetto_aperto',   'Il registro della Marisqueria si ferma sempre alla stessa riga, e la riga porta il nome di Marisa e la data del 1997.'],
+  ['porto_ascoltato',      'L\'idrofono calato nell\'acqua del porto restituisce quello che aspetta laggiu\', e non aspetta il traghetto.'],
+  ['idrofono_calato',      'Undici secondi di riverbero misurati con l\'idrofono nella cisterna dei Detenuti: due indizi in un colpo, l\'eco e la stanza che non c\'e\' sulla pianta.'],
+  ['la_voce_ha_chiesto',   'La voce ha fatto una domanda. Ascoltarla costa aria, e la domanda e\' peggio di qualunque minaccia perche\' e\' gentile.'],
+  ['nome_letto_da_ciro',   'Ciro ha letto il nome ad alta voce dalla lista, e leggerlo ad alta voce non e\' la stessa cosa che leggerlo.'],
+  ['sa_nome_assunta',      'La bambina che canta sotto quest\'isola si chiama ASSUNTINA. Il nome ve l\'ha dato una signora seduta a un tavolino, in un paese vuoto, mentre puliva i fagiolini.'],
+  ['signora_ha_parlato',   'Il CONFINE di quella cosa passa davanti alla bocca del porto, e la rampa del traghetto e\' oltre. Detto da chi lo sa, e senza che nessuno glielo chiedesse due volte.'],
+  ['caletta_senza_nome',   'C\'e\' una caletta di ghiaia grossa, larga sei metri, in fondo a un sentiero senza nome sul costone, dove non c\'e\' niente da vedere. Ci si e\' andati lo stesso, ed e\' stata la cosa migliore del primo giorno.'],
 
   /* ---- LE COSE CHE L'ISOLA VI HA INSEGNATO, e che il gioco non vi diceva ----
      Trentotto flag `sa_*` erano impostati da scene il cui testo dice, alla lettera,

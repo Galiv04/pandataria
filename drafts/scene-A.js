@@ -126,9 +126,19 @@ Il molo si stacca. Non è il traghetto che parte: è la banchina che va indietro
 
 **Due ore e un quarto di mare aperto. Il ponte di poppa, il sole ancora basso, e quel vento che ti asciuga il sudore prima che ti arrivi in fondo alla schiena.**
 
-Claudia sta appoggiata alla ringhiera con la faccia dentro il vento e gli occhi chiusi, e Gaetano la guarda fare questa cosa da dieci anni senza essersene ancora stancato. Quattro giorni. Ventotene. Un B&B con la terrazza che si chiama **Le Parracine** — che in dialetto, ha letto Gaetano su un forum, vuol dire i muretti a secco, quelli che sull'isola tengono su la terra e tengono fuori il vento.
+Claudia si è messa a sedere sulla panca all'ombra della cabina e ha chiuso gli occhi due minuti dopo l'ormeggio, come fa sempre. Gaetano torna dal bar del ponte con due birre alle nove e mezza del mattino, che è una cosa che si fa solo il primo giorno.
 
-> Gaetano: "Sai che le parracine le costruivano senza malta? Solo pietre incastrate. Reggono da secoli perché lasciano passare l'aria: se le fai piene, il vento le butta giù."
+> Gaetano: "Non addormentarti. Dietro c'è la scia e non la guarda nessuno."
+
+> Claudia: *(senza aprire gli occhi)* "Sto benissimo qui."
+
+> Gaetano: "Lo so. Alzati lo stesso."
+
+E si alza, perché con lui finisce sempre così: si alza, e poi è contenta di essersi alzata, e questo va avanti da dieci anni senza che nessuno dei due lo abbia mai messo a verbale.
+
+Adesso sta appoggiata alla ringhiera con la faccia dentro il vento e gli occhi chiusi lo stesso, e Gaetano la guarda fare questa cosa da dieci anni senza essersene ancora stancato. Quattro giorni. Ventotene. Un B&B con la terrazza che si chiama **Le Parracine** — che in dialetto, ha letto Gaetano su un forum, vuol dire i muretti a secco, quelli che sull'isola tengono su la terra e tengono fuori il vento.
+
+> Gaetano: "Comunque. Sai che le parracine le costruivano senza malta? Solo pietre incastrate. Reggono da secoli perché lasciano passare l'aria: se le fai piene, il vento le butta giù."
 
 > Claudia: *(senza aprire gli occhi)* "Amore. Sono in vacanza da due ore e mi hai già spiegato un muro."
 
@@ -560,6 +570,16 @@ Il sole scende. Il muretto a secco, sotto i piedi di Claudia, tiene su la terra 
     sets: { arrivati_parracine: true },
     choices: [
       { text: '🧳 Disfare le valigie (e vedere cosa c\'è, davvero, in questi borsoni)', once: true, next: 'a3_valigie' },
+      /* LA SCELTA CHE MANCAVA, ed e' quella che dice chi e' Gaetano. In 318 scene
+         non ce n'era UNA in cui proponesse un'escursione, un'immersione o uno
+         snorkeling per il gusto di farlo: tutte le sue iniziative erano al
+         servizio di un'indagine — costruire l'idrofono, aprire il muro, calare
+         il microfono. Il gioco lo sfiorava tre volte e ogni volta si tirava
+         indietro: le due maschere comprate a marzo stanno FUORI SCENA, dentro
+         uno scontrino; «quello che si fa l'ultimo giorno» e' una riga sola; e a
+         Cala Rossano lui la SEGUE, perche' la proposta e' di lei.
+         Cosi' il giocatore non vede mai Gaetano fare la cosa che gli piace. */
+      { text: '🥾 "Alzati che ti porto in un posto." (Gaetano ha aperto la mappa e non sta piu\' cercando la farmacia)', once: true, next: 'a3_costone' },
       { text: '🏖 Al mare, subito: c\'è ancora un\'ora di sole a Cala Nave', next: 'a4' },
       { text: '☕ Chiedere ad Ada un caffè, tanto per parlare un po\'', once: true, next: 'a3_ada' },
       { text: '📷 Sulla scaletta del giardino sale qualcuno con le pinne in mano', once: true, next: 'a3_lilia' },
@@ -1497,4 +1517,51 @@ E sotto, con un'altra penna, aggiunto stasera:
       { text: '☀️ Venerdì 28 agosto: le cisterne', next: 'b0' },
     ],
   },
+  /* ==========================================================================
+     A3_COSTONE — la scena in cui non si trova NIENTE, e serve proprio per quello.
+     Il valore di questa scena e' che non frutta: nessun indizio, nessun oggetto,
+     nessun flag di mistero. Dimostra chi e' Gaetano — quello che ti tira fuori —
+     e il gioco non gliela concedeva mai, perche' ogni sua iniziativa doveva
+     rendere qualcosa. Un uomo che ti trascina fuori solo quando c'e' da scoprire
+     una cosa non e' avventuroso: e' un investigatore.
+     ========================================================================== */
+  a3_costone: {
+    location: 'cala',
+    caption: 'Il costone, ore 18:05 — venticinque minuti a piedi, dice lui',
+    text: `Gaetano ha aperto la mappa del telefono per cercare la farmacia e non sta più cercando la farmacia.
+
+> Gaetano: "Alzati che ti porto in un posto."
+
+> Claudia: "Quale posto."
+
+> Gaetano: "Non lo so. Sta sulla mappa e non ha il nome." *(ha già le pinne nella sacca e le scarpe ai piedi, e le scarpe ai piedi vogliono dire che ha deciso venti minuti fa)* "Venticinque minuti a piedi lungo il costone. Se fa schifo torniamo."
+
+E quello è tutto il piano, ed è sempre stato tutto il piano, da dieci anni.
+
+Il sentiero è mezzo metro di terra battuta fra i capperi, con gli agavi che ti prendono la spalla se non stai attento e una rete arancione che non chiude niente. Ci mettono trentacinque minuti, non venticinque, e Claudia glielo fa notare due volte.
+
+In fondo c'è una caletta di ghiaia grossa larga sei metri, senza un ombrellone, senza una cartaccia, senza una persona. L'acqua è alta un metro e mezzo e si vede il fondo con i sassi uno per uno.
+
+Non c'è niente da scoprire. Ci stanno due bavose che si contendono un buco, una bottiglia di plastica incastrata fra gli scogli che Gaetano tira fuori e si mette nella sacca, e il sole che se ne va alle sette e venti.
+
+> Claudia: *(con l'acqua alle ginocchia, e non ha ancora messo la maschera)* "Come lo sapevi che c'era?"
+
+> Gaetano: "Non lo sapevo."
+
+> Claudia: "E se non c'era niente?"
+
+> Gaetano: *(che si sta sputando nel vetro della maschera)* "E infatti non c'è niente."
+
+**(💪 TENUTA +4, 🫁 Fiato +2. Nessun indizio, nessun oggetto, nessuna nota: un'ora e mezza buttata via a piedi per una caletta senza nome. È l'unica cosa che avete fatto oggi per il solo motivo di farla, e il gioco la conta, perché è così che si guadagna l'aria.)**`,
+    fullHeal: true,
+    gold: 2,
+    stinger: 'heal',
+    sets: { caletta_senza_nome: true },
+    choices: [
+      { text: '🤿 Restare finché il sole non se ne va. Le bavose non si spostano', once: true, gold: 2, next: 'a4' },
+      { text: '🏖 Tornare e andare a Cala Nave, che è un\'altra cosa e va vista', next: 'a4' },
+      { text: '🏠 Su alle Parracine. Doccia, e stasera si mangia in paese', next: 'a6' },
+    ],
+  },
+
 };

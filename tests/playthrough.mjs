@@ -934,6 +934,10 @@ scenarios.push(scenario(
     b10: 'Dirglielo',
     b11: 'Svegliarla e dirglielo',
     d15_uscite: 'sapendo dov\'è la sesta cisterna',
+    /* I DUE FINALI CHE NESSUNA PARTITA RAGGIUNGEVA. Non erano irraggiungibili:
+       erano le scelte «meno ovvie» di due scene d'epilogo, e nei semi usati
+       finora il dado non ci e' mai caduto. Nessun requires da soddisfare. */
+    e_vittoria_barca: 'Scendere, prendere la macchina, tornare a Scauri'
   },
   {
     craft: 'tutto',
@@ -1011,7 +1015,8 @@ scenarios.push(scenario(
     d5_ada: 'Alla cisterna dei Detenuti', d5_lista: 'Alla cisterna dei Detenuti',
     d1_colazione_bis: 'Alla cisterna dei Detenuti', d1_colazione_eco: 'Alla cisterna dei Detenuti',
     d13_fossa: 'Fammi il briefing', d13_briefing: 'Scendere col bombolino riparato',
-    d14_coro: 'Rispondere di sì', d14_dieci: 'Rispondere di sì', d14_restate: 'Rispondere di sì' },
+    d14_coro: 'Rispondere di sì', d14_dieci: 'Rispondere di sì', d14_restate: 'Rispondere di sì',
+    e_coro: 'Chiudere la bocca e non chiamarla' },
   {
     /* E GLI ESITI DELLE PROVE NUOVE. Aggiungendo una prova a monte, il percorso di
        questo scenario e' cambiato: la prova di DESTREZZA sul nodo della collana e'
@@ -1692,6 +1697,44 @@ function execute(sc) {
 }
 
 console.log(`  Esecuzione di ${scenarios.length} partite pilotate...\n`);
+/* ---- L'ALTRO RAMO DEL CORO. `e_coro` ha due uscite e uno scenario ne prova una
+   sola: senza questo, qualunque delle due si scegliesse, l'altra restava il
+   finale che nessuna partita raggiunge. Va in CODA perche' i seed vengono da un
+   contatore progressivo e inserire in mezzo sposterebbe tutti quelli dopo. ---- */
+scenarios.push(scenario(
+  'Il Coro vince, e si cercano nel buio (e_coro_insieme)',
+  ['gaetano', 'claudia'],
+  /* Le chiavi del PERCORSO, non solo quelle della prova. Questo scenario verifica un
+     FINALE, e per arrivare a un finale bisogna arrivarci: con le sole due chiavi della
+     prova il percorso cambiava a ogni scena nuova aggiunta a monte (due volte in un
+     giorno, e le due volte ha detto un finale diverso). Un test che dipende dal caso
+     non prova niente. */
+  { d2_paese: 'Rispondere. Mettere la faccia sotto', d2_cala: 'Rispondere. Mettere la faccia sotto',
+    d5_ada: 'Alla cisterna dei Detenuti', d5_lista: 'Alla cisterna dei Detenuti',
+    d1_colazione_bis: 'Alla cisterna dei Detenuti', d1_colazione_eco: 'Alla cisterna dei Detenuti',
+    d13_fossa: 'Fammi il briefing', d13_briefing: 'Scendere col bombolino riparato',
+    d14_coro: 'Rispondere di sì', d14_dieci: 'Rispondere di sì', d14_restate: 'Rispondere di sì',
+    e_coro: 'Cercarla nel buio' },
+  {
+    /* E GLI ESITI DELLE PROVE NUOVE. Aggiungendo una prova a monte, il percorso di
+       questo scenario e' cambiato: la prova di DESTREZZA sul nodo della collana e'
+       caduta, il ramo di fallimento ha portato altrove, e undici scene dopo la
+       partita non aveva piu' il fiato per l'ultima immersione e finiva nel loop.
+       Non e' un difetto del ramo — e' che uno scenario che verifica UN FINALE non
+       deve dipendere dai dadi lungo la strada. I rami di fallimento li provano gli
+       scenari sfortunati, che li fanno cadere tutti di proposito. */
+    /* LO STESSO SEME DEL GEMELLO: con un seme diverso il percorso divergeva e la
+       partita finiva in e_scambio_torna. Qui serve che la strada sia IDENTICA a
+       quella dello scenario «Il Coro vince» e che cambi solo l'ultima scelta,
+       dentro l'epilogo. */
+    seed: 523645,
+    checkOutcomes: { b6_scavo: 'success' },
+    verify: (r, expect) => {
+      expect(r.log.ending === 'e_coro_insieme', `finale atteso e_coro_insieme, trovato ${r.log.ending}`);
+    },
+  },
+));
+
 for (const sc of scenarios) execute(sc);
 
 const fatalRuns = results.filter(r => !r.ok);

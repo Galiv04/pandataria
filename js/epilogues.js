@@ -150,6 +150,41 @@ const IMPRESE = [
 
 const CRONACA = [
 
+  /* ---- LE RIGHE DEI FINALI E DELLE DECISIONI IRREVERSIBILI ----
+     Ventotto flag stavano nelle scene d'epilogo e nelle scelte che non si
+     ritirano — cioe' nei punti in cui il gioco chiede di piu' — e non venivano
+     riletti da nessuna parte, perche' il gioco finisce li'. Una decisione
+     irreversibile che non lascia un segno nel mondo non e' irreversibile: e'
+     solo l'ultima schermata. */
+  { flag: 'hanno_scelto_di_andarsene', icon: '⛴', text: 'Sotto Ventotene e\' rimasto tutto quello che c\'era, e nessuno lo ha toccato. Due persone hanno preso il traghetto delle diciassette e trenta e non sono mai piu\' tornate sull\'isola — nemmeno per una domenica, nemmeno per far vedere il posto a qualcuno. Il gioco non li giudica, e nemmeno noi.' },
+  { flag: 'tre_volte_rimessi_a_posto', icon: '🔁', text: 'Tre volte lo stesso giorno, e tre volte le stesse valigie rifatte con la stessa piega delle maniche in dentro. Alla terza, uno dei due ha smesso di piegarle.' },
+  { flag: 'traghetto_partito',     icon: '🚢', text: 'Il traghetto delle diciassette e trenta e\' partito con due passeggeri in piu\' di quanti ne aspettasse la biglietteria, e la biglietteria non se n\'e\' accorta. A Formia, sulla banchina, uno dei due si e\' voltato a guardare il mare aperto per un tempo che l\'altro non ha interrotto.' },
+  { flag: 'tramonto_visto',        icon: '🌅', text: 'Due ore e quaranta di vento sul ponte di poppa, e il sole che se ne va a dritta dietro Ponza. Chi c\'era dice che e\' stato il tramonto piu\' bello della sua vita, e lo dice con una faccia che non e\' del tutto contenta.' },
+  { flag: 'fedi_rimesse',          icon: '💍', text: 'Le due fedi sono tornate al loro posto sul filo di nylon, e il filo di nylon e\' finito in un cassetto insieme allo scontrino di marzo delle due maschere identiche. Il cassetto non si apre spesso.' },
+  { flag: 'posto_vuoto',           icon: '🪑', text: 'Al tavolino della Terrazza di Mimi\', d\'estate, c\'e\' un posto che il cameriere apparecchia sempre e che nessuno occupa. Nessuno gliel\'ha chiesto. Lo fa da quell\'anno.' },
+  { flag: 'promessa_riferita',     icon: '🤍', text: 'Una promessa fatta a quarantacinque metri e\' stata riferita a chi doveva sentirla, in superficie, con parole diverse ma con lo stesso peso. Chi l\'ha riferita non ha aggiunto niente di suo, ed e\' la cosa piu\' difficile che abbia fatto.' },
+  { flag: 'sentita_la_voce',       icon: '🎧', text: 'C\'e\' una registrazione di undici secondi che due persone hanno riascoltato insieme, una volta sola, e poi mai piu\'. Non e\' stata cancellata: sta in una cartella con un nome che non dice niente, e tutte e due sanno dov\'e\'.' },
+  { flag: 'benedetta_la_scelta',   icon: '🕯', text: 'Chi e\' rimasto e\' stato benedetto da chi e\' salito, con una frase detta ad alta voce sulla rampa, davanti a un marinaio che non ha capito e non ha chiesto.' },
+  { flag: 'chi_ha_scelto_di_restare', icon: '🏠', text: 'Non e\' un sacrificio: e\' una scelta, fatta da sveglio, alla luce, con l\'altro che guardava. Al Comune di Ventotene risulta una denuncia di scomparsa mai chiusa, e in due paesi diversi ci sono persone che sanno che non e\' vero.' },
+  { flag: 'chi_e_rimasto',         icon: '🌊', text: 'Chi e\' rimasto e\' diventato una voce, e a chi ascolta col giusto strumento, nel punto giusto, ogni tanto capita di sentirla — e di riconoscerla, che e\' la parte che nessuno racconta.' },
+  { flag: 'negata_la_voce',        icon: '🔇', text: 'Le due voci nuove nel Coro sono le ultime che si sono aggiunte. Le altre le hanno accolte come si accoglie qualcuno che era atteso, e questa e\' la cosa peggiore di tutta questa storia.' },
+  { flag: 'presi_dal_coro',        icon: '🎵', text: 'Non e\' una morte: e\' una collezione. E una collezione, per definizione, non e\' finita.' },
+  { flag: 'cerca_differenza',      icon: '🔁', text: 'C\'e\' chi ha smesso di contare i cicli e ha cominciato a cercare la differenza: qualcosa che il trenta agosto non rifa\' uguale. La cerca ancora, e l\'ha quasi trovata due volte.' },
+  { flag: 'non_alzati',            icon: '🛏', text: 'Alcune mattine non ci si alza, e il giorno ricomincia lo stesso alle sette e dieci. Questa e\' l\'unica cosa che il trenta agosto non punisce.' },
+  { flag: 'd14_parlato',           icon: '🗣', text: 'Al Coro e\' stato risposto a voce, sott\'acqua, con l\'erogatore in bocca. Nessuno ha capito cosa sia stato detto, nemmeno chi lo ha detto.' },
+  { flag: 'd_capito_tutto',        icon: '🧩', text: 'Qualcuno, a dieci metri di profondita\' e con l\'aria contata, ha messo insieme tutti i pezzi nello stesso momento. Non gli e\' servito a niente, e li ha messi insieme lo stesso.' },
+  { flag: 'd_banchina_finale',     icon: '⚓', text: 'Sulla banchina di Porto Romano, davanti al portellone aperto, si prende una decisione che non si puo\' ritirare. Non c\'e\' un dado. Il gioco lo dice una volta sola e poi sta zitto.' },
+  { flag: 'giulia_risparmia',      icon: '📿', text: 'A una donna morta di fame nel 14 dopo Cristo e\' stata data una data invece di una speranza, ed e\' bastato. Da allora, nel ninfeo di Villa Giulia, l\'idrofono non registra piu\' niente.' },
+  { flag: 'marisa_documentata',    icon: '📷', text: 'Da qualche parte esistono le fotografie di una donna a quarantacinque metri, muta e faccia, riprese per intero. Non sono mai state pubblicate. Chi le ha fatte le tiene per un motivo che non ha mai spiegato del tutto.' },
+  { flag: 'maschera_restituita',   icon: '🤿', text: 'Sul sedimento della fossa, a due metri da lei, e\' appoggiata una maschera da sub degli anni Novanta, rimessa dritta con il vetro verso l\'alto. E\' l\'unica cosa in questa storia che qualcuno abbia restituito.' },
+  { flag: 'file_stiva_cancellato', icon: '🗑', text: 'Il file della stiva e\' stato cancellato dalla scheda, dal cestino e dal backup, e la scheda e\' stata formattata due volte. Chi l\'ha fatto e\' una fotografa, e non cancella mai niente.' },
+  { flag: 'nome_valigia',          icon: '🧳', text: 'Su una valigia di cartone pressato, a quarantacinque metri, c\'e\' un nome scritto a inchiostro che il sale non ha portato via. Adesso quel nome sta anche su un foglio, in una casa, in un cassetto.' },
+  { flag: 'prezzo_dei_cinque_secondi', icon: '⏱', text: 'Cinque secondi in piu\', a quarantacinque metri, hanno un prezzo che non e\' scritto su nessuna tabella decompressiva. Il conto lo tiene qualcun altro, ed e\' preciso.' },
+  { flag: 'reclamati',             icon: '📋', text: 'Su un verbale del 1943 c\'e\' scritto NON RECLAMATI accanto a un elenco di nomi. Ottantatre\' anni dopo, qualcuno li ha reclamati — ad alta voce, sulla rampa di un traghetto, con la pagina strappata in mano.' },
+  { flag: 'signora_muta',          icon: '🫘', text: 'A una signora seduta a un tavolino, in un paese vuoto, e\' stata data la risposta sbagliata. Lei non ha corretto nessuno: ha continuato a pulire i fagiolini, e quello che sapeva se l\'e\' tenuto un altro giro.' },
+  { flag: 'cena_paese',            icon: '🍝', text: 'C\'e\' una sera, alla Terrazza di Mimi\', di cui in questa famiglia si parla ancora: il vino della casa, la frittura, e due persone che ridevano cosi\' forte che si sono girati i tavoli accanto. E\' l\'ultima sera in cui non sapevano niente.' },
+  { flag: 'vista_peschiera',       icon: '🐟', text: 'A Punta Eolo, dentro il bacino grande della peschiera romana, l\'acqua e\' alta un palmo ed e\' calda come una pozza. Ci sono due impronte di piedi nudi nel sedimento, di due misure diverse, e nessun cartello dice che non si puo\'.' },
+
   /* ---- LE VENTIQUATTRO RIGHE DELLE PROVE FALLITE (e di due riuscite) ----
      Le ventisette prove aggiunte per la soglia dell'incertezza si portavano
      dietro ventotto scene e altrettanti flag NUOVI — e un flag senza consumatore

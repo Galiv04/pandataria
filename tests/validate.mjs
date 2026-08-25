@@ -640,6 +640,14 @@ const epiSrc = readFileSync(join(root, 'js/epilogues.js'), 'utf8');
 const campSrc = readFileSync(join(root, 'js/campaign.js'), 'utf8');
 const setsBlocks = [...campSrc.matchAll(/sets:\s*{([^}]*)}/g)].map(m => m[1]).join(' ');
 const settableFlags = new Set([...setsBlocks.matchAll(/([a-z_0-9]+)\s*:/g)].map(m => m[1]));
+/* E I FLAG DEL SACRIFICIO. `sacrificeSets: 'chi_e_rimasto'` è una STRINGA, non un
+   blocco `sets: { ... }`: il motore fa `G.flags[c.sacrificeSets] = h.id` per
+   memorizzare CHI è rimasto (engine.js). La regex qui sopra guarda solo dentro i
+   blocchi `sets`, quindi quei due flag non risultavano impostabili da nessuna
+   scena — e qualunque riga di CRONACA che li citasse veniva dichiarata una bugia,
+   che è l'opposto di quello che sono: sono i due flag delle decisioni più pesanti
+   del gioco. */
+for (const m of campSrc.matchAll(/sacrificeSets:\s*'([a-z_0-9]+)'/g)) settableFlags.add(m[1]);
 // flag impostati fuori dalle scene (motore/combattimento) — da tenere aggiornata a mano
 const FLAG_ESTERNI = FLAG_DEL_MOTORE; // motore, crafting, misteri (vedi sopra)
 const flagRichiesti = new Set([
@@ -1080,7 +1088,13 @@ function testFlagRichiestiMaiImpostati() {
     for (const f of Object.keys(s.sets || {})) impostati.add(f);
     for (const c of (s.choices || [])) {
       for (const f of Object.keys(c.sets || {})) impostati.add(f);
-      for (const f of Object.keys(c.sacrificeSets || {})) impostati.add(f);
+      /* `sacrificeSets` E' UNA STRINGA, non un oggetto: il motore fa
+         `G.flags[c.sacrificeSets] = h.id` (engine.js:675), cioe' memorizza CHI si
+         e' sacrificato. Object.keys() su una stringa restituisce gli INDICI
+         ('0','1','2'...), quindi il flag vero non entrava mai fra gli impostati e
+         qualunque riga di CRONACA che lo citasse veniva dichiarata bugia. */
+      if (typeof c.sacrificeSets === 'string') impostati.add(c.sacrificeSets);
+      else for (const f of Object.keys(c.sacrificeSets || {})) impostati.add(f);
     }
   }
   if (typeof RECIPES !== 'undefined') for (const r of RECIPES) if (r.flag) impostati.add(r.flag);

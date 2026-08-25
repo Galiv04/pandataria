@@ -85,6 +85,39 @@ const CHAPTERS = [
 
 const DIARY_FLAGS = [
 
+  /* ---- IL 30 AGOSTO CHE NON FINISCE, e le altre promesse dell'atto B e C ----
+     Venticinque scene in piu' dicevano «il Quaderno registra X» e X non stava da
+     nessuna parte. Quasi tutte sono dell'atto D, cioe' del giorno che ricomincia:
+     ed e' proprio li' che il Diario conta di piu', perche' e' l'unica cosa che
+     non si riavvolge insieme al giorno. */
+
+  ['visto_muro',           'Dietro l\'orto dei Coraggio c\'è un muro del 1957, e nella malta c\'è una firma. Non e\' un muro di contenimento: e\' un tappo, e chi l\'ha fatto ha voluto lasciare il proprio nome sopra una cosa che stava chiudendo.'],
+  ['visto_stanza',         'La prima cisterna e\' una stanza di trenta metri per otto, volta a botte, col cocciopesto ancora integro dopo duemila anni. E\' piu\' grande della chiesa che ci sta sopra.'],
+  ['firmato_il_registro',  'Sul registro delle visite di Santo Stefano l\'ora d\'uscita e\' scritta IN ANTICIPO — 18:40 — e i conti tornano. Qualcuno sa a che ora ve ne andate prima che ve ne andiate.'],
+  ['silenzio_scelto',      'Nel fascicolo manca una pagina, strappata di netto. Non e\' andata persa: e\' stata tolta, e chi la toglie sa che qualcuno la cerchera\'.'],
+  ['ancora_usata',         'L\'Ancora di Voce e\' stata spesa, ha funzionato, ed era una sola. Da qui in avanti, se cadete, cadete.'],
+  ['ciclo1_fatto',         'Il 30 agosto e\' ricominciato da capo — e voi ve lo ricordate tutto. Questa e\' l\'unica cosa che il giorno non riesce a portarsi via.'],
+  ['ciro_racconta_marisa', 'Com\'e\' finita Marisa, raccontato da Ciro con due dita di rum in mano, sopra la fossa, il giorno stesso. Non e\' un racconto che si chiede: si aspetta.'],
+  ['d_acqua_alta',         'Si chiama LA CORDA, e non e\' una metafora: l\'acqua sale per una settimana o dieci giorni, e poi succede quello che succede. Ada lo sa perche\' l\'ha gia\' visto.'],
+  ['d_acqua_in_casa',      'La moka e\' ancora calda alle sette e dieci, e nessuno l\'ha messa su. Il giorno ricomincia, ma qualcosa dentro il giorno continua a fare le cose.'],
+  ['d_bottiglia',          'La bottiglia dell\'acqua sul tavolino e\' al livello di ieri notte alle due. Non e\' stata riempita: e\' TORNATA a quel livello, ed e\' la prima prova materiale che avete.'],
+  ['d_canta_nel_sonno',    'Claudia canta nel sonno da due notti, sempre la stessa strofa, tre note e la pausa. E ne sa cinque, e non le ha mai imparate da sveglia.'],
+  ['d_strofe_scritte',     'Le cinque strofe sono trascritte sul Quaderno, in italiano e in napoletano, con la data e l\'ora di ogni volta che sono state cantate.'],
+  ['d_chiamata_per_nome',  'Un minuto durato dodici minuti, a Cala Nave, e in quei dodici minuti una voce che non era di nessuno dei due ha chiamato Claudia per nome.'],
+  ['d_ora_ferma',          'Il tempo, su quest\'isola, non passa allo stesso modo dappertutto: c\'e\' un posto dove un minuto ne dura dodici, e quel posto e\' sopra l\'acqua.'],
+  ['d_chiesto_giorno',     'Alla domanda «signora, che giorno e\' oggi?» Ada risponde «domenica trenta» con la faccia di chi risponde a una cosa ovvia — e la risponde uguale ogni volta.'],
+  ['d_fagiolini',          'I fagiolini nel catino della signora sono sempre quelli, e sono sempre allo stesso punto: quelli fatti stanno da una parte, quelli da fare dall\'altra, nella stessa proporzione di tre giorni fa.'],
+  ['d_fagiolini_contati',  'Ventidue fagiolini giovedi\' e ventidue stamattina. Contati due volte, da due persone diverse, con lo stesso risultato.'],
+  ['d_esperimento_fatto',  'Non e\' il traghetto a riavvolgere il giorno: il giorno si riavvolge alle 18:40 comunque, che siate a bordo o no. Il confine non e\' un mezzo: e\' un\'ora.'],
+  ['d_traghetto_aperto',   'Il registro della Marisqueria si ferma sempre alla stessa riga, e la riga porta il nome di Marisa e la data del 1997.'],
+  ['porto_ascoltato',      'L\'idrofono calato nell\'acqua del porto restituisce quello che aspetta laggiu\', e non aspetta il traghetto.'],
+  ['idrofono_calato',      'Undici secondi di riverbero misurati con l\'idrofono nella cisterna dei Detenuti: due indizi in un colpo, l\'eco e la stanza che non c\'e\' sulla pianta.'],
+  ['la_voce_ha_chiesto',   'La voce ha fatto una domanda. Ascoltarla costa aria, e la domanda e\' peggio di qualunque minaccia perche\' e\' gentile.'],
+  ['nome_letto_da_ciro',   'Ciro ha letto il nome ad alta voce dalla lista, e leggerlo ad alta voce non e\' la stessa cosa che leggerlo.'],
+  ['sa_nome_assunta',      'La bambina che canta sotto quest\'isola si chiama ASSUNTINA. Il nome ve l\'ha dato una signora seduta a un tavolino, in un paese vuoto, mentre puliva i fagiolini.'],
+  ['signora_ha_parlato',   'Il CONFINE di quella cosa passa davanti alla bocca del porto, e la rampa del traghetto e\' oltre. Detto da chi lo sa, e senza che nessuno glielo chiedesse due volte.'],
+  ['caletta_senza_nome',   'C\'e\' una caletta di ghiaia grossa, larga sei metri, in fondo a un sentiero senza nome sul costone, dove non c\'e\' niente da vedere. Ci si e\' andati lo stesso, ed e\' stata la cosa migliore del primo giorno.'],
+
   /* ---- LE COSE CHE L'ISOLA VI HA INSEGNATO, e che il gioco non vi diceva ----
      Trentotto flag `sa_*` erano impostati da scene il cui testo dice, alla lettera,
      «il Quaderno registra…» — e il Quaderno non li mostrava. Non era un difetto

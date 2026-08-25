@@ -549,7 +549,7 @@ Chi resta sta in piedi sul molo con le mani lungo i fianchi e non fa il saluto c
 
 Dura sette minuti. Poi la nave è un rettangolo bianco. Poi un punto. Poi il punto è il posto dove ti ricordi che era.
 
-Quando è finita non torna al paese: sale a **Punta Eolo**, venti minuti di strada coi capperi nei muretti e le cicale che a quest'ora vanno giù di colpi. Si siede sui mattoni romani di Villa Giulia, dove una ragazza di ventidue anni ha guardato questo stesso pezzo di mare per venti anni, dopo che le avevano ammazzato il figlio appena nato.
+Quando è finita non torna al paese: sale a **Punta Eolo**, venti minuti di strada coi capperi nei muretti e le cicale che a quest'ora vanno giù di colpi. Si siede sui mattoni romani di Villa Giulia, dove una donna di trentasette anni ha guardato questo stesso pezzo di mare per cinque anni, con sua madre accanto, dopo che le avevano portato via cinque figli.
 
 Alle **19:47** il sole tocca l'acqua. Da terra è un'altra cosa: il tramonto non ti scappa, ti sta davanti fermo, e il colore arriva addosso all'isola invece che alle facce sul ponte. Il tufo diventa arancione, Santo Stefano diventa **rosa** per due minuti — rosa, quella cosa lì — e poi grigia, e poi buia.
 
