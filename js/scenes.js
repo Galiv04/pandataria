@@ -4015,7 +4015,9 @@ const Scenes = (() => {
          Trecentosessantacinque passi da un pixel con la curva a esponente 1,6 fanno il buio che
          STRINGE — e non costano niente. Stessa forma per la fascia in basso. */
       for (let x = Math.round(W * 0.62); x < W; x++) {
-        const t = (x - W * 0.62) / (W * 0.38);
+        // stesso morsetto di `alba`: W*0.62 fa 595,2 e il ciclo parte da 595, quindi
+        // alla prima x il `t` e' negativo e Math.pow(t, 1.6) e' NaN
+        const t = Math.max(0, (x - W * 0.62) / (W * 0.38));
         ctx.fillStyle = `rgba(4,10,14,${(0.02 + Math.pow(t, 1.6) * 0.34).toFixed(3)})`;
         ctx.fillRect(x, 0, 1, H);
       }
@@ -4880,7 +4882,15 @@ const Scenes = (() => {
       for (let x = 0; x < W; x += 7) {
         const top = H * 0.87 + Math.sin(x * 0.031) * 9 + Math.sin(x * 0.011) * 7;
         for (let y = Math.round(top); y < H; y++) {
-          const t = (y - top) / Math.max(1, H - top);
+          /* `top` e' un float e il ciclo parte da Math.round(top): se l'arrotondamento
+             va in giu', alla prima iterazione `t` e' NEGATIVO di mezzo millesimo — e
+             Math.pow(negativo, 0.8) e' NaN. mix() restituisce allora
+             `rgb(NaN,NaN,NaN)`, che il BROWSER IGNORA (disegna col colore di prima,
+             senza un errore in console) e che il rasterizzatore rende NERO. Cioe' il
+             PNG e la partita mostravano due cose diverse, e nessuna delle due era
+             quella voluta — ed e' per questo che il difetto e' sopravvissuto a una
+             passata intera di verifica visiva. Il morsetto costa un Math.max. */
+          const t = Math.max(0, (y - top) / Math.max(1, H - top));
           ctx.fillStyle = mix('#3a302a', '#5a4c40', Math.pow(t, 0.8));
           ctx.fillRect(x, y, 7, 1);
         }
