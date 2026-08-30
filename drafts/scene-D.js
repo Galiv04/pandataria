@@ -1439,7 +1439,7 @@ Claudia non dice niente. Gaetano, dietro di lei, mette una mano sulla sua spalla
 
 > "Eh." La signora sorride, e il sorriso è quello giusto, di una vecchia che sa di aver detto una cosa grossa. "Ccà 'e femmene se chiammano tutte accussì, signò. 'A metà 'e ll'isola se chiamma Assunta." Riprende un fagiolino. "Chella piccerella pure."
 
-**(💪 +4. E adesso sapete che la bambina che canta sotto quest'isola porta il nome di metà delle donne che ci sono nate — che è il modo in cui questo gioco vi dice, senza dirlo, che laggiù non c'è un mostro: c'è una di loro)**`,
+**(💪 +4. La bambina che canta porta il nome di metà delle donne nate su quest'isola. Laggiù non c'è un mostro: c'è una di loro)**`,
     heal: 4,
     sets: { sa_nome_assunta: true },
     choices: [
@@ -2957,7 +2957,7 @@ Il pensiero passa. La giornata comincia.
 
 Il *"eh"* dura mezzo secondo di troppo, e neanche a quello si fa caso.
 
-**(Nessun dettaglio per il Quaderno stamattina. Il gioco non ve lo dice adesso: ve lo farà notare più tardi, quando la sedia sarà l'unica cosa che vi resta da guardare)**`,
+**(Nessun dettaglio per il Quaderno stamattina)**`,
     choices: [
       { text: '🍶 La bottiglia dell\'acqua sul tavolino, allora', next: 'd0_bottiglia' },
       { text: '🫂 Niente. Dieci minuti così, senza alzarsi e senza cercare niente', once: true, gold: 2, next: 'd0_bottiglia' },

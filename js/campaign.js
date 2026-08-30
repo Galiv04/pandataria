@@ -1781,7 +1781,7 @@ Non è una domanda.
 
 > Ada: "Niente. Tornano." "Ma tornano che ci pensano sempre. Mio padre ci pensava sempre. Ci ha pensato per cinquant'anni, ogni giorno, fino all'ultimo, e l'ultima cosa che mi ha detto in ospedale non è stata su di me né su mio figlio." "Andate a dormire. Domani c'è il sole."
 
-**(🫁 +3. Sapete tre cose: si chiama "la corda", viene tre-quattro volte l'anno, e chi va a vedere non smette più di pensarci. Il che vi dice esattamente cosa state per fare)**`,
+**(🫁 +3. Si chiama "la corda". Viene tre-quattro volte l'anno. Chi va a vedere ci pensa per cinquant'anni)**`,
     gold: 2,
     sets: { sa_la_corda: true },
     choices: [
@@ -3266,7 +3266,7 @@ Alla fine Claudia si tira su la maschera e ha il segno del silicone sulla faccia
 
 Sul gommone, tornando, Lilia scatta una foto sola: Claudia di spalle, con la maschera sulla fronte e i capelli incollati, che guarda l'isola da fuori. Non gliela fa vedere. Dice che gliela manda.
 
-**(🫁 +3, 💪 +4. 🤿 LA LEZIONE DI LILIA: da adesso in immersione hai più aria — non perché sei coraggiosa, ma perché sai buttarla fuori piano, guardare avanti e non alzare la testa. Il gioco lo conta davvero)**`,
+**(🫁 +3, 💪 +4. 🤿 LA LEZIONE DI LILIA: da adesso in immersione hai più aria — non perché sei coraggiosa, ma perché sai buttarla fuori piano, guardare avanti e non alzare la testa)**`,
     choices: [
       { text: '🧱 Al muro dei Coraggio, adesso. Si scende', next: 'b8' },
       { text: '📷 Prima chiederle di quella cartella di quattro anni fa', requires: { flag: 'archivio_lilia' }, once: true, next: 'b7_archivio' },
@@ -3567,7 +3567,7 @@ Roba da bambini. Tutta roba da bambini. Galleggia in cerchio, piano, come se gir
 
 E in mezzo al cerchio l'acqua è **più scura**: c'è un buco nel fondo, e il buco scende.
 
-**(🫁 Fiato −2: qui sotto l'aria è pesante e si respira male. Il buco nel fondo è il punto in cui questo gioco comincia a chiedere il fiato che avete accumulato mangiando e dormendo. 🔇 E qui Accade **tre volte in tutta la storia** e questa è la prima. Se accade una quarta volta, quella è un guasto)**`,
+**(🫁 −2: l'aria è pesante. Il buco nel fondo è il punto in cui conta quello che avete accumulato mangiando e dormendo. 🔇 E qui Accade: tre volte in tutta la storia, e questa è la prima)**`,
     goldLoss: 2,
     sets: { scesa_cisterna: true },
     silenzio: true,
@@ -3596,11 +3596,11 @@ Il sacchetto dei taralli fa un rumore osceno in una stanza così. Gaetano lo apr
 
 Mangiano. Bevono dal thermos di Ada a turno, dal tappo. La torcia sta appoggiata di lato e fa un cono giallo sul soffitto, e nel cono passa la polvere.
 
-E qui succede la cosa che questo gioco vuole insegnarvi: **si respira**. Tredici gradi, aria ferma, nessuno che parla. Il petto si allarga, le spalle scendono, il battito rallenta. Venti minuti di niente valgono, in fondo a un buco, più di qualunque coraggio.
+**Si respira.** Tredici gradi, aria ferma, nessuno che parla. Il petto si allarga, le spalle scendono, il battito rallenta. Venti minuti di niente valgono, in fondo a un buco, più di qualunque coraggio.
 
 Claudia si pulisce le mani sui pantaloncini e dice: "Ok. Adesso ci vado."
 
-**(🫁 +4, 💪 +4. Non è un trucco: in questo gioco il fiato si guadagna così e solo così — mangiando, bevendo, stando fermi. Adesso il fondo è a portata, e il briefing dell'immersione ve lo dirà in chiaro)**`,
+**(🫁 +4, 💪 +4)**`,
     gold: 4,
     heal: 4,
     stinger: 'heal',
@@ -3733,7 +3733,7 @@ Claudia, che sta piangendo e non se n'è accorta, risponde: "Sì. Scusa. Non la 
 
 *"T'a 'mparo io."*
 
-E poi la canta lei. Tutta. Cinque strofe, di cui voi ne conoscevate una, e le altre quattro sono peggio, e Claudia le impara, e le imparerà davvero, e le canterà davvero, e quello che le succederà dopo dipenderà da questa scena.
+E poi la canta lei. Tutta. Cinque strofe: una la conoscevano già, le altre quattro sono peggio. Claudia le impara. Le imparerà davvero. Le canterà davvero.
 
 **(🎶 Ha imparato la ninnananna dalla fonte. Se avete la collana di Giulia e la foto dal museo, adesso quelle due cose insieme fanno una terza cosa, e quella terza cosa è l'unica arma che funziona contro una bambina. 🎵 Attenzione +2)**`,
     attenzione: 2,
@@ -4222,7 +4222,7 @@ Finiscono le lenticchie. Prendono un limoncello che non hanno ordinato e che il 
 
 Camminano alle Parracine parlando di niente, e la cosa non detta cammina con loro, un passo indietro, come un cane a cui hanno detto di stare.
 
-**(🫁 +1 — una sera intera in cui non succede niente vale un punto di fiato. Ma la verità è rinviata, non detta: e in questo gioco le cose rinviate arrivano sempre nel momento peggiore, non nel momento comodo)**`,
+**(🫁 +1)**`,
     gold: 1,
     sets: { verita_rinviata: true },
     choices: [
@@ -5444,7 +5444,7 @@ Non è cattivo. Non ha odio, non ha fame, non ha un piano. È **esploso**, e nes
 
 Si gira verso di loro. E la cosa peggiore è che apre la bocca come per chiedere scusa.
 
-**(⚔ Fa male perché non sa di essere morto. Ricordatevelo mentre lo colpite: al gioco serve che ve lo ricordiate)**`,
+**(⚔ Fa male perché non sa di essere morto)**`,
     combat: { enemies: ['detenuto'], victory: 'c6_dopo', defeat: 'c6_ko', loot: { gold: 1 } },
     choices: [],
   },
@@ -6081,11 +6081,9 @@ In fondo, la firma del direttore, la sigla di chi ha ciclostilato, e sul margine
 
 Il **Geloso** sta sulla pietra, aperto. La cassetta è dentro il vano. Il tasto PLAY è alzato.
 
-Il gioco adesso vi dice una cosa in chiaro, senza trucchi, perché è così che si fa.
-
 **Su quel nastro c'è la voce di Nicola Sperduto, la notte del due settembre 1965.** È l'ultima cosa registrata in questo posto e contiene informazione che non troverete in nessun registro, in nessun archivio e in nessuna testimonianza.
 
-**E svegliare quel nastro in questo posto vi farà notare.** Non "potrebbe": vi farà notare, adesso, di sicuro, e questo carcere è una macchina costruita per sentire. E non è un modo di dire preso in prestito da voi: sta scritto sul pannello all'ingresso, l'ha messo per iscritto un ufficio, e l'acustica della torretta era una delle cose che facevano funzionare il posto.
+**E svegliare quel nastro in questo posto vi farà notare.** Non "potrebbe": vi farà notare, adesso, di sicuro — questo carcere è una macchina costruita per sentire. Sta scritto sul pannello all'ingresso, l'ha messo per iscritto un ufficio, e l'acustica della torretta era una delle cose che facevano funzionare il posto.
 
 Il Geloso sta sulla pietra col vano aperto e la cassetta dentro. Il tasto PLAY è alzato di due millimetri, e si vede.
 
@@ -8754,7 +8752,7 @@ Claudia non dice niente. Gaetano, dietro di lei, mette una mano sulla sua spalla
 
 > "Eh." La signora sorride, e il sorriso è quello giusto, di una vecchia che sa di aver detto una cosa grossa. "Ccà 'e femmene se chiammano tutte accussì, signò. 'A metà 'e ll'isola se chiamma Assunta." Riprende un fagiolino. "Chella piccerella pure."
 
-**(💪 +4. E adesso sapete che la bambina che canta sotto quest'isola porta il nome di metà delle donne che ci sono nate — che è il modo in cui questo gioco vi dice, senza dirlo, che laggiù non c'è un mostro: c'è una di loro)**`,
+**(💪 +4. La bambina che canta porta il nome di metà delle donne nate su quest'isola. Laggiù non c'è un mostro: c'è una di loro)**`,
     heal: 4,
     sets: { sa_nome_assunta: true },
     choices: [
@@ -10272,7 +10270,7 @@ Il pensiero passa. La giornata comincia.
 
 Il *"eh"* dura mezzo secondo di troppo, e neanche a quello si fa caso.
 
-**(Nessun dettaglio per il Quaderno stamattina. Il gioco non ve lo dice adesso: ve lo farà notare più tardi, quando la sedia sarà l'unica cosa che vi resta da guardare)**`,
+**(Nessun dettaglio per il Quaderno stamattina)**`,
     choices: [
       { text: '🍶 La bottiglia dell\'acqua sul tavolino, allora', next: 'd0_bottiglia' },
       { text: '🫂 Niente. Dieci minuti così, senza alzarsi e senza cercare niente', once: true, gold: 2, next: 'd0_bottiglia' },

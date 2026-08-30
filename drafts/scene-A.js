@@ -1416,7 +1416,7 @@ Non è una domanda.
 
 > Ada: "Niente. Tornano." "Ma tornano che ci pensano sempre. Mio padre ci pensava sempre. Ci ha pensato per cinquant'anni, ogni giorno, fino all'ultimo, e l'ultima cosa che mi ha detto in ospedale non è stata su di me né su mio figlio." "Andate a dormire. Domani c'è il sole."
 
-**(🫁 +3. Sapete tre cose: si chiama "la corda", viene tre-quattro volte l'anno, e chi va a vedere non smette più di pensarci. Il che vi dice esattamente cosa state per fare)**`,
+**(🫁 +3. Si chiama "la corda". Viene tre-quattro volte l'anno. Chi va a vedere ci pensa per cinquant'anni)**`,
     gold: 2,
     sets: { sa_la_corda: true },
     choices: [

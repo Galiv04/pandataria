@@ -680,7 +680,7 @@ Non è cattivo. Non ha odio, non ha fame, non ha un piano. È **esploso**, e nes
 
 Si gira verso di loro. E la cosa peggiore è che apre la bocca come per chiedere scusa.
 
-**(⚔ Fa male perché non sa di essere morto. Ricordatevelo mentre lo colpite: al gioco serve che ve lo ricordiate)**`,
+**(⚔ Fa male perché non sa di essere morto)**`,
     combat: { enemies: ['detenuto'], victory: 'c6_dopo', defeat: 'c6_ko', loot: { gold: 1 } },
     choices: [],
   },
@@ -1317,11 +1317,9 @@ In fondo, la firma del direttore, la sigla di chi ha ciclostilato, e sul margine
 
 Il **Geloso** sta sulla pietra, aperto. La cassetta è dentro il vano. Il tasto PLAY è alzato.
 
-Il gioco adesso vi dice una cosa in chiaro, senza trucchi, perché è così che si fa.
-
 **Su quel nastro c'è la voce di Nicola Sperduto, la notte del due settembre 1965.** È l'ultima cosa registrata in questo posto e contiene informazione che non troverete in nessun registro, in nessun archivio e in nessuna testimonianza.
 
-**E svegliare quel nastro in questo posto vi farà notare.** Non "potrebbe": vi farà notare, adesso, di sicuro, e questo carcere è una macchina costruita per sentire. E non è un modo di dire preso in prestito da voi: sta scritto sul pannello all'ingresso, l'ha messo per iscritto un ufficio, e l'acustica della torretta era una delle cose che facevano funzionare il posto.
+**E svegliare quel nastro in questo posto vi farà notare.** Non "potrebbe": vi farà notare, adesso, di sicuro — questo carcere è una macchina costruita per sentire. Sta scritto sul pannello all'ingresso, l'ha messo per iscritto un ufficio, e l'acustica della torretta era una delle cose che facevano funzionare il posto.
 
 Il Geloso sta sulla pietra col vano aperto e la cassetta dentro. Il tasto PLAY è alzato di due millimetri, e si vede.
 
