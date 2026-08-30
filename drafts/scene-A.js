@@ -48,7 +48,7 @@ Claudia chiude il portellone con l'anca e resta appoggiata al lunotto, con le br
     location: 'scauri',
     caption: 'Scauri, ore 07:02 — la lista',
     stinger: 'gold',
-    text: `> Claudia: *(che lo sa da giugno e fa finta di no da giugno)* "Comunque non mi hai ancora detto quanto è costato."
+ text: `> Claudia: "Comunque non mi hai ancora detto quanto è costato."
 
 > Gaetano: "No."
 
@@ -56,7 +56,7 @@ Claudia chiude il portellone con l'anca e resta appoggiata al lunotto, con le br
 
 > Gaetano: "Mai."
 
-> Claudia: *(chiudendo il portellone con l'anca)* "Le chiavi di casa."
+> Claudia: "Le chiavi di casa."
 
 > Gaetano: "Prese."
 
@@ -66,13 +66,13 @@ Claudia chiude il portellone con l'anca e resta appoggiata al lunotto, con le br
 
 > Claudia: "Il phon."
 
-> Gaetano: *(pausa)* "...il phon perché?"
+> Gaetano: "...il phon perché?"
 
 > Claudia: "Perché tu dici sempre 'ce l'hanno' e poi non ce l'hanno mai."
 
-> Claudia: *(chiudendo il portellone con l'anca)* "Andiamo, che quello alle otto e mezza non aspetta."
+> Claudia: "Andiamo, che quello alle otto e mezza non aspetta."
 
-**(🫁 Fiato 6 su 20: è l'aria che avete adesso, e sotto conta solo quella. Si guadagna con le cose umane — mangiare vero, dormire, il caffè, ridere, stare fermi un momento in due — e si spende scendendo.)**`,
+**(🫁 6/20: è l'aria che avete adesso, e sotto conta solo quella. Si guadagna con le cose umane — mangiare vero, dormire, il caffè, ridere, stare fermi un momento in due — e si spende scendendo)**`,
     gold: 0,
     choices: [
       { text: '🧳 Caricare il borsone. Per primo, senza dire niente, e metterci le pinne sopra', once: true, gold: 1, sets: { borsone_caricato: true }, next: 'a0_traghetto' },
@@ -95,7 +95,7 @@ Claudia chiude il portellone con l'anca e resta appoggiata al lunotto, con le br
 
 Il molo Azzurra alle otto è già una battaglia, ma una battaglia sveglia: valigie, gente che urla il numero del biglietto, un tizio che vende ghiaccio da un carrellino, e il traghetto per Ponza e Ventotene attaccato alla banchina che sembra troppo piccolo per tutta quella coda. **Partenza alle otto e mezza.**
 
-> Claudia: *(sul ponte, quando finalmente si molla)* "Quattro giorni."
+> Claudia: "Quattro giorni."
 
 > Gaetano: "Quattro giorni."
 
@@ -105,7 +105,7 @@ Il molo Azzurra alle otto è già una battaglia, ma una battaglia sveglia: valig
 
 Il molo si stacca. Non è il traghetto che parte: è la banchina che va indietro, e quel secondo in cui il cervello si sbaglia è il secondo in cui una vacanza comincia per davvero.
 
-**(🫁 Fiato +1: siete partiti, e partire da soli in due vale aria.)**`,
+**(🫁 +1)**`,
     gold: 1,
     choices: [
       { text: '☕ Il bar di bordo: due caffè e un cornetto industriale, in piedi, col bicchiere di plastica', once: true, heal: 3, gold: 1, next: 'a0_ponte' },
@@ -130,7 +130,7 @@ Claudia si è messa a sedere sulla panca all'ombra della cabina e ha chiuso gli 
 
 > Gaetano: "Non addormentarti. Dietro c'è la scia e non la guarda nessuno."
 
-> Claudia: *(senza aprire gli occhi)* "Sto benissimo qui."
+> Claudia: "Sto benissimo qui."
 
 > Gaetano: "Lo so. Alzati lo stesso."
 
@@ -140,11 +140,11 @@ Adesso sta appoggiata alla ringhiera con la faccia dentro il vento e gli occhi c
 
 > Gaetano: "Comunque. Sai che le parracine le costruivano senza malta? Solo pietre incastrate. Reggono da secoli perché lasciano passare l'aria: se le fai piene, il vento le butta giù."
 
-> Claudia: *(senza aprire gli occhi)* "Amore. Sono in vacanza da due ore e mi hai già spiegato un muro."
+> Claudia: "Amore. Sono in vacanza da due ore e mi hai già spiegato un muro."
 
 > Gaetano: "È un muro INTERESSANTE."
 
-> Claudia: "Lo sono tutti, per te." *(allunga una mano e gli trova il ginocchio senza guardare)* "Continua."
+> Claudia: "Lo sono tutti, per te." "Continua."
 
 Claudia tiene la faccia dentro il vento con gli occhi chiusi e non ha nessuna intenzione di aprirli.
 
@@ -170,15 +170,15 @@ Ha gia' il telefono in mano. Non l'ha ancora sbloccato.`,
     metri: 0,
     text: `Il mare, oggi, è di un blu che sembra photoshoppato. E davanti, all'orizzonte, cominciano a staccarsi due sagome: una lunga e bassa, che è Ventotene, e una tozza, scura, con sopra un affare enorme a forma di ferro di cavallo.
 
-> Gaetano: *(col telefono in mano, che è il suo modo di guardare le cose)* "Sai come si chiamava, quella?"
+> Gaetano: "Sai come si chiamava, quella?"
 
 > Claudia: "Ventotene."
 
-> Gaetano: "Da cent'anni. Prima si chiamava **Pandataria**." *(scandisce)* "Pan-da-tà-ria. È greco."
+> Gaetano: "Da cent'anni. Prima si chiamava **Pandataria**." "Pan-da-tà-ria. È greco."
 
 > Claudia: "E vuol dire?"
 
-> Gaetano: "**Dispensatrice di ogni bene.**" *(alza gli occhi dal telefono)* "*Pan*, tutto. *Dateomai*, distribuire. Quella che dà tutto. Gliel'hanno messo i greci perché ci si fermavano volentieri: buona posizione, terra grassa, si mangiava."
+> Gaetano: "**Dispensatrice di ogni bene.**" "*Pan*, tutto. *Dateomai*, distribuire. Quella che dà tutto. Gliel'hanno messo i greci perché ci si fermavano volentieri: buona posizione, terra grassa, si mangiava."
 
 Claudia guarda l'isola bassa che cresce, e poi quella tozza col ferro di cavallo sopra.
 
@@ -186,7 +186,7 @@ Claudia guarda l'isola bassa che cresce, e poi quella tozza col ferro di cavallo
 
 > Gaetano: "Quella che dà tutto."
 
-**(🫁 Fiato +1: due ore e un quarto di mare aperto, con un caffè del bar di bordo e nessuno che vi chiede niente. Il Quaderno registra il nome vero dell'isola.)**`,
+**(🫁 +1)**`,
     gold: 1,
     sets: { sa_pandataria: true },
     choices: [
@@ -203,13 +203,13 @@ Claudia guarda l'isola bassa che cresce, e poi quella tozza col ferro di cavallo
     caption: 'E poi ci hanno messo un carcere',
     stinger: 'campana',
     metri: 0,
-    text: `> Claudia: *(e non lo dice per fare la spiritosa, lo dice perché lo pensa)* "E poi ci hanno messo un carcere."
+ text: `> Claudia: "E poi ci hanno messo un carcere."
 
 > Gaetano: "E poi ci hanno messo un carcere.
 
-> Claudia: *(che ha aperto gli occhi, e adesso guarda quella)* "Quello cos'è?"
+> Claudia: "Quello cos'è?"
 
-> Gaetano: "Santo Stefano. Il carcere borbonico. Del 1795, chiuso nel '65." *(controlla sul telefono, che è il suo modo di dire "ho paura di dire una cosa sbagliata")* "Panopticon: celle a ferro di cavallo intorno a un pozzo centrale. Una guardia sola, in mezzo, vede dentro tutte le celle contemporaneamente."
+> Gaetano: "Santo Stefano. Il carcere borbonico. Del 1795, chiuso nel '65." "Panopticon: celle a ferro di cavallo intorno a un pozzo centrale. Una guardia sola, in mezzo, vede dentro tutte le celle contemporaneamente."
 
 Claudia lo guarda per un secondo di troppo.
 
@@ -219,7 +219,7 @@ Claudia lo guarda per un secondo di troppo.
 
 Il traghetto vira, e per un momento il carcere resta esattamente al centro dell'inquadratura, e Claudia — che di mestiere decide come si guardano le cose — non fa la foto.
 
-**(🫁 Fiato +1: due ore e un quarto di mare aperto, con un caffè del bar di bordo e nessuno che vi chiede niente. Il Quaderno registra la prima cosa: il carcere si vede da qui, e lei ha scelto di non fotografarlo.)**`,
+**(🫁 +1)**`,
     gold: 1,
     sets: { partiti: true },
     choices: [
@@ -244,9 +244,9 @@ Guarda lo schermo. E fa quella faccia.
 
 Ne fa altre quattro. Sono tutte mosse, e sono mosse **nello stesso punto**: una banda di sfocatura verticale, larga tre dita, esattamente sopra il braccio di mare tra le due isole. Il resto dell'inquadratura è nitido come un manifesto.
 
-> Claudia: *(zoomando, professionale, e la voce che scende di tono)* "Gaetà. Questa non è micromosso. Il micromosso sfoca TUTTO. Questa è una banda. È come se là in mezzo l'aria... vibrasse."
+> Claudia: "Gaetà. Questa non è micromosso. Il micromosso sfoca TUTTO. Questa è una banda. È come se là in mezzo l'aria... vibrasse."
 
-> Gaetano: *(guarda il mare vero, poi lo schermo, poi il mare vero)* "Sarà lo scarico del motore. Il calore che sale distorce l'aria, tipo miraggio d'asfalto. Si chiama scintillazione."
+> Gaetano: "Sarà lo scarico del motore. Il calore che sale distorce l'aria, tipo miraggio d'asfalto. Si chiama scintillazione."
 
 > Claudia: "Il motore sta dietro di noi."
 
@@ -254,7 +254,7 @@ Ne fa altre quattro. Sono tutte mosse, e sono mosse **nello stesso punto**: una 
 
 Salva le foto. Tutte e cinque. È una cosa che farà, tra due giorni, la differenza tra credere di essere pazzi e sapere di non esserlo.
 
-**(🫁 Fiato +1: guardare le cose invece di scartarle. Il Quaderno registra: la banda tra le due isole.)**`,
+**(🫁 +1)**`,
     gold: 1,
     sets: { i_banda_foto: true },
     choices: [
@@ -267,7 +267,7 @@ Salva le foto. Tutte e cinque. È una cosa che farà, tra due giorni, la differe
     caption: 'Sul ponte — la conversazione della boa',
     text: `L'isola cresce. Si distinguono le case del paese, gialle e rosa, appoggiate sul tufo come una cosa fatta a mano, e sotto — nella baia — il porto romano scavato nella roccia duemila anni fa, che è ancora il porto, perché certe cose se le fai bene non le rifai più.
 
-> Gaetano: *(e lo dice con la leggerezza studiata di chi ci ha pensato tutta la settimana)* "Comunque ho portato la maschera buona."
+> Gaetano: "Comunque ho portato la maschera buona."
 
 > Claudia: "Bene."
 
@@ -275,7 +275,7 @@ Salva le foto. Tutte e cinque. È una cosa che farà, tra due giorni, la differe
 
 Claudia si gira. Lo guarda. Sa esattamente cosa sta facendo, perché lo conosce da dieci anni, e Gaetano sa che lei lo sa, e questa è la parte in cui uno dei due deve decidere di essere gentile.
 
-> Claudia: *(sceglie di esserlo)* "Due maschere."
+> Claudia: "Due maschere."
 
 > Gaetano: "Due maschere."
 
@@ -291,9 +291,9 @@ Ride. Ride davvero, e poi guarda l'acqua sotto lo scafo — quel blu che dopo i 
 
 > Gaetano: "Se dici basta si torna. Come sempre. Non ho mai fatto altro."
 
-> Claudia: *(gli prende la faccia con due mani, quella cosa che fa quando vuole essere sicura di essere capita)* "Lo so. È per questo che ci provo."
+> Claudia: "Lo so. È per questo che ci provo."
 
-**(🫁 Fiato +2. E su questa promessa, detta a voce alta sopra il mare, l'isola ha aperto un orecchio.)**`,
+**(🫁 +2)**`,
     gold: 1,
     attenzione: 1,
     sets: { promessa_boa: true },
@@ -314,7 +314,7 @@ Il porto è scavato nel tufo. Non "costruito": **scavato**. I romani sono arriva
 
 > Claudia: "E quelli?"
 
-> Gaetano: *(che ha letto tutto, ovviamente)* "Alloggiamenti per le travi. Ci poggiavano le passerelle." *(pausa, e poi la cosa che ha letto e non voleva dire)* "Alcuni dicono che i più grandi erano per le catene."
+> Gaetano: "Alloggiamenti per le travi. Ci poggiavano le passerelle." "Alcuni dicono che i più grandi erano per le catene."
 
 > Claudia: "Catene per le barche?"
 
@@ -322,7 +322,7 @@ Il porto è scavato nel tufo. Non "costruito": **scavato**. I romani sono arriva
 
 Sopra le loro teste, appoggiato sul bordo della cava, il paese comincia con una fila di case gialle. Una scaletta di pietra sale a zig-zag, e in cima si vede un cartello di legno dipinto a mano: **LE PARRACINE — B&B — 200 m**, con una freccia storta e un disegno di un muretto a secco.
 
-> Claudia: *(caricandosi il borsone)* "Duecento metri in salita con trentasei chili di roba. Chi ha fatto le valigie?"
+> Claudia: "Duecento metri in salita con trentasei chili di roba. Chi ha fatto le valigie?"
 
 > Gaetano: "Tu."
 
@@ -347,11 +347,11 @@ Il ragazzo dietro il banco ha vent'anni e la faccia di uno che ha già visto pas
 
 > Gaetano: "Una torcia subacquea. La più forte che ha."
 
-> Il ragazzo: *(tira giù una scatola dallo scaffale alto)* "Mille lumen, tenuta quaranta metri. Ventotto euro."
+> Il ragazzo: "Mille lumen, tenuta quaranta metri. Ventotto euro."
 
 > Gaetano: "La prendo."
 
-> Il ragazzo: *(mentre batte lo scontrino, senza alzare la testa)* "Per i polpi negli scogli?"
+> Il ragazzo: "Per i polpi negli scogli?"
 
 > Gaetano: "Per guardare sotto, in generale."
 
@@ -361,7 +361,7 @@ E qui il ragazzo alza la testa. Solo un attimo, e cambia niente in faccia, e inf
 
 > Claudia: "In che senso 'sotto dove'?"
 
-> Il ragazzo: *(mette la torcia nel sacchetto)* "Niente. Se andate a Cala Rossano, oltre la boa gialla, dopo c'è una franata: da dodici metri va a trentacinque di botto. Un sacco di gente non se ne accorge." *(porge il sacchetto, e adesso guarda Gaetano negli occhi)* "Non è pericoloso. È che non te ne accorgi. Ecco."
+> Il ragazzo: "Niente. Se andate a Cala Rossano, oltre la boa gialla, dopo c'è una franata: da dodici metri va a trentacinque di botto. Un sacco di gente non se ne accorge." "Non è pericoloso. È che non te ne accorgi. Ecco."
 
 Fuori, in mezzo al sole delle sei di sera, la frase resta lì tra loro due per una decina di passi.
 
@@ -371,7 +371,7 @@ Fuori, in mezzo al sole delle sei di sera, la frase resta lì tra loro due per u
 
 > Claudia: "Certo."
 
-**(Oggetti: TORCIA SUBACQUEA e NASTRO ISOLANTE. 🫁 Fiato +1.)**`,
+**(Oggetti: TORCIA SUBACQUEA e NASTRO ISOLANTE. 🫁 +1)**`,
     item: 'torcia_sub',
     item2: 'nastro_isolante',
     gold: 1,
@@ -389,13 +389,13 @@ Fuori, in mezzo al sole delle sei di sera, la frase resta lì tra loro due per u
 
 Anfore. Un mosaico da Villa Giulia. Un plastico dell'isola col porto romano ricostruito, e sopra — appesa al muro in una cornice di alluminio — una **carta dell'acquedotto romano**: sei rettangoli numerati collegati da linee, scavati nel tufo sotto il paese.
 
-> Gaetano: *(che si è avvicinato alla carta come si avvicina alle cose che lo chiamano)* "Sei cisterne."
+> Gaetano: "Sei cisterne."
 
-> La signora: *(dal banchetto, contenta di essere utile)* "Sei, sì! Ma se ne visitano due: quella di Villa Stefania e la Cisterna dei Detenuti. Le altre sono chiuse."
+> La signora: "Sei, sì! Ma se ne visitano due: quella di Villa Stefania e la Cisterna dei Detenuti. Le altre sono chiuse."
 
 > Claudia: "Chiuse tipo... pericolose?"
 
-> La signora: "Chiuse tipo che non si sa più dove stanno, signora! Il tufo si muove, le strade sono state rifatte tre volte..." *(fa un gesto vago)* "Le hanno murate nell'Ottocento, dicono. O prima."
+> La signora: "Chiuse tipo che non si sa più dove stanno, signora! Il tufo si muove, le strade sono state rifatte tre volte..." "Le hanno murate nell'Ottocento, dicono. O prima."
 
 Nell'altra stanza, in una teca dedicata al **relitto della Santa Lucia**, c'è la riproduzione di una fotografia. Molo di Napoli, 24 ottobre 1943, in bianco e nero mangiato: una bambina di sei anni col cappottino buono, la mano dentro la mano di qualcuno che l'inquadratura taglia via all'altezza del polso.
 
@@ -403,9 +403,9 @@ Claudia si ferma davanti a quella foto più tempo di quanto avrebbe voluto.
 
 > Claudia: "Che è successo alla Santa Lucia?"
 
-> La signora: *(e la voce le si aggiusta in quel modo che hanno le persone dei posti piccoli quando raccontano una cosa che è di tutti)* "Silurata. Il 24 ottobre del '43, di notte. Si è spezzata in due davanti all'isola." *(pausa)* "Sono ancora là sotto, in due pezzi. A quarantacinque metri."
+> La signora: "Silurata. Il 24 ottobre del '43, di notte. Si è spezzata in due davanti all'isola." "Sono ancora là sotto, in due pezzi. A quarantacinque metri."
 
-**(Oggetto: la FOTO DAL MUSEO. 🫁 Fiato +1. Il Quaderno registra la bambina del molo.)**`,
+**(Oggetto: la FOTO DAL MUSEO. 🫁 +1)**`,
     item: 'foto_bambina',
     gold: 1,
     sets: { i_foto_museo: true },
@@ -430,13 +430,13 @@ A metà salita, seduta su uno sgabello davanti a una porta aperta, una signora d
 
 > Gaetano: "Quattro giorni. Stiamo alle Parracine."
 
-> La signora: *(annuisce, continua a pulire fagiolini)* "Buoni, quelli. Brava gente." *(un fagiolino nel catino)* "Fate i bagni dove c'è la gente."
+> La signora: "Buoni, quelli. Brava gente." "Fate i bagni dove c'è la gente."
 
 Claudia si ferma. Gaetano non se ne accorge subito e fa altri due gradini.
 
 > Claudia: "Come, scusi?"
 
-> La signora: *(sempre coi fagiolini, tranquillissima, come se avesse detto di portare il cappello)* "Dove c'è la gente. Le calette belle sono belle, ma sono belle e sole. Ad agosto poi..." *(alza gli occhi per la prima volta, e sono occhi normali, gentili, di una signora che pulisce fagiolini)* "Ad agosto il mare è pieno.
+> La signora: "Dove c'è la gente. Le calette belle sono belle, ma sono belle e sole. Ad agosto poi..." "Ad agosto il mare è pieno.
 
 Fate i bagni dove c'è la gente, signora."
 
@@ -450,9 +450,9 @@ Riprendono la salita in silenzio per una decina di gradini.
 
 > Gaetano: "Pieno di gente. Ad agosto. Voleva dire pieno di gente, Claudia."
 
-> Claudia: *(che si è girata a guardare indietro, e la signora sta ancora pulendo fagiolini, e non li sta guardando)* "Sì. Probabilmente sì."
+> Claudia: "Sì. Probabilmente sì."
 
-**(🫁 Fiato +1: le cose dette in salita si dimenticano. Questa no.)**`,
+**(🫁 +1)**`,
     gold: 1,
     attenzione: 1,
     sets: { avviso_fagiolini: true },
@@ -475,13 +475,13 @@ La signora mette il catino in terra. Si asciuga le mani sul grembiule, piano, e 
 
 > Claudia: "Pieno di cosa?"
 
-> La signora: *(e adesso ha la voce con cui si spiega una cosa ovvia a una nipote)* "Di quelli che ci sono rimasti, signora mia. Il piroscafo del quarantatré. Quelli del carcere che gli davano sepoltura in acqua quando il cimitero era pieno. I pescatori. Mio zio Vincenzo, nel cinquantasette." *(riprende il catino)* "Il mare qua è un camposanto grande. Non è brutto: è pieno. Se fate i bagni dove c'è la gente, quelli non vi vengono a cercare, perché a loro dà fastidio la confusione. Ecco tutto."
+> La signora: "Di quelli che ci sono rimasti, signora mia. Il piroscafo del quarantatré. Quelli del carcere che gli davano sepoltura in acqua quando il cimitero era pieno. I pescatori. Mio zio Vincenzo, nel cinquantasette." "Il mare qua è un camposanto grande. Non è brutto: è pieno. Se fate i bagni dove c'è la gente, quelli non vi vengono a cercare, perché a loro dà fastidio la confusione. Ecco tutto."
 
 Un fagiolino nel catino. Un altro.
 
 > La signora: "Poi voi fate come volete. Siete grandi."
 
-**(🫁 Fiato +2: adesso lo sapete detto in chiaro, da una signora coi fagiolini, alle sei e venti di un giovedì d'agosto. Ed è così che le cose vere si dicono, sulle isole.)**`,
+**(🫁 +2)**`,
     gold: 1,
     sets: { avviso_esplicito: true },
     choices: [
@@ -507,7 +507,7 @@ I proprietari sono due: **la signora Ada** — sessant'anni, capelli raccolti co
 
 La stanza è semplice e perfetta: letto grande, un ventilatore a pale, il pavimento di graniglia freddo sotto i piedi, il frigo piccolo che ronza. E sopra, sul tetto, la **terrazza solarium**: un gazebo di canne, un tavolo apparecchiato per la colazione di domani, due sedie di plastica e una vista che ti spacca in due.
 
-> Ada: *(gia' sulla scaletta di ferro, con le chiavi in mano)* "Di sopra. Che il sole se ne va, e la vista a quest'ora e' la vista."
+> Ada: "Di sopra. Che il sole se ne va, e la vista a quest'ora e' la vista."
 
 La scaletta e' di ferro e scotta sotto i piedi nudi. Otto gradini.
 
@@ -532,13 +532,13 @@ Da metà scaletta il vento si sente gia', e qui sopra non e' quello del paese: e
 
 Poi si gira a destra, verso est, e a tre chilometri c'è il ferro di cavallo di **Santo Stefano**, appoggiato sull'acqua come un dente cariato.
 
-> Ada: "La colazione dalle otto, qua sopra sotto il gazebo. Ciambellone e marmellata, che le faccio io: quella di limone è di quelli lì." *(indica il vaso col mento.)* "Il caffè lo faccio con la moka, non ho la macchinetta e non la voglio." *(posa le chiavi sul tavolino)* "E se sentite i cani abbaiare di notte, non è niente: qua abbaiano tutti insieme, si mettono d'accordo."
+> Ada: "La colazione dalle otto, qua sopra sotto il gazebo. Ciambellone e marmellata, che le faccio io: quella di limone è di quelli lì." "Il caffè lo faccio con la moka, non ho la macchinetta e non la voglio." "E se sentite i cani abbaiare di notte, non è niente: qua abbaiano tutti insieme, si mettono d'accordo."
 
 > Claudia: "Si mettono d'accordo?"
 
-> Ada: *(dalla porta, e lo dice senza pensarci, come si dice il tempo che fa)* "Eh. Comincia uno e poi rispondono tutti. Come al coro." *(esce)* "A dopo!"
+> Ada: "Eh. Comincia uno e poi rispondono tutti. Come al coro." "A dopo!"
 
-**(🫁 Fiato +2: Le Parracine è un RIFUGIO, e si sente appena si posano i borsoni.)**`,
+**(🫁 +2)**`,
     gold: 2,
     sets: { arrivati_parracine: true },
     choices: [
@@ -558,13 +558,13 @@ Poi si gira a destra, verso est, e a tre chilometri c'è il ferro di cavallo di 
 
 > Gaetano: "Come al coro."
 
-> Claudia: *(che si è già seduta su una sedia di plastica coi piedi sul muretto)* "Amore, se cominci a fare l'inquietante con le frasi delle signore non ti porto più in vacanza."
+> Claudia: "Amore, se cominci a fare l'inquietante con le frasi delle signore non ti porto più in vacanza."
 
 > Gaetano: "Hai ragione. Scusa."
 
 Il sole scende. Il muretto a secco, sotto i piedi di Claudia, tiene su la terra e lascia passare il vento.
 
-**(🫁 Fiato +3. Le Parracine è un RIFUGIO: qui, dentro i muretti, non arriva niente. Quando dormite qui, il giorno si chiude.)**`,
+**(🫁 +3)**`,
     gold: 2,
     heal: 6,
     sets: { arrivati_parracine: true },
@@ -615,13 +615,13 @@ E qui succede quella cosa imbarazzante e bella di quando due persone che si cono
 
 > Gaetano: "Tanti. Tre? Quattro?"
 
-> Lilia: "Cinque, secondo il mio telefono." *(a Claudia, e le porge la mano bagnata senza scusarsi, che è il modo migliore)* "Lilia. La stanza sopra ve l'ho data io: mia madre prende le prenotazioni e poi mi dice cos'ha fatto."
+> Lilia: "Cinque, secondo il mio telefono." "Lilia. La stanza sopra ve l'ho data io: mia madre prende le prenotazioni e poi mi dice cos'ha fatto."
 
 Claudia le stringe la mano e vede due cose nello stesso momento: gli occhi, che sono di un azzurro che sull'isola sembra un dispetto, e la macchina fotografica appesa di traverso alla spalla, una reflex vera con la ghiera consumata sul bordo.
 
 > Claudia: "Che obiettivo tieni su?"
 
-> Lilia: *(la faccia di una che ha appena capito con chi sta parlando)* "Trentacinque fisso."
+> Lilia: "Trentacinque fisso."
 
 > Claudia: "Perché il trentacinque."
 
@@ -651,21 +651,21 @@ Lilia posa le pinne sul muretto, si siede sul gradino e fa la domanda che fanno 
 
 > Gaetano: "Fino a domenica. Traghetto delle 17:30."
 
-> Lilia: "Bene. Allora domani vi porto alle calette, che con questo mare è un peccato stare a Cala Nave." *(guarda l'attrezzatura appena tirata fuori dai borsoni, e nota le due maschere identiche prima di chiunque altro, e non dice niente, e questo Claudia se lo ricorderà)* "Sapete che l'isola prima si chiamava un'altra cosa?"
+> Lilia: "Bene. Allora domani vi porto alle calette, che con questo mare è un peccato stare a Cala Nave." "Sapete che l'isola prima si chiamava un'altra cosa?"
 
 > Gaetano: "Pandataria. Dispensatrice di ogni bene."
 
-> Lilia: *(ride)* "Lo sapevi. Vabbè, con te era prevedibile." *(poi diventa un po' più seria, e dice la cosa che a Gaetano non stava nel telefono)* "Però quella è la versione dei libri. Mio nonno la chiamava a un altro modo, e i pescatori vecchi ancora la dicono così: **l'isola dei buoni fondali**."
+> Lilia: "Lo sapevi. Vabbè, con te era prevedibile." "Però quella è la versione dei libri. Mio nonno la chiamava a un altro modo, e i pescatori vecchi ancora la dicono così: **l'isola dei buoni fondali**."
 
 > Claudia: "Fondali belli da vedere?"
 
-> Lilia: "No no. Fondali di **tenuta**." *(fa il gesto con la mano, il gesto di una cima che si tende)* "È un termine da barca. Un fondale di tenuta è un fondo dove l'ancora **fa presa** e non striscia. Ci sono posti dove butti l'ancora e la barca cammina tutta la notte. Qui no: qui quello che butti sotto, sotto **rimane**."
+> Lilia: "No no. Fondali di **tenuta**." "È un termine da barca. Un fondale di tenuta è un fondo dove l'ancora **fa presa** e non striscia. Ci sono posti dove butti l'ancora e la barca cammina tutta la notte. Qui no: qui quello che butti sotto, sotto **rimane**."
 
 Il limone in vaso fa il suo odore. Il mare, quaranta metri più giù, è una tavola.
 
-> Lilia: *(alzandosi, e già con un piede sul gradino)* "Comunque è una cosa buona, eh! Per le barche è il complimento più grosso che si può fare a un posto."
+> Lilia: "Comunque è una cosa buona, eh! Per le barche è il complimento più grosso che si può fare a un posto."
 
-**(🫁 Fiato +2, 💪 TENUTA +2. Avete ritrovato Lilia, e sapete la seconda metà del nome: quella che dà tutto, e sotto tiene.)**`,
+**(🫁 +2, 💪 +2)**`,
     choices: [
       { text: '📷 Chiederle di vedere le sue foto dell\'isola', once: true, next: 'a3_lilia_foto' },
       { text: '🧳 Finire di disfare i borsoni', next: 'a3_valigie' },
@@ -691,7 +691,7 @@ Dieci anni di isola guardata col trentacinque fisso. La stessa cala in ottanta l
 
 > Lilia: "Su questo? Ventimila e qualcosa. Sul disco a casa non lo so."
 
-> Claudia: *(e lo dice con l'invidia sana di una che lavora con le immagini)* "Ventimila foto dello stesso scoglio."
+> Claudia: "Ventimila foto dello stesso scoglio."
 
 > Lilia: "Dello stesso scoglio **in momenti diversi**. Che è il contrario."
 
@@ -707,7 +707,7 @@ Lilia torna indietro. È una foto normalissima: il mare fra Ventotene e Santo St
 
 Ma la cartella ha un nome, e il nome adesso lo sanno tutti e tre.
 
-**(📷 Sapete che esiste l'archivio di Lilia: ventimila foto dell'isola in dieci anni, ordinate per mese. Se un giorno vi servirà una prova, la prova potrebbe essere già stata scattata da qualcun altro.)**`,
+**(📷 Sapete che esiste l'archivio di Lilia: ventimila foto dell'isola in dieci anni, ordinate per mese. Se un giorno vi servirà una prova, la prova potrebbe essere già stata scattata da qualcun altro)**`,
     choices: [
       { text: '🧳 Finire di disfare i borsoni', next: 'a3_valigie' },
       { text: '🏖 Al mare', next: 'a4' },
@@ -727,7 +727,7 @@ Tre pezzi, e ognuno fa una cosa diversa. La **maschera** trasforma il fondo in u
 
 > Claudia: "Quindi tu a marzo stavi gia' pensando a questo."
 
-> Gaetano: *(che sta allineando i due boccagli sul comodino, perfettamente paralleli, perche' e' piu' forte di lui)* "Stavo pensando a un sacco di cose."
+> Gaetano: "Stavo pensando a un sacco di cose."
 
 Sul letto, in mezzo alla roba, restano fuori posto tre oggetti che col mare non c'entrano niente: un'asta telescopica, un ring light e un phon.`,
 
@@ -746,7 +746,7 @@ Sul letto, in mezzo alla roba, restano fuori posto tre oggetti che col mare non 
     location: 'bnb',
     caption: 'Lo scontrino e\' di marzo',
     stinger: 'heal',
-    text: `> Claudia: *(tenendo su l'asta telescopica con due dita)* "Perché ho portato questa?"
+ text: `> Claudia: "Perché ho portato questa?"
 
 > Gaetano: "Per i contenuti."
 
@@ -754,7 +754,7 @@ Sul letto, in mezzo alla roba, restano fuori posto tre oggetti che col mare non 
 
 > Gaetano: "Lo dici ogni anno."
 
-> Claudia: "E ogni anno è vero fino al secondo giorno." *(butta l'asta sul letto, sopra la GoPro)* "Vabbè. Metti tutto in un angolo che poi si vede."
+> Claudia: "E ogni anno è vero fino al secondo giorno." "Vabbè. Metti tutto in un angolo che poi si vede."
 
 Poi guarda le due maschere. Le prende, una in ogni mano, e le tiene su come si tengono due cose che pesano lo stesso. Poi guarda i due boccagli ancora nella busta, con lo scontrino dentro.
 
@@ -762,13 +762,13 @@ Poi guarda le due maschere. Le prende, una in ogni mano, e le tiene su come si t
 
 > Gaetano: "Ho capito, basta—"
 
-> Claudia: "No, no. Ti sto dicendo grazie." *(legge lo scontrino, e la data la becca in pieno: è di marzo)* "Marzo, Gaetà. Li hai comprati a marzo."
+> Claudia: "No, no. Ti sto dicendo grazie." "Marzo, Gaetà. Li hai comprati a marzo."
 
 > Gaetano: "Erano in saldo."
 
-> Claudia: "Erano in saldo." *(si mette la maschera sulla fronte, ridicola, e non se la toglie)* "Andiamo a fare questo bagno del cazzo."
+> Claudia: "Erano in saldo." "Andiamo a fare questo bagno del cazzo."
 
-**(Oggetti: tutta la roba della vacanza. 🔧 Nel Zaino, adesso, c'è un bottone "Combinare": nessuno vi ha dato istruzioni. Arrangiatevi, come tutti.)**`,
+**(Oggetti: tutta la roba della vacanza. 🔧 Nel Zaino, adesso, c'è un bottone "Combinare": nessuno vi ha dato istruzioni. Arrangiatevi, come tutti)**`,
     item: 'microfono',
     item2: 'gopro',
     gold: 1,
@@ -790,7 +790,7 @@ Poi guarda le due maschere. Le prende, una in ogni mano, e le tiene su come si t
 
 > Claudia: "E come le teniamo al collo?"
 
-> Gaetano: *(già in piedi verso la porta)* "Lo chiedo ad Ada. Su un'isola il filo da pesca ce l'hanno anche in bagno."
+> Gaetano: "Lo chiedo ad Ada. Su un'isola il filo da pesca ce l'hanno anche in bagno."
 
 Torna con trenta metri di nylon 0,60, un sorriso e una notizia.
 
@@ -800,7 +800,7 @@ Torna con trenta metri di nylon 0,60, un sorriso e una notizia.
 
 > Gaetano: "Ha detto: 'Ciro ci va, ma non ci resta dopo le sei.'"
 
-**(Oggetti: FILO DI NYLON, il beauty di Claudia con dentro un PRESERVATIVO di Barcellona, e le DUE FEDI. 🫁 Fiato +1.)**`,
+**(Oggetti: FILO DI NYLON, il beauty di Claudia con dentro un PRESERVATIVO di Barcellona, e le DUE FEDI. 🫁 +1)**`,
     item: 'filo_nylon',
     item2: 'preservativo',
     gold: 1,
@@ -820,17 +820,17 @@ Parla dell'isola come parlano quelli che ci sono nati: con affetto, senza incant
 
 > Claudia: "Lei ci è mai stata? A Santo Stefano."
 
-> Ada: "Una volta. A scuola, nel '77." *(gira lo zucchero)* "Mai più."
+> Ada: "Una volta. A scuola, nel '77." "Mai più."
 
 > Gaetano: "Brutto?"
 
-> Ada: *(e ci pensa, e la risposta che dà è meglio di qualunque storia di fantasmi)* "No. È il posto più ordinato che ho visto in vita mia. Tutte le celle uguali, tutte alla stessa distanza dal centro, tutte con la porta girata verso lo stesso punto. Ordinatissimo." *(beve)* "Quello è il brutto. Che è ordinato. Come una cosa progettata da uno che ci ha pensato bene."
+> Ada: "No. È il posto più ordinato che ho visto in vita mia. Tutte le celle uguali, tutte alla stessa distanza dal centro, tutte con la porta girata verso lo stesso punto. Ordinatissimo." "Quello è il brutto. Che è ordinato. Come una cosa progettata da uno che ci ha pensato bene."
 
 Il caffè è forte, denso, di quelli che ti raddrizzano la schiena.
 
-> Ada: *(alzandosi, tazzine in mano)* "Andate al mare che c'è ancora luce. E se domani volete vedere le cisterne, l'ingresso è dietro la chiesa: dite che vi manda Ada."
+> Ada: "Andate al mare che c'è ancora luce. E se domani volete vedere le cisterne, l'ingresso è dietro la chiesa: dite che vi manda Ada."
 
-**(Oggetto: il CAFFÈ DELLE PARRACINE — se una nota vi resta in testa, questo la porta via. 🫁 Fiato +2.)**`,
+**(Oggetto: il CAFFÈ DELLE PARRACINE — se una nota vi resta in testa, questo la porta via. 🫁 +2)**`,
     item: 'caffe_parracine',
     gold: 1,
     heal: 4,
@@ -850,17 +850,17 @@ Il caffè è forte, denso, di quelli che ti raddrizzano la schiena.
 
 > Gaetano: "Al museo ci hanno detto che sono state murate nell'Ottocento. O prima."
 
-> Ada: *(e per la prima volta da quando l'avete conosciuta non risponde subito)* "Mio padre ci giocava dentro a una, da ragazzo. Negli anni Cinquanta. Diceva che c'era un'apertura dietro l'orto dei Coraggio, e loro ci scendevano coi cerini." *(posa le tazzine sul tavolino, che vuol dire che la conversazione continua)* "Poi un anno l'hanno chiusa e mio padre non ha mai detto perché."
+> Ada: "Mio padre ci giocava dentro a una, da ragazzo. Negli anni Cinquanta. Diceva che c'era un'apertura dietro l'orto dei Coraggio, e loro ci scendevano coi cerini." "Poi un anno l'hanno chiusa e mio padre non ha mai detto perché."
 
 > Claudia: "Non l'ha mai detto o non lo sapeva?"
 
-> Ada: "Non l'ha mai detto." *(e guarda Claudia con un rispetto nuovo, perché la domanda era giusta)* "Mio padre era uno che raccontava tutto, signora. Tutto. Duemila storie. Quella no."
+> Ada: "Non l'ha mai detto." "Mio padre era uno che raccontava tutto, signora. Tutto. Duemila storie. Quella no."
 
 Riprende le tazzine.
 
-> Ada: "Comunque adesso lì sopra c'è il parcheggio dei motorini. Se cercate un buco, cercate sotto il cemento." *(sulla porta)* "E cercatelo di giorno."
+> Ada: "Comunque adesso lì sopra c'è il parcheggio dei motorini. Se cercate un buco, cercate sotto il cemento." "E cercatelo di giorno."
 
-**(🫁 Fiato +2. Il Quaderno registra: c'era un'apertura dietro l'orto dei Coraggio, e negli anni Cinquanta l'hanno chiusa.)**`,
+**(🫁 +2)**`,
     gold: 1,
     sets: { sa_apertura_coraggio: true },
     choices: [
@@ -906,7 +906,7 @@ Non e' paura, non ancora. E' il conto che sta facendo.`,
 
 > Claudia: "Dove tocca fino a dove?"
 
-> Gaetano: *(e qui c'è il momento in cui potrebbe dirle una bugia gentile, e non lo fa)* "Fino alla riga scura tocchi. Dopo la riga no." *(pausa)* "Qui scende presto, amore. Non a strapiombo, ma presto: è per questo che a Cala Nave ci vengono quelli che nuotano." "
+> Gaetano: "Fino alla riga scura tocchi. Dopo la riga no." "Qui scende presto, amore. Non a strapiombo, ma presto: è per questo che a Cala Nave ci vengono quelli che nuotano." "
 
 > Claudia: "E la boa?"
 
@@ -916,9 +916,9 @@ La boa gialla è a ottanta metri. Sta lì che fa la boa, gialla, tranquilla, sen
 
 > Gaetano: "Ok cosa?"
 
-> Claudia: "Ok niente. Ho detto ok." *(entra in acqua fino alle caviglie)* "Vieni?"
+> Claudia: "Ok niente. Ho detto ok." "Vieni?"
 
-**(💪 TENUTA +4. Primo bagno fatto: il gioco lo segna, perché tutto quello che verrà dopo si misura da qui — dal fatto che il 27 agosto, a Cala Nave, alle sette meno un quarto, Claudia è entrata in acqua di sua volontà.)**`,
+**(💪 +4)**`,
     heal: 4,
     sets: { primo_bagno: true },
     choices: [
@@ -952,7 +952,7 @@ Ottanta metri. Con le pinne sono venti secondi di andata e venti di ritorno, e C
 
 > Claudia: "E sotto quanto c'è?"
 
-> Gaetano: *(e di nuovo la verità, che è l'unica cosa che gli riesce bene)* "In mezzo otto, nove metri. Sotto lo scoglio meno: quattro."
+> Gaetano: "In mezzo otto, nove metri. Sotto lo scoglio meno: quattro."
 
 > Claudia: "Quindi si passa sopra nove metri di niente."
 
@@ -987,7 +987,7 @@ Poi tira su la maschera e dice la frase che Gaetano si scriverà sul quaderno st
 
 > Claudia: "Non è profondo. È **alto**. Siamo noi che stiamo sopra."
 
-**(🫁 Fiato +2, 💪 TENUTA +3. Ottanta metri di traverso, andati e tornati: per Claudia la distanza è diventata un numero.)**`,
+**(🫁 +2, 💪 +3)**`,
     choices: [
       { text: '🌊 Verso la riga scura, adesso che le gambe sanno di funzionare', next: 'a5' },
       { text: '🏖 A riva, e basta per oggi: era già tanto', next: 'a5' },
@@ -1002,7 +1002,7 @@ Poi tira su la maschera e dice la frase che Gaetano si scriverà sul quaderno st
 
 E qui succede la cosa bella: Claudia, con la maschera, **guarda**. Perché il suo problema non è mai stata l'acqua: è il non vedere. E con dieci centimetri di vetro temperato davanti agli occhi, il fondo diventa una cosa nitida, misurabile, finita — e sopportabile.
 
-Poi si mette il boccaglio, e succede la seconda cosa, che è più piccola e più grossa. Senza boccaglio, per respirare devi alzare la testa: e ogni volta che la alzi perdi il fondo di vista per un secondo, e in quel secondo la testa ricomincia da zero a immaginare cosa c'è. È il gesto della paura travestito da gesto tecnico, e lo fa da quando aveva sei anni.
+Poi si mette il boccaglio, Senza boccaglio, per respirare devi alzare la testa: e ogni volta che la alzi perdi il fondo di vista per un secondo, e in quel secondo la testa ricomincia da zero a immaginare cosa c'è. È il gesto della paura travestito da gesto tecnico, e lo fa da quando aveva sei anni.
 
 Col boccaglio la faccia resta dentro. Il respiro va avanti da solo, come a letto. E Claudia scopre — in un metro e mezzo d'acqua, a Cala Nave, il primo pomeriggio di una vacanza di quattro giorni — che si può guardare una cosa **finché non si è finito di guardarla**.
 
@@ -1040,7 +1040,7 @@ Claudia esce a galla, si tira su la maschera, e ha una faccia che Gaetano non le
 
 Ridono come idioti, con l'acqua che entra in bocca. Il sole è arancione. Sono le sette e venti di un giovedì di agosto e per un quarto d'ora, in questa vacanza, non c'è nient'altro.
 
-**(💪 TENUTA piena. 🫁 Fiato +3. Segnatevelo: dopo, quando sarà brutto, sarà questo il quarto d'ora a cui tornerete.)**`,
+**(💪 piena, 🫁 +3)**`,
     gold: 2,
     heal: 8,
     sets: { visto_polpo: true },
@@ -1070,7 +1070,7 @@ Claudia si ferma. Il suo respiro cambia. Non di molto: Gaetano lo sente perché 
 
 Restano lì, sul confine, con trenta persone che ridono alle loro spalle e la boa gialla a sessanta metri davanti.
 
-> Claudia: *(e la sua voce fa quella cosa dolce e feroce che fa quando decide)* "Ok. Dammi la mano. Non per aiuto. Per riferimento."
+> Claudia: "Ok. Dammi la mano. Non per aiuto. Per riferimento."
 
 Le prende la mano.
 
@@ -1094,15 +1094,13 @@ La tocca con tutte e due le mani, ci si appende, e la plastica gialla è calda d
 
 > Claudia: "PORCA PUTTANA."
 
-> Gaetano: *(arrivato mezzo secondo dopo)* "Sei alla boa."
+> Gaetano: "Sei alla boa."
 
 > Claudia: "PORCA PUTTANA, GAETANO, SONO ALLA BOA."
 
 Sotto di loro ci sono ventidue metri d'acqua. Claudia lo sa e per la prima volta in vita sua non le sta rovinando il momento, perché il momento è troppo grosso.
 
 Si abbracciano attaccati a una boa, ridicoli, con l'acqua in bocca, a sessanta metri dalla riva di Cala Nave.
-
-E qui il gioco deve dire una cosa, e la dice adesso perché dopo non ci sarà tempo: **questo è vero, questo è avvenuto, e niente di quello che accade nei prossimi tre giorni lo cancella.**
 
 > Gaetano: "Torniamo?"
 
@@ -1118,7 +1116,7 @@ Gaetano non la sente.
 
 Claudia sì.
 
-**(🫁 Fiato +4 e TENUTA piena: ce l'ha fatta, e questo non si cancella. Ma il Coro ha appena sentito la sua voce dire "porca puttana" a ventidue metri dal fondo — e non l'ha mai avuta, una voce così.)**`,
+**(🫁 +4)**`,
     gold: 2,
     heal: 10,
     attenzione: 1,
@@ -1136,7 +1134,7 @@ Claudia sì.
 
 > Gaetano: "Cosa?"
 
-> Claudia: *(una mano sulla boa, l'altra che gli fa segno di stare fermo)* "Una nota. Bassa. Tipo... tipo un contrabbasso. Da sotto."
+> Claudia: "Una nota. Bassa. Tipo... tipo un contrabbasso. Da sotto."
 
 Gaetano mette la testa sotto. Ascolta. Il mare fa il rumore che fa il mare da dentro: un frizzare continuo di bollicine, il ronzio lontano di un fuoribordo, il proprio battito.
 
@@ -1148,17 +1146,17 @@ Riemerge.
 
 > Gaetano: "Amore, i motori sott'acqua sembrano—"
 
-> Claudia: *(e lo interrompe con una calma che è peggio di un urlo, perché è la sua calma da lavoro, quella che usa quando ha visto una cosa che gli altri non hanno visto ancora)* "Gaetano. Era una NOTA. Aveva un attacco, una durata e una fine. Aveva un'ALTEZZA. I motori non hanno l'altezza, hanno il rumore." *(pausa)* "E l'ho sentita con le orecchie fuori dall'acqua."
+> Claudia: "Gaetano. Era una NOTA. Aveva un attacco, una durata e una fine. Aveva un'ALTEZZA. I motori non hanno l'altezza, hanno il rumore." "E l'ho sentita con le orecchie fuori dall'acqua."
 
 Il sole tocca l'orizzonte. Alle loro spalle, a Cala Nave, una madre chiama un bambino per la terza volta, con quel tono che al terzo tentativo diventa serio.
 
-> Gaetano: *(e non lo dice per gentilezza, lo dice perché ha appena deciso una cosa)* "Ok."
+> Gaetano: "Ok."
 
 > Claudia: "Ok?"
 
-> Gaetano: "Ok, era una nota. Non ti dico che ti sei sbagliata: non ti sei mai sbagliata su una cosa che hai sentito." *(guarda l'acqua nera sotto i loro piedi)* "Domani porto il microfono."
+> Gaetano: "Ok, era una nota. Non ti dico che ti sei sbagliata: non ti sei mai sbagliata su una cosa che hai sentito." "Domani porto il microfono."
 
-**(🫁 Fiato +1. Il Quaderno registra la prima nota. E Gaetano ha appena scelto di CREDERLE — che è, alla fine, l'unica cosa che tiene in piedi questa storia.)**`,
+**(🫁 +1)**`,
     gold: 1,
     attenzione: 1,
     sets: { i_prima_nota: true, gaetano_crede: true },
@@ -1181,13 +1179,13 @@ Tornano. Otto bracciate e i piedi trovano il sasso, e i piedi sul sasso sono la 
 
 Claudia resta con l'acqua alla vita, le mani sulle ginocchia, il respiro che si aggiusta piano. Gaetano le sta accanto e non dice niente di utile, che è la cosa giusta.
 
-> Claudia: *(quando torna a respirare)* "Che rottura di cazzo."
+> Claudia: "Che rottura di cazzo."
 
 > Gaetano: "Sei arrivata più avanti dell'anno scorso."
 
 > Claudia: "Non è vero."
 
-> Gaetano: "È vero. L'anno scorso a Ponza sei arrivata al secondo scoglio. Oggi hai fatto trentacinque metri oltre la riga." *(e lo dice come dice i numeri: senza consolazione, per esattezza)* "Trentacinque metri, Claudia. Li ho contati."
+> Gaetano: "È vero. L'anno scorso a Ponza sei arrivata al secondo scoglio. Oggi hai fatto trentacinque metri oltre la riga." "Trentacinque metri, Claudia. Li ho contati."
 
 Claudia lo guarda. Poi gli mette la fronte sulla spalla, in mezzo al mare, con trenta persone attorno che non guardano.
 
@@ -1195,7 +1193,7 @@ Claudia lo guarda. Poi gli mette la fronte sulla spalla, in mezzo al mare, con t
 
 > Gaetano: "Lo so."
 
-**(TENUTA −1: il corpo presenta il conto. Ma trentacinque metri sono trentacinque metri, e domani è un altro giorno.)**`,
+**(💪 −1)**`,
     sets: { boa_tentata: true },
     choices: [
       { text: '🏖 A riva, e stasera pizza', next: 'a6' },
@@ -1214,19 +1212,19 @@ Un cetriolo di mare. Un riccio. Una stella marina che sta andando in qualche pos
 
 Claudia guarda per due minuti interi senza dire una parola.
 
-> Claudia: *(riemergendo)* "Non c'è niente."
+> Claudia: "Non c'è niente."
 
 > Gaetano: "C'è tutto. È solo che è tutto piccolo e legittimo."
 
-> Claudia: *(si rimette la maschera, poi se la rialza, e la frase le esce diversa da come se l'aspettava)* "Gaetà, mi rendo conto adesso di una cosa scema. Io non ho paura di quello che c'è sotto." *(guarda il blu, oltre)* "Ho paura di quello che NON SO se c'è. È diverso. E si cura guardando."
+> Claudia: "Gaetà, mi rendo conto adesso di una cosa scema. Io non ho paura di quello che c'è sotto." "Ho paura di quello che NON SO se c'è. È diverso. E si cura guardando."
 
-> Gaetano: *(e la guarda con la faccia che fa quando lei dice una cosa che lui non avrebbe saputo dire)* "Questa scrivila."
+> Gaetano: "Questa scrivila."
 
 > Claudia: "Vaffanculo."
 
 > Gaetano: "Scrivila davvero."
 
-**(🫁 Fiato +3, TENUTA +4. E il gioco vi dice una cosa che vale per tutte le prossime settanta scene: guardare COSTA, e paga sempre.)**`,
+**(🫁 +3)**`,
     gold: 2,
     heal: 4,
     sets: { guardato_sotto: true },
@@ -1254,13 +1252,13 @@ Claudia racconta la storia della boa a tre tavoli diversi. Il cameriere, quando 
 
 > Claudia: "Alla boa gialla di Cala Nave."
 
-> Il cameriere: "Brava. Mia moglie ci ha messo dieci anni." *(posa il limoncello)* "Offre la casa."
+> Il cameriere: "Brava. Mia moglie ci ha messo dieci anni." "Offre la casa."
 
 Alla fine sono le undici, sono pieni, sono felici, ed è quel tipo di stanchezza buona che ti prende dopo un giorno di sole e di acqua salata.
 
 Sulla via del ritorno passano davanti al forno che sta già impastando per domani: la luce accesa, la radio bassa, un ragazzo con le mani in un mastello. Il forno vende un sacchetto di taralli caldi anche a mezzanotte, se ci sei.
 
-**(💪 TENUTA piena, 🫁 Fiato +3. Questa è la sera di cui parlerete per anni. Il gioco ve la lascia intera.)**`,
+**(💪 piena, 🫁 +3. Questa è la sera di cui parlerete per anni. Il gioco ve la lascia intera)**`,
     gold: 2,
     heal: 12,
     sets: { cena_paese: true },
@@ -1287,7 +1285,7 @@ Il vecchio non alza la testa.
 
 > Gaetano: "Come lo sa?"
 
-> Ciro: "Perché a quest'ora chi mi cerca vuole due cose: il pesce o Santo Stefano. E voi il pesce non lo comprate." *(un nodo, un altro)* "Quaranta euro andata e ritorno. Partiamo alle nove, torniamo per l'una."
+> Ciro: "Perché a quest'ora chi mi cerca vuole due cose: il pesce o Santo Stefano. E voi il pesce non lo comprate." "Quaranta euro andata e ritorno. Partiamo alle nove, torniamo per l'una."
 
 > Claudia: "Perché per l'una?"
 
@@ -1317,11 +1315,11 @@ La domanda l'ha sentita benissimo. Sta solo decidendo se valete la risposta.`,
 
 > Claudia: "E se domandiamo?"
 
-> Ciro: *(torna alla rete)* "Se domandate vi dico di no e vi trovate un altro. Ce ne stanno tre, di barche." *(pausa lunga, un nodo)* "Ma gli altri due vi portano e non vi raccontano niente. Io non vi racconto niente e in più vi riporto indietro. Fate voi."
+> Ciro: "Se domandate vi dico di no e vi trovate un altro. Ce ne stanno tre, di barche." "Ma gli altri due vi portano e non vi raccontano niente. Io non vi racconto niente e in più vi riporto indietro. Fate voi."
 
 Il mare, dentro il porto romano, non fa una piega. Da qualche parte oltre l'imboccatura, dove l'acqua diventa nera per davvero, qualcosa si muove e non fa rumore.
 
-**(🫁 Fiato +2. Appuntamento con Ciro: sabato, nove del mattino. E "non domandate" è la cosa più interessante che vi abbiano detto oggi.)**`,
+**(🫁 +2. Appuntamento con Ciro: sabato, nove del mattino. E "non domandate" è la cosa più interessante che vi abbiano detto oggi)**`,
     gold: 1,
     sets: { ciro_conosciuto: true, appuntamento_ciro: true },
     choices: [
@@ -1369,7 +1367,7 @@ Dura quaranta secondi. Poi si fermano tutti insieme, sulla stessa battuta, e tor
 
 > Gaetano: "Ada l'aveva detto. Si mettono d'accordo."
 
-> Claudia: *(che è rimasta con il tarallo a mezz'aria)* "Amore. Si sono fermati insieme."
+> Claudia: "Amore. Si sono fermati insieme."
 
 > Gaetano: "Sì."
 
@@ -1383,7 +1381,7 @@ La stessa di Cala Nave. Bassa, lunga, pulita. Due secondi e mezzo.
 
 Stavolta la sentono in due.
 
-**(⚠️ 🎵 L'attenzione del Coro sale per la prima volta: non perché abbiate fatto qualcosa, ma perché adesso la sentite in due, e una cosa sentita in due è una cosa che ha attaccato.)**`,
+**(⚠️ 🎵 L'sale per la prima volta: non perché abbiate fatto qualcosa, ma perché adesso la sentite in due, e una cosa sentita in due è una cosa che ha attaccato)**`,
     stinger: 'coro',
     attenzione: 1,
     sets: { nota_da_terra: true },
@@ -1408,17 +1406,17 @@ Non è una domanda.
 
 > Claudia: "Cos'era?"
 
-> Ada: *(beve un sorso, appoggia il bicchiere)* "Non lo so. Lo sento da quando sono nata. Mia madre lo chiamava 'la corda'." *(si asciuga le mani a un canovaccio che non è bagnato)* "Tre-quattro volte l'anno, sempre d'estate, sempre di notte. Prima i cani, poi la corda. E il giorno dopo il mare è calmissimo."
+> Ada: "Non lo so. Lo sento da quando sono nata. Mia madre lo chiamava 'la corda'." "Tre-quattro volte l'anno, sempre d'estate, sempre di notte. Prima i cani, poi la corda. E il giorno dopo il mare è calmissimo."
 
 > Gaetano: "E la gente dell'isola cosa dice?"
 
-> Ada: "La gente dell'isola non ne parla, dottore. Non perché ha paura: perché non c'è niente da dire. È come il vento di tramontana: c'è. Che ne devo parlare?" *(e qui appoggia le mani sul tavolo, e cambia tono, e diventa la cosa più seria che abbiate sentito oggi)* "Quello di cui si parla è un'altra cosa. Si parla di quelli che dopo la corda vanno a vedere."
+> Ada: "La gente dell'isola non ne parla, dottore. Non perché ha paura: perché non c'è niente da dire. È come il vento di tramontana: c'è. Che ne devo parlare?" "Quello di cui si parla è un'altra cosa. Si parla di quelli che dopo la corda vanno a vedere."
 
 > Claudia: "E cosa gli succede?"
 
-> Ada: "Niente. Tornano." *(pausa)* "Ma tornano che ci pensano sempre. Mio padre ci pensava sempre. Ci ha pensato per cinquant'anni, ogni giorno, fino all'ultimo, e l'ultima cosa che mi ha detto in ospedale non è stata su di me né su mio figlio." *(prende il bicchiere e lo lava, e adesso non li guarda più)* "Andate a dormire. Domani c'è il sole."
+> Ada: "Niente. Tornano." "Ma tornano che ci pensano sempre. Mio padre ci pensava sempre. Ci ha pensato per cinquant'anni, ogni giorno, fino all'ultimo, e l'ultima cosa che mi ha detto in ospedale non è stata su di me né su mio figlio." "Andate a dormire. Domani c'è il sole."
 
-**(🫁 Fiato +3. Sapete tre cose: si chiama "la corda", viene tre-quattro volte l'anno, e chi va a vedere non smette più di pensarci. Il che vi dice esattamente cosa state per fare.)**`,
+**(🫁 +3. Sapete tre cose: si chiama "la corda", viene tre-quattro volte l'anno, e chi va a vedere non smette più di pensarci. Il che vi dice esattamente cosa state per fare)**`,
     gold: 2,
     sets: { sa_la_corda: true },
     choices: [
@@ -1452,7 +1450,7 @@ Gaetano si toglie le cuffie. Le rimette. Le toglie.
 
 Poi guarda Claudia che dorme sulla sedia di plastica, con la bocca aperta e i capelli in faccia, e prende una decisione: gliela farà sentire domani. Non stanotte.
 
-**(🎙 Registrazione salvata. E adesso Gaetano ha un DATO — e i dati, per lui, sono l'unica cosa che rende una paura affrontabile.)**`,
+**(🎙 Registrazione salvata. E adesso Gaetano ha un DATO — e i dati, per lui, sono l'unica cosa che rende una paura affrontabile)**`,
     gold: 1,
     attenzione: 1,
     sets: { registrata_nota: true, i_eco_misurata: true },
@@ -1484,7 +1482,7 @@ Lui resta seduto lì per undici minuti, a guardarla dormire, con il telefono in 
 
 Poi la sveglia piano — "amore, andiamo a letto" — e la porta dentro tenendola per le spalle, e non le dice niente.
 
-**(⚠️ Non gliel'ha detto. Il gioco lo registra e ci tornerà: le cose non dette, in questa storia, hanno gli interessi.)**`,
+**(⚠️ Non gliel'ha detto. Il gioco lo registra e ci tornerà: le cose non dette, in questa storia, hanno gli interessi)**`,
     gold: 1,
     attenzione: 1,
     sets: { sa_il_nome: true, gaetano_ha_taciuto: true },
@@ -1510,7 +1508,7 @@ E sotto, con un'altra penna, aggiunto stasera:
 
 **"il microfono."**
 
-**(🫁🫁 IL PRIMO GIORNO È CHIUSO. Dentro le parracine si dorme: TENUTA piena, mosse ricaricate. Fuori, sotto tre metri di tufo e ottanta metri d'acqua, una cosa che ha imparato un nome nuovo lo prova, piano, tutta la notte.)**`,
+**(🫁🫁 IL PRIMO GIORNO È CHIUSO. Dentro le parracine si dorme: piena)**`,
     gold: 1,
     sets: { giorno_27_chiuso: true },
     choices: [
@@ -1534,7 +1532,7 @@ E sotto, con un'altra penna, aggiunto stasera:
 
 > Claudia: "Quale posto."
 
-> Gaetano: "Non lo so. Sta sulla mappa e non ha il nome." *(ha già le pinne nella sacca e le scarpe ai piedi, e le scarpe ai piedi vogliono dire che ha deciso venti minuti fa)* "Venticinque minuti a piedi lungo il costone. Se fa schifo torniamo."
+> Gaetano: "Non lo so. Sta sulla mappa e non ha il nome." "Venticinque minuti a piedi lungo il costone. Se fa schifo torniamo."
 
 E quello è tutto il piano, ed è sempre stato tutto il piano, da dieci anni.
 
@@ -1544,15 +1542,15 @@ In fondo c'è una caletta di ghiaia grossa larga sei metri, senza un ombrellone,
 
 Non c'è niente da scoprire. Ci stanno due bavose che si contendono un buco, una bottiglia di plastica incastrata fra gli scogli che Gaetano tira fuori e si mette nella sacca, e il sole che se ne va alle sette e venti.
 
-> Claudia: *(con l'acqua alle ginocchia, e non ha ancora messo la maschera)* "Come lo sapevi che c'era?"
+> Claudia: "Come lo sapevi che c'era?"
 
 > Gaetano: "Non lo sapevo."
 
 > Claudia: "E se non c'era niente?"
 
-> Gaetano: *(che si sta sputando nel vetro della maschera)* "E infatti non c'è niente."
+> Gaetano: "E infatti non c'è niente."
 
-**(💪 TENUTA +4, 🫁 Fiato +2. Nessun indizio, nessun oggetto, nessuna nota: un'ora e mezza buttata via a piedi per una caletta senza nome. È l'unica cosa che avete fatto oggi per il solo motivo di farla, e il gioco la conta, perché è così che si guadagna l'aria.)**`,
+**(💪 +4, 🫁 +2. Nessun indizio, nessun oggetto, nessuna nota: un'ora e mezza buttata via a piedi per una caletta senza nome. È l'unica cosa che avete fatto oggi per il solo motivo di farla)**`,
     fullHeal: true,
     gold: 2,
     stinger: 'heal',

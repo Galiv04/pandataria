@@ -56,13 +56,13 @@ Ventinove anni. Ada tiene il tappo del thermos in mano e continua a girarlo, ava
 
 Lo rimettono. Tre volte.
 
-> Ada: *(alla terza, e guarda il muro)* "L'aveva capito lei per prima. Nel novantasette. E non l'ha detto a nessuno perché a chi lo dici, una cosa così." *(posa il tappo)* "Adesso lo sanno tre persone invece di una."
+> Ada: "L'aveva capito lei per prima. Nel novantasette. E non l'ha detto a nessuno perché a chi lo dici, una cosa così." "Adesso lo sanno tre persone invece di una."
 
 > Claudia: "E non canta più."
 
 Ada annuisce piano, due volte, come si annuisce a un medico. Poi si alza, prende le tazzine e sulla porta dice: "Il traghetto parte alle cinque e mezza. Non fate tardi."
 
-**(💪 TENUTA piena. 🫁 Il fiato da qui non conta più: era l'aria per scendere, e nessuno scende più. Ad Ada avete dato la sola cosa che si potesse dare — quaranta secondi della voce di sua sorella, e la ragione per cui è scesa. Il Quaderno la registra.)**`,
+**(💪 piena. 🫁 Il fiato da qui non conta più: era l'aria per scendere, e nessuno scende più. Ad Ada avete dato la sola cosa che si potesse dare — quaranta secondi della voce di sua sorella, e la ragione per cui è scesa. Il Quaderno la registra)**`,
     heal: 16,
     sets: { usciti_vivi: true, coro_zitto: true, marisa_restituita: true },
     choices: [
@@ -97,7 +97,7 @@ Poi c'è la cosa che ha capito laggiù e ha detto male, perché aveva il boccagl
 
 > Gaetano: "Te l'ho detto a quaranta metri e l'ho detto a metà. Nessuno di quelli là sotto è venuto qui volendo. Giulia l'ha scaricata qui il nonno a ventidue anni e le ha pure vietato le ossa. Novecento uomini in catene. Centoquarantasei passeggeri che stavano andando da un'altra parte. Marisa è scesa perché una voce l'ha chiamata."
 
-> Claudia: *(e finisce la frase lei, perché ci ha pensato tutto il giorno)* "E noi siamo i primi arrivati per scelta." *(le mani sul parapetto)* "Con le valigie. E la crema solare." *(pausa)* "Non ci voleva morti, Gaetà. Ci voleva **presenti**."
+> Claudia: "E noi siamo i primi arrivati per scelta." "Con le valigie. E la crema solare." "Non ci voleva morti, Gaetà. Ci voleva **presenti**."
 
 Nella cisterna murata, sul tufo, resta una cosa incisa con un chiodo: **CI SIAMO STATI. C. E G. — 28.8.26** e sotto **E SIAMO TORNATI SU**.
 
@@ -111,7 +111,7 @@ Alle 19:40 la luce si mette orizzontale e diventa una cosa che non si può fotog
 
 Alle **19:47** il sole tocca l'acqua e ci mette novanta secondi a entrarci tutto.
 
-**(💪 TENUTA +10: due ore e quaranta di vento fanno più di qualunque cura. 🫁 Il fiato non conta più — era aria, e l'aria serviva laggiù. Il 30 agosto è finito: alle 18:40 non è ricominciato niente. Resta una cosa da decidere, e riguarda quello che farete di ciò che sapete.)**`,
+**(💪 +10)**`,
     heal: 10,
     sets: { traghetto_partito: true, tramonto_visto: true },
     choices: [
@@ -166,13 +166,13 @@ Claudia tira fuori dalla borsa una cosa piccola avvolta nella carta del pane e l
 
 È una maschera. Non una nuova: **la sua**, quella di marzo, col silicone segnato dove l'ha stretta troppo. E dentro, sul bordo del vetro, scritto col pennarello indelebile in stampatello — come si scrivono le cose sulle attrezzature, per non confonderle con quelle di un altro — ci sono **una data e due iniziali**. Le stesse che stanno incise dentro le fedi.
 
-> Gaetano: *(che ha capito e non riesce a dirlo)* "Claudia."
+> Gaetano: "Claudia."
 
-> Claudia: "Tu me ne hai comprate due a marzo e non me l'hai detto. Io te ne segno una e te lo dico." *(la spinge di due centimetri verso di lui)* "Non è un regalo. È un'attrezzatura assegnata."
+> Claudia: "Tu me ne hai comprate due a marzo e non me l'hai detto. Io te ne segno una e te lo dico." "Non è un regalo. È un'attrezzatura assegnata."
 
 Poi dice la frase per cui dieci anni sono stati una specie di rincorsa, e la dice guardando il tovagliolo, perché certe cose non si dicono in faccia:
 
-> Claudia: "L'anno prossimo la fossa la guardiamo insieme. Non da sopra." *(pausa)* "E la prima che scende sono io."
+> Claudia: "L'anno prossimo la fossa la guardiamo insieme. Non da sopra." "E la prima che scende sono io."
 
 Il resto è la vita. Gaetano ha ripreso a misurare cose lontanissime. Claudia ha ripreso a decidere come si guardano le cose. Il 4 ottobre, a Serapo, con l'acqua a diciannove gradi e la spiaggia vuota, è entrata con maschera, pinne e boccaglio e ha nuotato fino alla terza boa senza chiedere a nessuno quanto fosse profondo.
 
@@ -180,7 +180,7 @@ Quando escono a cena e qualcuno chiede com'è andata a Ventotene, dicono: bellis
 
 E non è una bugia: è la prima riga di una cosa lunga che raccontano solo a se stessi, la sera, quando il palazzo è zitto. La raccontano bene — con le date, con i nomi, con le misure. Perché una cosa detta bene non torna più a chiederti niente.
 
-**(🌅 FINALE: LA COSA DETTA. Vivi, e avete capito. Nicola Sperduto ha smesso il turno, Assuntina dorme, la bocca è chiusa, Marisa non canta più. E in un archivio di Latina qualcuno ha scritto un nome su una riga che era vuota da sessant'anni.)**`,
+**(🌅 FINALE: LA COSA DETTA. Vivi, e avete capito. Nicola Sperduto ha smesso il turno, Assuntina dorme, la bocca è chiusa, Marisa non canta più. E in un archivio di Latina qualcuno ha scritto un nome su una riga che era vuota)**`,
     choices: [],
   },
 
@@ -210,7 +210,7 @@ Ogni tanto, di notte, uno dei due si sveglia e l'altro è già sveglio.
 
 E si riaddormentano, perché è vero: non c'è niente. È esattamente la cosa che hanno vinto, e nessuno gliela può controllare.
 
-**(🌅 FINALE: LA COSA NOSTRA. Vivi, e avete capito. Nessuno vi crederà mai perché non lo chiederete a nessuno: quello che sapete lo sapete in due — che con questa storia è il numero giusto.)**`,
+**(🌅 FINALE: LA COSA NOSTRA. Vivi, e avete capito. Nessuno vi crederà mai perché non lo chiederete a nessuno: quello che sapete lo sapete in due — che con questa storia è il numero giusto)**`,
     choices: [],
   },
 
@@ -230,7 +230,7 @@ Solo che non hanno capito.
 
 Hanno un buco con i bordi. Una nota bassa registrata su un telefono, cinque foto mosse sempre nello stesso punto, undici secondi di riverbero in una stanza di trenta metri, una parola di tre sillabe rallentata al venticinque per cento, e una parola sola detta da una signora davanti a un lavello: la corda. Hanno dei pezzi. I pezzi non si toccano tra loro.
 
-> Claudia: *(guardando il tabellone, che dice 17:30 FORMIA e nient'altro)* "Gaetà. Dimmi una cosa vera."
+> Claudia: "Gaetà. Dimmi una cosa vera."
 
 > Gaetano: "Dimmi tu la domanda."
 
@@ -246,7 +246,7 @@ E Gaetano — che misura cose per vivere, che sui numeri non ha mai barato nemme
 
 Al terzo pontile, duecento metri più in là, un vecchio sistema una rete e non alza la testa. Non è cattiveria: sono sessant'anni di pratica nel non alzare la testa.
 
-**(💪 TENUTA +8. 🫁 Il fiato che vi resta non serve a niente: non si scende più. Siete salvi, ed è tutto vero — è anche tutto quello che avete. Prima di salire, decidete cosa fare della roba che avete raccolto.)**`,
+**(💪 +8. 🫁 Il fiato che vi resta non serve a niente: non si scende più. Siete salvi, ed è tutto vero — è anche tutto quello che avete. Prima di salire, decidete cosa fare della roba che avete raccolto)**`,
     heal: 8,
     sets: { usciti_vivi: true, non_hanno_capito: true },
     choices: [
@@ -295,7 +295,7 @@ Il **14 febbraio** Claudia si sveglia alle quattro e dieci e si mette a sedere n
 
 > Claudia: "Amore. Amore. Cos'era?"
 
-> Gaetano: *(che si è svegliato di colpo e sa già di cosa parla, perché lo sa sempre)* "Cosa, amore?"
+> Gaetano: "Cosa, amore?"
 
 > Claudia: "A Ventotene. Cos'era."
 
@@ -303,7 +303,7 @@ E Gaetano allunga la mano verso il telefono per aprire una cartella che non esis
 
 Su un muro di tufo, dentro una cisterna murata che nessuno riaprirà, c'è scritto **CI SIAMO STATI** — e la riga sotto dice **E SIAMO TORNATI SU**, che è vero, ed è l'unica cosa che sono riusciti a portare a termine.
 
-**(🌅 FINALE: SALVI, A MANI VUOTE. Non vi è successo niente e non saprete mai cos'era. Ve lo chiederete per quarant'anni senza una sola cosa da riguardare — e la cancellazione l'avete fatta voi, sul molo, a mente lucida.)**`,
+**(🌅 FINALE: SALVI, A MANI VUOTE. Non vi è successo niente e non saprete mai cos'era. Ve lo chiederete per quarant'anni senza una sola cosa da riguardare — e la cancellazione l'avete fatta voi, sul molo, a mente lucida)**`,
     choices: [],
   },
 
@@ -319,9 +319,9 @@ Alle **19:47** il sole tocca l'acqua. La luce si mette orizzontale, il mare va d
 
 Claudia lo guarda dallo schermo. Alza il telefono, inquadra il sole e l'isola, scatta cinque volte. Poi zooma. Cerca la banda.
 
-> Gaetano: *(piano)* "Amore. Il tramonto sta di là."
+> Gaetano: "Amore. Il tramonto sta di là."
 
-> Claudia: *(senza staccare gli occhi dallo schermo)* "Lo so. Un secondo."
+> Claudia: "Lo so. Un secondo."
 
 Un secondo così.
 
@@ -341,11 +341,11 @@ Quello che invece si sente ogni anno è il primo settembre: dieci anni, poi undi
 
 La cartella si chiama VENTOTENE e dentro ci sono quattromiladuecento file, e non uno di quei file risponde alla domanda.
 
-> Claudia: *(sul ponte di poppa, ogni anno, con lo stesso vento)* "Era qualcosa."
+> Claudia: "Era qualcosa."
 
 > Gaetano: "Era qualcosa."
 
-**(🌅 FINALE: SALVI, CON LE PROVE IN MANO. Avete tutto tranne la cosa: la banda dentro le foto, la nota dentro il file, i nomi mai messi in fila. E ci tornerete ogni agosto della vostra vita a non capire — insieme, che è la parte buona.)**`,
+**(🌅 FINALE: SALVI, CON LE PROVE IN MANO. Avete tutto tranne la cosa: la banda dentro le foto, la nota dentro il file, i nomi mai messi in fila. E ci tornerete ogni agosto della vostra vita a non capire — insieme, che è la parte buona)**`,
     choices: [],
   },
 
@@ -369,7 +369,7 @@ Il motore gira al minimo perché nessuno ha ancora avuto il coraggio di mettere 
 
 Alle 07:20, sul molo, c'è Ada in piedi col thermos di acciaio. Nessuno l'ha chiamata. Conta le persone che scendono dalla barca, le conta due volte come si contano i bambini, e poi mette il thermos in mano a chi è tornato e dice l'unica frase possibile: "Bevi. Poi ti porto su."
 
-**(🫁 Il fiato che avete non vale niente: l'aria serviva laggiù, dieci minuti fa. Uno di voi è PRESO DAL CORO e resta come voce. L'unico oggetto che paga una morte è l'ÀNCORA DI VOCE, e si consuma: se ce l'avete, è adesso o mai più.)**`,
+**(🫁 Il fiato che avete non vale niente: l'aria serviva laggiù, dieci minuti fa. Uno di voi è PRESO DAL CORO e resta come voce. L'unico oggetto che paga una morte è l'ÀNCORA DI VOCE, e si consuma: se ce l'avete, è adesso o mai più)**`,
     sets: { scambio_fatto: true },
     choices: [
       { text: '⚓ L\'ÀNCORA DI VOCE. Rimettersi la maschera e andare a riprenderlo. Adesso.',
@@ -417,7 +417,7 @@ Alle **19:47** il sole tocca l'acqua. Il mare va di stagno e poi di rame, le fac
 
 Nessuno dice niente per due ore e quaranta. Non c'è niente da dire: c'è da stare vicini e guardare il colore, che è quello che si fa quando è finita.
 
-**(🌅 FINALE: L'ÀNCORA. Si è consumata — era un uso solo, e l'avete speso per una persona. Per la prima volta in duemila anni il Coro ha ridato indietro una voce. Adesso sa che si può fare: è l'unica cosa che vi terrà svegli.)**`,
+**(🌅 FINALE: L'ÀNCORA. Si è consumata — era un uso solo, e l'avete speso per una persona. Per la prima volta in duemila anni il Coro ha ridato indietro una voce. Adesso sa che si può fare: è l'unica cosa che vi terrà svegli)**`,
     choices: [],
   },
 
@@ -440,7 +440,7 @@ Anche il posto vuoto diventa d'oro.
 
 Perché la luce non sa.
 
-**(💪 TENUTA +4, che è tutto quello che il vento può fare. 🫁 Il fiato non serve più: non si scende più. Restano due ore e quaranta di mare aperto e una cosa sola da decidere — cosa si fa, adesso, di un nome.)**`,
+**(💪 +4)**`,
     heal: 4,
     sets: { tramonto_visto: true, posto_vuoto: true },
     choices: [
@@ -487,7 +487,7 @@ Il trentanovesimo 30 agosto è un martedì. Il mare è piatto, il traghetto part
 
 La dice comunque. È quello, il patto.
 
-**(🌅 FINALE: LO SCAMBIO. Uno è salito su quel traghetto perché l'altro ha spinto. Non è stato inutile: quarant'anni di 30 agosto sono quarant'anni, e ognuno di quei tramonti è stato guardato da due persone — una col parapetto caldo sotto le mani, una dal fondo. E nessuna delle due era sola.)**`,
+**(🌅 FINALE: LO SCAMBIO. Uno è salito su quel traghetto perché l'altro ha spinto. Non è stato inutile: quarant'anni di 30 agosto sono quarant'anni, e ognuno di quei tramonti è stato guardato da due persone — una col parapetto caldo sotto le mani, una dal fondo. E nessuna delle due era sola)**`,
     choices: [],
   },
 
@@ -510,11 +510,11 @@ Non c'è retorica in questa scena e non ce ne sarà: nessuno lo obbliga, nessuno
 
 Ada ha capito prima di tutti, prima che lo dicessero, mentre facevano i borsoni. Ha dato la stanza a mese, che d'inverno costa un terzo, e ha detto due frasi.
 
-> Ada: "Il pane arriva il martedì e il venerdì. D'inverno il traghetto salta due volte a settimana." *(pausa, e non guarda nessuno)* "Mia sorella è rimasta perché ha risposto. Tu resti perché hai promesso. Non è la stessa cosa: tienila diversa."
+> Ada: "Il pane arriva il martedì e il venerdì. D'inverno il traghetto salta due volte a settimana." "Mia sorella è rimasta perché ha risposto. Tu resti perché hai promesso. Non è la stessa cosa: tienila diversa."
 
 Il traghetto per Formia è alla banchina col portellone aperto. Parte alle **17:30** e non aspetta nessuno.
 
-**(💪 TENUTA +6: il caffè di Ada funziona anche adesso. 🫁 Il fiato non conta più — era l'aria per scendere, e qui nessuno scende. Restano cinquanta minuti, e sono tutto quello che avete.)**`,
+**(💪 +6)**`,
     heal: 6,
     sets: { uno_resta: true },
     choices: [
@@ -559,7 +559,7 @@ E poi comincia la parte vera, che è questa.
 
 Alle sette di ogni mattina chi resta entra in acqua a Cala Rossano fino alla vita, dove si tocca, e parla. Non canta: **parla**, con la voce normale che si usa coi bambini quando devono imparare una cosa e hanno paura.
 
-> Chi resta: "Prima la faccia. Solo la faccia, non tutta la testa. Se ti entra l'acqua nel naso, soffi: non si respira e non si piange, si soffia." *(e allarga le braccia sul pelo dell'acqua)* "Le gambe dietro, non sotto. Lo so che le vuoi tenere sotto. Dietro." *(pausa)* "Dieci minuti al giorno. Poi non ti fa più paura niente."
+> Chi resta: "Prima la faccia. Solo la faccia, non tutta la testa. Se ti entra l'acqua nel naso, soffi: non si respira e non si piange, si soffia." "Le gambe dietro, non sotto. Lo so che le vuoi tenere sotto. Dietro." "Dieci minuti al giorno. Poi non ti fa più paura niente."
 
 È la frase di Marisa, detta a due francesi nel 1997. La sanno tutti su quest'isola e nessuno la ripete mai.
 
@@ -569,7 +569,7 @@ L'altro viene tre volte l'anno, e ad agosto sta un mese. Non hanno mai litigato 
 
 Il mare, sotto, è zitto da anni. Ma il 30 agosto, ogni anno, alle 19:47 il colore sul tufo è esattamente quello — e c'è qualcuno che lo guarda dall'acqua, a mezzo busto, con le braccia larghe.
 
-**(🌅 FINALE: CHI RESTA. Non è morto nessuno, ed è peggio: uno dei due ha scelto per amore e per esattezza la vita più piccola, e la fa bene. Insegna a nuotare a una bambina del 1943, e non gli risponde nessuno — che è precisamente il risultato che voleva.)**`,
+**(🌅 FINALE: CHI RESTA. Non è morto nessuno, ed è peggio: uno dei due ha scelto per amore e per esattezza la vita più piccola, e la fa bene. Insegna a nuotare a una bambina del 1943, e non gli risponde nessuno — che è precisamente il risultato che voleva)**`,
     choices: [],
   },
 
@@ -598,7 +598,7 @@ Il 30 agosto dopo sono ancora lì. E quello dopo.
 
 Non hanno vinto e non hanno perso: hanno fatto la cosa che non fa nessuno, che è **stare**. Duemila anni di gente portata qui contro la propria volontà, e adesso ci sono due che ci restano perché hanno deciso — insieme, e potendo andarsene domani.
 
-**(🌅 FINALE: RESTANO IN DUE. La scelta d'amore sbagliata, fatta in due, diventa una vita: piccola, salata, ventosa, vera. Nessuno vi porta via da qui — e siete gli unici, su tutta l'isola, che potrebbero partire quando vogliono.)**`,
+**(🌅 FINALE: RESTANO IN DUE. La scelta d'amore sbagliata, fatta in due, diventa una vita: piccola, salata, ventosa, vera. Nessuno vi porta via da qui — e siete gli unici, su tutta l'isola, che potrebbero partire quando vogliono)**`,
     choices: [],
   },
 
@@ -615,7 +615,7 @@ Non hanno vinto e non hanno perso: hanno fatto la cosa che non fa nessuno, che �
 
 Non è un combattimento. Non c'è morso, non c'è artiglio, non c'è sangue. C'è che il canto arriva da quarantuno metri **e** da zero metri contemporaneamente — da fuori e da dentro l'orecchio — e poi, sotto il canto, una voce fa la cosa che fa la corda: chiama **per nome**.
 
-> Claudia: *(nel boccaglio, e la voce esce pulita come non può uscire una voce a quaranta metri)* "Amore, mi tieni la mano?"
+> Claudia: "Amore, mi tieni la mano?"
 
 > Claudia: "Amore."
 
@@ -629,7 +629,7 @@ Sotto di loro, nel buio, qualcosa **ride**. Non forte: come ride uno in fondo a 
 
 Il fiato finisce. Prima a uno, poi all'altro, con dodici secondi di differenza. E i dodici secondi sono la cosa peggiore di tutto il gioco, perché dodici secondi bastano per capire di essere rimasti soli e per sentire l'altro cominciare.
 
-**(🎵 PRESI DAL CORO, tutti e due. Non è una morte: è una collezione. Il fiato è finito e non c'è nessun checkpoint dove tornare: da qui si va avanti. Restano dodici secondi, e sono l'ultima cosa vostra.)**`,
+**(🎵 PRESI DAL CORO, tutti e due. Non è una morte: è una collezione. Il fiato è finito e non c'è nessun checkpoint dove tornare: da qui si va avanti. Restano dodici secondi, e sono l'ultima cosa vostra)**`,
     goldLoss: 20,
     sets: { presi_dal_coro: true, hanno_risposto: true },
     choices: [
@@ -652,7 +652,7 @@ C'è la nota, larga come una stanza, e dentro ci sono ottocento persone che teng
 
 E c'è una donna di quarant'anni, istruttrice di sub, che nel 1997 ha risposto. Quando li sente arrivare dice le due cose che diceva da viva, in quest'ordine:
 
-> Marisa: "Stai respirando male. Ci metto dieci minuti e non ti fa più paura niente." *(pausa)* "Ada è mia sorella. Ditele che sto bene."
+> Marisa: "Stai respirando male. Ci metto dieci minuti e non ti fa più paura niente." "Ada è mia sorella. Ditele che sto bene."
 
 Non possono. È questa la cosa: non possono più dire niente a nessuno di sopra. Ma ci sono due voci nuove, arrivate insieme, che si tengono — e questa è la crudeltà vera, detta in chiaro: **non siete soli.** Vi sentite. Sapete chi è l'altro, per sempre, e *per sempre* laggiù è una parola che significa qualcosa. Cantate la stessa nota a millesimi di secondo di distanza, quello scarto sotto i trenta millisecondi che fa sembrare un coro più grande di quanto sia, e ogni tanto uno dei due dice il nome dell'altro dentro il canto, e l'altro risponde, e non vi perdete.
 
@@ -668,7 +668,7 @@ Tre o quattro volte l'anno, sempre d'estate, sempre di notte: prima i cani, poi 
 
 Non risponde. Non ha mai risposto in vita sua, e non comincia adesso.
 
-**(🎵 FINALE: IL CORO. Vi ha presi tutti e due e non vi ha separati: è l'unica gentilezza di cui è capace. Cantate insieme, per sempre. E una signora con un bicchiere d'acqua in mano, di sopra, vi riconosce e tiene la bocca chiusa — perché è così che si sopravvive, qui.)**`,
+**(🎵 FINALE: IL CORO. Vi ha presi tutti e due e non vi ha separati: è l'unica gentilezza di cui è capace. Cantate insieme, per sempre. E una signora con un bicchiere d'acqua in mano, di sopra, vi riconosce e tiene la bocca chiusa — perché è così che si sopravvive, qui)**`,
     choices: [],
   },
 
@@ -700,7 +700,7 @@ Lei sì.
 
 E qualcuno, da quarantuno metri, la chiama per nome.
 
-**(🎵 FINALE: IL CORO, E NESSUNO. Non gli avete dato la voce: l'ha presa comunque, e in più vi ha tolto l'ultima cosa che avevate — sapere dov'era l'altro. Il 30 agosto continua senza di voi. E a Cala Nave, adesso, ci sono due note.)**`,
+**(🎵 FINALE: IL CORO, E NESSUNO. Non gli avete dato la voce: l'ha presa comunque, e in più vi ha tolto l'ultima cosa che avevate — sapere dov'era l'altro. Il 30 agosto continua senza di voi. E a Cala Nave, adesso, ci sono due note)**`,
     choices: [],
   },
 
@@ -725,7 +725,7 @@ L'ha già detto. L'ha detto nove volte. Lo dirà.
 
 Sul tavolo due tazzine, il pane caldo, i fichi tagliati a metà. Il fico è nello stesso punto del piatto, con lo stesso taglio, e la mosca che gli gira intorno gira nello stesso senso.
 
-> Claudia: *(che non ha ancora toccato la tazzina)* "Quante."
+> Claudia: "Quante."
 
 > Gaetano: "Nove."
 
@@ -735,7 +735,7 @@ Sul tavolo due tazzine, il pane caldo, i fichi tagliati a metà. Il fico è nell
 
 Il traghetto per Formia parte alle 17:30. Non parte.
 
-**(🫁 Il fiato è quello di stamattina. Sempre quello. Nove volte quello. Non c'è checkpoint a cui tornare: il checkpoint è questo, ed è la colazione.)**`,
+**(🫁 Il fiato è quello di stamattina. Sempre quello. Nove volte quello. Non c'è checkpoint a cui tornare: il checkpoint è questo, ed è la colazione)**`,
     sets: { loop_infinito: true },
     choices: [
       { text: '☕ Bere il caffè, ridire le stesse cose con le stesse parole, e cercare la differenza',
@@ -763,7 +763,7 @@ Nella cisterna, sul tufo, l'incisione dice ancora **E SIAMO TORNATI SU**. È al 
 
 Al ventisettesimo giro le righe nuove sono due.
 
-**(🎵 FINALE: IL LOOP. Il 30 agosto non finisce. Lo state ancora vivendo adesso, mentre leggete questa riga. E qualcuno, sul vostro specchio, sta imparando a scrivere.)**`,
+**(🎵 FINALE: IL LOOP. Il 30 agosto non finisce. Lo state ancora vivendo adesso, mentre leggete questa riga. E qualcuno, sul vostro specchio, sta imparando a scrivere)**`,
     choices: [],
   },
 
@@ -785,7 +785,7 @@ Sono le 08:00. La moka è sul fuoco. Il fico è nello stesso punto del piatto.
 
 E non è brutto. È questa la cosa: **non è brutto.** È comodissimo.
 
-**(🎵 FINALE: IL LOOP, ARRESO. Il giorno più bello dell'anno, per sempre — ed è la cosa peggiore che vi potesse capitare. Fuori il mare è calmissimo. Ci vuole così poco.)**`,
+**(🎵 FINALE: IL LOOP, ARRESO. Il giorno più bello dell'anno, per sempre — ed è la cosa peggiore che vi potesse capitare. Fuori il mare è calmissimo. Ci vuole così poco)**`,
     choices: [],
   },
 
@@ -822,7 +822,7 @@ Fuori, sotto la persiana, l'isola fa i suoi rumori di sempre: un Ape che sale, i
 
 E sul frigo, attaccati con la calamita del Parco Nazionale, ci sono due biglietti stampati al porto: **traghetto per Formia, oggi, ore 17:30.**
 
-**(⚠️ Non è una resa e il gioco non vi giudica. Sotto c'è ancora tutto quello che c'era, e adesso il Coro è più stanco di voi. Ma i biglietti sono sul frigo da tre giorni, e nessuno vi obbliga a scendere un'altra volta.)**`,
+**(⚠️)**`,
     stinger: 'penna',
     sets: { tre_volte_rimessi_a_posto: true },
     choices: [
